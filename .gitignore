@@ -10,6 +10,7 @@ xcuserdata/
 *.xccheckout
 
 ## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
+.DS_Store
 build/
 DerivedData/
 *.moved-aside
@@ -29,6 +30,9 @@ DerivedData/
 *.ipa
 *.dSYM.zip
 *.dSYM
+
+## Secrets
+*.p8
 
 ## Playgrounds
 timeline.xctimeline
@@ -67,7 +71,6 @@ playground.xcworkspace
 Carthage/Build/
 
 # Accio dependency management
-Dependencies/
 .accio/
 
 # fastlane
@@ -88,3 +91,5 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+.idea/
+secrets.xcconfig
