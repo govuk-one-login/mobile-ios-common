@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InstructionsWithImageViewController" customModule="GDSCommon">
+            <connections>
+                <outlet property="bodyLabel" destination="peh-mt-I2A" id="DgI-0C-5yp"/>
+                <outlet property="imageView" destination="DZG-TU-vNg" id="BO6-dt-gg8"/>
+                <outlet property="primaryButton" destination="exa-iY-8Ar" id="1Ym-zz-JCT"/>
+                <outlet property="titleLabel" destination="NRz-6E-ghN" id="as0-HL-1fL"/>
+                <outlet property="view" destination="iN0-l3-epB" id="LW6-8m-mNZ"/>
+                <outlet property="warningButton" destination="p4G-i5-7Mx" id="Nk7-LE-JZ0"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTf-aB-pTa">
+                    <rect key="frame" x="0.0" y="59" width="393" height="694"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="HOE-Hu-h71">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="444.33333333333331"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="OuA-Zr-e7o">
+                                    <rect key="frame" x="0.0" y="8" width="393" height="136"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a photo of the front of your driving licence" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRz-6E-ghN">
+                                            <rect key="frame" x="16" y="0.0" width="361" height="81.666666666666671"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="260" text="This is so we can confirm your driving licence is valid." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peh-mt-I2A">
+                                            <rect key="frame" x="16" y="93.666666666666657" width="361" height="42.333333333333343"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
+                                </stackView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" image="linkWithSafari" translatesAutoresizingMaskIntoConstraints="NO" id="DZG-TU-vNg">
+                                    <rect key="frame" x="0.0" y="160" width="393" height="226"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="DZG-TU-vNg" secondAttribute="height" multiplier="393:226" id="NNM-dJ-YGg"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="p4G-i5-7Mx" customClass="SecondaryButton" customModule="GDSCommon">
+                                    <rect key="frame" x="0.0" y="402" width="393" height="34.333333333333314"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Button">
+                                        <color key="baseForegroundColor" name="AccentColor"/>
+                                    </buttonConfiguration>
+                                    <connections>
+                                        <action selector="warningButtonAction:" destination="-1" eventType="touchUpInside" id="Av8-en-4KL"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="DZG-TU-vNg" secondAttribute="trailing" id="KET-4E-lBb"/>
+                                <constraint firstItem="DZG-TU-vNg" firstAttribute="leading" secondItem="HOE-Hu-h71" secondAttribute="leading" id="LZR-ZY-9yy"/>
+                            </constraints>
+                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="0.0"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="HOE-Hu-h71" secondAttribute="trailing" id="7CF-Js-TOJ"/>
+                        <constraint firstItem="HOE-Hu-h71" firstAttribute="width" secondItem="sTf-aB-pTa" secondAttribute="width" id="BKe-FB-Ilx"/>
+                        <constraint firstItem="HOE-Hu-h71" firstAttribute="width" secondItem="f13-KK-UVP" secondAttribute="width" id="SmN-vD-KeX"/>
+                        <constraint firstItem="HOE-Hu-h71" firstAttribute="top" secondItem="f13-KK-UVP" secondAttribute="top" id="Xff-5u-uba"/>
+                        <constraint firstItem="HOE-Hu-h71" firstAttribute="leading" secondItem="sTf-aB-pTa" secondAttribute="leading" id="d8b-y1-fQA"/>
+                        <constraint firstItem="HOE-Hu-h71" firstAttribute="bottom" secondItem="f13-KK-UVP" secondAttribute="bottom" id="uz7-JT-REb"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="f13-KK-UVP"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="Ckc-50-jtt"/>
+                </scrollView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="KQw-4J-8PG">
+                    <rect key="frame" x="16" y="769" width="361" height="33"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exa-iY-8Ar" customClass="RoundedButton" customModule="GDSCommon">
+                            <rect key="frame" x="0.0" y="0.0" width="361" height="33"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Start"/>
+                            <connections>
+                                <action selector="primaryButtonAction:" destination="-1" eventType="touchUpInside" id="CT6-9E-aVE"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="KQw-4J-8PG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="2h5-Pk-ap8"/>
+                <constraint firstItem="sTf-aB-pTa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Ck1-WT-3UG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sTf-aB-pTa" secondAttribute="trailing" id="IjO-Tq-y35"/>
+                <constraint firstItem="sTf-aB-pTa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Yhu-mM-ZCh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="KQw-4J-8PG" secondAttribute="trailing" constant="16" id="fio-zo-mfM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="KQw-4J-8PG" secondAttribute="bottom" constant="16" id="lNq-zM-rFb"/>
+                <constraint firstItem="KQw-4J-8PG" firstAttribute="top" secondItem="sTf-aB-pTa" secondAttribute="bottom" constant="16" id="qBR-qp-Yw6"/>
+            </constraints>
+            <point key="canvasLocation" x="-946" y="45"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="linkWithSafari" width="375" height="226"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.43900001049041748" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
