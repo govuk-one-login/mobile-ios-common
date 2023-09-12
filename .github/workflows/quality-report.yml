@@ -1,0 +1,38 @@
+name: Run Quality Report
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Run Quality Report
+    runs-on: macos-13
+    
+    steps:
+      - name: Add path globally
+        run: echo "/usr/local/bin" >> $GITHUB_PATH
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          lfs: 'true'
+          
+      - name: Build and Test
+        run: |
+          xcodebuild -scheme Logging-Package test -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" \
+            -enableCodeCoverage YES -resultBundlePath result.xcresult
+            
+      - name: Run SonarCloud Scanning
+        run: |
+          bash xccov-to-sonarqube-generic.sh result.xcresult/ >Coverage.xml
+          
+          brew install sonar-scanner
+          
+          sonar-scanner \
+            -Dsonar.token=$SONAR_TOKEN \
+            -Dsonar.coverageReportPaths="Coverage.xml"
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
