@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22129"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModalInfoViewController" customModule="GDSCommon">
+            <connections>
+                <outlet property="bodyLabel" destination="JIR-NX-GIB" id="kAJ-hF-WSA"/>
+                <outlet property="titleLabel" destination="scT-2x-13n" id="DcJ-LA-CK1"/>
+                <outlet property="view" destination="PKq-uW-jV8" id="kWd-s6-EJu"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="PKq-uW-jV8">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-Z9-tg7">
+                    <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZFw-FR-LhT">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="322.5"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="JqX-kN-ovq">
+                                    <rect key="frame" x="0.0" y="8" width="414" height="306.5"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help improve the app by sharing analytics" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scT-2x-13n">
+                                            <rect key="frame" x="16" y="8" width="382" height="82"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JIR-NX-GIB">
+                                            <rect key="frame" x="16" y="102" width="382" height="196.5"/>
+                                            <string key="text">You can help us improve this app by choosing to automatically share app activity and analytics data. 
+
+This is optional and lets us understand how people use this service so we can make it better. 
+
+You can change your preferences at any time in your Settings. </string>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                                </stackView>
+                            </subviews>
+                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="0.0"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ZFw-FR-LhT" secondAttribute="trailing" id="28j-He-Jkc"/>
+                        <constraint firstItem="ZFw-FR-LhT" firstAttribute="width" secondItem="QxU-Z9-tg7" secondAttribute="width" id="5kt-Q9-zAa"/>
+                        <constraint firstItem="ZFw-FR-LhT" firstAttribute="leading" secondItem="QxU-Z9-tg7" secondAttribute="leading" id="PBe-tu-JNS"/>
+                        <constraint firstItem="ZFw-FR-LhT" firstAttribute="top" secondItem="feA-Nb-pdt" secondAttribute="top" id="Xf5-Es-vkO"/>
+                        <constraint firstItem="ZFw-FR-LhT" firstAttribute="width" secondItem="feA-Nb-pdt" secondAttribute="width" id="cOv-tC-YoO"/>
+                        <constraint firstItem="ZFw-FR-LhT" firstAttribute="bottom" secondItem="feA-Nb-pdt" secondAttribute="bottom" id="nFW-DA-gyN"/>
+                        <constraint firstItem="ZFw-FR-LhT" firstAttribute="top" secondItem="q5u-IA-jmU" secondAttribute="top" id="uh2-Hq-7kZ"/>
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="feA-Nb-pdt"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="q5u-IA-jmU"/>
+                </scrollView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="QnT-Cc-0JV"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="QnT-Cc-0JV" firstAttribute="bottom" secondItem="QxU-Z9-tg7" secondAttribute="bottom" id="1u2-2L-cXu"/>
+                <constraint firstItem="QnT-Cc-0JV" firstAttribute="trailing" secondItem="QxU-Z9-tg7" secondAttribute="trailing" id="jeu-Ch-dXZ"/>
+                <constraint firstItem="QxU-Z9-tg7" firstAttribute="leading" secondItem="QnT-Cc-0JV" secondAttribute="leading" id="o8i-z3-fHx"/>
+                <constraint firstItem="QxU-Z9-tg7" firstAttribute="top" secondItem="QnT-Cc-0JV" secondAttribute="top" id="q2O-gr-4Ep"/>
+            </constraints>
+            <point key="canvasLocation" x="843" y="120"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DialogView" customModule="ID_Check" customModuleProvider="target">
+            <connections>
+                <outlet property="accessoryViewContainer" destination="EmT-79-CW7" id="WV1-qE-NDr"/>
+                <outlet property="contentView" destination="3aB-aw-Eg5" id="XF8-IT-CdX"/>
+                <outlet property="titleLabel" destination="aCc-Dg-NP0" id="qmU-II-o0P"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="ksT-w2-iQU">
+            <rect key="frame" x="0.0" y="0.0" width="351" height="377"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3aB-aw-Eg5">
+                    <rect key="frame" x="0.0" y="0.0" width="351" height="377"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Xrc-0G-uqC">
+                            <rect key="frame" x="0.0" y="30" width="351" height="327"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmT-79-CW7" userLabel="Icon Container">
+                                    <rect key="frame" x="135.5" y="0.0" width="80" height="290.5"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="80" id="FEx-V6-zvh"/>
+                                        <constraint firstAttribute="width" secondItem="EmT-79-CW7" secondAttribute="height" multiplier="1.1:1" priority="999" id="Zl9-Ng-uba"/>
+                                        <constraint firstAttribute="width" constant="80" id="z6O-N5-CFv"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCc-Dg-NP0">
+                                    <rect key="frame" x="16" y="306.5" width="319" height="20.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="aCc-Dg-NP0" firstAttribute="leading" secondItem="Xrc-0G-uqC" secondAttribute="leading" constant="16" id="OS9-OJ-n7z"/>
+                                <constraint firstItem="EmT-79-CW7" firstAttribute="centerX" secondItem="Xrc-0G-uqC" secondAttribute="centerX" id="Qsm-yI-P7x"/>
+                                <constraint firstItem="EmT-79-CW7" firstAttribute="centerX" secondItem="Xrc-0G-uqC" secondAttribute="centerX" id="aM0-Bd-gTn"/>
+                                <constraint firstAttribute="bottom" secondItem="aCc-Dg-NP0" secondAttribute="bottom" id="mSy-cD-VJD"/>
+                                <constraint firstAttribute="trailing" secondItem="aCc-Dg-NP0" secondAttribute="trailing" constant="16" id="xGI-uW-7yI"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" name="DialogBackground"/>
+                    <constraints>
+                        <constraint firstItem="Xrc-0G-uqC" firstAttribute="leading" secondItem="3aB-aw-Eg5" secondAttribute="leading" id="93z-zC-kCE"/>
+                        <constraint firstAttribute="bottom" secondItem="Xrc-0G-uqC" secondAttribute="bottom" constant="20" id="i5b-vL-o89"/>
+                        <constraint firstAttribute="trailing" secondItem="Xrc-0G-uqC" secondAttribute="trailing" id="sg8-tx-8ed"/>
+                        <constraint firstItem="Xrc-0G-uqC" firstAttribute="top" secondItem="3aB-aw-Eg5" secondAttribute="top" constant="30" id="z7X-JJ-asl"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="tk5-Nn-RMu"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <accessibility key="accessibilityConfiguration" identifier="expanded_dialog_view"/>
+            <constraints>
+                <constraint firstItem="3aB-aw-Eg5" firstAttribute="trailing" secondItem="tk5-Nn-RMu" secondAttribute="trailing" id="1pu-GS-GX3"/>
+                <constraint firstItem="3aB-aw-Eg5" firstAttribute="top" secondItem="ksT-w2-iQU" secondAttribute="top" id="4YN-aW-Tfp"/>
+                <constraint firstItem="3aB-aw-Eg5" firstAttribute="leading" secondItem="tk5-Nn-RMu" secondAttribute="leading" id="DGk-F2-eGQ"/>
+                <constraint firstItem="3aB-aw-Eg5" firstAttribute="leading" secondItem="tk5-Nn-RMu" secondAttribute="leading" id="E6e-1m-JDc"/>
+                <constraint firstItem="tk5-Nn-RMu" firstAttribute="trailing" secondItem="3aB-aw-Eg5" secondAttribute="trailing" id="GiD-aR-gDs"/>
+                <constraint firstItem="3aB-aw-Eg5" firstAttribute="top" secondItem="ksT-w2-iQU" secondAttribute="top" id="KJG-JQ-zs6"/>
+                <constraint firstItem="3aB-aw-Eg5" firstAttribute="bottom" secondItem="tk5-Nn-RMu" secondAttribute="bottom" id="RNZ-HR-iDC"/>
+                <constraint firstItem="3aB-aw-Eg5" firstAttribute="centerX" secondItem="ksT-w2-iQU" secondAttribute="centerX" id="bYJ-kL-EzD"/>
+                <constraint firstAttribute="bottom" secondItem="3aB-aw-Eg5" secondAttribute="bottom" id="jW0-E2-D7j"/>
+                <constraint firstItem="3aB-aw-Eg5" firstAttribute="centerY" secondItem="ksT-w2-iQU" secondAttribute="centerY" id="sWf-Wl-HdV"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-215.21739130434784" y="-131.58482142857142"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="DialogBackground">
+            <color red="0.42352941176470588" green="0.42352941176470588" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
