@@ -1,5 +1,5 @@
-import UIKit
 @testable import GDSCommon
+import UIKit
 import XCTest
 
 final class UIEdgeInsetsTests: XCTestCase {
