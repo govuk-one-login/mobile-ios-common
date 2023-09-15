@@ -9,7 +9,6 @@ let package = Package(
     products: [
         .library(name: "GDSCommon", targets: ["GDSCommon"]),
         .library(name: "GDSAnalytics", targets: ["GDSAnalytics"])
-        
     ],
     dependencies: [
         .package(
@@ -20,7 +19,6 @@ let package = Package(
         .target(name: "GDSCommon"),
         .testTarget(name: "GDSCommonTests",
                     dependencies: ["GDSCommon", "ViewInspector"]),
-        
         .target(name: "GDSAnalytics",
                 exclude: ["README.md"]),
         .testTarget(name: "GDSAnalyticsTests",
