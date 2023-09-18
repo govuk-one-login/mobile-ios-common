@@ -15,6 +15,7 @@ extension UIFont {
     public static let footnote = UIFont(style: .footnote, weight: .regular)
     
     public static let body = UIFont(style: .body, weight: .regular)
+    public static let bodySemiBold = UIFont(style: .body, weight: .semibold)
     public static let bodyBold = UIFont(style: .body, weight: .bold)
     
     public static let title3 = UIFont(style: .title3, weight: .regular)

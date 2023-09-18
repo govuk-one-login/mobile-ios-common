@@ -3,6 +3,8 @@ import UIKit
 public final class ListOptionsViewController: UIViewController {
     public override var nibName: String? { "ListOptions" }
     let viewModel: ListOptionsViewModel
+    public var hideBackButton: Bool = false
+    public var showRightBarButton: Bool = true
     
     public init(viewModel: ListOptionsViewModel) {
         self.viewModel = viewModel
@@ -20,17 +22,29 @@ public final class ListOptionsViewController: UIViewController {
         tableViewList.dataSource = self
         tableViewList.delegate = self
         tableViewList.isScrollEnabled = false
-        setBackButtonTitle()
+        setBackButtonTitle(isHidden: hideBackButton)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableViewList.redraw()
+        
+        if showRightBarButton {
+            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
+                                                           style: .done,
+                                                           target: self,
+                                                           action: #selector(dismissModal))
+        }
     }
     
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         tableViewList.redraw()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.didAppear()
     }
     
     @IBOutlet private var titleLabel: UILabel! {
@@ -69,6 +83,12 @@ public final class ListOptionsViewController: UIViewController {
               let cell = tableViewList.cellForRow(at: selectedIndex) as? ListTableViewCell else { return }
         
         viewModel.resultAction(cell.gdsLocalisedString)
+    }
+    
+    @objc private func dismissModal() {
+        self.dismiss(animated: true)
+        
+        viewModel.didDismiss()
     }
 }
 

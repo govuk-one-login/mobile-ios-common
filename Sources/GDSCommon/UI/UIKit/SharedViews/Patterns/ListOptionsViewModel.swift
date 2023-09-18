@@ -7,7 +7,9 @@ public protocol ListOptionsViewModel {
     var listHeader: String? { get }
     var listFooter: String? { get }
     var buttonViewModel: ButtonViewModel { get }
+    var rightBarButtonTitle: GDSLocalisedString? { get }
     var resultAction: (GDSLocalisedString) -> Void { get }
     
     func didAppear()
+    func didDismiss()
 }

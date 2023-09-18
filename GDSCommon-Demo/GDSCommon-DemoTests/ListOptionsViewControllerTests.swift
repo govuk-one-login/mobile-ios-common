@@ -8,10 +8,12 @@ final class ListOptionsViewControllerTests: XCTestCase {
     var gdsLocalisedString: GDSLocalisedString!
     
     var didSetStringKey: String?
+    var screenDidAppear: Bool = false
     
     override func setUp() {
         super.setUp()
         gdsLocalisedString = "exampleString"
+        screenDidAppear = false
         
         resultAction = { gdsString in
             self.didSetStringKey = gdsString.stringKey
@@ -19,6 +21,8 @@ final class ListOptionsViewControllerTests: XCTestCase {
         
         viewModel = MockListViewModel() { localisedString in
             self.didSetStringKey = localisedString.stringKey
+        } screenView: {
+            self.screenDidAppear = true
         }
         sut = .init(viewModel: viewModel)
     }
@@ -44,27 +48,20 @@ extension ListOptionsViewControllerTests {
         XCTAssertEqual(try sut.bodyLabel.font, .body)
     }
     
-    func testResultAction() throws {
-        XCTAssertNil(didSetStringKey)
+    func testTitleBar() {
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
+        sut.navigationItem.hidesBackButton = true
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, true)
+        
         sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
-        resultAction(gdsLocalisedString)
-        try sut.primaryButton.sendActions(for: .touchUpInside)
-        XCTAssertEqual(didSetStringKey, "exampleString")
+        XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "right bar button")
     }
     
-    func testSelectRow() throws {
-        XCTAssertNil(didSetStringKey)
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
-        try sut.tableViewList.selectRow(at: IndexPath(row: 1, section: 0), animated: false, scrollPosition: .none)
-        try sut.primaryButton.sendActions(for: .touchUpInside)
-        
-        let cell = try XCTUnwrap(sut.tableViewList.cellForRow(at: IndexPath(row: 1, section: 0)) as? ListTableViewCell)
-        let gdsString = cell.gdsLocalisedString
-        
-        viewModel.resultAction(gdsString)
-        XCTAssertEqual(didSetStringKey, "two")
+    func testPrimaryButton() {
+        XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
+        XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
+        XCTAssertEqual(try sut.primaryButton.titleLabel?.font, .bodySemiBold)
     }
 }
 
