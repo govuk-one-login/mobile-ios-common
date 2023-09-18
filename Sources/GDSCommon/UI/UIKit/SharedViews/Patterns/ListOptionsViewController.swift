@@ -66,9 +66,9 @@ public final class ListOptionsViewController: UIViewController {
     
     @IBAction private func primaryButton(_ sender: Any) {
         guard let selectedIndex = tableViewList.indexPathForSelectedRow,
-              let gdsLocalisedString = (tableViewList.cellForRow(at: selectedIndex) as? ListTableViewCell)?.gdsLocalisedString else { return }
+              let cell = tableViewList.cellForRow(at: selectedIndex) as? ListTableViewCell else { return }
         
-        viewModel.resultAction(gdsLocalisedString)
+        viewModel.resultAction(cell.gdsLocalisedString)
     }
 }
 
@@ -81,10 +81,9 @@ extension ListOptionsViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int { 1 }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ListTableViewCell(style: .default, reuseIdentifier: "listTableViewCell")
-        cell.selectionStyle = .none
         let descriptor = viewModel.listRows[indexPath.row]
-        cell.textLabel?.text = descriptor.value
+        let cell = ListTableViewCell(gdsLocalisedString: descriptor)
+        cell.selectionStyle = .none
         cell.textLabel?.numberOfLines = 0
         return cell
     }
