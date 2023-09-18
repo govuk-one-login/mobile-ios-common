@@ -14,13 +14,13 @@
             <connections>
                 <outlet property="bodyLabel" destination="N4x-de-I0h" id="rzh-ZL-I2t"/>
                 <outlet property="primaryButton" destination="KYc-dp-Lps" id="2xG-l3-cWf"/>
-                <outlet property="tableView" destination="xFT-7W-y3G" id="MPi-e7-VDW"/>
+                <outlet property="tableViewList" destination="xFT-7W-y3G" id="vgH-4c-SYt"/>
                 <outlet property="titleLabel" destination="Yxl-C7-PMp" id="zbO-Hy-vP1"/>
                 <outlet property="view" destination="M44-jn-cIX" id="Ukj-ji-nDV"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" restorationIdentifier="ListOptions" id="M44-jn-cIX">
+        <view contentMode="scaleToFill" id="M44-jn-cIX">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>

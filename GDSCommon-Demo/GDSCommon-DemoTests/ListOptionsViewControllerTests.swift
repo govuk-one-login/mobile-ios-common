@@ -1,4 +1,4 @@
-import GDSCommon
+@testable import GDSCommon
 import XCTest
 
 final class ListOptionsViewControllerTests: XCTestCase {
@@ -18,7 +18,7 @@ final class ListOptionsViewControllerTests: XCTestCase {
         }
         
         viewModel = MockListViewModel() { localisedString in
-            
+            self.didSetStringKey = localisedString.stringKey
         }
         sut = .init(viewModel: viewModel)
     }
@@ -34,9 +34,37 @@ final class ListOptionsViewControllerTests: XCTestCase {
 }
 
 extension ListOptionsViewControllerTests {
-    func testResultAction() {
+    func testLabelContents() {
+        XCTAssertEqual(try sut.titleLabel.text, "Title")
+        XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
+        XCTAssertEqual(try sut.titleLabel.textColor, .label)
+        XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
         
+        XCTAssertEqual(try sut.bodyLabel.text, "Body")
+        XCTAssertEqual(try sut.bodyLabel.font, .body)
+    }
+    
+    func testResultAction() throws {
+        XCTAssertNil(didSetStringKey)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
         resultAction(gdsLocalisedString)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(didSetStringKey, "exampleString")
+    }
+    
+    func testSelectRow() throws {
+        XCTAssertNil(didSetStringKey)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        try sut.tableViewList.selectRow(at: IndexPath(row: 1, section: 0), animated: false, scrollPosition: .none)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        
+        let cell = try XCTUnwrap(sut.tableViewList.cellForRow(at: IndexPath(row: 1, section: 0)) as? ListTableViewCell)
+        let gdsString = cell.gdsLocalisedString
+        
+        viewModel.resultAction(gdsString)
+        XCTAssertEqual(didSetStringKey, "two")
     }
 }
 
