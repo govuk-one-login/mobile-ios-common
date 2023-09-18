@@ -13,6 +13,16 @@ public final class ListOptionsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableViewList.register(ListTableViewCell.self, forCellReuseIdentifier: "listTableViewCell")
+        tableViewList.dataSource = self
+        tableViewList.delegate = self
+        tableViewList.isScrollEnabled = false
+        setBackButtonTitle()
+    }
+    
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableViewList.redraw()
@@ -25,13 +35,19 @@ public final class ListOptionsViewController: UIViewController {
     
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
-            
+            titleLabel.text = viewModel.title.value
+            titleLabel.font = .largeTitleBold
+            titleLabel.accessibilityTraits = .header
+            titleLabel.accessibilityIdentifier = "titleLabel"
         }
     }
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            // optional
+            bodyLabel.text = viewModel.body
+            bodyLabel.font = .body
+            bodyLabel.isHidden = viewModel.body == nil
+            bodyLabel.accessibilityIdentifier = "bodyLabel"
         }
     }
     
@@ -49,9 +65,10 @@ public final class ListOptionsViewController: UIViewController {
     }
     
     @IBAction private func primaryButton(_ sender: Any) {
-//        guard let selectedIndex = tableViewList.indexPathForSelectedRow?.row,
-//              let userOrigin = UserOrigin(rawValue: selectedIndex) else { return }
+        guard let selectedIndex = tableViewList.indexPathForSelectedRow,
+              let gdsLocalisedString = (tableViewList.cellForRow(at: selectedIndex) as? ListTableViewCell)?.gdsLocalisedString else { return }
         
+        viewModel.resultAction(gdsLocalisedString)
     }
 }
 

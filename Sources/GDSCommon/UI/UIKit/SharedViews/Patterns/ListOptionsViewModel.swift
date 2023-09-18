@@ -7,6 +7,7 @@ public protocol ListOptionsViewModel {
     var listHeader: String? { get }
     var listFooter: String? { get }
     var buttonViewModel: ButtonViewModel { get }
+    var resultAction: (GDSLocalisedString) -> Void { get }
     
     func didAppear()
 }
@@ -19,6 +20,7 @@ public struct MockListViewModel: ListOptionsViewModel {
     public let listHeader: String? = "footer"
     public let listFooter: String? = "this is a much longer header I wonder if it fits and dynamic type works correctly"
     public let buttonViewModel: ButtonViewModel = MockButtonVM()
+    public let resultAction: (GDSLocalisedString) -> Void
     
     public func didAppear() {
         print("screen did appear")
