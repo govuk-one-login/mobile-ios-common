@@ -144,13 +144,34 @@ This screen includes the following views:
 - `titleLabel` (type: `UILabel`)
 - `bodyLabel` (type: `UILabel`)
 - `imageView` (type: `UIImageView`)
-- `warningButton`  (type: ``SecondaryButton`` inherits from UIButton)
-- `primaryButton`  (type: ``RoundedButton`` inherits from SecondaryButton)
+- `warningButton`  (type: ``SecondaryButton`` inherits from `UIButton`)
+- `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
     
 This screen provides instructions below a heading and a full width image below the
 instructions. Within the storyboard, these are within two `UIStackView`s which is
 in turn within a `UIScrollView`. The `primaryButton` is within a `UIStackView` constrained to the bottom of the screen. This is the main Call To Action (CTA) on this screen.
 The content on the screen is set from the `viewModel`, which must conform to the `InstructionsWithImageViewModel` protocol.
+
+
+### ListOptions
+This screen includes the following views:
+- `titleLabel` (type: `UILabel`)
+- `bodyLabel` (type: `UILabel`?)
+- `footerLabel` (type: `UILabel`?)
+- `tableViewList` (type: `UITableView`)
+- `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
+    
+This screen provides an optional `bodyLabel` that could be used for instructional information below a `titleLabel` heading. The main content of this screen is the table view (`UITableView`) which allows the user to submit selected information back to the site of the initialisation of the view model via a call-back closure with a `GDSLocalisedString` parameter.
+There is a single Call To Action (CTA) on this screen. The navigation back button and right bar button are configurable.
+If this screen should be presented as a modal view, this should be done at the call site:
+
+```swift
+  let navigationController = UINavigationController(rootViewController: vc)
+  navigationController.modalPresentationStyle = .pageSheet
+  root.present(navigationController, animated: true)
+```
+
+The content on the screen is set from the `viewModel`, which must conform to the ``ListOptionsViewModel`` protocol.
 
 
 ### ModalInfoView

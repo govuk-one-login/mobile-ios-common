@@ -1,10 +1,23 @@
 import UIKit
 
+/// View controller for `ListOptions` screen.
+///   - `titleLabel` (type: `UILabel`)
+///   - `bodyLabel` (type: `UILabel`)
+///   - `tableViewList` (type: `UITableView`)
+///   - `footerLabel` (type: `UILabel`)
+///   - `primaryButton`  (type: ``RoundedButton`` inherits from SecondaryButton)
+///
+/// Two navigation items can be configured:
+/// - Back button via setting the `hideBackButton` boolean property on the view controller
+/// - Right bar button can be configured by setting the optional `rightBarButtonTitle` view
+/// model property to the required title. If this is set to `nil` then the button is not visible.
+/// The action can be customised by configuring the `didDismiss` method.
+/// `footerLabel` is configured separately from the `UITableView` to address some
+/// dynamic type issues with multi-line footers.
 public final class ListOptionsViewController: UIViewController {
     public override var nibName: String? { "ListOptions" }
-    let viewModel: ListOptionsViewModel
+    public let viewModel: ListOptionsViewModel
     public var hideBackButton: Bool = false
-    public var showRightBarButton: Bool = true
 
     public init(viewModel: ListOptionsViewModel) {
         self.viewModel = viewModel
@@ -29,7 +42,7 @@ public final class ListOptionsViewController: UIViewController {
         super.viewWillAppear(animated)
         tableViewList.redraw()
         
-        if showRightBarButton {
+        if viewModel.rightBarButtonTitle != nil {
             self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
                                                            style: .done,
                                                            target: self,
@@ -85,6 +98,7 @@ public final class ListOptionsViewController: UIViewController {
         didSet {
             primaryButton.setTitle(viewModel.buttonViewModel.title, for: .normal)
             primaryButton.accessibilityIdentifier = "primaryButton"
+            primaryButton.isEnabled = false
         }
     }
     

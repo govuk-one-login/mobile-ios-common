@@ -1,5 +1,6 @@
 import Foundation
 
+/// Protocol for the view model required to initilise a ``ListOptionsViewController``
 public protocol ListOptionsViewModel {
     var title: GDSLocalisedString { get }
     var body: String? { get }
@@ -11,4 +12,10 @@ public protocol ListOptionsViewModel {
     
     func didAppear()
     func didDismiss()
+}
+
+extension ListOptionsViewModel {
+    var rightBarButtonTitle: GDSLocalisedString? {
+        nil
+    }
 }
