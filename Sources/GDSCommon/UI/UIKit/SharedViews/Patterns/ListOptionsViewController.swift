@@ -127,6 +127,7 @@ extension ListOptionsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let descriptor = viewModel.listRows[indexPath.row]
         let cell = ListTableViewCell(gdsLocalisedString: descriptor)
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         cell.selectionStyle = .none
         cell.textLabel?.textColor = .label
         cell.textLabel?.numberOfLines = 0

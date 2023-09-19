@@ -13,9 +13,3 @@ public protocol ListOptionsViewModel {
     func didAppear()
     func didDismiss()
 }
-
-extension ListOptionsViewModel {
-    var rightBarButtonTitle: GDSLocalisedString? {
-        nil
-    }
-}
