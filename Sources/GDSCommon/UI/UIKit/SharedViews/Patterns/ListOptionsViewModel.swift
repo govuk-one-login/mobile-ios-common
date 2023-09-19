@@ -4,7 +4,6 @@ public protocol ListOptionsViewModel {
     var title: GDSLocalisedString { get }
     var body: String? { get }
     var listRows: [GDSLocalisedString] { get }
-    var listHeader: String? { get }
     var listFooter: String? { get }
     var buttonViewModel: ButtonViewModel { get }
     var rightBarButtonTitle: GDSLocalisedString? { get }

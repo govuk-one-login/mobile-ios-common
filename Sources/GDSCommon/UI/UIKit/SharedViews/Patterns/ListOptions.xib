@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListOptionsViewController" customModule="GDSCommon">
             <connections>
                 <outlet property="bodyLabel" destination="N4x-de-I0h" id="rzh-ZL-I2t"/>
+                <outlet property="footerLabel" destination="axh-CZ-aV7" id="qOP-mP-h8J"/>
                 <outlet property="primaryButton" destination="KYc-dp-Lps" id="2xG-l3-cWf"/>
                 <outlet property="tableViewList" destination="xFT-7W-y3G" id="vgH-4c-SYt"/>
                 <outlet property="titleLabel" destination="Yxl-C7-PMp" id="zbO-Hy-vP1"/>
@@ -27,14 +28,14 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUn-9t-v8v">
                     <rect key="frame" x="0.0" y="59" width="393" height="694"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="89O-HG-BkV">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="841"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="89O-HG-BkV">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="251"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Cyo-Rv-pRC">
-                                    <rect key="frame" x="0.0" y="8" width="393" height="193"/>
+                                    <rect key="frame" x="0.0" y="8" width="393" height="185"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What device did you use to view the GOV.UK website?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yxl-C7-PMp">
-                                            <rect key="frame" x="16" y="8.0000000000000071" width="361" height="122.66666666666669"/>
+                                            <rect key="frame" x="16" y="0.0" width="361" height="122.66666666666667"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                             </accessibility>
@@ -43,7 +44,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To finish linking the app, we need to know what device you used to view the GOV.UK website." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4x-de-I0h">
-                                            <rect key="frame" x="16" y="142.66666666666666" width="361" height="42.333333333333343"/>
+                                            <rect key="frame" x="16" y="134.66666666666666" width="361" height="42.333333333333343"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                             </accessibility>
@@ -52,30 +53,37 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                                    <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="8" right="16"/>
                                 </stackView>
                                 <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="3ma-59-6yV">
-                                    <rect key="frame" x="0.0" y="217" width="393" height="616"/>
+                                    <rect key="frame" x="0.0" y="193" width="393" height="50"/>
                                     <subviews>
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xFT-7W-y3G">
-                                            <rect key="frame" x="0.0" y="8" width="393" height="600"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                         </tableView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="xFT-7W-y3G" firstAttribute="leading" secondItem="3ma-59-6yV" secondAttribute="leadingMargin" id="8oj-nT-IT8"/>
                                     </constraints>
-                                    <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
+                                    <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 </stackView>
                             </subviews>
                             <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="0.0"/>
                         </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axh-CZ-aV7" userLabel="FooterLabel">
+                            <rect key="frame" x="16" y="251.00000000000003" width="361" height="20.333333333333343"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
                         <constraint firstItem="89O-HG-BkV" firstAttribute="top" secondItem="Dgn-3f-tSx" secondAttribute="top" id="A5k-ur-hGM"/>
+                        <constraint firstItem="axh-CZ-aV7" firstAttribute="top" secondItem="89O-HG-BkV" secondAttribute="bottom" id="Aes-1S-EAz"/>
                         <constraint firstItem="89O-HG-BkV" firstAttribute="leading" secondItem="fUn-9t-v8v" secondAttribute="leading" id="Ght-vc-8N5"/>
                         <constraint firstAttribute="trailing" secondItem="89O-HG-BkV" secondAttribute="trailing" id="GzW-Vl-h9s"/>
                         <constraint firstItem="89O-HG-BkV" firstAttribute="width" secondItem="fUn-9t-v8v" secondAttribute="width" id="QQm-JS-6HS"/>
-                        <constraint firstItem="89O-HG-BkV" firstAttribute="bottom" secondItem="Dgn-3f-tSx" secondAttribute="bottom" id="WV8-IP-WMP"/>
+                        <constraint firstItem="axh-CZ-aV7" firstAttribute="bottom" secondItem="Dgn-3f-tSx" secondAttribute="bottom" id="WV8-IP-WMP"/>
                         <constraint firstItem="89O-HG-BkV" firstAttribute="width" secondItem="Dgn-3f-tSx" secondAttribute="width" id="gcm-Vi-nJv"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="Dgn-3f-tSx"/>
@@ -104,9 +112,11 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="PWg-rP-OGD" firstAttribute="bottom" secondItem="d7r-e6-i9P" secondAttribute="bottom" constant="16" id="Aeb-4D-wdu"/>
+                <constraint firstItem="PWg-rP-OGD" firstAttribute="trailing" secondItem="axh-CZ-aV7" secondAttribute="trailing" constant="16" id="F6p-Ox-KG5"/>
                 <constraint firstItem="d7r-e6-i9P" firstAttribute="top" secondItem="fUn-9t-v8v" secondAttribute="bottom" constant="16" id="UOr-7n-p4D"/>
                 <constraint firstItem="PWg-rP-OGD" firstAttribute="trailing" secondItem="fUn-9t-v8v" secondAttribute="trailing" id="XP4-9d-SvS"/>
                 <constraint firstItem="fUn-9t-v8v" firstAttribute="top" secondItem="PWg-rP-OGD" secondAttribute="top" id="Zq5-b2-JFM"/>
+                <constraint firstItem="PWg-rP-OGD" firstAttribute="leading" secondItem="axh-CZ-aV7" secondAttribute="leading" constant="-16" id="g6K-cW-ZBK"/>
                 <constraint firstItem="d7r-e6-i9P" firstAttribute="leading" secondItem="PWg-rP-OGD" secondAttribute="leading" constant="16" id="h20-o7-wZu"/>
                 <constraint firstItem="fUn-9t-v8v" firstAttribute="leading" secondItem="PWg-rP-OGD" secondAttribute="leading" id="hoz-cT-ugb"/>
                 <constraint firstItem="PWg-rP-OGD" firstAttribute="trailing" secondItem="d7r-e6-i9P" secondAttribute="trailing" constant="16" id="zom-XZ-Sb3"/>

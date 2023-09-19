@@ -15,6 +15,7 @@ final class ListTableViewCell: UITableViewCell {
     init(gdsLocalisedString: GDSLocalisedString) {
         self.gdsLocalisedString = gdsLocalisedString
         super.init(style: .default, reuseIdentifier: "listTableViewCell")
+        self.textLabel?.text = gdsLocalisedString.value
     }
     
     required init?(coder: NSCoder) {

@@ -5,7 +5,7 @@ public final class ListOptionsViewController: UIViewController {
     let viewModel: ListOptionsViewModel
     public var hideBackButton: Bool = false
     public var showRightBarButton: Bool = true
-    
+
     public init(viewModel: ListOptionsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: "ListOptions", bundle: .module)
@@ -71,6 +71,16 @@ public final class ListOptionsViewController: UIViewController {
         }
     }
     
+    @IBOutlet private var footerLabel: UILabel! {
+        didSet {
+            footerLabel.text = viewModel.listFooter
+            footerLabel.font = .footnote
+            footerLabel.textColor = .secondaryLabel
+            footerLabel.accessibilityIdentifier = "footerLabel"
+            footerLabel.isHidden = viewModel.listFooter == nil
+        }
+    }
+    
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
             primaryButton.setTitle(viewModel.buttonViewModel.title, for: .normal)
@@ -104,6 +114,7 @@ extension ListOptionsViewController: UITableViewDataSource {
         let descriptor = viewModel.listRows[indexPath.row]
         let cell = ListTableViewCell(gdsLocalisedString: descriptor)
         cell.selectionStyle = .none
+        cell.textLabel?.textColor = .label
         cell.textLabel?.numberOfLines = 0
         return cell
     }

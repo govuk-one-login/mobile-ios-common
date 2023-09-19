@@ -4,8 +4,7 @@ struct MockListViewModel: ListOptionsViewModel {
     let title: GDSLocalisedString = "Title"
     let body: String? = "Body"
     let listRows: [GDSLocalisedString] = ["1", "two", "3", "4"]
-    let listHeader: String? = "footer"
-    let listFooter: String? = "this is a much longer header I wonder if it fits and dynamic type works correctly"
+    let listFooter: String? = "this is a much longer footer I wonder if it fits and dynamic type works correctly"
     let buttonViewModel: ButtonViewModel = MockButtonViewModel(title: "button title",
                                                                       action: { print("button was tapped") })
     let resultAction: (GDSLocalisedString) -> Void
