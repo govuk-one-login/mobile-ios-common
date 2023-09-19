@@ -81,11 +81,12 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="Dgn-3f-tSx"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="YXf-90-07R"/>
                 </scrollView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="d7r-e6-i9P">
+                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="361" placeholderIntrinsicHeight="44" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="d7r-e6-i9P">
                     <rect key="frame" x="16" y="769" width="361" height="33"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYc-dp-Lps" customClass="RoundedButton" customModule="GDSCommon">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" id="KYc-dp-Lps" customClass="RoundedButton" customModule="GDSCommon">
                             <rect key="frame" x="0.0" y="0.0" width="361" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                             <accessibility key="accessibilityConfiguration" identifier="retakeButton"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -110,7 +111,7 @@
                 <constraint firstItem="fUn-9t-v8v" firstAttribute="leading" secondItem="PWg-rP-OGD" secondAttribute="leading" id="hoz-cT-ugb"/>
                 <constraint firstItem="PWg-rP-OGD" firstAttribute="trailing" secondItem="d7r-e6-i9P" secondAttribute="trailing" constant="16" id="zom-XZ-Sb3"/>
             </constraints>
-            <point key="canvasLocation" x="-45" y="102"/>
+            <point key="canvasLocation" x="-45.038167938931295" y="101.40845070422536"/>
         </view>
     </objects>
     <resources>
