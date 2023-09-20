@@ -107,6 +107,7 @@ public final class ListOptionsViewController: UIViewController {
               let cell = tableViewList.cellForRow(at: selectedIndex) as? ListTableViewCell else { return }
         
         viewModel.resultAction(cell.gdsLocalisedString)
+        viewModel.buttonViewModel.action()
     }
     
     @objc private func dismissModal() {
