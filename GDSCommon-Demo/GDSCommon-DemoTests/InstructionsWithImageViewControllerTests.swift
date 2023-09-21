@@ -86,12 +86,18 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertNotNil(try sut.primaryButton)
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "button title")
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
+        
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didTapButton)
     }
     
     func test_warningButton() throws {
         XCTAssertNotNil(try sut.warningButton)
         XCTAssertEqual(try sut.warningButton.title(for: .normal), "button title")
         XCTAssertEqual(try sut.warningButton.backgroundColor, nil)
+        
+        try sut.warningButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didTapWarningButton)
     }
 }
 

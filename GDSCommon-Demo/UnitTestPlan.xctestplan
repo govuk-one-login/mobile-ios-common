@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "0F948ABD-C603-483C-B308-8F6A770F27D5",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GDSCommon-Demo.xcodeproj",
+        "identifier" : "2B0843FF2ABC79BB00188BA0",
+        "name" : "GDSCommon-DemoTests"
+      }
+    }
+  ],
+  "version" : 1
+}
