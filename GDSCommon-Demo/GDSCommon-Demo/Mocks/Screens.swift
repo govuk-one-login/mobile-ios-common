@@ -1,39 +1,39 @@
-import UIKit
 import GDSCommon
+import UIKit
 
 enum Screens: CaseIterable {
-    case GDSInstructions
-    case GDSInstructionsWithImage
-    case ModalInfoView
+    case gdsInstructions
+    case gdsInstructionsWithImage
+    case gdsModalInfoView
     
     var name: String {
         switch self {
-        case .GDSInstructions:
+        case .gdsInstructions:
             return "GDS Instructions View"
-        case .GDSInstructionsWithImage:
+        case .gdsInstructionsWithImage:
             return "GDS Instructions View (with image)"
-        case .ModalInfoView:
+        case .gdsModalInfoView:
             return "Modal Info View"
         }
     }
     
     var isModal: Bool {
         switch self {
-        case .GDSInstructions, .GDSInstructionsWithImage:
+        case .gdsInstructions, .gdsInstructionsWithImage:
             return false
-        case .ModalInfoView:
+        case .gdsModalInfoView:
             return true
         }
     }
     
     var view: UIViewController {
         switch self {
-        case .GDSInstructions:
+        case .gdsInstructions:
             let viewModel = MockGDSInstructionsViewModel(buttonViewModel: MockButtonViewModel(title: "Action Button",
                                                                                               shouldLoadOnTap: false,
                                                                                               action: {}))
             return GDSInstructionsViewController(viewModel: viewModel)
-        case .GDSInstructionsWithImage:
+        case .gdsInstructionsWithImage:
             let viewModel = MockInstructionWithImageViewModel(warningButtonViewModel: MockButtonViewModel(title: "Warning Button",
                                                                                                           shouldLoadOnTap: false,
                                                                                                           action: {}),
@@ -41,7 +41,7 @@ enum Screens: CaseIterable {
                                                                                                           shouldLoadOnTap: false,
                                                                                                           action: {}))
             return InstructionsWithImageViewController(viewModel: viewModel)
-        case .ModalInfoView:
+        case .gdsModalInfoView:
             let viewModel = MockModalInfoViewModel()
             let view = ModalInfoViewController(viewModel: viewModel)
             view.isModalInPresentation = true

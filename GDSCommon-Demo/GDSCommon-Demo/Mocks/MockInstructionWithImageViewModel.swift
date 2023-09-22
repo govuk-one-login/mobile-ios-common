@@ -1,5 +1,5 @@
-import UIKit
 import GDSCommon
+import UIKit
 
 class MockInstructionWithImageViewModel: InstructionsWithImageViewModel {
     var title: GDSCommon.GDSLocalisedString
