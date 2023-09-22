@@ -22,6 +22,11 @@
 		2B9BDC142ABC5A5600452E23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC122ABC5A5600452E23 /* Main.storyboard */; };
 		2B9BDC162ABC5A5700452E23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC152ABC5A5700452E23 /* Assets.xcassets */; };
 		2B9BDC192ABC5A5700452E23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC172ABC5A5700452E23 /* LaunchScreen.storyboard */; };
+		2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */; };
+		2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */; };
+		2BF197262ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197252ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift */; };
+		2BF197282ABDA0A000AC9620 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197272ABDA0A000AC9620 /* Screens.swift */; };
+		2BF1972B2ABDA1B800AC9620 /* MockModalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +57,11 @@
 		2B9BDC152ABC5A5700452E23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B9BDC182ABC5A5700452E23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B9BDC1A2ABC5A5700452E23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInstructionWithImageViewModel.swift; sourceTree = "<group>"; };
+		2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockButtonViewModel.swift; sourceTree = "<group>"; };
+		2BF197252ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSInstructionsViewModel.swift; sourceTree = "<group>"; };
+		2BF197272ABDA0A000AC9620 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
+		2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModalInfoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +128,7 @@
 		2B9BDC0B2ABC5A5600452E23 /* GDSCommon-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				2BF197202ABDA04600AC9620 /* Mocks */,
 				2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */,
 				2B9BDC0E2ABC5A5600452E23 /* SceneDelegate.swift */,
 				2B9BDC102ABC5A5600452E23 /* ViewController.swift */,
@@ -127,6 +138,18 @@
 				2B9BDC1A2ABC5A5700452E23 /* Info.plist */,
 			);
 			path = "GDSCommon-Demo";
+			sourceTree = "<group>";
+		};
+		2BF197202ABDA04600AC9620 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */,
+				2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */,
+				2BF197252ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift */,
+				2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */,
+				2BF197272ABDA0A000AC9620 /* Screens.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,8 +275,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B9BDC112ABC5A5600452E23 /* ViewController.swift in Sources */,
+				2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */,
+				2BF197262ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift in Sources */,
 				2B9BDC0D2ABC5A5600452E23 /* AppDelegate.swift in Sources */,
+				2BF197282ABDA0A000AC9620 /* Screens.swift in Sources */,
 				2B9BDC0F2ABC5A5600452E23 /* SceneDelegate.swift in Sources */,
+				2BF1972B2ABDA1B800AC9620 /* MockModalInfoViewModel.swift in Sources */,
+				2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
