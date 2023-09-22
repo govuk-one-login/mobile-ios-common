@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  GDSCommon-Demo
-//
-//  Created by McKillop, Ben on 21/09/2023.
-//
-
 import UIKit
 
 @main

@@ -1,10 +1,3 @@
-//
-//  MockModalInfoViewModel.swift
-//  GDSCommon-Demo
-//
-//  Created by McKillop, Ben on 22/09/2023.
-//
-
 import Foundation
 import GDSCommon
 
