@@ -56,6 +56,7 @@ public final class WelcomeViewController: UIViewController {
     @IBAction private func didTapContinueButton() {
         welcomeButton.isLoading = true
         appQualifyingService.checkAvailabilityAndAppVersion()
+        viewModel.welcomeButtonViewModel.action()
         welcomeButton.isLoading = false
     }
 }
