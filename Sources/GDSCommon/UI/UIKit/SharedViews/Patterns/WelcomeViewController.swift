@@ -14,17 +14,14 @@ protocol WelcomeScreenCoordinator: AnyObject {
 
 final class WelcomeViewController: UIViewController {
     override var nibName: String? { "Welcome" }
-    private weak var coordinator: WelcomeScreenCoordinator?
-    private let updateService: AppInformationServicing
+    
+    private let viewModel: WelcomeViewModel
+    private let appQualifyingService: AppQualifyingService
 
-    var analyticsStatus: AnalyticsStatusProtocol
-
-    init(coordinator: WelcomeScreenCoordinator,
-         updateService: AppInformationServicing = AppInformationService(),
-         analyticsStatus: AnalyticsStatusProtocol = UserDefaults.standard) {
-        self.coordinator = coordinator
-        self.updateService = updateService
-        self.analyticsStatus = analyticsStatus
+    init(viewModel: WelcomeViewModel,
+         appQualifyingService: AppQualifyingService) {
+        self.viewModel = viewModel
+        self.appQualifyingService = appQualifyingService
         super.init(nibName: "Welcome", bundle: nil)
     }
     
@@ -32,7 +29,6 @@ final class WelcomeViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     @IBOutlet private var welcomeImage: UIImageView! {
         didSet {
@@ -43,22 +39,22 @@ final class WelcomeViewController: UIViewController {
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
-            titleLabel.text = NSLocalizedString(key: "welcomeTitle")
+            titleLabel.text = viewModel.title.value
             titleLabel.accessibilityIdentifier = "welcome-title"
         }
     }
     
-    @IBOutlet private var subtitleLabel: UILabel! {
+    @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            subtitleLabel.text = NSLocalizedString(key: "welcomeSubtitle", NSLocalizedString(key: "appName"))
-            subtitleLabel.accessibilityIdentifier = "welcome-subtitle"
+            bodyLabel.text = viewModel.body.value
+            bodyLabel.accessibilityIdentifier = "welcome-subtitle"
         }
     }
     
-    @IBOutlet private var button: RoundedButton! {
+    @IBOutlet private var welcomeButton: RoundedButton! {
         didSet {
-            button.setTitle(NSLocalizedString(key: "continueButton"), for: .normal)
-            button.accessibilityIdentifier = "welcome-button"
+            welcomeButton.setTitle(viewModel.welcomeButtonViewModel.title, for: .normal)
+            welcomeButton.accessibilityIdentifier = "welcome-button"
         }
     }
     
@@ -66,46 +62,12 @@ final class WelcomeViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
         setBackButtonTitle()
+        viewModel.didAppear()
     }
 
     @IBAction private func didTapContinueButton() {
-        button.isLoading = true
-        checkAvailabilityAndAppVersion()
-    }
-    
-    private func checkAvailabilityAndAppVersion() {
-        Task {
-            do {
-                let appInfo = try await updateService.fetchAppInfo()
-                AppEnvironment.current.updateReleaseFlags(appInfo.releaseFlags)
-                
-                // Check if the app is available
-                guard appInfo.allowAppUsage else {
-                    coordinator?.presentAppUnavailableView()
-                    button.isLoading = false
-                    return
-                }
-                // Check if the app meets the minimum version requirements
-                guard updateService.currentVersion >= appInfo.minimumVersion else {
-                    coordinator?.presentUpdateAppView()
-                    button.isLoading = false
-                    return
-                }
-                checkAnalyticsStatus()
-            } catch let error as URLError where error.code == .notConnectedToInternet {
-                coordinator?.showNetworkError(error: error)
-            } catch {
-                coordinator?.showSomethingWentWrong(error: error)
-            }
-            button.isLoading = false
-        }
-    }
-    
-    private func checkAnalyticsStatus() {
-        guard analyticsStatus.hasAcceptedAnalytics == nil else {
-            coordinator?.retrieveSessionID()
-            return
-        }
-        coordinator?.showAnalyticsPermission()
+        welcomeButton.isLoading = true
+        appQualifyingService.checkAvailabilityAndAppVersion()
+        welcomeButton.isLoading = false
     }
 }
