@@ -1,7 +1,7 @@
 import UIKit
 
-final class WelcomeViewController: UIViewController {
-    override var nibName: String? { "Welcome" }
+public final class WelcomeViewController: UIViewController {
+    public override var nibName: String? { "Welcome" }
     
     private let viewModel: WelcomeViewModel
     private let appQualifyingService: AppQualifyingService
@@ -46,7 +46,7 @@ final class WelcomeViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
         setBackButtonTitle()

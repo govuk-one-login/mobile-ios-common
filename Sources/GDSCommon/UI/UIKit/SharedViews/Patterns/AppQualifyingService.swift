@@ -1,3 +1,3 @@
-protocol AppQualifyingService {
+public protocol AppQualifyingService {
     func checkAvailabilityAndAppVersion()
 }
