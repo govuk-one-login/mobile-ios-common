@@ -1,16 +1,4 @@
-import AVFoundation
-import GDSAnalytics
 import UIKit
-
-protocol WelcomeScreenCoordinator: AnyObject {
-    func presentUpdateAppView()
-    func retrieveAuthSessionID(using sessionType: AuthenticationSession.Type)
-    func showNetworkError(error: LoggableError)
-    func showAnalyticsPermission()
-    func presentAppUnavailableView()
-    func showSomethingWentWrong(error: Error)
-    func showLinkAppWithSafari()
-}
 
 final class WelcomeViewController: UIViewController {
     override var nibName: String? { "Welcome" }
