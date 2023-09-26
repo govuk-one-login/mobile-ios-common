@@ -6,7 +6,7 @@ public final class WelcomeViewController: UIViewController {
     private let viewModel: WelcomeViewModel
     private let appQualifyingService: AppQualifyingService
 
-    init(viewModel: WelcomeViewModel,
+    public init(viewModel: WelcomeViewModel,
          appQualifyingService: AppQualifyingService) {
         self.viewModel = viewModel
         self.appQualifyingService = appQualifyingService
