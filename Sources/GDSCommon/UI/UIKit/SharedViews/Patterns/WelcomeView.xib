@@ -11,10 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController" customModule="GDSCommon">
             <connections>
-                <outlet property="button" destination="exa-iY-8Ar" id="vvR-N3-fMU"/>
-                <outlet property="subtitleLabel" destination="VMl-uu-xee" id="2yp-6P-w5r"/>
+                <outlet property="bodyLabel" destination="VMl-uu-xee" id="tPJ-iG-emX"/>
                 <outlet property="titleLabel" destination="NRz-6E-ghN" id="UKJ-mr-R1A"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Z2a-Az-NBN"/>
+                <outlet property="welcomeButton" destination="exa-iY-8Ar" id="Ldh-qh-NRy"/>
                 <outlet property="welcomeImage" destination="oDp-pa-FTQ" id="gHV-AD-WnR"/>
             </connections>
         </placeholder>
@@ -91,7 +91,7 @@
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Continue"/>
                                     <connections>
-                                        <action selector="didTapContinueButton" destination="-1" eventType="touchUpInside" id="i0K-BG-vdH"/>
+                                        <action selector="didTapContinueButton" destination="-1" eventType="touchUpInside" id="WjL-DB-owU"/>
                                     </connections>
                                 </button>
                             </subviews>
