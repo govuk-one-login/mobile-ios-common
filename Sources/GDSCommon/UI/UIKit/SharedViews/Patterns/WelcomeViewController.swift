@@ -1,7 +1,7 @@
 import UIKit
 
 public final class WelcomeViewController: UIViewController {
-    public override var nibName: String? { "Welcome" }
+    public override var nibName: String? { "WelcomeView" }
     
     private let viewModel: WelcomeViewModel
     private let appQualifyingService: AppQualifyingService
@@ -10,7 +10,7 @@ public final class WelcomeViewController: UIViewController {
          appQualifyingService: AppQualifyingService) {
         self.viewModel = viewModel
         self.appQualifyingService = appQualifyingService
-        super.init(nibName: "Welcome", bundle: .module)
+        super.init(nibName: "WelcomeView", bundle: .module)
     }
     
     @available(*, unavailable, renamed: "init(coordinator:)")
