@@ -10,7 +10,7 @@ public final class WelcomeViewController: UIViewController {
          appQualifyingService: AppQualifyingService) {
         self.viewModel = viewModel
         self.appQualifyingService = appQualifyingService
-        super.init(nibName: "Welcome", bundle: nil)
+        super.init(nibName: "Welcome", bundle: .module)
     }
     
     @available(*, unavailable, renamed: "init(coordinator:)")
