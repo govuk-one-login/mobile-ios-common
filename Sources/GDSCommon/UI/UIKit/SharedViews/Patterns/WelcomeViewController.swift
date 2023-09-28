@@ -4,12 +4,9 @@ public final class WelcomeViewController: UIViewController {
     public override var nibName: String? { "WelcomeView" }
     
     private let viewModel: WelcomeViewModel
-    private let appQualifyingService: AppQualifyingService
 
-    public init(viewModel: WelcomeViewModel,
-         appQualifyingService: AppQualifyingService) {
+    public init(viewModel: WelcomeViewModel) {
         self.viewModel = viewModel
-        self.appQualifyingService = appQualifyingService
         super.init(nibName: "WelcomeView", bundle: .module)
     }
     
@@ -55,7 +52,6 @@ public final class WelcomeViewController: UIViewController {
 
     @IBAction private func didTapContinueButton() {
         welcomeButton.isLoading = true
-        appQualifyingService.checkAvailabilityAndAppVersion()
         viewModel.welcomeButtonViewModel.action()
         welcomeButton.isLoading = false
     }
