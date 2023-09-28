@@ -28,13 +28,13 @@ jobs:
       - name: Run Linter
         run: |
           swiftlint --strict
-            
+          
       - name: Build and Test
         run: |
           xcodebuild -scheme GDSCommon-Package test -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" \
             -enableCodeCoverage YES -resultBundlePath result.xcresult
             
-        - name: Build and Test Demo Project
+      - name: Build and Test Demo Project
         run: |
           xcodebuild -project "GDSCommon-Demo/GDSCommon-Demo.xcodeproj" -scheme GDSCommon-Demo
             
