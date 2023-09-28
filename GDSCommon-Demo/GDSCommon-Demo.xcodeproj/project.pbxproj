@@ -16,10 +16,10 @@
 		2B08440C2ABC79C300188BA0 /* InstructionsWithImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */; };
 		2B08440F2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08440E2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift */; };
 		2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0844102ABC7A7700188BA0 /* XCTestCase.swift */; };
+		2B74D6652AC317B2002D992C /* Demo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC122ABC5A5600452E23 /* Demo.storyboard */; };
 		2B9BDC0D2ABC5A5600452E23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */; };
 		2B9BDC0F2ABC5A5600452E23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC0E2ABC5A5600452E23 /* SceneDelegate.swift */; };
-		2B9BDC112ABC5A5600452E23 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC102ABC5A5600452E23 /* ViewController.swift */; };
-		2B9BDC142ABC5A5600452E23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC122ABC5A5600452E23 /* Main.storyboard */; };
+		2B9BDC112ABC5A5600452E23 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC102ABC5A5600452E23 /* DemoViewController.swift */; };
 		2B9BDC162ABC5A5700452E23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC152ABC5A5700452E23 /* Assets.xcassets */; };
 		2B9BDC192ABC5A5700452E23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC172ABC5A5700452E23 /* LaunchScreen.storyboard */; };
 		2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */; };
@@ -52,8 +52,8 @@
 		2B9BDC092ABC5A5600452E23 /* GDSCommon-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GDSCommon-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B9BDC0E2ABC5A5600452E23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2B9BDC102ABC5A5600452E23 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2B9BDC132ABC5A5600452E23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2B9BDC102ABC5A5600452E23 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
+		2B9BDC132ABC5A5600452E23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Demo.storyboard; sourceTree = "<group>"; };
 		2B9BDC152ABC5A5700452E23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B9BDC182ABC5A5700452E23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B9BDC1A2ABC5A5700452E23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -131,8 +131,8 @@
 				2BF197202ABDA04600AC9620 /* Mocks */,
 				2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */,
 				2B9BDC0E2ABC5A5600452E23 /* SceneDelegate.swift */,
-				2B9BDC102ABC5A5600452E23 /* ViewController.swift */,
-				2B9BDC122ABC5A5600452E23 /* Main.storyboard */,
+				2B9BDC102ABC5A5600452E23 /* DemoViewController.swift */,
+				2B9BDC122ABC5A5600452E23 /* Demo.storyboard */,
 				2B9BDC152ABC5A5700452E23 /* Assets.xcassets */,
 				2B9BDC172ABC5A5700452E23 /* LaunchScreen.storyboard */,
 				2B9BDC1A2ABC5A5700452E23 /* Info.plist */,
@@ -249,7 +249,7 @@
 			files = (
 				2B9BDC192ABC5A5700452E23 /* LaunchScreen.storyboard in Resources */,
 				2B9BDC162ABC5A5700452E23 /* Assets.xcassets in Resources */,
-				2B9BDC142ABC5A5600452E23 /* Main.storyboard in Resources */,
+				2B74D6652AC317B2002D992C /* Demo.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B9BDC112ABC5A5600452E23 /* ViewController.swift in Sources */,
+				2B9BDC112ABC5A5600452E23 /* DemoViewController.swift in Sources */,
 				2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */,
 				2BF197262ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift in Sources */,
 				2B9BDC0D2ABC5A5600452E23 /* AppDelegate.swift in Sources */,
@@ -296,12 +296,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2B9BDC122ABC5A5600452E23 /* Main.storyboard */ = {
+		2B9BDC122ABC5A5600452E23 /* Demo.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2B9BDC132ABC5A5600452E23 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Demo.storyboard;
 			sourceTree = "<group>";
 		};
 		2B9BDC172ABC5A5700452E23 /* LaunchScreen.storyboard */ = {
@@ -318,6 +318,7 @@
 		2B0844072ABC79BB00188BA0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -336,6 +337,7 @@
 		2B0844082ABC79BB00188BA0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -403,6 +405,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSMainStoryboardFile = Demo;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -460,6 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSMainStoryboardFile = Demo;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -482,7 +486,7 @@
 				INFOPLIST_FILE = "GDSCommon-Demo/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Demo;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -513,7 +517,7 @@
 				INFOPLIST_FILE = "GDSCommon-Demo/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Demo;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

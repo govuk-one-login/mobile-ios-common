@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-class ViewController: UIViewController {
+class DemoViewController: UIViewController {
     
     let tableview: UITableView = {
         let tv = UITableView()
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension DemoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Screens.allCases.count
     }
