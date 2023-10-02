@@ -16,7 +16,6 @@ struct MockListViewModel: ListOptionsViewModel {
         print("did dismiss")
     }
     
-    
     func didAppear() {
         print("screen did appear")
     }
