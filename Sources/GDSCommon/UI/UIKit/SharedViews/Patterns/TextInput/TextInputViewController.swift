@@ -1,10 +1,17 @@
 import UIKit
 
+/// `TextInputView` protocol to make the `TextInputViewController` generic with associatedType
 public protocol TextInputView {
     associatedtype InputType
     var viewModel: any TextInputViewModel { get }
 }
 
+/// `TextInputViewController` provides a generic text input screen. A title with a text field below.
+/// The view controller is configured with a  `TextInputViewModel` which includes a `textFieldViewModel`
+/// property to configure the `textField`. The configuration includes a customisable `validator` method that
+/// allows concrete implementations of `TextFieldViewModel` protocol to implement validation methods to
+/// validate and constrain the input of the text field.
+/// The validator method is called on every change of the text field.
 final class TextInputViewController<InputType>: UIViewController, UITextFieldDelegate, TextInputView {
     public override var nibName: String? { "TextInput" }
     

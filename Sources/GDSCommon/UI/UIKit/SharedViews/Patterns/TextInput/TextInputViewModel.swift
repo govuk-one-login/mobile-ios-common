@@ -1,7 +1,7 @@
 import Foundation
-import GDSCommon
 import UIKit
 
+/// `TextInputViewModel` protocol to be used with `TextInputViewController`
 public protocol TextInputViewModel {
     associatedtype InputType: LosslessStringConvertible
     
