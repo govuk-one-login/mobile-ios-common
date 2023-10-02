@@ -9,9 +9,7 @@ final class WelcomeViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        viewModel = TestViewModel() {
-            self.didTapButton = true
-        }
+        viewModel = TestViewModel()
         sut = WelcomeViewController(viewModel: viewModel)
     }
     
@@ -29,10 +27,8 @@ private struct TestViewModel: WelcomeViewModel {
     var body: GDSLocalisedString = "welcome screen body"
     var welcomeButtonViewModel: ButtonViewModel
     
-    init(action: @escaping () -> Void) {
-        welcomeButtonViewModel = MockButtonViewModel(title: "welcome screen button title") {
-            action()
-        }
+    init() {
+        welcomeButtonViewModel = MockButtonViewModel(title: "welcome screen button title", action: { })
     }
     
     func didAppear() { }
@@ -47,12 +43,6 @@ extension WelcomeViewControllerTests {
         try XCTAssertEqual(sut.bodyLabel.text, "welcome screen body")
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
         try XCTAssertEqual(sut.welcomeButton.title(for: .normal), "welcome screen button title")
-    }
-    
-    func test_buttonAction() throws {
-        XCTAssertFalse(didTapButton)
-        try sut.welcomeButton.sendActions(for: .touchUpInside)
-        XCTAssertTrue(didTapButton)
     }
 }
 
