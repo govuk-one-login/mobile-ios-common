@@ -33,7 +33,7 @@ public final class WelcomeViewController: UIViewController {
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
             bodyLabel.text = viewModel.body.value
-            bodyLabel.accessibilityIdentifier = "welcome-subtitle"
+            bodyLabel.accessibilityIdentifier = "welcome-body"
         }
     }
     
