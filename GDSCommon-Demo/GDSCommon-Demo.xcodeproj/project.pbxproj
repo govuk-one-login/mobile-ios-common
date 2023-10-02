@@ -42,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2B0843EF2ABC790C00188BA0 /* UnitTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTestPlan.xctestplan; sourceTree = "<group>"; };
 		2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSInstructionsViewModel.swift; sourceTree = "<group>"; };
 		2B0843F52ABC797E00188BA0 /* GDSInstructionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSInstructionsViewControllerTests.swift; sourceTree = "<group>"; };
 		2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsWithImageViewControllerTests.swift; sourceTree = "<group>"; };
@@ -64,6 +63,7 @@
 		2BF197252ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSInstructionsViewModel.swift; sourceTree = "<group>"; };
 		2BF197272ABDA0A000AC9620 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
 		2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModalInfoViewModel.swift; sourceTree = "<group>"; };
+		3B61C6DD2ACB2F29001359F1 /* UnitTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTestPlan.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +113,7 @@
 		2B9BDC002ABC5A5600452E23 = {
 			isa = PBXGroup;
 			children = (
-				2B0843EF2ABC790C00188BA0 /* UnitTestPlan.xctestplan */,
+				3B61C6DD2ACB2F29001359F1 /* UnitTestPlan.xctestplan */,
 				2B9BDC0B2ABC5A5600452E23 /* GDSCommon-Demo */,
 				2B0844012ABC79BB00188BA0 /* GDSCommon-DemoTests */,
 				2B9BDC0A2ABC5A5600452E23 /* Products */,

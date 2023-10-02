@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "0F948ABD-C603-483C-B308-8F6A770F27D5",
+      "id" : "E6941456-83D1-4BEE-8EBF-584CF5E2DCD9",
       "name" : "Configuration 1",
       "options" : {
 
@@ -9,9 +9,23 @@
     }
   ],
   "defaultOptions" : {
-    "testTimeoutsEnabled" : true
+
   },
   "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "GDSAnalyticsTests",
+        "name" : "GDSAnalyticsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..",
+        "identifier" : "GDSCommonTests",
+        "name" : "GDSCommonTests"
+      }
+    },
     {
       "target" : {
         "containerPath" : "container:GDSCommon-Demo.xcodeproj",
