@@ -19,7 +19,7 @@ final class ListOptionsViewControllerTests: XCTestCase {
             self.didSetStringKey = gdsString.stringKey
         }
         
-        viewModel = MockListViewModel() { localisedString in
+        viewModel = MockListViewModel { localisedString in
             self.didSetStringKey = localisedString.stringKey
         } screenView: {
             self.screenDidAppear = true
