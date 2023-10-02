@@ -9,7 +9,6 @@ struct MockDatePickerScreenViewModel: DatePickerScreenViewModel {
     var buttonViewModel: ButtonViewModel
     var rightBarButtonTitle: GDSLocalisedString? = "Right bar button"
     var result: (Date) -> Void
-    
     let appearAction: () -> Void
     let dismissAction: () -> Void
     
@@ -32,7 +31,6 @@ struct MockDatePickerScreenViewModel: DatePickerScreenViewModel {
         self.result = result
         self.appearAction = appearAction
         self.dismissAction = dismissAction
-        
         self.buttonViewModel = MockButtonViewModel(title: "button title",
                                               action: buttonAction)
     }

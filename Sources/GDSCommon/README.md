@@ -200,6 +200,14 @@ The content on the screen is set from the `viewModel`, which must conform to the
 There is a single Call To Action (CTA) on this screen. The navigation back button and right bar button are configurable.
 If this screen should be presented as a modal view, this should be done at the call site.
 
+### DatePicker (iOS 13.4 and later)
+This screen includes the following views:
+- `titleLabel` (type: `UILabel`)
+- `datePicker` (type: `UIDatePicker`)
+- `footerLabel` (type: `UILabel`)
+- `primaryButton` (type: ``RoundedButton``)
+
+// add more here
 
 ## Utilities
 
