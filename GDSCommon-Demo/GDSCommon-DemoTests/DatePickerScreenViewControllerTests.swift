@@ -1,10 +1,11 @@
 import GDSCommon
-@testable import GOV_UK
 import XCTest
 
+@available(iOS 13.4, *)
 final class DatePickerScreenViewControllerTests: XCTestCase {
     var sut: DatePickerScreenViewController!
-    var viewModel: DatePickerScreenViewModel!
+    var viewModel: MockDatePickerScreenViewModel!
+    var datePickerVM: MockDatePickerViewModel!
     
     var resultAction: ((Date) -> Void)!
     var gdsLocalisedString: GDSLocalisedString!
@@ -23,7 +24,13 @@ final class DatePickerScreenViewControllerTests: XCTestCase {
             self.didSetDate = date
         }
         
-        viewModel = EmploymentStartDatePickerViewModel { date in
+        datePickerVM = MockDatePickerViewModel(selectedDate: Date().shiftedBy(days: -10),
+                                               minDate: nil,
+                                               maxDate: Date())
+        
+
+        viewModel = MockDatePickerScreenViewModel(title: "Date picker screen title",
+                                                  datePickerViewModel: datePickerVM) { date in
             self.resultAction(date)
         } appearAction: {
             self.screenDidAppear = true
@@ -46,6 +53,7 @@ final class DatePickerScreenViewControllerTests: XCTestCase {
     }
 }
 
+@available(iOS 13.4, *)
 extension DatePickerScreenViewControllerTests {
     func testScreenAppears() {
         XCTAssertFalse(screenDidAppear)
@@ -55,12 +63,12 @@ extension DatePickerScreenViewControllerTests {
     }
     
     func testLabelContents() {
-        XCTAssertEqual(try sut.titleLabel.text, "What was the employment start date?")
+        XCTAssertEqual(try sut.titleLabel.text, "Date picker screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertEqual(try sut.titleLabel.textColor, .label)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
         
-        XCTAssertTrue(try sut.footerLabel.isHidden)
+        XCTAssertEqual(try sut.footerLabel.text, "example date picker footer")
     }
     
     func testTitleBar() {
@@ -70,7 +78,7 @@ extension DatePickerScreenViewControllerTests {
         
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
-        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Cancel")
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Right bar button")
     }
     
     func testPrimaryButton() throws {
@@ -80,20 +88,15 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
         
-        XCTAssertFalse(try sut.primaryButton.isEnabled)
-        
         XCTAssertFalse(didTapButton)
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertFalse(didTapButton)
         
         try sut.datePicker.setDate(Date(), animated: true)
-        
-//        XCTAssertFalse(didTapButton)
-//        try sut.primaryButton.sendActions(for: .touchUpInside)
-//        XCTAssertTrue(didTapButton)
     }
 }
 
+@available(iOS 13.4, *)
 extension DatePickerScreenViewController {
     var titleLabel: UILabel {
         get throws {

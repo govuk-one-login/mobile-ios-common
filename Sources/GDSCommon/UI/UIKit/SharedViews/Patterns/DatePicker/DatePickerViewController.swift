@@ -13,7 +13,7 @@ public final class DatePickerScreenViewController: UIViewController {
     
     public init(viewModel: DatePickerScreenViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "DatePicker", bundle: .main)
+        super.init(nibName: "DatePicker", bundle: .module)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
