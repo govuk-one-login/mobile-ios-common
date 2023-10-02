@@ -1,5 +1,10 @@
 import UIKit
 
+/// `DatePickerViewModel` protocol. Create concrete implementations for initialising the
+/// `DatePickerScreenViewModel`. This View Model encapsulates the main properties required for
+/// Setting up a `UIDatePicker`such as the style, the selected date, min and max dates. Min and Max control
+/// the earliest or latest dates selectable from the date picker.
+/// Additionally, there is a `setSelectedDate` method for setting `selectedDate`
 @available(iOS 13.4, *)
 public protocol DatePickerViewModel {
     var pickerStyle: UIDatePickerStyle { get }
@@ -23,11 +28,4 @@ extension DatePickerViewModel {
     mutating func setSelectedDate(_ date: Date) {
         self.selectedDate = date
     }
-}
-
-
-struct ReusableDatePickerViewModel: DatePickerViewModel {
-    let minDate: Date?
-    let maxDate: Date?
-    var selectedDate: Date? = Date()
 }

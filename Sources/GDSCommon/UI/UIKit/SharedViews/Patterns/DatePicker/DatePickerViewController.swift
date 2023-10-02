@@ -1,6 +1,8 @@
-@testable import GDSCommon
 import UIKit
 
+/// Available for iOS 13.4 and later.
+/// DatePicker screen displays a standard iOS date picker in a scrollview with a bold LargeTitle above
+/// and a single CTA button at the button of the screen.
 @available(iOS 13.4, *)
 public final class DatePickerScreenViewController: UIViewController {
     public override var nibName: String? { "DatePicker" }
