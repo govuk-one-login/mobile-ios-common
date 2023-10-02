@@ -14,9 +14,9 @@ public protocol DatePickerViewModel {
 extension DatePickerViewModel {
     var pickerStyle: UIDatePickerStyle {
         if #available(iOS 14, *) {
-            .inline
+            UIDatePickerStyle.inline
         } else {
-            .automatic
+            UIDatePickerStyle.automatic
         }
     }
     

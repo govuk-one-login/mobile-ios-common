@@ -41,7 +41,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="scL-EG-oP3">
+                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="scL-EG-oP3">
                                             <rect key="frame" x="16" y="60.666666666666686" width="361" height="429"/>
                                             <connections>
                                                 <action selector="selectedDate:" destination="-1" eventType="valueChanged" id="8Z5-Hu-XcU"/>
