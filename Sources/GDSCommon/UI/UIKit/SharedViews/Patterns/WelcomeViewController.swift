@@ -17,6 +17,7 @@ public final class WelcomeViewController: UIViewController {
     
     @IBOutlet private var welcomeImage: UIImageView! {
         didSet {
+            welcomeImage.image = viewModel.image
             welcomeImage.accessibilityIdentifier = "welcome-image"
         }
     }
