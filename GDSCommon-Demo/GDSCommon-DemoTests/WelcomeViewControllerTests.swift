@@ -9,7 +9,7 @@ final class WelcomeViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        viewModel = TestViewModel() {
+        viewModel = TestViewModel {
             self.viewDidAppear = true
         }
         sut = WelcomeViewController(viewModel: viewModel)
