@@ -7,11 +7,18 @@ final class DatePickerViewModelTests: XCTestCase {
     var selectedDate: Date!
     
     override func setUp() {
+        super.setUp()
         selectedDate = Date()
         
-        sut = MockDatePickerViewModel(selectedDate: selectedDate,
-                                      minDate: selectedDate.shiftedBy(days: -100),
-                                      maxDate: nil)
+        sut = ReusableDatePickerViewModel( minDate: selectedDate.shiftedBy(days: -100),
+                                           maxDate: nil,
+                                           selectedDate: selectedDate)
+    }
+    
+    override func tearDown() {
+        selectedDate = nil
+        sut = nil
+        super.tearDown()
     }
 }
 
@@ -29,5 +36,17 @@ extension DatePickerViewModelTests {
                                                                                                          value: -100, to: Date(),
                                                                                                          wrappingComponents: false)!))
         
+        sut.setSelectedDate(selected.shiftedBy(days: 10) ?? Date())
+        let newSelected = sut.selectedDate
+        
+        XCTAssertEqual(formatter.string(from: newSelected!), formatter.string(from: Calendar.current.date(byAdding: .day,
+                                                                                                         value: 10, to: Date(),
+                                                                                                         wrappingComponents: false)!))
+        
+        if #available(iOS 14.0, *) {
+            XCTAssertEqual(sut.pickerStyle, .inline)
+        } else {
+            XCTAssertEqual(sut.pickerStyle, .automatic)
+        }
     }
 }

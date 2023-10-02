@@ -207,7 +207,11 @@ This screen includes the following views:
 - `footerLabel` (type: `UILabel`)
 - `primaryButton` (type: ``RoundedButton``)
 
-// add more here
+This screen provides an iOS `inline` Date Picker (for iOS 14 and later) below a 
+heading instructions. For devices between iOS 13.4 until 14, it uses `automatic` 
+style by default. This is configurable in the `DatePickerViewModel` using the
+`pickerStyle` property.
+The content on the screen is set from the `viewModel`, which must conform to the `InstructionsWithImageViewModel` protocol.
 
 ## Utilities
 

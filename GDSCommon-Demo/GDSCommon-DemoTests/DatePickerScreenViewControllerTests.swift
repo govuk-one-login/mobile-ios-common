@@ -1,11 +1,11 @@
-import GDSCommon
+@testable import GDSCommon
 import XCTest
 
 @available(iOS 13.4, *)
 final class DatePickerScreenViewControllerTests: XCTestCase {
     var sut: DatePickerScreenViewController!
     var viewModel: MockDatePickerScreenViewModel!
-    var datePickerVM: MockDatePickerViewModel!
+    var datePickerVM: ReusableDatePickerViewModel!
     
     var resultAction: ((Date) -> Void)!
     var gdsLocalisedString: GDSLocalisedString!
@@ -24,9 +24,9 @@ final class DatePickerScreenViewControllerTests: XCTestCase {
             self.didSetDate = date
         }
         
-        datePickerVM = MockDatePickerViewModel(selectedDate: Date().shiftedBy(days: -10),
-                                               minDate: nil,
-                                               maxDate: Date())
+        datePickerVM = ReusableDatePickerViewModel(minDate: Date(),
+                                                   maxDate: nil,
+                                                   selectedDate: Date().shiftedBy(days: -10))
         
 
         viewModel = MockDatePickerScreenViewModel(title: "Date picker screen title",
