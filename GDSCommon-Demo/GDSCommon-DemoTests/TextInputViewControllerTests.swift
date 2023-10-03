@@ -73,6 +73,16 @@ extension TextInputViewControllerTests {
         try XCTAssertEqual(sut.textField.keyboardType, .default)
     }
     
+    func testTitleBar() {
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
+        sut.navigationItem.hidesBackButton = true
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, true)
+        
+        sut.beginAppearanceTransition(true, animated: false)
+        XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Cancel")
+    }
+    
     func testTextFieldFooter() throws {
         try XCTAssertEqual(sut.textFieldFooter.text, "this is a long footer to check that dynamic type is working correctly")
         try XCTAssertEqual(sut.textFieldFooter.font, .footnote)
