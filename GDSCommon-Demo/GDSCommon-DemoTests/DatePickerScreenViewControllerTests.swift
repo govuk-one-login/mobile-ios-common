@@ -60,6 +60,25 @@ extension DatePickerScreenViewControllerTests {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         XCTAssertTrue(screenDidAppear)
+        
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+    }
+    
+    func testScreenAppears_ButtonDisabled() {
+        datePickerVM = ReusableDatePickerViewModel(minDate: nil,
+                                                   maxDate: nil,
+                                                   selectedDate: nil)
+        
+        viewModel.datePickerViewModel = datePickerVM
+        
+        sut = .init(viewModel: viewModel)
+        
+        XCTAssertFalse(screenDidAppear)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        XCTAssertTrue(screenDidAppear)
+        
+        XCTAssertFalse(try sut.primaryButton.isEnabled)
     }
     
     func testLabelContents() {
