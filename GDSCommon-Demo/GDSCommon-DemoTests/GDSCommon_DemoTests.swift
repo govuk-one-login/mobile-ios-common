@@ -1,10 +1,3 @@
-//
-//  GDSCommon_DemoTests.swift
-//  GDSCommon-DemoTests
-//
-//  Created by McKillop, Ben on 21/09/2023.
-//
-
 import XCTest
 
 final class GDSCommon_DemoTests: XCTestCase {
