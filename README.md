@@ -52,4 +52,5 @@ enum Screens: CaseIterable {
             return view
         }
     }
+}
 ```
