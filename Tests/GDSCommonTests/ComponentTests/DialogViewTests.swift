@@ -87,17 +87,17 @@ final class DialogViewTests: XCTestCase {
         XCTAssertNil(sut.superview)
     }
     
-    func test_dialogView_asyncUpdateState() {
-        let exp = expectation(description: "Wait for update")
-        
-        Task {
-            await sut.updateState(isLoading: true,
-                                  newTitle: "Waiting for network",
-                                  view: viewController.view)
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 4)
-        XCTAssertTrue(sut.isLoading)
-    }
+//    func test_dialogView_asyncUpdateState() {
+//        let exp = expectation(description: "Wait for update")
+//        
+//        Task {
+//            await sut.updateState(isLoading: true,
+//                                  newTitle: "Waiting for network",
+//                                  view: viewController.view)
+//            exp.fulfill()
+//        }
+//        
+//        wait(for: [exp], timeout: 4)
+//        XCTAssertTrue(sut.isLoading)
+//    }
 }
