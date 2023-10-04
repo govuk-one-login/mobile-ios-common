@@ -28,12 +28,13 @@ jobs:
       - name: Run Linter
         run: |
           swiftlint --strict
-            
+          
       - name: Build and Test
         run: |
-          xcodebuild -scheme GDSCommon-Package test -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" \
-            -enableCodeCoverage YES -resultBundlePath result.xcresult
-            
+          xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
+           -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" \
+           -enableCodeCoverage YES -resultBundlePath result.xcresult
+          
       - name: Run SonarCloud Scanning
         run: |
           bash xccov-to-sonarqube-generic.sh result.xcresult/ >Coverage.xml

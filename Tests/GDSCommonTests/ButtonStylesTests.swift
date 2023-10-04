@@ -4,16 +4,7 @@ import SwiftUI
 import ViewInspector
 import XCTest
 
-final class ButtonStylesTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-}
+final class ButtonStylesTests: XCTestCase {}
 
 internal struct MockButtonViewModel: ButtonViewModel {
     let title: GDSLocalisedString

@@ -2,16 +2,7 @@ import SwiftUI
 import ViewInspector
 import XCTest
 
-final class TextExtensionsTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-}
+final class TextExtensionsTests: XCTestCase {}
 
 extension TextExtensionsTests {
     func test_titleStyle() throws {

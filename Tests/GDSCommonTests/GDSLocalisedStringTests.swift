@@ -4,10 +4,6 @@ import XCTest
 final class GDSLocalisedStringTests: XCTestCase {
     var sut: GDSLocalisedString!
     
-    override func setUp() {
-        super.setUp()
-    }
-    
     override func tearDown() {
         sut = nil
         

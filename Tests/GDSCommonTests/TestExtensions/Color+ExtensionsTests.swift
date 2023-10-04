@@ -3,16 +3,7 @@ import SwiftUI
 import UIKit
 import XCTest
 
-final class ColorExtensionsTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-}
+final class ColorExtensionsTests: XCTestCase {}
 
 extension ColorExtensionsTests {
     func test_colors() throws {
