@@ -1,6 +1,14 @@
 import GDSCommon
 import UIKit
 
+/// Screens
+///
+/// To add a new `Screens` attribute
+/// - add a new case for the view
+/// - declare if it should be modal in presentation
+/// - create a static var for the UIViewController to be presented 
+///
+/// - Returns: The view name as a `String`, isModal as a `Bool` to determin if it should be presented modally, and the view as a `UIViewController` to push/present on the navigation stack.
 enum Screens: CaseIterable {
     case gdsInstructions
     case gdsInstructionsWithImage
