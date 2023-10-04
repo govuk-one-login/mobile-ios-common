@@ -86,7 +86,6 @@ final class DialogViewTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
         XCTAssertNil(sut.superview)
     }
-    
 //    func test_dialogView_asyncUpdateState() {
 //        let exp = expectation(description: "Wait for update")
 //        
