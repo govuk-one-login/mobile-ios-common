@@ -40,7 +40,7 @@ extension ListOptionsViewControllerTests {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
-        sut.viewIsAppearing(false)
+        sut.viewWillAppear(false)
         XCTAssertTrue(screenDidAppear)
     }
     
