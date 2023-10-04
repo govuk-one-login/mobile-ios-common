@@ -4,6 +4,8 @@ excluded:
 - Frameworks
 - Dependencies
 - SnapshotHelper.swift
+- GeneratedAssetSymbols.swift
+- resource_bundle_accessor.swift
 - MockReadID
 
 disabled_rules:
