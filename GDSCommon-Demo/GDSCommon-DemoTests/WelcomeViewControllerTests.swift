@@ -4,12 +4,15 @@ import XCTest
 final class WelcomeViewControllerTests: XCTestCase {
     var viewModel: WelcomeViewModel!
     var sut: WelcomeViewController!
+    var buttonAction = false
     var viewDidAppear = false
     
     override func setUp() {
         super.setUp()
         
         viewModel = TestViewModel {
+            self.buttonAction = true
+        } appearAction {
             self.viewDidAppear = true
         }
         sut = WelcomeViewController(viewModel: viewModel)
@@ -27,15 +30,19 @@ private struct TestViewModel: WelcomeViewModel {
     let image: UIImage = UIImage()
     let title: GDSLocalisedString = "welcome screen title"
     let body: GDSLocalisedString = "welcome screen body"
-    let welcomeButtonViewModel: ButtonViewModel = MockButtonViewModel(title: "welcome screen button title", action: { })
-    let action: () -> Void
+    let welcomeButtonViewModel: ButtonViewModel
+    let appearAction: () -> Void
     
-    init(action: @escaping () -> Void) {
-        self.action = action
+    init(buttonAction: @escaping () -> Void,
+         appearAction: @escaping () -> Void) {
+        welcomeButtonViewModel = MockButtonViewModel(title: "welcome screen button title") {
+            buttonAction()
+        }
+        self.appearAction = appearAction
     }
     
     func didAppear() {
-        action()
+        appearAction()
     }
 }
 
@@ -48,6 +55,12 @@ extension WelcomeViewControllerTests {
         try XCTAssertEqual(sut.bodyLabel.text, "welcome screen body")
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
         try XCTAssertEqual(sut.welcomeButton.title(for: .normal), "welcome screen button title")
+    }
+    
+    func test_buttonAction() throws {
+        XCTAssertFalse(buttonAction)
+        sut.welcomeButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(buttonAction)
     }
     
     func test_viewDidAppear() throws {
