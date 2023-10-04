@@ -59,7 +59,7 @@ extension WelcomeViewControllerTests {
     
     func test_buttonAction() throws {
         XCTAssertFalse(buttonAction)
-        sut.welcomeButton.sendActions(for: .touchUpInside)
+        try sut.welcomeButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(buttonAction)
     }
     
