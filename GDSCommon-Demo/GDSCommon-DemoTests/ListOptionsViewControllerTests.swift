@@ -69,13 +69,14 @@ extension ListOptionsViewControllerTests {
         
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
-        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Action button")
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Right bar button")
     }
     
     func testPrimaryButton() throws {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.font, .bodySemiBold)
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Action button")
 
         try sut.tableViewList.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
         
