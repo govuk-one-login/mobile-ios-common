@@ -1,4 +1,5 @@
-import GDSCommon
+@testable import GDSCommon
+@testable import GDSCommon_Demo
 import XCTest
 
 final class InstructionsWithImageViewControllerTests: XCTestCase {
@@ -14,13 +15,17 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        viewModel = MockInstructionsWithImageViewController {
+        viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel(title: "Action Button",
+                                                                                                   shouldLoadOnTap: false,
+                                                                                                   action: { self.didTapWarningButton = true }),
+                                                       primaryButtonViewModel: MockButtonViewModel(title: "Action Button",
+                                                                                                   shouldLoadOnTap: false,
+                                                                                                   action: { self.didTapButton = true })) {
             self.screenDidAppear = true
-        } buttonAction: {
-            self.didTapButton = true
-        } warningButtonAction: {
-            self.didTapWarningButton = true
         }
+        
+
+
         
         sut = InstructionsWithImageViewController(viewModel: viewModel)
         
@@ -43,11 +48,11 @@ extension InstructionsWithImageViewControllerTests {
     }
     
     func test_labelContents() {
-        XCTAssertEqual(try sut.titleLabel.text, "test title")
+        XCTAssertEqual(try sut.titleLabel.text, "This is the Instructions with image view")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertEqual(try sut.titleLabel.textColor, .label)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
-        XCTAssertEqual(try sut.bodyLabel.text, "test body")
+        XCTAssertEqual(try sut.bodyLabel.text, "We can use this body to provide details or context as to what we want the users to do")
         XCTAssertEqual(try sut.bodyLabel.textColor, .gdsGrey)
     }
     
@@ -57,7 +62,7 @@ extension InstructionsWithImageViewControllerTests {
     
     func test_primaryButton() throws {
         XCTAssertNotNil(try sut.primaryButton)
-        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "button title")
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Action Button")
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         
         try sut.primaryButton.sendActions(for: .touchUpInside)
@@ -66,7 +71,7 @@ extension InstructionsWithImageViewControllerTests {
     
     func test_warningButton() throws {
         XCTAssertNotNil(try sut.warningButton)
-        XCTAssertEqual(try sut.warningButton.title(for: .normal), "button title")
+        XCTAssertEqual(try sut.warningButton.title(for: .normal), "Action Button")
         XCTAssertEqual(try sut.warningButton.backgroundColor, nil)
         
         try sut.warningButton.sendActions(for: .touchUpInside)
