@@ -24,9 +24,6 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
             self.screenDidAppear = true
         }
         
-
-
-        
         sut = InstructionsWithImageViewController(viewModel: viewModel)
         
         attachToWindow(viewController: sut)
