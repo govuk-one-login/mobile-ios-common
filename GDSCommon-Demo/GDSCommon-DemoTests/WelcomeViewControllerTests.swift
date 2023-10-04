@@ -12,7 +12,7 @@ final class WelcomeViewControllerTests: XCTestCase {
         
         viewModel = TestViewModel {
             self.buttonAction = true
-        } appearAction {
+        } appearAction: {
             self.viewDidAppear = true
         }
         sut = WelcomeViewController(viewModel: viewModel)
