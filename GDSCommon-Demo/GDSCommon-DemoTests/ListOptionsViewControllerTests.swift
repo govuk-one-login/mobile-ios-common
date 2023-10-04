@@ -1,18 +1,17 @@
 @testable import GDSCommon
+@testable import GDSCommon_Demo
 import XCTest
 
 final class ListOptionsViewControllerTests: XCTestCase {
     var sut: ListOptionsViewController!
     var viewModel: ListOptionsViewModel!
     var resultAction: ((GDSLocalisedString) -> Void)!
-    var gdsLocalisedString: GDSLocalisedString!
-    
+
     var didSetStringKey: String?
     var screenDidAppear: Bool = false
     
     override func setUp() {
         super.setUp()
-        gdsLocalisedString = "exampleString"
         screenDidAppear = false
         
         resultAction = { gdsString in
@@ -28,7 +27,6 @@ final class ListOptionsViewControllerTests: XCTestCase {
     }
     
     override func tearDown() {
-        gdsLocalisedString = nil
         resultAction = nil
         viewModel = nil
         sut = nil
@@ -38,13 +36,29 @@ final class ListOptionsViewControllerTests: XCTestCase {
 }
 
 extension ListOptionsViewControllerTests {
+    func testDidAppear() {
+        XCTAssertFalse(screenDidAppear)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        sut.viewIsAppearing(false)
+        XCTAssertTrue(screenDidAppear)
+    }
+    
+    func testWillAppear() {
+        XCTAssertNil(sut.navigationItem.rightBarButtonItem)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        sut.viewDidAppear(false)
+        XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
+    }
+    
     func testLabelContents() {
-        XCTAssertEqual(try sut.titleLabel.text, "Title")
+        XCTAssertEqual(try sut.titleLabel.text, "This is the List Options screen pattern")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertEqual(try sut.titleLabel.textColor, .label)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
         
-        XCTAssertEqual(try sut.bodyLabel.text, "Body")
+        XCTAssertEqual(try sut.bodyLabel.text, "This is the optional body label. If the view model property is `nil` then the label is hidden.")
         XCTAssertEqual(try sut.bodyLabel.font, .body)
     }
     
@@ -55,13 +69,19 @@ extension ListOptionsViewControllerTests {
         
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
-        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "right bar button")
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Action button")
     }
     
-    func testPrimaryButton() {
+    func testPrimaryButton() throws {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.font, .bodySemiBold)
+
+        try sut.tableViewList.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
+        
+        XCTAssertNil(didSetStringKey)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(didSetStringKey, "Table view list item 1")
     }
 }
 

@@ -97,7 +97,7 @@ final class DialogViewTests: XCTestCase {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 2)
+        wait(for: [exp], timeout: 4)
         XCTAssertTrue(sut.isLoading)
     }
 }

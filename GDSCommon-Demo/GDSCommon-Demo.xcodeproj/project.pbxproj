@@ -25,7 +25,8 @@
 		2BF197262ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197252ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift */; };
 		2BF197282ABDA0A000AC9620 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197272ABDA0A000AC9620 /* Screens.swift */; };
 		2BF1972B2ABDA1B800AC9620 /* MockModalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */; };
-		9634B4662ACDAAEF00A60CC8 /* MockListOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4652ACDAAEF00A60CC8 /* MockListOptionsViewModel.swift */; };
+		9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4652ACDAAEF00A60CC8 /* MockListViewModel.swift */; };
+		9634B46A2ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */; };
 		96FEFC182ACD9F7800313194 /* MockInstructionWithImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */; };
 		96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */; };
 /* End PBXBuildFile section */
@@ -63,7 +64,8 @@
 		2BF197272ABDA0A000AC9620 /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
 		2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModalInfoViewModel.swift; sourceTree = "<group>"; };
 		3B61C6DD2ACB2F29001359F1 /* UnitTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTestPlan.xctestplan; sourceTree = "<group>"; };
-		9634B4652ACDAAEF00A60CC8 /* MockListOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListOptionsViewModel.swift; sourceTree = "<group>"; };
+		9634B4652ACDAAEF00A60CC8 /* MockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListViewModel.swift; sourceTree = "<group>"; };
+		9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOptionsViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				2B08440D2ABC7A4300188BA0 /* TestExtensions */,
 				2B0843F52ABC797E00188BA0 /* GDSInstructionsViewControllerTests.swift */,
 				2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */,
+				9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */,
 				2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */,
 				2B0843F72ABC797E00188BA0 /* ModalInfoViewControllerTests.swift */,
 				2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */,
@@ -150,7 +153,7 @@
 				2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */,
 				2BF197252ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift */,
 				2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */,
-				9634B4652ACDAAEF00A60CC8 /* MockListOptionsViewModel.swift */,
+				9634B4652ACDAAEF00A60CC8 /* MockListViewModel.swift */,
 				2BF197272ABDA0A000AC9620 /* Screens.swift */,
 			);
 			path = Mocks;
@@ -274,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B0844092ABC79C300188BA0 /* ModalInfoViewControllerTests.swift in Sources */,
+				9634B46A2ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift in Sources */,
 				96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */,
 				2B08440A2ABC79C300188BA0 /* GDSInstructionsViewControllerTests.swift in Sources */,
 				2B08440B2ABC79C300188BA0 /* MockGDSInstructionsViewModel.swift in Sources */,
@@ -294,7 +298,7 @@
 				2BF197282ABDA0A000AC9620 /* Screens.swift in Sources */,
 				2B9BDC0F2ABC5A5600452E23 /* SceneDelegate.swift in Sources */,
 				2BF1972B2ABDA1B800AC9620 /* MockModalInfoViewModel.swift in Sources */,
-				9634B4662ACDAAEF00A60CC8 /* MockListOptionsViewModel.swift in Sources */,
+				9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */,
 				2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
