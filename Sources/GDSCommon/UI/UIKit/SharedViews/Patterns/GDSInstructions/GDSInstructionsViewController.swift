@@ -39,13 +39,12 @@ public class GDSInstructionsViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
         primaryButton.isEnabled = true
+        primaryButton.isLoading = false
         setBackButtonTitle()
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        primaryButton.isLoading = false
-        
         viewModel.didAppear()
     }
     

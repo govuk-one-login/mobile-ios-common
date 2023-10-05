@@ -40,6 +40,12 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
 }
 
 extension GDSInstructionsViewControllerTests {
+    func testDidAppear() {
+        XCTAssertFalse(screenDidAppear)
+        sut.viewDidAppear(false)
+        XCTAssertTrue(screenDidAppear)
+    }
+    
     func test_backButton() {
         XCTAssertFalse(sut.navigationItem.hidesBackButton)
     }
