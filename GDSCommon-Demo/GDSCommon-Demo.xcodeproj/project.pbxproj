@@ -21,6 +21,8 @@
 		2B9BDC192ABC5A5700452E23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC172ABC5A5700452E23 /* LaunchScreen.storyboard */; };
 		2BA0632B2AC5C98E0064E354 /* GDSAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA0632A2AC5C98E0064E354 /* GDSAnalytics */; };
 		2BA0632D2AC5C98E0064E354 /* GDSCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA0632C2AC5C98E0064E354 /* GDSCommon */; };
+		2BCBA1262ACDB408009ED436 /* MockQRScanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBA1252ACDB408009ED436 /* MockQRScanningViewModel.swift */; };
+		2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */; };
 		2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */; };
 		2BF197262ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197252ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift */; };
 		2BF197282ABDA0A000AC9620 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197272ABDA0A000AC9620 /* Screens.swift */; };
@@ -71,6 +73,7 @@
 		2B9BDC152ABC5A5700452E23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B9BDC182ABC5A5700452E23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B9BDC1A2ABC5A5700452E23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BCBA1252ACDB408009ED436 /* MockQRScanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQRScanningViewModel.swift; sourceTree = "<group>"; };
 		2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInstructionWithImageViewModel.swift; sourceTree = "<group>"; };
 		2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockButtonViewModel.swift; sourceTree = "<group>"; };
 		2BF197252ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSInstructionsViewModel.swift; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 				C8A0D1A72ADF08A6003013E4 /* MockIconScreenViewModel.swift */,
 				C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */,
 				2BF197272ABDA0A000AC9620 /* Screens.swift */,
+				2BCBA1252ACDB408009ED436 /* MockQRScanningViewModel.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -351,6 +355,8 @@
 				C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */,
 				96FEBF932ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift in Sources */,
 				96FEBF922ACEC0F30067CC10 /* MockDatePickerViewModel.swift in Sources */,
+				2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */,
+				2BCBA1262ACDB408009ED436 /* MockQRScanningViewModel.swift in Sources */,
 				2BF197262ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift in Sources */,
 				2B9BDC0D2ABC5A5600452E23 /* AppDelegate.swift in Sources */,
 				2BF197282ABDA0A000AC9620 /* Screens.swift in Sources */,
@@ -562,12 +568,15 @@
 				DEVELOPMENT_TEAM = N8W395F695;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "GDSCommon-Demo/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Access to camera for QR code scanner";
+				INFOPLIST_KEY_NSMainStoryboardFile = Demo;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Demo;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -594,12 +603,15 @@
 				DEVELOPMENT_TEAM = N8W395F695;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "GDSCommon-Demo/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Access to camera for QR code scanner";
+				INFOPLIST_KEY_NSMainStoryboardFile = Demo;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Demo;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
