@@ -16,13 +16,3 @@ public protocol ModalInfoViewModel {
     func didAppear()
     func didDismiss()
 }
-
-extension ModalInfoViewModel {
-    func didAppear() {
-        // empty default implementation
-    }
-    
-    func didDismiss() {
-        // empty default implementation
-    }
-}
