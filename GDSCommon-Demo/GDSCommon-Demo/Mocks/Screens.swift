@@ -87,7 +87,7 @@ enum Screens: String, CaseIterable {
                                                           buttonViewModel: MockButtonViewModel(title: "Action Button", shouldLoadOnTap: false, action: {
                 
             }),
-            rightBarButtonTitle: "right bar button") { date in
+            rightBarButtonTitle: "right bar button") { _ in
                 // result closure
             }
             return DatePickerScreenViewController(viewModel: viewModel)
