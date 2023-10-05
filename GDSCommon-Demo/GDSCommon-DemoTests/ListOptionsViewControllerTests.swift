@@ -79,7 +79,7 @@ extension ListOptionsViewControllerTests {
         
         XCTAssertFalse(didDismiss)
         
-        let _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
+        _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
         XCTAssertTrue(didDismiss)
     }
     
