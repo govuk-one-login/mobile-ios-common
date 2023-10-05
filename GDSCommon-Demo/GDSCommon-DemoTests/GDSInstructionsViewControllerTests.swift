@@ -1,11 +1,12 @@
 import GDSCommon
 import XCTest
 
-
+@MainActor
 final class GDSInstructionsViewControllerTests: XCTestCase {
     var buttonViewModel: ButtonViewModel!
     var viewModel: GDSInstructionsViewModel!
     var sut: GDSInstructionsViewController!
+    var bulletView: BulletView!
     
     var screenDidAppear = false
     var didTapButton = false
@@ -13,7 +14,7 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        let bullets = BulletView(title: "bullet title",
+        bulletView = BulletView(title: "bullet title",
                                  text: ["bullet 1",
                                         "bullet 2",
                                         "bullet 3"])
@@ -22,8 +23,8 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
             self.didTapButton = true
         }
         
-        viewModel = MockGDSInstructionsViewModel(childView: bullets,
-                                                 buttonViewModel: buttonViewModel) {
+        viewModel = MockGDSInstructionsViewModel(childView: bulletView,
+                                                 buttonViewModel: buttonViewModel, secondaryButtonViewModel: buttonViewModel) {
             self.screenDidAppear = true
         }
         
@@ -32,6 +33,7 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
     
     override func tearDown() {
         buttonViewModel = nil
+        bulletView = nil
         viewModel = nil
         sut = nil
     
@@ -77,6 +79,12 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertNotNil(try sut.primaryButton)
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "button title")
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
+    }
+    
+    func testSecondaryButton() throws {
+        XCTAssertNotNil(try sut.secondaryButton)
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "button title")
+        XCTAssertNotEqual(try sut.secondaryButton.backgroundColor, .gdsGreen)
     }
 }
 
