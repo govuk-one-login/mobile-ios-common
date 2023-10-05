@@ -76,9 +76,9 @@ extension ListOptionsViewControllerTests {
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
         XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Right bar button")
-        
+
         XCTAssertFalse(didDismiss)
-        
+
         _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
         XCTAssertTrue(didDismiss)
     }
