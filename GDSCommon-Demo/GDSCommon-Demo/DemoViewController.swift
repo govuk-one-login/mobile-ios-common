@@ -41,7 +41,7 @@ extension DemoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         var content = cell.defaultContentConfiguration()
-        content.text = Screens.allCases[indexPath.row].name
+        content.text = Screens.allCases[indexPath.row].rawValue
         cell.contentConfiguration = content
         return cell
     }
