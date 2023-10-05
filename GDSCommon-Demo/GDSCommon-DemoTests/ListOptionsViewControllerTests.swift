@@ -8,11 +8,13 @@ final class ListOptionsViewControllerTests: XCTestCase {
     var resultAction: ((GDSLocalisedString) -> Void)!
 
     var didSetStringKey: String?
-    var screenDidAppear: Bool = false
+    var screenDidAppear: Bool!
+    var didDismiss: Bool!
     
     override func setUp() {
         super.setUp()
         screenDidAppear = false
+        didDismiss = false
         
         resultAction = { gdsString in
             self.didSetStringKey = gdsString.stringKey
@@ -22,11 +24,15 @@ final class ListOptionsViewControllerTests: XCTestCase {
             self.didSetStringKey = localisedString.stringKey
         } screenView: {
             self.screenDidAppear = true
+        } dismissAction: {
+            self.didDismiss = true
         }
         sut = .init(viewModel: viewModel)
     }
     
     override func tearDown() {
+        screenDidAppear = nil
+        didDismiss = nil
         resultAction = nil
         viewModel = nil
         sut = nil
@@ -70,6 +76,13 @@ extension ListOptionsViewControllerTests {
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
         XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Right bar button")
+        
+        XCTAssertFalse(didDismiss)
+        
+        
+        let _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
+        XCTAssertTrue(didDismiss)
+        
     }
     
     func testPrimaryButton() throws {

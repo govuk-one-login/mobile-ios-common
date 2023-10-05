@@ -11,19 +11,24 @@ struct MockListViewModel: ListOptionsViewModel {
     let rightBarButtonTitle: GDSLocalisedString? = "Right bar button"
 
     let screenView: () -> Void
+    let dismissAction: () -> Void
     
     func didDismiss() {
-        print("did dismiss")
+        dismissAction()
     }
     
     func didAppear() {
         screenView()
     }
     
-    init(resultAction: ((GDSLocalisedString) -> Void)? = nil, screenView: (() -> Void)? = nil) {
+    init(resultAction: ((GDSLocalisedString) -> Void)? = nil, 
+         screenView: (() -> Void)? = nil,
+         dismissAction: (() -> Void)? = nil
+    ) {
         self.resultAction = resultAction ?? { string in
             print(string.value)
         }
         self.screenView = screenView ?? {}
+        self.dismissAction = dismissAction ?? {}
     }
 }
