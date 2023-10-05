@@ -1,5 +1,15 @@
 import UIKit
 
+/// View controller for `WelcomeView` screen.
+///   - `welcomeImage` (type: `UIImageView`)
+///   - `titleLabel` (type: `UILabel`)
+///   - `bodyLabel` (type: `UILabel`)
+///   - `welcomeButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
+///
+/// A navigation item can be configured:
+/// - Back button via setting the `hideBackButton` boolean property on the view controller
+/// The `viewWillAppear` lifecycle event triggers the `didAppear` method in the viewModel.
+/// The `welcomeButton`'s action is set from the ``ButtonViewModel`` in the viewModel.
 public final class WelcomeViewController: UIViewController {
     public override var nibName: String? { "WelcomeView" }
     
