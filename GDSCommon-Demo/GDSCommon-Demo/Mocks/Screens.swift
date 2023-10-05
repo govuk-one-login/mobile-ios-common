@@ -79,7 +79,7 @@ enum Screens: String, CaseIterable {
             return IntroViewController(viewModel: viewModel)
 =======
         case .gdsDatePicker:
-            let datePickerVM = MockDatePickerViewModel(selectedDate: Date(), 
+            let datePickerVM = MockDatePickerViewModel(selectedDate: Date(),
                                                        minDate: nil,
                                                        maxDate: nil)
             let viewModel = MockDatePickerScreenViewModel(title: "",
@@ -88,7 +88,7 @@ enum Screens: String, CaseIterable {
                 
             }),
             rightBarButtonTitle: "right bar button") { date in
-                
+                // result closure
             }
             return DatePickerScreenViewController(viewModel: viewModel)
 >>>>>>> 5e02d4b (feat: adding date picker to demo app)
