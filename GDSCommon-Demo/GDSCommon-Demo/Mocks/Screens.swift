@@ -17,6 +17,7 @@ enum Screens: CaseIterable {
     case gdsModalInfoView
     case gdsListOptions
     case gdsIntroView
+    case gdsQRCodeScanner
     
     var name: String {
         switch self {
@@ -30,6 +31,8 @@ enum Screens: CaseIterable {
             return "List Options"
         case .gdsIntroView:
             return "Intro View"
+        case .gdsQRCodeScanner:
+            return "QR Code Scanner"
         }
     }
     
@@ -67,6 +70,26 @@ enum Screens: CaseIterable {
         case .gdsIntroView:
             let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
             return IntroViewController(viewModel: viewModel)
+        case .gdsQRCodeScanner:
+            let viewModel = MockQRScanningViewModel(format: "ABC123")
+            let vc = ScanningViewController(scanningController: self,
+                                            viewModel: viewModel)
+            return vc
+        }
+    }
+}
+
+// Conforming to ScanningController, to get callbacks for events.
+extension Screens: ScanningController {
+    func completeScan(url: URL) {
+        print("Scan Complete - \(url.absoluteString)")
+    }
+    
+    func scanCompleteWithError(url: URL?) {
+        if let url {
+            print("Scan Complete, with Errors - \(url.absoluteString)")
+        } else {
+            print("Scan Complete, with Errors - no URL found")
         }
     }
 }
