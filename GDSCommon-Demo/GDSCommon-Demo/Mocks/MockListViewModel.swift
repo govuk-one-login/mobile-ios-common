@@ -25,8 +25,8 @@ struct MockListViewModel: ListOptionsViewModel {
          screenView: (() -> Void)? = nil,
          dismissAction: (() -> Void)? = nil
     ) {
-        self.resultAction = resultAction ?? { string in
-            print(string.value)
+        self.resultAction = resultAction ?? { _ in
+            // the resultAction shouldn't be nil
         }
         self.screenView = screenView ?? {}
         self.dismissAction = dismissAction ?? {}
