@@ -15,6 +15,7 @@ enum Screens: CaseIterable {
     case gdsInstructions
     case gdsInstructionsWithImage
     case gdsModalInfoView
+    case gdsQRCodeScanner
     
     var name: String {
         switch self {
@@ -24,12 +25,14 @@ enum Screens: CaseIterable {
             return "GDS Instructions View (with image)"
         case .gdsModalInfoView:
             return "Modal Info View"
+        case .gdsQRCodeScanner:
+            return "QR Code Scanner"
         }
     }
     
     var isModal: Bool {
         switch self {
-        case .gdsInstructions, .gdsInstructionsWithImage:
+        case .gdsInstructions, .gdsInstructionsWithImage, .gdsQRCodeScanner:
             return false
         case .gdsModalInfoView:
             return true
@@ -54,6 +57,26 @@ enum Screens: CaseIterable {
             let view = ModalInfoViewController(viewModel: viewModel)
             view.isModalInPresentation = true
             return view
+        case .gdsQRCodeScanner:
+            let viewModel = MockQRScanningViewModel(format: "ABC123")
+            let vc = ScanningViewController(scanningController: self,
+                                            viewModel: viewModel)
+            return vc
+        }
+    }
+}
+
+// Conforming to ScanningController, to get callbacks for events.
+extension Screens: ScanningController {
+    func completeScan(url: URL) {
+        print("Scan Complete - \(url.absoluteString)")
+    }
+    
+    func scanCompleteWithError(url: URL?) {
+        if let url {
+            print("Scan Complete, with Errors - \(url.absoluteString)")
+        } else {
+            print("Scan Complete, with Errors - no URL found")
         }
     }
 }

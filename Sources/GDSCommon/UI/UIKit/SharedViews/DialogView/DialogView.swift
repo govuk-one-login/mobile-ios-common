@@ -75,7 +75,17 @@ public final class DialogView<T: DialogAccessoryView>: NibView {
     }
     
     public func present(onView view: UIView,
+                        shouldLoad: Bool? = nil,
+                        title: String? = nil,
                         withCompletionHandler handler: (() -> Void)? = nil) {
+        
+        if let shouldLoad {
+            self.isLoading = shouldLoad
+        }
+        
+        if let title {
+            titleLabel.text = title
+        }
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -164,9 +174,13 @@ public final class DialogView<T: DialogAccessoryView>: NibView {
 // MARK: Async Await
 extension DialogView: DialogPresenter {
     @MainActor
-    public func present(onView view: UIView) async {
+    public func present(onView view: UIView,
+                        shouldLoad: Bool? = nil,
+                        title: String? = nil) async {
         await withCheckedContinuation { continuation in
             present(onView: view,
+                    shouldLoad: shouldLoad,
+                    title: title,
                     withCompletionHandler: continuation.resume)
         }
     }
