@@ -12,7 +12,7 @@ struct MockListViewModel: ListOptionsViewModel {
 
     let screenView: () -> Void
     let dismissAction: () -> Void
-    
+
     func didDismiss() {
         dismissAction()
     }
@@ -21,7 +21,7 @@ struct MockListViewModel: ListOptionsViewModel {
         screenView()
     }
     
-    init(resultAction: ((GDSLocalisedString) -> Void)? = nil, 
+    init(resultAction: ((GDSLocalisedString) -> Void)? = nil,
          screenView: (() -> Void)? = nil,
          dismissAction: (() -> Void)? = nil
     ) {
