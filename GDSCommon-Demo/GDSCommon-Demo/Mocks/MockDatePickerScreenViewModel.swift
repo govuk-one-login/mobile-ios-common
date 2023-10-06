@@ -5,7 +5,7 @@ import Foundation
 struct MockDatePickerScreenViewModel: DatePickerScreenViewModel {
     var title: GDSLocalisedString
     var datePickerViewModel: DatePickerViewModel
-    var datePickerFooter: String? = "example date picker footer"
+    var datePickerFooter: String? = "Example date picker footer"
     var buttonViewModel: ButtonViewModel
     var rightBarButtonTitle: GDSLocalisedString? = "Right bar button"
     var result: (Date) -> Void

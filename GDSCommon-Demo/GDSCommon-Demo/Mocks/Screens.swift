@@ -17,7 +17,7 @@ enum Screens: String, CaseIterable {
     case gdsModalInfoView = "Modal Info View"
     case gdsListOptions = "List Options"
     case gdsIntroView = "Intro View"
-    case gdsDatePicker = "Date Picker Screen"
+    case gdsDatePicker = "Date Picker"
     
     var isModal: Bool {
         switch self {
