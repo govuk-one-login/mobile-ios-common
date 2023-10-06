@@ -200,6 +200,7 @@ The content on the screen is set from the `viewModel`, which must conform to the
 There is a single Call To Action (CTA) on this screen. The navigation back button and right bar button are configurable.
 If this screen should be presented as a modal view, this should be done at the call site.
 
+
 ### DatePicker (iOS 13.4 and later)
 This screen includes the following views:
 - `titleLabel` (type: `UILabel`)
@@ -211,7 +212,8 @@ This screen provides an iOS `inline` Date Picker (for iOS 14 and later) below a
 heading instructions. For devices between iOS 13.4 until 14, it uses `automatic` 
 style by default. This is configurable in the `DatePickerViewModel` using the
 `pickerStyle` property.
-The content on the screen is set from the `viewModel`, which must conform to the `InstructionsWithImageViewModel` protocol.
+The content on the screen is set from the `viewModel`, which must conform to the `DatePickerViewModel` protocol.
+
 
 ## Utilities
 
