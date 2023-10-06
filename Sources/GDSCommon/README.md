@@ -174,18 +174,6 @@ If this screen should be presented as a modal view, this should be done at the c
 The content on the screen is set from the `viewModel`, which must conform to the ``ListOptionsViewModel`` protocol.
 
 
-### TextInput
-This screen includes the following views:
-- `titleLabel` (type: `UILabel`)
-- `textField` (type: `UITextField`)
-- `textFieldFooter` (type: `UILabel`)
-- `primaryButton`  (type: ``RoundedButton`` inherits from SecondaryButton)
-
-This screen includes a title and a text field below with an optional footer below that. The data that is returned from the text field can be validated by the `validator` method on the `TextFieldViewModel` (a child property on the ViewModel) and the return type must conform to `LosslessStringConvertible`.
-
-The content on the screen is set from the `viewModel`, which must conform to the `TextInputViewModel` protocol.
-
-
 ### ModalInfoView
 This screen includes the following views:
 - `titleLabel` (type: `UILabel`)
@@ -225,6 +213,18 @@ heading instructions. For devices between iOS 13.4 until 14, it uses `automatic`
 style by default. This is configurable in the `DatePickerViewModel` using the
 `pickerStyle` property.
 The content on the screen is set from the `viewModel`, which must conform to the `DatePickerViewModel` protocol.
+
+
+### TextInput
+This screen includes the following views:
+- `titleLabel` (type: `UILabel`)
+- `textField` (type: `UITextField`)
+- `textFieldFooter` (type: `UILabel`)
+- `primaryButton`  (type: ``RoundedButton`` inherits from SecondaryButton)
+
+This screen includes a title and a text field below with an optional footer below that. The data that is returned from the text field can be validated by the `validator` method on the `TextFieldViewModel` (a child property on the ViewModel) and the return type must conform to `LosslessStringConvertible`.
+
+The content on the screen is set from the `viewModel`, which must conform to the `TextInputViewModel` protocol.
 
 
 ## Utilities
