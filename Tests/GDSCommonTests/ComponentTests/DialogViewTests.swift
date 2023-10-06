@@ -20,6 +20,7 @@ final class DialogViewTests: XCTestCase {
     
     override func tearDown() {
         window = nil
+        sut = nil
         viewController = nil
         super.tearDown()
     }
