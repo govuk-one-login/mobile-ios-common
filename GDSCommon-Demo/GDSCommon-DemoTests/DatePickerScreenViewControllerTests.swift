@@ -1,4 +1,5 @@
 @testable import GDSCommon
+@testable import GDSCommon_Demo
 import XCTest
 
 @available(iOS 13.4, *)
@@ -106,6 +107,23 @@ extension DatePickerScreenViewControllerTests {
     }
     
     func testPrimaryButton() throws {
+        datePickerVM = ReusableDatePickerViewModel(minDate: Date(),
+                                                   maxDate: nil,
+                                                   selectedDate: nil)
+        
+
+        viewModel = MockDatePickerScreenViewModel(title: "Date picker screen title",
+                                                  datePickerViewModel: datePickerVM) { date in
+            self.resultAction(date)
+        } appearAction: {
+            self.screenDidAppear = true
+        } dismissAction: {
+            self.didDismissScreen = true
+        } buttonAction: {
+            self.didTapButton = true
+        }
+        sut = .init(viewModel: viewModel)
+        
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         
@@ -115,8 +133,18 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertFalse(didTapButton)
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertFalse(didTapButton)
+    }
+    
+    func testPrimaryButton_ButtonActive() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
         
-        try sut.datePicker.setDate(Date(), animated: true)
+        XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
+        XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
+        
+        XCTAssertFalse(didTapButton)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didTapButton)
     }
 }
 
