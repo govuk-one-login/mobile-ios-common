@@ -93,7 +93,7 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertEqual(try sut.titleLabel.textColor, .label)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
         
-        XCTAssertEqual(try sut.footerLabel.text, "example date picker footer")
+        XCTAssertEqual(try sut.footerLabel.text, "Example date picker footer")
     }
     
     func testTitleBar() {
