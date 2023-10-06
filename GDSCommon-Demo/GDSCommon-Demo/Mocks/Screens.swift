@@ -54,13 +54,7 @@ enum Screens: String, CaseIterable {
             let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
             return IntroViewController(viewModel: viewModel)
         case .gdsDatePicker:
-            let datePickerVM = MockDatePickerViewModel(selectedDate: Date(),
-                                                       minDate: nil,
-                                                       maxDate: nil)
-            let viewModel =  MockDatePickerScreenViewModel(title: "",
-                                                          datePickerViewModel: datePickerVM,
-                                                          buttonViewModel: MockButtonViewModel(title: "Action Button", shouldLoadOnTap: false, action: {}))
-            return DatePickerScreenViewController(viewModel: viewModel)
+            return DatePickerScreenViewController()
         }
     }
 }
