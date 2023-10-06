@@ -20,9 +20,3 @@ public protocol InstructionsWithImageViewModel {
     
     func didAppear()
 }
-
-extension InstructionsWithImageViewModel {
-    func didAppear() {
-        // empty default implementation
-    }
-}

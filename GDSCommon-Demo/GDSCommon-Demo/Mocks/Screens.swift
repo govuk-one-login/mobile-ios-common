@@ -9,12 +9,13 @@ import UIKit
 /// - create a static var for the UIViewController to be presented
 ///
 /// - Returns: - The view name as a `String`
-///             isModal as a `Bool` to determine if it should be presented modally
+///             isModal as a `Bool` to determine if it should be presented modally, the default is false
 ///             the view as a `UIViewController` to push/present on the navigation stack.
 enum Screens: CaseIterable {
     case gdsInstructions
     case gdsInstructionsWithImage
     case gdsModalInfoView
+    case gdsListOptions
     
     var name: String {
         switch self {
@@ -24,15 +25,17 @@ enum Screens: CaseIterable {
             return "GDS Instructions View (with image)"
         case .gdsModalInfoView:
             return "Modal Info View"
+        case .gdsListOptions:
+            return "List Options"
         }
     }
     
     var isModal: Bool {
         switch self {
-        case .gdsInstructions, .gdsInstructionsWithImage:
-            return false
         case .gdsModalInfoView:
             return true
+        default:
+            return false
         }
     }
     
@@ -46,14 +49,18 @@ enum Screens: CaseIterable {
             let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel)
             return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
-            let viewModel = MockInstructionWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
-                                                              primaryButtonViewModel: mockButtonViewModel)
+            let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
+                                                               primaryButtonViewModel: mockButtonViewModel,
+                                                               screenView: {})
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsModalInfoView:
             let viewModel = MockModalInfoViewModel()
             let view = ModalInfoViewController(viewModel: viewModel)
             view.isModalInPresentation = true
             return view
+        case .gdsListOptions:
+            let viewModel = MockListViewModel()
+            return ListOptionsViewController(viewModel: viewModel)
         }
     }
 }

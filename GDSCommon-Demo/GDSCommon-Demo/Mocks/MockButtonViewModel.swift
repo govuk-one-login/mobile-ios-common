@@ -9,7 +9,7 @@ class MockButtonViewModel: ButtonViewModel {
     
     init(title: GDSLocalisedString,
          icon: String? = nil,
-         shouldLoadOnTap: Bool,
+         shouldLoadOnTap: Bool = false,
          action: @escaping () -> Void) {
         self.title = title
         self.icon = icon

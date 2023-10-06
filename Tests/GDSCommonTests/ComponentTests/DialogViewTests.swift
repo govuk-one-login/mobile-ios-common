@@ -1,6 +1,7 @@
 @testable import GDSCommon
 import XCTest
 
+@MainActor
 final class DialogViewTests: XCTestCase {
     
     private var sut: DialogView<CheckmarkDialogAccessoryView>!
@@ -89,14 +90,14 @@ final class DialogViewTests: XCTestCase {
     
     func test_dialogView_asyncUpdateState() {
         let exp = expectation(description: "Wait for update")
-        
+
         Task {
             await sut.updateState(isLoading: true,
                                   newTitle: "Waiting for network",
                                   view: viewController.view)
             exp.fulfill()
         }
-        
+
         wait(for: [exp], timeout: 2)
         XCTAssertTrue(sut.isLoading)
     }

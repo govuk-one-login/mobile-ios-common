@@ -29,6 +29,11 @@ public final class RoundedButton: SecondaryButton {
         gdsInit()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        gdsInit()
+    }
+    
     private let activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.style = .medium
@@ -72,11 +77,6 @@ public final class RoundedButton: SecondaryButton {
     public override func accessibilityElementDidLoseFocus() {
         backgroundColor = .gdsGreen
         setTitleColor(.white, for: .normal)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        gdsInit()
     }
     
     public override func buttonBackground() {
