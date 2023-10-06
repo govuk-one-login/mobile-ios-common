@@ -12,7 +12,7 @@ public protocol TextInputView {
 /// allows concrete implementations of `TextFieldViewModel` protocol to implement validation methods to
 /// validate and constrain the input of the text field.
 /// The validator method is called on every change of the text field.
-final class TextInputViewController<InputType>: UIViewController, UITextFieldDelegate, TextInputView {
+public final class TextInputViewController<InputType>: UIViewController, UITextFieldDelegate, TextInputView {
     public override var nibName: String? { "TextInput" }
     
     public var viewModel: any TextInputViewModel
@@ -26,17 +26,19 @@ final class TextInputViewController<InputType>: UIViewController, UITextFieldDel
         super.init(nibName: "TextInput", bundle: .module)
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         innerStackView.gdsBorders()
         textField.delegate = self
         primaryButton.isEnabled = false
         textField.isSelected = true
         
-        barButton()
+        if let keyboardDoneButton = viewModel.textFieldViewModel.keyboardDoneButton {
+            barButton(keyboardDoneButton)
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if viewModel.rightBarButtonTitle != nil {
@@ -47,12 +49,12 @@ final class TextInputViewController<InputType>: UIViewController, UITextFieldDel
         }
     }
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
         return viewModel.textFieldViewModel.validator(existingString: textField.text, range: range, replacementString: string)
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         if let text = textField.text {
             if !text.isEmpty && Double(text) != nil {
                 primaryButton.isEnabled = true
@@ -117,9 +119,9 @@ final class TextInputViewController<InputType>: UIViewController, UITextFieldDel
         viewModel.buttonViewModel.action()
     }
     
-    func barButton() {
+    func barButton(_ keyboardDoneButton: String) {
         let bar = UIToolbar()
-        let done = UIBarButtonItem(title: NSLocalizedString(key: "doneButton"), style: .done, target: self, action: #selector(dismissKeyboard))
+        let done = UIBarButtonItem(title: NSLocalizedString(key: keyboardDoneButton), style: .done, target: self, action: #selector(dismissKeyboard))
         bar.items = [done]
         bar.sizeToFit()
         textField.inputAccessoryView = bar
