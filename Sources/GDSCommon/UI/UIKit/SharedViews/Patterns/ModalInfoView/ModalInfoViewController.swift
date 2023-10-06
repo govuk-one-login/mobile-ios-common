@@ -7,7 +7,7 @@ import UIKit
 ///   This screen provides guidance in a modal presentation context
 ///   with a title and body to present the information.
 ///   There is also configuration for a right `UIBarButtonItem` with an action
-///   configurable in the `dismissModal()` method.
+///   configurable in the `dismissModal()` method in the viewModel.
 public final class ModalInfoViewController: UIViewController {
     public override var nibName: String? { "ModalInfoView" }
     

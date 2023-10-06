@@ -181,8 +181,24 @@ This screen includes the following views:
 
 This screen is typically used to present information in a modal context, consisting of a title to illustrate the nature of information and body to give sufficient detail.
 
-The `titleLabel` and `bodyLabel` are within a `stackView`.
+The `titleLabel` and `bodyLabel` are within a `UIStackView`.
 The content on the screen is set from the `viewModel`, which must conform to the `ModalInfoViewModel` protocol.
+
+
+### IntroScreen
+This screen includes the following views:
+- `introImage` (type: `UIImageView`)
+- `titleLabel` (type: `UILabel`)
+- `bodyLabel` (type: `UIImageView`)
+- `introButton`  (type: `RoundedButton` inherits from `SecondaryButton`)
+
+This screen is typically used as a introduction screen when a user opens an app. Consisting of an app icon, a title, a body and a button to initiate the first action in the app.
+
+The `introImage`, `titleLabel` and `bodyLabel` are within a `UIScrollView`. The `introButton` is within a `UIStackView`.
+The content on the screen is set from the `viewModel`, which must conform to the `IntroViewModel` protocol.
+
+There is a single Call To Action (CTA) on this screen. The navigation back button and right bar button are configurable.
+If this screen should be presented as a modal view, this should be done at the call site.
 
 
 ## Utilities

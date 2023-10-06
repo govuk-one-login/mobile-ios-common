@@ -16,6 +16,7 @@ enum Screens: CaseIterable {
     case gdsInstructionsWithImage
     case gdsModalInfoView
     case gdsListOptions
+    case gdsIntroView
     
     var name: String {
         switch self {
@@ -27,6 +28,8 @@ enum Screens: CaseIterable {
             return "Modal Info View"
         case .gdsListOptions:
             return "List Options"
+        case .gdsIntroView:
+            return "Intro View"
         }
     }
     
@@ -61,6 +64,9 @@ enum Screens: CaseIterable {
         case .gdsListOptions:
             let viewModel = MockListViewModel()
             return ListOptionsViewController(viewModel: viewModel)
+        case .gdsIntroView:
+            let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
+            return IntroViewController(viewModel: viewModel)
         }
     }
 }
