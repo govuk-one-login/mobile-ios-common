@@ -42,15 +42,15 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="scL-EG-oP3">
-                                            <rect key="frame" x="16" y="60.666666666666686" width="361" height="429"/>
+                                            <rect key="frame" x="16" y="60.666666666666657" width="361" height="433.66666666666674"/>
                                             <connections>
                                                 <action selector="selectedDate:" destination="-1" eventType="valueChanged" id="8Z5-Hu-XcU"/>
                                             </connections>
                                         </datePicker>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Footer" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="jXR-xZ-WLU" userLabel="Footer">
-                                            <rect key="frame" x="16" y="501.66666666666669" width="361" height="20.333333333333314"/>
+                                            <rect key="frame" x="16" y="506.33333333333343" width="361" height="15.666666666666686"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
