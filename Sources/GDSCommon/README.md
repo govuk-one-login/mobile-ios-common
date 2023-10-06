@@ -185,20 +185,20 @@ The `titleLabel` and `bodyLabel` are within a `UIStackView`.
 The content on the screen is set from the `viewModel`, which must conform to the `ModalInfoViewModel` protocol.
 
 
-### WelcomeScreen
+### IntroScreen
 This screen includes the following views:
-- `welcomeImage` (type: `UIImageView`)
+- `introImage` (type: `UIImageView`)
 - `titleLabel` (type: `UILabel`)
 - `bodyLabel` (type: `UIImageView`)
-- `welcomeButton`  (type: `RoundedButton` inherits from `SecondaryButton`)
+- `introButton`  (type: `RoundedButton` inherits from `SecondaryButton`)
 
-This screen is typically used as a landing screen when a user opens an app. Consisting of an app icon, a title, a body and a button to initiate the first action in the app.
+This screen is typically used as a introduction screen when a user opens an app. Consisting of an app icon, a title, a body and a button to initiate the first action in the app.
 
-The `welcomeImage`, `titleLabel` and `bodyLabel` are within a `UIScrollView`. The `welcomeButton` is within a `UIStackView`.
-The content on the screen is set from the `viewModel`, which must conform to the `WelcomeViewModel` protocol.
+The `introImage`, `titleLabel` and `bodyLabel` are within a `UIScrollView`. The `introButton` is within a `UIStackView`.
+The content on the screen is set from the `viewModel`, which must conform to the `IntroViewModel` protocol.
 
 There is a single Call To Action (CTA) on this screen. The navigation back button and right bar button are configurable.
-If this screen should be presented as a modal view, this should be done at the call site:
+If this screen should be presented as a modal view, this should be done at the call site.
 
 
 ## Utilities

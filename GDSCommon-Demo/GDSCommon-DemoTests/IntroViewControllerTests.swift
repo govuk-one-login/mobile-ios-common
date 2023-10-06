@@ -1,9 +1,9 @@
 import GDSCommon
 import XCTest
 
-final class WelcomeViewControllerTests: XCTestCase {
-    var viewModel: WelcomeViewModel!
-    var sut: WelcomeViewController!
+final class IntroViewControllerTests: XCTestCase {
+    var viewModel: IntroViewModel!
+    var sut: IntroViewController!
     var buttonAction = false
     var viewDidAppear = false
     
@@ -15,7 +15,7 @@ final class WelcomeViewControllerTests: XCTestCase {
         } appearAction: {
             self.viewDidAppear = true
         }
-        sut = WelcomeViewController(viewModel: viewModel)
+        sut = IntroViewController(viewModel: viewModel)
     }
     
     override func tearDown() {
@@ -26,16 +26,16 @@ final class WelcomeViewControllerTests: XCTestCase {
     }
 }
 
-private struct TestViewModel: WelcomeViewModel {
+private struct TestViewModel: IntroViewModel {
     let image: UIImage = UIImage()
-    let title: GDSLocalisedString = "welcome screen title"
-    let body: GDSLocalisedString = "welcome screen body"
-    let welcomeButtonViewModel: ButtonViewModel
+    let title: GDSLocalisedString = "Intro screen title"
+    let body: GDSLocalisedString = "Intro screen body"
+    let introButtonViewModel: ButtonViewModel
     let appearAction: () -> Void
     
     init(buttonAction: @escaping () -> Void,
          appearAction: @escaping () -> Void) {
-        welcomeButtonViewModel = MockButtonViewModel(title: "welcome screen button title") {
+        introButtonViewModel = MockButtonViewModel(title: "Intro screen button title") {
             buttonAction()
         }
         self.appearAction = appearAction
@@ -46,20 +46,20 @@ private struct TestViewModel: WelcomeViewModel {
     }
 }
 
-extension WelcomeViewControllerTests {
+extension IntroViewControllerTests {
     func test_labelContents() throws {
-        try XCTAssertNotNil(sut.welcomeImage)
-        try XCTAssertEqual(sut.titleLabel.text, "welcome screen title")
+        try XCTAssertNotNil(sut.introImage)
+        try XCTAssertEqual(sut.titleLabel.text, "Intro screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
-        try XCTAssertEqual(sut.bodyLabel.text, "welcome screen body")
+        try XCTAssertEqual(sut.bodyLabel.text, "Intro screen body")
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
-        try XCTAssertEqual(sut.welcomeButton.title(for: .normal), "welcome screen button title")
+        try XCTAssertEqual(sut.introButton.title(for: .normal), "Intro screen button title")
     }
     
     func test_buttonAction() throws {
         XCTAssertFalse(buttonAction)
-        try sut.welcomeButton.sendActions(for: .touchUpInside)
+        try sut.introButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(buttonAction)
     }
     
@@ -71,28 +71,28 @@ extension WelcomeViewControllerTests {
     }
 }
 
-extension WelcomeViewController {
-    var welcomeImage: UIImageView {
+extension IntroViewController {
+    var introImage: UIImageView {
         get throws {
-            try XCTUnwrap(view[child: "welcome-image"])
+            try XCTUnwrap(view[child: "intro-image"])
         }
     }
     
     var titleLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "welcome-title"])
+            try XCTUnwrap(view[child: "intro-title"])
         }
     }
     
     var bodyLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "welcome-body"])
+            try XCTUnwrap(view[child: "intro-body"])
         }
     }
     
-    var welcomeButton: UIButton {
+    var introButton: UIButton {
         get throws {
-            try XCTUnwrap(view[child: "welcome-button"])
+            try XCTUnwrap(view[child: "intro-button"])
         }
     }
 }

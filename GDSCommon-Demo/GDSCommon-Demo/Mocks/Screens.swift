@@ -65,8 +65,8 @@ enum Screens: CaseIterable {
             let viewModel = MockListViewModel()
             return ListOptionsViewController(viewModel: viewModel)
         case .gdsWelcomeView:
-            let viewModel = MockWelcomeViewModel(welcomeButtonViewModel: mockButtonViewModel)
-            return WelcomeViewController(viewModel: viewModel)
+            let viewModel = MockWelcomeViewModel(introButtonViewModel: mockButtonViewModel)
+            return IntroViewController(viewModel: viewModel)
         }
     }
 }

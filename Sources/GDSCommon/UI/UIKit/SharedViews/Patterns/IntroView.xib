@@ -9,13 +9,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController" customModule="GDSCommon">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController" customModule="GDSCommon">
             <connections>
                 <outlet property="bodyLabel" destination="VMl-uu-xee" id="tPJ-iG-emX"/>
+                <outlet property="introButton" destination="exa-iY-8Ar" id="Ldh-qh-NRy"/>
+                <outlet property="introImage" destination="oDp-pa-FTQ" id="gHV-AD-WnR"/>
                 <outlet property="titleLabel" destination="NRz-6E-ghN" id="UKJ-mr-R1A"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Z2a-Az-NBN"/>
-                <outlet property="welcomeButton" destination="exa-iY-8Ar" id="Ldh-qh-NRy"/>
-                <outlet property="welcomeImage" destination="oDp-pa-FTQ" id="gHV-AD-WnR"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
