@@ -21,6 +21,7 @@
 		2B9BDC192ABC5A5700452E23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC172ABC5A5700452E23 /* LaunchScreen.storyboard */; };
 		2BA0632B2AC5C98E0064E354 /* GDSAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA0632A2AC5C98E0064E354 /* GDSAnalytics */; };
 		2BA0632D2AC5C98E0064E354 /* GDSCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA0632C2AC5C98E0064E354 /* GDSCommon */; };
+		2BB5C7892AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5C7882AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift */; };
 		2BCBA1262ACDB408009ED436 /* MockQRScanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBA1252ACDB408009ED436 /* MockQRScanningViewModel.swift */; };
 		2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */; };
 		2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */; };
@@ -62,6 +63,7 @@
 		2B9BDC152ABC5A5700452E23 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B9BDC182ABC5A5700452E23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B9BDC1A2ABC5A5700452E23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BB5C7882AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningViewControllerTests.swift; sourceTree = "<group>"; };
 		2BCBA1252ACDB408009ED436 /* MockQRScanningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQRScanningViewModel.swift; sourceTree = "<group>"; };
 		2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInstructionWithImageViewModel.swift; sourceTree = "<group>"; };
 		2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockButtonViewModel.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */,
 				2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */,
 				2B0843F72ABC797E00188BA0 /* ModalInfoViewControllerTests.swift */,
+				2BB5C7882AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift */,
 				2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */,
 				3B61C6E02ACDC580001359F1 /* IntroViewControllerTests.swift */,
 			);
@@ -293,6 +296,8 @@
 				3B61C6E12ACDC580001359F1 /* IntroViewControllerTests.swift in Sources */,
 				2B08440B2ABC79C300188BA0 /* MockGDSInstructionsViewModel.swift in Sources */,
 				2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */,
+				2B08440C2ABC79C300188BA0 /* InstructionsWithImageViewControllerTests.swift in Sources */,
+				2BB5C7892AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift in Sources */,
 				2B08440F2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift in Sources */,
 				2B0844032ABC79BB00188BA0 /* GDSCommon_DemoTests.swift in Sources */,
 			);
