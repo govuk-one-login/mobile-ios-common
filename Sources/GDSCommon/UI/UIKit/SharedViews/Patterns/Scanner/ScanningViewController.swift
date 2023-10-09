@@ -128,7 +128,7 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
     /// Called as soon as a QR Code is detected
     /// Pulls out the first scanned ID, and checks if there is a format to match to.
     /// If no formatting is needed, it will immediately complete scan
-    /// If there is a format to match, it will check this. 
+    /// If there is a format to match, it will check this.
     ///  - An alert will show if it does not match.
     ///  - Scan will complete if this does match
     func detectedBarcode(_ request: VNRequest, _ error: Error?) {
@@ -185,10 +185,10 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
         pauseScanning(true)
         await showLoadingDialog(withText: "Error Scanning Code")
         
-        //This calls the delegate method, which can be conformed to by the presenting view controller.
+        // This calls the delegate method, which can be conformed to by the presenting view controller.
         scanningController.scanCompleteWithError(url: url)
         
-        //Close screen and push back to root
+        // Close screen and push back to root
         if viewModel.shouldDismissViewAfterScanComplete {
             // Checking if view is being presented modally
             if self.navigationController?.presentingViewController != nil {
@@ -204,10 +204,10 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
         pauseScanning(true)
         await showLoadingDialog()
         
-        //This calls the delegate method, which can be conformed to by the presenting view controller.
+        // This calls the delegate method, which can be conformed to by the presenting view controller.
         scanningController.completeScan(url: url)
         
-        //Close screen and push back to root
+        // Close screen and push back to root
         if viewModel.shouldDismissViewAfterScanComplete {
             // Checking if view is being presented modally
             if self.navigationController?.presentingViewController != nil {
