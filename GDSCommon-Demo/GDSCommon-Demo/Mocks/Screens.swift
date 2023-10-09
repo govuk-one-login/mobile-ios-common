@@ -19,7 +19,7 @@ enum Screens: CaseIterable {
     case gdsIntroView
     case gdsQRCodeScanner
     case gdsQRCodeScannerModal
-
+    
     var name: String {
         switch self {
         case .gdsInstructions:
