@@ -23,7 +23,9 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
     
     private let captureSession: AVCaptureSession
     private let previewLayer: AVCaptureVideoPreviewLayer
-    private var barcodeRequest: VNDetectBarcodesRequest!
+    private var barcodeRequest: VNDetectBarcodesRequest {
+        VNDetectBarcodesRequest(completionHandler: detectedBarcode(_:_:))
+    }
     
     private let imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
     
@@ -64,7 +66,6 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
         presenter = DialogView<CheckmarkDialogAccessoryView>(title: viewModel.successMessage,
                                                              isLoading: false)
         super.init(nibName: "Scanner", bundle: .module)
-        barcodeRequest = VNDetectBarcodesRequest(completionHandler: detectedBarcode(_:_:))
     }
     
     required public init?(coder aDecoder: NSCoder) {
