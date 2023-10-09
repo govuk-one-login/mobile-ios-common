@@ -86,7 +86,6 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startScanning()
         startAnimation()
     }
     
@@ -191,7 +190,12 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
         
         //Close screen and push back to root
         if viewModel.shouldDismissViewAfterScanComplete {
-            navigationController?.popToRootViewController(animated: true)
+            // Checking if view is being presented modally
+            if self.navigationController?.presentingViewController != nil {
+                navigationController?.dismiss(animated: true)
+            } else {
+                navigationController?.popToRootViewController(animated: true)
+            }
         }
     }
     
@@ -205,7 +209,12 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
         
         //Close screen and push back to root
         if viewModel.shouldDismissViewAfterScanComplete {
-            navigationController?.popToRootViewController(animated: true)
+            // Checking if view is being presented modally
+            if self.navigationController?.presentingViewController != nil {
+                navigationController?.dismiss(animated: true)
+            } else {
+                navigationController?.popToRootViewController(animated: true)
+            }
         }
     }
 }
@@ -263,6 +272,7 @@ extension ScanningViewController {
         setupVideoDisplay()
         setupMetadataCapture()
         captureSession.commitConfiguration()
+        startScanning()
         previewLayer.videoGravity = .resizeAspectFill
         cameraView.layer.addSublayer(previewLayer)
         
