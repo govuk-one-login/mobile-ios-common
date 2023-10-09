@@ -18,7 +18,8 @@ enum Screens: CaseIterable {
     case gdsListOptions
     case gdsIntroView
     case gdsQRCodeScanner
-    
+    case gdsQRCodeScannerModal
+
     var name: String {
         switch self {
         case .gdsInstructions:
@@ -33,12 +34,14 @@ enum Screens: CaseIterable {
             return "Intro View"
         case .gdsQRCodeScanner:
             return "QR Code Scanner"
+        case .gdsQRCodeScannerModal:
+            return "QR Code Scanner (Modal)"
         }
     }
     
     var isModal: Bool {
         switch self {
-        case .gdsModalInfoView:
+        case .gdsModalInfoView, .gdsQRCodeScannerModal:
             return true
         default:
             return false
@@ -71,6 +74,11 @@ enum Screens: CaseIterable {
             let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
             return IntroViewController(viewModel: viewModel)
         case .gdsQRCodeScanner:
+            let viewModel = MockQRScanningViewModel(format: "ABC123")
+            let vc = ScanningViewController(scanningController: self,
+                                            viewModel: viewModel)
+            return vc
+        case .gdsQRCodeScannerModal:
             let viewModel = MockQRScanningViewModel(format: "ABC123")
             let vc = ScanningViewController(scanningController: self,
                                             viewModel: viewModel)
