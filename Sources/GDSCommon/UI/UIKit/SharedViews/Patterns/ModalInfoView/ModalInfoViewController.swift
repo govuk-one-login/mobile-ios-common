@@ -51,6 +51,7 @@ public final class ModalInfoViewController: UIViewController {
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
             bodyLabel.attributedText = viewModel.body
+            bodyLabel.textColor = .gdsGrey
             bodyLabel.accessibilityIdentifier = "bodyLabel"
         }
     }
