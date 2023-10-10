@@ -29,7 +29,6 @@
 		2BF197262ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197252ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift */; };
 		2BF197282ABDA0A000AC9620 /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197272ABDA0A000AC9620 /* Screens.swift */; };
 		2BF1972B2ABDA1B800AC9620 /* MockModalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */; };
-		3B3963262AD56DC00097B073 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC152ABC5A5700452E23 /* Assets.xcassets */; };
 		3B61C6E12ACDC580001359F1 /* IntroViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B61C6E02ACDC580001359F1 /* IntroViewControllerTests.swift */; };
 		9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4652ACDAAEF00A60CC8 /* MockListViewModel.swift */; };
 		9634B46A2ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */; };
@@ -314,7 +313,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B3963262AD56DC00097B073 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +356,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96FEFC182ACD9F7800313194 /* MockInstructionWithImageViewModel.swift in Sources */,
 				2B9BDC112ABC5A5600452E23 /* DemoViewController.swift in Sources */,
 				96588BE82AD06CD20035FF93 /* MockTextInputViewModel.swift in Sources */,
 				96588BEA2AD06CE30035FF93 /* MockTextFieldViewModel.swift in Sources */,
