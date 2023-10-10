@@ -16,12 +16,16 @@ let package = Package(
             .upToNextMajor(from: "0.9.7"))
     ],
     targets: [
-        .target(name: "GDSCommon"),
+        .target(name: "GDSCommon", path: "Sources/GDSCommon"),
         .testTarget(name: "GDSCommonTests",
-                    dependencies: ["GDSCommon", "ViewInspector"]),
+                    dependencies: ["GDSCommon", "ViewInspector"],
+                   path: "Tests/GDSCommonTests"),
+        
         .target(name: "GDSAnalytics",
+                path: "Sources/GDSAnalytics",
                 exclude: ["README.md"]),
         .testTarget(name: "GDSAnalyticsTests",
-                    dependencies: ["GDSAnalytics"])
+                    dependencies: ["GDSAnalytics"],
+                   path: "Tests/GDSAnalyticsTests")
     ]
 )

@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "E6941456-83D1-4BEE-8EBF-584CF5E2DCD9",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:GDSCommon-Demo.xcodeproj",
+        "identifier" : "2B0843FF2ABC79BB00188BA0",
+        "name" : "GDSCommon-DemoTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "GDSAnalyticsTests",
+        "name" : "GDSAnalyticsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "GDSCommonTests",
+        "name" : "GDSCommonTests"
+      }
+    }
+  ],
+  "version" : 1
+}
