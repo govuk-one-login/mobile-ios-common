@@ -107,12 +107,6 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
         
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
         do {
-            if #available(iOS 17.0, *) {
-                barcodeRequest.revision = VNDetectBarcodesRequestRevision4
-                barcodeRequest.symbologies = [.qr]
-            } else {
-                // Fallback on earlier versions
-            }
             try handler.perform([barcodeRequest])
         } catch {
             preconditionFailure("Error with capturing output")
