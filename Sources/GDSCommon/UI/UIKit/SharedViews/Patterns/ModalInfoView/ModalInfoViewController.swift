@@ -50,7 +50,7 @@ public final class ModalInfoViewController: UIViewController {
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            bodyLabel.text = viewModel.body.value
+            bodyLabel.attributedText = viewModel.body
             bodyLabel.accessibilityIdentifier = "bodyLabel"
         }
     }
