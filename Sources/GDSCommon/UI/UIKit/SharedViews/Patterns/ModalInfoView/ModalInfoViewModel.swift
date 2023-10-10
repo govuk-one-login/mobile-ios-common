@@ -10,7 +10,7 @@ import UIKit
 /// for other code such as making an API call.
 public protocol ModalInfoViewModel {
     var title: GDSLocalisedString { get }
-    var body: GDSLocalisedString { get }
+    var body: NSAttributedString { get }
     var rightBarButtonTitle: GDSLocalisedString { get }
     
     func didAppear()
