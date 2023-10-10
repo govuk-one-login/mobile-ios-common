@@ -1,7 +1,6 @@
 import AVFoundation
 import UIKit
 import Vision
-import CoreVideo
 
 public protocol ScanningController {
     func completeScan(url: URL?, didFinishWithError: Bool)

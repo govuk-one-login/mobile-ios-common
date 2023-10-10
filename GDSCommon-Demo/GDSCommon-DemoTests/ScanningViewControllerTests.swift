@@ -2,8 +2,6 @@
 @testable import GDSCommon_Demo
 import UIKit
 import XCTest
-import VideoToolbox
-
 
 class MockScanningController: ScanningController {
     public var didCall_completeScan: Bool = false
