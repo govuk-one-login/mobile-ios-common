@@ -36,6 +36,11 @@ enum Screens: String, CaseIterable {
         MockButtonViewModel(title: "Action Button", shouldLoadOnTap: false, action: {})
     }
     
+    private var dialogPresenter: DialogPresenter {
+        DialogView<CheckmarkDialogAccessoryView>(title: "QR Scan Success",
+                                                 isLoading: false)
+    }
+    
     var view: UIViewController {
         switch self {
         case .gdsInstructions:

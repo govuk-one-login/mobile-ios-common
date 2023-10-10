@@ -9,26 +9,29 @@ class MockScanningController: ScanningController {
     public var didCall_completeScan: Bool = false
     public var didCall_completeScanWithError: Bool = false
     
-    func completeScan(url: URL) {
-        didCall_completeScan = true
-    }
-    
-    func scanCompleteWithError(url: URL?) {
-        didCall_completeScanWithError = true
+    func completeScan(url: URL?, didFinishWithError: Bool) {
+        if didFinishWithError {
+            didCall_completeScanWithError = true
+        } else {
+            didCall_completeScan = true
+        }
     }
 }
 
 final class ScanningViewControllerTests: XCTestCase {
     private var sut: ScanningViewController!
     private var mockScanningController: MockScanningController!
+    private var presenter: MockDialogPresenter!
     
     @MainActor
     override func setUp() {
         super.setUp()
         let viewModel = MockQRScanningViewModel()
+        presenter = MockDialogPresenter()
         mockScanningController = MockScanningController()
         sut = ScanningViewController(scanningController: mockScanningController,
-                                     viewModel: viewModel)
+                                     viewModel: viewModel,
+                                     presenter: presenter)
         sut.loadViewIfNeeded()
     }
     
@@ -54,19 +57,25 @@ final class ScanningViewControllerTests: XCTestCase {
     }
     
     func test_scanComplete() throws {
-        sut.scanningController.completeScan(url: URL(string: "testurl")!)
+        sut.scanningController.completeScan(url: URL(string: "ABC123")!, didFinishWithError: false)
         XCTAssertTrue(mockScanningController.didCall_completeScan)
     }
     
     func test_scanCompleteWithErrors() throws {
-        sut.scanningController.scanCompleteWithError(url: URL(string: "testurl"))
+        sut.scanningController.completeScan(url: URL(string: "ABS125")!, didFinishWithError: true)
         XCTAssertTrue(mockScanningController.didCall_completeScanWithError)
     }
     
-    func test_dectectBarcode() {
-        guard let image = UIImage(named: "QRCode"),
-        let buffer = buffer(from: image) else { return }
-        sut.processOutput(buffer)
+    func test_dectectBarcode_successful() {
+        sut.handleBarcode(qrCode: "www.google.com/ABC123")
+        waitForTruth(self.presenter.didCallPresent, timeout: 2)
+        waitForTruth(self.mockScanningController.didCall_completeScan, timeout: 2)
+    }
+    
+    func test_dectectBarcode_failure() {
+        sut.handleBarcode(qrCode: "www.google.com/AJS432")
+        waitForTruth(self.presenter.didCallPresent, timeout: 2)
+        waitForTruth(self.mockScanningController.didCall_completeScanWithError, timeout: 2)
     }
 }
 
@@ -77,31 +86,3 @@ extension ScanningViewController {
         }
     }
 }
-
-extension ScanningViewControllerTests {
-    func buffer(from image: UIImage) -> CVPixelBuffer? {
-      let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
-      var pixelBuffer : CVPixelBuffer?
-      let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(image.size.width), Int(image.size.height), kCVPixelFormatType_32ARGB, attrs, &pixelBuffer)
-      guard (status == kCVReturnSuccess) else {
-        return nil
-      }
-
-      CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
-      let pixelData = CVPixelBufferGetBaseAddress(pixelBuffer!)
-
-      let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
-      let context = CGContext(data: pixelData, width: Int(image.size.width), height: Int(image.size.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
-
-      context?.translateBy(x: 0, y: image.size.height)
-      context?.scaleBy(x: 1.0, y: -1.0)
-
-      UIGraphicsPushContext(context!)
-      image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
-      UIGraphicsPopContext()
-      CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
-
-      return pixelBuffer
-    }
-}
-

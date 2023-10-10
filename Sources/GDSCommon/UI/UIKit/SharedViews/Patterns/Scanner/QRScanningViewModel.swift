@@ -4,6 +4,7 @@ public protocol QRScanningViewModel {
     var title: String { get }
     var instructionText: String { get }
     var successMessage: String { get }
+    var errorMessage: String { get }
     var shouldShowAlert: Bool { get }
     var shouldDismissViewAfterScanComplete: Bool { get }
     var format: String? { get }

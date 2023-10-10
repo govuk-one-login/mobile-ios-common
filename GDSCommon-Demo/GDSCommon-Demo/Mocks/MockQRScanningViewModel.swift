@@ -4,6 +4,7 @@ public class MockQRScanningViewModel: QRScanningViewModel {
     public var title: String
     public var instructionText: String
     public var successMessage: String
+    public var errorMessage: String
     public var format: String?
     public var shouldShowAlert: Bool
     public var shouldDismissViewAfterScanComplete: Bool
@@ -14,7 +15,8 @@ public class MockQRScanningViewModel: QRScanningViewModel {
     init(title: String = "QR Scanning Title",
          instructionText: String = "QR Scanning instruction area, we can instruct the user from here",
          successMessage: String = "QR Code Scanned",
-         format: String? = "code=apple",
+         errorMessage: String = "Badly Formatted QR Code",
+         format: String? = "ABC123",
          shouldShowAlert: Bool = false,
          shouldDismissViewAfterScanComplete: Bool = true,
          alertTitle: String = "QR Code title",
@@ -23,6 +25,7 @@ public class MockQRScanningViewModel: QRScanningViewModel {
         self.title = title
         self.instructionText = instructionText
         self.successMessage = successMessage
+        self.errorMessage = errorMessage
         self.format = format
         self.shouldShowAlert = shouldShowAlert
         self.shouldDismissViewAfterScanComplete = shouldDismissViewAfterScanComplete

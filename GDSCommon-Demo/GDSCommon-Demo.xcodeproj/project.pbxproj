@@ -14,6 +14,7 @@
 		2B08440F2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08440E2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift */; };
 		2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0844102ABC7A7700188BA0 /* XCTestCase.swift */; };
 		2B74D6652AC317B2002D992C /* Demo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC122ABC5A5600452E23 /* Demo.storyboard */; };
+		2B78F2FA2AD598FC003C3445 /* MockDialogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78F2F92AD598FC003C3445 /* MockDialogPresenter.swift */; };
 		2B9BDC0D2ABC5A5600452E23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */; };
 		2B9BDC0F2ABC5A5600452E23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC0E2ABC5A5600452E23 /* SceneDelegate.swift */; };
 		2B9BDC112ABC5A5600452E23 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC102ABC5A5600452E23 /* DemoViewController.swift */; };
@@ -67,6 +68,7 @@
 		2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSCommon_DemoTests.swift; sourceTree = "<group>"; };
 		2B08440E2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Test_Extensions.swift"; sourceTree = "<group>"; };
 		2B0844102ABC7A7700188BA0 /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
+		2B78F2F92AD598FC003C3445 /* MockDialogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDialogPresenter.swift; sourceTree = "<group>"; };
 		2B9BDC092ABC5A5600452E23 /* GDSCommon-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GDSCommon-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B9BDC0E2ABC5A5600452E23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				2B08440E2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift */,
 				96588BDB2AD02AB30035FF93 /* Date+Extensions.swift */,
 				2B0844102ABC7A7700188BA0 /* XCTestCase.swift */,
+				2B78F2F92AD598FC003C3445 /* MockDialogPresenter.swift */,
 			);
 			path = TestExtensions;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				C8C90DCF2ADDADFD00158516 /* IconScreenViewControllerTests.swift in Sources */,
 				96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */,
 				2B08440A2ABC79C300188BA0 /* GDSInstructionsViewControllerTests.swift in Sources */,
+				2B78F2FA2AD598FC003C3445 /* MockDialogPresenter.swift in Sources */,
 				3B61C6E12ACDC580001359F1 /* IntroViewControllerTests.swift in Sources */,
 				2B08440B2ABC79C300188BA0 /* MockGDSInstructionsViewModel.swift in Sources */,
 				2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */,
