@@ -1,6 +1,9 @@
-import GDSCommon
+@testable import GDSCommon
+@testable import GDSCommon_Demo
 import UIKit
 import XCTest
+import VideoToolbox
+
 
 class MockScanningController: ScanningController {
     public var didCall_completeScan: Bool = false
@@ -59,6 +62,12 @@ final class ScanningViewControllerTests: XCTestCase {
         sut.scanningController.scanCompleteWithError(url: URL(string: "testurl"))
         XCTAssertTrue(mockScanningController.didCall_completeScanWithError)
     }
+    
+    func test_dectectBarcode() {
+        guard let image = UIImage(named: "QRCode"),
+        let buffer = buffer(from: image) else { return }
+        sut.processOutput(buffer)
+    }
 }
 
 extension ScanningViewController {
@@ -69,34 +78,30 @@ extension ScanningViewController {
     }
 }
 
-class MockQRScanningViewModel: QRScanningViewModel {
-    public var title: String
-    public var instructionText: String
-    public var successMessage: String
-    public var format: String?
-    public var shouldShowAlert: Bool
-    public var shouldDismissViewAfterScanComplete: Bool
-    public var alertTitle: String
-    public var alertMessage: String
-    public var alertAction: String
-    
-    init(title: String = "QR Scanning Title",
-         instructionText: String = "QR Scanning instruction area, we can instruct the user from here",
-         successMessage: String = "QR Code Scanned",
-         format: String? = nil,
-         shouldShowAlert: Bool = false,
-         shouldDismissViewAfterScanComplete: Bool = true,
-         alertTitle: String = "QR Code title",
-         alertMessage: String = "This code is in the incorrect format",
-         alertAction: String = "Ok") {
-        self.title = title
-        self.instructionText = instructionText
-        self.successMessage = successMessage
-        self.format = format
-        self.shouldShowAlert = shouldShowAlert
-        self.shouldDismissViewAfterScanComplete = shouldDismissViewAfterScanComplete
-        self.alertTitle = alertTitle
-        self.alertMessage = alertMessage
-        self.alertAction = alertAction
+extension ScanningViewControllerTests {
+    func buffer(from image: UIImage) -> CVPixelBuffer? {
+      let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
+      var pixelBuffer : CVPixelBuffer?
+      let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(image.size.width), Int(image.size.height), kCVPixelFormatType_32ARGB, attrs, &pixelBuffer)
+      guard (status == kCVReturnSuccess) else {
+        return nil
+      }
+
+      CVPixelBufferLockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
+      let pixelData = CVPixelBufferGetBaseAddress(pixelBuffer!)
+
+      let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
+      let context = CGContext(data: pixelData, width: Int(image.size.width), height: Int(image.size.height), bitsPerComponent: 8, bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer!), space: rgbColorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+
+      context?.translateBy(x: 0, y: image.size.height)
+      context?.scaleBy(x: 1.0, y: -1.0)
+
+      UIGraphicsPushContext(context!)
+      image.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+      UIGraphicsPopContext()
+      CVPixelBufferUnlockBaseAddress(pixelBuffer!, CVPixelBufferLockFlags(rawValue: 0))
+
+      return pixelBuffer
     }
 }
+

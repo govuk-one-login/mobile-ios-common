@@ -1,6 +1,7 @@
 import AVFoundation
 import UIKit
 import Vision
+import CoreVideo
 
 public protocol ScanningController {
     func completeScan(url: URL)
@@ -105,8 +106,18 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
                               from connection: AVCaptureConnection) {
         guard isScanning,
               let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        processOutput(pixelBuffer)
+    }
+    
+    func processOutput(_ pixelBuffer: CVPixelBuffer) {
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
         do {
+            if #available(iOS 17.0, *) {
+                barcodeRequest.revision = VNDetectBarcodesRequestRevision4
+                barcodeRequest.symbologies = [.qr]
+            } else {
+                // Fallback on earlier versions
+            }
             try handler.perform([barcodeRequest])
         } catch {
             preconditionFailure("Error with capturing output")

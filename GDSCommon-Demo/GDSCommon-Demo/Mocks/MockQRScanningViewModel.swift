@@ -14,7 +14,7 @@ public class MockQRScanningViewModel: QRScanningViewModel {
     init(title: String = "QR Scanning Title",
          instructionText: String = "QR Scanning instruction area, we can instruct the user from here",
          successMessage: String = "QR Code Scanned",
-         format: String? = nil,
+         format: String? = "code=apple",
          shouldShowAlert: Bool = false,
          shouldDismissViewAfterScanComplete: Bool = true,
          alertTitle: String = "QR Code title",
