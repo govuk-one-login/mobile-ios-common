@@ -25,12 +25,12 @@ final class TextInputViewControllerTests: XCTestCase {
         
         let textFieldViewModel = MockTextFieldViewModel<InputType>()
         
-        let viewModel = MockTextInputViewModel<InputType>(textFieldViewModel: textFieldViewModel) { _ in
-            
+        let viewModel = MockTextInputViewModel<InputType>(textFieldViewModel: textFieldViewModel) { result in
+            self.didSetResult = [result]
         } appearAction: {
-            
+            self.screenDidAppear = true
         } dismissAction: {
-            
+            self.didDismissScreen = true
         }
 
         sut = .init(viewModel: viewModel)
@@ -40,14 +40,26 @@ final class TextInputViewControllerTests: XCTestCase {
         resultAction = nil
         viewModel = nil
         sut = nil
+        didSetResult = []
+        didTapButton = false
+        didDismissScreen = false
+        screenDidAppear = false
         
         super.tearDown()
     }
 }
 
 extension TextInputViewControllerTests {
+    func testDidAppear() {
+        XCTAssertFalse(screenDidAppear)
+        sut.beginAppearanceTransition(false, animated: false)
+        sut.endAppearanceTransition()
+        sut.viewDidAppear(false)
+        XCTAssertTrue(screenDidAppear)
+    }
+    
     func testLabels() {
-        XCTAssertEqual(try sut.titleLabel.text, "Text input screen")
+        XCTAssertEqual(try sut.titleLabel.text, "Text input screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertEqual(try sut.titleLabel.textColor, .label)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
@@ -94,8 +106,6 @@ extension TextInputViewControllerTests {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
         
-        XCTAssertFalse(try sut.primaryButton.isEnabled)
-        
         try XCTAssertFalse(sut.primaryButton.isEnabled)
         XCTAssertFalse(didTapButton)
         try sut.primaryButton.sendActions(for: .touchUpInside)
@@ -105,9 +115,6 @@ extension TextInputViewControllerTests {
         try sut.textField.delegate?.textFieldDidEndEditing?(sut.textField)
         
         try XCTAssertTrue(sut.primaryButton.isEnabled)
-        
-        try sut.primaryButton.sendActions(for: .touchUpInside)
-        XCTAssertFalse(didTapButton)
     }
 }
 

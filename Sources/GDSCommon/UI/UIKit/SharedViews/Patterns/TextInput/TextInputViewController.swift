@@ -48,6 +48,11 @@ public final class TextInputViewController<InputType>: UIViewController, UITextF
                                                            action: #selector(dismissScreen))
         }
     }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.didAppear()
+    }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
@@ -133,7 +138,6 @@ public final class TextInputViewController<InputType>: UIViewController, UITextF
     
     @objc private func dismissScreen() {
         self.dismiss(animated: true)
-        
         viewModel.didDismiss()
     }
 }

@@ -62,20 +62,20 @@ final class DialogViewTests: XCTestCase {
         XCTAssertEqual(titleLabel.textAlignment, .center)
     }
     
-//    func test_dialogView_asyncPresentation() {
-//        let exp = expectation(description: "Removed from superview")
-//
-//        Task {
-//            await sut.present(onView: viewController.view)
-//            exp.fulfill()
-//        }
-//
-//        waitForTruth(self.sut.superview == self.viewController.view,
-//                     timeout: 3)
-//        XCTAssertNotNil(sut.completionHandler)
-//        waitForExpectations(timeout: 3, handler: nil)
-//        XCTAssertNil(sut.superview)
-//    }
+    func test_dialogView_asyncPresentation() {
+        let exp = expectation(description: "Removed from superview")
+
+        Task {
+            await sut.present(onView: viewController.view)
+            exp.fulfill()
+        }
+
+        waitForTruth(self.sut.superview == self.viewController.view,
+                     timeout: 3)
+        XCTAssertNotNil(sut.completionHandler)
+        waitForExpectations(timeout: 3, handler: nil)
+        XCTAssertNil(sut.superview)
+    }
     
     func test_dialogView_asdsfafgsyncPresentation() {
         let exp = expectation(description: "Removed from superview")
