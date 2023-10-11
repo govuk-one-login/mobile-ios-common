@@ -11,27 +11,13 @@ import UIKit
 /// - Returns: - The view name as a `String`
 ///             isModal as a `Bool` to determine if it should be presented modally, the default is false
 ///             the view as a `UIViewController` to push/present on the navigation stack.
-enum Screens: CaseIterable {
-    case gdsInstructions
-    case gdsInstructionsWithImage
-    case gdsModalInfoView
-    case gdsListOptions
-    case gdsIntroView
-    
-    var name: String {
-        switch self {
-        case .gdsInstructions:
-            return "GDS Instructions View"
-        case .gdsInstructionsWithImage:
-            return "GDS Instructions View (with image)"
-        case .gdsModalInfoView:
-            return "Modal Info View"
-        case .gdsListOptions:
-            return "List Options"
-        case .gdsIntroView:
-            return "Intro View"
-        }
-    }
+enum Screens: String, CaseIterable {
+    case gdsInstructions = "GDS Instructions View"
+    case gdsInstructionsWithImage = "GDS Instructions View (with image)"
+    case gdsModalInfoView = "Modal Info View"
+    case gdsListOptions = "List Options"
+    case gdsIntroView = "Intro View"
+    case gdsDatePicker = "Date Picker"
     
     var isModal: Bool {
         switch self {
@@ -67,6 +53,8 @@ enum Screens: CaseIterable {
         case .gdsIntroView:
             let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
             return IntroViewController(viewModel: viewModel)
+        case .gdsDatePicker:
+            return DatePickerScreenViewController()
         }
     }
 }
