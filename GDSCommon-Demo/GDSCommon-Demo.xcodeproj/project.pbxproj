@@ -36,6 +36,7 @@
 		96588BE62AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BE52AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift */; };
 		96588BE82AD06CD20035FF93 /* MockTextInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BE72AD06CD20035FF93 /* MockTextInputViewModel.swift */; };
 		96588BEA2AD06CE30035FF93 /* MockTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BE92AD06CE30035FF93 /* MockTextFieldViewModel.swift */; };
+		96588BEC2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BEB2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift */; };
 		96FEFC182ACD9F7800313194 /* MockInstructionWithImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */; };
 		96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */; };
 		C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */; };
@@ -84,6 +85,7 @@
 		96588BE52AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewControllerInitialiser+Extensions.swift"; sourceTree = "<group>"; };
 		96588BE72AD06CD20035FF93 /* MockTextInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTextInputViewModel.swift; sourceTree = "<group>"; };
 		96588BE92AD06CE30035FF93 /* MockTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTextFieldViewModel.swift; sourceTree = "<group>"; };
+		96588BEB2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputViewControllerTests.swift; sourceTree = "<group>"; };
 		C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIntroViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 				2B0843F72ABC797E00188BA0 /* ModalInfoViewControllerTests.swift */,
 				2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */,
 				3B61C6E02ACDC580001359F1 /* IntroViewControllerTests.swift */,
+				96588BEB2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift */,
 			);
 			path = "GDSCommon-DemoTests";
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96588BEC2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift in Sources */,
 				2B0844092ABC79C300188BA0 /* ModalInfoViewControllerTests.swift in Sources */,
 				9634B46A2ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift in Sources */,
 				96588BDC2AD02AB30035FF93 /* Date+Extensions.swift in Sources */,

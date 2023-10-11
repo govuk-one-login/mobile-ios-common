@@ -1,4 +1,5 @@
 @testable import GDSCommon
+@testable import GDSCommon_Demo
 import XCTest
 
 final class TextInputViewControllerTests: XCTestCase {
@@ -46,7 +47,7 @@ final class TextInputViewControllerTests: XCTestCase {
 
 extension TextInputViewControllerTests {
     func testLabels() {
-        XCTAssertEqual(try sut.titleLabel.text, "title")
+        XCTAssertEqual(try sut.titleLabel.text, "Text input screen")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertEqual(try sut.titleLabel.textColor, .label)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
@@ -80,11 +81,11 @@ extension TextInputViewControllerTests {
         
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
-        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Cancel")
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Right bar button")
     }
     
     func testTextFieldFooter() throws {
-        try XCTAssertEqual(sut.textFieldFooter.text, "this is a long footer to check that dynamic type is working correctly")
+        try XCTAssertEqual(sut.textFieldFooter.text, "This is an optional footer. It is configured on the view model. If `nil` the label is hidden.")
         try XCTAssertEqual(sut.textFieldFooter.font, .footnote)
         try XCTAssertEqual(sut.textFieldFooter.textColor, .secondaryLabel)
     }
