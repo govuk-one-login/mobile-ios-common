@@ -13,6 +13,7 @@ extension DatePickerScreenViewController {
                                                                                            shouldLoadOnTap: false,
                                                                                            action: {}))
         
+        self.init(viewModel: viewModel)
     }
 }
 
