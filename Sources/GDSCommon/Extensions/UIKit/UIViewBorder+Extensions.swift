@@ -4,15 +4,15 @@ extension UIView {
     @discardableResult
     func gdsBorders() -> [UIView] {
         self.bordersTo([.top, .bottom],
-                        colour: .tertiaryLabel,
+                       colour: .tertiaryLabel,
                        width: 0.25)
     }
     
     
     @discardableResult
     public func bordersTo(_ edges: [BorderEdge],
-                  colour: UIColor = .label,
-                  width: Double = 1) -> [UIView] {
+                          colour: UIColor = .label,
+                          width: Double = 1) -> [UIView] {
         
         return edges.map { edge in
             addBorder(edge,
@@ -34,27 +34,24 @@ extension UIView {
     
     private func setConstraints(from: UIView, to: UIView, width: Double, edge: BorderEdge) {
         switch edge {
-        case .top:
+        case .top, .bottom:
+            let anchor: NSLayoutConstraint = edge == .top ?
+            from.topAnchor.constraint(equalTo: to.topAnchor) :
+            from.bottomAnchor.constraint(equalTo: to.bottomAnchor)
+            
             NSLayoutConstraint.activate([
-                from.topAnchor.constraint(equalTo: to.topAnchor),
+                anchor,
                 to.widthAnchor.constraint(equalToConstant: from.bounds.width),
                 to.heightAnchor.constraint(equalToConstant: width)
             ])
-        case .right:
+            
+        case .right, .left:
+            let anchor: NSLayoutConstraint = edge == .right ?
+            from.rightAnchor.constraint(equalTo: to.rightAnchor) :
+            from.leftAnchor.constraint(equalTo: to.leftAnchor)
+            
             NSLayoutConstraint.activate([
-                from.rightAnchor.constraint(equalTo: to.rightAnchor),
-                to.heightAnchor.constraint(equalToConstant: from.bounds.height),
-                to.widthAnchor.constraint(equalToConstant: width)
-            ])
-        case .bottom:
-            NSLayoutConstraint.activate([
-                from.bottomAnchor.constraint(equalTo: to.bottomAnchor),
-                to.widthAnchor.constraint(equalToConstant: from.bounds.width),
-                to.heightAnchor.constraint(equalToConstant: width)
-            ])
-        case .left:
-            NSLayoutConstraint.activate([
-                from.leftAnchor.constraint(equalTo: to.leftAnchor),
+                anchor,
                 to.heightAnchor.constraint(equalToConstant: from.bounds.height),
                 to.widthAnchor.constraint(equalToConstant: width)
             ])
@@ -70,7 +67,7 @@ public enum BorderEdge: CaseIterable {
 }
 
 //    case all
-    
+
 //    public var rawValue: UIRectEdge {
 //        switch self {
 //        case .top:
@@ -85,7 +82,7 @@ public enum BorderEdge: CaseIterable {
 //            return .all
 //        }
 //    }
-//    
+//
 //    public init?(rawValue: UIRectEdge) {
 //        switch rawValue {
 //        case .top:
