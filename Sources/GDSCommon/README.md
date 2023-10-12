@@ -215,6 +215,18 @@ style by default. This is configurable in the `DatePickerViewModel` using the
 The content on the screen is set from the `viewModel`, which must conform to the `DatePickerViewModel` protocol.
 
 
+### TextInput
+This screen includes the following views:
+- `titleLabel` (type: `UILabel`)
+- `textField` (type: `UITextField`)
+- `textFieldFooter` (type: `UILabel`)
+- `primaryButton`  (type: ``RoundedButton`` inherits from SecondaryButton)
+
+This screen includes a title and a text field below with an optional footer below that. The data that is returned from the text field can be validated by the `validator` method on the `TextFieldViewModel` (a child property on the ViewModel) and the return type must conform to `LosslessStringConvertible`.
+
+The content on the screen is set from the `viewModel`, which must conform to the `TextInputViewModel` protocol.
+
+
 ## Utilities
 
 Contains utility classes and functions that includes helper functions for date formatting, string manipulation, network requests etc. 

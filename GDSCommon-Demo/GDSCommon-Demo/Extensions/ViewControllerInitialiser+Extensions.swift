@@ -16,3 +16,19 @@ extension DatePickerScreenViewController {
         self.init(viewModel: viewModel)
     }
 }
+
+extension TextInputViewController<Double> {
+    convenience init() {
+        let textFieldVM = MockTextFieldViewModel<Double>()
+        
+        let viewModel = MockTextInputViewModel<Double>(textFieldViewModel: textFieldVM) { _ in
+            // no result action
+        } appearAction: {
+            // no appear action
+        } dismissAction: {
+            // no dismiss action
+        }
+
+        self.init(viewModel: viewModel)
+    }
+}

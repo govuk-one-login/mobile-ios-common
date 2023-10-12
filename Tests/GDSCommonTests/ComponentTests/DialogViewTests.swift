@@ -20,6 +20,7 @@ final class DialogViewTests: XCTestCase {
     
     override func tearDown() {
         window = nil
+        sut = nil
         viewController = nil
         super.tearDown()
     }
@@ -63,12 +64,12 @@ final class DialogViewTests: XCTestCase {
     
     func test_dialogView_asyncPresentation() {
         let exp = expectation(description: "Removed from superview")
-        
+
         Task {
             await sut.present(onView: viewController.view)
             exp.fulfill()
         }
-        
+
         waitForTruth(self.sut.superview == self.viewController.view,
                      timeout: 3)
         XCTAssertNotNil(sut.completionHandler)
