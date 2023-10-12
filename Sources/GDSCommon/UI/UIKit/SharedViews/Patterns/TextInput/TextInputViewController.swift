@@ -127,7 +127,8 @@ public final class TextInputViewController<InputType>: UIViewController, UITextF
     func barButton(_ keyboardDoneButton: String) {
         let bar = UIToolbar()
         let done = UIBarButtonItem(title: NSLocalizedString(key: keyboardDoneButton), style: .done, target: self, action: #selector(dismissKeyboard))
-        bar.items = [done]
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.items = [space, done]
         bar.sizeToFit()
         textField.inputAccessoryView = bar
     }
