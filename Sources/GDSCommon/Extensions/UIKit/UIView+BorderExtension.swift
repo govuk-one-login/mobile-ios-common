@@ -1,5 +1,12 @@
 import UIKit
 
+public enum BorderEdge: CaseIterable {
+    case top
+    case right
+    case bottom
+    case left
+}
+
 extension UIView {
     func gdsBorders() {
         self.bordersTo([.top, .bottom],
@@ -56,11 +63,4 @@ extension UIView {
             ])
         }
     }
-}
-
-public enum BorderEdge: CaseIterable {
-    case top
-    case right
-    case bottom
-    case left
 }
