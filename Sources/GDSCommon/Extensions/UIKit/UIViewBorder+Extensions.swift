@@ -1,19 +1,17 @@
 import UIKit
 
 extension UIView {
-    @discardableResult
-    func gdsBorders() -> [UIView] {
+    func gdsBorders() {
         self.bordersTo([.top, .bottom],
                        colour: .tertiaryLabel,
                        width: 0.25)
     }
     
-    @discardableResult
     public func bordersTo(_ edges: [BorderEdge],
                           colour: UIColor = .label,
-                          width: Double = 1) -> [UIView] {
+                          width: Double = 1) {
         
-        return edges.map { edge in
+        edges.forEach { edge in
             addBorder(edge,
                       colour: colour,
                       width: width)
@@ -22,16 +20,18 @@ extension UIView {
     
     private func addBorder(_ edge: BorderEdge,
                            colour: UIColor,
-                           width: Double) -> UIView {
+                           width: Double) {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = colour
         addSubview(view)
         setConstraints(from: self, to: view, width: width, edge: edge)
-        return UIView()
     }
     
-    private func setConstraints(from: UIView, to: UIView, width: Double, edge: BorderEdge) {
+    private func setConstraints(from: UIView, 
+                                to: UIView,
+                                width: Double,
+                                edge: BorderEdge) {
         switch edge {
         case .top, .bottom:
             let anchor: NSLayoutConstraint = edge == .top ?
