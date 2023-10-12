@@ -94,6 +94,11 @@ extension TextInputViewControllerTests {
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
         XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Right bar button")
+        
+        XCTAssertFalse(didDismissScreen)
+
+        _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
+        XCTAssertTrue(didDismissScreen)
     }
     
     func testTextFieldFooter() throws {

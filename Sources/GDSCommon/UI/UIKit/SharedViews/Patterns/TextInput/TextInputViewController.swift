@@ -116,7 +116,7 @@ public final class TextInputViewController<InputType>: UIViewController, UITextF
     
     @IBAction private func primaryButtonAction(_ sender: Any) {
         guard let text = textField.text else {
-            // failed to get text from text field
+            // Text property should not be nil becuase the button should be disabled if it is
             return
         }
 

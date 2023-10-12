@@ -18,7 +18,7 @@ extension UIView {
     func gdsBorders() -> [UIView] {
         self.addBorders(edges: [.top, .bottom],
                         color: .tertiaryLabel,
-                        thickness: 0.75)
+                        thickness: 1)
     }
     
     @discardableResult
