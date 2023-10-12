@@ -8,7 +8,6 @@ extension UIView {
                        width: 0.25)
     }
     
-    
     @discardableResult
     public func bordersTo(_ edges: [BorderEdge],
                           colour: UIColor = .label,
@@ -65,38 +64,3 @@ public enum BorderEdge: CaseIterable {
     case bottom
     case left
 }
-
-//    case all
-
-//    public var rawValue: UIRectEdge {
-//        switch self {
-//        case .top:
-//            return .top
-//        case .right:
-//            return .right
-//        case .bottom:
-//            return .bottom
-//        case .left:
-//            return .left
-//        case .all:
-//            return .all
-//        }
-//    }
-//
-//    public init?(rawValue: UIRectEdge) {
-//        switch rawValue {
-//        case .top:
-//            self = .top
-//        case .right:
-//            self = .right
-//        case .bottom:
-//            self = .bottom
-//        case .left:
-//            self = .left
-//        case .all:
-//            self = .all
-//        default:
-//            return nil
-//        }
-//    }
-
