@@ -35,7 +35,7 @@ extension UIView {
         setConstraints(from: self, to: view, width: width, edge: edge)
     }
     
-    private func setConstraints(from: UIView, 
+    private func setConstraints(from: UIView,
                                 to: UIView,
                                 width: Double,
                                 edge: BorderEdge) {
