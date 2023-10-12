@@ -7,9 +7,23 @@ public enum BorderEdge: CaseIterable {
     case left
 }
 
+extension Collection where Element == BorderEdge {
+    static var all: [BorderEdge] {
+        BorderEdge.allCases
+    }
+    
+    static var vertical: [BorderEdge] {
+        [.right, .left]
+    }
+    
+    static var horizontal: [BorderEdge] {
+        [.top, .bottom]
+    }
+}
+
 extension UIView {
     func gdsBorders() {
-        self.bordersTo([.top, .bottom],
+        self.bordersTo(.horizontal,
                        colour: .tertiaryLabel,
                        width: 0.25)
     }
