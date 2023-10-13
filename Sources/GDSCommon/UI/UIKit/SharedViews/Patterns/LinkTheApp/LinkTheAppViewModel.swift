@@ -4,4 +4,5 @@ public protocol LinkTheAppViewModel {
     var imageName: String { get }
     var title: GDSLocalisedString { get }
     var subtitle: GDSLocalisedString { get }
+    var contentViews: [UIStackView] { get }
 }

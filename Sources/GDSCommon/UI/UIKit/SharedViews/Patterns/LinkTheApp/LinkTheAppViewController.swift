@@ -38,4 +38,10 @@ public final class LinkTheAppViewController: UIViewController {
             subtitleLabel.accessibilityIdentifier = "error-subtitle"
         }
     }
+    
+    @IBOutlet private var contentView: UIStackView! {
+        didSet {
+            viewModel.contentViews.forEach { contentView.addArrangedSubview($0) }
+        }
+    }
 }
