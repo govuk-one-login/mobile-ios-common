@@ -1,6 +1,8 @@
+import AVFoundation
 @testable import GDSCommon
 @testable import GDSCommon_Demo
 import UIKit
+import Vision
 import XCTest
 
 final class ScanningViewControllerTests: XCTestCase {
@@ -51,16 +53,19 @@ final class ScanningViewControllerTests: XCTestCase {
                      timeout: 2)
         sut.stopScanning()
         XCTAssertFalse(sut.captureSession.isRunning)
-        
     }
     
-    func test_dectectBarcode_successful() async {
+    func test_detectBarcodeSetup() {
+        XCTAssertTrue(sut.barcodeRequest is VNDetectBarcodesRequest)
+    }
+    
+    func test_detectBarcode_successful() async {
         await sut.didScan(string: "www.google.com/ABC123")
         waitForTruth(self.presenter.didCallPresent, timeout: 2)
         waitForTruth(self.didCompleteScan, timeout: 2)
     }
     
-    func test_dectectBarcode_failure() async {
+    func test_detectBarcode_failure() async {
         await sut.didScan(string: "www.google.com/AJS432")
         waitForTruth(self.presenter.didCallPresent, timeout: 2)
         waitForTruth(!self.didCompleteScan, timeout: 2)

@@ -14,11 +14,11 @@ import Vision
 ///
 ///  The `instructionsLabel` and `cameraView` are within `view`. The view controller adds the `childView`
 
-public final class ScanningViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+public final class ScanningViewController: UIViewController {
     
     let captureSession: AVCaptureSession
     private let previewLayer: AVCaptureVideoPreviewLayer
-    private var barcodeRequest: VNDetectBarcodesRequest {
+    var barcodeRequest: VNImageBasedRequest {
         VNDetectBarcodesRequest(completionHandler: detectedBarcode(_:_:))
     }
     
@@ -81,20 +81,6 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
     private func updateRegionOfInterest() {
         previewLayer.layoutIfNeeded()
         cameraView.layoutIfNeeded()
-    }
-    
-    public func captureOutput(_ output: AVCaptureOutput,
-                              didOutput sampleBuffer: CMSampleBuffer,
-                              from connection: AVCaptureConnection) {
-        guard isScanning,
-              let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        
-        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:])
-        do {
-            try handler.perform([barcodeRequest])
-        } catch {
-            preconditionFailure("Error with capturing output")
-        }
     }
     
     func startAnimation() {
@@ -202,5 +188,22 @@ extension ScanningViewController {
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8).isActive = true
+    }
+}
+
+extension ScanningViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+    public func captureOutput(_ output: AVCaptureOutput,
+                              didOutput sampleBuffer: CMSampleBuffer,
+                              from connection: AVCaptureConnection) {
+        guard isScanning,
+              let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer,
+                                            options: [:])
+        do {
+            try handler.perform([barcodeRequest])
+        } catch {
+            preconditionFailure("Error with capturing output")
+        }
     }
 }

@@ -1,9 +1,9 @@
 import UIKit
 
 final class ScanOverlayView: UIView {
-    private let overlayLayer = CAShapeLayer()
+    let overlayLayer = CAShapeLayer()
     
-    private var reticleInset: CGFloat {
+    var reticleInset: CGFloat {
         0.1 * bounds.width
     }
     
