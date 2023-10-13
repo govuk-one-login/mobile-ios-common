@@ -5,7 +5,7 @@ class DemoViewController: UIViewController {
     
     let tableview: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = UIColor.white
+        tv.backgroundColor = UIColor.systemBackground
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
     }()
