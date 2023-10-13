@@ -20,7 +20,7 @@ public protocol ScanningController {
 
 public final class ScanningViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    private let captureSession: AVCaptureSession
+    let captureSession: AVCaptureSession
     private let previewLayer: AVCaptureVideoPreviewLayer
     private var barcodeRequest: VNDetectBarcodesRequest {
         VNDetectBarcodesRequest(completionHandler: detectedBarcode(_:_:))

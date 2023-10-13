@@ -59,6 +59,17 @@ final class ScanningViewControllerTests: XCTestCase {
         XCTAssertTrue(mockScanningController.didCall_completeScan)
     }
     
+    func testStopScanning() {
+        XCTAssertFalse(sut.captureSession.isRunning)
+        sut.startScanning()
+        
+        waitForTruth(self.sut.captureSession.isRunning,
+                     timeout: 2)
+        sut.stopScanning()
+        XCTAssertFalse(sut.captureSession.isRunning)
+        
+    }
+    
     func test_scanCompleteWithErrors() throws {
         sut.scanningController.completeScan(url: URL(string: "ABS125")!, didFinishWithError: true)
         XCTAssertTrue(mockScanningController.didCall_completeScanWithError)
