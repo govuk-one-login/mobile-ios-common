@@ -1,7 +1,7 @@
 import UIKit
 
-final class LinkTheAppViewController: UIViewController {
-    override var nibName: String? { "LinkTheApp" }
+public final class LinkTheAppViewController: UIViewController {
+    public override var nibName: String? { "LinkTheApp" }
     
     let viewModel: LinkTheAppViewModel
     
@@ -9,9 +9,9 @@ final class LinkTheAppViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(viewModel: LinkTheAppViewModel) {
+    public init(viewModel: LinkTheAppViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "LinkTheApp", bundle: nil)
+        super.init(nibName: "LinkTheApp", bundle: .module)
     }
     
     @IBOutlet private var imageView: UIImageView! {
