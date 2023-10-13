@@ -25,7 +25,7 @@ extension UIView {
     func gdsBorders() {
         self.bordersTo(.horizontal,
                        colour: .tertiaryLabel,
-                       width: 0.25)
+                       width: 0.5)
     }
     
     public func bordersTo(_ edges: [BorderEdge],
