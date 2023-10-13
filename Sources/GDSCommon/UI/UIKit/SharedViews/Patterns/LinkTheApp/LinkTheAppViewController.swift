@@ -39,9 +39,15 @@ public final class LinkTheAppViewController: UIViewController {
         }
     }
     
-    @IBOutlet private var contentView: UIStackView! {
+    @IBOutlet var firstSectionButton: UIButton! {
         didSet {
-            viewModel.contentViews.forEach { contentView.addArrangedSubview($0) }
+            firstSectionButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        }
+    }
+    
+    @IBOutlet var secondSectionButton: UIButton! {
+        didSet {
+            secondSectionButton.titleLabel?.adjustsFontForContentSizeCategory = true
         }
     }
 }

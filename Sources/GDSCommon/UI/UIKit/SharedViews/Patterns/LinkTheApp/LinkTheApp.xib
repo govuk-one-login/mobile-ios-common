@@ -11,8 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LinkTheAppViewController" customModule="GDSCommon">
             <connections>
-                <outlet property="contentView" destination="ja5-PX-D17" id="E2F-XK-3sg"/>
+                <outlet property="firstSectionButton" destination="5eE-zw-cxv" id="wYq-bt-Dfb"/>
                 <outlet property="imageView" destination="JEv-PL-uNu" id="bQ2-Wc-oCR"/>
+                <outlet property="secondSectionButton" destination="96X-lT-Dwj" id="KTs-jJ-88e"/>
                 <outlet property="subtitleLabel" destination="urP-GV-7kQ" id="eJb-Jm-SPg"/>
                 <outlet property="titleLabel" destination="FdJ-8g-DNa" id="Bfb-My-cne"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wo3-gP-a0g"/>
@@ -26,32 +27,106 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dp-cx-LC6">
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ja5-PX-D17" userLabel="Content View">
-                            <rect key="frame" x="0.0" y="50" width="393" height="200"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ja5-PX-D17" userLabel="Content View">
+                            <rect key="frame" x="0.0" y="49.999999999999972" width="393" height="477.33333333333326"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dp2-Mq-JlH">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="216"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JEv-PL-uNu">
-                                            <rect key="frame" x="0.0" y="1" width="393" height="105.66666666666667"/>
+                                            <rect key="frame" x="16" y="9" width="361" height="105.66666666666667"/>
                                             <color key="tintColor" systemColor="labelColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="107" id="bKF-Jp-WEb"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdJ-8g-DNa">
-                                            <rect key="frame" x="0.0" y="123.00000000000001" width="393" height="40.666666666666671"/>
+                                            <rect key="frame" x="16" y="131" width="361" height="40.666666666666657"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urP-GV-7kQ">
-                                            <rect key="frame" x="0.0" y="179.66666666666669" width="393" height="20.333333333333343"/>
+                                            <rect key="frame" x="16" y="187.66666666666669" width="361" height="20.333333333333343"/>
+                                            <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GG1-jx-Ajn">
+                                    <rect key="frame" x="0.0" y="231.99999999999997" width="393" height="114.66666666666666"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYa-6N-pGl">
+                                            <rect key="frame" x="16" y="7.9999999999999982" width="361" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tU-u6-faS">
+                                            <rect key="frame" x="16" y="36.333333333333314" width="361" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ePA-gx-cm2">
+                                            <rect key="frame" x="16" y="64.666666666666686" width="361" height="1"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="ebh-0J-3bO"/>
+                                            </constraints>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-zw-cxv">
+                                            <rect key="frame" x="16" y="73.666666666666686" width="361" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="TMq-i1-OsZ"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="44" id="aSW-kh-jeg"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Button"/>
+                                        </button>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                                </stackView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xBH-Cp-NJ6">
+                                    <rect key="frame" x="0.0" y="362.66666666666669" width="393" height="114.66666666666669"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acD-Le-7rw">
+                                            <rect key="frame" x="16" y="7.9999999999999982" width="361" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJ7-SW-trK">
+                                            <rect key="frame" x="16" y="36.333333333333314" width="361" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbC-8e-nbv">
+                                            <rect key="frame" x="16" y="64.666666666666686" width="361" height="1"/>
+                                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="tfx-pb-BYN"/>
+                                            </constraints>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96X-lT-Dwj">
+                                            <rect key="frame" x="16" y="73.666666666666686" width="361" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="44" id="1uL-4L-IAs"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="gdY-sa-6f8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="Button"/>
+                                        </button>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                                 </stackView>
                             </subviews>
                         </stackView>
