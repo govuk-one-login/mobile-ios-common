@@ -18,9 +18,7 @@ public final class ScanningViewController: UIViewController {
     
     let captureSession: AVCaptureSession
     private let previewLayer: AVCaptureVideoPreviewLayer
-    var barcodeRequest: VNImageBasedRequest {
-        VNDetectBarcodesRequest(completionHandler: detectedBarcode(_:_:))
-    }
+    private(set) var barcodeRequest: VNImageBasedRequest!
     
     private let imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
     
@@ -47,13 +45,13 @@ public final class ScanningViewController: UIViewController {
     /// Initialiser for the `Scanning` view controller.
     /// Requires a single parameter.
     /// - Parameter viewModel: `QRScanningViewModel`
-    public init(viewModel: QRScanningViewModel) {
+    public init(viewModel: QRScanningViewModel,
+                requestType: VNImageBasedRequest.Type = VNDetectBarcodesRequest.self) {
         self.viewModel = viewModel
-        
-        captureSession = AVCaptureSession()
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        
+        self.captureSession = AVCaptureSession()
+        self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         super.init(nibName: "Scanner", bundle: .module)
+        self.barcodeRequest = requestType.init(completionHandler: detectedBarcode(_:_:))
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -102,7 +100,8 @@ public final class ScanningViewController: UIViewController {
         guard let results = request.results else {
             return
         }
-        let qrCodes = results.compactMap { $0 as? VNBarcodeObservation }
+        let qrCodes = results
+            .compactMap { $0 as? VNBarcodeObservation }
             .compactMap { $0.payloadStringValue }
         guard let qrCode = qrCodes.first else { return }
         Task {
