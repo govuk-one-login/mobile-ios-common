@@ -15,17 +15,16 @@ enum Screens: String, CaseIterable {
     case gdsInstructions = "GDS Instructions View"
     case gdsInstructionsWithImage = "GDS Instructions View (with image)"
     case gdsModalInfoView = "Modal Info View"
-    case gdsAttributedModalInfoView = "Attributed Modal Info View"
     case gdsListOptions = "List Options"
     case gdsIntroView = "Intro View"
     case gdsDatePicker = "Date Picker"
-    case gdsTextInput = "Text Input"
-    case gdsIconScreen = "Icon Screen"
+    case gdsTextInput = "Text input"
+    case gdsQRCodeScanner = "QR Code Scanner"
+    case gdsQRCodeScannerModal = "QR Code Scanner (Modal)"
     
     var isModal: Bool {
         switch self {
-        case .gdsModalInfoView,
-                .gdsAttributedModalInfoView:
+        case .gdsModalInfoView, .gdsQRCodeScannerModal:
             return true
         default:
             return false
@@ -41,10 +40,11 @@ enum Screens: String, CaseIterable {
                                                  isLoading: false)
     }
     
-    var view: UIViewController {
+    func create(in navigationController: UINavigationController) -> UIViewController {
         switch self {
         case .gdsInstructions:
-            return GDSInstructionsViewController()
+            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel)
+            return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
                                                                primaryButtonViewModel: mockButtonViewModel,
@@ -55,23 +55,28 @@ enum Screens: String, CaseIterable {
             let view = ModalInfoViewController(viewModel: viewModel)
             view.isModalInPresentation = true
             return view
-        case .gdsAttributedModalInfoView:
-            let viewModel = MockAttributedModalInfoViewModel()
-            let view = ModalInfoViewController(viewModel: viewModel)
-            view.isModalInPresentation = true
-            return view
         case .gdsListOptions:
             let viewModel = MockListViewModel()
             return ListOptionsViewController(viewModel: viewModel)
         case .gdsIntroView:
             let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
             return IntroViewController(viewModel: viewModel)
+        case .gdsQRCodeScanner:
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
+                navigationController.popViewController(animated: true)
+            }
+            let vc = ScanningViewController(viewModel: viewModel)
+            return vc
+        case .gdsQRCodeScannerModal:
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
+                navigationController.dismiss(animated: true)
+            }
+            let vc = ScanningViewController(viewModel: viewModel)
+            return vc
         case .gdsDatePicker:
             return DatePickerScreenViewController()
         case .gdsTextInput:
             return TextInputViewController()
-        case .gdsIconScreen:
-            return IconScreenViewController()
         }
     }
 }

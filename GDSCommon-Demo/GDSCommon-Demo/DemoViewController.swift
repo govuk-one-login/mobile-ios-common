@@ -49,10 +49,16 @@ extension DemoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let screen = Screens.allCases[indexPath.row]
         if screen.isModal {
-            let nav = UINavigationController(rootViewController: screen.view)
-            navigationController?.present(nav, animated: true)
-        } else {
-            navigationController?.pushViewController(screen.view, animated: true)
+            let navigationController = UINavigationController()
+            let viewController = screen.create(in: navigationController)
+            navigationController
+                .pushViewController(viewController, animated: false)
+            self.navigationController?
+                .present(navigationController, animated: true)
+        } else if let navigationController {
+            let viewController = screen.create(in: navigationController)
+            navigationController
+                .pushViewController(viewController, animated: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

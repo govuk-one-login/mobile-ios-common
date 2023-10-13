@@ -2,10 +2,6 @@ import AVFoundation
 import UIKit
 import Vision
 
-public protocol ScanningController {
-    func completeScan(url: URL?, didFinishWithError: Bool)
-}
-
 /// View Controller for the `Scanner` storyboard XIB
 /// It is initialised with a `viewModel` of type: `QRScanningViewModel`
 /// and a `scanningController` of type: `ScanningController`
@@ -39,12 +35,9 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
     }
     
     private var isScanning: Bool = true
-    
-    public var scanningController: ScanningController
     public var viewModel: QRScanningViewModel
     
     private var overlayView: ScanOverlayView?
-    private var presenter: DialogPresenter
     
     private let processingQueue = DispatchQueue(label: "barcodeScannerQueue",
                                                 qos: .userInitiated,
@@ -53,14 +46,9 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
     
     /// Initialiser for the `Scanning` view controller.
     /// Requires a single parameter.
-    /// - Parameter scanningController: `ScanningController`
     /// - Parameter viewModel: `QRScanningViewModel`
-    public init(scanningController: ScanningController,
-                viewModel: QRScanningViewModel,
-                presenter: DialogPresenter) {
-        self.scanningController = scanningController
+    public init(viewModel: QRScanningViewModel) {
         self.viewModel = viewModel
-        self.presenter = presenter
         
         captureSession = AVCaptureSession()
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -88,10 +76,6 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startAnimation()
-    }
-    
-    private func showLoadingDialog(withText text: String? = nil) async {
-        await presenter.present(onView: overlayView ?? view, shouldLoad: false, title: text)
     }
     
     private func updateRegionOfInterest() {
@@ -135,75 +119,16 @@ public final class ScanningViewController: UIViewController, AVCaptureVideoDataO
         let qrCodes = results.compactMap { $0 as? VNBarcodeObservation }
             .compactMap { $0.payloadStringValue }
         guard let qrCode = qrCodes.first else { return }
-        handleBarcode(qrCode: qrCode)
-    }
-    
-    /// Function to handle the recieved qr code by checking if there is a format to match to.
-    /// If no formatting is needed, it will immediately complete scan
-    /// If there is a format to match, it will check this.
-    ///  - An alert will show if it does not match.
-    ///  - Scan will complete if this does match
-    public func handleBarcode(qrCode: String) {
-        // No Formatting needed
-        guard let code = viewModel.format else {
-            let url = URL(string: qrCode)!
-            Task {
-                await completeScan(url: url)
-            }
-            return
-        }
-        
-        guard let url = URL(string: qrCode) else {
-            scanningController.completeScan(url: nil, didFinishWithError: true)
-            return
-        }
-        
-        // Formatting needed
-        guard qrCode.contains(code) else {
-            // Code is not in correct format
-            pauseScanning(true)
-            
-            if viewModel.shouldShowAlert {
-                DispatchQueue.main.async { [unowned self] in
-                    let alert = UIAlertController(title: viewModel.alertTitle,
-                                                  message: viewModel.alertMessage,
-                                                  preferredStyle: .alert)
-                    alert.addAction(.init(title: viewModel.alertAction, style: .cancel) { _ in
-                        self.pauseScanning(false)
-                    })
-                    self.present(alert, animated: true)
-                }
-            } else {
-                Task {
-                    await completeScan(url: url,
-                                       didFinishWithError: true)
-                }
-            }
-            return
-        }
-        
         Task {
-            await completeScan(url: url)
+            await didScan(string: qrCode)
         }
     }
     
     @MainActor
-    func completeScan(url: URL, didFinishWithError: Bool = false) async {
-        pauseScanning(true)
-        await showLoadingDialog(withText: didFinishWithError ? viewModel.errorMessage : viewModel.successMessage)
-        
-        // This calls the delegate method, which can be conformed to by the presenting view controller.
-        scanningController.completeScan(url: url, didFinishWithError: didFinishWithError)
-        
-        // Close screen and push back to root
-        if viewModel.shouldDismissViewAfterScanComplete {
-            // Checking if view is being presented modally
-            if self.navigationController?.presentingViewController != nil {
-                navigationController?.dismiss(animated: true)
-            } else {
-                navigationController?.popViewController(animated: true)
-            }
-        }
+    func didScan(string: String) async {
+        isScanning = false
+        await viewModel.didScan(value: string, in: overlayView ?? view)
+        isScanning = true
     }
 }
 
@@ -215,11 +140,6 @@ extension ScanningViewController {
                 self.captureSession.startRunning()
             }
         }
-    }
-    
-    // Pause the scanning, with the option to restart
-    func pauseScanning(_ pause: Bool) {
-        isScanning = !pause
     }
     
     // End the scanning process
