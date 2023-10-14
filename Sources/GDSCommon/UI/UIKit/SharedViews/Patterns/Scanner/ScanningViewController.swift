@@ -14,9 +14,10 @@ import Vision
 ///
 ///  The `instructionsLabel` and `cameraView` are within `view`. The view controller adds the `childView`
 
-public final class ScanningViewController: UIViewController {
-    
-    let captureSession: AVCaptureSession
+public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSession>: UIViewController,
+                                                                                     AVCaptureVideoDataOutputSampleBufferDelegate {
+    private let captureDevice: any CaptureDevice.Type
+    let captureSession: CaptureSession
     private let previewLayer: AVCaptureVideoPreviewLayer
     private(set) var barcodeRequest: VNImageBasedRequest!
     
@@ -37,19 +38,22 @@ public final class ScanningViewController: UIViewController {
     
     private var overlayView: ScanOverlayView?
     
-    private let processingQueue = DispatchQueue(label: "barcodeScannerQueue",
-                                                qos: .userInitiated,
-                                                attributes: [],
-                                                autoreleaseFrequency: .workItem)
+    let processingQueue = DispatchQueue(label: "barcodeScannerQueue",
+                                        qos: .userInitiated,
+                                        attributes: [],
+                                        autoreleaseFrequency: .workItem)
     
     /// Initialiser for the `Scanning` view controller.
     /// Requires a single parameter.
     /// - Parameter viewModel: `QRScanningViewModel`
     public init(viewModel: QRScanningViewModel,
+                captureDevice: any CaptureDevice.Type = AVCaptureDevice.self,
+                captureSession: CaptureSession = AVCaptureSession(),
                 requestType: VNImageBasedRequest.Type = VNDetectBarcodesRequest.self) {
         self.viewModel = viewModel
-        self.captureSession = AVCaptureSession()
-        self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        self.captureDevice = captureDevice
+        self.captureSession = captureSession
+        self.previewLayer = captureSession.layer
         super.init(nibName: "Scanner", bundle: .module)
         self.barcodeRequest = requestType.init(completionHandler: detectedBarcode(_:_:))
     }
@@ -115,6 +119,23 @@ public final class ScanningViewController: UIViewController {
         await viewModel.didScan(value: string, in: overlayView ?? view)
         isScanning = true
     }
+    
+    // - MARK: AVCaptureVideoDataOutputSampleBufferDelegate
+    
+    public func captureOutput(_ output: AVCaptureOutput,
+                              didOutput sampleBuffer: CMSampleBuffer,
+                              from connection: AVCaptureConnection) {
+        guard isScanning,
+              let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+        
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer,
+                                            options: [:])
+        do {
+            try handler.perform([barcodeRequest])
+        } catch {
+            preconditionFailure("Error with capturing output")
+        }
+    }
 }
 
 extension ScanningViewController {
@@ -137,8 +158,8 @@ extension ScanningViewController {
 
 extension ScanningViewController {
     private func setupVideoDisplay() {
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video),
-              let videoInput = try? AVCaptureDeviceInput(device: videoCaptureDevice) else {
+        guard let videoCaptureDevice = captureDevice.for(mediaType: .video),
+              let videoInput = try? videoCaptureDevice.input as? CaptureSession.Input else {
             preconditionFailure("Device does not have a video capture device")
         }
         guard captureSession.canAddInput(videoInput) else {
@@ -187,22 +208,5 @@ extension ScanningViewController {
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8).isActive = true
-    }
-}
-
-extension ScanningViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
-    public func captureOutput(_ output: AVCaptureOutput,
-                              didOutput sampleBuffer: CMSampleBuffer,
-                              from connection: AVCaptureConnection) {
-        guard isScanning,
-              let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-        
-        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer,
-                                            options: [:])
-        do {
-            try handler.perform([barcodeRequest])
-        } catch {
-            preconditionFailure("Error with capturing output")
-        }
     }
 }

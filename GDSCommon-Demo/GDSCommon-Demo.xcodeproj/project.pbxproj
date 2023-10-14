@@ -33,6 +33,8 @@
 		7C5137752AD99EF700163E83 /* MockDetectBarcodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5137742AD99EF700163E83 /* MockDetectBarcodeRequest.swift */; };
 		7C5137772AD99F0B00163E83 /* MockBarcodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5137762AD99F0B00163E83 /* MockBarcodeRequest.swift */; };
 		7C5137792AD99F2300163E83 /* MockBarcodeObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5137782AD99F2300163E83 /* MockBarcodeObservation.swift */; };
+		7C51377B2AD9DA8A00163E83 /* MockCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C51377A2AD9DA8A00163E83 /* MockCaptureDevice.swift */; };
+		7CBC376B2ADB01C200572312 /* MockCaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC376A2ADB01C200572312 /* MockCaptureSession.swift */; };
 		9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4652ACDAAEF00A60CC8 /* MockListViewModel.swift */; };
 		9634B46A2ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */; };
 		96588BDC2AD02AB30035FF93 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BDB2AD02AB30035FF93 /* Date+Extensions.swift */; };
@@ -91,6 +93,8 @@
 		7C5137742AD99EF700163E83 /* MockDetectBarcodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDetectBarcodeRequest.swift; sourceTree = "<group>"; };
 		7C5137762AD99F0B00163E83 /* MockBarcodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBarcodeRequest.swift; sourceTree = "<group>"; };
 		7C5137782AD99F2300163E83 /* MockBarcodeObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBarcodeObservation.swift; sourceTree = "<group>"; };
+		7C51377A2AD9DA8A00163E83 /* MockCaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCaptureDevice.swift; sourceTree = "<group>"; };
+		7CBC376A2ADB01C200572312 /* MockCaptureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCaptureSession.swift; sourceTree = "<group>"; };
 		9634B4652ACDAAEF00A60CC8 /* MockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListViewModel.swift; sourceTree = "<group>"; };
 		9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOptionsViewControllerTests.swift; sourceTree = "<group>"; };
 		96588BDB2AD02AB30035FF93 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 				7C5137742AD99EF700163E83 /* MockDetectBarcodeRequest.swift */,
 				7C5137762AD99F0B00163E83 /* MockBarcodeRequest.swift */,
 				7C5137782AD99F2300163E83 /* MockBarcodeObservation.swift */,
+				7C51377A2AD9DA8A00163E83 /* MockCaptureDevice.swift */,
+				7CBC376A2ADB01C200572312 /* MockCaptureSession.swift */,
 			);
 			path = Scanning;
 			sourceTree = "<group>";
@@ -368,10 +374,12 @@
 				2B78F2FA2AD598FC003C3445 /* MockDialogPresenter.swift in Sources */,
 				3B61C6E12ACDC580001359F1 /* IntroViewControllerTests.swift in Sources */,
 				2B08440B2ABC79C300188BA0 /* MockGDSInstructionsViewModel.swift in Sources */,
+				7CBC376B2ADB01C200572312 /* MockCaptureSession.swift in Sources */,
 				2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */,
 				96588BE02AD046420035FF93 /* DatePickerScreenViewControllerTests.swift in Sources */,
 				2B08440C2ABC79C300188BA0 /* InstructionsWithImageViewControllerTests.swift in Sources */,
 				2BB5C7892AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift in Sources */,
+				7C51377B2AD9DA8A00163E83 /* MockCaptureDevice.swift in Sources */,
 				7C5137752AD99EF700163E83 /* MockDetectBarcodeRequest.swift in Sources */,
 				2B08440F2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift in Sources */,
 				2B0844032ABC79BB00188BA0 /* GDSCommon_DemoTests.swift in Sources */,
