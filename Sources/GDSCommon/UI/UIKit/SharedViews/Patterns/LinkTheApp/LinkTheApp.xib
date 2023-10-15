@@ -11,9 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LinkTheAppViewController" customModule="GDSCommon">
             <connections>
+                <outlet property="contentView" destination="ja5-PX-D17" id="qez-bY-jlk"/>
                 <outlet property="firstSectionButton" destination="5eE-zw-cxv" id="wYq-bt-Dfb"/>
+                <outlet property="firstSectionSubtitleLabel" destination="0tU-u6-faS" id="vPi-ow-hOU"/>
+                <outlet property="firstSectionTitleLabel" destination="rYa-6N-pGl" id="3o9-a2-dHL"/>
                 <outlet property="imageView" destination="JEv-PL-uNu" id="bQ2-Wc-oCR"/>
                 <outlet property="secondSectionButton" destination="96X-lT-Dwj" id="KTs-jJ-88e"/>
+                <outlet property="secondSectionSubtitleLabel" destination="MJ7-SW-trK" id="Ftz-cC-0Qy"/>
+                <outlet property="secondSectionTitleLabel" destination="acD-Le-7rw" id="ESX-NX-VBS"/>
                 <outlet property="subtitleLabel" destination="urP-GV-7kQ" id="eJb-Jm-SPg"/>
                 <outlet property="titleLabel" destination="FdJ-8g-DNa" id="Bfb-My-cne"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wo3-gP-a0g"/>
@@ -28,7 +33,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ja5-PX-D17" userLabel="Content View">
-                            <rect key="frame" x="0.0" y="49.999999999999972" width="393" height="477.33333333333326"/>
+                            <rect key="frame" x="0.0" y="24.999999999999972" width="393" height="477.33333333333326"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dp2-Mq-JlH">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="216"/>
@@ -79,7 +84,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="ebh-0J-3bO"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-zw-cxv">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="5eE-zw-cxv">
                                             <rect key="frame" x="16" y="73.666666666666686" width="361" height="33"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="TMq-i1-OsZ"/>
@@ -108,14 +113,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WbC-8e-nbv">
-                                            <rect key="frame" x="16" y="64.666666666666686" width="361" height="1"/>
+                                            <rect key="frame" x="16" y="64.666666666666629" width="361" height="1"/>
                                             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="tfx-pb-BYN"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="96X-lT-Dwj">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="96X-lT-Dwj">
                                             <rect key="frame" x="16" y="73.666666666666686" width="361" height="33"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="44" id="1uL-4L-IAs"/>
@@ -134,7 +139,7 @@
                     <constraints>
                         <constraint firstItem="ja5-PX-D17" firstAttribute="width" secondItem="UJI-7H-4c0" secondAttribute="width" id="9yi-6O-Ogr"/>
                         <constraint firstItem="ja5-PX-D17" firstAttribute="leading" secondItem="XBc-Ea-6e7" secondAttribute="leading" id="ZW4-6c-4VB"/>
-                        <constraint firstItem="ja5-PX-D17" firstAttribute="top" secondItem="XBc-Ea-6e7" secondAttribute="top" constant="50" id="dZa-8j-4go"/>
+                        <constraint firstItem="ja5-PX-D17" firstAttribute="top" secondItem="XBc-Ea-6e7" secondAttribute="top" constant="25" id="dZa-8j-4go"/>
                         <constraint firstItem="ja5-PX-D17" firstAttribute="trailing" secondItem="XBc-Ea-6e7" secondAttribute="trailing" id="sy0-ds-qlm"/>
                         <constraint firstItem="ja5-PX-D17" firstAttribute="bottom" secondItem="XBc-Ea-6e7" secondAttribute="bottom" id="uzI-ng-a40"/>
                     </constraints>
