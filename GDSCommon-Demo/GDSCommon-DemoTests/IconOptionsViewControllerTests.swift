@@ -1,15 +1,17 @@
 import GDSCommon
-import GDSCommon_Demo
 import XCTest
 
 final class IconOptionsViewControllerTests: XCTestCase {
     var viewModel: IconOptionsViewModel!
     var sut: IconOptionsViewController!
+    var didCallButtonAction = false
     
     override func setUp() {
         super.setUp()
         
-        viewModel = MockIconOptionsViewModel()
+        viewModel = TestIconOptionsViewModel() {
+            self.didCallButtonAction = true
+        }
         sut = IconOptionsViewController(viewModel: viewModel)
     }
     
@@ -19,6 +21,38 @@ final class IconOptionsViewControllerTests: XCTestCase {
         
         super.tearDown()
     }
+}
+
+private struct TestIconOptionsViewModel: IconOptionsViewModel {
+    let imageName: String = "exclamationmark.circle"
+    let title: GDSLocalisedString = "Example title text"
+    let body: GDSLocalisedString = "Example subtitle text string for testing purposes"
+    let contentViews: [UIView]
+    
+    init(buttonAction: @escaping () -> Void) {
+        let optionViewModel = TestOptionViewModel1(buttonAction: buttonAction)
+        let optionView = OptionView(viewModel: optionViewModel)
+        contentViews = [optionView]
+    }
+}
+
+private struct TestOptionViewModel1: OptionViewModel {
+    let title: GDSLocalisedString = "Example title text 1"
+    let subtitle: GDSLocalisedString = "Example subtitle text 1"
+    let buttonViewModel: ButtonViewModel
+    
+    init(buttonAction: @escaping () -> Void) {
+        buttonViewModel = TestOptionButtonViewModel() {
+            buttonAction()
+        }
+    }
+}
+
+private struct TestOptionButtonViewModel: ButtonViewModel {
+    let title: GDSLocalisedString = "Example button text"
+    let icon: String? = nil
+    let shouldLoadOnTap: Bool = true
+    let action: () -> Void
 }
 
 extension IconOptionsViewControllerTests {
@@ -39,6 +73,8 @@ extension IconOptionsViewControllerTests {
         XCTAssertEqual(try sut.optionSubtitleLabel.textColor, .gdsGrey)
         XCTAssertEqual(try sut.optionButton.title(for: .normal), "Example button text")
         XCTAssertTrue(try sut.optionButton is SecondaryButton)
+        try sut.optionButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didCallButtonAction)
     }
 }
 
