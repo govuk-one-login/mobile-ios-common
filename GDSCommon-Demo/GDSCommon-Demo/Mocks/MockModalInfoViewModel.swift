@@ -1,5 +1,6 @@
 import Foundation
 import GDSCommon
+import UIKit
 
 class MockModalInfoViewModel: ModalInfoViewModel {
     var title: GDSLocalisedString = "This is the modal view"
