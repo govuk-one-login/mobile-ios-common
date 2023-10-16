@@ -40,7 +40,7 @@ final public class OptionView: NibView {
     
     @IBOutlet private var buttonOutlet: SecondaryButton! {
         didSet {
-            buttonOutlet.setTitle(viewModel.buttonViewModel.title, for: .normal)
+            buttonOutlet.setTitle(viewModel.buttonViewModel.title.value, for: .normal)
             buttonOutlet.accessibilityIdentifier = "option-button"
         }
     }

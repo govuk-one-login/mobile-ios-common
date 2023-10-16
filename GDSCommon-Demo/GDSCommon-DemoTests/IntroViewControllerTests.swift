@@ -48,13 +48,13 @@ private struct TestViewModel: IntroViewModel {
 
 extension IntroViewControllerTests {
     func test_labelContents() throws {
-        try XCTAssertNotNil(sut.introImage)
-        try XCTAssertEqual(sut.titleLabel.text, "Intro screen title")
+        XCTAssertNotNil(try sut.introImage)
+        XCTAssertEqual(try sut.titleLabel.text, "Intro screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
-        try XCTAssertEqual(sut.bodyLabel.text, "Intro screen body")
+        XCTAssertEqual(try sut.bodyLabel.text, "Intro screen body")
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
-        try XCTAssertEqual(sut.introButton.title(for: .normal), "Intro screen button title")
+        XCTAssertEqual(try sut.introButton.title(for: .normal), "Intro screen button title")
     }
     
     func test_buttonAction() throws {

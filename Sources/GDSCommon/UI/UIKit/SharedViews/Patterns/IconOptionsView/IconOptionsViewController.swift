@@ -20,7 +20,7 @@ public final class IconOptionsViewController: UIViewController {
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
             let image = UIImage(systemName: viewModel.imageName, withConfiguration: configuration)
             imageView.image = image
-            imageView.accessibilityIdentifier = "error-image"
+            imageView.accessibilityIdentifier = "options-image"
         }
     }
 
@@ -28,14 +28,15 @@ public final class IconOptionsViewController: UIViewController {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold)
             titleLabel.text = viewModel.title.value
-            titleLabel.accessibilityIdentifier = "error-title"
+            titleLabel.accessibilityTraits = .header
+            titleLabel.accessibilityIdentifier = "options-title"
         }
     }
 
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
             bodyLabel.text = viewModel.body.value
-            bodyLabel.accessibilityIdentifier = "error-subtitle"
+            bodyLabel.accessibilityIdentifier = "options-body"
         }
     }
     
