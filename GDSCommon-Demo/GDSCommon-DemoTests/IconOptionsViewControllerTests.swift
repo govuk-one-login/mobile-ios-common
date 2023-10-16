@@ -37,6 +37,8 @@ extension IconOptionsViewControllerTests {
         XCTAssertEqual(try sut.optionSubtitleLabel.text, "Example subtitle text 1")
         XCTAssertFalse(try sut.optionSubtitleLabel.accessibilityTraits.contains(.header))
         XCTAssertEqual(try sut.optionSubtitleLabel.textColor, .gdsGrey)
+        XCTAssertEqual(try sut.optionButton.title(for: .normal), "Example button text")
+        XCTAssertTrue(try sut.optionButton is SecondaryButton)
     }
 }
 
