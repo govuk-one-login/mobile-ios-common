@@ -4,10 +4,12 @@ import UIKit
 class MockGDSInstructionsViewModel: GDSInstructionsViewModel {
     var title: GDSLocalisedString
     var body: String
+    var rightBarButtonTitle: GDSLocalisedString? = "right bar button"
     var childView: UIView
     var buttonViewModel: ButtonViewModel
     var secondaryButtonViewModel: ButtonViewModel?
     func didAppear() {}
+    func didDismiss() {}
     
     init(title: GDSLocalisedString = "This is the Instructions View",
          body: String = "We can add a subtitle here to give some extra context",
