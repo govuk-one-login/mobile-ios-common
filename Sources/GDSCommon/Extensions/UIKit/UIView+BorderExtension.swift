@@ -8,15 +8,15 @@ public enum BorderEdge: CaseIterable {
 }
 
 extension Collection where Element == BorderEdge {
-    static var all: [BorderEdge] {
-        BorderEdge.allCases
+    static var all: Set<BorderEdge> {
+        Set(BorderEdge.allCases)
     }
     
-    static var vertical: [BorderEdge] {
+    static var vertical: Set<BorderEdge> {
         [.right, .left]
     }
     
-    static var horizontal: [BorderEdge] {
+    static var horizontal: Set<BorderEdge> {
         [.top, .bottom]
     }
 }
@@ -28,7 +28,7 @@ extension UIView {
                        width: 0.5)
     }
     
-    public func bordersTo(_ edges: [BorderEdge],
+    public func bordersTo(_ edges: Set<BorderEdge>,
                           colour: UIColor = .label,
                           width: Double = 1) {
         

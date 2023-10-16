@@ -17,7 +17,7 @@ public protocol DatePickerViewModel {
 
 @available(iOS 13.4, *)
 extension DatePickerViewModel {
-    var pickerStyle: UIDatePickerStyle {
+    public var pickerStyle: UIDatePickerStyle {
         if #available(iOS 14, *) {
             return UIDatePickerStyle.inline
         } else {
@@ -25,7 +25,7 @@ extension DatePickerViewModel {
         }
     }
     
-    mutating func setSelectedDate(_ date: Date) {
+    public mutating func setSelectedDate(_ date: Date) {
         self.selectedDate = date
     }
 }
