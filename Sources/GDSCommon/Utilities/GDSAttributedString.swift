@@ -9,7 +9,7 @@ public struct GDSAttributedString {
         NSAttributedString(string: localisedString.value).addingAttributes(attributes, to: stringToAttribute.value)
     }
     
-    public init(localisedString: GDSLocalisedString, attributes: [NSAttributedString.Key : Any], stringToAttribute: GDSLocalisedString) {
+    public init(localisedString: GDSLocalisedString, attributes: [NSAttributedString.Key: Any], stringToAttribute: GDSLocalisedString) {
         self.localisedString = localisedString
         self.attributes = attributes
         self.stringToAttribute = stringToAttribute
