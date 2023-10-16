@@ -30,6 +30,13 @@ final public class OptionView: NibView {
         }
     }
     
+    
+    @IBOutlet private var dividerOutlet: UIView! {
+        didSet {
+            dividerOutlet.backgroundColor = .gdsGrey
+        }
+    }
+    
     @IBOutlet private var buttonOutlet: SecondaryButton! {
         didSet {
             buttonOutlet.setTitle(viewModel.buttonViewModel.title, for: .normal)

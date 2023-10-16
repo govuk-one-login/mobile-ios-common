@@ -41,6 +41,7 @@
 		96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */; };
 		C826449A2AD95DE100DF09B7 /* MockLinkTheAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82644992AD95DE100DF09B7 /* MockLinkTheAppViewModel.swift */; };
 		C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */; };
+		C8CFBFF92ADDA0C700BE35C5 /* MockOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		96FEBF912ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatePickerScreenViewModel.swift; sourceTree = "<group>"; };
 		C82644992AD95DE100DF09B7 /* MockLinkTheAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLinkTheAppViewModel.swift; sourceTree = "<group>"; };
 		C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIntroViewModel.swift; sourceTree = "<group>"; };
+		C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOptionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 				96588BE72AD06CD20035FF93 /* MockTextInputViewModel.swift */,
 				C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */,
 				C82644992AD95DE100DF09B7 /* MockLinkTheAppViewModel.swift */,
+				C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */,
 				2BF197272ABDA0A000AC9620 /* Screens.swift */,
 			);
 			path = Mocks;
@@ -354,6 +357,7 @@
 				2BF1972B2ABDA1B800AC9620 /* MockModalInfoViewModel.swift in Sources */,
 				9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */,
 				2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */,
+				C8CFBFF92ADDA0C700BE35C5 /* MockOptionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

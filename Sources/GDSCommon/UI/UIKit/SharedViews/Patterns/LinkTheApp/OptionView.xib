@@ -12,7 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OptionView" customModule="GDSCommon">
             <connections>
                 <outlet property="buttonOutlet" destination="vHY-T2-D0J" id="JMc-Kq-H2U"/>
-                <outlet property="subtitleLabel" destination="OY3-fy-fPu" id="pYw-qW-SFL"/>
+                <outlet property="dividerOutlet" destination="23b-bp-uUl" id="HWT-Tf-GGu"/>
+                <outlet property="subtitleLabel" destination="OY3-fy-fPu" id="SEM-Tk-XCR"/>
                 <outlet property="titleLabel" destination="gQQ-tT-ulO" id="Wci-2h-01d"/>
             </connections>
         </placeholder>
@@ -31,7 +32,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OY3-fy-fPu">
-                            <rect key="frame" x="16" y="95.333333333333371" width="361" height="664.66666666666663"/>
+                            <rect key="frame" x="16" y="95.333333333333314" width="361" height="664.66666666666674"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -39,7 +40,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23b-bp-uUl">
                             <rect key="frame" x="16" y="768" width="361" height="1"/>
                             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="cJl-E8-gbA"/>
                             </constraints>

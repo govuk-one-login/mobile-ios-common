@@ -32,48 +32,10 @@ public final class LinkTheAppViewController: UIViewController {
         }
     }
 
-    @IBOutlet private var subtitleLabel: UILabel! {
+    @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            subtitleLabel.text = viewModel.subtitle.value
-            subtitleLabel.accessibilityIdentifier = "error-subtitle"
-        }
-    }
-    
-    @IBOutlet var firstSectionTitleLabel: UILabel! {
-        didSet {
-            firstSectionTitleLabel.text = "Link the app manually"
-        }
-    }
-    
-    @IBOutlet var firstSectionSubtitleLabel: UILabel! {
-        didSet {
-            firstSectionSubtitleLabel.text = "Choose this option if you tried to link the app but it was unsuccessful."
-        }
-    }
-    
-    @IBOutlet var firstSectionButton: UIButton! {
-        didSet {
-            firstSectionButton.setTitle("Link GOV.UK ID Check", for: .normal)
-            firstSectionButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        }
-    }
-    
-    @IBOutlet var secondSectionTitleLabel: UILabel! {
-        didSet {
-            secondSectionTitleLabel.text = "Allow the app to link to GOV.UK"
-        }
-    }
-    
-    @IBOutlet var secondSectionSubtitleLabel: UILabel! {
-        didSet {
-            secondSectionSubtitleLabel.text = "Choose this option if you did not allow the app and website to share information."
-        }
-    }
-    
-    @IBOutlet var secondSectionButton: UIButton! {
-        didSet {
-            secondSectionButton.setTitle("Change your permissions", for: .normal)
-            secondSectionButton.titleLabel?.adjustsFontForContentSizeCategory = true
+            bodyLabel.text = viewModel.body.value
+            bodyLabel.accessibilityIdentifier = "error-subtitle"
         }
     }
     
