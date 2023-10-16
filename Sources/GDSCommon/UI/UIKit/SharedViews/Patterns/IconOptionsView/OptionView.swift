@@ -45,7 +45,7 @@ final public class OptionView: NibView {
         }
     }
     
-    @IBAction func buttonAction(_ sender: Any) {
+    @IBAction private func buttonAction(_ sender: Any) {
         viewModel.buttonViewModel.action()
     }
 }

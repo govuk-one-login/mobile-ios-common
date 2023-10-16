@@ -9,7 +9,7 @@ final class IconOptionsViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        viewModel = TestIconOptionsViewModel() {
+        viewModel = TestIconOptionsViewModel {
             self.didCallButtonAction = true
         }
         sut = IconOptionsViewController(viewModel: viewModel)
@@ -42,7 +42,7 @@ private struct TestOptionViewModel1: OptionViewModel {
     let buttonViewModel: ButtonViewModel
     
     init(buttonAction: @escaping () -> Void) {
-        buttonViewModel = TestOptionButtonViewModel() {
+        buttonViewModel = TestOptionButtonViewModel {
             buttonAction()
         }
     }
