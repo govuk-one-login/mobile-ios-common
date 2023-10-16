@@ -14,16 +14,19 @@ final class ModalInfoViewControllerTests: XCTestCase {
     override func tearDown() {
         viewModel = nil
         sut = nil
-    
+        
         super.tearDown()
     }
 }
 
 private struct TestViewModel: ModalInfoViewModel {
     var title: GDSLocalisedString = "permissions screen title"
-    var body: NSAttributedString = NSAttributedString(string: "permissions screen body")
+    var body: GDSLocalisedString? = "permissions screen body"
+    var attributedBody: GDSAttributedString? = GDSAttributedString(localisedString: "permissions screen body",
+                                                                   attributes: [.font: UIFont.bodyBold],
+                                                                   stringToAttribute: "permissions")
     var rightBarButtonTitle: GDSLocalisedString = "Done"
-        
+    
     func didAppear() { }
     
     func didDismiss() { }
