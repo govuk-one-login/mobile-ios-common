@@ -1,17 +1,17 @@
 import UIKit
 
-public final class LinkTheAppViewController: UIViewController {
-    public override var nibName: String? { "LinkTheApp" }
+public final class IconOptionsViewController: UIViewController {
+    public override var nibName: String? { "IconOptionsView" }
     
-    let viewModel: LinkTheAppViewModel
+    let viewModel: IconOptionsViewModel
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(viewModel: LinkTheAppViewModel) {
+    public init(viewModel: IconOptionsViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "LinkTheApp", bundle: .module)
+        super.init(nibName: "IconOptionsView", bundle: .module)
     }
     
     @IBOutlet private var imageView: UIImageView! {
