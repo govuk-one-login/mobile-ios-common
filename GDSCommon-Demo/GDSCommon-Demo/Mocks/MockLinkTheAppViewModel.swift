@@ -22,6 +22,8 @@ struct MockLinkTheAppViewModel: LinkTheAppViewModel {
         let button = UIButton(type: .system)
         button.setTitle("Example Button Text", for: .normal)
         button.titleLabel?.font = UIFont(style: .body)
+        button.titleLabel?.adjustsFontForContentSizeCategory = true
+        button.titleLabel?.lineBreakMode = .byWordWrapping
         button.contentHorizontalAlignment = .leading
         let labels = [firstLabel, secondLabel, divider, button]
         // MARK: Label Operations
