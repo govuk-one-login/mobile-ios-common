@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-struct MockLinkTheAppViewModel: IconOptionsViewModel {
+struct MockIconOptionsViewModel: IconOptionsViewModel {
     let imageName: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "Example title text"
     let body: GDSLocalisedString = "Example subtitle text string for testing purposes"

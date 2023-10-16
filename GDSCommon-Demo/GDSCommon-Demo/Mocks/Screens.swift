@@ -66,7 +66,7 @@ enum Screens: String, CaseIterable {
         case .gdsTextInput:
             return TextInputViewController()
         case .gdsLinkTheApp:
-            let viewModel = MockLinkTheAppViewModel()
+            let viewModel = MockIconOptionsViewModel()
             return IconOptionsViewController(viewModel: viewModel)
         }
     }
