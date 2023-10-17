@@ -1,8 +1,8 @@
 import UIKit
 
-public protocol IconOptionsViewModel {
+public protocol IconScreenViewModel {
     var imageName: String { get }
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
-    var contentViews: [UIView] { get }
+    var childViews: [UIView] { get }
 }

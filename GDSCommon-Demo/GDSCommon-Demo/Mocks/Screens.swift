@@ -19,8 +19,8 @@ enum Screens: String, CaseIterable {
     case gdsListOptions = "List Options"
     case gdsIntroView = "Intro View"
     case gdsDatePicker = "Date Picker"
-    case gdsTextInput = "Text input"
-    case gdsLinkTheApp = "Link the App"
+    case gdsTextInput = "Text Input"
+    case gdsIconScreen = "Icon Screen"
     
     var isModal: Bool {
         switch self {
@@ -65,9 +65,8 @@ enum Screens: String, CaseIterable {
             return DatePickerScreenViewController()
         case .gdsTextInput:
             return TextInputViewController()
-        case .gdsLinkTheApp:
-            let viewModel = MockIconOptionsViewModel()
-            return IconOptionsViewController(viewModel: viewModel)
+        case .gdsIconScreen:
+            return IconScreenViewController()
         }
     }
 }

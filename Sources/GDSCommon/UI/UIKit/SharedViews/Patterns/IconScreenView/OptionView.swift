@@ -13,7 +13,6 @@ final public class OptionView: NibView {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
@@ -30,7 +29,6 @@ final public class OptionView: NibView {
             subtitleLabel.accessibilityIdentifier = "option-subtitle"
         }
     }
-    
     
     @IBOutlet private var dividerOutlet: UIView! {
         didSet {

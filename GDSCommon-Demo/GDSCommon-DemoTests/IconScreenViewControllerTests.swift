@@ -1,18 +1,18 @@
 import GDSCommon
 import XCTest
 
-final class IconOptionsViewControllerTests: XCTestCase {
-    var viewModel: IconOptionsViewModel!
-    var sut: IconOptionsViewController!
+final class IconScreenViewControllerTests: XCTestCase {
+    var viewModel: IconScreenViewModel!
+    var sut: IconScreenViewController!
     var didCallButtonAction = false
     
     override func setUp() {
         super.setUp()
         
-        viewModel = TestIconOptionsViewModel {
+        viewModel = TestIconScreenViewModel {
             self.didCallButtonAction = true
         }
-        sut = IconOptionsViewController(viewModel: viewModel)
+        sut = IconScreenViewController(viewModel: viewModel)
     }
     
     override func tearDown() {
@@ -23,16 +23,16 @@ final class IconOptionsViewControllerTests: XCTestCase {
     }
 }
 
-private struct TestIconOptionsViewModel: IconOptionsViewModel {
+private struct TestIconScreenViewModel: IconScreenViewModel {
     let imageName: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "Example title text"
     let body: GDSLocalisedString = "Example subtitle text string for testing purposes"
-    let contentViews: [UIView]
+    let childViews: [UIView]
     
     init(buttonAction: @escaping () -> Void) {
         let optionViewModel = TestOptionViewModel1(buttonAction: buttonAction)
         let optionView = OptionView(viewModel: optionViewModel)
-        contentViews = [optionView]
+        childViews = [optionView]
     }
 }
 
@@ -55,7 +55,7 @@ private struct TestOptionButtonViewModel: ButtonViewModel {
     let action: () -> Void
 }
 
-extension IconOptionsViewControllerTests {
+extension IconScreenViewControllerTests {
     func test_optionsLableContents() throws {
         XCTAssertNotNil(try sut.iconImage)
         XCTAssertEqual(try sut.titleLabel.text, "Example title text")
@@ -78,22 +78,22 @@ extension IconOptionsViewControllerTests {
     }
 }
 
-extension IconOptionsViewController {
+extension IconScreenViewController {
     var iconImage: UIImageView {
         get throws {
-            try XCTUnwrap(view[child: "options-image"])
+            try XCTUnwrap(view[child: "icon-screen-image"])
         }
     }
     
     var titleLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "options-title"])
+            try XCTUnwrap(view[child: "icon-screen-title"])
         }
     }
     
     var bodyLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "options-body"])
+            try XCTUnwrap(view[child: "icon-screen-body"])
         }
     }
     

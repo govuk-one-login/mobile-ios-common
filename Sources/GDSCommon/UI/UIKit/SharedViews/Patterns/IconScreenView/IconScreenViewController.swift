@@ -1,17 +1,17 @@
 import UIKit
 
-public final class IconOptionsViewController: UIViewController {
-    public override var nibName: String? { "IconOptionsView" }
+public final class IconScreenViewController: UIViewController {
+    public override var nibName: String? { "IconScreenView" }
     
-    let viewModel: IconOptionsViewModel
+    let viewModel: IconScreenViewModel
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(viewModel: IconOptionsViewModel) {
+    public init(viewModel: IconScreenViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "IconOptionsView", bundle: .module)
+        super.init(nibName: "IconScreenView", bundle: .module)
     }
     
     @IBOutlet private var imageView: UIImageView! {
@@ -20,7 +20,7 @@ public final class IconOptionsViewController: UIViewController {
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
             let image = UIImage(systemName: viewModel.imageName, withConfiguration: configuration)
             imageView.image = image
-            imageView.accessibilityIdentifier = "options-image"
+            imageView.accessibilityIdentifier = "icon-screen-image"
         }
     }
 
@@ -29,20 +29,20 @@ public final class IconOptionsViewController: UIViewController {
             titleLabel.font = .init(style: .largeTitle, weight: .bold)
             titleLabel.text = viewModel.title.value
             titleLabel.accessibilityTraits = .header
-            titleLabel.accessibilityIdentifier = "options-title"
+            titleLabel.accessibilityIdentifier = "icon-screen-title"
         }
     }
 
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
             bodyLabel.text = viewModel.body.value
-            bodyLabel.accessibilityIdentifier = "options-body"
+            bodyLabel.accessibilityIdentifier = "icon-screen-body"
         }
     }
     
     @IBOutlet private var contentView: UIStackView! {
         didSet {
-            viewModel.contentViews.forEach { contentView.addArrangedSubview($0) }
+            viewModel.childViews.forEach { contentView.addArrangedSubview($0) }
         }
     }
 }
