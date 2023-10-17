@@ -30,7 +30,6 @@
 		9634B46A2ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */; };
 		96588BDC2AD02AB30035FF93 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BDB2AD02AB30035FF93 /* Date+Extensions.swift */; };
 		96588BE02AD046420035FF93 /* DatePickerScreenViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BDF2AD046420035FF93 /* DatePickerScreenViewControllerTests.swift */; };
-		96588BE22AD057EE0035FF93 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		96588BE62AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BE52AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift */; };
 		96588BE82AD06CD20035FF93 /* MockTextInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BE72AD06CD20035FF93 /* MockTextInputViewModel.swift */; };
 		96588BEA2AD06CE30035FF93 /* MockTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BE92AD06CE30035FF93 /* MockTextFieldViewModel.swift */; };
@@ -350,7 +349,6 @@
 				96588BEA2AD06CE30035FF93 /* MockTextFieldViewModel.swift in Sources */,
 				96588BE62AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift in Sources */,
 				C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */,
-				96588BE22AD057EE0035FF93 /* (null) in Sources */,
 				96FEBF932ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift in Sources */,
 				96FEBF922ACEC0F30067CC10 /* MockDatePickerViewModel.swift in Sources */,
 				2BF197262ABDA08700AC9620 /* MockGDSInstructionsViewModel.swift in Sources */,
