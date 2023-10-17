@@ -21,10 +21,7 @@ final class ModalInfoViewControllerTests: XCTestCase {
 
 private struct TestViewModel: ModalInfoViewModel {
     var title: GDSLocalisedString = "permissions screen title"
-    var body: GDSLocalisedString? = "permissions screen body"
-    var attributedBody: GDSAttributedString? = GDSAttributedString(localisedString: "permissions screen body",
-                                                                   attributes: [.font: UIFont.bodyBold],
-                                                                   stringToAttribute: "permissions")
+    var body: GDSLocalisedString = "permissions screen body"
     var rightBarButtonTitle: GDSLocalisedString = "Done"
     
     func didAppear() { }
