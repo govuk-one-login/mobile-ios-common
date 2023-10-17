@@ -259,20 +259,7 @@ This function is used in both `ButtonViewModel` and `UIViewModel` to retrieve th
 struct AppUnavailableErrorViewModel: ErrorViewModel {
     let title = GDSLocalisedString(stringKey: "appUnavailableTitle", "appName")
 ```
-### GDSAttributedString
-`GDSAttributedString` is a custom type to help styling `GDSLocalisedString`. It is an internal type and is not used directly but rather it is used through a `GDSLocalisedString`. It has two stored properties and one computed property:
-- let localisedString: `String`
-- let attributes: `Attributes` (type alias for `[(String, [NSAttributedString.Key: Any])]`)
-- computed property: var attributedString: `NSAttributedString`
 
-The computed property `attributedString` uses both stored properties `localisedString` and `attributes` to return an `NSAttributedString`.
-
-Thanks to the initialisers available in `GDSLocalisedString` you can set attributes along with the strings you wish to apply these attributes to like in this example below.
-```swift
-var body: GDSLocalisedString = .init(
-  stringLiteral: "This text is bold. This text is not.",
-  attributes: [("This text is bold", [.font: UIFont.bodyBold])])
-```
 ### URLOpener
 A protocol with an `open` method to perform the action of opening a URL. This is used on buttons that has an external link outside the application. 
 We extend `UIApplication` and conform it to `URLOpener` protocol and implement the `open` method, doing this allows the mocking of URLOpener for testing purposes.
