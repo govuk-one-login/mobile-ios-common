@@ -36,8 +36,7 @@ enum Screens: String, CaseIterable {
     var view: UIViewController {
         switch self {
         case .gdsInstructions:
-            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel)
-            return GDSInstructionsViewController(viewModel: viewModel)
+            return GDSInstructionsViewController()
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
                                                                primaryButtonViewModel: mockButtonViewModel,

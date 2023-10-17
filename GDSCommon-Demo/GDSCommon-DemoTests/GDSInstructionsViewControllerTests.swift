@@ -10,6 +10,7 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
     
     var screenDidAppear = false
     var didTapButton = false
+    var didDismiss = false
     
     override func setUp() {
         super.setUp()
@@ -26,6 +27,8 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
         viewModel = MockGDSInstructionsViewModel(childView: bulletView,
                                                  buttonViewModel: buttonViewModel, secondaryButtonViewModel: buttonViewModel) {
             self.screenDidAppear = true
+        } dismissAction: {
+            self.didDismiss = true
         }
         
         sut = GDSInstructionsViewController(viewModel: viewModel)
@@ -60,6 +63,21 @@ extension GDSInstructionsViewControllerTests {
         
         XCTAssertEqual(try sut.bodyLabel.text, "test body"
         )
+    }
+    
+    func testTitleBar() {
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
+        sut.navigationItem.hidesBackButton = true
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, true)
+        
+        sut.beginAppearanceTransition(true, animated: false)
+        XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "right bar button")
+
+        XCTAssertFalse(didDismiss)
+
+        _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
+        XCTAssertTrue(didDismiss)
     }
     
     func test_bullets() throws {
