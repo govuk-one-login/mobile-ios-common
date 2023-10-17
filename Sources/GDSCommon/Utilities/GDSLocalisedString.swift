@@ -34,6 +34,16 @@ public struct GDSLocalisedString {
     }
     
     public init(stringKey: String,
+                variableKeys: [String],
+                bundle: Bundle = .main,
+                attributes: Attributes) {
+        self.stringKey = stringKey
+        self.variableKeys = variableKeys
+        self.bundle = bundle
+        self.attributes = attributes
+    }
+    
+    public init(stringKey: String,
                 _ variableKeys: String...,
                 bundle: Bundle = .main) {
         self.stringKey = stringKey
