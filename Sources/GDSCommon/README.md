@@ -232,17 +232,23 @@ The content on the screen is set from the `viewModel`, which must conform to the
 Contains utility classes and functions that includes helper functions for date formatting, string manipulation, network requests etc. 
 
 ### GDSLocalisedString
-`GDSLocalisedString` is a custom type to help managing localisation. It has three stored properties and two computed properties:
+`GDSLocalisedString` is a custom type to help managing localisation. It has four stored properties and three computed properties:
 - public let stringKey: `String`
 - public let variableKeys: `[String]`
 - let bundle: Bundle
 - computed property: public var value: `String`
 - computed property: public var description: `String` (equal to value)
+- computed property: public var attributedValue: `NSAttributedString`
+- private let attributes: `Attributes` (type alias)
 
 Conforms to:
 
 - `ExpressibleByStringLiteral`
 - `CustomStringConvertible`
+
+The stored property `attributes` is of type `Attributes` which is a `typealias` defined as `[(String, [NSAttributedString.Key: Any])]`.
+  
+The computed property `attributedValue` returns nil if the `GDSLocalisedString` has not been initialised with attributes. Otherwise, if attributes have been defined in the initialiser it will return an `NSAttributedString`.
 
 The computed property `value` takes the `stringKey`, `variableKeys`, `bundle` and then uses `NSLocalizedString` to fetch the correct String for the language currently set in the app.
 
@@ -253,7 +259,20 @@ This function is used in both `ButtonViewModel` and `UIViewModel` to retrieve th
 struct AppUnavailableErrorViewModel: ErrorViewModel {
     let title = GDSLocalisedString(stringKey: "appUnavailableTitle", "appName")
 ```
+### GDSAttributedString
+`GDSAttributedString` is a custom type to help styling `GDSLocalisedString`. It is an internal type and is not used directly but rather it is used through a `GDSLocalisedString`. It has two stored properties and one computed property:
+- let localisedString: `String`
+- let attributes: `Attributes` (type alias for `[(String, [NSAttributedString.Key: Any])]`)
+- computed property: var attributedString: `NSAttributedString`
 
+The computed property `attributedString` uses both stored properties `localisedString` and `attributes` to return an `NSAttributedString`.
+
+Thanks to the initialisers available in `GDSLocalisedString` you can set attributes along with the strings you wish to apply these attributes to like in this example below.
+```swift
+var body: GDSLocalisedString = .init(
+  stringLiteral: "This text is bold. This text is not.",
+  attributes: [("This text is bold", [.font: UIFont.bodyBold])])
+```
 ### URLOpener
 A protocol with an `open` method to perform the action of opening a URL. This is used on buttons that has an external link outside the application. 
 We extend `UIApplication` and conform it to `URLOpener` protocol and implement the `open` method, doing this allows the mocking of URLOpener for testing purposes.
@@ -421,3 +440,4 @@ The `twoSeconds` method used as a wait.
 ```swift
 try await Task.sleep(nanoseconds: .twoSeconds)
 ```
+
