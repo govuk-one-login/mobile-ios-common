@@ -50,10 +50,10 @@ public final class ModalInfoViewController: UIViewController {
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            if let attributedString = viewModel.attributedBody?.attributedString {
+            if let attributedString = viewModel.body.attributedValue {
                 bodyLabel.attributedText = attributedString
             } else {
-                bodyLabel.text = viewModel.body?.value
+                bodyLabel.text = viewModel.body.value
             }
             bodyLabel.textColor = .gdsGrey
             bodyLabel.accessibilityIdentifier = "bodyLabel"

@@ -1,4 +1,4 @@
-import GDSCommon
+@testable import GDSCommon
 import XCTest
 
 final class GDSLocalisedStringTests: XCTestCase {
@@ -34,5 +34,22 @@ extension GDSLocalisedStringTests {
         sut = .init(stringLiteral: "stringLiteralInitialiser")
         
         XCTAssertEqual(sut.description, "stringLiteralInitialiser")
+    }
+    
+    func test_attributedString() {
+        sut = .init(stringLiteral:  "stringLiteralInitialiser",
+                    attributes: [("Literal",[.font: UIFont.bodyBold])])
+        XCTAssertNotNil(sut.attributedValue)
+    }
+    
+    func test_attributedStringIsNil() {
+        sut = .init(stringLiteral:  "stringLiteralInitialiser")
+        XCTAssertNil(sut.attributedValue)
+    }
+    
+    func test_attributedStringWithEmptyArray() {
+        sut = .init(stringLiteral:  "stringLiteralInitialiser",
+                    attributes: [])
+        XCTAssertNil(sut.attributedValue)
     }
 }

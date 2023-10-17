@@ -1,17 +1,17 @@
 import Foundation
 
-public struct GDSAttributedString {
-    public let localisedString: GDSLocalisedString
-    public let attributes: [NSAttributedString.Key: Any]
-    public let stringToAttribute: GDSLocalisedString
+struct GDSAttributedString {
+    let localisedString: String
+    let attributes: [(String, [NSAttributedString.Key: Any])]
     
-    public var attributedString: NSAttributedString {
-        NSAttributedString(string: localisedString.value).addingAttributes(attributes, to: stringToAttribute.value)
-    }
-    
-    public init(localisedString: GDSLocalisedString, attributes: [NSAttributedString.Key: Any], stringToAttribute: GDSLocalisedString) {
-        self.localisedString = localisedString
-        self.attributes = attributes
-        self.stringToAttribute = stringToAttribute
+    var attributedString: NSAttributedString {
+        let mutableAttributeString = NSMutableAttributedString (string: localisedString)
+        attributes.forEach {
+            let range = NSString(string: mutableAttributeString.string)
+                .range(of: $0, options: .caseInsensitive)
+            mutableAttributeString.addAttributes($1, range: range)
+        }
+        
+        return mutableAttributeString
     }
 }
