@@ -37,18 +37,18 @@ extension GDSLocalisedStringTests {
     }
     
     func test_attributedString() {
-        sut = .init(stringLiteral:  "stringLiteralInitialiser",
-                    attributes: [("Literal",[.font: UIFont.bodyBold])])
+        sut = .init(stringLiteral: "stringLiteralInitialiser",
+                    attributes: [("Literal", [.font: UIFont.bodyBold])])
         XCTAssertNotNil(sut.attributedValue)
     }
     
     func test_attributedStringIsNil() {
-        sut = .init(stringLiteral:  "stringLiteralInitialiser")
+        sut = .init(stringLiteral: "stringLiteralInitialiser")
         XCTAssertNil(sut.attributedValue)
     }
     
     func test_attributedStringWithEmptyArray() {
-        sut = .init(stringLiteral:  "stringLiteralInitialiser",
+        sut = .init(stringLiteral: "stringLiteralInitialiser",
                     attributes: [])
         XCTAssertNil(sut.attributedValue)
     }

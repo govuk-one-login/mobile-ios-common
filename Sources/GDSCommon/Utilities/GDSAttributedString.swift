@@ -5,7 +5,7 @@ struct GDSAttributedString {
     let attributes: [(String, [NSAttributedString.Key: Any])]
     
     var attributedString: NSAttributedString {
-        let mutableAttributeString = NSMutableAttributedString (string: localisedString)
+        let mutableAttributeString = NSMutableAttributedString(string: localisedString)
         attributes.forEach {
             let range = NSString(string: mutableAttributeString.string)
                 .range(of: $0, options: .caseInsensitive)
