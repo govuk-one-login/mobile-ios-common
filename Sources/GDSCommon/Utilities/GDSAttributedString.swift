@@ -2,7 +2,7 @@ import Foundation
 
 struct GDSAttributedString {
     let localisedString: String
-    let attributes: [(String, [NSAttributedString.Key: Any])]
+    let attributes: Attributes
     
     var attributedString: NSAttributedString {
         let mutableAttributeString = NSMutableAttributedString(string: localisedString)
