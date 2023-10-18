@@ -46,10 +46,6 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vHY-T2-D0J" customClass="SecondaryButton" customModule="GDSCommon">
                             <rect key="frame" x="16" y="777" width="361" height="33"/>
-                            <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="9Od-C5-fYH"/>
-                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="44" id="I4k-rm-Jkz"/>
-                            </constraints>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Button"/>
