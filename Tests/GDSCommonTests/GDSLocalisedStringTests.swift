@@ -1,4 +1,4 @@
-import GDSCommon
+@testable import GDSCommon
 import XCTest
 
 final class GDSLocalisedStringTests: XCTestCase {
@@ -34,5 +34,39 @@ extension GDSLocalisedStringTests {
         sut = .init(stringLiteral: "stringLiteralInitialiser")
         
         XCTAssertEqual(sut.description, "stringLiteralInitialiser")
+    }
+
+    func test_attributedString_stringLiteralInitialiser() {
+        sut = .init(stringLiteral: "stringLiteralInitialiser",
+                    attributes: [("Literal", [.font: UIFont.bodyBold])])
+        XCTAssertNotNil(sut.attributedValue)
+    }
+    
+    func test_attributedString_firstNonStringLiteralInitialiser() throws {
+        sut = .init(stringKey: "firstNonStringLiteral", "one", "two", "three",
+                    attributes: [("Literal", [.font: UIFont.bodyBold])])
+        
+        XCTAssertEqual(sut.value, "firstNonStringLiteral")
+        XCTAssertNotNil(sut.attributedValue)
+    }
+    
+    func test_attributedString_secondNonStringLiteralInitialiser() throws {
+        sut = .init(stringKey: "secondNonStringLiteral",
+                    variableKeys: ["one", "two", "three"],
+                    attributes: [("Literal", [.font: UIFont.bodyBold])])
+        
+        XCTAssertEqual(sut.value, "secondNonStringLiteral")
+        XCTAssertNotNil(sut.attributedValue)
+    }
+
+    func test_attributedString_isNil() {
+        sut = .init(stringLiteral: "stringLiteralInitialiser")
+        XCTAssertNil(sut.attributedValue)
+    }
+    
+    func test_attributedString_withEmptyArray() {
+        sut = .init(stringLiteral: "stringLiteralInitialiser",
+                    attributes: [])
+        XCTAssertNil(sut.attributedValue)
     }
 }

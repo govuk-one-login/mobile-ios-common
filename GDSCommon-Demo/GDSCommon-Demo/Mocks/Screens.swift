@@ -15,6 +15,7 @@ enum Screens: String, CaseIterable {
     case gdsInstructions = "GDS Instructions View"
     case gdsInstructionsWithImage = "GDS Instructions View (with image)"
     case gdsModalInfoView = "Modal Info View"
+    case gdsAttributedModalInfoView = "Attributed Modal Info View"
     case gdsListOptions = "List Options"
     case gdsIntroView = "Intro View"
     case gdsDatePicker = "Date Picker"
@@ -22,7 +23,8 @@ enum Screens: String, CaseIterable {
     
     var isModal: Bool {
         switch self {
-        case .gdsModalInfoView:
+        case .gdsModalInfoView,
+                .gdsAttributedModalInfoView:
             return true
         default:
             return false
@@ -44,6 +46,11 @@ enum Screens: String, CaseIterable {
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsModalInfoView:
             let viewModel = MockModalInfoViewModel()
+            let view = ModalInfoViewController(viewModel: viewModel)
+            view.isModalInPresentation = true
+            return view
+        case .gdsAttributedModalInfoView:
+            let viewModel = MockAttributedModalInfoViewModel()
             let view = ModalInfoViewController(viewModel: viewModel)
             view.isModalInPresentation = true
             return view

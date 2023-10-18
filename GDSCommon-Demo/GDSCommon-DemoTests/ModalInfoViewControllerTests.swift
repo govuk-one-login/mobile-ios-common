@@ -14,7 +14,7 @@ final class ModalInfoViewControllerTests: XCTestCase {
     override func tearDown() {
         viewModel = nil
         sut = nil
-    
+        
         super.tearDown()
     }
 }
@@ -23,7 +23,7 @@ private struct TestViewModel: ModalInfoViewModel {
     var title: GDSLocalisedString = "permissions screen title"
     var body: GDSLocalisedString = "permissions screen body"
     var rightBarButtonTitle: GDSLocalisedString = "Done"
-        
+    
     func didAppear() { }
     
     func didDismiss() { }
@@ -31,14 +31,15 @@ private struct TestViewModel: ModalInfoViewModel {
 
 extension ModalInfoViewControllerTests {
     func test_labelContents() throws {
-        try XCTAssertEqual(sut.titleLabel.text, "permissions screen title")
+        XCTAssertEqual(try sut.titleLabel.text, "permissions screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
-        try XCTAssertEqual(sut.bodyLabel.text, "permissions screen body")
+        XCTAssertEqual(try sut.bodyLabel.text, "permissions screen body")
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
+        XCTAssert(try sut.bodyLabel.textColor == .gdsGrey)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
-        try XCTAssertEqual(sut.rightBarButtonItem.title, "Done")
+        XCTAssertEqual(try sut.rightBarButtonItem.title, "Done")
     }
 }
 

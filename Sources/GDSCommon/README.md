@@ -232,17 +232,23 @@ The content on the screen is set from the `viewModel`, which must conform to the
 Contains utility classes and functions that includes helper functions for date formatting, string manipulation, network requests etc. 
 
 ### GDSLocalisedString
-`GDSLocalisedString` is a custom type to help managing localisation. It has three stored properties and two computed properties:
+`GDSLocalisedString` is a custom type to help managing localisation. It has four stored properties and three computed properties:
 - public let stringKey: `String`
 - public let variableKeys: `[String]`
 - let bundle: Bundle
 - computed property: public var value: `String`
 - computed property: public var description: `String` (equal to value)
+- computed property: public var attributedValue: `NSAttributedString`
+- private let attributes: `Attributes` (type alias)
 
 Conforms to:
 
 - `ExpressibleByStringLiteral`
 - `CustomStringConvertible`
+
+The stored property `attributes` is of type `Attributes` which is a `typealias` defined as `[(String, [NSAttributedString.Key: Any])]`.
+  
+The computed property `attributedValue` returns nil if the `GDSLocalisedString` has not been initialised with attributes. Otherwise, if attributes have been defined in the initialiser it will return an `NSAttributedString`.
 
 The computed property `value` takes the `stringKey`, `variableKeys`, `bundle` and then uses `NSLocalizedString` to fetch the correct String for the language currently set in the app.
 
@@ -421,3 +427,4 @@ The `twoSeconds` method used as a wait.
 ```swift
 try await Task.sleep(nanoseconds: .twoSeconds)
 ```
+
