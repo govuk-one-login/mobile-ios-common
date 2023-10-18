@@ -3,7 +3,7 @@ import UIKit
 public final class IconScreenViewController: UIViewController {
     public override var nibName: String? { "IconScreenView" }
     
-    let viewModel: IconScreenViewModel
+    public let viewModel: IconScreenViewModel
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
