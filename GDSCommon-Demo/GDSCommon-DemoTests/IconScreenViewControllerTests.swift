@@ -66,7 +66,8 @@ private struct TestOptionButtonViewModel: ButtonViewModel {
 }
 
 extension IconScreenViewControllerTests {
-    func test_optionsLableContents() throws {
+    func test_optionsDisplayContents() throws {
+        XCTAssertFalse(sut.navigationItem.hidesBackButton)
         XCTAssertNotNil(try sut.iconImage)
         XCTAssertEqual(try sut.titleLabel.text, "Example title text")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)

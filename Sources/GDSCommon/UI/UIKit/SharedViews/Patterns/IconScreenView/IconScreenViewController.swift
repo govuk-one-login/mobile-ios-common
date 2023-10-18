@@ -21,11 +21,13 @@ public final class IconScreenViewController: UIViewController {
     /// Initialiser for the `IconScreenView` view controller.
     /// Requires a single parameter.
     /// - Parameter viewModel: `IconScreenViewModel`
-    public init(viewModel: IconScreenViewModel) {
+    public init(viewModel: IconScreenViewModel,
+                hidesBackButton: Bool = false) {
         self.viewModel = viewModel
         super.init(nibName: "IconScreenView", bundle: .module)
+        self.navigationItem.hidesBackButton = hidesBackButton
     }
-    
+
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.didAppear()
