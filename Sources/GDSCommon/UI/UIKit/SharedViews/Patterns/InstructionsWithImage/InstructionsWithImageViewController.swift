@@ -7,11 +7,11 @@ import UIKit
 ///   - `imageView` (type: `UIImageView`)
 ///   - `warningButton`  (type: ``SecondaryButton`` inherits from UIButton)
 ///   - `primaryButton`  (type: ``RoundedButton`` inherits from SecondaryButton)
-///   This screen provides instructions below a heading and a full width image below the
-///  instructions. Within the storyboard, these are within two `UIStackView`s which is
-///  in turn within a `UIScrollView`. The `primaryButton` is within a
-///  `UIStackView` constrained to the bottom of the screen. This is the main
-///   Call To Action (CTA) on this screen.
+/// This screen provides instructions below a heading and a full width image below the
+/// instructions. Within the storyboard, these are within two `UIStackView`s which is
+/// in turn within a `UIScrollView`. The `primaryButton` is within a
+/// `UIStackView` constrained to the bottom of the screen. This is the main
+/// Call To Action (CTA) on this screen.
 public final class InstructionsWithImageViewController: UIViewController {
     public override var nibName: String? { "InstructionsWithImage" }
     

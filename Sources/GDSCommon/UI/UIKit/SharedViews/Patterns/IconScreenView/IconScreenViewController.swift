@@ -1,5 +1,14 @@
 import UIKit
 
+/// View Controller for the `IconScreenView` storyboard XIB
+/// This screen includes the following views:
+///   - `imageView` (type: `UIImageView`)
+///   - `titleLabel` (type: `UILabel`)
+///   - `bodyLabel` (type: `UILabel`)
+///   - `contentView` (type: `UIStackView`)
+/// This screen allows for additional subviews to be added below a top stack view
+/// containing an icon, title and subtitle.
+/// Typically the subviews would be further `UIStackView`s, a good implementation of which sits within this same directory, `OptionView`
 public final class IconScreenViewController: UIViewController {
     public override var nibName: String? { "IconScreenView" }
     
@@ -9,6 +18,9 @@ public final class IconScreenViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Initialiser for the `IconScreenView` view controller.
+    /// Requires a single parameter.
+    /// - Parameter viewModel: `IconScreenViewModel`
     public init(viewModel: IconScreenViewModel) {
         self.viewModel = viewModel
         super.init(nibName: "IconScreenView", bundle: .module)
@@ -19,6 +31,7 @@ public final class IconScreenViewController: UIViewController {
         viewModel.didAppear()
     }
     
+    /// Image view: ``UIImageView``
     @IBOutlet private var imageView: UIImageView! {
         didSet {
             let font = UIFont(style: .largeTitle, weight: .light)
@@ -29,6 +42,7 @@ public final class IconScreenViewController: UIViewController {
         }
     }
 
+    /// Title label: ``UILabel``
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold)
@@ -38,6 +52,7 @@ public final class IconScreenViewController: UIViewController {
         }
     }
 
+    /// Body label: ``UILabel``
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
             bodyLabel.text = viewModel.body.value
@@ -45,6 +60,7 @@ public final class IconScreenViewController: UIViewController {
         }
     }
     
+    /// Content view: ``UIStackView``
     @IBOutlet private var contentView: UIStackView! {
         didSet {
             viewModel.childViews.forEach { contentView.addArrangedSubview($0) }
