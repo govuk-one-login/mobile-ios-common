@@ -2,7 +2,7 @@ import UIKit
 
 final public class OptionView: NibView {
     
-    let viewModel: OptionViewModel
+    public let viewModel: OptionViewModel
     
     public init(viewModel: OptionViewModel) {
         self.viewModel = viewModel
