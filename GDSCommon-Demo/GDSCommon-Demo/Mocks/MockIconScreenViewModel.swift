@@ -7,6 +7,8 @@ public struct MockIconScreenViewModel: IconScreenViewModel {
     public let body: GDSLocalisedString = "Example subtitle text string for testing purposes"
     public let childViews: [UIView]
     
+    public func didAppear() { }
+    
     public init() {
         let optionViewModel1 = MockOptionViewModel1()
         let optionView1 = OptionView(viewModel: optionViewModel1)

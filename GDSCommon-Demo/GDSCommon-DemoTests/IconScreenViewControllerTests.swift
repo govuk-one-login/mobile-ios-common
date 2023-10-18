@@ -4,12 +4,15 @@ import XCTest
 final class IconScreenViewControllerTests: XCTestCase {
     var viewModel: IconScreenViewModel!
     var sut: IconScreenViewController!
+    var screenDidAppear = false
     var didCallButtonAction = false
     
     override func setUp() {
         super.setUp()
         
         viewModel = TestIconScreenViewModel {
+            self.didCallButtonAction = true
+        } appearAction: {
             self.didCallButtonAction = true
         }
         sut = IconScreenViewController(viewModel: viewModel)
@@ -28,11 +31,18 @@ private struct TestIconScreenViewModel: IconScreenViewModel {
     let title: GDSLocalisedString = "Example title text"
     let body: GDSLocalisedString = "Example subtitle text string for testing purposes"
     let childViews: [UIView]
+    let appearAction: () -> Void
     
-    init(buttonAction: @escaping () -> Void) {
+    init(buttonAction: @escaping () -> Void,
+         appearAction: @escaping () -> Void) {
         let optionViewModel = TestOptionViewModel1(buttonAction: buttonAction)
         let optionView = OptionView(viewModel: optionViewModel)
         childViews = [optionView]
+        self.appearAction = appearAction
+    }
+    
+    func didAppear() {
+        appearAction()
     }
 }
 
@@ -74,6 +84,12 @@ extension IconScreenViewControllerTests {
         XCTAssertEqual(try sut.optionButton.title(for: .normal), "Example button text")
         XCTAssertTrue(try sut.optionButton is SecondaryButton)
         try sut.optionButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didCallButtonAction)
+    }
+    
+    func test_appearanceAction() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
         XCTAssertTrue(didCallButtonAction)
     }
 }

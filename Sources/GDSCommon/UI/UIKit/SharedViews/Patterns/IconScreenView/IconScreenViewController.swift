@@ -14,6 +14,11 @@ public final class IconScreenViewController: UIViewController {
         super.init(nibName: "IconScreenView", bundle: .module)
     }
     
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.didAppear()
+    }
+    
     @IBOutlet private var imageView: UIImageView! {
         didSet {
             let font = UIFont(style: .largeTitle, weight: .light)
