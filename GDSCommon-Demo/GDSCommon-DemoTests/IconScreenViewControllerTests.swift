@@ -13,7 +13,7 @@ final class IconScreenViewControllerTests: XCTestCase {
         viewModel = TestIconScreenViewModel {
             self.didCallButtonAction = true
         } appearAction: {
-            self.didCallButtonAction = true
+            self.screenDidAppear = true
         }
         sut = IconScreenViewController(viewModel: viewModel)
     }
@@ -91,7 +91,7 @@ extension IconScreenViewControllerTests {
     func test_appearanceAction() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
-        XCTAssertTrue(didCallButtonAction)
+        XCTAssertTrue(screenDidAppear)
     }
 }
 
