@@ -189,8 +189,8 @@ The content on the screen is set from the `viewModel`, which must conform to the
 This screen includes the following views:
 - `introImage` (type: `UIImageView`)
 - `titleLabel` (type: `UILabel`)
-- `bodyLabel` (type: `UIImageView`)
-- `introButton`  (type: `RoundedButton` inherits from `SecondaryButton`)
+- `bodyLabel` (type: `UILabel`)
+- `introButton`  (type: ``RoundedButton`` inherits from `SecondaryButton`)
 
 This screen is typically used as a introduction screen when a user opens an app. Consisting of an app icon, a title, a body and a button to initiate the first action in the app.
 
@@ -206,7 +206,7 @@ This screen includes the following views:
 - `titleLabel` (type: `UILabel`)
 - `datePicker` (type: `UIDatePicker`)
 - `footerLabel` (type: `UILabel`)
-- `primaryButton` (type: ``RoundedButton``)
+- `primaryButton` (type: ``RoundedButton`` inherits from `SecondaryButton`)
 
 This screen provides an iOS `inline` Date Picker (for iOS 14 and later) below a 
 heading instructions. For devices between iOS 13.4 until 14, it uses `automatic` 
@@ -225,6 +225,26 @@ This screen includes the following views:
 This screen includes a title and a text field below with an optional footer below that. The data that is returned from the text field can be validated by the `validator` method on the `TextFieldViewModel` (a child property on the ViewModel) and the return type must conform to `LosslessStringConvertible`.
 
 The content on the screen is set from the `viewModel`, which must conform to the `TextInputViewModel` protocol.
+
+
+### IconScreen
+This screen includes the following views:
+- `imageView` (type: `UIImageView`)
+- `titleLabel` (type: `UILabel`)
+- `bodyLabel` (type: `UILabel`)
+
+This screen includes an icon, title and body. These views a situated within a `UIStackView` where other subviews can be added through the `childViews` property in the view model.
+The content on the screen is set from the `viewModel`, which must conform to the `IconScreenViewModel` protocol.
+
+
+### OptionView
+This screen includes the following views:
+- `titleLabel` (type: `UILabel`)
+- `subtitleLabel` (type: `UILabel`)
+- `button` (type: ``SecondaryButton`` inherits from `UIButton`)
+
+This screen includes an title, subtitle and button. These views a situated within a `UIStackView` which has margins set to align the subviews within it. This view is typically added as a subview to the `IconScreen` through the `IconScreen`s view model `childViews` property.
+The content on the screen is set from the `viewModel`, which must conform to the `OptionViewModel` protocol.
 
 
 ## Utilities
