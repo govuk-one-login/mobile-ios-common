@@ -88,7 +88,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     func startAnimation() {
         UIView.animate(withDuration: 1.0) {
             self.imageView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        } completion: {(_ finished: Bool) -> Void in
+        } completion: { _ in
             UIView.animate(withDuration: 1.0) {
                 self.imageView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
             } completion: { _ in
