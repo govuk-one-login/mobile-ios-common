@@ -15,16 +15,20 @@ enum Screens: String, CaseIterable {
     case gdsInstructions = "GDS Instructions View"
     case gdsInstructionsWithImage = "GDS Instructions View (with image)"
     case gdsModalInfoView = "Modal Info View"
+    case gdsAttributedModalInfoView = "Attributed Modal Info View"
     case gdsListOptions = "List Options"
     case gdsIntroView = "Intro View"
     case gdsDatePicker = "Date Picker"
-    case gdsTextInput = "Text input"
+    case gdsTextInput = "Text Input"
+    case gdsIconScreen = "Icon Screen"
     case gdsQRCodeScanner = "QR Scanner"
     case gdsQRCodeScannerModal = "QR Scanner (Modal)"
     
     var isModal: Bool {
         switch self {
-        case .gdsModalInfoView, .gdsQRCodeScannerModal:
+        case .gdsModalInfoView,
+                .gdsQRCodeScannerModal,
+                .gdsAttributedModalInfoView:
             return true
         default:
             return false
@@ -55,6 +59,11 @@ enum Screens: String, CaseIterable {
             let view = ModalInfoViewController(viewModel: viewModel)
             view.isModalInPresentation = true
             return view
+        case .gdsAttributedModalInfoView:
+            let viewModel = MockAttributedModalInfoViewModel()
+            let view = ModalInfoViewController(viewModel: viewModel)
+            view.isModalInPresentation = true
+            return view
         case .gdsListOptions:
             let viewModel = MockListViewModel()
             return ListOptionsViewController(viewModel: viewModel)
@@ -65,6 +74,8 @@ enum Screens: String, CaseIterable {
             return DatePickerScreenViewController()
         case .gdsTextInput:
             return TextInputViewController()
+        case .gdsIconScreen:
+            return IconScreenViewController()
         case .gdsQRCodeScanner:
             let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
                 navigationController.popViewController(animated: true)
