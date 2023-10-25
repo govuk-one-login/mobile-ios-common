@@ -21,10 +21,13 @@ enum Screens: String, CaseIterable {
     case gdsDatePicker = "Date Picker"
     case gdsTextInput = "Text Input"
     case gdsIconScreen = "Icon Screen"
+    case gdsQRCodeScanner = "QR Scanner"
+    case gdsQRCodeScannerModal = "QR Scanner (Modal)"
     
     var isModal: Bool {
         switch self {
         case .gdsModalInfoView,
+                .gdsQRCodeScannerModal,
                 .gdsAttributedModalInfoView:
             return true
         default:
@@ -36,10 +39,16 @@ enum Screens: String, CaseIterable {
         MockButtonViewModel(title: "Action Button", shouldLoadOnTap: false, action: {})
     }
     
-    var view: UIViewController {
+    private var dialogPresenter: DialogPresenter {
+        DialogView<CheckmarkDialogAccessoryView>(title: "QR Scan Success",
+                                                 isLoading: false)
+    }
+    
+    func create(in navigationController: UINavigationController) -> UIViewController {
         switch self {
         case .gdsInstructions:
-            return GDSInstructionsViewController()
+            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel)
+            return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
                                                                primaryButtonViewModel: mockButtonViewModel,
@@ -67,6 +76,18 @@ enum Screens: String, CaseIterable {
             return TextInputViewController()
         case .gdsIconScreen:
             return IconScreenViewController()
+        case .gdsQRCodeScanner:
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
+                navigationController.popViewController(animated: true)
+            }
+            let vc = ScanningViewController(viewModel: viewModel)
+            return vc
+        case .gdsQRCodeScannerModal:
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
+                navigationController.dismiss(animated: true)
+            }
+            let vc = ScanningViewController(viewModel: viewModel)
+            return vc
         }
     }
 }
