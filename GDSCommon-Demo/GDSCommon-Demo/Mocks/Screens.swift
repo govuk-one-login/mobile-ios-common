@@ -19,10 +19,12 @@ enum Screens: String, CaseIterable {
     case gdsIntroView = "Intro View"
     case gdsDatePicker = "Date Picker"
     case gdsTextInput = "Text input"
+    case gdsQRCodeScanner = "QR Scanner"
+    case gdsQRCodeScannerModal = "QR Scanner (Modal)"
     
     var isModal: Bool {
         switch self {
-        case .gdsModalInfoView:
+        case .gdsModalInfoView, .gdsQRCodeScannerModal:
             return true
         default:
             return false
@@ -31,6 +33,11 @@ enum Screens: String, CaseIterable {
     
     private var mockButtonViewModel: ButtonViewModel {
         MockButtonViewModel(title: "Action Button", shouldLoadOnTap: false, action: {})
+    }
+    
+    private var dialogPresenter: DialogPresenter {
+        DialogView<CheckmarkDialogAccessoryView>(title: "QR Scan Success",
+                                                 isLoading: false)
     }
     
     func create(in navigationController: UINavigationController) -> UIViewController {
@@ -58,6 +65,18 @@ enum Screens: String, CaseIterable {
             return DatePickerScreenViewController()
         case .gdsTextInput:
             return TextInputViewController()
+        case .gdsQRCodeScanner:
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
+                navigationController.popViewController(animated: true)
+            }
+            let vc = ScanningViewController(viewModel: viewModel)
+            return vc
+        case .gdsQRCodeScannerModal:
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
+                navigationController.dismiss(animated: true)
+            }
+            let vc = ScanningViewController(viewModel: viewModel)
+            return vc
         }
     }
 }

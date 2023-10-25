@@ -13,6 +13,7 @@
 		2B08440B2ABC79C300188BA0 /* MockGDSInstructionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */; };
 		2B08440F2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08440E2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift */; };
 		2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0844102ABC7A7700188BA0 /* XCTestCase.swift */; };
+		2B2F43FB2AE912BA00BDCC72 /* MockIconScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F43FA2AE912BA00BDCC72 /* MockIconScreenViewModel.swift */; };
 		2B74D6652AC317B2002D992C /* Demo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC122ABC5A5600452E23 /* Demo.storyboard */; };
 		2B78F2FA2AD598FC003C3445 /* MockDialogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78F2F92AD598FC003C3445 /* MockDialogPresenter.swift */; };
 		2B9BDC0D2ABC5A5600452E23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */; };
@@ -47,8 +48,8 @@
 		96FEBF922ACEC0F30067CC10 /* MockDatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FEBF902ACEC0F30067CC10 /* MockDatePickerViewModel.swift */; };
 		96FEBF932ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FEBF912ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift */; };
 		96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */; };
-		C8A0D1A82ADF08A6003013E4 /* MockIconScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0D1A72ADF08A6003013E4 /* MockIconScreenViewModel.swift */; };
-		C8C90DCF2ADDADFD00158516 /* IconScreenViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C90DCE2ADDADFD00158516 /* IconScreenViewControllerTests.swift */; };
+		C8A0D1A82ADF08A6003013E4 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		C8C90DCF2ADDADFD00158516 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */; };
 		C8CFBFF92ADDA0C700BE35C5 /* MockOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,7 @@
 		2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSCommon_DemoTests.swift; sourceTree = "<group>"; };
 		2B08440E2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Test_Extensions.swift"; sourceTree = "<group>"; };
 		2B0844102ABC7A7700188BA0 /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
+		2B2F43FA2AE912BA00BDCC72 /* MockIconScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIconScreenViewModel.swift; sourceTree = "<group>"; };
 		2B78F2F92AD598FC003C3445 /* MockDialogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDialogPresenter.swift; sourceTree = "<group>"; };
 		2B9BDC092ABC5A5600452E23 /* GDSCommon-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GDSCommon-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,7 +146,6 @@
 				2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */,
 				3B61C6E02ACDC580001359F1 /* IntroViewControllerTests.swift */,
 				96588BEB2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift */,
-				C8C90DCE2ADDADFD00158516 /* IconScreenViewControllerTests.swift */,
 			);
 			path = "GDSCommon-DemoTests";
 			sourceTree = "<group>";
@@ -209,7 +210,7 @@
 				9634B4652ACDAAEF00A60CC8 /* MockListViewModel.swift */,
 				96588BE72AD06CD20035FF93 /* MockTextInputViewModel.swift */,
 				C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */,
-				C8A0D1A72ADF08A6003013E4 /* MockIconScreenViewModel.swift */,
+				2B2F43FA2AE912BA00BDCC72 /* MockIconScreenViewModel.swift */,
 				C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */,
 				2BF197272ABDA0A000AC9620 /* Screens.swift */,
 				2BCBA1252ACDB408009ED436 /* MockQRScanningViewModel.swift */,
@@ -366,7 +367,7 @@
 				2B0844092ABC79C300188BA0 /* ModalInfoViewControllerTests.swift in Sources */,
 				9634B46A2ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift in Sources */,
 				96588BDC2AD02AB30035FF93 /* Date+Extensions.swift in Sources */,
-				C8C90DCF2ADDADFD00158516 /* IconScreenViewControllerTests.swift in Sources */,
+				C8C90DCF2ADDADFD00158516 /* (null) in Sources */,
 				96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */,
 				2B08440A2ABC79C300188BA0 /* GDSInstructionsViewControllerTests.swift in Sources */,
 				7C5137772AD99F0B00163E83 /* MockBarcodeRequest.swift in Sources */,
@@ -377,7 +378,6 @@
 				7CBC376B2ADB01C200572312 /* MockCaptureSession.swift in Sources */,
 				2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */,
 				96588BE02AD046420035FF93 /* DatePickerScreenViewControllerTests.swift in Sources */,
-				2B08440C2ABC79C300188BA0 /* InstructionsWithImageViewControllerTests.swift in Sources */,
 				2BB5C7892AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift in Sources */,
 				7C51377B2AD9DA8A00163E83 /* MockCaptureDevice.swift in Sources */,
 				7C5137752AD99EF700163E83 /* MockDetectBarcodeRequest.swift in Sources */,
@@ -391,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B9BDC112ABC5A5600452E23 /* DemoViewController.swift in Sources */,
+				2B2F43FB2AE912BA00BDCC72 /* MockIconScreenViewModel.swift in Sources */,
 				96588BE82AD06CD20035FF93 /* MockTextInputViewModel.swift in Sources */,
 				96588BEA2AD06CE30035FF93 /* MockTextFieldViewModel.swift in Sources */,
 				96588BE62AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift in Sources */,
@@ -406,7 +407,7 @@
 				2B9BDC0D2ABC5A5600452E23 /* AppDelegate.swift in Sources */,
 				2BF197282ABDA0A000AC9620 /* Screens.swift in Sources */,
 				2B9BDC0F2ABC5A5600452E23 /* SceneDelegate.swift in Sources */,
-				C8A0D1A82ADF08A6003013E4 /* MockIconScreenViewModel.swift in Sources */,
+				C8A0D1A82ADF08A6003013E4 /* (null) in Sources */,
 				2BF1972B2ABDA1B800AC9620 /* MockModalInfoViewModel.swift in Sources */,
 				9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */,
 				2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */,
