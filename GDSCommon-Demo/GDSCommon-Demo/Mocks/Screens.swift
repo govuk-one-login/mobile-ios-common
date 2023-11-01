@@ -39,6 +39,14 @@ enum Screens: String, CaseIterable {
         MockButtonViewModel(title: "Action Button", shouldLoadOnTap: false, action: {})
     }
     
+    private var mockSecondaryButtonViewModel: ButtonViewModel {
+        MockButtonViewModel(title: "Secondary Button",
+                            icon: MockButtonIconViewModel(iconName: "qrcode",
+                                                          symbolPosition: .beforeTitle),
+                            shouldLoadOnTap: false,
+                            action: {})
+    }
+    
     private var dialogPresenter: DialogPresenter {
         DialogView<CheckmarkDialogAccessoryView>(title: "QR Scan Success",
                                                  isLoading: false)
@@ -47,7 +55,8 @@ enum Screens: String, CaseIterable {
     func create(in navigationController: UINavigationController) -> UIViewController {
         switch self {
         case .gdsInstructions:
-            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel)
+            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel,
+                                                         secondaryButtonViewModel: mockSecondaryButtonViewModel)
             return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,

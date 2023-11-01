@@ -18,7 +18,7 @@ public struct MockOptionViewModel2: OptionViewModel {
 
 struct MockOptionButtonViewModel: ButtonViewModel {
     let title: GDSLocalisedString = "Example button text"
-    let icon: String? = nil
+    let icon: ButtonIconViewModel? = nil
     let shouldLoadOnTap: Bool = true
     let action: () -> Void = { }
 }

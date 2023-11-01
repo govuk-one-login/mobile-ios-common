@@ -20,7 +20,7 @@ public struct ButtonView: View {
                         .padding(5)
                 } else {
                     if let icon = buttonViewModel.icon {
-                        Text("\(buttonViewModel.title.value)\u{00A0}\(Image(systemName: icon))")
+                        Text("\(buttonViewModel.title.value)\u{00A0}\(Image(systemName: icon.iconName))")
                     } else {
                         Text(buttonViewModel.title.value)
                     }
@@ -31,7 +31,7 @@ public struct ButtonView: View {
                 } else {
                     Text(buttonViewModel.title.value)
                     if let icon = buttonViewModel.icon {
-                        Image(systemName: icon)
+                        Image(systemName: icon.iconName)
                     }
                 }
             }

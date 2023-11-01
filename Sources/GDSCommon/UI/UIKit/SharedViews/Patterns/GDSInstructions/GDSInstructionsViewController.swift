@@ -90,6 +90,12 @@ public class GDSInstructionsViewController: UIViewController {
                 secondaryButton.setTitle(buttonViewModel.title, for: .normal)
                 secondaryButton.accessibilityIdentifier = "instructions-secondary-button"
                 secondaryButton.isHidden = false
+                
+                if let icon = viewModel.secondaryButtonViewModel?.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
+                
             } else {
                 secondaryButton.isHidden = true
             }
