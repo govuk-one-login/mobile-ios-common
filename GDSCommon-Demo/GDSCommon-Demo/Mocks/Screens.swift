@@ -14,6 +14,7 @@ import UIKit
 enum Screens: String, CaseIterable {
     case gdsInstructions = "GDS Instructions View"
     case gdsInstructionsWithImage = "GDS Instructions View (with image)"
+    case gdsInstructionsWithImageModally = "GDS Instructions View (with image) - modal"
     case gdsModalInfoView = "Modal Info View"
     case gdsAttributedModalInfoView = "Attributed Modal Info View"
     case gdsListOptions = "List Options"
@@ -28,7 +29,8 @@ enum Screens: String, CaseIterable {
         switch self {
         case .gdsModalInfoView,
                 .gdsQRCodeScannerModal,
-                .gdsAttributedModalInfoView:
+                .gdsAttributedModalInfoView,
+                .gdsInstructionsWithImageModally:
             return true
         default:
             return false
@@ -61,7 +63,16 @@ enum Screens: String, CaseIterable {
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
                                                                primaryButtonViewModel: mockButtonViewModel,
-                                                               screenView: {})
+                                                               screenView: {},
+                                                               dismissAction: {})
+            return InstructionsWithImageViewController(viewModel: viewModel)
+        case .gdsInstructionsWithImageModally:
+            let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
+                                                               primaryButtonViewModel: mockButtonViewModel,
+                                                               secondaryButtonViewModel: mockSecondaryButtonViewModel,
+                                                               rightBarButtonTitle: "Close",
+                                                               screenView: {},
+                                                               dismissAction: {})
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsModalInfoView:
             let viewModel = MockModalInfoViewModel()

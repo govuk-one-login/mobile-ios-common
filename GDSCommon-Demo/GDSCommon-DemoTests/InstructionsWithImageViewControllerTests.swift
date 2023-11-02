@@ -9,7 +9,10 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
     var sut: InstructionsWithImageViewController!
     
     var screenDidAppear = false
-    var didTapButton = false
+    var screenDidDismiss = false
+
+    var didTapPrimaryButton = false
+    var didTapSecondaryButton = false
     var didTapWarningButton = false
     
     override func setUp() {
@@ -20,9 +23,16 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
                                                                                                    action: { self.didTapWarningButton = true }),
                                                        primaryButtonViewModel: MockButtonViewModel(title: "Action Button",
                                                                                                    shouldLoadOnTap: false,
-                                                                                                   action: { self.didTapButton = true })) {
+                                                                                                   action: { self.didTapPrimaryButton = true }),
+                                                       secondaryButtonViewModel: MockButtonViewModel(title: "Secondary Button",
+                                                                                                     shouldLoadOnTap: false,
+                                                                                                     action: { self.didTapSecondaryButton = true }), 
+                                                       rightBarButtonTitle: "close",
+                                                       screenView: {
             self.screenDidAppear = true
-        }
+        }, dismissAction: {
+            self.screenDidDismiss = true
+        })
         
         sut = InstructionsWithImageViewController(viewModel: viewModel)
         
@@ -40,6 +50,27 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
 }
 
 extension InstructionsWithImageViewControllerTests {
+    func testDidAppear() {
+        XCTAssertFalse(screenDidAppear)
+        sut.viewDidAppear(false)
+        XCTAssertTrue(screenDidAppear)
+    }
+    
+    func testTitleBar() {
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
+        sut.navigationItem.hidesBackButton = true
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, true)
+        
+        sut.beginAppearanceTransition(true, animated: false)
+        XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "close")
+
+        XCTAssertFalse(screenDidDismiss)
+
+        _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
+        XCTAssertTrue(screenDidDismiss)
+    }
+    
     func test_backButton() {
         XCTAssertFalse(sut.navigationItem.hidesBackButton)
     }
@@ -63,7 +94,16 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         
         try sut.primaryButton.sendActions(for: .touchUpInside)
-        XCTAssertTrue(didTapButton)
+        XCTAssertTrue(didTapPrimaryButton)
+    }
+    
+    func test_secondaryButton() throws {
+        XCTAssertNotNil(try sut.secondaryButton)
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary Button")
+        XCTAssertEqual(try sut.secondaryButton.backgroundColor, nil)
+        
+        try sut.secondaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didTapSecondaryButton)
     }
     
     func test_warningButton() throws {
@@ -98,6 +138,12 @@ extension InstructionsWithImageViewController {
     var primaryButton: RoundedButton {
         get throws {
             try XCTUnwrap(view[child: "primaryButton"])
+        }
+    }
+    
+    var secondaryButton: SecondaryButton {
+        get throws {
+            try XCTUnwrap(view[child: "secondaryButton"])
         }
     }
     

@@ -29,6 +29,18 @@ public final class InstructionsWithImageViewController: UIViewController {
         super.init(nibName: "InstructionsWithImage", bundle: .module)
     }
     
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+
+        if viewModel.rightBarButtonTitle != nil {
+            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
+                                                           style: .done,
+                                                           target: self,
+                                                           action: #selector(dismissScreen))
+        }
+    }
+    
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -85,6 +97,27 @@ public final class InstructionsWithImageViewController: UIViewController {
         }
     }
     
+    /// secondaryButton button: ``SecondaryButton``. This is an optional property on the `viewModel`.
+    /// If it is `nil` on `viewModel` then the button is not displayed
+    @IBOutlet private var secondaryButton: SecondaryButton! {
+        didSet {
+            if let secondaryButtonViewModel = viewModel.secondaryButtonViewModel {
+                secondaryButton.isHidden = false
+                
+                if let icon = viewModel.secondaryButtonViewModel?.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
+                
+                secondaryButton.setTitle(secondaryButtonViewModel.title,
+                                         for: .normal)
+                secondaryButton.accessibilityIdentifier = "secondaryButton"
+            } else {
+                secondaryButton.isHidden = true
+            }
+        }
+    }
+    
     @IBAction private func warningButtonAction(_ sender: Any) {
         if let buttonViewModel = viewModel.warningButtonViewModel {
             buttonViewModel.action()
@@ -93,5 +126,17 @@ public final class InstructionsWithImageViewController: UIViewController {
     
     @IBAction private func primaryButtonAction(_ sender: Any) {
         viewModel.primaryButtonViewModel.action()
+    }
+    
+    @IBAction private func secondaryButtonAction(_ sender: Any) {
+        if let buttonViewModel = viewModel.secondaryButtonViewModel {
+            buttonViewModel.action()
+        }
+    }
+    
+    @objc private func dismissScreen() {
+        self.dismiss(animated: true)
+        
+        viewModel.didDismiss()
     }
 }
