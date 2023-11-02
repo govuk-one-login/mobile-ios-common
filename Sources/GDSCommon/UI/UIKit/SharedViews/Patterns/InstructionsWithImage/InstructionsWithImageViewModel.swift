@@ -17,6 +17,9 @@ public protocol InstructionsWithImageViewModel {
     var image: UIImage { get }
     var warningButtonViewModel: ButtonViewModel? { get }
     var primaryButtonViewModel: ButtonViewModel { get }
-    
+    var secondaryButtonViewModel: ButtonViewModel? { get }
+    var rightBarButtonTitle: GDSLocalisedString? { get }
+
     func didAppear()
+    func didDismiss()
 }

@@ -14,6 +14,7 @@ import UIKit
 enum Screens: String, CaseIterable {
     case gdsInstructions = "GDS Instructions View"
     case gdsInstructionsWithImage = "GDS Instructions View (with image)"
+    case gdsInstructionsWithImageModally = "GDS Instructions View (with image) - modal"
     case gdsModalInfoView = "Modal Info View"
     case gdsAttributedModalInfoView = "Attributed Modal Info View"
     case gdsListOptions = "List Options"
@@ -28,7 +29,8 @@ enum Screens: String, CaseIterable {
         switch self {
         case .gdsModalInfoView,
                 .gdsQRCodeScannerModal,
-                .gdsAttributedModalInfoView:
+                .gdsAttributedModalInfoView,
+                .gdsInstructionsWithImageModally:
             return true
         default:
             return false
@@ -39,6 +41,14 @@ enum Screens: String, CaseIterable {
         MockButtonViewModel(title: "Action Button", shouldLoadOnTap: false, action: {})
     }
     
+    private var mockSecondaryButtonViewModel: ButtonViewModel {
+        MockButtonViewModel(title: "Secondary Button",
+                            icon: MockButtonIconViewModel(iconName: "qrcode",
+                                                          symbolPosition: .beforeTitle),
+                            shouldLoadOnTap: false,
+                            action: {})
+    }
+    
     private var dialogPresenter: DialogPresenter {
         DialogView<CheckmarkDialogAccessoryView>(title: "QR Scan Success",
                                                  isLoading: false)
@@ -47,12 +57,22 @@ enum Screens: String, CaseIterable {
     func create(in navigationController: UINavigationController) -> UIViewController {
         switch self {
         case .gdsInstructions:
-            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel)
+            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel,
+                                                         secondaryButtonViewModel: mockSecondaryButtonViewModel)
             return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
                                                                primaryButtonViewModel: mockButtonViewModel,
-                                                               screenView: {})
+                                                               screenView: {},
+                                                               dismissAction: {})
+            return InstructionsWithImageViewController(viewModel: viewModel)
+        case .gdsInstructionsWithImageModally:
+            let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
+                                                               primaryButtonViewModel: mockButtonViewModel,
+                                                               secondaryButtonViewModel: mockSecondaryButtonViewModel,
+                                                               rightBarButtonTitle: "Close",
+                                                               screenView: {},
+                                                               dismissAction: {})
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsModalInfoView:
             let viewModel = MockModalInfoViewModel()
@@ -65,8 +85,7 @@ enum Screens: String, CaseIterable {
             view.isModalInPresentation = true
             return view
         case .gdsListOptions:
-            let viewModel = MockListViewModel()
-            return ListOptionsViewController(viewModel: viewModel)
+            return ListOptionsViewController(viewModel: MockListViewModel())
         case .gdsIntroView:
             let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
             return IntroViewController(viewModel: viewModel)
@@ -77,17 +96,11 @@ enum Screens: String, CaseIterable {
         case .gdsIconScreen:
             return IconScreenViewController()
         case .gdsQRCodeScanner:
-            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
-                navigationController.popViewController(animated: true)
-            }
-            let vc = ScanningViewController(viewModel: viewModel)
-            return vc
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) { navigationController.popViewController(animated: true) }
+            return ScanningViewController(viewModel: viewModel)
         case .gdsQRCodeScannerModal:
-            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
-                navigationController.dismiss(animated: true)
-            }
-            let vc = ScanningViewController(viewModel: viewModel)
-            return vc
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {  navigationController.dismiss(animated: true) }
+            return ScanningViewController(viewModel: viewModel)
         }
     }
 }
