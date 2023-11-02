@@ -26,7 +26,7 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
                                                                                                    action: { self.didTapPrimaryButton = true }),
                                                        secondaryButtonViewModel: MockButtonViewModel(title: "Secondary Button",
                                                                                                      shouldLoadOnTap: false,
-                                                                                                     action: { self.didTapSecondaryButton = true }), 
+                                                                                                     action: { self.didTapSecondaryButton = true }),
                                                        rightBarButtonTitle: "close",
                                                        screenView: {
             self.screenDidAppear = true

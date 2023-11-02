@@ -85,8 +85,7 @@ enum Screens: String, CaseIterable {
             view.isModalInPresentation = true
             return view
         case .gdsListOptions:
-            let viewModel = MockListViewModel()
-            return ListOptionsViewController(viewModel: viewModel)
+            return ListOptionsViewController(viewModel: MockListViewModel())
         case .gdsIntroView:
             let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
             return IntroViewController(viewModel: viewModel)
@@ -97,17 +96,11 @@ enum Screens: String, CaseIterable {
         case .gdsIconScreen:
             return IconScreenViewController()
         case .gdsQRCodeScanner:
-            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
-                navigationController.popViewController(animated: true)
-            }
-            let vc = ScanningViewController(viewModel: viewModel)
-            return vc
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) { navigationController.popViewController(animated: true) }
+            return ScanningViewController(viewModel: viewModel)
         case .gdsQRCodeScannerModal:
-            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {
-                navigationController.dismiss(animated: true)
-            }
-            let vc = ScanningViewController(viewModel: viewModel)
-            return vc
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {  navigationController.dismiss(animated: true) }
+            return ScanningViewController(viewModel: viewModel)
         }
     }
 }
