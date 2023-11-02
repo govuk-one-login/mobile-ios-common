@@ -111,10 +111,10 @@ public final class InstructionsWithImageViewController: UIViewController {
                 
                 secondaryButton.setTitle(secondaryButtonViewModel.title,
                                          for: .normal)
-                secondaryButton.accessibilityIdentifier = "secondaryButton"
             } else {
                 secondaryButton.isHidden = true
             }
+            secondaryButton.accessibilityIdentifier = "secondaryButton"
         }
     }
     
