@@ -22,9 +22,13 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
                                                                                                    shouldLoadOnTap: false,
                                                                                                    action: { self.didTapWarningButton = true }),
                                                        primaryButtonViewModel: MockButtonViewModel(title: "Action Button",
+                                                                                                   icon: MockButtonIconViewModel(iconName: "qrcode",
+                                                                                                                                 symbolPosition: .beforeTitle),
                                                                                                    shouldLoadOnTap: false,
                                                                                                    action: { self.didTapPrimaryButton = true }),
                                                        secondaryButtonViewModel: MockButtonViewModel(title: "Secondary Button",
+                                                                                                     icon: MockButtonIconViewModel(iconName: "qrcode",
+                                                                                                                                   symbolPosition: .beforeTitle),
                                                                                                      shouldLoadOnTap: false,
                                                                                                      action: { self.didTapSecondaryButton = true }),
                                                        rightBarButtonTitle: "close",
@@ -92,7 +96,9 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertNotNil(try sut.primaryButton)
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Action Button")
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
-        
+        XCTAssertEqual(try sut.primaryButton.icon, viewModel.primaryButtonViewModel.icon?.iconName)
+        XCTAssertEqual(try sut.primaryButton.symbolPosition, viewModel.primaryButtonViewModel.icon?.symbolPosition)
+
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTapPrimaryButton)
     }
@@ -101,6 +107,8 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertNotNil(try sut.secondaryButton)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary Button")
         XCTAssertEqual(try sut.secondaryButton.backgroundColor, nil)
+        XCTAssertEqual(try sut.secondaryButton.icon, viewModel.secondaryButtonViewModel?.icon?.iconName)
+        XCTAssertEqual(try sut.secondaryButton.symbolPosition, viewModel.secondaryButtonViewModel?.icon?.symbolPosition)
         
         try sut.secondaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTapSecondaryButton)
