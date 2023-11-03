@@ -92,6 +92,12 @@ public final class InstructionsWithImageViewController: UIViewController {
     /// It is constrained to the bottom of the screen.
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
+            
+            if let icon = viewModel.primaryButtonViewModel.icon {
+                primaryButton.symbolPosition = icon.symbolPosition
+                primaryButton.icon = icon.iconName
+            }
+            
             primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
             primaryButton.accessibilityIdentifier = "primaryButton"
         }
