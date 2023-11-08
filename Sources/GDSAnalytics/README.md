@@ -6,7 +6,7 @@ All data gathered via the Firebase SDK stream into the wider GDS Google Analytic
 These models ensure that all analytics submitted from the app are formed-correctly.
 
 This package does not submit events, it is only for structuring the output accordingly.
-We recommend using the Analytics package alongside our [Logging package](https://github.com/alphagov/di-mobile-ios-logging) to submit the events to Firebase Analytics.
+We recommend using the Analytics package alongside our [Logging package](https://github.com/orgs/govuk-one-login/teams/mobile-common-ios) to submit the events to Firebase Analytics.
 
 ## Screen Tracking
 
