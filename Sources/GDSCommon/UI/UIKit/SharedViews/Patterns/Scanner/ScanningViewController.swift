@@ -78,6 +78,13 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startAnimation()
+        
+        if viewModel.rightBarButtonTitle != nil {
+            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
+                                                           style: .done,
+                                                           target: self,
+                                                           action: #selector(dismissScreen))
+        }
     }
     
     private func updateRegionOfInterest() {
@@ -135,6 +142,12 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         } catch {
             preconditionFailure("Error with capturing output")
         }
+    }
+    
+    @objc private func dismissScreen() {
+        self.dismiss(animated: true)
+        
+        viewModel.didDismiss()
     }
 }
 

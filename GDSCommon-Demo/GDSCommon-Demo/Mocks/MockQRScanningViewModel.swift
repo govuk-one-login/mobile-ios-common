@@ -4,6 +4,7 @@ import UIKit
 class MockQRScanningViewModel: QRScanningViewModel {
     let title: String
     let instructionText: String
+    let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
     
     let dialogPresenter: DialogPresenter
     let onScan: () -> Void
@@ -33,4 +34,6 @@ class MockQRScanningViewModel: QRScanningViewModel {
                                       title: "QR Code Scanned")
         onScan()
     }
+    
+    func didDismiss() {}
 }
