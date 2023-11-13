@@ -37,18 +37,8 @@ public class GDSInstructionsViewController: BaseViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
         primaryButton.isEnabled = true
         primaryButton.isLoading = false
-        
-//        setBackButtonTitle()
-        
-//        if viewModel.rightBarButtonTitle != nil {
-//            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
-//                                                           style: .done,
-//                                                           target: self,
-//                                                           action: #selector(dismissScreen))
-//        }
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -123,10 +113,4 @@ public class GDSInstructionsViewController: BaseViewController {
             buttonViewModel.action()
         }
     }
-    
-//    @objc private func dismissScreen() {
-//        self.dismiss(animated: true)
-//        
-//        viewModel.didDismiss()
-//    }
 }
