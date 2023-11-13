@@ -14,14 +14,14 @@ import UIKit
 /// The action can be customised by configuring the `didDismiss` method.
 /// `footerLabel` is configured separately from the `UITableView` to address some
 /// dynamic type issues with multi-line footers.
-public final class ListOptionsViewController: UIViewController {
+public final class ListOptionsViewController: BaseViewController {
     public override var nibName: String? { "ListOptions" }
     public let viewModel: ListOptionsViewModel
     public var hideBackButton: Bool = false
 
     public init(viewModel: ListOptionsViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "ListOptions", bundle: .module)
+        super.init(viewModel: viewModel, nibName: "ListOptions", bundle: .module)
     }
     
     required init?(coder: NSCoder) {
@@ -42,12 +42,12 @@ public final class ListOptionsViewController: UIViewController {
         super.viewWillAppear(animated)
         tableViewList.redraw()
         
-        if viewModel.rightBarButtonTitle != nil {
-            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(dismissScreen))
-        }
+//        if viewModel.rightBarButtonTitle != nil {
+//            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
+//                                                           style: .done,
+//                                                           target: self,
+//                                                           action: #selector(dismissScreen))
+//        }
     }
     
     public override func viewWillLayoutSubviews() {
@@ -110,11 +110,11 @@ public final class ListOptionsViewController: UIViewController {
         viewModel.buttonViewModel.action()
     }
     
-    @objc private func dismissScreen() {
-        self.dismiss(animated: true)
-        
-        viewModel.didDismiss()
-    }
+//    @objc private func dismissScreen() {
+//        self.dismiss(animated: true)
+//        
+//        viewModel.didDismiss()
+//    }
 }
 
 
