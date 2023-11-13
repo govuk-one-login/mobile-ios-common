@@ -11,6 +11,7 @@ final class ScanningViewControllerTests: XCTestCase {
     
     private var didCompleteScan: Bool = false
     private var captureSession: MockCaptureSession!
+    var didDismiss = false
     
     @MainActor
     override func setUp() {
@@ -19,6 +20,8 @@ final class ScanningViewControllerTests: XCTestCase {
         presenter = MockDialogPresenter()
         let viewModel = MockQRScanningViewModel(dialogPresenter: presenter) {
             self.didCompleteScan = true
+        } dismissAction: {
+            self.didDismiss = true
         }
  
         captureSession = MockCaptureSession()
@@ -46,6 +49,21 @@ final class ScanningViewControllerTests: XCTestCase {
     func test_instructionsLabel() throws {
         try XCTAssertNotNil(sut.instructionsLabel)
         try XCTAssertEqual(sut.instructionsLabel.text, "QR Scanning instruction area, we can instruct the user from here")
+    }
+    
+    func test_didDismiss() {
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
+        sut.navigationItem.hidesBackButton = true
+        XCTAssertEqual(sut.navigationItem.hidesBackButton, true)
+        
+        sut.beginAppearanceTransition(true, animated: false)
+        XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "right bar button")
+
+        XCTAssertFalse(didDismiss)
+
+        _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
+        XCTAssertTrue(didDismiss)
     }
     
     func test_nibName() throws {

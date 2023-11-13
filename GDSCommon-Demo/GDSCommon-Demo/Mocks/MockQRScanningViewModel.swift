@@ -4,18 +4,22 @@ import UIKit
 class MockQRScanningViewModel: QRScanningViewModel {
     let title: String
     let instructionText: String
+    let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
     
     let dialogPresenter: DialogPresenter
     let onScan: () -> Void
+    let dismissAction: () -> Void
     
     init(title: String = "QR Scanning Title",
          instructionText: String = "QR Scanning instruction area, we can instruct the user from here",
          dialogPresenter: DialogPresenter,
-         onScan: @escaping () -> Void) {
+         onScan: @escaping () -> Void,
+         dismissAction: @escaping () -> Void) {
         self.title = title
         self.instructionText = instructionText
         self.dialogPresenter = dialogPresenter
         self.onScan = onScan
+        self.dismissAction = dismissAction
     }
     
     @MainActor
@@ -32,5 +36,9 @@ class MockQRScanningViewModel: QRScanningViewModel {
                                       shouldLoad: false,
                                       title: "QR Code Scanned")
         onScan()
+    }
+    
+    func didDismiss() {
+        dismissAction()
     }
 }
