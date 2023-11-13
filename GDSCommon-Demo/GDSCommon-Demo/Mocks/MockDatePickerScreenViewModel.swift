@@ -8,6 +8,7 @@ struct MockDatePickerScreenViewModel: DatePickerScreenViewModel {
     var datePickerFooter: String? = "Example date picker footer"
     var buttonViewModel: ButtonViewModel
     var rightBarButtonTitle: GDSLocalisedString? = "Right bar button"
+    var backButtonIsHidden: Bool = false
     var result: (Date) -> Void
     
     let appearAction: () -> Void

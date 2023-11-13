@@ -9,6 +9,7 @@ class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel {
     var primaryButtonViewModel: ButtonViewModel
     var secondaryButtonViewModel: ButtonViewModel?
     var rightBarButtonTitle: GDSLocalisedString?
+    var backButtonIsHidden: Bool = false
 
     let screenView: () -> Void
     let dismissAction: () -> Void

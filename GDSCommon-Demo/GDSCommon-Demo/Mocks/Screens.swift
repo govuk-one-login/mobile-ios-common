@@ -61,7 +61,9 @@ enum Screens: String, CaseIterable {
         switch self {
         case .gdsInstructions:
             let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel,
-                                                         secondaryButtonViewModel: mockSecondaryButtonViewModel)
+                                                         secondaryButtonViewModel: mockSecondaryButtonViewModel) {
+                navigationController.popToRootViewController(animated: true)
+            }
             return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
@@ -88,7 +90,9 @@ enum Screens: String, CaseIterable {
             view.isModalInPresentation = true
             return view
         case .gdsListOptions:
-            return ListOptionsViewController(viewModel: MockListViewModel())
+            return ListOptionsViewController(viewModel: MockListViewModel(dismissAction: {
+                navigationController.popToRootViewController(animated: true)
+            }))
         case .gdsIntroView:
             let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
             return IntroViewController(viewModel: viewModel)

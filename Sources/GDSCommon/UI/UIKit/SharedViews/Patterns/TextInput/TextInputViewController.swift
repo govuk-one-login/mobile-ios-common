@@ -12,7 +12,7 @@ public protocol TextInputView {
 /// allows concrete implementations of `TextFieldViewModel` protocol to implement validation methods to
 /// validate and constrain the input of the text field.
 /// The validator method is called on every change of the text field.
-public final class TextInputViewController<InputType>: UIViewController, UITextFieldDelegate, TextInputView {
+public final class TextInputViewController<InputType>: BaseViewController, UITextFieldDelegate, TextInputView {
     public override var nibName: String? { "TextInput" }
     
     public var viewModel: any TextInputViewModel
@@ -23,7 +23,7 @@ public final class TextInputViewController<InputType>: UIViewController, UITextF
     
     public init(viewModel: any TextInputViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "TextInput", bundle: .module)
+        super.init(viewModel: viewModel, nibName: "TextInput", bundle: .module)
     }
     
     public override func viewDidLoad() {
@@ -35,17 +35,6 @@ public final class TextInputViewController<InputType>: UIViewController, UITextF
         
         if let keyboardDoneButton = viewModel.textFieldViewModel.keyboardDoneButton {
             barButton(keyboardDoneButton)
-        }
-    }
-    
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if viewModel.rightBarButtonTitle != nil {
-            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(dismissScreen))
         }
     }
     
@@ -135,10 +124,5 @@ public final class TextInputViewController<InputType>: UIViewController, UITextF
     
     @objc func dismissKeyboard() {
         textField.endEditing(true)
-    }
-    
-    @objc private func dismissScreen() {
-        self.dismiss(animated: true)
-        viewModel.didDismiss()
     }
 }

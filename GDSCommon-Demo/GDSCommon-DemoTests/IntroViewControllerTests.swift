@@ -6,6 +6,7 @@ final class IntroViewControllerTests: XCTestCase {
     var sut: IntroViewController!
     var buttonAction = false
     var viewDidAppear = false
+    var viewDidDismiss = false
     
     override func setUp() {
         super.setUp()
@@ -14,6 +15,8 @@ final class IntroViewControllerTests: XCTestCase {
             self.buttonAction = true
         } appearAction: {
             self.viewDidAppear = true
+        } dismissAction: {
+            self.viewDidDismiss = true
         }
         sut = IntroViewController(viewModel: viewModel)
     }
@@ -31,18 +34,28 @@ private struct TestViewModel: IntroViewModel {
     let title: GDSLocalisedString = "Intro screen title"
     let body: GDSLocalisedString = "Intro screen body"
     let introButtonViewModel: ButtonViewModel
+    var rightBarButtonTitle: GDSLocalisedString? = "right bar button"
+    var backButtonIsHidden: Bool = false
     let appearAction: () -> Void
+    let dismissAction: () -> Void
     
     init(buttonAction: @escaping () -> Void,
-         appearAction: @escaping () -> Void) {
+         appearAction: @escaping () -> Void,
+         dismissAction: @escaping () -> Void
+    ) {
         introButtonViewModel = MockButtonViewModel(title: "Intro screen button title") {
             buttonAction()
         }
         self.appearAction = appearAction
+        self.dismissAction = dismissAction
     }
     
     func didAppear() {
         appearAction()
+    }
+    
+    func didDismiss() {
+        dismissAction()
     }
 }
 

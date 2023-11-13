@@ -22,7 +22,8 @@ final class ModalInfoViewControllerTests: XCTestCase {
 private struct TestViewModel: ModalInfoViewModel {
     var title: GDSLocalisedString = "permissions screen title"
     var body: GDSLocalisedString = "permissions screen body"
-    var rightBarButtonTitle: GDSLocalisedString = "Done"
+    var rightBarButtonTitle: GDSLocalisedString? = "Done"
+    var backButtonIsHidden: Bool = false
     
     func didAppear() { }
     

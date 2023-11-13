@@ -2,19 +2,15 @@ import Foundation
 import UIKit
 
 /// `TextInputViewModel` protocol to be used with `TextInputViewController`
-public protocol TextInputViewModel {
+public protocol TextInputViewModel: BaseViewModel {
     associatedtype InputType: LosslessStringConvertible
     
     var title: GDSLocalisedString { get }
     var textFieldFooter: String? { get }
     var buttonViewModel: ButtonViewModel { get }
-    var rightBarButtonTitle: GDSLocalisedString? { get }
     var textFieldViewModel: TextFieldViewModel { get }
     
     var result: (InputType) -> Void { get }
-    
-    func didAppear()
-    func didDismiss()
 }
 
 extension TextInputViewModel {

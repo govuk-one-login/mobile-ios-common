@@ -17,7 +17,7 @@ import UIKit
 /// for other code such as making an API call.
 /// If `rightBarButtonTitle` is `nil` then the navigation item right bar button is hidden
 /// Otherwise, it is set to the title property and the action is set to the `didDismiss()` action.
-public protocol GDSInstructionsViewModel {
+public protocol GDSInstructionsViewModel: BaseViewModel {
     var title: GDSLocalisedString { get }
     var body: String { get }
     var rightBarButtonTitle: GDSLocalisedString? { get }

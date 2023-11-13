@@ -35,7 +35,7 @@ extension TextInputViewController<Double> {
 
 extension GDSInstructionsViewController {
     convenience init() {
-        let viewModel = MockGDSInstructionsViewModel(buttonViewModel: MockButtonViewModel(title: "Button title", action: {}))
+        let viewModel = MockGDSInstructionsViewModel(buttonViewModel: MockButtonViewModel(title: "Button title", action: {}), dismissAction: {})
         
         self.init(viewModel: viewModel)
     }

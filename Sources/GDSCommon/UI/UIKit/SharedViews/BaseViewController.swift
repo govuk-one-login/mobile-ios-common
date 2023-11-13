@@ -1,12 +1,5 @@
 import UIKit
 
-public protocol BaseViewModel {
-    var rightBarButtonTitle: GDSLocalisedString? { get }
-    
-    func didAppear()
-    func didDismiss()
-}
-
 public class BaseViewController: UIViewController {
     private let viewModel: BaseViewModel?
     
@@ -22,6 +15,10 @@ public class BaseViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        
+        setBackButtonTitle(isHidden: viewModel?.backButtonIsHidden ?? false)
+        
         if viewModel?.rightBarButtonTitle != nil {
             self.navigationItem.rightBarButtonItem = .init(title: viewModel?.rightBarButtonTitle?.value,
                                                            style: .done,
@@ -36,4 +33,3 @@ public class BaseViewController: UIViewController {
         viewModel?.didDismiss()
     }
 }
-

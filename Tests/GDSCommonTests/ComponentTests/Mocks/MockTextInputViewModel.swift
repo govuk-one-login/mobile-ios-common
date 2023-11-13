@@ -11,6 +11,7 @@ struct MockTextInputViewModel<InputType>: TextInputViewModel {
         print("button was tapped")
     }
     let rightBarButtonTitle: GDSLocalisedString? = "Cancel"
+    var backButtonIsHidden: Bool = false
     let result: (Bool) -> Void
     
     let appearAction: () -> Void

@@ -8,6 +8,7 @@ internal struct MockGDSInstructionsViewModel: GDSInstructionsViewModel {
     let childView: UIView
     let buttonViewModel: ButtonViewModel
     let secondaryButtonViewModel: ButtonViewModel?
+    let backButtonIsHidden: Bool = false
     
     let screenView: () -> Void
     let dismissAction: () -> Void

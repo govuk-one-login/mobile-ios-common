@@ -6,6 +6,9 @@ struct MockIntroViewModel: IntroViewModel {
     var title: GDSLocalisedString = "This is a Intro Screen"
     var body: GDSLocalisedString = "This is the body where we can give a brief description of the app"
     var introButtonViewModel: ButtonViewModel
+    var rightBarButtonTitle: GDSLocalisedString? = nil
+    var backButtonIsHidden: Bool = false
     
     func didAppear() { }
+    func didDismiss() { }
 }

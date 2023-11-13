@@ -11,15 +11,11 @@ import UIKit
 /// for any code that needs to be performed when the screen appears.
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
-public protocol InstructionsWithImageViewModel {
+public protocol InstructionsWithImageViewModel: BaseViewModel {
     var title: GDSLocalisedString { get }
     var body: NSAttributedString { get }
     var image: UIImage { get }
     var warningButtonViewModel: ButtonViewModel? { get }
     var primaryButtonViewModel: ButtonViewModel { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
-    var rightBarButtonTitle: GDSLocalisedString? { get }
-
-    func didAppear()
-    func didDismiss()
 }

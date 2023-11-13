@@ -10,11 +10,9 @@ import UIKit
 /// for any code that needs to be performed when the screen appears.
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
-public protocol IconScreenViewModel {
+public protocol IconScreenViewModel: BaseViewModel {
     var imageName: String { get }
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
     var childViews: [UIView] { get }
-    
-    func didAppear()
 }

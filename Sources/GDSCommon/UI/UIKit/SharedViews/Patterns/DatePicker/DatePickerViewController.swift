@@ -4,7 +4,7 @@ import UIKit
 /// DatePicker screen displays a standard iOS date picker in a scrollview with a bold LargeTitle above
 /// and a single CTA button at the button of the screen.
 @available(iOS 13.4, *)
-public final class DatePickerScreenViewController: UIViewController {
+public final class DatePickerScreenViewController: BaseViewController {
     public override var nibName: String? { "DatePicker" }
     
     public var viewModel: DatePickerScreenViewModel
@@ -15,7 +15,7 @@ public final class DatePickerScreenViewController: UIViewController {
     
     public init(viewModel: DatePickerScreenViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "DatePicker", bundle: .module)
+        super.init(viewModel: viewModel, nibName: "DatePicker", bundle: .module)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -23,13 +23,6 @@ public final class DatePickerScreenViewController: UIViewController {
         
         if viewModel.datePickerViewModel.selectedDate == nil {
             primaryButton.isEnabled = false
-        }
-        
-        if viewModel.rightBarButtonTitle != nil {
-            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(dismissScreen))
         }
     }
     
@@ -92,11 +85,5 @@ public final class DatePickerScreenViewController: UIViewController {
         guard let selectedDate = viewModel.datePickerViewModel.selectedDate else { return }
         viewModel.result(selectedDate)
         viewModel.buttonViewModel.action()
-    }
-    
-    @objc private func dismissScreen() {
-        self.dismiss(animated: true)
-        
-        viewModel.didDismiss()
     }
 }

@@ -19,7 +19,7 @@ import UIKit
 ///  The `primaryButton` is within a
 ///  `UIStackView` constrained to the bottom of the screen. This is the main
 ///   Call To Action (CTA) on this screen.
-public class GDSInstructionsViewController: UIViewController {
+public class GDSInstructionsViewController: BaseViewController {
     private let viewModel: GDSInstructionsViewModel
     
     /// Initialiser for the `GDSInstructions` view controller.
@@ -28,7 +28,7 @@ public class GDSInstructionsViewController: UIViewController {
     public init(viewModel: GDSInstructionsViewModel
     ) {
         self.viewModel = viewModel
-        super.init(nibName: "GDSInstructions", bundle: .module)
+        super.init(viewModel: viewModel, nibName: "GDSInstructions", bundle: .module)
     }
     
     required init?(coder: NSCoder) {
@@ -40,14 +40,15 @@ public class GDSInstructionsViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         primaryButton.isEnabled = true
         primaryButton.isLoading = false
-        setBackButtonTitle()
         
-        if viewModel.rightBarButtonTitle != nil {
-            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(dismissScreen))
-        }
+//        setBackButtonTitle()
+        
+//        if viewModel.rightBarButtonTitle != nil {
+//            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
+//                                                           style: .done,
+//                                                           target: self,
+//                                                           action: #selector(dismissScreen))
+//        }
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -123,9 +124,9 @@ public class GDSInstructionsViewController: UIViewController {
         }
     }
     
-    @objc private func dismissScreen() {
-        self.dismiss(animated: true)
-        
-        viewModel.didDismiss()
-    }
+//    @objc private func dismissScreen() {
+//        self.dismiss(animated: true)
+//        
+//        viewModel.didDismiss()
+//    }
 }

@@ -17,7 +17,6 @@ import UIKit
 public final class ListOptionsViewController: BaseViewController {
     public override var nibName: String? { "ListOptions" }
     public let viewModel: ListOptionsViewModel
-    public var hideBackButton: Bool = false
 
     public init(viewModel: ListOptionsViewModel) {
         self.viewModel = viewModel
@@ -35,19 +34,11 @@ public final class ListOptionsViewController: BaseViewController {
         tableViewList.dataSource = self
         tableViewList.delegate = self
         tableViewList.isScrollEnabled = false
-        setBackButtonTitle(isHidden: hideBackButton)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableViewList.redraw()
-        
-//        if viewModel.rightBarButtonTitle != nil {
-//            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
-//                                                           style: .done,
-//                                                           target: self,
-//                                                           action: #selector(dismissScreen))
-//        }
     }
     
     public override func viewWillLayoutSubviews() {
@@ -109,12 +100,6 @@ public final class ListOptionsViewController: BaseViewController {
         viewModel.resultAction(cell.gdsLocalisedString)
         viewModel.buttonViewModel.action()
     }
-    
-//    @objc private func dismissScreen() {
-//        self.dismiss(animated: true)
-//        
-//        viewModel.didDismiss()
-//    }
 }
 
 
