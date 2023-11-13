@@ -68,16 +68,14 @@ enum Screens: String, CaseIterable {
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
                                                                primaryButtonViewModel: mockButtonViewModel,
-                                                               screenView: {},
-                                                               dismissAction: {})
+                                                               screenView: {}, dismissAction: {})
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsInstructionsWithImageModally:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
                                                                primaryButtonViewModel: mockButtonViewModel,
                                                                secondaryButtonViewModel: mockSecondaryButtonViewModel,
                                                                rightBarButtonTitle: "Close",
-                                                               screenView: {},
-                                                               dismissAction: {})
+                                                               screenView: {}, dismissAction: {})
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsModalInfoView:
             let viewModel = MockModalInfoViewModel()
