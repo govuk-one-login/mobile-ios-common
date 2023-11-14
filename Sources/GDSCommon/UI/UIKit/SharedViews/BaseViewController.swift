@@ -2,7 +2,6 @@ import UIKit
 
 public class BaseViewController: UIViewController {
     private let viewModel: BaseViewModel?
-    
     init(viewModel: BaseViewModel?, nibName: String, bundle: Bundle) {
         self.viewModel = viewModel
         super.init(nibName: nibName, bundle: bundle)
