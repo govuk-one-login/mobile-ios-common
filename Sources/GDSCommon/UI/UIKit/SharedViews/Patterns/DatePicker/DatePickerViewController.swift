@@ -15,7 +15,7 @@ public final class DatePickerScreenViewController: BaseViewController {
     
     public init(viewModel: DatePickerScreenViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, nibName: "DatePicker", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "DatePicker", bundle: .module)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -24,12 +24,6 @@ public final class DatePickerScreenViewController: BaseViewController {
         if viewModel.datePickerViewModel.selectedDate == nil {
             primaryButton.isEnabled = false
         }
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        viewModel.didAppear()
     }
     
     @IBOutlet private var titleLabel: UILabel! {

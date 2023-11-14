@@ -1,7 +1,7 @@
 @testable import GDSCommon
 import UIKit
 
-struct MockTextInputViewModel<InputType>: TextInputViewModel {
+struct MockTextInputViewModel<InputType>: TextInputViewModel, BaseViewModel {
     typealias InputType = Bool
     var textFieldViewModel: any TextFieldViewModel = MockTextFieldViewModel<InputType>()
     

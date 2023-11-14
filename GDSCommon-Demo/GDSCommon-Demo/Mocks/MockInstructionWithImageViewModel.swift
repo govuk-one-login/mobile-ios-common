@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel {
+class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel, BaseViewModel {
     var title: GDSLocalisedString
     var body: NSAttributedString
     var image: UIImage

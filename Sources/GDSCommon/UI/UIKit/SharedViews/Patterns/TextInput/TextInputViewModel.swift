@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 /// `TextInputViewModel` protocol to be used with `TextInputViewController`
-public protocol TextInputViewModel: BaseViewModel {
+public protocol TextInputViewModel {
     associatedtype InputType: LosslessStringConvertible
     
     var title: GDSLocalisedString { get }

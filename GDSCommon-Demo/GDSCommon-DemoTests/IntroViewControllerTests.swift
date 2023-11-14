@@ -29,7 +29,7 @@ final class IntroViewControllerTests: XCTestCase {
     }
 }
 
-private struct TestViewModel: IntroViewModel {
+private struct TestViewModel: IntroViewModel, BaseViewModel {
     let image: UIImage = UIImage()
     let title: GDSLocalisedString = "Intro screen title"
     let body: GDSLocalisedString = "Intro screen body"
@@ -79,6 +79,7 @@ extension IntroViewControllerTests {
     func test_viewDidAppear() throws {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
+        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(viewDidAppear)
     }

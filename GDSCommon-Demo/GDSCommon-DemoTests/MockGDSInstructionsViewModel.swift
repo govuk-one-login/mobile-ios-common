@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-internal struct MockGDSInstructionsViewModel: GDSInstructionsViewModel {
+internal struct MockGDSInstructionsViewModel: GDSInstructionsViewModel, BaseViewModel {
     let title: GDSLocalisedString = "test title"
     let body: String = "test body"
     let rightBarButtonTitle: GDSLocalisedString? = "right bar button"

@@ -17,7 +17,7 @@ public final class IntroViewController: BaseViewController {
 
     public init(viewModel: IntroViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, nibName: "IntroView", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "IntroView", bundle: .module)
     }
     
     @available(*, unavailable, renamed: "init(coordinator:)")
@@ -52,11 +52,6 @@ public final class IntroViewController: BaseViewController {
             introButton.setTitle(viewModel.introButtonViewModel.title, for: .normal)
             introButton.accessibilityIdentifier = "intro-button"
         }
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.didAppear()
     }
 
     @IBAction private func didTapContinueButton() {

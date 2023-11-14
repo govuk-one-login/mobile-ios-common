@@ -18,16 +18,11 @@ public final class ModalInfoViewController: BaseViewController {
     /// - Parameter viewModel: `ModalInfoViewModel`
     public init(viewModel: ModalInfoViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, nibName: "ModalInfoView", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ModalInfoView", bundle: .module)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.didAppear()
     }
     
     @IBOutlet private var titleLabel: UILabel! {

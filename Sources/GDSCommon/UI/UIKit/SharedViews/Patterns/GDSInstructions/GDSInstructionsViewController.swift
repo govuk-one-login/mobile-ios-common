@@ -28,7 +28,7 @@ public class GDSInstructionsViewController: BaseViewController {
     public init(viewModel: GDSInstructionsViewModel
     ) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, nibName: "GDSInstructions", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSInstructions", bundle: .module)
     }
     
     required init?(coder: NSCoder) {

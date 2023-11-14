@@ -1,6 +1,6 @@
 import GDSCommon
 
-struct MockListViewModel: ListOptionsViewModel {
+struct MockListViewModel: ListOptionsViewModel, BaseViewModel {
     let title: GDSLocalisedString = "This is the List Options screen pattern"
     let body: String? = "This is the optional body label. If the view model property is `nil` then the label is hidden."
     let listRows: [GDSLocalisedString] = ["Table view list item 1", "Table view list item two", "Table view list item 3", "Table view list item IV"]

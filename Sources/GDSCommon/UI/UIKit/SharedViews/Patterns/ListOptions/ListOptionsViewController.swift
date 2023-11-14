@@ -20,7 +20,7 @@ public final class ListOptionsViewController: BaseViewController {
 
     public init(viewModel: ListOptionsViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, nibName: "ListOptions", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ListOptions", bundle: .module)
     }
     
     required init?(coder: NSCoder) {
@@ -45,12 +45,7 @@ public final class ListOptionsViewController: BaseViewController {
         super.viewWillLayoutSubviews()
         tableViewList.redraw()
     }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.didAppear()
-    }
-    
+
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value

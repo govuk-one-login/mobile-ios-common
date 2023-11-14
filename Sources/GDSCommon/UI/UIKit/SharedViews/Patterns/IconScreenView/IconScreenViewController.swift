@@ -23,12 +23,7 @@ public final class IconScreenViewController: BaseViewController {
     /// - Parameter viewModel: `IconScreenViewModel`
     public init(viewModel: IconScreenViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, nibName: "IconScreenView", bundle: .module)
-    }
-
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.didAppear()
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "IconScreenView", bundle: .module)
     }
     
     /// Image view: ``UIImageView``

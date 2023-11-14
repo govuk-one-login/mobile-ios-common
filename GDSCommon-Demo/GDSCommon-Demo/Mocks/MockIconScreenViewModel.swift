@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-public struct MockIconScreenViewModel: IconScreenViewModel {
+public struct MockIconScreenViewModel: IconScreenViewModel, BaseViewModel {
     public let imageName: String = "exclamationmark.circle"
     public let title: GDSLocalisedString = "Example title text"
     public let body: GDSLocalisedString = "Example subtitle text string for testing purposes"

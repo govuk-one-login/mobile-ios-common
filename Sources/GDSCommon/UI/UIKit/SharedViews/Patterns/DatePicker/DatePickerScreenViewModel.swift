@@ -10,7 +10,7 @@ import UIKit
 /// include logging screen analytics or loading content from an endpoint for example.
 /// The `result` closure returns the selected date.
 @available(iOS 13.4, *)
-public protocol DatePickerScreenViewModel: BaseViewModel {
+public protocol DatePickerScreenViewModel {
     var title: GDSLocalisedString { get }
     var datePickerViewModel: DatePickerViewModel { get set }
     var datePickerFooter: String? { get }

@@ -26,15 +26,9 @@ public final class InstructionsWithImageViewController: BaseViewController {
     /// - Parameter viewModel: `InstructionsWithImageViewModel`
     public init(viewModel: InstructionsWithImageViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, nibName: "InstructionsWithImage", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "InstructionsWithImage", bundle: .module)
     }
 
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        viewModel.didAppear()
-    }
-    
     /// Title label: ``UILabel``
     @IBOutlet private var titleLabel: UILabel! {
         didSet {

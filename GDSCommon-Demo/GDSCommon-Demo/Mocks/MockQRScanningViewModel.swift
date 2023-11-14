@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-class MockQRScanningViewModel: QRScanningViewModel {
+class MockQRScanningViewModel: QRScanningViewModel, BaseViewModel {
     let title: String
     let instructionText: String
     let rightBarButtonTitle: GDSLocalisedString? = "right bar button"

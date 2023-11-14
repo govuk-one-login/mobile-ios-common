@@ -2,7 +2,7 @@ import Foundation
 @testable import GDSCommon
 
 @available(iOS 13.4, *)
-struct MockDatePickerScreenViewModel: DatePickerScreenViewModel {
+struct MockDatePickerScreenViewModel: DatePickerScreenViewModel, BaseViewModel {
     var title: GDSLocalisedString
     var datePickerViewModel: DatePickerViewModel
     var datePickerFooter: String? = "Example date picker footer"

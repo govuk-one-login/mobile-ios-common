@@ -23,7 +23,7 @@ public final class TextInputViewController<InputType>: BaseViewController, UITex
     
     public init(viewModel: any TextInputViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel, nibName: "TextInput", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "TextInput", bundle: .module)
     }
     
     public override func viewDidLoad() {
@@ -36,11 +36,6 @@ public final class TextInputViewController<InputType>: BaseViewController, UITex
         if let keyboardDoneButton = viewModel.textFieldViewModel.keyboardDoneButton {
             barButton(keyboardDoneButton)
         }
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.didAppear()
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

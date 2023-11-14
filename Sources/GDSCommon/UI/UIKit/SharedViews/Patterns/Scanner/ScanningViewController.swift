@@ -56,7 +56,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         self.captureDevice = captureDevice
         self.captureSession = captureSession
         self.previewLayer = captureSession.layer
-        super.init(viewModel: viewModel, nibName: "Scanner", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "Scanner", bundle: .module)
         self.barcodeRequest = requestType.init(completionHandler: detectedBarcode(_:_:))
     }
     

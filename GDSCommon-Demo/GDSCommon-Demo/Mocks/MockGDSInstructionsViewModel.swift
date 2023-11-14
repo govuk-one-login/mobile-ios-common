@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-struct MockGDSInstructionsViewModel: GDSInstructionsViewModel {
+struct MockGDSInstructionsViewModel: GDSInstructionsViewModel, BaseViewModel {
     var title: GDSLocalisedString = "This is the Instructions View"
     var body: String = "We can add a subtitle here to give some extra context"
     var rightBarButtonTitle: GDSLocalisedString? = "right bar button"

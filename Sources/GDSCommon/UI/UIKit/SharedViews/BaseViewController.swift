@@ -26,6 +26,11 @@ public class BaseViewController: UIViewController {
         }
     }
     
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel?.didAppear()
+    }
+    
     @objc private func dismissScreen() {
         self.dismiss(animated: true)
         

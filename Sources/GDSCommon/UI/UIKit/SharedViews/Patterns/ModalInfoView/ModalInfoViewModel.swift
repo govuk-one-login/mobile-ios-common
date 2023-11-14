@@ -8,7 +8,7 @@ import UIKit
 /// for any code that needs to be performed when the screen appears or is dismissed.
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
-public protocol ModalInfoViewModel: BaseViewModel {
+public protocol ModalInfoViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
 }
