@@ -128,7 +128,8 @@ loadResourceWithCallback() {
 
 Screen view controllers should generally inherit from ``BaseViewController`` instead of `UIViewController` unless the functionality of the screen needs to be intentionally different from standard screens.
 
-**To use:**
+#### To use:
+
 Once inheriting from ``BaseViewController`` and adding conformance to ``BaseViewModel`` to concrete view model, in the future do not add the following properties and methods to view model protocols:
 
 ```swift
@@ -141,14 +142,15 @@ Instead, when creating concrete implementations of view models, conform the conc
 
 As long as the view controller inherits from ``BaseViewController`` instead of `UIViewController`, these will be handled without any additional code.
 
-**Breaking change / migration**
+#### Breaking change / migration
+
 For screen patterns / view controllers in `GDSCommon` that have been migrated to inherit from ``BaseViewController``, concrete implementations of associated view models will need updating.
 
 To move to this new implementation, conform your concrete view models to ``BaseViewModel``. If there are any properties that are missing these should be added to conform to the protocol and the properties set accordingly.
 
 If there are other screens not within `GDSCommon`, it may be helpful to inherit from ``BaseViewController`` to gain the same benefits, but the time frame for rolling that out would be independent from the breaking changes introduced here and up to the individual code owners. The breaking changes described here are specifically relating to screens within `GDSCommon`.
 
-**Example**
+#### Example
 
 _BEFORE:_
 ```swift
