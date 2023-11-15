@@ -1,5 +1,9 @@
 import UIKit
 
+/// `BaseViewController` provides standard lifecycle functionality for other view controllers to inherit from
+/// The view controller is configured with a  `BaseViewModel`
+/// For the functionality of `BaseViewController` to work, the concrete implementation of
+/// view model must conform to `BaseViewModel`.
 public class BaseViewController: UIViewController {
     private let viewModel: BaseViewModel?
     init(viewModel: BaseViewModel?, nibName: String, bundle: Bundle) {
