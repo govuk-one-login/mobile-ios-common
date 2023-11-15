@@ -41,11 +41,6 @@ public class GDSInstructionsViewController: BaseViewController {
         primaryButton.isLoading = false
     }
     
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.didAppear()
-    }
-    
     /// Title label: `UILabel`
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
