@@ -30,6 +30,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         didSet {
             instructionsLabel.accessibilityIdentifier = "instructionsLabel"
             instructionsLabel.text = viewModel.instructionText
+            instructionsLabel.font = .init(style: .body, weight: .bold)
+            instructionsLabel.textColor = .white
         }
     }
     
