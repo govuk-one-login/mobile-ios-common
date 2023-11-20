@@ -49,6 +49,8 @@ final class ScanningViewControllerTests: XCTestCase {
     func test_instructionsLabel() throws {
         try XCTAssertNotNil(sut.instructionsLabel)
         try XCTAssertEqual(sut.instructionsLabel.text, "QR Scanning instruction area, we can instruct the user from here")
+        try XCTAssertEqual(sut.instructionsLabel.textColor, .white)
+        try XCTAssertEqual(sut.instructionsLabel.font, .init(style: .body, weight: .bold))
     }
     
     func test_didDismiss() {
