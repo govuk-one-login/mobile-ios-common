@@ -36,7 +36,6 @@ extension ScanOverlayViewTests {
     func testWillMoveToView() {
         parentView.addSubview(sut)
         
-        XCTAssertEqual(sut.overlayLayer.fillColor, UIColor.systemBackground.cgColor)
         XCTAssertEqual(sut.overlayLayer.fillRule, .evenOdd)
         XCTAssertEqual(sut.overlayLayer.opacity, 0.5)
         XCTAssertTrue(sut.layer.sublayers?.contains(sut.overlayLayer) ?? false)

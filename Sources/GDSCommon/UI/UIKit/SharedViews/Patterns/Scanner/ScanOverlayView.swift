@@ -24,7 +24,6 @@ final class ScanOverlayView: UIView {
     
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
-        overlayLayer.fillColor = UIColor.systemBackground.cgColor
         overlayLayer.fillRule = .evenOdd
         overlayLayer.opacity = 0.5
         layer.addSublayer(overlayLayer)
