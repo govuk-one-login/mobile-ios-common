@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21AB39DC2B142B5400A26268 /* ResultsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB39DB2B142B5400A26268 /* ResultsViewControllerTests.swift */; };
 		21D9929F2B13F4DA00F4982F /* MockResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D9929E2B13F4DA00F4982F /* MockResultsViewModel.swift */; };
 		2B0844032ABC79BB00188BA0 /* GDSCommon_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */; };
 		2B0844092ABC79C300188BA0 /* ModalInfoViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F72ABC797E00188BA0 /* ModalInfoViewControllerTests.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21AB39DB2B142B5400A26268 /* ResultsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerTests.swift; sourceTree = "<group>"; };
 		21D9929E2B13F4DA00F4982F /* MockResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResultsViewModel.swift; sourceTree = "<group>"; };
 		2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSInstructionsViewModel.swift; sourceTree = "<group>"; };
 		2B0843F52ABC797E00188BA0 /* GDSInstructionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSInstructionsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				2BB5C7882AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift */,
 				2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */,
 				3B61C6E02ACDC580001359F1 /* IntroViewControllerTests.swift */,
+				21AB39DB2B142B5400A26268 /* ResultsViewControllerTests.swift */,
 				96588BEB2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift */,
 			);
 			path = "GDSCommon-DemoTests";
@@ -377,6 +380,7 @@
 				7C5137792AD99F2300163E83 /* MockBarcodeObservation.swift in Sources */,
 				2B78F2FA2AD598FC003C3445 /* MockDialogPresenter.swift in Sources */,
 				3B61C6E12ACDC580001359F1 /* IntroViewControllerTests.swift in Sources */,
+				21AB39DC2B142B5400A26268 /* ResultsViewControllerTests.swift in Sources */,
 				2B08440B2ABC79C300188BA0 /* MockGDSInstructionsViewModel.swift in Sources */,
 				7CBC376B2ADB01C200572312 /* MockCaptureSession.swift in Sources */,
 				2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */,

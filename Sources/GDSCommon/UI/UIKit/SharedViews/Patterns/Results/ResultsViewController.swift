@@ -17,7 +17,7 @@ public final class ResultsViewController: UIViewController {
     
     @IBOutlet private var imageView: UIImageView! {
         didSet {
-            let font = UIFont(style: .largeTitle, weight: .light)
+            let font = UIFont(style: .largeTitle, weight: .medium)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
             let image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
             imageView.image = image
