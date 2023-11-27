@@ -54,7 +54,7 @@ public final class ResultsViewController: UIViewController {
         viewModel.didAppear()
     }
 
-    @IBAction func didTapDoneButton() {
+    @IBAction private func didTapDoneButton() {
         resultsButton.isLoading = true
         viewModel.resultsButtonViewModel.action()
         resultsButton.isLoading = false
