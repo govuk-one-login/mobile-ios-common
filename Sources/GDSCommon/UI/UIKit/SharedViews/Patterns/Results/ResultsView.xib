@@ -30,14 +30,17 @@
                             <rect key="frame" x="0.0" y="0.0" width="390" height="671"/>
                             <subviews>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="358" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="Wz5-yg-MJk">
-                                    <rect key="frame" x="16" y="8" width="358" height="243"/>
+                                    <rect key="frame" x="16" y="8" width="358" height="199.66666666666666"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fHe-hT-abJ">
-                                    <rect key="frame" x="16" y="276" width="358" height="19"/>
+                                    <rect key="frame" x="16" y="232.66666666666666" width="358" height="105.66666666666671"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="107" id="sVu-oC-pEA"/>
+                                    </constraints>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="lFg-3l-yK1" userLabel="Stack View_inner">
-                                    <rect key="frame" x="16" y="319.33333333333331" width="358" height="77"/>
+                                    <rect key="frame" x="16" y="362.66666666666669" width="358" height="77"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Example title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRz-6E-ghN">
                                             <rect key="frame" x="0.0" y="0.0" width="358" height="40.666666666666664"/>
@@ -49,7 +52,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Example body" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMl-uu-xee">
-                                            <rect key="frame" x="0.0" y="56.666666666666693" width="358" height="20.333333333333336"/>
+                                            <rect key="frame" x="0.0" y="56.666666666666636" width="358" height="20.333333333333336"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -57,7 +60,7 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="358" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="5XG-eY-Jfh">
-                                    <rect key="frame" x="16" y="420.33333333333331" width="358" height="242.66666666666669"/>
+                                    <rect key="frame" x="16" y="463.66666666666669" width="358" height="199.33333333333331"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                             </subviews>

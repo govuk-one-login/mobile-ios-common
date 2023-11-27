@@ -105,8 +105,11 @@ enum Screens: String, CaseIterable {
             let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {  navigationController.dismiss(animated: true) } dismissAction: {}
             return ScanningViewController(viewModel: viewModel)
         case .gdsResultsView:
-            return ResultsViewController()
-        case .gdsResultsViewModal
+            let viewModel = MockResultsViewModel(resultsButtonViewModel: mockButtonViewModel, dismissAction: { })
+            return ResultsViewController(viewModel: viewModel)
+        case .gdsResultsViewModal:
+            let viewModel = MockResultsViewModel(resultsButtonViewModel: mockButtonViewModel, dismissAction: { })
+            return ResultsViewController(viewModel: viewModel)
         }
     }
 }

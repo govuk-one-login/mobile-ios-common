@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21D9929F2B13F4DA00F4982F /* MockResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D9929E2B13F4DA00F4982F /* MockResultsViewModel.swift */; };
 		2B0844032ABC79BB00188BA0 /* GDSCommon_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */; };
 		2B0844092ABC79C300188BA0 /* ModalInfoViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F72ABC797E00188BA0 /* ModalInfoViewControllerTests.swift */; };
 		2B08440A2ABC79C300188BA0 /* GDSInstructionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F52ABC797E00188BA0 /* GDSInstructionsViewControllerTests.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21D9929E2B13F4DA00F4982F /* MockResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResultsViewModel.swift; sourceTree = "<group>"; };
 		2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSInstructionsViewModel.swift; sourceTree = "<group>"; };
 		2B0843F52ABC797E00188BA0 /* GDSInstructionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSInstructionsViewControllerTests.swift; sourceTree = "<group>"; };
 		2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsWithImageViewControllerTests.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */,
 				2BF197272ABDA0A000AC9620 /* Screens.swift */,
 				2BCBA1252ACDB408009ED436 /* MockQRScanningViewModel.swift */,
+				21D9929E2B13F4DA00F4982F /* MockResultsViewModel.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				96588BEA2AD06CE30035FF93 /* MockTextFieldViewModel.swift in Sources */,
 				96588BE62AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift in Sources */,
 				C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */,
+				21D9929F2B13F4DA00F4982F /* MockResultsViewModel.swift in Sources */,
 				2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */,
 				2BCBA1262ACDB408009ED436 /* MockQRScanningViewModel.swift in Sources */,
 				96588BE22AD057EE0035FF93 /* (null) in Sources */,

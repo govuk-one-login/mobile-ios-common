@@ -4,14 +4,13 @@ import UIKit
 public final class ResultsViewController: UIViewController {
     public override var nibName: String? { "ResultsView" }
     
-    private let viewModel: ResultsViewModel
+    public let viewModel: ResultsViewModel
 
     public init(viewModel: ResultsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: "ResultsView", bundle: .module)
     }
     
-    @available(*, unavailable, renamed: "init(coordinator:)")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
