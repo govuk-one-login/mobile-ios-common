@@ -5,15 +5,18 @@ final class ResultsViewControllerTests: XCTestCase {
     var viewModel: ResultsViewModel!
     var sut: ResultsViewController!
     
-    var dismissAction = false
-    var viewDidAppear = false
+    var screenDidAppear = false
+    var screenDidDismiss = false
     
     override func setUp() {
         super.setUp()
         
         viewModel = TestViewModel {
-            self.dismissAction = true
+            self.screenDidAppear = true
+        } dismissAction: {
+            self.screenDidDismiss = true
         }
+        
         sut = ResultsViewController(viewModel: viewModel)
     }
     
@@ -31,15 +34,20 @@ private struct TestViewModel: ResultsViewModel {
     let body: GDSLocalisedString? = "Results body"
     let resultsButtonViewModel: ButtonViewModel
     let dismissAction: () -> Void
+    let appearAction: () -> Void
     
-    init(dismissAction: @escaping () -> Void) {
+    init(appearAction: @escaping () -> Void,
+         dismissAction: @escaping () -> Void) {
         resultsButtonViewModel = MockButtonViewModel(title: "Results button title") {
             dismissAction()
         }
+        self.appearAction = appearAction
         self.dismissAction = dismissAction
     }
     
-    func didAppear() { }
+    func didAppear() {
+        appearAction()
+    }
     
     func didDismiss() {
         dismissAction()
@@ -47,6 +55,12 @@ private struct TestViewModel: ResultsViewModel {
 }
 
 extension ResultsViewControllerTests {
+    func testDidAppear() {
+        XCTAssertFalse(screenDidAppear)
+        sut.viewDidAppear(false)
+        XCTAssertTrue(screenDidAppear)
+    }
+    
     func test_labelContents() throws {
         XCTAssertEqual(sut.viewModel.image, "checkmark.circle")
         XCTAssertEqual(try sut.titleLabel.text, "Results title")
@@ -55,9 +69,9 @@ extension ResultsViewControllerTests {
     }
     
     func test_buttonAction() throws {
-        XCTAssertFalse(dismissAction)
+        XCTAssertFalse(screenDidDismiss)
         try sut.resultsButton.sendActions(for: .touchUpInside)
-        XCTAssertTrue(dismissAction)
+        XCTAssertTrue(screenDidDismiss)
     }
 }
 
