@@ -72,9 +72,7 @@ enum Screens: String, CaseIterable {
             view.isModalInPresentation = true
             return view
         case .gdsListOptions:
-            return ListOptionsViewController(viewModel: MockListViewModel(dismissAction: {
-                navigationController.popToRootViewController(animated: true)
-            }))
+            return ListOptionsViewController(popToRoot: popToRoot, navController: navigationController)
         case .gdsIntroView:
             let viewModel = MockIntroViewModel(introButtonViewModel: MockButtonViewModel.primary, rightBarButtonTitle: nil)
             return IntroViewController(viewModel: viewModel)

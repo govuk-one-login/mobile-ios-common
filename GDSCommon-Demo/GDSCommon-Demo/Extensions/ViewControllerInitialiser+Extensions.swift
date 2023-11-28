@@ -51,3 +51,12 @@ extension ResultsViewController {
         self.init(viewModel: viewModel)
     }
 }
+
+extension ListOptionsViewController {
+    convenience init(popToRoot: @escaping (UINavigationController) -> Void, navController: UINavigationController) {
+        let viewModel = MockListViewModel(dismissAction: {
+            popToRoot(navController)
+        })
+        self.init(viewModel: viewModel)
+    }
+}
