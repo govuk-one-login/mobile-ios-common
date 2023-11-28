@@ -6,7 +6,4 @@ public protocol ResultsViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString? { get }
     var resultsButtonViewModel: ButtonViewModel { get }
-    
-    func didAppear()
-    func didDismiss()
 }
