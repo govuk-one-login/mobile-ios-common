@@ -7,7 +7,7 @@ struct MockButtonViewModel: ButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
 }
-  
+
 struct MockButtonIconViewModel: ButtonIconViewModel {
     let iconName: String
     let symbolPosition: SymbolPosition
@@ -26,4 +26,3 @@ extension MockButtonViewModel {
                             action: {})
     }
 }
-
