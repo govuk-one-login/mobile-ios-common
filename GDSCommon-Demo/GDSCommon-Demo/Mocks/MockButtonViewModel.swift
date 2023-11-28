@@ -11,11 +11,6 @@ struct MockButtonViewModel: ButtonViewModel {
 struct MockButtonIconViewModel: ButtonIconViewModel {
     let iconName: String
     let symbolPosition: SymbolPosition
-    
-    init(iconName: String, symbolPosition: SymbolPosition) {
-        self.iconName = iconName
-        self.symbolPosition = symbolPosition
-    }
 }
 
 extension MockButtonViewModel {

@@ -32,7 +32,7 @@ struct MockListViewModel: ListOptionsViewModel, BaseViewModel {
         self.dismissAction = dismissAction ?? {}
         
         buttonViewModel = MockButtonViewModel(title: "Action button",
-                                              icon: nil, 
+                                              icon: nil,
                                               shouldLoadOnTap: false,
                                               action: dismissAction ?? {})
     }

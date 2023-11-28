@@ -14,7 +14,7 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
     var didTapPrimaryButton = false
     var didTapSecondaryButton = false
     var didTapWarningButton = false
-    
+
     override func setUp() {
         super.setUp()
         
@@ -42,13 +42,12 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
         
         attachToWindow(viewController: sut)
     }
-    
+
     override func tearDown() {
         buttonViewModel = nil
         warningButtonViewModel = nil
         viewModel = nil
         sut = nil
-    
         super.tearDown()
     }
 }
@@ -68,9 +67,9 @@ extension InstructionsWithImageViewControllerTests {
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
         XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "close")
-
+        
         XCTAssertFalse(screenDidDismiss)
-
+        
         _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
         XCTAssertTrue(screenDidDismiss)
     }
@@ -98,7 +97,7 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         XCTAssertEqual(try sut.primaryButton.icon, viewModel.primaryButtonViewModel.icon?.iconName)
         XCTAssertEqual(try sut.primaryButton.symbolPosition, viewModel.primaryButtonViewModel.icon?.symbolPosition)
-
+        
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTapPrimaryButton)
     }
