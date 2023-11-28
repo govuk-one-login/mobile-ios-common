@@ -1,19 +1,19 @@
 import GDSCommon
 
-public struct MockOptionViewModel1: OptionViewModel {
-    public let title: GDSLocalisedString = "Example title text 1"
-    public let subtitle: GDSLocalisedString = "Example subtitle text 1"
-    public let buttonViewModel: ButtonViewModel = MockOptionButtonViewModel()
+struct MockOptionViewModel1: OptionViewModel {
+    let title: GDSLocalisedString = "Example title text 1"
+    let subtitle: GDSLocalisedString = "Example subtitle text 1"
+    let buttonViewModel: ButtonViewModel = MockOptionButtonViewModel()
     
-    public init() { }
+    init() { }
 }
 
-public struct MockOptionViewModel2: OptionViewModel {
-    public let title: GDSLocalisedString = "Example title text 2"
-    public let subtitle: GDSLocalisedString = "Example subtitle text 2"
-    public let buttonViewModel: ButtonViewModel = MockOptionButtonViewModel()
+struct MockOptionViewModel2: OptionViewModel {
+    let title: GDSLocalisedString = "Example title text 2"
+    let subtitle: GDSLocalisedString = "Example subtitle text 2"
+    let buttonViewModel: ButtonViewModel = MockOptionButtonViewModel()
     
-    public init() { }
+    init() { }
 }
 
 struct MockOptionButtonViewModel: ButtonViewModel {

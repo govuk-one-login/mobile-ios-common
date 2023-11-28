@@ -3,13 +3,13 @@ import Foundation
 
 @available(iOS 13.4, *)
 struct MockDatePickerScreenViewModel: DatePickerScreenViewModel, BaseViewModel {
-    var title: GDSLocalisedString
+    let title: GDSLocalisedString
     var datePickerViewModel: DatePickerViewModel
-    var datePickerFooter: String? = "Example date picker footer"
-    var buttonViewModel: ButtonViewModel
-    var rightBarButtonTitle: GDSLocalisedString? = "Right bar button"
-    var backButtonIsHidden: Bool = false
-    var result: (Date) -> Void
+    let datePickerFooter: String? = "Example date picker footer"
+    let buttonViewModel: ButtonViewModel
+    let rightBarButtonTitle: GDSLocalisedString? = "Right bar button"
+    let backButtonIsHidden: Bool = false
+    let result: (Date) -> Void
     
     let appearAction: () -> Void
     let dismissAction: () -> Void

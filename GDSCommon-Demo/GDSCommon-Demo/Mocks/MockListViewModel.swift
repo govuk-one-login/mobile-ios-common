@@ -8,7 +8,7 @@ struct MockListViewModel: ListOptionsViewModel, BaseViewModel {
     let buttonViewModel: ButtonViewModel
     let resultAction: (GDSLocalisedString) -> Void
     let rightBarButtonTitle: GDSLocalisedString? = "Right bar button"
-    var backButtonIsHidden: Bool = false
+    let backButtonIsHidden: Bool = false
     
     let screenView: () -> Void
     let dismissAction: () -> Void

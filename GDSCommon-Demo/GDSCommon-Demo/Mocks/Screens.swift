@@ -76,7 +76,7 @@ enum Screens: String, CaseIterable {
                 navigationController.popToRootViewController(animated: true)
             }))
         case .gdsIntroView:
-            let viewModel = MockIntroViewModel(introButtonViewModel: MockButtonViewModel.primary)
+            let viewModel = MockIntroViewModel(introButtonViewModel: MockButtonViewModel.primary, rightBarButtonTitle: nil)
             return IntroViewController(viewModel: viewModel)
         case .gdsDatePicker:
             return DatePickerScreenViewController()
