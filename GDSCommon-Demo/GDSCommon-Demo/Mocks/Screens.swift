@@ -40,18 +40,6 @@ enum Screens: String, CaseIterable {
         }
     }
     
-    private var mockButtonViewModel: ButtonViewModel {
-        MockButtonViewModel(title: "Action Button", shouldLoadOnTap: false, action: {})
-    }
-    
-    private var mockSecondaryButtonViewModel: ButtonViewModel {
-        MockButtonViewModel(title: "Secondary Button",
-                            icon: MockButtonIconViewModel(iconName: "qrcode",
-                                                          symbolPosition: .beforeTitle),
-                            shouldLoadOnTap: false,
-                            action: {})
-    }
-    
     private var dialogPresenter: DialogPresenter {
         DialogView<CheckmarkDialogAccessoryView>(title: "QR Scan Success",
                                                  isLoading: false)
@@ -60,20 +48,16 @@ enum Screens: String, CaseIterable {
     func create(in navigationController: UINavigationController) -> UIViewController {
         switch self {
         case .gdsInstructions:
-            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: mockButtonViewModel,
-                                                         secondaryButtonViewModel: mockSecondaryButtonViewModel) {
-                navigationController.popToRootViewController(animated: true)
-            }
-            return GDSInstructionsViewController(viewModel: viewModel)
+            return GDSInstructionsViewController(popToRoot: popToRoot, navController: navigationController)
         case .gdsInstructionsWithImage:
-            let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
-                                                               primaryButtonViewModel: mockButtonViewModel,
+            let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel.primary,
+                                                               primaryButtonViewModel: MockButtonViewModel.primary,
                                                                screenView: {}, dismissAction: {})
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsInstructionsWithImageModally:
-            let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: mockButtonViewModel,
-                                                               primaryButtonViewModel: mockButtonViewModel,
-                                                               secondaryButtonViewModel: mockSecondaryButtonViewModel,
+            let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel.primary,
+                                                               primaryButtonViewModel: MockButtonViewModel.primary,
+                                                               secondaryButtonViewModel: MockButtonViewModel.secondaryQR,
                                                                rightBarButtonTitle: "Close",
                                                                screenView: {}, dismissAction: {})
             return InstructionsWithImageViewController(viewModel: viewModel)
@@ -92,7 +76,7 @@ enum Screens: String, CaseIterable {
                 navigationController.popToRootViewController(animated: true)
             }))
         case .gdsIntroView:
-            let viewModel = MockIntroViewModel(introButtonViewModel: mockButtonViewModel)
+            let viewModel = MockIntroViewModel(introButtonViewModel: MockButtonViewModel.primary)
             return IntroViewController(viewModel: viewModel)
         case .gdsDatePicker:
             return DatePickerScreenViewController()
@@ -107,10 +91,11 @@ enum Screens: String, CaseIterable {
             let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {  navigationController.dismiss(animated: true) } dismissAction: {}
             return ScanningViewController(viewModel: viewModel)
         case .gdsResultsView, .gdsResultsViewModal:
-            let viewModel = MockResultsViewModel(resultsButtonViewModel: mockButtonViewModel, rightBarButtonTitle: "right bar button") {
-                navigationController.popViewController(animated: true)
-            }
-            return ResultsViewController(viewModel: viewModel)
+            return ResultsViewController(popToRoot: popToRoot, navController: navigationController)
         }
+    }
+    
+    func popToRoot(_ navigationController: UINavigationController) {
+        navigationController.popViewController(animated: true)
     }
 }

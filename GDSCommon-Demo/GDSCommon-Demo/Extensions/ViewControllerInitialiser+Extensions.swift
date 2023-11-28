@@ -9,9 +9,7 @@ extension DatePickerScreenViewController {
         
         let viewModel = MockDatePickerScreenViewModel(title: "Date picker screen",
                                                       datePickerViewModel: datePickerVM,
-                                                      buttonViewModel: MockButtonViewModel(title: "Action Button",
-                                                                                           shouldLoadOnTap: false,
-                                                                                           action: {}))
+                                                      buttonViewModel: MockButtonViewModel.primary)
         
         self.init(viewModel: viewModel)
     }
@@ -34,9 +32,11 @@ extension TextInputViewController<Double> {
 }
 
 extension GDSInstructionsViewController {
-    convenience init() {
-        let viewModel = MockGDSInstructionsViewModel(buttonViewModel: MockButtonViewModel(title: "Button title", action: {}), dismissAction: {})
-        
+    convenience init(popToRoot: @escaping (UINavigationController) -> Void, navController: UINavigationController) {
+        let viewModel = MockGDSInstructionsViewModel(buttonViewModel: MockButtonViewModel.primary,
+                                                     secondaryButtonViewModel: MockButtonViewModel.secondaryQR) {
+            popToRoot(navController)
+        }
         self.init(viewModel: viewModel)
     }
 }
@@ -45,6 +45,15 @@ extension IconScreenViewController {
     convenience init() {
         let viewModel = MockIconScreenViewModel()
         
+        self.init(viewModel: viewModel)
+    }
+}
+
+extension ResultsViewController {
+    convenience init(popToRoot: @escaping (UINavigationController) -> Void, navController: UINavigationController) {
+        let viewModel = MockResultsViewModel(resultsButtonViewModel: MockButtonViewModel.primary, rightBarButtonTitle: "right bar button") {
+            popToRoot(navController)
+        }
         self.init(viewModel: viewModel)
     }
 }
