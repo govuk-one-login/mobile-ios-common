@@ -50,7 +50,9 @@ public final class ResultsViewController: BaseViewController {
     @IBAction private func didTapDoneButton() {
         resultsButton.isLoading = true
         viewModel.resultsButtonViewModel.action()
-        viewModel.didDismiss()
+        if let viewModel = viewModel as? BaseViewModel {
+            viewModel.didDismiss()
+        }
         resultsButton.isLoading = false
     }
 }
