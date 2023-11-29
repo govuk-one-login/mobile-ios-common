@@ -44,9 +44,13 @@ extension IconScreenViewController {
 }
 
 extension ResultsViewController {
-    convenience init(popToRoot: @escaping (UINavigationController) -> Void, navController: UINavigationController) {
+    convenience init(popToRoot: ((UINavigationController) -> Void)?, navController: UINavigationController) {
         let viewModel = MockResultsViewModel(resultsButtonViewModel: MockButtonViewModel.primary, rightBarButtonTitle: "right bar button") {
-            popToRoot(navController)
+            if let popToRoot {
+                popToRoot(navController)
+            } else {
+                navController.dismiss(animated: true)
+            }
         }
         self.init(viewModel: viewModel)
     }

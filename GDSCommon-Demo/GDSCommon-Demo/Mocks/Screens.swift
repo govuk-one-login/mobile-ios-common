@@ -89,7 +89,7 @@ enum Screens: String, CaseIterable {
             let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {  navigationController.dismiss(animated: true) } dismissAction: {}
             return ScanningViewController(viewModel: viewModel)
         case .gdsResultsView, .gdsResultsViewModal:
-            return ResultsViewController(popToRoot: popToRoot, navController: navigationController)
+            return ResultsViewController(popToRoot: self == .gdsResultsView ? popToRoot : nil, navController: navigationController)
         }
     }
     
