@@ -38,9 +38,7 @@ private struct TestViewModel: ResultsViewModel {
     
     init(appearAction: @escaping () -> Void,
          dismissAction: @escaping () -> Void) {
-        resultsButtonViewModel = MockButtonViewModel(title: "Results button title") {
-            dismissAction()
-        }
+        resultsButtonViewModel = MockButtonViewModel(title: "Results button title") { }
         self.appearAction = appearAction
         self.dismissAction = dismissAction
     }
