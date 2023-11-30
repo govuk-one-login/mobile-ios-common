@@ -142,55 +142,25 @@ Instead, when creating concrete implementations of view models, conform the conc
 
 As long as the view controller inherits from ``BaseViewController`` instead of `UIViewController`, these will be handled without any additional code.
 
-#### Breaking change / migration
-
-For screen patterns / view controllers in `GDSCommon` that have been migrated to inherit from ``BaseViewController``, concrete implementations of associated view models will need updating.
-
-To move to this new implementation, conform your concrete view models to ``BaseViewModel``. If there are any properties that are missing these should be added to conform to the protocol and the properties set accordingly.
-
-If there are other screens not within `GDSCommon`, it may be helpful to inherit from ``BaseViewController`` to gain the same benefits, but the time frame for rolling that out would be independent from the breaking changes introduced here and up to the individual code owners. The breaking changes described here are specifically relating to screens within `GDSCommon`.
-
 #### Example
 
-_BEFORE:_
 ```swift
-public final class ModalInfoViewController: UIViewController {
+public final class ExampleViewController: BaseViewController {
 ...
-    public init(viewModel: ModalInfoViewModel) {
+    public init(viewModel: ExampleInfoViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "ModalInfoView", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ExampleInfoView", bundle: .module)
     }
 ...
 }
 
-public protocol ModalInfoViewModel {
-    var title: GDSLocalisedString { get }
-    var body: GDSLocalisedString { get }
-    var rightBarButtonTitle: GDSLocalisedString { get }
-
-    func didAppear()
-    func didDismiss()
-}
-```
-
-_AFTER:_
-```swift
-public final class ModalInfoViewController: BaseViewController {
-...
-    public init(viewModel: ModalInfoViewModel) {
-        self.viewModel = viewModel
-        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ModalInfoView", bundle: .module)
-    }
-...
-}
-
-public protocol ModalInfoViewModel {
+public protocol ExampleInfoViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
 }
 
 // concrete view model within app:
-struct ConcreteModalInfoViewModel: ModalInfoViewModel, BaseViewModel {
+struct ConcreteModalInfoViewModel: ExampleInfoViewModel, BaseViewModel {
     var title: GDSLocalisedString  = "title"
     var body: GDSLocalisedString = "body"
     var rightBarButtonTitle: GDSLocalisedString = "right bar button"
