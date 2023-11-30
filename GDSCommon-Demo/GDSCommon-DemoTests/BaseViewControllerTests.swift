@@ -26,7 +26,6 @@ final class BaseViewControllerTests: XCTestCase {
 
 extension BaseViewControllerTests {
     func test_labelContents() throws {
-        dump(sut)
         sut.beginAppearanceTransition(true, animated: false)
         sut.viewDidAppear(false)
         sut.endAppearanceTransition()
