@@ -23,6 +23,8 @@ final class BaseViewControllerTests: XCTestCase {
     override func tearDown() {
         viewModel = nil
         sut = nil
+        didAppear = nil
+        didDismiss = nil
         
         super.tearDown()
     }
