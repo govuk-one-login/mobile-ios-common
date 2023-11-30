@@ -6,14 +6,14 @@ import UIKit
 /// view model must conform to `BaseViewModel`.
 /// Screen view controllers should generally inherit from ``BaseViewController`` instead of `UIViewController`
 /// unless the functionality of the screen needs to be intentionally different from standard screens.
-public class BaseViewController: UIViewController {
+open class BaseViewController: UIViewController {
     private let viewModel: BaseViewModel?
     init(viewModel: BaseViewModel?, nibName: String, bundle: Bundle) {
         self.viewModel = viewModel
         super.init(nibName: nibName, bundle: bundle)
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
