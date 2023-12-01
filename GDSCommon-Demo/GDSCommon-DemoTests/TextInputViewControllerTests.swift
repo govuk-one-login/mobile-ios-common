@@ -25,7 +25,7 @@ final class TextInputViewControllerTests: XCTestCase {
         
         let textFieldViewModel = MockTextFieldViewModel<InputType>()
         
-        let viewModel = MockTextInputViewModel<InputType>(textFieldViewModel: textFieldViewModel) { result in
+        let viewModel = MockTextInputViewModel<InputType> { result in
             self.didSetResult = [result]
         } appearAction: {
             self.screenDidAppear = true

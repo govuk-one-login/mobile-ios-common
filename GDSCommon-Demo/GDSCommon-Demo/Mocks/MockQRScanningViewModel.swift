@@ -1,10 +1,11 @@
 import GDSCommon
 import UIKit
 
-class MockQRScanningViewModel: QRScanningViewModel {
+class MockQRScanningViewModel: QRScanningViewModel, BaseViewModel {
     let title: String
     let instructionText: String
     let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
+    var backButtonIsHidden: Bool = false
     
     let dialogPresenter: DialogPresenter
     let onScan: () -> Void
@@ -37,6 +38,8 @@ class MockQRScanningViewModel: QRScanningViewModel {
                                       title: "QR Code Scanned")
         onScan()
     }
+    
+    func didAppear() { }
     
     func didDismiss() {
         dismissAction()

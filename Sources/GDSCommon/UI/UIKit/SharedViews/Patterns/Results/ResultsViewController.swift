@@ -1,14 +1,14 @@
 import UIKit
 
 /// View controller for `ResultsView` screen.
-public final class ResultsViewController: UIViewController {
+public final class ResultsViewController: BaseViewController {
     public override var nibName: String? { "ResultsView" }
     
     public let viewModel: ResultsViewModel
 
     public init(viewModel: ResultsViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "ResultsView", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ResultsView", bundle: .module)
     }
     
     required init?(coder: NSCoder) {
@@ -46,16 +46,13 @@ public final class ResultsViewController: UIViewController {
             resultsButton.accessibilityIdentifier = "results-button"
         }
     }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.didAppear()
-    }
 
     @IBAction private func didTapDoneButton() {
         resultsButton.isLoading = true
         viewModel.resultsButtonViewModel.action()
-        viewModel.didDismiss()
+        if let viewModel = viewModel as? BaseViewModel {
+            viewModel.didDismiss()
+        }
         resultsButton.isLoading = false
     }
 }

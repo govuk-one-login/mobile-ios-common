@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel {
+class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel, BaseViewModel {
     var title: GDSLocalisedString
     var body: NSAttributedString
     var image: UIImage
@@ -9,6 +9,7 @@ class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel {
     var primaryButtonViewModel: ButtonViewModel
     var secondaryButtonViewModel: ButtonViewModel?
     var rightBarButtonTitle: GDSLocalisedString?
+    var backButtonIsHidden: Bool = false
 
     let screenView: () -> Void
     let dismissAction: () -> Void

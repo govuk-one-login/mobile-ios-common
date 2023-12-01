@@ -12,7 +12,7 @@ import UIKit
 /// in turn within a `UIScrollView`. The `primaryButton` is within a
 /// `UIStackView` constrained to the bottom of the screen. This is the main
 /// Call To Action (CTA) on this screen.
-public final class InstructionsWithImageViewController: UIViewController {
+public final class InstructionsWithImageViewController: BaseViewController {
     public override var nibName: String? { "InstructionsWithImage" }
     
     public let viewModel: InstructionsWithImageViewModel
@@ -26,27 +26,9 @@ public final class InstructionsWithImageViewController: UIViewController {
     /// - Parameter viewModel: `InstructionsWithImageViewModel`
     public init(viewModel: InstructionsWithImageViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "InstructionsWithImage", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "InstructionsWithImage", bundle: .module)
     }
-    
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
 
-        if viewModel.rightBarButtonTitle != nil {
-            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(dismissScreen))
-        }
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        viewModel.didAppear()
-    }
-    
     /// Title label: ``UILabel``
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
@@ -138,11 +120,5 @@ public final class InstructionsWithImageViewController: UIViewController {
         if let buttonViewModel = viewModel.secondaryButtonViewModel {
             buttonViewModel.action()
         }
-    }
-    
-    @objc private func dismissScreen() {
-        self.dismiss(animated: true)
-        
-        viewModel.didDismiss()
     }
 }

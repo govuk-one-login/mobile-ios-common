@@ -14,14 +14,13 @@ import UIKit
 /// The action can be customised by configuring the `didDismiss` method.
 /// `footerLabel` is configured separately from the `UITableView` to address some
 /// dynamic type issues with multi-line footers.
-public final class ListOptionsViewController: UIViewController {
+public final class ListOptionsViewController: BaseViewController {
     public override var nibName: String? { "ListOptions" }
     public let viewModel: ListOptionsViewModel
-    public var hideBackButton: Bool = false
 
     public init(viewModel: ListOptionsViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "ListOptions", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ListOptions", bundle: .module)
     }
     
     required init?(coder: NSCoder) {
@@ -35,31 +34,18 @@ public final class ListOptionsViewController: UIViewController {
         tableViewList.dataSource = self
         tableViewList.delegate = self
         tableViewList.isScrollEnabled = false
-        setBackButtonTitle(isHidden: hideBackButton)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableViewList.redraw()
-        
-        if viewModel.rightBarButtonTitle != nil {
-            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(dismissScreen))
-        }
     }
     
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         tableViewList.redraw()
     }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.didAppear()
-    }
-    
+
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
@@ -108,12 +94,6 @@ public final class ListOptionsViewController: UIViewController {
         
         viewModel.resultAction(cell.gdsLocalisedString)
         viewModel.buttonViewModel.action()
-    }
-    
-    @objc private func dismissScreen() {
-        self.dismiss(animated: true)
-        
-        viewModel.didDismiss()
     }
 }
 

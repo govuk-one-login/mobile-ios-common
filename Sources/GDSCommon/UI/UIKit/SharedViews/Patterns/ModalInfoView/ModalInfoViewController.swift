@@ -8,7 +8,7 @@ import UIKit
 ///   with a title and body to present the information.
 ///   There is also configuration for a right `UIBarButtonItem` with an action
 ///   configurable in the `dismissModal()` method in the viewModel.
-public final class ModalInfoViewController: UIViewController {
+public final class ModalInfoViewController: BaseViewController {
     public override var nibName: String? { "ModalInfoView" }
     
     public let viewModel: ModalInfoViewModel
@@ -18,26 +18,11 @@ public final class ModalInfoViewController: UIViewController {
     /// - Parameter viewModel: `ModalInfoViewModel`
     public init(viewModel: ModalInfoViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "ModalInfoView", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ModalInfoView", bundle: .module)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle.value,
-                                                       style: .done,
-                                                       target: self,
-                                                       action: #selector(dismissModal))
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        viewModel.didAppear()
     }
     
     @IBOutlet private var titleLabel: UILabel! {
@@ -58,11 +43,5 @@ public final class ModalInfoViewController: UIViewController {
             bodyLabel.textColor = .gdsGrey
             bodyLabel.accessibilityIdentifier = "bodyLabel"
         }
-    }
-    
-    @objc private func dismissModal() {
-        self.dismiss(animated: true)
-        
-        viewModel.didDismiss()
     }
 }

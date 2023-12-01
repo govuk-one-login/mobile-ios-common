@@ -8,13 +8,9 @@ public protocol TextInputViewModel {
     var title: GDSLocalisedString { get }
     var textFieldFooter: String? { get }
     var buttonViewModel: ButtonViewModel { get }
-    var rightBarButtonTitle: GDSLocalisedString? { get }
     var textFieldViewModel: TextFieldViewModel { get }
     
     var result: (InputType) -> Void { get }
-    
-    func didAppear()
-    func didDismiss()
 }
 
 extension TextInputViewModel {

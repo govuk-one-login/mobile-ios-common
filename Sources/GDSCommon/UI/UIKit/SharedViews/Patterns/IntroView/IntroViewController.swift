@@ -10,14 +10,14 @@ import UIKit
 /// - Back button via setting the `hideBackButton` boolean property on the view controller
 /// The `viewWillAppear` lifecycle event triggers the `didAppear` method in the viewModel.
 /// The `introButton`'s action is set from the ``ButtonViewModel`` in the viewModel.
-public final class IntroViewController: UIViewController {
+public final class IntroViewController: BaseViewController {
     public override var nibName: String? { "IntroView" }
     
     private let viewModel: IntroViewModel
 
     public init(viewModel: IntroViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "IntroView", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "IntroView", bundle: .module)
     }
     
     @available(*, unavailable, renamed: "init(coordinator:)")
@@ -52,13 +52,6 @@ public final class IntroViewController: UIViewController {
             introButton.setTitle(viewModel.introButtonViewModel.title, for: .normal)
             introButton.accessibilityIdentifier = "intro-button"
         }
-    }
-    
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        setBackButtonTitle()
-        viewModel.didAppear()
     }
 
     @IBAction private func didTapContinueButton() {

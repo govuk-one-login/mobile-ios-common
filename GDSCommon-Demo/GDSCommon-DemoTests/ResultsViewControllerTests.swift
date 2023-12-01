@@ -28,11 +28,14 @@ final class ResultsViewControllerTests: XCTestCase {
     }
 }
 
-private struct TestViewModel: ResultsViewModel {
+private struct TestViewModel: ResultsViewModel, BaseViewModel {
     let image: String = "checkmark.circle"
     let title: GDSLocalisedString = "Results title"
     let body: GDSLocalisedString? = "Results body"
     let resultsButtonViewModel: ButtonViewModel
+    var rightBarButtonTitle: GDSLocalisedString? = "right bar button"
+    var backButtonIsHidden: Bool = true
+    
     let dismissAction: () -> Void
     let appearAction: () -> Void
     
@@ -55,7 +58,8 @@ private struct TestViewModel: ResultsViewModel {
 extension ResultsViewControllerTests {
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
-        sut.viewDidAppear(false)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
         XCTAssertTrue(screenDidAppear)
     }
     

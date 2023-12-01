@@ -3,12 +3,12 @@ import UIKit
 
 struct MockTextFieldViewModel<InputType>: TextFieldViewModel {
     typealias InputType = Bool
-    var keyboardType: UIKeyboardType = .default
-    var placeholder: String? = "Placeholder"
-    var keyboardDoneButton: String? = "done button"
+    let keyboardType: UIKeyboardType = .default
+    let placeholder: String? = "Placeholder"
+    let keyboardDoneButton: String? = "done button"
     
-    var shouldValidate = true
-    var result = false
+    let shouldValidate = true
+    let result = false
     
     func validator(existingString: String?, range: NSRange, replacementString: String) -> Bool {
         shouldValidate

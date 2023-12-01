@@ -14,7 +14,7 @@ import Vision
 ///
 ///  The `instructionsLabel` and `cameraView` are within `view`. The view controller adds the `childView`
 
-public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSession>: UIViewController,
+public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSession>: BaseViewController,
                                                                                      AVCaptureVideoDataOutputSampleBufferDelegate {
     private let captureDevice: any CaptureDevice.Type
     let captureSession: CaptureSession
@@ -56,7 +56,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         self.captureDevice = captureDevice
         self.captureSession = captureSession
         self.previewLayer = captureSession.layer
-        super.init(nibName: "Scanner", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "Scanner", bundle: .module)
         self.barcodeRequest = requestType.init(completionHandler: detectedBarcode(_:_:))
     }
     
@@ -80,13 +80,6 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startAnimation()
-        
-        if viewModel.rightBarButtonTitle != nil {
-            self.navigationItem.rightBarButtonItem = .init(title: viewModel.rightBarButtonTitle?.value,
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(dismissScreen))
-        }
     }
     
     private func updateRegionOfInterest() {
@@ -144,12 +137,6 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         } catch {
             preconditionFailure("Error with capturing output")
         }
-    }
-    
-    @objc private func dismissScreen() {
-        self.dismiss(animated: true)
-        
-        viewModel.didDismiss()
     }
 }
 

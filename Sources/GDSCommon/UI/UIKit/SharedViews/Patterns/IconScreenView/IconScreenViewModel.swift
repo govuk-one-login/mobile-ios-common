@@ -15,6 +15,4 @@ public protocol IconScreenViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
     var childViews: [UIView] { get }
-    
-    func didAppear()
 }

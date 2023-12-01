@@ -9,7 +9,7 @@ import UIKit
 /// This screen allows for additional subviews to be added below a top stack view
 /// containing an icon, title and subtitle.
 /// Typically the subviews would be further `UIStackView`s, a good implementation of which sits within this same directory, `OptionView`
-public final class IconScreenViewController: UIViewController {
+public final class IconScreenViewController: BaseViewController {
     public override var nibName: String? { "IconScreenView" }
     
     public let viewModel: IconScreenViewModel
@@ -21,16 +21,9 @@ public final class IconScreenViewController: UIViewController {
     /// Initialiser for the `IconScreenView` view controller.
     /// Requires a single parameter.
     /// - Parameter viewModel: `IconScreenViewModel`
-    public init(viewModel: IconScreenViewModel,
-                hidesBackButton: Bool = false) {
+    public init(viewModel: IconScreenViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: "IconScreenView", bundle: .module)
-        self.navigationItem.hidesBackButton = hidesBackButton
-    }
-
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.didAppear()
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "IconScreenView", bundle: .module)
     }
     
     /// Image view: ``UIImageView``

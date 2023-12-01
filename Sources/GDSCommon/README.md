@@ -122,6 +122,54 @@ loadResourceWithCallback() {
 
 ## Patterns
 
+### BaseViewController
+
+``BaseViewController`` inherits from `UIViewController`. ``BaseViewController`` includes the repetitive code that all screens should have to avoid repetition and reduce risk of missing important functionality and to make it easier to amend, or fix defects if they arise.
+
+Screen view controllers should generally inherit from ``BaseViewController`` instead of `UIViewController` unless the functionality of the screen needs to be intentionally different from standard screens.
+
+#### To use:
+
+Once inheriting from ``BaseViewController`` and adding conformance to ``BaseViewModel`` to concrete view model, in the future do not add the following properties and methods to view model protocols:
+
+```swift
+var rightBarButtonTitle: GDSLocalisedString? { get }
+var backButtonIsHidden: Bool { get }
+func didAppear()
+func didDismiss()
+```
+Instead, when creating concrete implementations of view models, conform the concrete implementations to the view model protocol _and_ to the ``BaseViewModel`` protocol. ``BaseViewModel`` includes the above properties and methods.
+
+As long as the view controller inherits from ``BaseViewController`` instead of `UIViewController`, these will be handled without any additional code.
+
+#### Example
+
+```swift
+public final class ExampleViewController: BaseViewController {
+...
+    public init(viewModel: ExampleInfoViewModel) {
+        self.viewModel = viewModel
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ExampleInfoView", bundle: .module)
+    }
+...
+}
+
+public protocol ExampleInfoViewModel {
+    var title: GDSLocalisedString { get }
+    var body: GDSLocalisedString { get }
+}
+
+// concrete view model within app:
+struct ConcreteModalInfoViewModel: ExampleInfoViewModel, BaseViewModel {
+    var title: GDSLocalisedString  = "title"
+    var body: GDSLocalisedString = "body"
+    var rightBarButtonTitle: GDSLocalisedString = "right bar button"
+
+    func didAppear() { }
+    func didDismiss() { }
+}
+```
+
 ### GDSInstructions
 This screen includes the following views:
 - `titleLabel` (type: `UILabel`)
