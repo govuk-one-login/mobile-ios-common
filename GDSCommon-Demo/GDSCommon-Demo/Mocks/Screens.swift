@@ -26,6 +26,7 @@ enum Screens: String, CaseIterable {
     case gdsQRCodeScannerModal = "QR Scanner (Modal)"
     case gdsResultsView = "Results View"
     case gdsResultsViewModal = "Results View (Modal)"
+    case gdsErrorView = "Error View"
     
     var isModal: Bool {
         switch self {
@@ -90,6 +91,9 @@ enum Screens: String, CaseIterable {
             return ScanningViewController(viewModel: viewModel)
         case .gdsResultsView, .gdsResultsViewModal:
             return ResultsViewController(popToRoot: self == .gdsResultsView ? popToRoot : nil, navController: navigationController)
+        case .gdsErrorView:
+            let viewModel = MockErrorViewModel()
+            return ErrorViewController(viewModel: viewModel)
         }
     }
     
