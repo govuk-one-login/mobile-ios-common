@@ -15,10 +15,48 @@ public final class ErrorViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBOutlet private var imageView: UIImageView! {
+    @IBOutlet private var errorImageView: UIImageView! {
         didSet {
-            imageView.image = viewModel.image
-            imageView.accessibilityIdentifier = "error-image"
+            errorImageView.image = viewModel.image
+            errorImageView.accessibilityIdentifier = "error-image"
+        }
+    }
+    
+    @IBOutlet private var errorTitle: UILabel! {
+        didSet {
+            errorTitle.font = .init(style: .largeTitle, weight: .bold, design: .default)
+            errorTitle.text = viewModel.title.value
+            errorTitle.accessibilityIdentifier = "error-title"
+        }
+    }
+    
+    @IBOutlet private var errorBody: UILabel! {
+        didSet {
+            errorBody.text = viewModel.body.value
+            errorBody.accessibilityIdentifier = "error-body"
+        }
+    }
+    
+
+    @IBOutlet private var primaryButton: RoundedButton! {
+        didSet {
+            primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
+            primaryButton.accessibilityIdentifier = "error-button"
+        }
+    }
+    
+    @IBOutlet private var secondaryButton: SecondaryButton! {
+        didSet {
+            if let buttonViewModel = viewModel.secondaryButtonViewModel {
+                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+                secondaryButton.accessibilityIdentifier = "error-secondary-button"
+                if let icon = buttonViewModel.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
+            } else {
+                secondaryButton.isHidden = true
+            }
         }
     }
 }

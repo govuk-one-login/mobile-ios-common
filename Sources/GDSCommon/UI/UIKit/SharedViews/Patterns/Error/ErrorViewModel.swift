@@ -5,5 +5,5 @@ public protocol ErrorViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
     var primaryButtonViewModel: ButtonViewModel { get }
-    var secondaryButtonViewModel: ButtonViewModel { get }
+    var secondaryButtonViewModel: ButtonViewModel? { get }
 }
