@@ -36,13 +36,18 @@ public final class ErrorViewController: BaseViewController {
             errorBody.accessibilityIdentifier = "error-body"
         }
     }
-    
 
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
             primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
-            primaryButton.accessibilityIdentifier = "error-button"
+            primaryButton.accessibilityIdentifier = "error-primary-button"
         }
+    }
+    
+    @IBAction private func primaryButtonAction(_ sender: Any) {
+        primaryButton.isLoading = true
+        viewModel.primaryButtonViewModel.action()
+        primaryButton.isLoading = false
     }
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
@@ -58,5 +63,9 @@ public final class ErrorViewController: BaseViewController {
                 secondaryButton.isHidden = true
             }
         }
+    }
+    
+    @IBAction private func secondaryButtonAction(_ sender: Any) {
+        viewModel.secondaryButtonViewModel?.action()
     }
 }

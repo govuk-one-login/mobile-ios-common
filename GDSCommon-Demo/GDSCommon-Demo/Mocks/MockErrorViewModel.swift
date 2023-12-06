@@ -6,8 +6,8 @@ struct MockErrorViewModel: ErrorViewModel, BaseViewModel {
     var title: GDSLocalisedString = "This is an Error View title"
     var body: GDSLocalisedString = "This is an Error View body This is an Error View body"
     var primaryButtonViewModel: ButtonViewModel = MockButtonViewModel.primary
-    var secondaryButtonViewModel: ButtonViewModel? = MockButtonViewModel.secondary
-    var rightBarButtonTitle: GDSLocalisedString?
+    var secondaryButtonViewModel: ButtonViewModel?
+    var rightBarButtonTitle: GDSLocalisedString? = "right bar button"
     var backButtonIsHidden: Bool = false
     
     func didAppear() {}
