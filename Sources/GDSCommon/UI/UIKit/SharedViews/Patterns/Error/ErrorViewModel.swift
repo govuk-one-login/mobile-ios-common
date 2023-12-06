@@ -1,7 +1,7 @@
 import UIKit
 
 public protocol ErrorViewModel {
-    var image: UIImage { get }
+    var image: String { get }
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
     var primaryButtonViewModel: ButtonViewModel { get }

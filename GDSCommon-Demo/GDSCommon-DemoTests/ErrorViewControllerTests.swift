@@ -33,7 +33,7 @@ final class ErrorViewControllerTests: XCTestCase {
 }
 
 private struct TestViewModel: ErrorViewModel, BaseViewModel {
-    let image: UIImage = UIImage()
+    let image: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "Error screen title"
     let body: GDSLocalisedString = "Error screen body"
     let primaryButtonViewModel: ButtonViewModel

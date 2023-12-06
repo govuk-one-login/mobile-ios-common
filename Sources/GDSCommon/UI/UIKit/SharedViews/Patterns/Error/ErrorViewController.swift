@@ -17,7 +17,9 @@ public final class ErrorViewController: BaseViewController {
     
     @IBOutlet private var errorImageView: UIImageView! {
         didSet {
-            errorImageView.image = viewModel.image
+            let font = UIFont(style: .largeTitle, weight: .light)
+            let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
+            errorImageView.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
             errorImageView.accessibilityIdentifier = "error-image"
         }
     }
