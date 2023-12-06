@@ -1,5 +1,21 @@
 import UIKit
 
+/// View controller for `Error` screen
+///     - `errorImageView` (type: `UIImageView`)
+///     - `errorTitle` (type: `UILabel`)
+///     - `errorBody` (type: `UILabel`)
+///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
+///     - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
+///
+///  A navigation item can be configured:
+///  If viewModel conforms to BaseViewModel:
+///  - A back button can be set via the `hideBackButton` boolean property on the view controller
+///  - A right bar button can be set via the`rightBarButtonTitle` string property on the view controller
+///  - A `viewWillAppear` lifecycle event triggers the `didAppear` method in the viewModel.
+///  - A `dismissScreen` lifecycle event triggers the `didDismiss` method in the viewModel.
+///
+/// The `primaryButton`'s action is set from the ``ButtonViewModel`` in the viewModel.
+/// The `secondaryButton`'s action is set from the ``ButtonViewModel`` in the viewModel.
 public final class ErrorViewController: BaseViewController {
     public override var nibName: String? { "Error" }
     

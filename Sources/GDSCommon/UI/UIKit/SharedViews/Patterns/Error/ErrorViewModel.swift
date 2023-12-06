@@ -1,5 +1,6 @@
 import UIKit
 
+/// Protocol for the view model required to initilise ``ErrorViewModel``
 public protocol ErrorViewModel {
     var image: String { get }
     var title: GDSLocalisedString { get }
