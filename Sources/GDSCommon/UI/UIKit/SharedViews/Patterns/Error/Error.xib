@@ -27,29 +27,42 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7rT-Aa-FIf">
                     <rect key="frame" x="0.0" y="47" width="390" height="617"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="e7L-QI-dL5">
-                            <rect key="frame" x="0.0" y="0.0" width="390" height="179.66666666666666"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="e7L-QI-dL5" userLabel="Stack View_content">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="617"/>
                             <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99T-T0-34A">
+                                    <rect key="frame" x="16" y="8" width="358" height="210.66666666666666"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="exclamationmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="kPq-jl-Jrv">
-                                    <rect key="frame" x="16" y="9" width="358" height="105.66666666666667"/>
+                                    <rect key="frame" x="16" y="227.66666666666666" width="358" height="105.66666666666666"/>
                                     <color key="tintColor" systemColor="labelColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="107" id="bCN-jw-tQV"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BS4-E7-kul">
-                                    <rect key="frame" x="16" y="122.99999999999999" width="358" height="20.333333333333329"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <rect key="frame" x="16" y="341.66666666666669" width="358" height="20.333333333333314"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0r-4W-6fS">
-                                    <rect key="frame" x="16" y="151.33333333333334" width="358" height="20.333333333333343"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0r-4W-6fS">
+                                    <rect key="frame" x="16" y="370" width="358" height="20.333333333333314"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8F-k7-ev8">
+                                    <rect key="frame" x="16" y="398.33333333333331" width="358" height="210.66666666666669"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="99T-T0-34A" firstAttribute="height" secondItem="A8F-k7-ev8" secondAttribute="height" id="BSA-mE-bOg"/>
+                            </constraints>
                             <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
                         </stackView>
                     </subviews>
@@ -57,6 +70,8 @@
                         <constraint firstItem="e7L-QI-dL5" firstAttribute="top" secondItem="J0R-q6-38z" secondAttribute="top" id="78m-7q-KZY"/>
                         <constraint firstItem="e7L-QI-dL5" firstAttribute="bottom" secondItem="J0R-q6-38z" secondAttribute="bottom" id="9a8-bX-j0z"/>
                         <constraint firstItem="e7L-QI-dL5" firstAttribute="trailing" secondItem="J0R-q6-38z" secondAttribute="trailing" id="P5l-cg-lMl"/>
+                        <constraint firstItem="e7L-QI-dL5" firstAttribute="bottom" secondItem="6ij-dW-kAs" secondAttribute="bottom" constant="-165.33333333333331" id="XKM-24-N23"/>
+                        <constraint firstItem="e7L-QI-dL5" firstAttribute="height" secondItem="6ij-dW-kAs" secondAttribute="height" id="fTg-yI-r7y"/>
                         <constraint firstItem="e7L-QI-dL5" firstAttribute="leading" secondItem="J0R-q6-38z" secondAttribute="leading" id="qv8-m6-A3U"/>
                         <constraint firstItem="e7L-QI-dL5" firstAttribute="width" secondItem="6ij-dW-kAs" secondAttribute="width" id="zAk-ck-lBz"/>
                     </constraints>
