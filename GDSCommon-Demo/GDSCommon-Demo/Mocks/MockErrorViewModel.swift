@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-struct MockErrorViewModel: ErrorViewModel, BaseViewModel {
+struct MockErrorViewModel: GDSErrorViewModel, BaseViewModel {
     var image: String = "exclamationmark.circle"
     var title: GDSLocalisedString = "This is an Error View title"
     var body: GDSLocalisedString = "This is an Error View body This is an Error View body"

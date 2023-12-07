@@ -93,7 +93,7 @@ enum Screens: String, CaseIterable {
             return ResultsViewController(popToRoot: self == .gdsResultsView ? popToRoot : nil, navController: navigationController)
         case .gdsErrorView:
             let viewModel = MockErrorViewModel()
-            return ErrorViewController(viewModel: viewModel)
+            return GDSErrorViewController(viewModel: viewModel)
         }
     }
     

@@ -16,12 +16,12 @@ import UIKit
 ///
 /// The `primaryButton`'s action is set from the ``ButtonViewModel`` in the viewModel.
 /// The `secondaryButton`'s action is set from the ``ButtonViewModel`` in the viewModel.
-public final class ErrorViewController: BaseViewController {
-    public override var nibName: String? { "Error" }
+public final class GDSErrorViewController: BaseViewController {
+    public override var nibName: String? { "GDSError" }
     
-    private let viewModel: ErrorViewModel
+    private let viewModel: GDSErrorViewModel
 
-    public init(viewModel: ErrorViewModel) {
+    public init(viewModel: GDSErrorViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "Error", bundle: .module)
     }

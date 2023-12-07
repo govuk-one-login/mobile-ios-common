@@ -1,9 +1,9 @@
 import GDSCommon
 import XCTest
 
-final class ErrorViewControllerTests: XCTestCase {
-    var viewModel: ErrorViewModel!
-    var sut: ErrorViewController!
+final class GDSErrorViewControllerTests: XCTestCase {
+    var viewModel: GDSErrorViewModel!
+    var sut: GDSErrorViewController!
     var primaryButton = false
     var secondaryButton = false
     var viewDidAppear = false
@@ -21,7 +21,7 @@ final class ErrorViewControllerTests: XCTestCase {
         } dismissAction: {
             self.viewDidDismiss = true
         }
-        sut = ErrorViewController(viewModel: viewModel)
+        sut = GDSErrorViewController(viewModel: viewModel)
     }
     
     override func tearDown() {
@@ -32,7 +32,7 @@ final class ErrorViewControllerTests: XCTestCase {
     }
 }
 
-private struct TestViewModel: ErrorViewModel, BaseViewModel {
+private struct TestViewModel: GDSErrorViewModel, BaseViewModel {
     let image: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "Error screen title"
     let body: GDSLocalisedString = "Error screen body"
@@ -68,7 +68,7 @@ private struct TestViewModel: ErrorViewModel, BaseViewModel {
     }
 }
 
-extension ErrorViewControllerTests {
+extension GDSErrorViewControllerTests {
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.errorImage)
         XCTAssertEqual(try sut.errorTitleLabel.text, "Error screen title")
@@ -113,7 +113,7 @@ extension ErrorViewControllerTests {
     }
 }
 
-extension ErrorViewController {
+extension GDSErrorViewController {
     var errorImage: UIImageView {
         get throws {
             try XCTUnwrap(view[child: "error-image"])
