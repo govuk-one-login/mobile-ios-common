@@ -294,6 +294,19 @@ This screen includes the following views:
 This screen includes an title, subtitle and button. These views a situated within a `UIStackView` which has margins set to align the subviews within it. This view is typically added as a subview to the `IconScreen` through the `IconScreen`s view model `childViews` property.
 The content on the screen is set from the `viewModel`, which must conform to the `OptionViewModel` protocol.
 
+### Error
+This screen includes the following views:
+- `errorImageView` (type: `UIImageView`)
+- `errorTitle` (type: `UILabel`)
+- `errorBody` (type: `UILabel`)
+- `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
+- `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
+
+This screen is typically used an error screen, consisting of an alert icon, a title, body and the option of one or two buttons.
+
+A `UIStackView` holds the `errorImageView` and a second `UIStackView` which holds the `errorTitle` and `errorBody`. Two `UIView`s are placed above and below the image and stack to centre them, all these views are placed within a `ScrollView`. The `primaryButton` and `secondaryButton` are placed in a `UIStackView`.
+
+The navigation back button and right bar button are configurable. If this screen should be presented as a modal view, this should be done at the call site.
 
 ## Utilities
 
