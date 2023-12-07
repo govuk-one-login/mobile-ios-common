@@ -1,7 +1,7 @@
 import UIKit
 
 /// View controller for `Error` screen
-///     - `errorImageView` (type: `UIImageView`)
+///     - `errorImageView` (type: `String`)
 ///     - `errorTitle` (type: `UILabel`)
 ///     - `errorBody` (type: `UILabel`)
 ///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
