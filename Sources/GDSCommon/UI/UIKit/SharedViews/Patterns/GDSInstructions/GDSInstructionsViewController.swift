@@ -19,7 +19,7 @@ import UIKit
 ///  The `primaryButton` is within a
 ///  `UIStackView` constrained to the bottom of the screen. This is the main
 ///   Call To Action (CTA) on this screen.
-public class GDSInstructionsViewController: BaseViewController {
+public class GDSInstructionsViewController: BaseViewController, TitledScreen {
     private let viewModel: GDSInstructionsViewModel
     
     /// Initialiser for the `GDSInstructions` view controller.
@@ -42,7 +42,7 @@ public class GDSInstructionsViewController: BaseViewController {
     }
     
     /// Title label: `UILabel`
-    @IBOutlet private var titleLabel: UILabel! {
+    @IBOutlet internal var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold

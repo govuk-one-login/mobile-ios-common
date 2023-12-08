@@ -25,11 +25,7 @@ public final class ResultsViewController: BaseViewController, TitledScreen {
         }
     }
     
-    var accessibleTitle: UILabel? {
-        titleLabel
-    }
-    
-    @IBOutlet private var titleLabel: UILabel! {
+    @IBOutlet internal var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
             titleLabel.text = viewModel.title.value

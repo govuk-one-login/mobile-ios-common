@@ -37,7 +37,7 @@ open class BaseViewController: UIViewController {
         
         if let screen = self as? TitledScreen {
             UIAccessibility.post(notification: .screenChanged,
-                                 argument: screen.accessibleTitle)
+                                 argument: screen.titleLabel)
         }
     }
     
