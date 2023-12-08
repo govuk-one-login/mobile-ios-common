@@ -8,7 +8,13 @@ public class SecondaryButton: UIButton {
     }
     
     public var fontWeight: UIFont.Weight = .regular
-    public var color: UIColor = .accent
+    public var color: UIColor = .accent {
+        didSet {
+            titleLabel?.textColor = color
+            titleLabel?.tintColor = color
+            setTitleColor(color, for: .normal)
+        }
+    }
     public var symbolPosition: SymbolPosition = .afterTitle
     
     public override var intrinsicContentSize: CGSize {
@@ -34,6 +40,7 @@ public class SecondaryButton: UIButton {
         titleLabel?.adjustsFontForContentSizeCategory = true
         titleLabel?.font = UIFont(style: .body, weight: fontWeight)
         titleLabel?.tintColor = color
+        titleLabel?.textColor = color
         
         if #available(iOS 14.0, *) {
             buttonBackground()
@@ -91,6 +98,12 @@ extension SecondaryButton {
                                             attributes: [.font: UIFont(style: .body, weight: fontWeight)])
             .addingSymbol(named: icon, configuration: configuration, tintColor: color, symbolPosition: symbolPosition)
         self.setAttributedTitle(textString, for: .normal)
+        
+        let focusedTitle = self.title(for: .focused) ?? ""
+        let focusedTextString = NSAttributedString(string: focusedTitle,
+                                            attributes: [.font: UIFont(style: .body, weight: fontWeight)])
+            .addingSymbol(named: icon, configuration: configuration, tintColor: .label, symbolPosition: symbolPosition)
+        self.setAttributedTitle(focusedTextString, for: .focused)
     }
     
     @available(iOS 14.0, *)

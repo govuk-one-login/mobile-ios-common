@@ -15,7 +15,8 @@ struct MockButtonIconViewModel: ButtonIconViewModel {
 
 extension MockButtonViewModel {
     static var primary: MockButtonViewModel {
-        MockButtonViewModel(title: "Action button", icon: nil, shouldLoadOnTap: false, action: {})
+        MockButtonViewModel(title: "Action button", icon: MockButtonIconViewModel(iconName: "qrcode",
+                                                                                  symbolPosition: .beforeTitle), shouldLoadOnTap: false, action: {})
     }
     
     static var secondaryQR: ButtonViewModel {
