@@ -1,21 +1,11 @@
 import UIKit
 
-/// View controller for `Error` screen
-///     - `errorImageView` (type: `String`)
-///     - `errorTitle` (type: `UILabel`)
-///     - `errorBody` (type: `UILabel`)
+/// View controller for `GDSError` screen
+///     - `errorImage` (type: `String`)
+///     - `titleLabel` (type: `UILabel`)
+///     - `bodyLabel` (type: `UILabel`)
 ///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
 ///     - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
-///
-///  A navigation item can be configured:
-///  If viewModel conforms to BaseViewModel:
-///  - A back button can be set via the `hideBackButton` boolean property on the view controller
-///  - A right bar button can be set via the`rightBarButtonTitle` string property on the view controller
-///  - A `viewWillAppear` lifecycle event triggers the `didAppear` method in the viewModel.
-///  - A `dismissScreen` lifecycle event triggers the `didDismiss` method in the viewModel.
-///
-/// The `primaryButton`'s action is set from the ``ButtonViewModel`` in the viewModel.
-/// The `secondaryButton`'s action is set from the ``ButtonViewModel`` in the viewModel.
 public final class GDSErrorViewController: BaseViewController {
     public override var nibName: String? { "GDSError" }
     
@@ -23,7 +13,7 @@ public final class GDSErrorViewController: BaseViewController {
 
     public init(viewModel: GDSErrorViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel as? BaseViewModel, nibName: "Error", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSError", bundle: .module)
     }
     
     @available(*, unavailable, renamed: "init(coordinator:)")
@@ -31,27 +21,27 @@ public final class GDSErrorViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBOutlet private var errorImageView: UIImageView! {
+    @IBOutlet private var errorImage: UIImageView! {
         didSet {
             let font = UIFont(style: .largeTitle, weight: .light)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
-            errorImageView.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
-            errorImageView.accessibilityIdentifier = "error-image"
+            errorImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
+            errorImage.accessibilityIdentifier = "error-image"
         }
     }
     
-    @IBOutlet private var errorTitle: UILabel! {
+    @IBOutlet private var titleLabel: UILabel! {
         didSet {
-            errorTitle.font = .init(style: .largeTitle, weight: .bold, design: .default)
-            errorTitle.text = viewModel.title.value
-            errorTitle.accessibilityIdentifier = "error-title"
+            titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
+            titleLabel.text = viewModel.title.value
+            titleLabel.accessibilityIdentifier = "error-title"
         }
     }
     
-    @IBOutlet private var errorBody: UILabel! {
+    @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            errorBody.text = viewModel.body.value
-            errorBody.accessibilityIdentifier = "error-body"
+            bodyLabel.text = viewModel.body.value
+            bodyLabel.accessibilityIdentifier = "error-body"
         }
     }
 
@@ -70,16 +60,16 @@ public final class GDSErrorViewController: BaseViewController {
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
-            if let buttonViewModel = viewModel.secondaryButtonViewModel {
-                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
-                secondaryButton.accessibilityIdentifier = "error-secondary-button"
-                if let icon = buttonViewModel.icon {
-                    secondaryButton.symbolPosition = icon.symbolPosition
-                    secondaryButton.icon = icon.iconName
-                }
-            } else {
-                secondaryButton.isHidden = true
+            let buttonViewModel = viewModel.secondaryButtonViewModel
+            
+            secondaryButton.setTitle(buttonViewModel!.title, for: .normal)
+            secondaryButton.accessibilityIdentifier = "error-secondary-button"
+            
+            if let icon = buttonViewModel?.icon {
+                secondaryButton.symbolPosition = icon.symbolPosition
+                secondaryButton.icon = icon.iconName
             }
+            secondaryButton.isHidden = viewModel.secondaryButtonViewModel == nil
         }
     }
     

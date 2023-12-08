@@ -39,8 +39,8 @@ private struct TestViewModel: GDSErrorViewModel, BaseViewModel {
     let primaryButtonViewModel: ButtonViewModel
     let secondaryButtonViewModel: ButtonViewModel?
 
-    var rightBarButtonTitle: GDSLocalisedString? = "right bar button"
-    var backButtonIsHidden: Bool = false
+    let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
+    let backButtonIsHidden: Bool = false
     let appearAction: () -> Void
     let dismissAction: () -> Void
     

@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GDSErrorViewController" customModule="GDSCommon">
             <connections>
-                <outlet property="errorBody" destination="GKc-km-TXE" id="Pn1-M6-cjT"/>
-                <outlet property="errorImageView" destination="vYf-gc-Vz7" id="bo0-HU-93z"/>
-                <outlet property="errorTitle" destination="K7u-1O-Xu6" id="Egg-4m-zff"/>
+                <outlet property="bodyLabel" destination="GKc-km-TXE" id="Pn1-M6-cjT"/>
+                <outlet property="errorImage" destination="vYf-gc-Vz7" id="bo0-HU-93z"/>
                 <outlet property="primaryButton" destination="c0j-S4-wib" id="iRa-Bu-gFu"/>
                 <outlet property="secondaryButton" destination="wHP-qw-frB" id="SoD-KK-dAU"/>
+                <outlet property="titleLabel" destination="K7u-1O-Xu6" id="Egg-4m-zff"/>
                 <outlet property="view" destination="PHp-iG-sgY" id="Bv0-6i-0Mc"/>
             </connections>
         </placeholder>
