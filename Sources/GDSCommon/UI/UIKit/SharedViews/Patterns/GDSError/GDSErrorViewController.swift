@@ -60,16 +60,17 @@ public final class GDSErrorViewController: BaseViewController {
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
-            let buttonViewModel = viewModel.secondaryButtonViewModel
-            
-            secondaryButton.setTitle(buttonViewModel!.title, for: .normal)
-            secondaryButton.accessibilityIdentifier = "error-secondary-button"
-            
-            if let icon = buttonViewModel?.icon {
-                secondaryButton.symbolPosition = icon.symbolPosition
-                secondaryButton.icon = icon.iconName
+            if let buttonViewModel = viewModel.secondaryButtonViewModel {
+                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+                secondaryButton.accessibilityIdentifier = "error-secondary-button"
+                
+                if let icon = buttonViewModel.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
+            } else {
+                secondaryButton.isHidden = true
             }
-            secondaryButton.isHidden = viewModel.secondaryButtonViewModel == nil
         }
     }
     
