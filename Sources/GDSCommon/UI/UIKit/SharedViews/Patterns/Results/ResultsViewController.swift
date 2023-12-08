@@ -1,7 +1,7 @@
 import UIKit
 
 /// View controller for `ResultsView` screen.
-public final class ResultsViewController: BaseViewController {
+public final class ResultsViewController: BaseViewController, TitledScreen {
     public override var nibName: String? { "ResultsView" }
     
     public let viewModel: ResultsViewModel
@@ -23,6 +23,10 @@ public final class ResultsViewController: BaseViewController {
             imageView.image = image
             imageView.accessibilityIdentifier = "results-image"
         }
+    }
+    
+    var accessibleTitle: UILabel? {
+        titleLabel
     }
     
     @IBOutlet private var titleLabel: UILabel! {

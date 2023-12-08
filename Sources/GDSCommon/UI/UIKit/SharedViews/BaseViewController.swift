@@ -32,6 +32,15 @@ open class BaseViewController: UIViewController {
         }
     }
     
+    public override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        
+        if let screen = self as? TitledScreen {
+            UIAccessibility.post(notification: .screenChanged,
+                                 argument: screen.accessibleTitle)
+        }
+    }
+    
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel?.didAppear()

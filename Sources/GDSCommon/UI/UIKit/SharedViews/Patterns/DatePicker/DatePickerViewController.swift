@@ -4,7 +4,7 @@ import UIKit
 /// DatePicker screen displays a standard iOS date picker in a scrollview with a bold LargeTitle above
 /// and a single CTA button at the button of the screen.
 @available(iOS 13.4, *)
-public final class DatePickerScreenViewController: BaseViewController {
+public final class DatePickerScreenViewController: BaseViewController, TitledScreen {
     public override var nibName: String? { "DatePicker" }
     
     public var viewModel: DatePickerScreenViewModel
@@ -24,6 +24,10 @@ public final class DatePickerScreenViewController: BaseViewController {
         if viewModel.datePickerViewModel.selectedDate == nil {
             primaryButton.isEnabled = false
         }
+    }
+    
+    var accessibleTitle: UILabel? {
+        titleLabel
     }
     
     @IBOutlet private var titleLabel: UILabel! {
