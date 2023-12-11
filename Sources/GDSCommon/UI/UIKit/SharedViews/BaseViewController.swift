@@ -35,9 +35,9 @@ open class BaseViewController: UIViewController {
     public override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         
-        if let screen = self as? TitledViewController {
+        if let screen = self as? VoiceOverFocus {
             UIAccessibility.post(notification: .screenChanged,
-                                 argument: screen.titleLabel)
+                                 argument: screen.initialVoiceOverView)
         }
     }
     
