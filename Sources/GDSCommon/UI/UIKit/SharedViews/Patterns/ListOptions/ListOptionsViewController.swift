@@ -14,7 +14,7 @@ import UIKit
 /// The action can be customised by configuring the `didDismiss` method.
 /// `footerLabel` is configured separately from the `UITableView` to address some
 /// dynamic type issues with multi-line footers.
-public final class ListOptionsViewController: BaseViewController, TitledScreen {
+public final class ListOptionsViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "ListOptions" }
     public let viewModel: ListOptionsViewModel
 
@@ -46,7 +46,7 @@ public final class ListOptionsViewController: BaseViewController, TitledScreen {
         tableViewList.redraw()
     }
 
-    @IBOutlet internal var titleLabel: UILabel! {
+    @IBOutlet internal private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold

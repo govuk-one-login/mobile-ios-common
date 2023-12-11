@@ -10,7 +10,7 @@ import UIKit
 /// - Back button via setting the `hideBackButton` boolean property on the view controller
 /// The `viewWillAppear` lifecycle event triggers the `didAppear` method in the viewModel.
 /// The `introButton`'s action is set from the ``ButtonViewModel`` in the viewModel.
-public final class IntroViewController: BaseViewController, TitledScreen {
+public final class IntroViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "IntroView" }
     
     private let viewModel: IntroViewModel
@@ -32,7 +32,7 @@ public final class IntroViewController: BaseViewController, TitledScreen {
         }
     }
     
-    @IBOutlet internal var titleLabel: UILabel! {
+    @IBOutlet internal private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
             titleLabel.text = viewModel.title.value

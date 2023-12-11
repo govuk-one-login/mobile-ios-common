@@ -12,7 +12,7 @@ public protocol TextInputView {
 /// allows concrete implementations of `TextFieldViewModel` protocol to implement validation methods to
 /// validate and constrain the input of the text field.
 /// The validator method is called on every change of the text field.
-public final class TextInputViewController<InputType>: BaseViewController, TitledScreen,
+public final class TextInputViewController<InputType>: BaseViewController, TitledViewController,
                                                        UITextFieldDelegate,
                                                        TextInputView {
     public override var nibName: String? { "TextInput" }
@@ -61,7 +61,7 @@ public final class TextInputViewController<InputType>: BaseViewController, Title
     
     @IBOutlet private var scrollView: UIScrollView!
     
-    @IBOutlet internal var titleLabel: UILabel! {
+    @IBOutlet internal private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold

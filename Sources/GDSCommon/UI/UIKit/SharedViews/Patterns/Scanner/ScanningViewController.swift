@@ -14,7 +14,7 @@ import Vision
 ///
 ///  The `instructionsLabel` and `cameraView` are within `view`. The view controller adds the `childView`
 
-public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSession>: BaseViewController,
+public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSession>: BaseViewController, VoiceOverFocus,
                                                                                      AVCaptureVideoDataOutputSampleBufferDelegate {
     private let captureDevice: any CaptureDevice.Type
     let captureSession: CaptureSession
@@ -22,6 +22,10 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     private(set) var barcodeRequest: VNImageBasedRequest!
     
     private let imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
+    
+    var initialVoiceOverView: UIView {
+        instructionsLabel
+    }
     
     @IBOutlet private var cameraView: UIView!
     
