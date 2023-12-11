@@ -38,7 +38,7 @@ public final class IconScreenViewController: BaseViewController, TitledViewContr
     }
 
     /// Title label: ``UILabel``
-    @IBOutlet internal private(set) var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold)
             titleLabel.text = viewModel.title.value

@@ -61,7 +61,7 @@ public final class TextInputViewController<InputType>: BaseViewController, Title
     
     @IBOutlet private var scrollView: UIScrollView!
     
-    @IBOutlet internal private(set) var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold

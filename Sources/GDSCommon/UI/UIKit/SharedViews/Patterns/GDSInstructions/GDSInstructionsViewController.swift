@@ -42,7 +42,7 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
     }
     
     /// Title label: `UILabel`
-    @IBOutlet internal private(set) var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold

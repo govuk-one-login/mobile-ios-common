@@ -26,7 +26,7 @@ public final class DatePickerScreenViewController: BaseViewController, TitledVie
         }
     }
     
-    @IBOutlet internal private(set) var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold

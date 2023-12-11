@@ -25,7 +25,7 @@ public final class ResultsViewController: BaseViewController, TitledViewControll
         }
     }
     
-    @IBOutlet internal private(set) var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
             titleLabel.text = viewModel.title.value

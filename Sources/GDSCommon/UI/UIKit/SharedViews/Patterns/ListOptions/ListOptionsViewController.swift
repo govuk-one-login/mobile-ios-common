@@ -46,7 +46,7 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         tableViewList.redraw()
     }
 
-    @IBOutlet internal private(set) var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold

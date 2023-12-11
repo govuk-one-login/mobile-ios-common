@@ -25,7 +25,7 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBOutlet internal private(set) var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
