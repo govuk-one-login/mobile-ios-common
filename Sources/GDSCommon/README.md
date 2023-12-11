@@ -294,6 +294,47 @@ This screen includes the following views:
 This screen includes an title, subtitle and button. These views a situated within a `UIStackView` which has margins set to align the subviews within it. This view is typically added as a subview to the `IconScreen` through the `IconScreen`s view model `childViews` property.
 The content on the screen is set from the `viewModel`, which must conform to the `OptionViewModel` protocol.
 
+### GDSError
+
+This screen is typically used as an error screen, consisting of an alert icon, a title, body and the option of one or two buttons.
+A `UIStackView` holds the `errorImageView` and encases a second `UIStackView` which holds the `errorTitle` and `errorBody`. These views are placed within a `ScrollView`.
+The `primaryButton` and `secondaryButton` are placed in a `UIStackView`, below the `ScrollView`.
+
+`GDSErrorViewController` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site.
+
+A navigation item can be configured:
+- The `primaryButton`'s action is set from the ``primaryButtonViewModel`` in the viewModel.
+- The `secondaryButton`'s action is set from the ``secondaryButtonViewModel`` in the viewModel.
+
+If the viewModel conforms to BaseViewModel:
+- A back button can be set via the `hideBackButton` boolean property on the view controller
+- A right bar button can be set via the`rightBarButtonTitle` string property on the view controller
+- A `viewWillAppear` lifecycle event triggers the `didAppear` method in the viewModel.
+- A `dismissScreen` lifecycle event triggers the `didDismiss` method in the viewModel.
+
+#### Example:
+
+```swift
+struct MockErrorViewModel: GDSErrorViewModel, BaseViewModel {
+    let image: String = "exclamationmark.circle"
+    let title: GDSLocalisedString = "This is an Error View title"
+    let body: GDSLocalisedString = "This is an Error View body This is an Error View body"
+    let primaryButtonViewModel: ButtonViewModel 
+    let secondaryButtonViewModel: ButtonViewModel? = nil
+    let rightBarButtonTitle: GDSLocalisedString?
+    let backButtonIsHidden: Bool = false
+    
+    init(action: @escaping () -> Void) {
+        self.primaryButtonViewModel = ButtonViewModel(titleKey: "Try again") { 
+            action() 
+        } 
+    }
+    
+    func didAppear() {}
+    
+    func didDismiss() {}
+}
+```
 
 ## Utilities
 

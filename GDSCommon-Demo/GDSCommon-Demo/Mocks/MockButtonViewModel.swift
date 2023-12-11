@@ -15,10 +15,21 @@ struct MockButtonIconViewModel: ButtonIconViewModel {
 
 extension MockButtonViewModel {
     static var primary: MockButtonViewModel {
-        MockButtonViewModel(title: "Action button", icon: nil, shouldLoadOnTap: false, action: {})
+        MockButtonViewModel(title: "Action button",
+                            icon: nil,
+                            shouldLoadOnTap: false,
+                            action: {})
     }
     
-    static var secondaryQR: ButtonViewModel {
+    static var secondary: MockButtonViewModel {
+        MockButtonViewModel(title: "Secondary Button",
+                            icon: MockButtonIconViewModel(iconName: "arrow.up.right",
+                                                          symbolPosition: .afterTitle),
+                            shouldLoadOnTap: false,
+                            action: {})
+    }
+    
+    static var secondaryQR: MockButtonViewModel {
         MockButtonViewModel(title: "Secondary Button",
                             icon: MockButtonIconViewModel(iconName: "qrcode",
                                                           symbolPosition: .beforeTitle),
