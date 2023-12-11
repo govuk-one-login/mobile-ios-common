@@ -5,11 +5,11 @@ protocol TitledViewController: VoiceOverFocus {
 }
 
 protocol VoiceOverFocus {
-    var initialVoiceOverView: UIView { get }
+    var initialVoiceOverView: UIView? { get }
 }
 
 extension TitledViewController {
-    var initialVoiceOverView: UIView {
+    var initialVoiceOverView: UIView? {
         titleLabel
     }
 }
