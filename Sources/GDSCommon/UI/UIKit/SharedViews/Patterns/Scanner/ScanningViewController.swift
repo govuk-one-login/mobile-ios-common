@@ -23,7 +23,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     
     private let imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
     
-    var initialVoiceOverView: UIView {
+    public var initialVoiceOverView: UIView {
         instructionsLabel
     }
     

@@ -42,6 +42,15 @@ extension ModalInfoViewControllerTests {
         sut.endAppearanceTransition()
         XCTAssertEqual(try sut.rightBarButtonItem.title, "Done")
     }
+    
+    func testVoiceOverFocusElement() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        let screen = try XCTUnwrap(sut as VoiceOverFocus)
+        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
+        XCTAssertEqual(view.text, "permissions screen title")
+    }
 }
 
 extension ModalInfoViewController {

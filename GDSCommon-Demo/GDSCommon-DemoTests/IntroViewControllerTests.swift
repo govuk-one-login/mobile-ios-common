@@ -70,6 +70,15 @@ extension IntroViewControllerTests {
         XCTAssertEqual(try sut.introButton.title(for: .normal), "Intro screen button title")
     }
     
+    func testVoiceOverFocusElement() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        let screen = try XCTUnwrap(sut as VoiceOverFocus)
+        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
+        XCTAssertEqual(view.text, "Intro screen title")
+    }
+    
     func test_buttonAction() throws {
         XCTAssertFalse(buttonAction)
         try sut.introButton.sendActions(for: .touchUpInside)

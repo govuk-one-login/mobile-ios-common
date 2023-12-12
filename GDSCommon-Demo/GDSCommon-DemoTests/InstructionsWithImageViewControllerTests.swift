@@ -59,6 +59,15 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
+    func testVoiceOverFocusElement() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        let screen = try XCTUnwrap(sut as VoiceOverFocus)
+        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
+        XCTAssertEqual(view.text, "This is the Instructions with image view")
+    }
+    
     func testTitleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true

@@ -100,6 +100,15 @@ extension GDSErrorViewControllerTests {
         XCTAssertTrue(viewDidAppear)
     }
     
+    func testVoiceOverFocusElement() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        let screen = try XCTUnwrap(sut as VoiceOverFocus)
+        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
+        XCTAssertEqual(view.text, "Error screen title")
+    }
+    
     func test_didDismiss() {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)

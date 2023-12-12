@@ -58,6 +58,15 @@ extension TextInputViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
+    func testVoiceOverFocusElement() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        let screen = try XCTUnwrap(sut as VoiceOverFocus)
+        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
+        XCTAssertEqual(view.text, "Text input screen title")
+    }
+    
     func testLabels() {
         XCTAssertEqual(try sut.titleLabel.text, "Text input screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
