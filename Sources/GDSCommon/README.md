@@ -336,6 +336,20 @@ struct MockErrorViewModel: GDSErrorViewModel, BaseViewModel {
 }
 ```
 
+## Accessibility
+### VoiceOverFocus
+Conform view controllers that inherit from `BaseViewController` to `VoiceOverFocus` protocol to benefit from automatic setting of initial VoiceOver focus to a chosen `UIView` when the view controller appears.
+
+Adding this conformance requires adding the following property to a view controller:
+
+```swift
+public var initialVoiceOverView: UIView {
+   someUIView
+}
+```
+
+The view returned by this property will be set to be the intitial focus for VoiceOver when the view controller's `viewIsAppearing` lifecycle method is called during the presentation of the screen.
+
 ## Utilities
 
 Contains utility classes and functions that includes helper functions for date formatting, string manipulation, network requests etc. 
