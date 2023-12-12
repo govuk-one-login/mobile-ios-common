@@ -19,6 +19,10 @@ jobs:
         with:
           lfs: 'true'
           
+      - name: Xcode select
+        run: |
+          sudo xcode-select -s /Applications/Xcode_15.0.1.app
+          
       - name: Build and Test
         run: |
           xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
