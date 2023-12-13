@@ -343,8 +343,13 @@ Conform view controllers that inherit from `BaseViewController` to `VoiceOverFoc
 Adding this conformance requires adding the following property to a view controller:
 
 ```swift
-public var initialVoiceOverView: UIView {
-   someUIView
+final class someViewController: BaseViewController, VoiceOverFocus {
+
+...
+
+    public var initialVoiceOverView: UIView {
+        someUIView
+    }
 }
 ```
 
