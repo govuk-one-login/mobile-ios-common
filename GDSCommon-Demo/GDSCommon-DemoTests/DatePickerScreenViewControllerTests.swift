@@ -87,6 +87,15 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertFalse(try sut.primaryButton.isEnabled)
     }
     
+    func testVoiceOverFocusElement() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        let screen = try XCTUnwrap(sut as VoiceOverFocus)
+        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
+        XCTAssertEqual(view.text, "Date picker screen title")
+    }
+    
     func testLabelContents() {
         XCTAssertEqual(try sut.titleLabel.text, "Date picker screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)

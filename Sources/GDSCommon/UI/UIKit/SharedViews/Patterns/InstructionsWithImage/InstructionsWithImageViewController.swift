@@ -12,7 +12,7 @@ import UIKit
 /// in turn within a `UIScrollView`. The `primaryButton` is within a
 /// `UIStackView` constrained to the bottom of the screen. This is the main
 /// Call To Action (CTA) on this screen.
-public final class InstructionsWithImageViewController: BaseViewController {
+public final class InstructionsWithImageViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "InstructionsWithImage" }
     
     public let viewModel: InstructionsWithImageViewModel
@@ -30,7 +30,7 @@ public final class InstructionsWithImageViewController: BaseViewController {
     }
 
     /// Title label: ``UILabel``
-    @IBOutlet private var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold

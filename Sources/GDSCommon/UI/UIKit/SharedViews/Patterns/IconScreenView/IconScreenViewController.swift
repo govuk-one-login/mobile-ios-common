@@ -9,7 +9,7 @@ import UIKit
 /// This screen allows for additional subviews to be added below a top stack view
 /// containing an icon, title and subtitle.
 /// Typically the subviews would be further `UIStackView`s, a good implementation of which sits within this same directory, `OptionView`
-public final class IconScreenViewController: BaseViewController {
+public final class IconScreenViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "IconScreenView" }
     
     public let viewModel: IconScreenViewModel
@@ -38,7 +38,7 @@ public final class IconScreenViewController: BaseViewController {
     }
 
     /// Title label: ``UILabel``
-    @IBOutlet private var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold)
             titleLabel.text = viewModel.title.value

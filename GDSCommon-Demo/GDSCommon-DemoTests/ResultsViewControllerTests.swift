@@ -63,6 +63,15 @@ extension ResultsViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
+    func testVoiceOverFocusElement() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        let screen = try XCTUnwrap(sut as VoiceOverFocus)
+        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
+        XCTAssertEqual(view.text, "Results title")
+    }
+    
     func test_labelContents() throws {
         XCTAssertEqual(sut.viewModel.image, "checkmark.circle")
         XCTAssertEqual(try sut.titleLabel.text, "Results title")

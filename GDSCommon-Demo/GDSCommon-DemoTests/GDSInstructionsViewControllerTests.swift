@@ -51,6 +51,15 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
+    func testVoiceOverFocusElement() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        let screen = try XCTUnwrap(sut as VoiceOverFocus)
+        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
+        XCTAssertEqual(view.text, "test title")
+    }
+    
     func test_backButton() {
         XCTAssertFalse(sut.navigationItem.hidesBackButton)
     }

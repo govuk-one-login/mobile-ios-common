@@ -8,7 +8,7 @@ import UIKit
 ///   with a title and body to present the information.
 ///   There is also configuration for a right `UIBarButtonItem` with an action
 ///   configurable in the `dismissModal()` method in the viewModel.
-public final class ModalInfoViewController: BaseViewController {
+public final class ModalInfoViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "ModalInfoView" }
     
     public let viewModel: ModalInfoViewModel
@@ -25,7 +25,7 @@ public final class ModalInfoViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBOutlet private var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)

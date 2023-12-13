@@ -6,7 +6,7 @@ import UIKit
 ///     - `bodyLabel` (type: `UILabel`)
 ///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
 ///     - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
-public final class GDSErrorViewController: BaseViewController {
+public final class GDSErrorViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSError" }
     
     private let viewModel: GDSErrorViewModel
@@ -30,7 +30,7 @@ public final class GDSErrorViewController: BaseViewController {
         }
     }
     
-    @IBOutlet private var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
             titleLabel.text = viewModel.title.value

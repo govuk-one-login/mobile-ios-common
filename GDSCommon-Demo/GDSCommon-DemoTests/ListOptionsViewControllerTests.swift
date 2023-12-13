@@ -58,6 +58,15 @@ extension ListOptionsViewControllerTests {
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
     }
     
+    func testVoiceOverFocusElement() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        
+        let screen = try XCTUnwrap(sut as VoiceOverFocus)
+        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
+        XCTAssertEqual(view.text, "This is the List Options screen pattern")
+    }
+    
     func testLabelContents() {
         XCTAssertEqual(try sut.titleLabel.text, "This is the List Options screen pattern")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)

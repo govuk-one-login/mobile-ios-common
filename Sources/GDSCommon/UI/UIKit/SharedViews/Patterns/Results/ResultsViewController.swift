@@ -1,7 +1,7 @@
 import UIKit
 
 /// View controller for `ResultsView` screen.
-public final class ResultsViewController: BaseViewController {
+public final class ResultsViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "ResultsView" }
     
     public let viewModel: ResultsViewModel
@@ -25,7 +25,7 @@ public final class ResultsViewController: BaseViewController {
         }
     }
     
-    @IBOutlet private var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
             titleLabel.text = viewModel.title.value

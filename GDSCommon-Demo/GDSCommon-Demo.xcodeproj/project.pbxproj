@@ -156,7 +156,6 @@
 				9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */,
 				96588BDF2AD046420035FF93 /* DatePickerScreenViewControllerTests.swift */,
 				968598AA2B03877D00462D0B /* BaseViewControllerTests.swift */,
-				2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */,
 				2B0843F72ABC797E00188BA0 /* ModalInfoViewControllerTests.swift */,
 				2BB5C7882AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift */,
 				2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */,
@@ -241,6 +240,7 @@
 		7C51376E2AD99E9D00163E83 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */,
 				968598AC2B03878900462D0B /* MockBaseViewModel.swift */,
 				7C51376F2AD99EB600163E83 /* Scanning */,
 			);
