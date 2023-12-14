@@ -9,7 +9,7 @@ import UIKit
 public final class GDSErrorViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSError" }
     
-    private(set) var viewModel: GDSErrorViewModel
+    public private(set) var viewModel: GDSErrorViewModel
 
     public init(viewModel: GDSErrorViewModel) {
         self.viewModel = viewModel
