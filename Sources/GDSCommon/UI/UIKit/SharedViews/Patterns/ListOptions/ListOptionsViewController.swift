@@ -94,6 +94,8 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         
         viewModel.resultAction(cell.gdsLocalisedString)
         viewModel.buttonViewModel.action()
+        
+        tableViewList.deselectRow(at: selectedIndex, animated: false)
     }
 }
 
