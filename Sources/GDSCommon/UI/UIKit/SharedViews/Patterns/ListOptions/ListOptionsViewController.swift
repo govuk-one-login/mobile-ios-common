@@ -41,6 +41,11 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         tableViewList.redraw()
     }
     
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        tableViewList.selectRow(at: nil, animated: false, scrollPosition: .none)
+    }
+    
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         tableViewList.redraw()
@@ -94,8 +99,6 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         
         viewModel.resultAction(cell.gdsLocalisedString)
         viewModel.buttonViewModel.action()
-        
-        tableViewList.deselectRow(at: selectedIndex, animated: false)
     }
 }
 
