@@ -37,11 +37,11 @@ open class BaseViewController: UIViewController {
                                                            target: self,
                                                            action: #selector(dismissScreen))
         }
-        
-        if let screen = self as? VoiceOverFocus {
-            UIAccessibility.post(notification: .screenChanged,
-                                 argument: screen.initialVoiceOverView)
-        }
+//        
+//        if let screen = self as? VoiceOverFocus {
+//            UIAccessibility.post(notification: .screenChanged,
+//                                 argument: screen.initialVoiceOverView)
+//        }
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
@@ -56,9 +56,11 @@ open class BaseViewController: UIViewController {
         super.viewDidAppear(animated)
         viewModel?.didAppear()
         
-        if let screen = self as? VoiceOverFocus {
-            UIAccessibility.post(notification: .screenChanged,
-                                 argument: screen.initialVoiceOverView)
+        Task { @MainActor in
+            if let screen = self as? VoiceOverFocus {
+                UIAccessibility.post(notification: .screenChanged,
+                                     argument: screen.initialVoiceOverView)
+            }
         }
     }
     
