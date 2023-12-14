@@ -52,11 +52,12 @@ open class BaseViewController: UIViewController {
         super.viewIsAppearing(animated)
     }
     
+    @MainActor
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel?.didAppear()
         
-        Task { @MainActor in
+        Task {
             if let screen = self as? VoiceOverFocus {
                 UIAccessibility.post(notification: .screenChanged,
                                      argument: screen.initialVoiceOverView)

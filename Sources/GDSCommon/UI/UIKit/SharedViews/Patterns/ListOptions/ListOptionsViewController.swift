@@ -45,11 +45,6 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         super.viewWillLayoutSubviews()
         tableViewList.redraw()
     }
-    
-    public override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        UIAccessibility.post(notification: .resumeAssistiveTechnology, argument: nil)
-    }
 
     @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
@@ -101,7 +96,6 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         viewModel.buttonViewModel.action()
         
         tableViewList.deselectRow(at: selectedIndex, animated: false)
-        UIAccessibility.post(notification: .pauseAssistiveTechnology, argument: nil)
     }
 }
 
