@@ -43,7 +43,8 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
     
     public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        tableViewList.selectRow(at: nil, animated: false, scrollPosition: .none)
+        guard let selectedIndex = tableViewList.indexPathForSelectedRow else { return }
+        tableViewList.deselectRow(at: selectedIndex, animated: false)
     }
     
     public override func viewWillLayoutSubviews() {
