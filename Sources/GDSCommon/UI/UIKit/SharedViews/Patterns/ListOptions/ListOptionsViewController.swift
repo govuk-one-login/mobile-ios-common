@@ -45,6 +45,11 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         super.viewWillLayoutSubviews()
         tableViewList.redraw()
     }
+    
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIAccessibility.post(notification: .resumeAssistiveTechnology, argument: nil)
+    }
 
     @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {

@@ -20,8 +20,8 @@ open class BaseViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        UIAccessibility.post(notification: .resumeAssistiveTechnology,
-                                 argument: nil)
+//        UIAccessibility.post(notification: .resumeAssistiveTechnology,
+//                                 argument: nil)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
