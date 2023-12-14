@@ -31,20 +31,34 @@ open class BaseViewController: UIViewController {
                                                            target: self,
                                                            action: #selector(dismissScreen))
         }
+        
+        UIAccessibility.post(notification: .screenChanged,
+                                 argument: nil)
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIAccessibility.post(notification: .screenChanged,
+                                 argument: nil)
     }
     
     public override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
         
-        if let screen = self as? VoiceOverFocus {
-            UIAccessibility.post(notification: .screenChanged,
-                                 argument: screen.initialVoiceOverView)
-        }
+//        if let screen = self as? VoiceOverFocus {
+//            UIAccessibility.post(notification: .screenChanged,
+//                                 argument: screen.initialVoiceOverView)
+//        }
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel?.didAppear()
+        
+        if let screen = self as? VoiceOverFocus {
+            UIAccessibility.post(notification: .screenChanged,
+                                 argument: screen.initialVoiceOverView)
+        }
     }
     
     @objc private func dismissScreen() {
