@@ -50,19 +50,18 @@ open class BaseViewController: UIViewController {
     
     public override func viewIsAppearing(_ animated: Bool) {
         super.viewIsAppearing(animated)
-    }
-    
-    @MainActor
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel?.didAppear()
         
-        Task {
+        Task { @MainActor in
             if let screen = self as? VoiceOverFocus {
                 UIAccessibility.post(notification: .screenChanged,
                                      argument: screen.initialVoiceOverView)
             }
         }
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel?.didAppear()
     }
     
     @objc private func dismissScreen() {
