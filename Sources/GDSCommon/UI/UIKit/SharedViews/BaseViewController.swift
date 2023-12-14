@@ -18,12 +18,6 @@ open class BaseViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-//        UIAccessibility.post(notification: .resumeAssistiveTechnology,
-//                                 argument: nil)
-    }
-    
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -37,15 +31,6 @@ open class BaseViewController: UIViewController {
                                                            target: self,
                                                            action: #selector(dismissScreen))
         }
-//        
-//        if let screen = self as? VoiceOverFocus {
-//            UIAccessibility.post(notification: .screenChanged,
-//                                 argument: screen.initialVoiceOverView)
-//        }
-    }
-    
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
     }
     
     public override func viewIsAppearing(_ animated: Bool) {
@@ -66,7 +51,6 @@ open class BaseViewController: UIViewController {
     
     @objc private func dismissScreen() {
         self.dismiss(animated: true)
-        
         viewModel?.didDismiss()
     }
 }
