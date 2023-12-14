@@ -39,7 +39,7 @@ open class BaseViewController: UIViewController {
         }
         
         if let screen = self as? VoiceOverFocus {
-            UIAccessibility.post(notification: .screenChanged,
+            UIAccessibility.post(notification: .layoutChanged,
                                  argument: screen.initialVoiceOverView)
         }
     }
