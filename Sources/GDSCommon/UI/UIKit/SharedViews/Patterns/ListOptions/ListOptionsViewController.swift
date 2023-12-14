@@ -41,12 +41,6 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         tableViewList.redraw()
     }
     
-    public override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        guard let selectedIndex = tableViewList.indexPathForSelectedRow else { return }
-        tableViewList.deselectRow(at: selectedIndex, animated: false)
-    }
-    
     public override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         tableViewList.redraw()
