@@ -20,7 +20,7 @@ open class BaseViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        UIAccessibility.post(notification: .screenChanged,
+        UIAccessibility.post(notification: .resumeAssistiveTechnology,
                                  argument: nil)
     }
     
@@ -39,7 +39,7 @@ open class BaseViewController: UIViewController {
         }
         
         if let screen = self as? VoiceOverFocus {
-            UIAccessibility.post(notification: .layoutChanged,
+            UIAccessibility.post(notification: .screenChanged,
                                  argument: screen.initialVoiceOverView)
         }
     }

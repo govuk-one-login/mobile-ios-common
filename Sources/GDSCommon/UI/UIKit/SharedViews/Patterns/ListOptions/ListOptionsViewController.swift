@@ -96,8 +96,7 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         viewModel.buttonViewModel.action()
         
         tableViewList.deselectRow(at: selectedIndex, animated: false)
-        UIAccessibility.post(notification: .screenChanged,
-                             argument: primaryButton)
+        UIAccessibility.post(notification: .pauseAssistiveTechnology, argument: nil)
     }
 }
 
