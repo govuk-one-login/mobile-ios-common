@@ -38,6 +38,7 @@
 		7C5137792AD99F2300163E83 /* MockBarcodeObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5137782AD99F2300163E83 /* MockBarcodeObservation.swift */; };
 		7C51377B2AD9DA8A00163E83 /* MockCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C51377A2AD9DA8A00163E83 /* MockCaptureDevice.swift */; };
 		7CBC376B2ADB01C200572312 /* MockCaptureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC376A2ADB01C200572312 /* MockCaptureSession.swift */; };
+		960553672B2CC0550000BC59 /* UIViewController+UpcomingLifecycleMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 960553662B2CC0550000BC59 /* UIViewController+UpcomingLifecycleMethods.m */; };
 		9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4652ACDAAEF00A60CC8 /* MockListViewModel.swift */; };
 		9634B46A2ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */; };
 		96588BDC2AD02AB30035FF93 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96588BDB2AD02AB30035FF93 /* Date+Extensions.swift */; };
@@ -106,6 +107,8 @@
 		7C5137782AD99F2300163E83 /* MockBarcodeObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBarcodeObservation.swift; sourceTree = "<group>"; };
 		7C51377A2AD9DA8A00163E83 /* MockCaptureDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCaptureDevice.swift; sourceTree = "<group>"; };
 		7CBC376A2ADB01C200572312 /* MockCaptureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCaptureSession.swift; sourceTree = "<group>"; };
+		960553652B2CC0540000BC59 /* GDSCommon-Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GDSCommon-Demo-Bridging-Header.h"; sourceTree = "<group>"; };
+		960553662B2CC0550000BC59 /* UIViewController+UpcomingLifecycleMethods.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+UpcomingLifecycleMethods.m"; path = "GDSCommon-Demo/Extensions/UIViewController+UpcomingLifecycleMethods.m"; sourceTree = SOURCE_ROOT; };
 		9634B4652ACDAAEF00A60CC8 /* MockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockListViewModel.swift; sourceTree = "<group>"; };
 		9634B4692ACDAE8E00A60CC8 /* ListOptionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOptionsViewControllerTests.swift; sourceTree = "<group>"; };
 		96588BDB2AD02AB30035FF93 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 				21AB39DB2B142B5400A26268 /* ResultsViewControllerTests.swift */,
 				96588BEB2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift */,
 				C8A3955E2B20BA6700333669 /* GDSErrorViewControllerTests.swift */,
+				960553652B2CC0540000BC59 /* GDSCommon-Demo-Bridging-Header.h */,
 			);
 			path = "GDSCommon-DemoTests";
 			sourceTree = "<group>";
@@ -262,6 +266,7 @@
 		96588BE42AD06A360035FF93 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				960553662B2CC0550000BC59 /* UIViewController+UpcomingLifecycleMethods.m */,
 				96588BE52AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift */,
 			);
 			path = Extensions;
@@ -334,6 +339,7 @@
 					};
 					2B9BDC082ABC5A5600452E23 = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -436,6 +442,7 @@
 				2BF197282ABDA0A000AC9620 /* Screens.swift in Sources */,
 				2B9BDC0F2ABC5A5600452E23 /* SceneDelegate.swift in Sources */,
 				C8A0D1A82ADF08A6003013E4 /* (null) in Sources */,
+				960553672B2CC0550000BC59 /* UIViewController+UpcomingLifecycleMethods.m in Sources */,
 				2BF1972B2ABDA1B800AC9620 /* MockModalInfoViewModel.swift in Sources */,
 				9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */,
 				2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */,
@@ -637,6 +644,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N8W395F695;
@@ -662,6 +670,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "GDSCommon-DemoTests/GDSCommon-Demo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -672,6 +682,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N8W395F695;
@@ -697,6 +708,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "GDSCommon-DemoTests/GDSCommon-Demo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
