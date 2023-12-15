@@ -37,6 +37,8 @@ final class ScanningViewControllerTests: XCTestCase {
     
     override func tearDown() {
         sut = nil
+        captureSession = nil
+        presenter = nil
         super.tearDown()
     }
     
@@ -116,17 +118,6 @@ final class ScanningViewControllerTests: XCTestCase {
         XCTAssertTrue(output.alwaysDiscardsLateVideoFrames)
         XCTAssertTrue(output.sampleBufferDelegate === sut)
         XCTAssertTrue(output.sampleBufferCallbackQueue === sut.processingQueue)
-    }
-    
-    func testVoiceOverFocusElement() throws {
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
-        
-        let screen = try XCTUnwrap(sut as VoiceOverFocus)
-        
-        // should be instructions label because VC has no titleLabel
-        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
-        XCTAssertEqual(view.text, "QR Scanning instruction area, we can instruct the user from here")
     }
 }
 

@@ -17,10 +17,10 @@ opt_in_rules:
 - sorted_imports
 - strong_iboutlet
 - private_action
+- private_outlet
 
 private_outlet:
   allow_private_set: true
-
 trailing_whitespace:
   ignores_empty_lines: true
 vertical_whitespace:
@@ -54,5 +54,5 @@ custom_rules:
         TODO comments must have a valid ticket number raised in Jira.
         Please use the format:
         // TODO: DCMAW-000
-    regex: "(?i)(todo(?!(.*dcmaw-\\d{2,})))"
+    regex: "(?i)(todo(?!(.*(dcmaw|govapp)-\\d{2,})))"
     

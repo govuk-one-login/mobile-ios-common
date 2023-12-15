@@ -31,10 +31,6 @@ open class BaseViewController: UIViewController {
                                                            target: self,
                                                            action: #selector(dismissScreen))
         }
-    }
-    
-    public override func viewIsAppearing(_ animated: Bool) {
-        super.viewIsAppearing(animated)
         
         Task { @MainActor in
             if let screen = self as? VoiceOverFocus {
@@ -43,6 +39,8 @@ open class BaseViewController: UIViewController {
             }
         }
     }
+    
+    // TODO: GOVAPP-228 reimplement `viewIsAppearing` method
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
