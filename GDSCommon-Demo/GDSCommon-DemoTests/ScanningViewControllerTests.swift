@@ -37,6 +37,8 @@ final class ScanningViewControllerTests: XCTestCase {
     
     override func tearDown() {
         sut = nil
+        captureSession = nil
+        presenter = nil
         super.tearDown()
     }
     
