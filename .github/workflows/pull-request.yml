@@ -33,7 +33,7 @@ jobs:
       - name: Build and Test
         run: |
           xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
-           -destination "platform=iOS Simulator,name=iPhone 14,OS=iOS 16.4" \
+           -destination "platform=iOS Simulator,name=iPhone 14 Pro Max,OS=16.4" \
            -enableCodeCoverage YES -resultBundlePath result.xcresult
           
       - name: Run SonarCloud Scanning
