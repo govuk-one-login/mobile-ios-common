@@ -72,6 +72,7 @@ extension IntroViewControllerTests {
     
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
+        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         
         let screen = try XCTUnwrap(sut as VoiceOverFocus)

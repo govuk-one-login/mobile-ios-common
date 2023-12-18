@@ -59,12 +59,14 @@ extension ResultsViewControllerTests {
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
+        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(screenDidAppear)
     }
     
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
+        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         
         let screen = try XCTUnwrap(sut as VoiceOverFocus)

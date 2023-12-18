@@ -39,12 +39,14 @@ extension ModalInfoViewControllerTests {
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
         XCTAssert(try sut.bodyLabel.textColor == .gdsGrey)
         sut.beginAppearanceTransition(true, animated: false)
+        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertEqual(try sut.rightBarButtonItem.title, "Done")
     }
     
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
+        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         
         let screen = try XCTUnwrap(sut as VoiceOverFocus)

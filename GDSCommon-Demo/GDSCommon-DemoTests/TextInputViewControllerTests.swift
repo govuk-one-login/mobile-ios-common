@@ -52,9 +52,8 @@ final class TextInputViewControllerTests: XCTestCase {
 extension TextInputViewControllerTests {
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
-        sut.beginAppearanceTransition(false, animated: false)
+        sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
-        sut.viewDidAppear(false)
         XCTAssertTrue(screenDidAppear)
     }
     
@@ -101,6 +100,7 @@ extension TextInputViewControllerTests {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, true)
         
         sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
         XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "Right bar button")
         

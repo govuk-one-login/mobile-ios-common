@@ -45,14 +45,15 @@ extension ListOptionsViewControllerTests {
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
+        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
-        sut.viewWillAppear(false)
         XCTAssertTrue(screenDidAppear)
     }
     
     func testWillAppear() {
         XCTAssertNil(sut.navigationItem.rightBarButtonItem)
         sut.beginAppearanceTransition(true, animated: false)
+        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         sut.viewDidAppear(false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
@@ -60,6 +61,7 @@ extension ListOptionsViewControllerTests {
     
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
+        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         
         let screen = try XCTUnwrap(sut as VoiceOverFocus)
