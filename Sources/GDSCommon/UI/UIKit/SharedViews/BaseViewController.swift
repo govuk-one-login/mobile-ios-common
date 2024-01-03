@@ -18,7 +18,7 @@ open class BaseViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
@@ -31,7 +31,10 @@ open class BaseViewController: UIViewController {
                                                            target: self,
                                                            action: #selector(dismissScreen))
         }
-        
+    }
+    
+    open override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
         Task { @MainActor in
             if let screen = self as? VoiceOverFocus {
                 UIAccessibility.post(notification: .screenChanged,
@@ -40,9 +43,7 @@ open class BaseViewController: UIViewController {
         }
     }
     
-    // TODO: GOVAPP-228 reimplement `viewIsAppearing` method
-    
-    public override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel?.didAppear()
     }
