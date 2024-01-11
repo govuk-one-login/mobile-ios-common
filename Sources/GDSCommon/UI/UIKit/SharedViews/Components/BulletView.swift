@@ -12,7 +12,7 @@ public final class BulletView: NibView {
     /// - Parameters:
     ///   - title: an optional bold formated title to `BulletView`
     ///   - text: the array of `String` that is constructed into the list
-    public init(title: String?, 
+    public init(title: String?,
                 titleFont: UIFont = .init(style: .title3, weight: .semibold),
                 text: [String]) {
         self.title = title
