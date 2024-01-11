@@ -7,7 +7,7 @@ internal final class BulletViewTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        sut = .init(title: "exampleTitle", 
+        sut = .init(title: "exampleTitle",
                     titleFont: .init(style: .title2, weight: .bold),
                     text: ["one", "two", "three"])
     }
