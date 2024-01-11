@@ -16,11 +16,11 @@ public final class BulletView: NibView {
     ///   - titleFont: an optional font applied to `title`
     ///   - text: the array of `String` that is constructed into the list
     public init(title: String?,
-                titleFont: UIFont?,
+                titleFont: UIFont = .init(style: .title3, weight: .semibold),
                 text: [String]) {
         self.title = title
         self.text = text
-        self.titleFont = titleFont ?? .init(style: .title3, weight: .semibold)
+        self.titleFont = titleFont
         super.init(bundle: .module)
         self.accessibilityIdentifier = "bullet-view"
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +29,9 @@ public final class BulletView: NibView {
     /// Convenience initaliser to initialise a `BulletView` directly from a ``BulletViewModel``
     /// - Parameter viewModel: ``BulletViewModel``
     public convenience init(viewModel: BulletViewModel) {
-        self.init(title: viewModel.title, titleFont: viewModel.titleFont, text: viewModel.text)
+        self.init(title: viewModel.title,
+                  titleFont: viewModel.titleFont ?? .init(style: .title3, weight: .semibold),
+                  text: viewModel.text)
     }
     
     required public init?(coder aDecoder: NSCoder) {

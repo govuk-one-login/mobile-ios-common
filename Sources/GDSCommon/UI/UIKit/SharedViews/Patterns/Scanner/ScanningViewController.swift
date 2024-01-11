@@ -79,7 +79,6 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         makeScannerCaptureView()
         updateRegionOfInterest()
         addImageOverlay()
-        setBackButtonTitle()
         previewLayer.frame = cameraView.layer.bounds
     }
     
