@@ -18,6 +18,7 @@
 		2B2F43FB2AE912BA00BDCC72 /* MockIconScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F43FA2AE912BA00BDCC72 /* MockIconScreenViewModel.swift */; };
 		2B74D6652AC317B2002D992C /* Demo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC122ABC5A5600452E23 /* Demo.storyboard */; };
 		2B78F2FA2AD598FC003C3445 /* MockDialogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78F2F92AD598FC003C3445 /* MockDialogPresenter.swift */; };
+		2B9375192B500DAD00E2A6B9 /* MockBulletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9375182B500DAD00E2A6B9 /* MockBulletViewModel.swift */; };
 		2B9BDC0D2ABC5A5600452E23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */; };
 		2B9BDC0F2ABC5A5600452E23 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC0E2ABC5A5600452E23 /* SceneDelegate.swift */; };
 		2B9BDC112ABC5A5600452E23 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC102ABC5A5600452E23 /* DemoViewController.swift */; };
@@ -84,6 +85,7 @@
 		2B0844102ABC7A7700188BA0 /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		2B2F43FA2AE912BA00BDCC72 /* MockIconScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIconScreenViewModel.swift; sourceTree = "<group>"; };
 		2B78F2F92AD598FC003C3445 /* MockDialogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDialogPresenter.swift; sourceTree = "<group>"; };
+		2B9375182B500DAD00E2A6B9 /* MockBulletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBulletViewModel.swift; sourceTree = "<group>"; };
 		2B9BDC092ABC5A5600452E23 /* GDSCommon-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GDSCommon-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9BDC0C2ABC5A5600452E23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B9BDC0E2ABC5A5600452E23 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				2BCBA1252ACDB408009ED436 /* MockQRScanningViewModel.swift */,
 				21D9929E2B13F4DA00F4982F /* MockResultsViewModel.swift */,
 				C8FC500C2B1F770900083CB4 /* MockErrorViewModel.swift */,
+				2B9375182B500DAD00E2A6B9 /* MockBulletViewModel.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				96588BE82AD06CD20035FF93 /* MockTextInputViewModel.swift in Sources */,
 				96588BEA2AD06CE30035FF93 /* MockTextFieldViewModel.swift in Sources */,
 				96588BE62AD06A430035FF93 /* ViewControllerInitialiser+Extensions.swift in Sources */,
+				2B9375192B500DAD00E2A6B9 /* MockBulletViewModel.swift in Sources */,
 				C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */,
 				21D9929F2B13F4DA00F4982F /* MockResultsViewModel.swift in Sources */,
 				2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */,
