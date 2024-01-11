@@ -32,6 +32,7 @@ extension BulletViewTests {
     func test_initWithViewModel() {
         struct MockBulletViewModel: BulletViewModel {
             let title: String? = nil
+            let titleFont: UIFont? = .init(style: .title2, weight: .bold)
             let text = ["bullet 1",
                        "bullet 2",
                        "bullet 3",
