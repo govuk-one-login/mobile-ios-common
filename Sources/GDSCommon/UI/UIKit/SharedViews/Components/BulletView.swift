@@ -5,15 +5,19 @@ import UIKit
 public final class BulletView: NibView {
     private let title: String?
     private let text: [String]
+    private let titleFont: UIFont
     
     /// Initialiser targets the nib file and requires an array of `String`. From this, the view
     /// constructs a vertical stack as a bulleted list (`bulletStack`)
     /// - Parameters:
     ///   - title: an optional bold formated title to `BulletView`
     ///   - text: the array of `String` that is constructed into the list
-    public init(title: String?, text: [String]) {
+    public init(title: String?, 
+                titleFont: UIFont = .init(style: .title3, weight: .semibold),
+                text: [String]) {
         self.title = title
         self.text = text
+        self.titleFont = titleFont
         super.init(bundle: .module)
         self.accessibilityIdentifier = "bullet-view"
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +35,7 @@ public final class BulletView: NibView {
     
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
-            titleLabel.font = .init(style: .title3, weight: .semibold)
+            titleLabel.font = titleFont
             titleLabel.text = title
             titleLabel.isHidden = title == nil
             titleLabel.accessibilityIdentifier = "bullet-title"
