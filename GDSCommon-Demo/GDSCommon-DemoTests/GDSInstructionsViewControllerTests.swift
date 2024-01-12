@@ -16,9 +16,10 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
         super.setUp()
         
         bulletView = BulletView(title: "bullet title",
-                                 text: ["bullet 1",
-                                        "bullet 2",
-                                        "bullet 3"])
+                                text: ["bullet 1",
+                                       "bullet 2",
+                                       "bullet 3"],
+                                titleFont: .init(style: .largeTitle))
         
         let buttonViewModel = MockButtonViewModel(title: GDSLocalisedString(stringLiteral: "button title")) {
             self.didTapButton = true
@@ -96,6 +97,7 @@ extension GDSInstructionsViewControllerTests {
         let stack: UIStackView = try XCTUnwrap(bullets[child: "bullet-stack"])
         let bulletLabels: [UILabel] = try XCTUnwrap(stack.arrangedSubviews as? [UILabel])
         
+        XCTAssertEqual(bulletTitle.font, UIFont.init(style: .largeTitle))
         XCTAssertEqual(bulletTitle.text, "bullet title")
         XCTAssertEqual(bulletLabels[0].text, "\t●\tbullet 1")
         XCTAssertEqual(bulletLabels[1].text, "\t●\tbullet 2")

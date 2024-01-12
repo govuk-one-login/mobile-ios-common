@@ -120,6 +120,36 @@ loadResourceWithCallback() {
 }
 ```
 
+### BulletView
+A view that is used for displaying a list with bullet points. There is the ability to pass through a title and array of text to be displayed in the list. This component is shared across multiple journeys within the `GOV.UK ID Check` app. 
+
+An example usage would be a list of checks for a user to make before completing an action. 
+
+There is the ability to set titleFont like the example below:
+```swift
+let viewModel = BulletViewModel(title: "Bullet List Title,
+                                text: ["First Bullet", "Second Bullet", "Third Bullet],
+                                titleFont: = UIFont(style: .title2, weight: .bold))
+func addBulletView() {
+    let bulletView = BulletView(viewModel: bulletViewModel)
+    bulletView.accessibilityIdentifier = "bulletView"
+    stackView.addArrangedSubview(bulletView)
+}
+```
+
+Additionally, there is a default parameter set so titleFont does not need to be passed through.
+
+```swift
+let viewModel = BulletViewModel(title: "Bullet List Title,
+                                text: ["First Bullet", "Second Bullet", "Third Bullet])
+                                
+func addBulletView() {
+    let bulletView = BulletView(viewModel: bulletViewModel)
+    bulletView.accessibilityIdentifier = "bulletView"
+    stackView.addArrangedSubview(bulletView)
+}
+```
+
 ## Patterns
 
 ### BaseViewController
