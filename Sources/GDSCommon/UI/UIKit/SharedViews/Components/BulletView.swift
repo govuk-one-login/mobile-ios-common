@@ -3,7 +3,7 @@ import UIKit
 /// `BulletView` creates a bulleted list from an array of `String`
 ///  The title is an Optional `String`
 ///  The text is of type `[String]`
-///  The titleFont is an Optional `UIFont` - it has a default value of `.title3` and a weight of `.semibold`
+///  The titleFont is of type `UIFont` with a default value of `.title3` and a weight of `.semibold`
 public final class BulletView: NibView {
     private let title: String?
     private let text: [String]
@@ -13,7 +13,7 @@ public final class BulletView: NibView {
     /// constructs a vertical stack as a bulleted list (`bulletStack`)
     /// - Parameters:
     ///   - title: an optional bold formated title to `BulletView`
-    ///   - titleFont: an optional font applied to `title`
+    ///   - titleFont: a font applied to `title`
     ///   - text: the array of `String` that is constructed into the list
     public init(title: String?,
                 text: [String],

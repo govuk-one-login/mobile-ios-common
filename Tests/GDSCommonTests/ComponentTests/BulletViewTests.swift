@@ -8,8 +8,8 @@ internal final class BulletViewTests: XCTestCase {
         super.setUp()
 
         sut = .init(title: "exampleTitle",
-                    titleFont: .init(style: .title2, weight: .bold),
-                    text: ["one", "two", "three"])
+                    text: ["one", "two", "three"],
+                    titleFont: .init(style: .title2, weight: .bold))
     }
     
     override func tearDown() {
@@ -53,7 +53,7 @@ extension BulletViewTests {
     }
     
     func test_initWithDefaultTitleFont() {
-        sut = BulletView(title: "Title", text: ["bullet 1", "bullet 2", "bullet 3", "bullet 4"]
+        sut = BulletView(title: "Title", text: ["bullet 1", "bullet 2", "bullet 3", "bullet 4"])
         try XCTAssertEqual(sut.titleLabel.text, "Title")
         try XCTAssertEqual(sut.titleLabel.font, .init(style: .title3, weight: .semibold))
     }
