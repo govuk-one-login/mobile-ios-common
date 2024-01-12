@@ -3,7 +3,7 @@ import UIKit
 /// `BulletView` creates a bulleted list from an array of `String`
 ///  The title is an Optional `String`
 ///  The text is of type `[String]`
-///  The titleFont is an Optional `UIFont`
+///  The titleFont is an Optional `UIFont` - it has a default value of `.title3` and a weight of `.semibold`
 public final class BulletView: NibView {
     private let title: String?
     private let text: [String]
@@ -16,8 +16,8 @@ public final class BulletView: NibView {
     ///   - titleFont: an optional font applied to `title`
     ///   - text: the array of `String` that is constructed into the list
     public init(title: String?,
-                titleFont: UIFont = .init(style: .title3, weight: .semibold),
-                text: [String]) {
+                text: [String],
+                titleFont: UIFont = .init(style: .title3, weight: .semibold)) {
         self.title = title
         self.text = text
         self.titleFont = titleFont
@@ -30,8 +30,8 @@ public final class BulletView: NibView {
     /// - Parameter viewModel: ``BulletViewModel``
     public convenience init(viewModel: BulletViewModel) {
         self.init(title: viewModel.title,
-                  titleFont: viewModel.titleFont ?? .init(style: .title3, weight: .semibold),
-                  text: viewModel.text)
+                  text: viewModel.text,
+                  titleFont: viewModel.titleFont ?? .init(style: .title3, weight: .semibold))
     }
     
     required public init?(coder aDecoder: NSCoder) {

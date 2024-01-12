@@ -51,6 +51,12 @@ extension BulletViewTests {
         try XCTAssertEqual("\t●\tbullet 3", sut.bulletLabels[2].text)
         try XCTAssertEqual("\t●\tbullet 4", sut.bulletLabels[3].text)
     }
+    
+    func test_initWithDefaultTitleFont() {
+        sut = BulletView(title: "Title", text: ["bullet 1", "bullet 2", "bullet 3", "bullet 4"]
+        try XCTAssertEqual(sut.titleLabel.text, "Title")
+        try XCTAssertEqual(sut.titleLabel.font, .init(style: .title3, weight: .semibold))
+    }
 }
 
 extension BulletView {

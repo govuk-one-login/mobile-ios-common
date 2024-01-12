@@ -16,10 +16,10 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
         super.setUp()
         
         bulletView = BulletView(title: "bullet title",
-                                titleFont: .init(style: .largeTitle),
                                 text: ["bullet 1",
                                        "bullet 2",
-                                       "bullet 3"])
+                                       "bullet 3"],
+                                titleFont: .init(style: .largeTitle))
         
         let buttonViewModel = MockButtonViewModel(title: GDSLocalisedString(stringLiteral: "button title")) {
             self.didTapButton = true
