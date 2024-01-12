@@ -2,7 +2,9 @@ import UIKit
 
 extension UIViewController {
     func setBackButtonTitle(isHidden: Bool = false) {
-        navigationItem.backButtonTitle = NSLocalizedString(key: "backButtonTitle")
+        let backButtonTitle = GDSLocalisedString(stringKey: "GDSCommon-backButtonTitle",
+                                                 bundle: .module)
+        navigationItem.backButtonTitle = backButtonTitle.value
         navigationItem.hidesBackButton = isHidden
     }
 }

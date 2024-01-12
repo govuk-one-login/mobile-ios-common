@@ -71,7 +71,6 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setBackButtonTitle()
         title = viewModel.title
     }
     
