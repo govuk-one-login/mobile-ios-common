@@ -46,6 +46,8 @@ final class ScanningViewControllerTests: XCTestCase {
     func test_titleLabel() throws {
         XCTAssertNotNil(sut.title)
         XCTAssertEqual(sut.title, "QR Scanning Title")
+        
+        XCTAssertFalse(sut.navigationItem.hidesBackButton)
     }
     
     func test_instructionsLabel() throws {
