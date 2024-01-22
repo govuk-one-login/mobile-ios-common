@@ -20,13 +20,13 @@ public final class PopoverTableViewController: UIViewController {
     }
     
     public override func viewDidLayoutSubviews() {
-        self.preferredContentSize = CGSizeMake(self.view.frame.width, tableView.contentSize.height)
+        self.preferredContentSize = CGSize(width: self.view.frame.width, height: tableView.contentSize.height)
     }
     
     // Ensuring that the popover updates in size to accomodate for dynamic type
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        self.preferredContentSize = CGSizeMake(self.view.frame.width, tableView.contentSize.height + 15)
+        self.preferredContentSize = CGSize(width: self.view.frame.width, height: tableView.contentSize.height)
     }
     
     public override func viewDidLoad() {
