@@ -2,7 +2,11 @@ import Foundation
 import UIKit
 
 public final class PopoverTableViewController: UIViewController {
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var tableView: UITableView! {
+        didSet {
+            tableView.accessibilityIdentifier = "table-view"
+        }
+    }
     
     var items: [PopoverItemViewModel] = []
     

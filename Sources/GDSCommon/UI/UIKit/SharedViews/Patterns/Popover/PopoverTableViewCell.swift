@@ -5,11 +5,13 @@ class PopoverTableViewCell: UITableViewCell {
         didSet {
             titleLabel.numberOfLines = 0
             titleLabel.adjustsFontForContentSizeCategory = true
+            titleLabel.accessibilityIdentifier = "title-label"
         }
     }
     @IBOutlet private var iconView: UIImageView! {
         didSet {
             iconView.adjustsImageSizeForAccessibilityContentSizeCategory = true
+            iconView.accessibilityIdentifier = "icon-view"
         }
     }
     
