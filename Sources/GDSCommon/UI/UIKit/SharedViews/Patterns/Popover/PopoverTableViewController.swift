@@ -40,14 +40,10 @@ public final class PopoverTableViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "PopoverTableViewCell",
-                                 bundle: .module),
-                           forCellReuseIdentifier: "PopoverTableViewCellIdentifier")
+        tableView.register(UINib(nibName: "PopoverTableViewCell", bundle: .module), forCellReuseIdentifier: "PopoverTableViewCellIdentifier")
     }
-    
 }
 
 extension PopoverTableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -57,9 +53,7 @@ extension PopoverTableViewController: UITableViewDelegate, UITableViewDataSource
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.dismiss(animated: true)
-        
-        let item = items[indexPath.row]
-        item.action()
+        items[indexPath.row].action()
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
