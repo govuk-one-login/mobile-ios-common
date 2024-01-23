@@ -47,6 +47,8 @@ extension PopoverTableViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.dismiss(animated: true)
+        
         let item = items[indexPath.row]
         item.action()
     }
