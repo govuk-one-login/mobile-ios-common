@@ -231,6 +231,45 @@ in turn within a `UIScrollView`. The `primaryButton` is within a `UIStackView` c
 The content on the screen is set from the `viewModel`, which must conform to the `InstructionsWithImageViewModel` protocol.
 
 
+### PopoverTableViewController
+
+``PopoverTableViewController`` inherits from `UIViewController`. This allows showing a list, as a popover giving the user multiple options from one button. 
+
+This screen includes the following views:
+- `tableView` (type: `UITableView`)
+
+The content on the screen is set from the `viewModel`, which must conform to the `PopoverItemViewModel` protocol.
+
+#### Example
+
+```swift
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = .init(image: UIImage(systemName: "ellipsis.circle"),
+                                                       style: .plain,
+                                                       target: self,
+                                                       action: #selector(openDetailView(_:)))
+    }
+
+    func openDetailView(_ sender: Any) {
+        let vc = PopoverTableViewController(items: [mockItem])
+        vc.modalPresentationStyle = .popover
+        
+        let presentationController = vc.popoverPresentationController
+        presentationController?.permittedArrowDirections = .any
+        presentationController?.delegate = self
+        presentationController?.sourceView = sender as? UIView
+        presentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+```
+
+
 ### ListOptions
 This screen includes the following views:
 - `titleLabel` (type: `UILabel`)

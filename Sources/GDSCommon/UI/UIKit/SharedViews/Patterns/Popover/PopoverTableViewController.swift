@@ -1,7 +1,13 @@
 import Foundation
 import UIKit
 
+/// View Controller for the `PopoverTableView` storyboard XIB
+/// This screen includes the following views:
+///   - `tableView` (type: `UITableView`)
+/// This screen provides a list of options for the user, in a popover view.
 public final class PopoverTableViewController: UIViewController {
+    
+    /// tableView label: ``UITableView``
     @IBOutlet private var tableView: UITableView! {
         didSet {
             tableView.accessibilityIdentifier = "table-view"
@@ -10,6 +16,9 @@ public final class PopoverTableViewController: UIViewController {
     
     var items: [PopoverItemViewModel] = []
     
+    /// Initialiser for the `PopoverTableView` view controller.
+    /// Requires a single parameter.
+    /// - Parameter items: `[PopoverItemViewModel]`
     public init(items: [PopoverItemViewModel]) {
         self.items = items
         super.init(nibName: "PopoverTableView", bundle: .module)

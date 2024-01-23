@@ -34,7 +34,7 @@ class DemoViewController: UIViewController, UIPopoverPresentationControllerDeleg
                                                 tint: .accent) {
             print("second item tapped")
         }
-        let vc = PopoverTableViewController(items: [mockItem, mockItem2] )
+        let vc = PopoverTableViewController(items: [mockItem, mockItem2])
         vc.modalPresentationStyle = .popover
         
         let presentationController = vc.popoverPresentationController
