@@ -4,9 +4,9 @@ import UIKit
 public final class GDSInformationController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSInformation" }
     
-    public private(set) var viewModel: GDSErrorViewModel
+    public private(set) var viewModel: GDSInformationViewModel
     
-    public init(viewModel: GDSErrorViewModel) {
+    public init(viewModel: GDSInformationViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSInformation", bundle: .module)
     }
