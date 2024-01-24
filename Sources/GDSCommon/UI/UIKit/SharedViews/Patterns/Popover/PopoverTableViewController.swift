@@ -14,13 +14,13 @@ public final class PopoverTableViewController: UIViewController {
         }
     }
     
-    var items: [PopoverItemViewModel] = []
+    var itemsViewModel: [PopoverItemViewModel] = []
     
     /// Initialiser for the `PopoverTableView` view controller.
     /// Requires a single parameter.
     /// - Parameter items: `[PopoverItemViewModel]`
     public init(items: [PopoverItemViewModel]) {
-        self.items = items
+        self.itemsViewModel = items
         super.init(nibName: "PopoverTableView", bundle: .module)
     }
     
@@ -29,13 +29,13 @@ public final class PopoverTableViewController: UIViewController {
     }
     
     public override func viewDidLayoutSubviews() {
-        self.preferredContentSize = CGSize(width: self.view.frame.width, height: tableView.contentSize.height)
+        setContentSize()
     }
     
     // Ensuring that the popover updates in size to accomodate for dynamic type
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        self.preferredContentSize = CGSize(width: self.view.frame.width, height: tableView.contentSize.height)
+        setContentSize()
     }
     
     public override func viewDidLoad() {
@@ -44,22 +44,25 @@ public final class PopoverTableViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: "PopoverTableViewCell", bundle: .module), forCellReuseIdentifier: "PopoverTableViewCellIdentifier")
     }
+    
+    private func setContentSize() {
+        self.preferredContentSize = CGSize(width: self.view.frame.width, height: tableView.contentSize.height)
+    }
 }
 
 extension PopoverTableViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return itemsViewModel.count
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.dismiss(animated: true)
-        items[indexPath.row].action()
+        itemsViewModel[indexPath.row].action()
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = items[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PopoverTableViewCellIdentifier",
-                                                       for: indexPath) as? PopoverTableViewCell else { return UITableViewCell() }
+        let item = itemsViewModel[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PopoverTableViewCellIdentifier", for: indexPath) as? PopoverTableViewCell else { return UITableViewCell() }
         cell.setupView(item: item)
         return cell
     }

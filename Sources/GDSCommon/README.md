@@ -233,7 +233,7 @@ The content on the screen is set from the `viewModel`, which must conform to the
 
 ### PopoverTableViewController
 
-``PopoverTableViewController`` inherits from `UIViewController`. This allows showing a list, as a popover giving the user multiple options from one button. 
+``PopoverTableViewController`` inherits from `UIViewController`. This allows showing a list, as a popover giving the user multiple options from one button. To use this the view controller will need to conform to `UIPopoverPresentationControllerDelegate`.
 
 This screen includes the following views:
 - `tableView` (type: `UITableView`)
