@@ -15,6 +15,7 @@
 		2B08440B2ABC79C300188BA0 /* MockGDSInstructionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */; };
 		2B08440F2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08440E2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift */; };
 		2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0844102ABC7A7700188BA0 /* XCTestCase.swift */; };
+		2B17F8F22B5EB939006926D0 /* MockPopoverItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B17F8F12B5EB939006926D0 /* MockPopoverItemViewModel.swift */; };
 		2B2F43FB2AE912BA00BDCC72 /* MockIconScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F43FA2AE912BA00BDCC72 /* MockIconScreenViewModel.swift */; };
 		2B74D6652AC317B2002D992C /* Demo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC122ABC5A5600452E23 /* Demo.storyboard */; };
 		2B78F2FA2AD598FC003C3445 /* MockDialogPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B78F2F92AD598FC003C3445 /* MockDialogPresenter.swift */; };
@@ -83,6 +84,7 @@
 		2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSCommon_DemoTests.swift; sourceTree = "<group>"; };
 		2B08440E2ABC7A5B00188BA0 /* UIView+Test_Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Test_Extensions.swift"; sourceTree = "<group>"; };
 		2B0844102ABC7A7700188BA0 /* XCTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
+		2B17F8F12B5EB939006926D0 /* MockPopoverItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPopoverItemViewModel.swift; sourceTree = "<group>"; };
 		2B2F43FA2AE912BA00BDCC72 /* MockIconScreenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockIconScreenViewModel.swift; sourceTree = "<group>"; };
 		2B78F2F92AD598FC003C3445 /* MockDialogPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDialogPresenter.swift; sourceTree = "<group>"; };
 		2B9375182B500DAD00E2A6B9 /* MockBulletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBulletViewModel.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */,
+				2B17F8F12B5EB939006926D0 /* MockPopoverItemViewModel.swift */,
 				2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */,
 				96FEBF912ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift */,
 				96FEBF902ACEC0F30067CC10 /* MockDatePickerViewModel.swift */,
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B9BDC112ABC5A5600452E23 /* DemoViewController.swift in Sources */,
+				2B17F8F22B5EB939006926D0 /* MockPopoverItemViewModel.swift in Sources */,
 				2B2F43FB2AE912BA00BDCC72 /* MockIconScreenViewModel.swift in Sources */,
 				96588BE82AD06CD20035FF93 /* MockTextInputViewModel.swift in Sources */,
 				96588BEA2AD06CE30035FF93 /* MockTextFieldViewModel.swift in Sources */,
