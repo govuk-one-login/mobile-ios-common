@@ -42,9 +42,13 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
     // good naming?
     @IBOutlet private var footnoteLabel: UILabel! {
         didSet {
-            footnoteLabel.font = .init(style: .footnote) // do i need weight & design
-            footnoteLabel.text = viewModel.title.value
-            footnoteLabel.accessibilityIdentifier = "information-footnote"
+            if let footnoteContent = viewModel.footnote {
+                footnoteLabel.font = .init(style: .footnote) // do i need weight & design
+                footnoteLabel.text = footnoteContent.value
+                footnoteLabel.accessibilityIdentifier = "information-footnote"
+            } else {
+                footnoteLabel.isHidden = true
+            }
         }
     }
     
