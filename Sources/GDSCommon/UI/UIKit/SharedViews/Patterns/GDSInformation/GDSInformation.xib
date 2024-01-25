@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,14 +12,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GDSInformationController" customModule="GDSCommon">
             <connections>
-                <outlet property="bodyLabel" destination="YqY-LQ-KLH" id="OQh-Td-VLp"/>
-                <outlet property="footnoteLabel" destination="zrR-Dr-3eh" id="o1p-vk-i5W"/>
-                <outlet property="image" destination="vXP-wQ-k57" id="W1t-aF-aFo"/>
-                <outlet property="informationImage" destination="vXP-wQ-k57" id="naz-pO-blv"/>
-                <outlet property="primaryButton" destination="a2l-9h-5cw" id="9E8-CG-7io"/>
-                <outlet property="secondaryButton" destination="5JG-e4-Yqj" id="uvU-EU-ffY"/>
-                <outlet property="title" destination="tXa-cd-Nuw" id="cXg-vg-Mz8"/>
-                <outlet property="titleLabel" destination="tXa-cd-Nuw" id="Hwf-TD-iHY"/>
+                <outlet property="bodyLabel" destination="YqY-LQ-KLH" id="8vP-tX-FiS"/>
+                <outlet property="footnoteLabel" destination="zrR-Dr-3eh" id="ruf-SY-cCX"/>
+                <outlet property="informationImage" destination="vXP-wQ-k57" id="Nxf-ym-LI1"/>
+                <outlet property="primaryButton" destination="a2l-9h-5cw" id="AAv-Xb-ZDH"/>
+                <outlet property="secondaryButton" destination="5JG-e4-Yqj" id="2RO-Qb-cCX"/>
+                <outlet property="titleLabel" destination="tXa-cd-Nuw" id="ea9-Gw-C2m"/>
+                <outlet property="view" destination="KNE-jX-vud" id="MO0-sG-eTd"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -102,8 +101,7 @@
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Continue"/>
                             <connections>
-                                <action selector="primaryButton:" destination="-1" eventType="touchUpInside" id="LP7-cf-bji"/>
-                                <action selector="primaryButtonAction:" destination="-1" eventType="touchUpInside" id="jp8-I4-dRf"/>
+                                <action selector="primaryButtonAction:" destination="-1" eventType="touchUpInside" id="1jr-aH-2tM"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="326" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JG-e4-Yqj" customClass="SecondaryButton" customModule="GDSCommon">
@@ -116,8 +114,7 @@
                                 <userDefinedRuntimeAttribute type="string" keyPath="icon" value="arrow.up.right"/>
                             </userDefinedRuntimeAttributes>
                             <connections>
-                                <action selector="secondaryButton:" destination="-1" eventType="touchUpInside" id="3OG-Ck-TpS"/>
-                                <action selector="secondaryButtonAction:" destination="-1" eventType="touchUpInside" id="TYJ-D7-KJg"/>
+                                <action selector="secondaryButtonAction:" destination="-1" eventType="touchUpInside" id="yuW-Rb-tBy"/>
                             </connections>
                         </button>
                     </subviews>
