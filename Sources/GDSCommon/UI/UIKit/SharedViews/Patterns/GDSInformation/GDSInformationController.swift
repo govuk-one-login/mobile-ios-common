@@ -17,7 +17,7 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
     
     @IBOutlet private var informationImage: UIImageView! {
         didSet {
-            let font = UIFont(style: .largeTitle, weight: .medium)
+            let font = UIFont(style: .largeTitle, weight: .semibold)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
             informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
             informationImage.accessibilityIdentifier = "information-image"
