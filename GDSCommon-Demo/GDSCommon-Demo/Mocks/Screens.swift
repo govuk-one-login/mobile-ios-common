@@ -27,6 +27,7 @@ enum Screens: String, CaseIterable {
     case gdsResultsView = "Results View"
     case gdsResultsViewModal = "Results View (Modal)"
     case gdsErrorView = "Error View"
+    case gdsInformationView = "Information View"
     
     var isModal: Bool {
         switch self {
@@ -94,6 +95,9 @@ enum Screens: String, CaseIterable {
         case .gdsErrorView:
             let viewModel = MockErrorViewModel()
             return GDSErrorViewController(viewModel: viewModel)
+        case .gdsInformationView:
+            let viewModel = MockInformationViewModel()
+            return GDSInformationController(viewModel: viewModel)
         }
     }
     
