@@ -103,6 +103,7 @@
                             <state key="normal" title="Continue"/>
                             <connections>
                                 <action selector="primaryButton:" destination="-1" eventType="touchUpInside" id="LP7-cf-bji"/>
+                                <action selector="primaryButtonAction:" destination="-1" eventType="touchUpInside" id="jp8-I4-dRf"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="326" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JG-e4-Yqj" customClass="SecondaryButton" customModule="GDSCommon">

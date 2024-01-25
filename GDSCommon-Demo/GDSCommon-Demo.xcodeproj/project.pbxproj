@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E891B722B628AA000744E3D /* MockGDSInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E891B712B628AA000744E3D /* MockGDSInformationViewModel.swift */; };
 		21AB39DC2B142B5400A26268 /* ResultsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB39DB2B142B5400A26268 /* ResultsViewControllerTests.swift */; };
 		21D9929F2B13F4DA00F4982F /* MockResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D9929E2B13F4DA00F4982F /* MockResultsViewModel.swift */; };
 		2B0844032ABC79BB00188BA0 /* GDSCommon_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E891B712B628AA000744E3D /* MockGDSInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSInformationViewModel.swift; sourceTree = "<group>"; };
 		21AB39DB2B142B5400A26268 /* ResultsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewControllerTests.swift; sourceTree = "<group>"; };
 		21D9929E2B13F4DA00F4982F /* MockResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResultsViewModel.swift; sourceTree = "<group>"; };
 		2B0843F42ABC797E00188BA0 /* MockGDSInstructionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSInstructionsViewModel.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				21D9929E2B13F4DA00F4982F /* MockResultsViewModel.swift */,
 				C8FC500C2B1F770900083CB4 /* MockErrorViewModel.swift */,
 				2B9375182B500DAD00E2A6B9 /* MockBulletViewModel.swift */,
+				1E891B712B628AA000744E3D /* MockGDSInformationViewModel.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				2B9BDC0F2ABC5A5600452E23 /* SceneDelegate.swift in Sources */,
 				C8A0D1A82ADF08A6003013E4 /* (null) in Sources */,
 				2BF1972B2ABDA1B800AC9620 /* MockModalInfoViewModel.swift in Sources */,
+				1E891B722B628AA000744E3D /* MockGDSInformationViewModel.swift in Sources */,
 				9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */,
 				2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */,
 				C8CFBFF92ADDA0C700BE35C5 /* MockOptionViewModel.swift in Sources */,

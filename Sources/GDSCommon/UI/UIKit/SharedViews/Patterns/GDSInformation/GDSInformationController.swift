@@ -15,7 +15,7 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBOutlet var informationImage: UIImageView! {
+    @IBOutlet private var informationImage: UIImageView! {
         didSet {
             let font = UIFont(style: .largeTitle, weight: .light)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
@@ -24,7 +24,7 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         }
     }
     
-    @IBOutlet var titleLabel: UILabel! {
+    @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
             titleLabel.text = viewModel.title.value
@@ -32,7 +32,7 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         }
     }
     
-    @IBOutlet var bodyLabel: UILabel! {
+    @IBOutlet private var bodyLabel: UILabel! {
         didSet {
             bodyLabel.text = viewModel.body.value
             bodyLabel.accessibilityIdentifier = "information-body"
@@ -40,7 +40,7 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
     }
     
     // good naming?
-    @IBOutlet var footnoteLabel: UILabel! {
+    @IBOutlet private var footnoteLabel: UILabel! {
         didSet {
             footnoteLabel.font = .init(style: .footnote) // do i need weight & design
             footnoteLabel.text = viewModel.title.value
@@ -48,7 +48,7 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         }
     }
     
-    @IBOutlet var primaryButton: RoundedButton! {
+    @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
             primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
             primaryButton.accessibilityIdentifier = "information-primary-button"
@@ -56,13 +56,13 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         
     }
     
-    @IBAction func primaryButtonAction(_ sender: Any) {
+    @IBAction private func primaryButtonAction(_ sender: Any) {
         primaryButton.isLoading = true
         viewModel.primaryButtonViewModel.action()
         primaryButton.isLoading = false
     }
     
-    @IBOutlet var secondaryButton: SecondaryButton! {
+    @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
             if let buttonViewModel = viewModel.secondaryButtonViewModel {
                 secondaryButton.setTitle(buttonViewModel.title, for: .normal)
@@ -78,7 +78,7 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         }
     }
     
-    @IBAction func secondaryButtonAction(_ sender: Any) {
+    @IBAction private func secondaryButtonAction(_ sender: Any) {
         viewModel.secondaryButtonViewModel?.action()
     }
 }

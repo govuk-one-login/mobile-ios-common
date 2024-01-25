@@ -96,7 +96,7 @@ enum Screens: String, CaseIterable {
             let viewModel = MockErrorViewModel()
             return GDSErrorViewController(viewModel: viewModel)
         case .gdsInformationView:
-            let viewModel = MockInformationViewModel()
+            let viewModel = MockGDSInformationViewModel()
             return GDSInformationController(viewModel: viewModel)
         }
     }
