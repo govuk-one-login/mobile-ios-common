@@ -1,7 +1,7 @@
 import UIKit
 
 /// View controller for `GDSInformation` screen
-///     - `informationImage` (type: `UIImageView`)
+///     - `informationImage` (type: `String`)
 ///     - `titleLabel` (type: `UILabel`)
 ///     - `bodyLabel` (type: `UILabel`)
 ///     - `footnoteLabel`  (type: `UILabel`)
