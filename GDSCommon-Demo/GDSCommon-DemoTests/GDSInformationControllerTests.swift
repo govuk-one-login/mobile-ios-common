@@ -34,14 +34,15 @@ final class GDSInformationControllerTests: XCTestCase {
 
 private struct TestViewModel: GDSInformationViewModel, BaseViewModel {
     let image: String = "lock"
+    let imageWeight: UIFont.Weight = .semibold
     let title: GDSLocalisedString = "Information screen title"
     let body: GDSLocalisedString = "Information screen body"
-    var footnote: GDSLocalisedString? = "Information screen footnote"
+    let footnote: GDSLocalisedString? = "Information screen footnote"
     let primaryButtonViewModel: ButtonViewModel
     let secondaryButtonViewModel: ButtonViewModel?
     
-    var rightBarButtonTitle: GDSLocalisedString? = "right bar button"
-    var backButtonIsHidden: Bool = false
+    let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
+    let backButtonIsHidden: Bool = false
     let appearAction: () -> Void
     let dismissAction: () -> Void
     

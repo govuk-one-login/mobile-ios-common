@@ -1,5 +1,12 @@
 import UIKit
 
+/// View controller for `GDSInformation` screen
+///     - `informationImage` (type: `UIImageView`)
+///     - `titleLabel` (type: `UILabel`)
+///     - `bodyLabel` (type: `UILabel`)
+///     - `footnoteLabel`  (type: `UILabel`)
+///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
+///     - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
 public final class GDSInformationController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSInformation" }
     
@@ -17,7 +24,7 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
     
     @IBOutlet private var informationImage: UIImageView! {
         didSet {
-            let font = UIFont(style: .largeTitle, weight: .semibold)
+            let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
             informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
             informationImage.accessibilityIdentifier = "information-image"
