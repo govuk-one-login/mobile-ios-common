@@ -2,8 +2,8 @@ import GDSCommon
 import UIKit
 
 struct MockGDSInformationViewModel: GDSInformationViewModel, BaseViewModel {
-    let image: String = "faceid"
-    let imageWeight: UIFont.Weight = .thin
+    let image: String = "lock"
+    let imageWeight: UIFont.Weight = .semibold
     let title: GDSLocalisedString = "This is an Information View title"
     let body: GDSLocalisedString = "This is an Information View body. \n\n This is another Information View body."
     let footnote: GDSLocalisedString? = "This is an Information View footnote where additional information for the buttons can be detailed."
