@@ -14,6 +14,7 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     public init(viewModel: GDSErrorViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSError", bundle: .module)
+        self.isAccessibilityElement = true
     }
     
     @available(*, unavailable, renamed: "init(coordinator:)")
