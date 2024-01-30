@@ -80,6 +80,7 @@ extension GDSInformationControllerTests {
         XCTAssertFalse(try sut.informationBodyLabel.accessibilityTraits.contains(.header))
         XCTAssertEqual(try sut.informationFootnoteLabel.text, "Information screen footnote")
         XCTAssertEqual(try sut.informationFootnoteLabel.font, .footnote)
+        XCTAssertEqual(try sut.informationFootnoteLabel.maximumContentSizeCategory, .accessibilityLarge)
         XCTAssertFalse(try sut.informationFootnoteLabel.accessibilityTraits.contains(.header))
         XCTAssertEqual(try sut.informationPrimaryButton.title(for: .normal), "Information primary button title")
         XCTAssertEqual(try sut.informationSecondaryButton.title(for: .normal), "Information secondary button title")
@@ -100,12 +101,11 @@ extension GDSInformationControllerTests {
     func test_didAppear() throws {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(viewDidAppear)
     }
     
-    func testVoiceOverFocusElement() throws {
+    func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         

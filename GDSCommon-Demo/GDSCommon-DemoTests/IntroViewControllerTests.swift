@@ -70,7 +70,7 @@ extension IntroViewControllerTests {
         XCTAssertEqual(try sut.introButton.title(for: .normal), "Intro screen button title")
     }
     
-    func testVoiceOverFocusElement() throws {
+    func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         

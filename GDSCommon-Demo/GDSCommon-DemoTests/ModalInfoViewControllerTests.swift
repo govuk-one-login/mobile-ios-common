@@ -43,7 +43,7 @@ extension ModalInfoViewControllerTests {
         XCTAssertEqual(try sut.rightBarButtonItem.title, "Done")
     }
     
-    func testVoiceOverFocusElement() throws {
+    func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         

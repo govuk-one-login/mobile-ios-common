@@ -42,7 +42,7 @@ final class ListOptionsViewControllerTests: XCTestCase {
 }
 
 extension ListOptionsViewControllerTests {
-    func testDidAppear() {
+    func test_didAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -50,7 +50,7 @@ extension ListOptionsViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
-    func testWillAppear() {
+    func test_willAppear() {
         XCTAssertNil(sut.navigationItem.rightBarButtonItem)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -58,7 +58,7 @@ extension ListOptionsViewControllerTests {
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
     }
     
-    func testVoiceOverFocusElement() throws {
+    func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         
@@ -67,7 +67,7 @@ extension ListOptionsViewControllerTests {
         XCTAssertEqual(view.text, "This is the List Options screen pattern")
     }
     
-    func testLabelContents() {
+    func test_labelContents() {
         XCTAssertEqual(try sut.titleLabel.text, "This is the List Options screen pattern")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertEqual(try sut.titleLabel.textColor, .label)
@@ -77,7 +77,7 @@ extension ListOptionsViewControllerTests {
         XCTAssertEqual(try sut.bodyLabel.font, .body)
     }
     
-    func testTitleBar() {
+    func test_titleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
         XCTAssertEqual(sut.navigationItem.hidesBackButton, true)
@@ -92,7 +92,7 @@ extension ListOptionsViewControllerTests {
         XCTAssertTrue(didDismiss)
     }
     
-    func testPrimaryButton() throws {
+    func test_primaryButton() throws {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.font, .bodySemiBold)

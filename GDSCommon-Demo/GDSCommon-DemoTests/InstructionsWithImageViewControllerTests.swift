@@ -53,13 +53,13 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
 }
 
 extension InstructionsWithImageViewControllerTests {
-    func testDidAppear() {
+    func test_didAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.viewDidAppear(false)
         XCTAssertTrue(screenDidAppear)
     }
     
-    func testVoiceOverFocusElement() throws {
+    func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         
@@ -68,7 +68,7 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertEqual(view.text, "This is the Instructions with image view")
     }
     
-    func testTitleBar() {
+    func test_titleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
         XCTAssertEqual(sut.navigationItem.hidesBackButton, true)

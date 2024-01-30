@@ -56,14 +56,14 @@ private struct TestViewModel: ResultsViewModel, BaseViewModel {
 }
 
 extension ResultsViewControllerTests {
-    func testDidAppear() {
+    func test_didAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         XCTAssertTrue(screenDidAppear)
     }
     
-    func testVoiceOverFocusElement() throws {
+    func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         

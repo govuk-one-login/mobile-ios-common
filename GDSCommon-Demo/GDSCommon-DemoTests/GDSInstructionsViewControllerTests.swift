@@ -40,19 +40,20 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
         bulletView = nil
         viewModel = nil
         sut = nil
-    
+        
         super.tearDown()
     }
 }
 
 extension GDSInstructionsViewControllerTests {
-    func testDidAppear() {
+    func test_didAppear() {
         XCTAssertFalse(screenDidAppear)
-        sut.viewDidAppear(false)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
         XCTAssertTrue(screenDidAppear)
     }
     
-    func testVoiceOverFocusElement() throws {
+    func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         
@@ -70,12 +71,10 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertEqual(try sut.titleLabel.textColor, .label)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
-        
-        XCTAssertEqual(try sut.bodyLabel.text, "test body"
-        )
+        XCTAssertEqual(try sut.bodyLabel.text, "test body")
     }
     
-    func testTitleBar() {
+    func test_titleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
         XCTAssertEqual(sut.navigationItem.hidesBackButton, true)
@@ -83,9 +82,8 @@ extension GDSInstructionsViewControllerTests {
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
         XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "right bar button")
-
         XCTAssertFalse(didDismiss)
-
+        
         _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
         XCTAssertTrue(didDismiss)
     }
@@ -110,7 +108,7 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
     }
     
-    func testSecondaryButton() throws {
+    func test_secondaryButton() throws {
         XCTAssertNotNil(try sut.secondaryButton)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "button title")
         XCTAssertNotEqual(try sut.secondaryButton.backgroundColor, .gdsGreen)
