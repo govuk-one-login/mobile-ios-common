@@ -24,10 +24,15 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
     
     @IBOutlet private var informationImage: UIImageView! {
         didSet {
-            let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight)
+            let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight ?? .semibold)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
             informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
+            informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
             informationImage.accessibilityIdentifier = "information-image"
+            
+            NSLayoutConstraint.activate([
+                informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: viewModel.imageHeightConstraint ?? 55)
+            ])
         }
     }
     
@@ -41,8 +46,12 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            bodyLabel.text = viewModel.body.value
-            bodyLabel.accessibilityIdentifier = "information-body"
+            if let bodyContent = viewModel.body {
+                bodyLabel.text = bodyContent.value
+                bodyLabel.accessibilityIdentifier = "information-body"
+            } else {
+                bodyLabel.isHidden = true
+            }
         }
     }
     
