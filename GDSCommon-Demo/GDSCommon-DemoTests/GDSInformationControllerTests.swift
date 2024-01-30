@@ -34,9 +34,11 @@ final class GDSInformationControllerTests: XCTestCase {
 
 private struct TestViewModel: GDSInformationViewModel, BaseViewModel {
     let image: String = "lock"
-    let imageWeight: UIFont.Weight = .semibold
+    let imageWeight: UIFont.Weight? = .semibold
+    let imageColour: UIColor? = .gdsPrimary
+    let imageHeightConstraint: CGFloat? = 55
     let title: GDSLocalisedString = "Information screen title"
-    let body: GDSLocalisedString = "Information screen body"
+    let body: GDSLocalisedString? = "Information screen body"
     let footnote: GDSLocalisedString? = "Information screen footnote"
     let primaryButtonViewModel: ButtonViewModel
     let secondaryButtonViewModel: ButtonViewModel?
@@ -73,6 +75,7 @@ private struct TestViewModel: GDSInformationViewModel, BaseViewModel {
 extension GDSInformationControllerTests {
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.informationImage)
+        XCTAssertEqual(try sut.informationImage.tintColor, .gdsPrimary)
         XCTAssertEqual(try sut.informationTitleLabel.text, "Information screen title")
         XCTAssertEqual(try sut.informationTitleLabel.font, .largeTitleBold)
         XCTAssertTrue(try sut.informationTitleLabel.accessibilityTraits.contains(.header))
