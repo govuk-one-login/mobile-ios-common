@@ -60,7 +60,7 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
             if let footnoteContent = viewModel.footnote {
                 footnoteLabel.font = .init(style: .footnote)
                 if #available(iOS 15.0, *) {
-                    footnoteLabel.maximumContentSizeCategory = .accessibilityLarge
+                    footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
                 }
                 footnoteLabel.text = footnoteContent.value
                 footnoteLabel.accessibilityIdentifier = "information-footnote"
