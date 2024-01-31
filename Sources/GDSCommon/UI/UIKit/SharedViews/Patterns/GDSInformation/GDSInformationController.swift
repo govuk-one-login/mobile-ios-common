@@ -59,11 +59,12 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         didSet {
             if let footnoteContent = viewModel.footnote {
                 footnoteLabel.font = .init(style: .footnote)
+                footnoteLabel.text = footnoteContent.value
+                footnoteLabel.accessibilityIdentifier = "information-footnote"
+                
                 if #available(iOS 15.0, *) {
                     footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
                 }
-                footnoteLabel.text = footnoteContent.value
-                footnoteLabel.accessibilityIdentifier = "information-footnote"
             } else {
                 footnoteLabel.isHidden = true
             }
@@ -74,6 +75,10 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         didSet {
             primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
             primaryButton.accessibilityIdentifier = "information-primary-button"
+            
+            if #available(iOS 15.0, *) {
+                primaryButton.maximumContentSizeCategory = .accessibilityMedium
+            }
         }
     }
     
@@ -87,11 +92,16 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         didSet {
             if let buttonViewModel = viewModel.secondaryButtonViewModel {
                 secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+                secondaryButton.titleLabel?.textAlignment = .center
                 secondaryButton.accessibilityIdentifier = "information-secondary-button"
                 
                 if let icon = buttonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
+                }
+                
+                if #available(iOS 15.0, *) {
+                    secondaryButton.maximumContentSizeCategory = .accessibilityMedium
                 }
             } else {
                 secondaryButton.isHidden = true
