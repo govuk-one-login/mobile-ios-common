@@ -100,7 +100,7 @@ extension GDSErrorViewControllerTests {
         XCTAssertTrue(viewDidAppear)
     }
     
-    func test_voiceOverFocusElement() throws {
+    func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         

@@ -50,7 +50,7 @@ final class TextInputViewControllerTests: XCTestCase {
 }
 
 extension TextInputViewControllerTests {
-    func tes_didAppear() {
+    func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(false, animated: false)
         sut.endAppearanceTransition()
@@ -58,7 +58,7 @@ extension TextInputViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
-    func test_voiceOverFocusElement() throws {
+    func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         
@@ -67,14 +67,14 @@ extension TextInputViewControllerTests {
         XCTAssertEqual(view.text, "Text input screen title")
     }
     
-    func test_labels() {
+    func testLabels() {
         XCTAssertEqual(try sut.titleLabel.text, "Text input screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertEqual(try sut.titleLabel.textColor, .label)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
     }
     
-    func test_textField() throws {
+    func testTextField() throws {
         try XCTAssertEqual(sut.textField.text, "")
         
         try sut.textField.text = "abc"
@@ -95,7 +95,7 @@ extension TextInputViewControllerTests {
         try XCTAssertEqual(sut.textField.keyboardType, .default)
     }
     
-    func test_titleBar() {
+    func testTitleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
         XCTAssertEqual(sut.navigationItem.hidesBackButton, true)
@@ -110,13 +110,13 @@ extension TextInputViewControllerTests {
         XCTAssertTrue(didDismissScreen)
     }
     
-    func test_textFieldFooter() throws {
+    func testTextFieldFooter() throws {
         try XCTAssertEqual(sut.textFieldFooter.text, "This is an optional footer. It is configured on the view model. If `nil` the label is hidden.")
         try XCTAssertEqual(sut.textFieldFooter.font, .footnote)
         try XCTAssertEqual(sut.textFieldFooter.textColor, .secondaryLabel)
     }
     
-    func test_primaryButton() throws {
+    func testPrimaryButton() throws {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
         

@@ -77,7 +77,7 @@ final class ScanningViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.nibName, "Scanner")
     }
     
-    func test_stopScanning() {
+    func testStopScanning() {
         XCTAssertTrue(sut.captureSession.isRunning)
         sut.stopScanning()
         XCTAssertFalse(sut.captureSession.isRunning)
