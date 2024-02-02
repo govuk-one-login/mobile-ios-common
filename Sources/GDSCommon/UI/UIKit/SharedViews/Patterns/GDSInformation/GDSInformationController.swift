@@ -75,10 +75,6 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
         didSet {
             primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
             primaryButton.accessibilityIdentifier = "information-primary-button"
-            
-            if #available(iOS 15.0, *) {
-                primaryButton.maximumContentSizeCategory = .accessibilityMedium
-            }
         }
     }
     
@@ -98,10 +94,6 @@ public final class GDSInformationController: BaseViewController, TitledViewContr
                 if let icon = buttonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
-                }
-                
-                if #available(iOS 15.0, *) {
-                    secondaryButton.maximumContentSizeCategory = .accessibilityMedium
                 }
             } else {
                 secondaryButton.isHidden = true
