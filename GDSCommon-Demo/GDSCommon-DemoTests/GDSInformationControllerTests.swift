@@ -51,8 +51,7 @@ private struct TestViewModel: GDSInformationViewModel, BaseViewModel {
     init(primaryButtonAction: @escaping () -> Void,
          secondaryButtonAction: @escaping () -> Void,
          appearAction: @escaping () -> Void,
-         dismissAction: @escaping () -> Void
-    ) {
+         dismissAction: @escaping () -> Void) {
         primaryButtonViewModel = MockButtonViewModel(title: "Information primary button title") {
             primaryButtonAction()
         }
@@ -104,7 +103,6 @@ extension GDSInformationViewControllerTests {
     func test_didAppear() throws {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(viewDidAppear)
     }
@@ -121,7 +119,6 @@ extension GDSInformationViewControllerTests {
     func test_didDismiss() {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(viewDidAppear)
         

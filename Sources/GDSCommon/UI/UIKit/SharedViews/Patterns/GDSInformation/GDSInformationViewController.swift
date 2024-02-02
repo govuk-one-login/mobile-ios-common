@@ -11,6 +11,8 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     public override var nibName: String? { "GDSInformation" }
     
     public private(set) var viewModel: GDSInformationViewModel
+    private let defaultImageHeight: CGFloat = 55
+    private let imagePaddingCompensation: CGFloat = 11
     
     public init(viewModel: GDSInformationViewModel) {
         self.viewModel = viewModel
@@ -30,8 +32,16 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
             informationImage.accessibilityIdentifier = "information-image"
             
+            let heightConstraint: CGFloat
+            
+            if let value = viewModel.imageHeightConstraint {
+                heightConstraint = value + imagePaddingCompensation
+            } else {
+                heightConstraint = defaultImageHeight
+            }
+            
             NSLayoutConstraint.activate([
-                informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: viewModel.imageHeightConstraint ?? 55)
+                    informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
             ])
         }
     }
