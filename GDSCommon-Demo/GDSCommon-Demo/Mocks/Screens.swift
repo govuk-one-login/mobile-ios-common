@@ -94,7 +94,7 @@ enum Screens: String, CaseIterable {
         case .gdsErrorView:
             return GDSErrorViewController(viewModel: MockErrorViewModel())
         case .gdsInformationView:
-            return GDSInformationController()
+            return GDSInformationViewController()
         }
     }
     

@@ -1,6 +1,6 @@
 import UIKit
 
-/// Protocol for the view model required to initilise ``GDSInformationController``
+/// Protocol for the view model required to initilise ``GDSInformationViewController``
 public protocol GDSInformationViewModel {
     var image: String { get }
     var imageWeight: UIFont.Weight? { get }

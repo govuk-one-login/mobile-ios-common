@@ -65,7 +65,7 @@ extension ListOptionsViewController {
     }
 }
 
-extension GDSInformationController {
+extension GDSInformationViewController {
     convenience init() {
         let viewModel = MockGDSInformationViewModel()
         

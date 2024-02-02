@@ -7,7 +7,7 @@ import UIKit
 ///     - `footnoteLabel`  (type: `UILabel`)
 ///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
 ///     - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
-public final class GDSInformationController: BaseViewController, TitledViewController {
+public final class GDSInformationViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSInformation" }
     
     public private(set) var viewModel: GDSInformationViewModel

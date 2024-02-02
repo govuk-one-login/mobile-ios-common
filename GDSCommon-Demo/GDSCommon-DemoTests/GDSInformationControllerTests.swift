@@ -1,9 +1,9 @@
 import GDSCommon
 import XCTest
 
-final class GDSInformationControllerTests: XCTestCase {
+final class GDSInformationViewControllerTests: XCTestCase {
     var viewModel: GDSInformationViewModel!
-    var sut: GDSInformationController!
+    var sut: GDSInformationViewController!
     var primaryButton = false
     var secondaryButton = false
     var viewDidAppear = false
@@ -21,7 +21,7 @@ final class GDSInformationControllerTests: XCTestCase {
         } dismissAction: {
             self.viewDidDismiss = true
         }
-        sut = GDSInformationController(viewModel: viewModel)
+        sut = GDSInformationViewController(viewModel: viewModel)
     }
     
     override func tearDown() {
@@ -72,7 +72,7 @@ private struct TestViewModel: GDSInformationViewModel, BaseViewModel {
     }
 }
 
-extension GDSInformationControllerTests {
+extension GDSInformationViewControllerTests {
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.informationImage)
         XCTAssertEqual(try sut.informationImage.tintColor, .gdsPrimary)
@@ -131,7 +131,7 @@ extension GDSInformationControllerTests {
     }
 }
 
-extension GDSInformationController {
+extension GDSInformationViewController {
     var informationImage: UIImageView {
         get throws {
             try XCTUnwrap(view[child: "information-image"])
