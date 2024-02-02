@@ -414,6 +414,14 @@ As part of the confirguation of the image, it has the following customisation:
 - `imageColour` (default: .gdsPrimary)
 - `imageHeightConstraint` used to determine the images' height (default: 55)
 
+In `GDSInformationViewController` `footnote` is given a maximum content size, this is to stop the footnote covering the ScrollView when the devices' dynamic type is set to maximum.
+
+```swift
+if #available(iOS 15.0, *) {
+    footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
+}
+```
+
 `GDSInformationViewController` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site.
 
 #### Example:
