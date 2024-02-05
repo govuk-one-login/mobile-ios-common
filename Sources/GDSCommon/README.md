@@ -414,6 +414,16 @@ As part of the confirguation of the image, it has the following customisation:
 - `imageColour` (default: .gdsPrimary)
 - `imageHeightConstraint` used to determine the images' height (default: 55)
 
+To insure the height value supplied to `viewModel.imageHeightConstraint` is accurately displayed in the viewModel, an `imagePaddingCompensation` of 11 is added to the inputted value.
+
+```swift
+if let value = viewModel.imageHeightConstraint {
+    heightConstraint = value + imagePaddingCompensation
+} else {
+    heightConstraint = defaultImageHeight
+}
+```
+
 In `GDSInformationViewController` `footnote` is given a maximum content size, this is to stop the footnote covering the ScrollView when the devices' dynamic type is set to maximum.
 
 ```swift
