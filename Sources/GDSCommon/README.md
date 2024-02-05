@@ -405,6 +405,57 @@ struct MockErrorViewModel: GDSErrorViewModel, BaseViewModel {
 }
 ```
 
+### GDSInformation
+
+This screen is designed to present information to users, consisting of an image, title, (optional) body, (optional) footnote, primary button and an (optional) secondary button.
+
+As part of the confirguation of the image, it has the following customisation: 
+- `imageWeight` is used to determine the weight of the image (default: .semibold)
+- `imageColour` (default: .gdsPrimary)
+- `imageHeightConstraint` used to determine the images' height (default: 55)
+
+To insure the height value supplied to `viewModel.imageHeightConstraint` is accurately displayed in the viewModel, an `imagePaddingCompensation` of 11 is added to the inputted value.
+
+```swift
+if let value = viewModel.imageHeightConstraint {
+    heightConstraint = value + imagePaddingCompensation
+} else {
+    heightConstraint = defaultImageHeight
+}
+```
+
+In `GDSInformationViewController` `footnote` is given a maximum content size, this is to stop the footnote covering the ScrollView when the devices' dynamic type is set to maximum.
+
+```swift
+if #available(iOS 15.0, *) {
+    footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
+}
+```
+
+`GDSInformationViewController` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site.
+
+#### Example:
+
+```swift
+struct MockGDSInformationViewModel: GDSInformationViewModel, BaseViewModel {
+    let image: String = "lock"
+    let imageWeight: UIFont.Weight? = nil
+    let imageColour: UIColor? = nil
+    let imageHeightConstraint: CGFloat? = nil
+    let title: GDSLocalisedString = "This is an Information View title"
+    let body: GDSLocalisedString? = "This is an Information View body. \n\n This is another Information View body."
+    let footnote: GDSLocalisedString? = "This is an Information View footnote where additional information for the buttons can be detailed."
+    let primaryButtonViewModel: ButtonViewModel = MockButtonViewModel.primary
+    let secondaryButtonViewModel: ButtonViewModel? = MockButtonViewModel.secondary
+    let rightBarButtonTitle: GDSLocalisedString? = nil
+    let backButtonIsHidden: Bool = false
+    
+    func didAppear() {}
+    
+    func didDismiss() {}
+}
+```
+
 ## Accessibility
 ### VoiceOverFocus
 Conform view controllers that inherit from `BaseViewController` to `VoiceOverFocus` protocol to benefit from automatic setting of initial VoiceOver focus to a chosen `UIView` when the view controller appears.

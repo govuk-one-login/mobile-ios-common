@@ -27,6 +27,7 @@ enum Screens: String, CaseIterable {
     case gdsResultsView = "Results View"
     case gdsResultsViewModal = "Results View (Modal)"
     case gdsErrorView = "Error View"
+    case gdsInformationView = "Information View"
     
     var isModal: Bool {
         switch self {
@@ -63,8 +64,7 @@ enum Screens: String, CaseIterable {
                                                                screenView: {}, dismissAction: {})
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsModalInfoView:
-            let viewModel = MockModalInfoViewModel()
-            let view = ModalInfoViewController(viewModel: viewModel)
+            let view = ModalInfoViewController(viewModel: MockModalInfoViewModel())
             view.isModalInPresentation = true
             return view
         case .gdsAttributedModalInfoView:
@@ -92,8 +92,9 @@ enum Screens: String, CaseIterable {
         case .gdsResultsView, .gdsResultsViewModal:
             return ResultsViewController(popToRoot: self == .gdsResultsView ? popToRoot : nil, navController: navigationController)
         case .gdsErrorView:
-            let viewModel = MockErrorViewModel()
-            return GDSErrorViewController(viewModel: viewModel)
+            return GDSErrorViewController(viewModel: MockErrorViewModel())
+        case .gdsInformationView:
+            return GDSInformationViewController()
         }
     }
     
