@@ -26,6 +26,12 @@ jobs:
           lfs: 'true'
           fetch-depth: 0
           
+      - name: Validate Pull Request Name
+        id: versioning
+        uses: Oliver-Binns/Versioning@main
+        with:
+          ACTION_TYPE: 'Validate'
+          
       - name: Run Linter
         run: |
           swiftlint --strict
