@@ -26,12 +26,6 @@ jobs:
           lfs: 'true'
           fetch-depth: 0
           
-      - name: Validate Pull Request Name
-        id: versioning
-        uses: Oliver-Binns/Versioning@main
-        with:
-          ACTION_TYPE: 'Validate'
-          
       - name: Run Linter
         run: |
           swiftlint --strict
@@ -39,6 +33,12 @@ jobs:
       - name: Xcode select
         run: |
           sudo xcode-select -s /Applications/Xcode_15.1.app
+          
+      - name: Validate Pull Request Name
+        id: versioning
+        uses: Oliver-Binns/Versioning@main
+        with:
+          ACTION_TYPE: 'Validate'
           
       - name: Build and Test
         run: |
