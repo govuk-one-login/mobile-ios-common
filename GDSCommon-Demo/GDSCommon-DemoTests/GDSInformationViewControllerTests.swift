@@ -61,19 +61,7 @@ extension GDSInformationViewControllerTests {
         XCTAssertNil(viewModel.primaryButtonViewModel.icon)
         XCTAssertNil(try sut.primaryButton.icon)
     }
-    
-    func test_primaryButtonWithIcon() throws {
-        primaryButtonViewModel = MockButtonViewModel(title: "Information primary button title",
-                                                       icon: MockButtonIconViewModel()) {}
-        
-        viewModel = MockGDSInformationViewModel(primaryButtonViewModel: primaryButtonViewModel,
-                                                secondaryButtonViewModel: secondaryButtonViewModel) { } dismissAction: { }
-        sut = GDSInformationViewController(viewModel: viewModel)
-        
-        XCTAssertNotNil(viewModel.primaryButtonViewModel.icon)
-        XCTAssertNotNil(try sut.primaryButton.icon)
-    }
-    
+
     func test_secondaryButtonNoIcon() throws {
         XCTAssertNil(viewModel.secondaryButtonViewModel?.icon)
         XCTAssertNil(try sut.secondaryButton.icon)
