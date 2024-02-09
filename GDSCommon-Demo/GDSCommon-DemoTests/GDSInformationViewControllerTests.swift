@@ -4,19 +4,27 @@ import XCTest
 final class GDSInformationViewControllerTests: XCTestCase {
     var viewModel: GDSInformationViewModel!
     var sut: GDSInformationViewController!
-    var primaryButton = false
-    var secondaryButton = false
+    
+    var primaryButtonViewModel: MockButtonViewModel!
+    var secondaryButtonViewModel: MockButtonViewModel!
+    
+    var didTap_primaryButton = false
+    var didTap_secondaryButton = false
     var viewDidAppear = false
     var viewDidDismiss = false
     
     override func setUp() {
         super.setUp()
         
-        viewModel = TestViewModel {
-            self.primaryButton = true
-        } secondaryButtonAction: {
-            self.secondaryButton = true
-        } appearAction: {
+        primaryButtonViewModel = MockButtonViewModel(title: "Information primary button title") {
+            self.didTap_primaryButton = true
+        }
+        secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title") {
+            self.didTap_secondaryButton = true
+        }
+        
+        viewModel = MockGDSInformationViewModel(primaryButtonViewModel: primaryButtonViewModel,
+                                                secondaryButtonViewModel: secondaryButtonViewModel) {
             self.viewDidAppear = true
         } dismissAction: {
             self.viewDidDismiss = true
@@ -29,45 +37,6 @@ final class GDSInformationViewControllerTests: XCTestCase {
         sut = nil
         
         super.tearDown()
-    }
-}
-
-private struct TestViewModel: GDSInformationViewModel, BaseViewModel {
-    let image: String = "lock"
-    let imageWeight: UIFont.Weight? = .semibold
-    let imageColour: UIColor? = .gdsPrimary
-    let imageHeightConstraint: CGFloat? = 55
-    let title: GDSLocalisedString = "Information screen title"
-    let body: GDSLocalisedString? = "Information screen body"
-    let footnote: GDSLocalisedString? = "Information screen footnote"
-    let primaryButtonViewModel: ButtonViewModel
-    let secondaryButtonViewModel: ButtonViewModel?
-    
-    let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
-    let backButtonIsHidden: Bool = false
-    let appearAction: () -> Void
-    let dismissAction: () -> Void
-    
-    init(primaryButtonAction: @escaping () -> Void,
-         secondaryButtonAction: @escaping () -> Void,
-         appearAction: @escaping () -> Void,
-         dismissAction: @escaping () -> Void) {
-        primaryButtonViewModel = MockButtonViewModel(title: "Information primary button title") {
-            primaryButtonAction()
-        }
-        secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title") {
-            secondaryButtonAction()
-        }
-        self.appearAction = appearAction
-        self.dismissAction = dismissAction
-    }
-    
-    func didAppear() {
-        appearAction()
-    }
-    
-    func didDismiss() {
-        dismissAction()
     }
 }
 
@@ -84,20 +53,42 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(try sut.informationFootnoteLabel.font, .footnote)
         XCTAssertEqual(try sut.informationFootnoteLabel.maximumContentSizeCategory, .accessibilityMedium)
         XCTAssertFalse(try sut.informationFootnoteLabel.accessibilityTraits.contains(.header))
-        XCTAssertEqual(try sut.informationPrimaryButton.title(for: .normal), "Information primary button title")
-        XCTAssertEqual(try sut.informationSecondaryButton.title(for: .normal), "Information secondary button title")
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Information primary button title")
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
+    }
+    
+    func test_primaryButtonNoIcon() throws {
+        XCTAssertNil(viewModel.primaryButtonViewModel.icon)
+        XCTAssertNil(try sut.primaryButton.icon)
+    }
+
+    func test_secondaryButtonNoIcon() throws {
+        XCTAssertNil(viewModel.secondaryButtonViewModel?.icon)
+        XCTAssertNil(try sut.secondaryButton.icon)
+    }
+    
+    func test_secondaryButtonWithIcon() throws {
+        secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title",
+                                                       icon: MockButtonIconViewModel()) {}
+        
+        viewModel = MockGDSInformationViewModel(primaryButtonViewModel: primaryButtonViewModel,
+                                                secondaryButtonViewModel: secondaryButtonViewModel) { } dismissAction: { }
+        sut = GDSInformationViewController(viewModel: viewModel)
+        
+        XCTAssertNotNil(viewModel.secondaryButtonViewModel?.icon)
+        XCTAssertNotNil(try sut.secondaryButton.icon)
     }
     
     func test_primaryButtonAction() throws {
-        XCTAssertFalse(primaryButton)
-        try sut.informationPrimaryButton.sendActions(for: .touchUpInside)
-        XCTAssertTrue(primaryButton)
+        XCTAssertFalse(didTap_primaryButton)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didTap_primaryButton)
     }
     
     func test_secondaryButtonAction() throws {
-        XCTAssertFalse(secondaryButton)
-        try sut.informationSecondaryButton.sendActions(for: .touchUpInside)
-        XCTAssertTrue(secondaryButton)
+        XCTAssertFalse(didTap_secondaryButton)
+        try sut.secondaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didTap_secondaryButton)
     }
     
     func test_didAppear() throws {
@@ -107,7 +98,7 @@ extension GDSInformationViewControllerTests {
         XCTAssertTrue(viewDidAppear)
     }
     
-    func testVoiceOverFocusElement() throws {
+    func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         
@@ -126,6 +117,11 @@ extension GDSInformationViewControllerTests {
         _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
         XCTAssertTrue(viewDidDismiss)
     }
+}
+
+struct MockButtonIconViewModel: ButtonIconViewModel {
+    var iconName: String = "arrow.up.right"
+    var symbolPosition: SymbolPosition = .afterTitle
 }
 
 extension GDSInformationViewController {
@@ -153,13 +149,13 @@ extension GDSInformationViewController {
         }
     }
     
-    var informationPrimaryButton: UIButton {
+    var primaryButton: RoundedButton {
         get throws {
             try XCTUnwrap(view[child: "information-primary-button"])
         }
     }
     
-    var informationSecondaryButton: UIButton {
+    var secondaryButton: SecondaryButton {
         get throws {
             try XCTUnwrap(view[child: "information-secondary-button"])
         }
