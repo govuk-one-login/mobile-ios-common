@@ -1,6 +1,6 @@
 public struct ButtonEvent: Event {
-    public let name = EventName.navigation
-    public let type = EventType.submitForm
+    public let name: EventName
+    public let type: EventType
     
     public let text: String
     
@@ -11,11 +11,19 @@ public struct ButtonEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String, _ variableKeys: String...) {
+    public init(eventName: EventName = .navigation,
+                eventType: EventType = .submitForm,
+                textKey: String, 
+                _ variableKeys: String...) {
         self.init(textKey: textKey, variableKeys: variableKeys)
     }
     
-    public init(textKey: String, variableKeys: [String]) {
+    public init(eventName: EventName = .navigation, 
+                eventType: EventType = .submitForm,
+                textKey: String,
+                variableKeys: [String]) {
         self.text = textKey.englishString(variableKeys)
+        self.name = eventName
+        self.type = eventType
     }
 }
