@@ -15,8 +15,7 @@ public struct ScreenView<Screen: NamedScreen>: ScreenViewProtocol {
     
     public var parameters: [String: String] {
         if let screenID, let type {
-            return         [ScreenParameter.title.rawValue: title,
-                            "screen_id": screenID,
+            return         ["screen_id": screenID,
                             "type": type]
                                .mapValues(\.formattedAsParameter)
         } else {
