@@ -1,12 +1,14 @@
 public protocol ScreenViewProtocol {
-    associatedtype Screen: NamedScreen
-    var screen: Screen { get }
+//    associatedtype Screen: NamedScreen
+//    var screen: Screen { get }
     var title: String { get }
+    var screenID: String { get }
     var parameters: [String: String] { get }
 }
 
-public struct ScreenView<Screen: NamedScreen>: ScreenViewProtocol {
-    public let screen: Screen
+//<Screen: NamedScreen>:
+public struct ScreenView: ScreenViewProtocol {
+//    public let screen: Screen
     public let title: String
     public let screenID: String
     
@@ -16,11 +18,10 @@ public struct ScreenView<Screen: NamedScreen>: ScreenViewProtocol {
             .mapValues(\.formattedAsParameter)
     }
     
-    public init(screen: Screen,
-                screenID: String,
+    public init(screenID: String,
                 titleKey: String,
                 variableKeys: [String] = []) {
-        self.screen = screen
+//        self.screen = screen
         self.title = titleKey.englishString(variableKeys)
         self.screenID = screenID
     }
