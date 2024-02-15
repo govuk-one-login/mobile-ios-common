@@ -1,3 +1,3 @@
 public protocol NamedScreen {
-    var name: String { get }
+    var screenID: String { get }
 }

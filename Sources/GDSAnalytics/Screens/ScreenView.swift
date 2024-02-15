@@ -2,7 +2,6 @@ public protocol ScreenViewProtocol {
     associatedtype Screen: NamedScreen
     var screen: Screen { get }
     var title: String { get }
-    var screenID: String { get }
     var parameters: [String: String] { get }
 }
 
