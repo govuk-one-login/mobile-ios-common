@@ -15,7 +15,7 @@ public struct ButtonEvent: Event {
                 eventType: EventType = .submitForm,
                 textKey: String, 
                 _ variableKeys: String...) {
-        self.init(textKey: textKey, variableKeys: variableKeys)
+        self.init(eventName: eventName, eventType: eventType, textKey: textKey, variableKeys: variableKeys)
     }
     
     public init(eventName: EventName = .navigation, 
