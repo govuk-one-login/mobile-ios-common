@@ -10,8 +10,7 @@ public struct ScreenView<Screen: NamedScreen>: ScreenViewProtocol {
     public let screenID: String
     
     public var parameters: [String: String] {
-        [ScreenParameter.title.rawValue: title,
-         "screen_id": screenID]
+        [ScreenParameter.title.rawValue: title]
             .mapValues(\.formattedAsParameter)
     }
     

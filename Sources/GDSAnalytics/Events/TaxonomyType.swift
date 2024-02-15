@@ -18,7 +18,7 @@ public struct TaxonomyType {
         case submitForm = "submit form"
         case passport = "passport cri"
         case drivingLicence = "driving licence cri"
-        case brp =  "brp cri"
+        case brp = "brp cri"
         case manualLinking = "manual linking"
         case walletLibrary = "wallet library"
         case viewDocument = "view document"

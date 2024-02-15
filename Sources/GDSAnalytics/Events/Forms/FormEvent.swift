@@ -1,6 +1,6 @@
 public struct FormEvent: Event {
-    public let name = EventName.formResponse
-    public let type = EventType.simpleSmartAnswer
+    public let name: EventName
+    public let type: EventType
     
     public let text: String
     public let response: String
@@ -13,9 +13,14 @@ public struct FormEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String, _ variableKeys: String...,
+    public init(name: EventName = .formResponse,
+                type: EventType = .simpleSmartAnswer,
+                textKey: String,
+                _ variableKeys: String...,
                 responseKey: String) {
         self.text = textKey.englishString(variableKeys)
         self.response = responseKey.englishString()
+        self.name = name
+        self.type = type
     }
 }

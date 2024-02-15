@@ -1,6 +1,6 @@
 public struct LinkEvent: Event {
-    public let name = EventName.navigation
-    public let type = EventType.genericLink
+    public let name: EventName
+    public let type: EventType
     
     public let text: String
     public let linkDomain: String
@@ -15,12 +15,16 @@ public struct LinkEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String,
+    public init(name: EventName = .navigation,
+                type: EventType = .genericLink,
+                textKey: String,
                 variableKeys: String...,
                 linkDomain: String,
                 external: ExternalLinkParameter) {
         self.text = textKey.englishString(variableKeys)
         self.linkDomain = linkDomain
         self.external = external
+        self.name = name
+        self.type = type
     }
 }
