@@ -1,7 +1,7 @@
 public struct ErrorScreenView<Screen: NamedScreen>: ScreenViewProtocol, LoggableError {
     public let screen: Screen
     public let title: String
-    public var type: String?
+    public var type: ScreenType? = .errorScreen
     public var id: String?
     public let reason: String?
     public let endpoint: String?
@@ -21,8 +21,7 @@ public struct ErrorScreenView<Screen: NamedScreen>: ScreenViewProtocol, Loggable
     }
     
     public init(screen: Screen,
-                type: String,
-                screenID: String,
+                id: String,
                 titleKey: String,
                 reason: String? = nil,
                 endpoint: String? = nil,
@@ -30,8 +29,7 @@ public struct ErrorScreenView<Screen: NamedScreen>: ScreenViewProtocol, Loggable
                 hash: String? = nil) {
         self.screen = screen
         self.title = titleKey.englishString()
-        self.id = screenID
-        self.type = type
+        self.id = id
         self.reason = reason
         self.endpoint = endpoint
         self.statusCode = statusCode
@@ -39,13 +37,11 @@ public struct ErrorScreenView<Screen: NamedScreen>: ScreenViewProtocol, Loggable
     }
     
     public init(screen: Screen,
-                type: String,
-                screenID: String,
+                id: String,
                 titleKey: String,
                 error: LoggableError) {
         self.screen = screen
-        self.id = screenID
-        self.type = type
+        self.id = id
         title = titleKey.englishString()
         
         reason = error.reason
