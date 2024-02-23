@@ -23,6 +23,6 @@ public struct ScreenView<Screen: ScreenType>: ScreenViewProtocol {
                 variableKeys: [String] = []) {
         self.id = id
         self.screen = screen
-        self.title = titleKey.englishString(variableKeys)
+        self.title = titleKey.englishString(variableKeys).formattedAsParameter
     }
 }
