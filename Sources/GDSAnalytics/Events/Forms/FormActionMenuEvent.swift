@@ -1,4 +1,4 @@
-public struct FormactionMenuEvent: Event {
+public struct FormActionMenuEvent: Event {
     public let name = EventName.formResponse
     public let type = EventType.actionMenu
     
