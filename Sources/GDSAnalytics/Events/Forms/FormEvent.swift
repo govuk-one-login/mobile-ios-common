@@ -13,7 +13,7 @@ public struct FormEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String, 
+    public init(textKey: String,
                 _ variableKeys: String...,
                 responseKey: String) {
         self.text = textKey.englishString(variableKeys)
