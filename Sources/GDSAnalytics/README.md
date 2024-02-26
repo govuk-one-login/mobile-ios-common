@@ -183,3 +183,83 @@ let event = PopupEvent(textKey: "Change your permissions")
 | name | The name of the event that occured, for popups this is `popup`. | N/A | `popup` |
 | type | The type of event that occured, for popups this is `call to action`. | N/A | `call to action` |
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `change your permissions` |
+
+### Action Menu 
+
+This type of event fires when a custom systemAlert popup appears on a the screen, usually this would be a `UIAlertController` of the type `.actionSheet`. Use the `PopupEvent` type for this.
+
+```swift
+let event = ActionMenuEvent(textKey: "Change your permissions")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `popup`. | N/A | `popup` |
+| type | The type of event that occured, for alerts this is `actionMenu`. | N/A | `actionMenu` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `change your permissions` |
+
+### Form Action Menu Event 
+
+This type of event fires once a users repsonse to a form or question is locked in i.e. as they navigate from one page to the next.
+
+```swift
+let event = FormActionMenuEvent(textKey: "question answer")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `formResponse`. | N/A | `formResponse` |
+| type | The type of event that occured, for alerts this is `actionMenu`. | N/A | `actionMenu` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `question answer` |
+
+### Form CTA Event 
+
+This type of event fires once a users response to a form or question is locked in i.e. as they navigate from one page to the next.
+
+```swift
+let event = FormCTAEvent(textKey: "action menu key")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `formResponse`. | N/A | `formResponse` |
+| type | The type of event that occured, for alerts this is `callToAction`. | N/A | `callToAction` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `action menu key` |
+
+### Form CTA Event 
+
+This type of event fires once a users response to a form or question is locked in i.e. as they navigate from one page to the next.
+
+```swift
+let event = FormCTAEvent(textKey: "action menu key")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `formResponse`. | N/A | `formResponse` |
+| type | The type of event that occured, for alerts this is `callToAction`. | N/A | `callToAction` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `action menu key` |
+
+### Icon Event 
+
+This type of event fires when a user ineracts with a button to navigate from one screen to another.
+
+```swift
+let event = IconEvent(textKey: "close")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `navigation`. | N/A | `navigation` |
+| type | The type of event that occured, for alerts this is `icon`. | N/A | `icon` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `close` |

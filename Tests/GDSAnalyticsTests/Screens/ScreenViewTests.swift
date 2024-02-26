@@ -21,4 +21,12 @@ final class ScreenViewTests: XCTestCase {
             "screen_id": uuid
         ])
     }
+    
+    
+    func testParameterTruncation() {
+        let view = ScreenView(screen: MockScreen.welcome,
+                              titleKey: "Welcome to this app with a really really really really really really really really really really long name")
+
+        XCTAssertEqual(view.title, "welcome to this app with a really really really really really really really really really really lon")
+    }
 }
