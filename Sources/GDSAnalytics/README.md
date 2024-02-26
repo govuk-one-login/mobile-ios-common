@@ -168,7 +168,7 @@ let event = PopupEvent(textKey: "Change your permissions")
 
 ### Action Menu 
 
-This type of event fires when a custom systemAlert popup appears on a the screen, usually this would be a `UIAlertController` of the type `.actionSheet`. Use the `PopupEvent` type for this.
+This type of event fires when a custom systemAlert popup appears on the screen, usually this would be a `UIAlertController` of the type `.actionSheet`. Use the `ActionMenuEvent` type for this.
 
 ```swift
 let event = ActionMenuEvent(textKey: "Change your permissions")
@@ -184,7 +184,7 @@ let event = ActionMenuEvent(textKey: "Change your permissions")
 
 ### Icon Event 
 
-This type of event fires when a user ineracts with a button to navigate from one screen to another.
+This type of event fires when a user ineracts with a button (with an icon rathrer than a title) to navigate from one screen to another.
 
 ```swift
 let event = IconEvent(textKey: "close")
