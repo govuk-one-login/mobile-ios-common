@@ -184,7 +184,7 @@ let event = ActionMenuEvent(textKey: "Change your permissions")
 
 ### Icon Event 
 
-This type of event fires when a user ineracts with a button (with an icon rathrer than a title) to navigate from one screen to another.
+This type of event fires when a user interacts with a button (with an icon rather than a title) to navigate from one screen to another.
 
 ```swift
 let event = IconEvent(textKey: "close")
