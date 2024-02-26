@@ -9,6 +9,7 @@ public struct ErrorScreenView<Screen: ScreenType>: ScreenViewProtocol, LoggableE
     
     public var parameters: [String: String] {
         [
+            ScreenParameter.title.rawValue: title,
             ScreenParameter.id.rawValue: id,
             ScreenParameter.reason.rawValue: reason,
             ScreenParameter.endpoint.rawValue: endpoint,

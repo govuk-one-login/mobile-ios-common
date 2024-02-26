@@ -3,5 +3,6 @@ public enum ScreenParameter: String {
     case endpoint
     case status
     case hash
+    case title
     case id = "screen_id"
 }

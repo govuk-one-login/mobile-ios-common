@@ -150,24 +150,6 @@ let event = LinkEvent(textKey: "Confirm your identity another way",
 | link domain | The web domain of the link that was pressed. | Lowercase. Limited to 100 characters. | `https://signin.build.account.gov.uk` |
 | external | Indicates whether the link is to an external domain. | Lowercase. | `true` or `false` |
 
-### Form Submission
-
-If the user enters a value, such as selecting an option in a checkbox or typing into text field, the form submission event should be sent when the user taps the submit button. Use the `FormEvent` type for this.
-
-```swift
-let event = FormEvent(textKey: "Did you start on a computer or tablet?",
-                      responseKey: "Yes, I started on a computer or tablet")
-```
-
-#### Expected Parameters:
-
-| Parameter | Description | Expected Format | Example |
-| ------------- |-------------| -----| --- |
-| name | The name of the event that occured, for forms this is `form_response`. | N/A | `form_response` |
-| type | The type of event that occured, for forms this is `simple smart answer`. | N/A | `simple smart answer` |
-| text | The text of the question that was asked in the form. | Lowercase. Limited to 100 characters. | `did you start on a computer or tablet?` |
-| response | The response to the form that the user entered. | Lowercase. Limited to 100 characters. | `yes, I started on a computer or tablet` |
-
 ### Popup Alerts
 
 This type of event should be logged when a call-to-action is displayed, usually this would be a `UIAlertController` but it may also be used for other modal inputs. Use the `PopupEvent` type for this.
@@ -200,6 +182,43 @@ let event = ActionMenuEvent(textKey: "Change your permissions")
 | type | The type of event that occured, for alerts this is `actionMenu`. | N/A | `actionMenu` |
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `change your permissions` |
 
+### Icon Event 
+
+This type of event fires when a user ineracts with a button to navigate from one screen to another.
+
+```swift
+let event = IconEvent(textKey: "close")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `navigation`. | N/A | `navigation` |
+| type | The type of event that occured, for alerts this is `icon`. | N/A | `icon` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `close` |
+
+## Form Events
+
+### Form Submission
+
+If the user enters a value, such as selecting an option in a checkbox or typing into text field, the form submission event should be sent when the user taps the submit button. Use the `FormEvent` type for this.
+
+```swift
+let event = FormEvent(textKey: "Did you start on a computer or tablet?",
+                      responseKey: "Yes, I started on a computer or tablet")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for forms this is `form_response`. | N/A | `form_response` |
+| type | The type of event that occured, for forms this is `simple smart answer`. | N/A | `simple smart answer` |
+| text | The text of the question that was asked in the form. | Lowercase. Limited to 100 characters. | `did you start on a computer or tablet?` |
+| response | The response to the form that the user entered. | Lowercase. Limited to 100 characters. | `yes, I started on a computer or tablet` |
+
+
 ### Form Action Menu Event 
 
 This type of event fires once a users repsonse to a form or question is locked in i.e. as they navigate from one page to the next.
@@ -231,35 +250,3 @@ let event = FormCTAEvent(textKey: "action menu key")
 | name | The name of the event that occured, for popups this is `formResponse`. | N/A | `formResponse` |
 | type | The type of event that occured, for alerts this is `callToAction`. | N/A | `callToAction` |
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `action menu key` |
-
-### Form CTA Event 
-
-This type of event fires once a users response to a form or question is locked in i.e. as they navigate from one page to the next.
-
-```swift
-let event = FormCTAEvent(textKey: "action menu key")
-```
-
-#### Expected Parameters:
-
-| Parameter | Description | Expected Format | Example |
-| ------------- |-------------| -----| --- |
-| name | The name of the event that occured, for popups this is `formResponse`. | N/A | `formResponse` |
-| type | The type of event that occured, for alerts this is `callToAction`. | N/A | `callToAction` |
-| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `action menu key` |
-
-### Icon Event 
-
-This type of event fires when a user ineracts with a button to navigate from one screen to another.
-
-```swift
-let event = IconEvent(textKey: "close")
-```
-
-#### Expected Parameters:
-
-| Parameter | Description | Expected Format | Example |
-| ------------- |-------------| -----| --- |
-| name | The name of the event that occured, for popups this is `navigation`. | N/A | `navigation` |
-| type | The type of event that occured, for alerts this is `icon`. | N/A | `icon` |
-| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `close` |
