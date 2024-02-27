@@ -221,8 +221,7 @@ let event = FormEvent(textKey: "Did you start on a computer or tablet?",
 
 ### Form Action Menu Event 
 
-This type of event fires once a users repsonse to a form or question is locked in i.e. as they navigate from one page to the next.
-
+This type of event fires once a users repsonse to a cta that is dismissable.
 ```swift
 let event = FormActionMenuEvent(textKey: "question answer")
 ```
@@ -237,8 +236,7 @@ let event = FormActionMenuEvent(textKey: "question answer")
 
 ### Form CTA Event 
 
-This type of event fires once a users response to a form or question is locked in i.e. as they navigate from one page to the next.
-
+This type of event fires once a users response to to non dismissible CTAs i.e the camera permissions cta
 ```swift
 let event = FormCTAEvent(textKey: "action menu key")
 ```
