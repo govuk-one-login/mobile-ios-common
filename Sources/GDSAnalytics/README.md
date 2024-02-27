@@ -236,7 +236,7 @@ let event = FormActionMenuEvent(textKey: "question answer")
 
 ### Form CTA Event 
 
-This type of event fires once a users response to to non dismissible CTAs i.e the camera permissions cta
+This type of event fires once a user responds to a non dismissible CTA i.e. the camera permissions CTA
 ```swift
 let event = FormCTAEvent(textKey: "action menu key")
 ```
