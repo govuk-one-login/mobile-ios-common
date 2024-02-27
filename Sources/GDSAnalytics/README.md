@@ -221,7 +221,7 @@ let event = FormEvent(textKey: "Did you start on a computer or tablet?",
 
 ### Form Action Menu Event 
 
-This type of event fires once a users repsonse to a cta that is dismissable.
+This type of event fires once a user responds to a CTA that is dismissible.
 ```swift
 let event = FormActionMenuEvent(textKey: "question answer")
 ```
