@@ -89,9 +89,6 @@ You can change your preferences at any time in your Settings. </string>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Confirm your identity another way"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="icon" value="arrow.up.right"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="secondaryButtonAction:" destination="-1" eventType="touchUpInside" id="oLN-j2-N1H"/>
                             </connections>
