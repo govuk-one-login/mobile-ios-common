@@ -6,4 +6,6 @@ import UIKit
 public protocol ModalInfoViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
+    var primaryButtonViewModel: ButtonViewModel? { get }
+    var secondaryButtonViewModel: ButtonViewModel? { get }
 }

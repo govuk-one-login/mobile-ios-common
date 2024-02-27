@@ -44,4 +44,41 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
             bodyLabel.accessibilityIdentifier = "bodyLabel"
         }
     }
+    
+    @IBOutlet private var primaryButton: RoundedButton! {
+        didSet {
+            if let buttonViewModel = viewModel.primaryButtonViewModel {
+                primaryButton.setTitle(buttonViewModel.title, for: .normal)
+                primaryButton.accessibilityIdentifier = "modal-info-primary-button"
+            } else {
+                primaryButton.isHidden = true
+            }
+        }
+    }
+    
+    @IBAction private func primaryButtonAction(_ sender: Any) {
+        primaryButton.isLoading = true
+        viewModel.primaryButtonViewModel?.action()
+        primaryButton.isLoading = false
+    }
+    
+    @IBOutlet private var secondaryButton: SecondaryButton! {
+        didSet {
+            if let buttonViewModel = viewModel.secondaryButtonViewModel {
+                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+                secondaryButton.accessibilityIdentifier = "error-secondary-button"
+                
+                if let icon = buttonViewModel.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
+            } else {
+                secondaryButton.isHidden = true
+            }
+        }
+    }
+    
+    @IBAction private func secondaryButtonAction(_ sender: Any) {
+        viewModel.secondaryButtonViewModel?.action()
+    }
 }
