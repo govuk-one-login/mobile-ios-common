@@ -19,6 +19,7 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
     public init(viewModel: ModalInfoViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "ModalInfoView", bundle: .module)
+        isModalInPresentation = viewModel.preventModalDismiss ?? false
     }
     
     required init?(coder: NSCoder) {

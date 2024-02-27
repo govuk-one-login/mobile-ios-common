@@ -9,4 +9,5 @@ public protocol ModalInfoViewModel {
     var bodyTextColour: UIColor? { get }
     var primaryButtonViewModel: ButtonViewModel? { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
+    var preventModalDismiss: Bool? { get }
 }
