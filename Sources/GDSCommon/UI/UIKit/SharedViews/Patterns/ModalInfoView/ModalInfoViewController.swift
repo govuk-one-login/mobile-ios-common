@@ -66,7 +66,7 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
         didSet {
             if let buttonViewModel = viewModel.secondaryButtonViewModel {
                 secondaryButton.setTitle(buttonViewModel.title, for: .normal)
-                secondaryButton.accessibilityIdentifier = "error-secondary-button"
+                secondaryButton.accessibilityIdentifier = "modal-info-secondary-button"
                 
                 if let icon = buttonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition

@@ -66,7 +66,7 @@ You can change your preferences at any time in your Settings. </string>
                         <constraint firstItem="ZFw-FR-LhT" firstAttribute="top" secondItem="feA-Nb-pdt" secondAttribute="top" id="Xf5-Es-vkO"/>
                         <constraint firstItem="ZFw-FR-LhT" firstAttribute="width" secondItem="feA-Nb-pdt" secondAttribute="width" id="cOv-tC-YoO"/>
                         <constraint firstItem="ZFw-FR-LhT" firstAttribute="bottom" secondItem="feA-Nb-pdt" secondAttribute="bottom" id="nFW-DA-gyN"/>
-                        <constraint firstItem="ZFw-FR-LhT" firstAttribute="top" secondItem="q5u-IA-jmU" secondAttribute="top" id="uh2-Hq-7kZ"/>
+                        <constraint firstItem="ZFw-FR-LhT" firstAttribute="top" secondItem="feA-Nb-pdt" secondAttribute="top" id="uh2-Hq-7kZ"/>
                     </constraints>
                     <viewLayoutGuide key="contentLayoutGuide" id="feA-Nb-pdt"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="q5u-IA-jmU"/>
