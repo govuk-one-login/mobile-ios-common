@@ -7,10 +7,6 @@ final class ModalInfoViewControllerTests: XCTestCase {
     var primaryButton = false
     var secondaryButton = false
     
-    override func setUp() {
-        super.setUp()
-    }
-    
     override func tearDown() {
         viewModel = nil
         sut = nil
