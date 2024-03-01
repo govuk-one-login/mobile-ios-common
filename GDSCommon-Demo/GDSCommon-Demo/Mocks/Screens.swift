@@ -69,7 +69,8 @@ enum Screens: String, CaseIterable {
             let view = ModalInfoViewController(viewModel: MockModalInfoViewModel())
             return view
         case .gdsModalButtonsInfoView:
-            let view = ModalInfoViewController(viewModel: MockModalInfoButtonsViewModel())
+            let view = ModalInfoViewController(viewModel: MockModalInfoButtonsViewModel(primaryButtonViewModel: MockButtonViewModel.primary,
+                                                                                        secondaryButtonViewModel: MockButtonViewModel.secondary))
             return view
         case .gdsAttributedModalInfoView:
             let view = ModalInfoViewController(viewModel: MockAttributedModalInfoViewModel())

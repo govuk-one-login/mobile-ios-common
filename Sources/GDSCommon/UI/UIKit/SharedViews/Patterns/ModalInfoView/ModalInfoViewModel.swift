@@ -9,13 +9,17 @@ public protocol ModalInfoViewModel {
 }
 
 /// View model for the `ModalInfoViewController`
-/// - `bodyTextColour` type is ``UIColor?``
-/// - `primaryButtonViewModel` type is ``ButtonViewModel?``
-/// - `secondaryButtonViewModel` type is ``ButtonViewModel?``
-/// - `preventModalDismiss` type is ``Bool?``
-public protocol ModalInfoButtonsViewModel: ModalInfoViewModel {
-    var bodyTextColour: UIColor? { get }
-    var primaryButtonViewModel: ButtonViewModel? { get }
-    var secondaryButtonViewModel: ButtonViewModel? { get }
-    var preventModalDismiss: Bool? { get }
+/// - `bodyTextColour` type is ``UIColor``
+/// - `preventModalDismiss` type is ``Bool``
+public protocol ModalInfoExtraViewModel {
+    var bodyTextColour: UIColor { get }
+    var preventModalDismiss: Bool { get }
+}
+
+public protocol PageWithPrimaryButtonViewModel {
+    var primaryButtonViewModel: ButtonViewModel { get }
+}
+
+public protocol PageWithSecondaryButtonViewModel {
+    var secondaryButtonViewModel: ButtonViewModel { get }
 }

@@ -6,84 +6,62 @@ final class ModalInfoViewControllerTests: XCTestCase {
     var sut: ModalInfoViewController!
     var primaryButton = false
     var secondaryButton = false
-    var viewDidAppear = false
-    var viewDidDismiss = false
     
     override func setUp() {
         super.setUp()
-        
-        viewModel = TestViewModel {
-            self.viewDidAppear = true
-        } dismissAction: {
-            self.viewDidDismiss = true
-        }
-        sut = ModalInfoViewController(viewModel: viewModel)
     }
     
     override func tearDown() {
         viewModel = nil
         sut = nil
+        primaryButton = false
+        secondaryButton = false
         
         super.tearDown()
     }
 }
 
-private struct TestViewModel: ModalInfoViewModel, BaseViewModel {
-    var title: GDSLocalisedString = "Modal info title"
-    var body: GDSLocalisedString = "Modal info body"
-    var rightBarButtonTitle: GDSLocalisedString? = "Done"
-    var backButtonIsHidden: Bool = false
-    
-    let appearAction: () -> Void
-    let dismissAction: () -> Void
-    
-    func didAppear() {
-        appearAction()
-    }
-    
-    func didDismiss() {
-        dismissAction()
-    }
-}
-
 extension ModalInfoViewControllerTests {
-    func test_labelContents() throws {
-        XCTAssertEqual(try sut.titleLabel.text, "Modal info title")
+    func test_modalInfoView() throws {
+        viewModel = MockModalInfoViewModel()
+        sut = ModalInfoViewController(viewModel: viewModel)
+        
+        XCTAssertEqual(try sut.titleLabel.text, "This is the Modal view")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
-        XCTAssertEqual(try sut.bodyLabel.text, "Modal info body")
+        XCTAssertEqual(try sut.bodyLabel.text, "We can use this if we want the user to complete an action")
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
-        XCTAssert(try sut.bodyLabel.textColor == .gdsGrey)
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
-        XCTAssertEqual(try sut.rightBarButtonItem.title, "Done")
+        XCTAssertTrue(try sut.bodyLabel.textColor == .gdsGrey)
+        XCTAssertFalse(sut.isModalInPresentation)
     }
     
-    func test_didAppear() throws {
-        XCTAssertFalse(viewDidAppear)
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
-        XCTAssertTrue(viewDidAppear)
-    }
-    
-    func test_VoiceOverFocusElement() throws {
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
+    func test_modalInfoViewButtons() throws {
+        viewModel = MockModalInfoButtonsViewModel(primaryButtonViewModel: MockButtonViewModel(title: "Primary button",
+                                                                                              action: { self.primaryButton = true }),
+                                                  secondaryButtonViewModel: MockButtonViewModel(title: "Secondary button",
+                                                                                                icon: MockButtonIconViewModel(),
+                                                                                                action: { self.secondaryButton = true }))
+        sut = ModalInfoViewController(viewModel: viewModel)
         
-        let screen = try XCTUnwrap(sut as VoiceOverFocus)
-        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
-        XCTAssertEqual(view.text, "Modal info title")
+        XCTAssertTrue(try sut.bodyLabel.textColor == .label)
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button")
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button")
+        XCTAssertTrue(sut.isModalInPresentation)
+        
+        XCTAssertFalse(primaryButton)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(primaryButton)
+        
+        XCTAssertFalse(secondaryButton)
+        try sut.secondaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(secondaryButton)
     }
     
-    func test_didDismiss() {
-        XCTAssertFalse(viewDidAppear)
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
-        XCTAssertTrue(viewDidAppear)
+    func test_attributedModalInfoView() throws {
+        viewModel = MockAttributedModalInfoViewModel()
+        sut = ModalInfoViewController(viewModel: viewModel)
         
-        XCTAssertFalse(viewDidDismiss)
-        _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
-        XCTAssertTrue(viewDidDismiss)
+        XCTAssertEqual(try sut.bodyLabel.attributedText?.string, "We can use this attribubted text if we want the user to complete an action")
     }
 }
 
@@ -103,6 +81,18 @@ extension ModalInfoViewController {
     var rightBarButtonItem: UIBarButtonItem {
         get throws {
             try XCTUnwrap(navigationItem.rightBarButtonItem)
+        }
+    }
+    
+    var primaryButton: UIButton {
+        get throws {
+            try XCTUnwrap(view[child: "modal-info-primary-button"])
+        }
+    }
+    
+    var secondaryButton: UIButton {
+        get throws {
+            try XCTUnwrap(view[child: "modal-info-secondary-button"])
         }
     }
 }
