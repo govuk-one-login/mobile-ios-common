@@ -12,7 +12,7 @@ final class ModalInfoViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        viewModel = TestViewModel() {
+        viewModel = TestViewModel {
             self.primaryButton = true
         } secondaryButtonAction: {
             self.secondaryButton = true
@@ -38,10 +38,10 @@ private struct TestViewModel: ModalInfoViewModel, BaseViewModel {
     var rightBarButtonTitle: GDSLocalisedString? = "Done"
     var backButtonIsHidden: Bool = false
     
-    var bodyTextColour: UIColor? = nil
+    var bodyTextColour: UIColor?
     var primaryButtonViewModel: ButtonViewModel?
     var secondaryButtonViewModel: ButtonViewModel?
-    var preventModalDismiss: Bool? = nil
+    var preventModalDismiss: Bool?
     
     let appearAction: () -> Void
     let dismissAction: () -> Void
