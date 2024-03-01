@@ -48,11 +48,10 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
     
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
-            if viewModel is ModalInfoButtonsViewModel {
-                if let buttonViewModel = (viewModel as? ModalInfoButtonsViewModel)?.primaryButtonViewModel {
-                    primaryButton.setTitle(buttonViewModel.title, for: .normal)
-                    primaryButton.accessibilityIdentifier = "modal-info-primary-button"
-                }
+            if let modalButtonsViewModel = viewModel as? ModalInfoButtonsViewModel,
+               let buttonViewModel = modalButtonsViewModel.primaryButtonViewModel {
+                primaryButton.setTitle(buttonViewModel.title, for: .normal)
+                primaryButton.accessibilityIdentifier = "modal-info-primary-button"
             } else {
                 primaryButton.isHidden = true
             }
@@ -67,15 +66,14 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
-            if viewModel is ModalInfoButtonsViewModel {
-                if let buttonViewModel = (viewModel as? ModalInfoButtonsViewModel)?.secondaryButtonViewModel {
-                    secondaryButton.setTitle(buttonViewModel.title, for: .normal)
-                    secondaryButton.accessibilityIdentifier = "modal-info-secondary-button"
-                    
-                    if let icon = buttonViewModel.icon {
-                        secondaryButton.symbolPosition = icon.symbolPosition
-                        secondaryButton.icon = icon.iconName
-                    }
+            if let modalButtonsViewModel = viewModel as? ModalInfoButtonsViewModel,
+               let buttonViewModel = modalButtonsViewModel.secondaryButtonViewModel {
+                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+                secondaryButton.accessibilityIdentifier = "modal-info-secondary-button"
+                
+                if let icon = buttonViewModel.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
                 }
             } else {
                 secondaryButton.isHidden = true
