@@ -130,6 +130,9 @@ let event = ButtonEvent(textKey: "Confirm your identity another way")
 | type | The type of event that occured, for button events this is `submit form`. | N/A | `submit form` |
 | text | The text displayed on the button that was pressed. | Lowercase. Limited to 100 characters. | `confirm your identity another way` |
 
+Example: 
+![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/7404c840-f7d1-4b78-83f3-1c6e33aa8af9)
+
 ### Link Press
 
 Use the `LinkEvent` type for this
@@ -150,6 +153,9 @@ let event = LinkEvent(textKey: "Confirm your identity another way",
 | link domain | The web domain of the link that was pressed. | Lowercase. Limited to 100 characters. | `https://signin.build.account.gov.uk` |
 | external | Indicates whether the link is to an external domain. | Lowercase. | `true` or `false` |
 
+Example: 
+![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/67b7a5e8-cec7-43cd-9665-f83a6b7948d0)
+
 ### Popup Alerts
 
 This type of event should be logged when a call-to-action is displayed, usually this would be a `UIAlertController` but it may also be used for other modal inputs. Use the `PopupEvent` type for this.
@@ -165,6 +171,9 @@ let event = PopupEvent(textKey: "Change your permissions")
 | name | The name of the event that occured, for popups this is `popup`. | N/A | `popup` |
 | type | The type of event that occured, for popups this is `call to action`. | N/A | `call to action` |
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `change your permissions` |
+
+Example:
+![IMG_2061](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/0f0c9c1b-65f5-49ad-9107-4e269dd14a06)
 
 ### Action Menu 
 
@@ -182,6 +191,9 @@ let event = ActionMenuEvent(textKey: "Change your permissions")
 | type | The type of event that occured, for alerts this is `actionMenu`. | N/A | `actionMenu` |
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `change your permissions` |
 
+Example: 
+![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/0d88f0ba-28d1-4c5f-8f45-2a33845497bb)
+
 ### Icon Event 
 
 This type of event fires when a user interacts with a button (with an icon rather than a title) to navigate from one screen to another.
@@ -197,6 +209,9 @@ let event = IconEvent(textKey: "close")
 | name | The name of the event that occured, for popups this is `navigation`. | N/A | `navigation` |
 | type | The type of event that occured, for alerts this is `icon`. | N/A | `icon` |
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `close` |
+
+Example: 
+![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/4e0e7188-b931-42c8-a11a-8c442c7e77bb)
 
 ## Form Events
 
@@ -218,6 +233,8 @@ let event = FormEvent(textKey: "Did you start on a computer or tablet?",
 | text | The text of the question that was asked in the form. | Lowercase. Limited to 100 characters. | `did you start on a computer or tablet?` |
 | response | The response to the form that the user entered. | Lowercase. Limited to 100 characters. | `yes, I started on a computer or tablet` |
 
+Example:
+![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/a175afe4-53f2-49ea-90bc-45ea525fa449)
 
 ### Form Action Menu Event 
 
@@ -233,6 +250,10 @@ let event = FormActionMenuEvent(textKey: "question answer")
 | name | The name of the event that occured, for popups this is `formResponse`. | N/A | `formResponse` |
 | type | The type of event that occured, for alerts this is `actionMenu`. | N/A | `actionMenu` |
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `question answer` |
+
+Example: 
+![IMG_2061](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/7e90bbba-c79e-4df4-9321-260f22b3a2ed)
+
 
 ### Form CTA Event 
 
