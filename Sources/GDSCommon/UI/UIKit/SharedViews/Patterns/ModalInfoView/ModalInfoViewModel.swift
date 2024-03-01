@@ -19,4 +19,3 @@ public protocol ModalInfoButtonsViewModel: ModalInfoViewModel {
     var secondaryButtonViewModel: ButtonViewModel? { get }
     var preventModalDismiss: Bool? { get }
 }
-

@@ -122,7 +122,7 @@ extension ModalInfoButtonsViewControllerTests {
     }
 }
 
-extension ModalInfoViewController {    
+extension ModalInfoViewController {
     var primaryButton: UIButton {
         get throws {
             try XCTUnwrap(view[child: "modal-info-primary-button"])
