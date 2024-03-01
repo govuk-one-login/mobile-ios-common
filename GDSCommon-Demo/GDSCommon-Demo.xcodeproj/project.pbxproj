@@ -60,6 +60,7 @@
 		96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */; };
 		C8A0D1A82ADF08A6003013E4 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		C8A3955F2B20BA6700333669 /* GDSErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3955E2B20BA6700333669 /* GDSErrorViewControllerTests.swift */; };
+		C8C343992B91E67F00E92FB9 /* ModalInfoButtonsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C343982B91E67F00E92FB9 /* ModalInfoButtonsViewControllerTests.swift */; };
 		C8C90DCF2ADDADFD00158516 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */; };
 		C8CFBFF92ADDA0C700BE35C5 /* MockOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */; };
@@ -131,6 +132,7 @@
 		96FEBF902ACEC0F30067CC10 /* MockDatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatePickerViewModel.swift; sourceTree = "<group>"; };
 		96FEBF912ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatePickerScreenViewModel.swift; sourceTree = "<group>"; };
 		C8A3955E2B20BA6700333669 /* GDSErrorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSErrorViewControllerTests.swift; sourceTree = "<group>"; };
+		C8C343982B91E67F00E92FB9 /* ModalInfoButtonsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalInfoButtonsViewControllerTests.swift; sourceTree = "<group>"; };
 		C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIntroViewModel.swift; sourceTree = "<group>"; };
 		C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOptionViewModel.swift; sourceTree = "<group>"; };
 		C8FC500C2B1F770900083CB4 /* MockErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorViewModel.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				96588BDF2AD046420035FF93 /* DatePickerScreenViewControllerTests.swift */,
 				968598AA2B03877D00462D0B /* BaseViewControllerTests.swift */,
 				2B0843F72ABC797E00188BA0 /* ModalInfoViewControllerTests.swift */,
+				C8C343982B91E67F00E92FB9 /* ModalInfoButtonsViewControllerTests.swift */,
 				2BB5C7882AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift */,
 				2B0844022ABC79BB00188BA0 /* GDSCommon_DemoTests.swift */,
 				3B61C6E02ACDC580001359F1 /* IntroViewControllerTests.swift */,
@@ -408,6 +411,7 @@
 				96588BDC2AD02AB30035FF93 /* Date+Extensions.swift in Sources */,
 				C8C90DCF2ADDADFD00158516 /* (null) in Sources */,
 				96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */,
+				C8C343992B91E67F00E92FB9 /* ModalInfoButtonsViewControllerTests.swift in Sources */,
 				2B08440A2ABC79C300188BA0 /* GDSInstructionsViewControllerTests.swift in Sources */,
 				7C5137772AD99F0B00163E83 /* MockBarcodeRequest.swift in Sources */,
 				7C5137792AD99F2300163E83 /* MockBarcodeObservation.swift in Sources */,

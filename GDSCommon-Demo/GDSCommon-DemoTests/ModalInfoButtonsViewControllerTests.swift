@@ -1,8 +1,8 @@
 import GDSCommon
 import XCTest
 
-final class ModalInfoViewControllerTests: XCTestCase {
-    var viewModel: ModalInfoViewModel!
+final class ModalInfoButtonsViewControllerTests: XCTestCase {
+    var viewModel: ModalInfoButtonsViewModel!
     var sut: ModalInfoViewController!
     var primaryButton = false
     var secondaryButton = false
@@ -13,6 +13,10 @@ final class ModalInfoViewControllerTests: XCTestCase {
         super.setUp()
         
         viewModel = TestViewModel {
+            self.primaryButton = true
+        } secondaryButtonAction: {
+            self.secondaryButton = true
+        } appearAction: {
             self.viewDidAppear = true
         } dismissAction: {
             self.viewDidDismiss = true
@@ -28,14 +32,33 @@ final class ModalInfoViewControllerTests: XCTestCase {
     }
 }
 
-private struct TestViewModel: ModalInfoViewModel, BaseViewModel {
-    var title: GDSLocalisedString = "Modal info title"
-    var body: GDSLocalisedString = "Modal info body"
+private struct TestViewModel: ModalInfoButtonsViewModel, BaseViewModel {
+    var title: GDSLocalisedString = "Modal info buttons title"
+    var body: GDSLocalisedString = "Modal info buttons body"
     var rightBarButtonTitle: GDSLocalisedString? = "Done"
     var backButtonIsHidden: Bool = false
     
+    var bodyTextColour: UIColor?
+    var primaryButtonViewModel: ButtonViewModel?
+    var secondaryButtonViewModel: ButtonViewModel?
+    var preventModalDismiss: Bool?
+    
     let appearAction: () -> Void
     let dismissAction: () -> Void
+    
+    init(primaryButtonAction: @escaping () -> Void,
+         secondaryButtonAction: @escaping () -> Void,
+         appearAction: @escaping () -> Void,
+         dismissAction: @escaping () -> Void) {
+        primaryButtonViewModel = MockButtonViewModel(title: "Primary button") {
+            primaryButtonAction()
+        }
+        secondaryButtonViewModel = MockButtonViewModel(title: "Secondary button") {
+            secondaryButtonAction()
+        }
+        self.appearAction = appearAction
+        self.dismissAction = dismissAction
+    }
     
     func didAppear() {
         appearAction()
@@ -46,17 +69,29 @@ private struct TestViewModel: ModalInfoViewModel, BaseViewModel {
     }
 }
 
-extension ModalInfoViewControllerTests {
+extension ModalInfoButtonsViewControllerTests {
     func test_labelContents() throws {
-        XCTAssertEqual(try sut.titleLabel.text, "Modal info title")
+        XCTAssertEqual(try sut.titleLabel.text, "Modal info buttons title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
-        XCTAssertEqual(try sut.bodyLabel.text, "Modal info body")
+        XCTAssertEqual(try sut.bodyLabel.text, "Modal info buttons body")
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
         XCTAssert(try sut.bodyLabel.textColor == .gdsGrey)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
         XCTAssertEqual(try sut.rightBarButtonItem.title, "Done")
+    }
+    
+    func test_primaryButtonAction() throws {
+        XCTAssertFalse(primaryButton)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(primaryButton)
+    }
+    
+    func test_secondaryButtonAction() throws {
+        XCTAssertFalse(secondaryButton)
+        try sut.secondaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(secondaryButton)
     }
     
     func test_didAppear() throws {
@@ -72,7 +107,7 @@ extension ModalInfoViewControllerTests {
         
         let screen = try XCTUnwrap(sut as VoiceOverFocus)
         let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
-        XCTAssertEqual(view.text, "Modal info title")
+        XCTAssertEqual(view.text, "Modal info buttons title")
     }
     
     func test_didDismiss() {
@@ -87,22 +122,16 @@ extension ModalInfoViewControllerTests {
     }
 }
 
-extension ModalInfoViewController {
-    var titleLabel: UILabel {
+extension ModalInfoViewController {    
+    var primaryButton: UIButton {
         get throws {
-            try XCTUnwrap(view[child: "titleLabel"])
+            try XCTUnwrap(view[child: "modal-info-primary-button"])
         }
     }
     
-    var bodyLabel: UILabel {
+    var secondaryButton: UIButton {
         get throws {
-            try XCTUnwrap(view[child: "bodyLabel"])
-        }
-    }
-    
-    var rightBarButtonItem: UIBarButtonItem {
-        get throws {
-            try XCTUnwrap(navigationItem.rightBarButtonItem)
+            try XCTUnwrap(view[child: "modal-info-secondary-button"])
         }
     }
 }

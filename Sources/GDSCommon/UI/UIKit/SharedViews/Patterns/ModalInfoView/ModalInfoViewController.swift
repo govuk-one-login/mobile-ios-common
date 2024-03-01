@@ -19,7 +19,7 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
     public init(viewModel: ModalInfoViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "ModalInfoView", bundle: .module)
-        isModalInPresentation = viewModel.preventModalDismiss ?? false
+        isModalInPresentation = (viewModel as? ModalInfoButtonsViewModel)?.preventModalDismiss ?? false
     }
     
     required init?(coder: NSCoder) {
@@ -41,16 +41,18 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
             } else {
                 bodyLabel.text = viewModel.body.value
             }
-            bodyLabel.textColor = viewModel.bodyTextColour ?? .gdsGrey
+            bodyLabel.textColor = (viewModel as? ModalInfoButtonsViewModel)?.bodyTextColour ?? .gdsGrey
             bodyLabel.accessibilityIdentifier = "bodyLabel"
         }
     }
     
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
-            if let buttonViewModel = viewModel.primaryButtonViewModel {
-                primaryButton.setTitle(buttonViewModel.title, for: .normal)
-                primaryButton.accessibilityIdentifier = "modal-info-primary-button"
+            if viewModel is ModalInfoButtonsViewModel {
+                if let buttonViewModel = (viewModel as? ModalInfoButtonsViewModel)?.primaryButtonViewModel {
+                    primaryButton.setTitle(buttonViewModel.title, for: .normal)
+                    primaryButton.accessibilityIdentifier = "modal-info-primary-button"
+                }
             } else {
                 primaryButton.isHidden = true
             }
@@ -59,19 +61,21 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
     
     @IBAction private func primaryButtonAction(_ sender: Any) {
         primaryButton.isLoading = true
-        viewModel.primaryButtonViewModel?.action()
+        (viewModel as? ModalInfoButtonsViewModel)?.primaryButtonViewModel?.action()
         primaryButton.isLoading = false
     }
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
-            if let buttonViewModel = viewModel.secondaryButtonViewModel {
-                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
-                secondaryButton.accessibilityIdentifier = "modal-info-secondary-button"
-                
-                if let icon = buttonViewModel.icon {
-                    secondaryButton.symbolPosition = icon.symbolPosition
-                    secondaryButton.icon = icon.iconName
+            if viewModel is ModalInfoButtonsViewModel {
+                if let buttonViewModel = (viewModel as? ModalInfoButtonsViewModel)?.secondaryButtonViewModel {
+                    secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+                    secondaryButton.accessibilityIdentifier = "modal-info-secondary-button"
+                    
+                    if let icon = buttonViewModel.icon {
+                        secondaryButton.symbolPosition = icon.symbolPosition
+                        secondaryButton.icon = icon.iconName
+                    }
                 }
             } else {
                 secondaryButton.isHidden = true
@@ -80,6 +84,6 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
     }
     
     @IBAction private func secondaryButtonAction(_ sender: Any) {
-        viewModel.secondaryButtonViewModel?.action()
+        (viewModel as? ModalInfoButtonsViewModel)?.secondaryButtonViewModel?.action()
     }
 }
