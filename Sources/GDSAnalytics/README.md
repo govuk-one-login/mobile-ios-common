@@ -47,6 +47,10 @@ let screenView = ScreenView(screen: MyAppScreens.home,
 >
 >You can pass in a localised string directly into this parameter to ensure that localised parameter values are used.
 
+Example: 
+![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/2741ebec-039f-4018-93ef-8f2d25373ff7)
+
+
 #### Expected Parameters:
 
 | Parameter | Description | Expected Format | Example |
@@ -93,7 +97,6 @@ let screenView = ErrorScreenView(
 )
 ```
 
-
 #### Expected Parameters:
 
 `screenName` and `title` as per standard screens, above.
@@ -104,6 +107,10 @@ let screenView = ErrorScreenView(
 | reason | The reason the error was thrown: i.e. if the user has no internet connection, or an error was thrown by the API. | Optional. Lowercase. | `network` |
 | status | The HTTP status code that was thrown by the remote service. | Optional. Lowercase. | `401` |
 | hash | A unique error code / hash for the error. Usually an MD5 hash of the endpoint and status code. | Optional. Lowercase. | `83766358f64858b51afb745bbdde91bb` |
+
+Example:
+![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/13a2723d-8e13-4caa-b24e-d97cff7f3b64)
+
 
 ## Event Tracking
 
@@ -269,3 +276,7 @@ let event = FormCTAEvent(textKey: "action menu key")
 | name | The name of the event that occured, for popups this is `formResponse`. | N/A | `formResponse` |
 | type | The type of event that occured, for alerts this is `callToAction`. | N/A | `callToAction` |
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `action menu key` |
+
+Example:
+![Uploading IMG_2063.jpg…]()
+
