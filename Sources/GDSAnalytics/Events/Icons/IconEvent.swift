@@ -13,7 +13,7 @@ public struct IconEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String, 
+    public init(textKey: String,
                 _ variableKeys: String...,
                 bundle: Bundle = .main) {
         self.text = textKey.englishString(variableKeys, bundle: bundle)
