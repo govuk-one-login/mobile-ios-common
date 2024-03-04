@@ -13,13 +13,13 @@ public struct ButtonEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String, 
+    public init(textKey: String,
                 _ variableKeys: String...,
                 bundle: Bundle = .main) {
         self.init(textKey: textKey, variableKeys: variableKeys, bundle: bundle)
     }
     
-    public init(textKey: String, 
+    public init(textKey: String,
                 variableKeys: [String],
                 bundle: Bundle = .main) {
         self.text = textKey.englishString(variableKeys, bundle: bundle)
