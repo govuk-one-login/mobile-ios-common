@@ -47,6 +47,10 @@ let screenView = ScreenView(screen: MyAppScreens.home,
 >
 >You can pass in a localised string directly into this parameter to ensure that localised parameter values are used.
 
+Example: 
+
+![screen view image](assets/ScreenView.png)
+
 #### Expected Parameters:
 
 | Parameter | Description | Expected Format | Example |
@@ -93,7 +97,6 @@ let screenView = ErrorScreenView(
 )
 ```
 
-
 #### Expected Parameters:
 
 `screenName` and `title` as per standard screens, above.
@@ -104,6 +107,11 @@ let screenView = ErrorScreenView(
 | reason | The reason the error was thrown: i.e. if the user has no internet connection, or an error was thrown by the API. | Optional. Lowercase. | `network` |
 | status | The HTTP status code that was thrown by the remote service. | Optional. Lowercase. | `401` |
 | hash | A unique error code / hash for the error. Usually an MD5 hash of the endpoint and status code. | Optional. Lowercase. | `83766358f64858b51afb745bbdde91bb` |
+
+Example:
+
+![error screen view image](assets/ErrorScreenView.png)
+
 
 ## Event Tracking
 
@@ -130,6 +138,10 @@ let event = ButtonEvent(textKey: "Confirm your identity another way")
 | type | The type of event that occured, for button events this is `submit form`. | N/A | `submit form` |
 | text | The text displayed on the button that was pressed. | Lowercase. Limited to 100 characters. | `confirm your identity another way` |
 
+Example: 
+
+![screen view image](assets/ButtonPress.png)
+
 ### Link Press
 
 Use the `LinkEvent` type for this
@@ -150,6 +162,72 @@ let event = LinkEvent(textKey: "Confirm your identity another way",
 | link domain | The web domain of the link that was pressed. | Lowercase. Limited to 100 characters. | `https://signin.build.account.gov.uk` |
 | external | Indicates whether the link is to an external domain. | Lowercase. | `true` or `false` |
 
+Example: 
+
+![screen view image](assets/LinkPress.png)
+
+### Popup Alerts
+
+This type of event should be logged when a call-to-action is displayed, usually this would be a `UIAlertController` but it may also be used for other modal inputs. Use the `PopupEvent` type for this.
+
+```swift
+let event = PopupEvent(textKey: "Change your permissions")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `popup`. | N/A | `popup` |
+| type | The type of event that occured, for popups this is `call to action`. | N/A | `call to action` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `change your permissions` |
+
+Example:
+
+![screen view image](assets/PopupAlerts.png)
+
+### Action Menu 
+
+This type of event fires when a custom systemAlert popup appears on the screen, usually this would be a `UIAlertController` of the type `.actionSheet`. Use the `ActionMenuEvent` type for this.
+
+```swift
+let event = ActionMenuEvent(textKey: "Change your permissions")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `popup`. | N/A | `popup` |
+| type | The type of event that occured, for alerts this is `actionMenu`. | N/A | `actionMenu` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `change your permissions` |
+
+Example: 
+
+![screen view image](assets/ActionMenu.png)
+
+### Icon Event 
+
+This type of event fires when a user interacts with a button (with an icon rather than a title) to navigate from one screen to another.
+
+```swift
+let event = IconEvent(textKey: "close")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `navigation`. | N/A | `navigation` |
+| type | The type of event that occured, for alerts this is `icon`. | N/A | `icon` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `close` |
+
+Example: 
+
+![screen view image](assets/IconEvent.png)
+
+## Form Events
+
 ### Form Submission
 
 If the user enters a value, such as selecting an option in a checkbox or typing into text field, the form submission event should be sent when the user taps the submit button. Use the `FormEvent` type for this.
@@ -168,18 +246,46 @@ let event = FormEvent(textKey: "Did you start on a computer or tablet?",
 | text | The text of the question that was asked in the form. | Lowercase. Limited to 100 characters. | `did you start on a computer or tablet?` |
 | response | The response to the form that the user entered. | Lowercase. Limited to 100 characters. | `yes, I started on a computer or tablet` |
 
-### Popup Alerts
+Example:
 
-This type of event should be logged when a call-to-action is displayed, usually this would be a `UIAlertController` but it may also be used for other modal inputs. Use the `PopupEvent` type for this.
+![screen view image](assets/FormSubmission.png)
 
+### Form Action Menu Event 
+
+This type of event fires once a user responds to a CTA that is dismissible.
 ```swift
-let event = PopupEvent(textKey: "Change your permissions")
+let event = FormActionMenuEvent(textKey: "question answer")
 ```
 
 #### Expected Parameters:
 
 | Parameter | Description | Expected Format | Example |
 | ------------- |-------------| -----| --- |
-| name | The name of the event that occured, for popups this is `popup`. | N/A | `popup` |
-| type | The type of event that occured, for popups this is `call to action`. | N/A | `call to action` |
-| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `change your permissions` |
+| name | The name of the event that occured, for popups this is `formResponse`. | N/A | `formResponse` |
+| type | The type of event that occured, for alerts this is `actionMenu`. | N/A | `actionMenu` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `question answer` |
+
+Example: 
+
+![screen view image](assets/FormActionMenuEvent.png)
+
+### Form CTA Event 
+
+This type of event fires once a user responds to a non dismissible CTA i.e. the camera permissions CTA
+```swift
+let event = FormCTAEvent(textKey: "action menu key")
+```
+
+#### Expected Parameters:
+
+| Parameter | Description | Expected Format | Example |
+| ------------- |-------------| -----| --- |
+| name | The name of the event that occured, for popups this is `formResponse`. | N/A | `formResponse` |
+| type | The type of event that occured, for alerts this is `callToAction`. | N/A | `callToAction` |
+| text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `action menu key` |
+
+Example:
+
+![screen view image](assets/FormCTAEvent.png)
+
+

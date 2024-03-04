@@ -11,11 +11,15 @@ final class ErrorScreenViewTests: XCTestCase {
     }
     
     func testEmptyParametersAreRemoved() {
-        let view = ErrorScreenView(screen: MockScreen.error,
+        let uuid = UUID().uuidString.lowercased()
+
+        let view = ErrorScreenView(id: uuid,
+                                   screen: MockScreen.error,
                                    titleKey: "Something went wrong")
         
         XCTAssertEqual(view.parameters, [
-            "title": "something went wrong"
+            "title": "something went wrong",
+            "screen_id": uuid
         ])
     }
     
@@ -27,30 +31,35 @@ final class ErrorScreenViewTests: XCTestCase {
     }
     
     func testParametersForError() {
-        let view = ErrorScreenView(screen: MockScreen.error,
+        let uuid = UUID().uuidString.lowercased()
+        let view = ErrorScreenView(id: uuid,
+                                   screen: MockScreen.error,
                                    titleKey: "Something went wrong",
                                    error: MockError())
-        
         XCTAssertEqual(view.parameters, [
             "title": "something went wrong",
+            "screen_id": uuid,
+            "hash": "83766358f64858b51afb745bbdde91bb",
             "reason": "server",
             "endpoint": "fetchbiometrictoken",
-            "status": "429",
-            "hash": "83766358f64858b51afb745bbdde91bb"
-        ])
+            "status": "429"])
     }
     
     func testParametersForValues() {
-        let view = ErrorScreenView(screen: MockScreen.error,
+        let uuid = UUID().uuidString.lowercased()
+
+        let view = ErrorScreenView(id: uuid,
+                                   screen: MockScreen.error,
                                    titleKey: "Something went wrong",
                                    reason: "network",
                                    endpoint: "appInfo",
                                    statusCode: "401",
                                    hash: "83766358f64858b51afb745bbdde91bb"
-                               )
+        )
         
         XCTAssertEqual(view.parameters, [
             "title": "something went wrong",
+            "screen_id": uuid,
             "reason": "network",
             "endpoint": "appinfo",
             "status": "401",
