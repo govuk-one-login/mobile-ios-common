@@ -1,3 +1,5 @@
+import Foundation
+
 public protocol ScreenViewProtocol {
     associatedtype Screen: ScreenType
     var id: String? { get }
@@ -21,9 +23,10 @@ public struct ScreenView<Screen: ScreenType>: ScreenViewProtocol {
     public init(id: String? = nil,
                 screen: Screen,
                 titleKey: String,
-                variableKeys: [String] = []) {
+                variableKeys: [String] = [],
+                bundle: Bundle = .main) {
         self.id = id
         self.screen = screen
-        self.title = titleKey.englishString(variableKeys).formattedAsParameter
+        self.title = titleKey.englishString(variableKeys, bundle: bundle).formattedAsParameter
     }
 }
