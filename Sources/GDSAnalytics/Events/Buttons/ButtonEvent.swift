@@ -1,3 +1,5 @@
+import Foundation
+
 public struct ButtonEvent: Event {
     public let name = EventName.navigation
     public let type = EventType.submitForm
@@ -11,13 +13,15 @@ public struct ButtonEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String,
-                _ variableKeys: String...) {
-        self.init(textKey: textKey, variableKeys: variableKeys)
+    public init(textKey: String, 
+                _ variableKeys: String...,
+                bundle: Bundle = .main) {
+        self.init(textKey: textKey, variableKeys: variableKeys, bundle: bundle)
     }
     
-    public init(textKey: String,
-                variableKeys: [String]) {
-        self.text = textKey.englishString(variableKeys)
+    public init(textKey: String, 
+                variableKeys: [String],
+                bundle: Bundle = .main) {
+        self.text = textKey.englishString(variableKeys, bundle: bundle)
     }
 }

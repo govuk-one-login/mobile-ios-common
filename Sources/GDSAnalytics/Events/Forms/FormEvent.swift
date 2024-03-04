@@ -1,3 +1,5 @@
+import Foundation
+
 public struct FormEvent: Event {
     public let name = EventName.formResponse
     public let type = EventType.simpleSmartAnswer
@@ -13,10 +15,10 @@ public struct FormEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String,
-                _ variableKeys: String...,
-                responseKey: String) {
-        self.text = textKey.englishString(variableKeys)
-        self.response = responseKey.englishString()
+    public init(textKey: String, _ variableKeys: String...,
+                responseKey: String,
+                bundle: Bundle = .main) {
+        self.text = textKey.englishString(variableKeys, bundle: bundle)
+        self.response = responseKey.englishString(bundle: bundle)
     }
 }
