@@ -74,12 +74,6 @@ extension ModalInfoViewController {
         }
     }
     
-    var rightBarButtonItem: UIBarButtonItem {
-        get throws {
-            try XCTUnwrap(navigationItem.rightBarButtonItem)
-        }
-    }
-    
     var primaryButton: UIButton {
         get throws {
             try XCTUnwrap(view[child: "modal-info-primary-button"])

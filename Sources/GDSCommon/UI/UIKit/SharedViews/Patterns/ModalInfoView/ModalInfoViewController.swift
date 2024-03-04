@@ -4,10 +4,12 @@ import UIKit
 /// This screen includes the following views:
 ///   - `titleLabel` (type: `UILabel`)
 ///   - `bodyLabel` (type: `UILabel`)
+///   - `primaryButton` (type: `RoundedButton`)
+///   - `secondaryButton` (type: `SecondaryButton`)
 ///   This screen provides guidance in a modal presentation context
 ///   with a title and body to present the information.
-///   There is also configuration for a right `UIBarButtonItem` with an action
-///   configurable in the `dismissModal()` method in the viewModel.
+///   Additional configuration and buttons can be added to this view by conforming to the:
+///   `BaseViewModel`, `ModalInfoExtraViewModel`, `PageWithPrimaryButtonViewModel` and `PageWithSecondaryButtonViewModel` protocols.
 public final class ModalInfoViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "ModalInfoView" }
     

@@ -301,6 +301,12 @@ This screen is typically used to present information in a modal context, consist
 The `titleLabel` and `bodyLabel` are within a `UIStackView`.
 The content on the screen is set from the `viewModel`, which must conform to the `ModalInfoViewModel` protocol.
 
+Additional protocols for this view are available to add configuration and subviews.
+The `bodyLabel.textColour` and `isModalInPresentation` properties are set from the `viewmodel`, which must conform to the `ModalInfoExtraViewModel` protocol. If the `viewmodel` does not conform to this protocol and provide these properties, these properties have default values set.
+
+The `primaryButton` and `secondaryButton` are within a `UIStackView`.
+The configuration for these views are set from the `viewModel`, which must conform to the `PageWithPrimaryButtonViewModel` and `PageWithSecondaryButtonViewModel` protocols respectively. If the `viewmodel` does not conform to these protocols and provide these properties, the buttons will be hidden.
+
 
 ### IntroScreen
 This screen includes the following views:
