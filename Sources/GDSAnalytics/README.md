@@ -268,7 +268,7 @@ let event = FormActionMenuEvent(textKey: "question answer")
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `question answer` |
 
 Example: 
-![IMG_2061](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/7e90bbba-c79e-4df4-9321-260f22b3a2ed)
+![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/0d88f0ba-28d1-4c5f-8f45-2a33845497bb)
 
 
 ### Form CTA Event 
