@@ -49,7 +49,7 @@ let screenView = ScreenView(screen: MyAppScreens.home,
 
 Example: 
 
-![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/2741ebec-039f-4018-93ef-8f2d25373ff7)
+![screen view image](assets/ScreenView.png)
 
 #### Expected Parameters:
 
@@ -110,7 +110,7 @@ let screenView = ErrorScreenView(
 
 Example:
 
-![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/13a2723d-8e13-4caa-b24e-d97cff7f3b64)
+![error screen view image](assets/ErrorScreenView.png)
 
 
 ## Event Tracking
@@ -140,7 +140,7 @@ let event = ButtonEvent(textKey: "Confirm your identity another way")
 
 Example: 
 
-![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/7404c840-f7d1-4b78-83f3-1c6e33aa8af9)
+![screen view image](assets/ButtonPress.png)
 
 ### Link Press
 
@@ -164,7 +164,7 @@ let event = LinkEvent(textKey: "Confirm your identity another way",
 
 Example: 
 
-![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/67b7a5e8-cec7-43cd-9665-f83a6b7948d0)
+![screen view image](assets/LinkPress.png)
 
 ### Popup Alerts
 
@@ -184,8 +184,7 @@ let event = PopupEvent(textKey: "Change your permissions")
 
 Example:
 
-![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/d15e337b-8a7d-4cf9-ab16-b3a7f3edea9f)
-
+![screen view image](assets/PopupAlerts.png)
 
 ### Action Menu 
 
@@ -205,7 +204,7 @@ let event = ActionMenuEvent(textKey: "Change your permissions")
 
 Example: 
 
-![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/0d88f0ba-28d1-4c5f-8f45-2a33845497bb)
+![screen view image](assets/ActionMenu.png)
 
 ### Icon Event 
 
@@ -225,7 +224,7 @@ let event = IconEvent(textKey: "close")
 
 Example: 
 
-![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/4e0e7188-b931-42c8-a11a-8c442c7e77bb)
+![screen view image](assets/IconEvent.png)
 
 ## Form Events
 
@@ -249,8 +248,7 @@ let event = FormEvent(textKey: "Did you start on a computer or tablet?",
 
 Example:
 
-![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/f511e03e-ecdd-407c-a825-25a62bb66444)
-
+![screen view image](assets/FormSubmission.png)
 
 ### Form Action Menu Event 
 
@@ -268,8 +266,8 @@ let event = FormActionMenuEvent(textKey: "question answer")
 | text | The text that is displayed on the popup. | Lowercase. Limited to 100 characters. | `question answer` |
 
 Example: 
-![image](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/0d88f0ba-28d1-4c5f-8f45-2a33845497bb)
 
+![screen view image](assets/FormActionMenuEvent.png)
 
 ### Form CTA Event 
 
@@ -288,6 +286,6 @@ let event = FormCTAEvent(textKey: "action menu key")
 
 Example:
 
-![IMG_2063](https://github.com/govuk-one-login/mobile-ios-common/assets/39125995/97fa8037-b8a8-4092-8b45-f3bbaaf5c7c2)
+![screen view image](assets/FormCTAEvent.png)
 
 
