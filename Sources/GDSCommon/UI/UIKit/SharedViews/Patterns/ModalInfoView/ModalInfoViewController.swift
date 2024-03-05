@@ -43,7 +43,7 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
             } else {
                 bodyLabel.text = viewModel.body.value
             }
-            bodyLabel.textColor = (viewModel as? ModalInfoExtraViewModel)?.bodyTextColour ?? .gdsGrey
+            bodyLabel.textColor = viewModel.bodyTextColor
             bodyLabel.accessibilityIdentifier = "bodyLabel"
         }
     }

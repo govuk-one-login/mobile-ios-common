@@ -27,7 +27,7 @@ extension ModalInfoViewControllerTests {
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
         XCTAssertEqual(try sut.bodyLabel.text, "We can use this if we want the user to complete an action")
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
-        XCTAssertTrue(try sut.bodyLabel.textColor == .gdsGrey)
+        XCTAssertTrue(try sut.bodyLabel.textColor == .label)
         XCTAssertFalse(sut.isModalInPresentation)
     }
     
@@ -39,7 +39,6 @@ extension ModalInfoViewControllerTests {
                                                                                                 action: { self.secondaryButton = true }))
         sut = ModalInfoViewController(viewModel: viewModel)
         
-        XCTAssertTrue(try sut.bodyLabel.textColor == .label)
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button")
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button")
         XCTAssertTrue(sut.isModalInPresentation)
