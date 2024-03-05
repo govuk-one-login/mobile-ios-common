@@ -4,52 +4,59 @@ import XCTest
 final class ModalInfoViewControllerTests: XCTestCase {
     var viewModel: ModalInfoViewModel!
     var sut: ModalInfoViewController!
-    
-    override func setUp() {
-        super.setUp()
-        viewModel = TestViewModel()
-        sut = ModalInfoViewController(viewModel: viewModel)
-    }
+    var primaryButton = false
+    var secondaryButton = false
     
     override func tearDown() {
         viewModel = nil
         sut = nil
+        primaryButton = false
+        secondaryButton = false
         
         super.tearDown()
     }
 }
 
-private struct TestViewModel: ModalInfoViewModel, BaseViewModel {
-    var title: GDSLocalisedString = "permissions screen title"
-    var body: GDSLocalisedString = "permissions screen body"
-    var rightBarButtonTitle: GDSLocalisedString? = "Done"
-    var backButtonIsHidden: Bool = false
-    
-    func didAppear() { }
-    
-    func didDismiss() { }
-}
-
 extension ModalInfoViewControllerTests {
-    func test_labelContents() throws {
-        XCTAssertEqual(try sut.titleLabel.text, "permissions screen title")
+    func test_modalInfoView() throws {
+        viewModel = MockModalInfoViewModel()
+        sut = ModalInfoViewController(viewModel: viewModel)
+        
+        XCTAssertEqual(try sut.titleLabel.text, "This is the Modal view")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
-        XCTAssertEqual(try sut.bodyLabel.text, "permissions screen body")
+        XCTAssertEqual(try sut.bodyLabel.text, "We can use this if we want the user to complete an action")
         XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
-        XCTAssert(try sut.bodyLabel.textColor == .gdsGrey)
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
-        XCTAssertEqual(try sut.rightBarButtonItem.title, "Done")
+        XCTAssertTrue(try sut.bodyLabel.textColor == .label)
+        XCTAssertFalse(sut.isModalInPresentation)
     }
     
-    func testVoiceOverFocusElement() throws {
-        sut.beginAppearanceTransition(true, animated: false)
-        sut.endAppearanceTransition()
+    func test_modalInfoViewButtons() throws {
+        viewModel = MockModalInfoButtonsViewModel(primaryButtonViewModel: MockButtonViewModel(title: "Primary button",
+                                                                                              action: { self.primaryButton = true }),
+                                                  secondaryButtonViewModel: MockButtonViewModel(title: "Secondary button",
+                                                                                                icon: MockButtonIconViewModel(),
+                                                                                                action: { self.secondaryButton = true }))
+        sut = ModalInfoViewController(viewModel: viewModel)
         
-        let screen = try XCTUnwrap(sut as VoiceOverFocus)
-        let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
-        XCTAssertEqual(view.text, "permissions screen title")
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button")
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button")
+        XCTAssertTrue(sut.isModalInPresentation)
+        
+        XCTAssertFalse(primaryButton)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(primaryButton)
+        
+        XCTAssertFalse(secondaryButton)
+        try sut.secondaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(secondaryButton)
+    }
+    
+    func test_attributedModalInfoView() throws {
+        viewModel = MockAttributedModalInfoViewModel()
+        sut = ModalInfoViewController(viewModel: viewModel)
+        
+        XCTAssertEqual(try sut.bodyLabel.attributedText?.string, "We can use this attribubted text if we want the user to complete an action")
     }
 }
 
@@ -66,9 +73,15 @@ extension ModalInfoViewController {
         }
     }
     
-    var rightBarButtonItem: UIBarButtonItem {
+    var primaryButton: UIButton {
         get throws {
-            try XCTUnwrap(navigationItem.rightBarButtonItem)
+            try XCTUnwrap(view[child: "modal-info-primary-button"])
+        }
+    }
+    
+    var secondaryButton: UIButton {
+        get throws {
+            try XCTUnwrap(view[child: "modal-info-secondary-button"])
         }
     }
 }

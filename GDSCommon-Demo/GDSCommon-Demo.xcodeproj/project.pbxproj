@@ -60,6 +60,7 @@
 		96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */; };
 		C8A0D1A82ADF08A6003013E4 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		C8A3955F2B20BA6700333669 /* GDSErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3955E2B20BA6700333669 /* GDSErrorViewControllerTests.swift */; };
+		C8C343AA2B927C7200E92FB9 /* MockModalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */; };
 		C8C90DCF2ADDADFD00158516 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */; };
 		C8CFBFF92ADDA0C700BE35C5 /* MockOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */; };
@@ -408,6 +409,7 @@
 				96588BDC2AD02AB30035FF93 /* Date+Extensions.swift in Sources */,
 				C8C90DCF2ADDADFD00158516 /* (null) in Sources */,
 				96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */,
+				C8C343AA2B927C7200E92FB9 /* MockModalInfoViewModel.swift in Sources */,
 				2B08440A2ABC79C300188BA0 /* GDSInstructionsViewControllerTests.swift in Sources */,
 				7C5137772AD99F0B00163E83 /* MockBarcodeRequest.swift in Sources */,
 				7C5137792AD99F2300163E83 /* MockBarcodeObservation.swift in Sources */,
