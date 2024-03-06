@@ -7,8 +7,7 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [.iOS(.v13)],
     products: [
-        .library(name: "GDSCommon", targets: ["GDSCommon"]),
-        .library(name: "GDSAnalytics", targets: ["GDSAnalytics"])
+        .library(name: "GDSCommon", targets: ["GDSCommon"])
     ],
     dependencies: [
         .package(
@@ -18,10 +17,6 @@ let package = Package(
     targets: [
         .target(name: "GDSCommon"),
         .testTarget(name: "GDSCommonTests",
-                    dependencies: ["GDSCommon", "ViewInspector"]),
-        .target(name: "GDSAnalytics",
-                exclude: ["README.md"]),
-        .testTarget(name: "GDSAnalyticsTests",
-                    dependencies: ["GDSAnalytics"])
+                    dependencies: ["GDSCommon", "ViewInspector"])
     ]
 )
