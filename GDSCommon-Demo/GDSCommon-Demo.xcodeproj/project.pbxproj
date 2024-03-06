@@ -27,7 +27,6 @@
 		2B9BDC112ABC5A5600452E23 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9BDC102ABC5A5600452E23 /* DemoViewController.swift */; };
 		2B9BDC162ABC5A5700452E23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC152ABC5A5700452E23 /* Assets.xcassets */; };
 		2B9BDC192ABC5A5700452E23 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B9BDC172ABC5A5700452E23 /* LaunchScreen.storyboard */; };
-		2BA0632B2AC5C98E0064E354 /* GDSAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA0632A2AC5C98E0064E354 /* GDSAnalytics */; };
 		2BA0632D2AC5C98E0064E354 /* GDSCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 2BA0632C2AC5C98E0064E354 /* GDSCommon */; };
 		2BB5C7892AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB5C7882AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift */; };
 		2BCBA1262ACDB408009ED436 /* MockQRScanningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBA1252ACDB408009ED436 /* MockQRScanningViewModel.swift */; };
@@ -150,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BA0632D2AC5C98E0064E354 /* GDSCommon in Frameworks */,
-				2BA0632B2AC5C98E0064E354 /* GDSAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +326,6 @@
 			);
 			name = "GDSCommon-Demo";
 			packageProductDependencies = (
-				2BA0632A2AC5C98E0064E354 /* GDSAnalytics */,
 				2BA0632C2AC5C98E0064E354 /* GDSCommon */,
 			);
 			productName = "GDSCommon-Demo";
@@ -769,10 +766,6 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2BA0632A2AC5C98E0064E354 /* GDSAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GDSAnalytics;
-		};
 		2BA0632C2AC5C98E0064E354 /* GDSCommon */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GDSCommon;
