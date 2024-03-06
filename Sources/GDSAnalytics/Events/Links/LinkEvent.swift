@@ -1,3 +1,5 @@
+import Foundation
+
 public struct LinkEvent: Event {
     public let name = EventName.navigation
     public let type = EventType.genericLink
@@ -18,8 +20,9 @@ public struct LinkEvent: Event {
     public init(textKey: String,
                 variableKeys: String...,
                 linkDomain: String,
-                external: ExternalLinkParameter) {
-        self.text = textKey.englishString(variableKeys)
+                external: ExternalLinkParameter,
+                bundle: Bundle = .main) {
+        self.text = textKey.englishString(variableKeys, bundle: bundle)
         self.linkDomain = linkDomain
         self.external = external
     }

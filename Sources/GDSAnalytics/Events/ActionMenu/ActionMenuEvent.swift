@@ -1,3 +1,5 @@
+import Foundation
+
 public struct ActionMenuEvent: Event {
     public let name = EventName.popup
     public let type = EventType.actionMenu
@@ -11,7 +13,9 @@ public struct ActionMenuEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String, _ variableKeys: String...) {
-        self.text = textKey.englishString(variableKeys)
+    public init(textKey: String,
+                _ variableKeys: String...,
+                bundle: Bundle = .main) {
+        self.text = textKey.englishString(variableKeys, bundle: bundle)
     }
 }

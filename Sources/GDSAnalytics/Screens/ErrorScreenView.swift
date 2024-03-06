@@ -1,3 +1,5 @@
+import Foundation
+
 public struct ErrorScreenView<Screen: ScreenType>: ScreenViewProtocol, LoggableError {
     public let id: String?
     public let title: String
@@ -25,9 +27,10 @@ public struct ErrorScreenView<Screen: ScreenType>: ScreenViewProtocol, LoggableE
                 reason: String? = nil,
                 endpoint: String? = nil,
                 statusCode: String? = nil,
-                hash: String? = nil) {
+                hash: String? = nil,
+                bundle: Bundle = .main) {
         self.screen = screen
-        self.title = titleKey.englishString()
+        self.title = titleKey.englishString(bundle: bundle)
         self.id = id
         self.reason = reason
         self.endpoint = endpoint
@@ -38,11 +41,12 @@ public struct ErrorScreenView<Screen: ScreenType>: ScreenViewProtocol, LoggableE
     public init(id: String? = nil,
                 screen: Screen,
                 titleKey: String,
-                error: LoggableError) {
+                error: LoggableError,
+                bundle: Bundle = .main) {
        
         self.id = id
         self.screen = screen
-        title = titleKey.englishString()
+        title = titleKey.englishString(bundle: bundle)
         reason = error.reason
         endpoint = error.endpoint
         statusCode = error.statusCode

@@ -6,7 +6,7 @@ extension String {
             .lowercased()
     }
     
-    func englishString(_ variableKeys: [String] = [], bundle: Bundle = .main) -> String {
+    func englishString(_ variableKeys: [String] = [], bundle: Bundle) -> String {
         let tableName = "en.lproj/Localizable"
         
         return String(format: NSLocalizedString(key: self, tableName: tableName, bundle: bundle),

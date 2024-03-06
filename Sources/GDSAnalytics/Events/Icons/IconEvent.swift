@@ -1,3 +1,5 @@
+import Foundation
+
 public struct IconEvent: Event {
     public let name = EventName.navigation
     public let type = EventType.icon
@@ -11,7 +13,9 @@ public struct IconEvent: Event {
         ].mapValues(\.formattedAsParameter)
     }
     
-    public init(textKey: String, _ variableKeys: String...) {
-        self.text = textKey.englishString(variableKeys)
+    public init(textKey: String,
+                _ variableKeys: String...,
+                bundle: Bundle = .main) {
+        self.text = textKey.englishString(variableKeys, bundle: bundle)
     }
 }
