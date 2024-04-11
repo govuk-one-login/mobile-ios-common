@@ -5,28 +5,29 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+
 jobs:
   build:
     name: Run Quality Report
     runs-on: macos-13
     permissions:
       contents: write
-    
+
     steps:
       - name: Add path globally
         run: echo "/usr/local/bin" >> $GITHUB_PATH
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # pin@v4
         with:
           lfs: 'true'
-          
+
       - name: Xcode select
         run: |
           sudo xcode-select -s /Applications/Xcode_15.1.app
-          
+
       - name: Build and Test
-        run: |
+        run: |+
           xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
            -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" \
            -enableCodeCoverage YES -resultBundlePath result.xcresult
@@ -34,9 +35,9 @@ jobs:
       - name: Run SonarCloud Scanning
         run: |
           bash xccov-to-sonarqube-generic.sh result.xcresult/ >Coverage.xml
-          
+
           brew install sonar-scanner
-          
+
           sonar-scanner \
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.coverageReportPaths="Coverage.xml"

@@ -4,8 +4,8 @@ on:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ main ]
-    
-concurrency: 
+
+concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
@@ -14,18 +14,17 @@ jobs:
     name: Build and Test default scheme using any available iPhone simulator
     if: github.event.pull_request.draft == false
     runs-on: macos-13
-      
 
     steps:
       - name: Add path globally
         run: echo "/usr/local/bin" >> $GITHUB_PATH
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # pin@v4
         with:
           lfs: 'true'
           fetch-depth: 0
-          
+
       - name: Run Linter
         run: |
           swiftlint --strict
@@ -33,27 +32,27 @@ jobs:
       - name: Xcode select
         run: |
           sudo xcode-select -s /Applications/Xcode_15.1.app
-          
+
       - name: Validate Pull Request Name
         id: versioning
         uses: Oliver-Binns/Versioning@3fe853c28bce81e7cfdedf3967734b785c256181 # 1.0.0
         with:
           ACTION_TYPE: 'Validate'
-          
+
       - name: Build and Test
         run: |
           xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
            -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" \
            -enableCodeCoverage YES -resultBundlePath result.xcresult
-          
+
       - name: Run SonarCloud Scanning
         run: |
           bash xccov-to-sonarqube-generic.sh result.xcresult/ >Coverage.xml
-          
+
           brew install sonar-scanner
-          
+
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-          
+
           sonar-scanner \
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.coverageReportPaths="Coverage.xml" \
@@ -63,11 +62,10 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Check SonarCloud Results
-        uses: sonarsource/sonarqube-quality-gate-action@master
+        uses: sonarsource/sonarqube-quality-gate-action@d304d050d930b02a896b0f85935344f023928496 # pin@v1.1.0
         # Force to fail step after specific time
         timeout-minutes: 5
         env:
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
