@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Run Quality Report
-    runs-on: macos-13
+    runs-on: macos-14
     permissions:
       contents: write
 

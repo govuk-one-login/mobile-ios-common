@@ -13,7 +13,7 @@ jobs:
   build:
     name: Build and Test default scheme using any available iPhone simulator
     if: github.event.pull_request.draft == false
-    runs-on: macos-13
+    runs-on: macos-14
 
     steps:
       - name: Add path globally
@@ -27,6 +27,7 @@ jobs:
 
       - name: Run Linter
         run: |
+          brew install swiftlint
           swiftlint --strict
 
       - name: Xcode select
