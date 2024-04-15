@@ -8,23 +8,23 @@ on:
 jobs:
   build:
     name: Run Quality Report
-    runs-on: macos-13
+    runs-on: macos-14
     permissions:
       contents: write
-    
+
     steps:
       - name: Add path globally
         run: echo "/usr/local/bin" >> $GITHUB_PATH
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # pin@v4
         with:
           lfs: 'true'
-          
+
       - name: Xcode select
         run: |
           sudo xcode-select -s /Applications/Xcode_15.1.app
-          
+
       - name: Build and Test
         run: |
           xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
@@ -34,19 +34,19 @@ jobs:
       - name: Run SonarCloud Scanning
         run: |
           bash xccov-to-sonarqube-generic.sh result.xcresult/ >Coverage.xml
-          
+
           brew install sonar-scanner
-          
+
           sonar-scanner \
             -Dsonar.token=$SONAR_TOKEN \
             -Dsonar.coverageReportPaths="Coverage.xml"
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Increment Version
         id: versioning
-        uses: Oliver-Binns/Versioning@3fe853c28bce81e7cfdedf3967734b785c256181 # 1.0.0
+        uses: Oliver-Binns/Versioning@3fe853c28bce81e7cfdedf3967734b785c256181 # pin@v1.0.0
         with:
           ACTION_TYPE: 'Release'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
