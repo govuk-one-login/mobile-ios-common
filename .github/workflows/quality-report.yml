@@ -5,7 +5,6 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-
 jobs:
   build:
     name: Run Quality Report
@@ -27,7 +26,7 @@ jobs:
           sudo xcode-select -s /Applications/Xcode_15.1.app
 
       - name: Build and Test
-        run: |+
+        run: |
           xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
            -destination "platform=iOS Simulator,name=iPhone 14,OS=latest" \
            -enableCodeCoverage YES -resultBundlePath result.xcresult
@@ -44,10 +43,10 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Increment Version
         id: versioning
-        uses: Oliver-Binns/Versioning@3fe853c28bce81e7cfdedf3967734b785c256181 # 1.0.0
+        uses: Oliver-Binns/Versioning@3fe853c28bce81e7cfdedf3967734b785c256181 # pin@v1.0.0
         with:
           ACTION_TYPE: 'Release'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
