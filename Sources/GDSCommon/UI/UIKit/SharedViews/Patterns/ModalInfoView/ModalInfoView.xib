@@ -28,10 +28,10 @@
                     <rect key="frame" x="0.0" y="48" width="414" height="657"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZFw-FR-LhT">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="369"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="367.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="JqX-kN-ovq">
-                                    <rect key="frame" x="0.0" y="8" width="414" height="353"/>
+                                    <rect key="frame" x="0.0" y="8" width="414" height="351.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help improve the app by sharing analytics" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scT-2x-13n">
                                             <rect key="frame" x="16" y="8" width="382" height="82"/>
@@ -54,12 +54,13 @@ You can change your preferences at any time in your Settings. </string>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="izO-Kl-cNh">
-                                            <rect key="frame" x="16" y="310.5" width="382" height="34.5"/>
+                                            <rect key="frame" x="16" y="310.5" width="382" height="33"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbD-Xa-bV6" customClass="SecondaryButton" customModule="GDSCommon">
-                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="34.5"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbD-Xa-bV6" customClass="SecondaryButton" customModule="GDSCommon">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="33"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                                     <connections>
                                                         <action selector="privacyPolicyButtonAction:" destination="-1" eventType="touchUpInside" id="Y3i-CT-1PA"/>
                                                     </connections>

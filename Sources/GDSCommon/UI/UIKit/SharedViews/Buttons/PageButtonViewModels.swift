@@ -9,3 +9,9 @@ public protocol PageWithPrimaryButtonViewModel {
 public protocol PageWithSecondaryButtonViewModel {
     var secondaryButtonViewModel: ButtonViewModel { get }
 }
+
+/// View model for the views with a button that displays as text i.e privacy policy
+///  - `textButtonViewModel` type is ``ButtonViewModel``
+public protocol PageWithTextButtonViewModel {
+    var textButtonViewModel: ButtonViewModel { get }
+}
