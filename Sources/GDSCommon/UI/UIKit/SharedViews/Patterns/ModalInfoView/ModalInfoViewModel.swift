@@ -8,6 +8,7 @@ public protocol ModalInfoViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
     var bodyTextColor: UIColor { get }
+    var privacyPolicyButtonTitle: GDSLocalisedString? { get }
 }
 
 /// View model for extra configuration on the `ModalInfoViewController`

@@ -6,6 +6,7 @@ struct MockModalInfoViewModel: ModalInfoViewModel, BaseViewModel {
     let title: GDSLocalisedString = "This is the Modal view"
     let body: GDSLocalisedString = "We can use this if we want the user to complete an action"
     let bodyTextColor: UIColor = .label
+    let privacyPolicyButtonTitle: GDSLocalisedString? = "Privacy policy"
     let rightBarButtonTitle: GDSLocalisedString? = "Close"
     let backButtonIsHidden: Bool = true
     
@@ -22,6 +23,7 @@ struct MockModalInfoButtonsViewModel: ModalInfoViewModel,
     let title: GDSLocalisedString = "This is the Modal Buttons view"
     let body: GDSLocalisedString = "We can use this if we want the user to complete an action with buttons"
     let bodyTextColor: UIColor = .label
+    let privacyPolicyButtonTitle: GDSLocalisedString? = "Privacy policy"
     let primaryButtonViewModel: ButtonViewModel
     let secondaryButtonViewModel: ButtonViewModel
     let rightBarButtonTitle: GDSLocalisedString? = "Close"
@@ -37,6 +39,7 @@ struct MockAttributedModalInfoViewModel: ModalInfoViewModel, BaseViewModel {
     let body: GDSLocalisedString = .init(stringLiteral: "We can use this attribubted text if we want the user to complete an action",
                                          attributes: [("We can use this attribubted text", [.font: UIFont.bodyBold])])
     let bodyTextColor: UIColor = .label
+    let privacyPolicyButtonTitle: GDSLocalisedString? = "Privacy policy"
     let rightBarButtonTitle: GDSLocalisedString? = "Close"
     let backButtonIsHidden: Bool = false
     

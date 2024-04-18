@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="bodyLabel" destination="JIR-NX-GIB" id="kAJ-hF-WSA"/>
                 <outlet property="primaryButton" destination="VVY-cu-Sbp" id="3Hc-Cr-CKZ"/>
+                <outlet property="privacyPolicyButton" destination="pbD-Xa-bV6" id="8dD-x8-7pZ"/>
                 <outlet property="secondaryButton" destination="ELh-0G-cep" id="r6g-Td-U0N"/>
                 <outlet property="titleLabel" destination="scT-2x-13n" id="DcJ-LA-CK1"/>
                 <outlet property="view" destination="PKq-uW-jV8" id="kWd-s6-EJu"/>
@@ -27,10 +28,10 @@
                     <rect key="frame" x="0.0" y="48" width="414" height="657"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZFw-FR-LhT">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="322.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="369"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="JqX-kN-ovq">
-                                    <rect key="frame" x="0.0" y="8" width="414" height="306.5"/>
+                                    <rect key="frame" x="0.0" y="8" width="414" height="353"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help improve the app by sharing analytics" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scT-2x-13n">
                                             <rect key="frame" x="16" y="8" width="382" height="82"/>
@@ -52,6 +53,19 @@ You can change your preferences at any time in your Settings. </string>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="izO-Kl-cNh">
+                                            <rect key="frame" x="16" y="310.5" width="382" height="34.5"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbD-Xa-bV6" customClass="SecondaryButton" customModule="GDSCommon">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="34.5"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                    <connections>
+                                                        <action selector="privacyPolicyButtonAction:" destination="-1" eventType="touchUpInside" id="Y3i-CT-1PA"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                                 </stackView>

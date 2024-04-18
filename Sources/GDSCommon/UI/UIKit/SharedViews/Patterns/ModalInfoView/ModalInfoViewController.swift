@@ -83,4 +83,16 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
     @IBAction private func secondaryButtonAction(_ sender: Any) {
         (viewModel as? PageWithSecondaryButtonViewModel)?.secondaryButtonViewModel.action()
     }
+
+    @IBOutlet weak var privacyPolicyButton: SecondaryButton! {
+        didSet {
+            privacyPolicyButton.setTitle(viewModel.privacyPolicyButtonTitle ?? "Privacy policy", for: .normal)
+            privacyPolicyButton.accessibilityIdentifier = "privacyButton"
+        }
+    }
+
+    @IBAction func privacyPolicyButtonAction(_ sender: Any) {
+        (viewModel as? PageWithSecondaryButtonViewModel)?.secondaryButtonViewModel.action()
+    }
+    
 }
