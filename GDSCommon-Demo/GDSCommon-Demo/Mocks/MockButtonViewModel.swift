@@ -36,4 +36,13 @@ extension MockButtonViewModel {
                             shouldLoadOnTap: false,
                             action: {})
     }
+    
+    static var text: MockButtonViewModel {
+        MockButtonViewModel(title: "Secondary Button",
+                            icon: MockButtonIconViewModel(iconName: "qrcode",
+                                                          symbolPosition: .beforeTitle),
+                            shouldLoadOnTap: false,
+                            action: {})
+    }
+
 }
