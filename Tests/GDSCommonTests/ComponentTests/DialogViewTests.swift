@@ -77,18 +77,6 @@ final class DialogViewTests: XCTestCase {
         XCTAssertNil(sut.superview)
     }
     
-    func test_dialogView_asdsfafgsyncPresentation() {
-        let exp = expectation(description: "Removed from superview")
-        
-        Task {
-            await sut.remove(view: viewController.view)
-            exp.fulfill()
-        }
-
-        waitForExpectations(timeout: 1, handler: nil)
-        XCTAssertNil(sut.superview)
-    }
-    
     func test_dialogView_asyncUpdateState() {
         let exp = expectation(description: "Wait for update")
 

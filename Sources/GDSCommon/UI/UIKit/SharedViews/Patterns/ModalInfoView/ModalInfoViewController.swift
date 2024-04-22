@@ -6,10 +6,11 @@ import UIKit
 ///   - `bodyLabel` (type: `UILabel`)
 ///   - `primaryButton` (type: `RoundedButton`)
 ///   - `secondaryButton` (type: `SecondaryButton`)
+///   - `textButton` (type: `SecondaryButton`)
 ///   This screen provides guidance in a modal presentation context
 ///   with a title and body to present the information.
 ///   Additional configuration and buttons can be added to this view by conforming to the:
-///   `BaseViewModel`, `ModalInfoExtraViewModel`, `PageWithPrimaryButtonViewModel` and `PageWithSecondaryButtonViewModel` protocols.
+///   `BaseViewModel`, `ModalInfoExtraViewModel`, `PageWithPrimaryButtonViewModel`, `PageWithSecondaryButtonViewModel` and `PageWithTextButtonViewModel`protocols.
 public final class ModalInfoViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "ModalInfoView" }
     
@@ -82,5 +83,20 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
     
     @IBAction private func secondaryButtonAction(_ sender: Any) {
         (viewModel as? PageWithSecondaryButtonViewModel)?.secondaryButtonViewModel.action()
+    }
+
+    @IBOutlet private var textButton: SecondaryButton! {
+        didSet {
+            if let vm = viewModel as? PageWithTextButtonViewModel {
+                textButton.setTitle(vm.textButtonViewModel.title, for: .normal)
+                textButton.accessibilityIdentifier = "modal-info-text-button"
+            } else {
+                textButton.isHidden = true
+            }
+        }
+    }
+
+    @IBAction private func textButtonAction(_ sender: Any) {
+        (viewModel as? PageWithTextButtonViewModel)?.textButtonViewModel.action()
     }
 }

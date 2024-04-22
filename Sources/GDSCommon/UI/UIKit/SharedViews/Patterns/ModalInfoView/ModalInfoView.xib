@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,6 +13,7 @@
                 <outlet property="bodyLabel" destination="JIR-NX-GIB" id="kAJ-hF-WSA"/>
                 <outlet property="primaryButton" destination="VVY-cu-Sbp" id="3Hc-Cr-CKZ"/>
                 <outlet property="secondaryButton" destination="ELh-0G-cep" id="r6g-Td-U0N"/>
+                <outlet property="textButton" destination="pbD-Xa-bV6" id="8dD-x8-7pZ"/>
                 <outlet property="titleLabel" destination="scT-2x-13n" id="DcJ-LA-CK1"/>
                 <outlet property="view" destination="PKq-uW-jV8" id="kWd-s6-EJu"/>
             </connections>
@@ -27,10 +27,10 @@
                     <rect key="frame" x="0.0" y="48" width="414" height="657"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZFw-FR-LhT">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="322.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="367.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="JqX-kN-ovq">
-                                    <rect key="frame" x="0.0" y="8" width="414" height="306.5"/>
+                                    <rect key="frame" x="0.0" y="8" width="414" height="351.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Help improve the app by sharing analytics" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scT-2x-13n">
                                             <rect key="frame" x="16" y="8" width="382" height="82"/>
@@ -52,6 +52,20 @@ You can change your preferences at any time in your Settings. </string>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="izO-Kl-cNh">
+                                            <rect key="frame" x="16" y="310.5" width="382" height="33"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pbD-Xa-bV6" customClass="SecondaryButton" customModule="GDSCommon">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="33"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="textButtonAction:" destination="-1" eventType="touchUpInside" id="Y3i-CT-1PA"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                                 </stackView>

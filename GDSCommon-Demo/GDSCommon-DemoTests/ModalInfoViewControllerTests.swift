@@ -6,13 +6,14 @@ final class ModalInfoViewControllerTests: XCTestCase {
     var sut: ModalInfoViewController!
     var primaryButton = false
     var secondaryButton = false
+    var textButton = false
     
     override func tearDown() {
         viewModel = nil
         sut = nil
         primaryButton = false
         secondaryButton = false
-        
+        textButton = false
         super.tearDown()
     }
 }
@@ -36,7 +37,10 @@ extension ModalInfoViewControllerTests {
                                                                                               action: { self.primaryButton = true }),
                                                   secondaryButtonViewModel: MockButtonViewModel(title: "Secondary button",
                                                                                                 icon: MockButtonIconViewModel(),
-                                                                                                action: { self.secondaryButton = true }))
+                                                                                                action: { self.secondaryButton = true }),
+                                                  textButtonViewModel: MockButtonViewModel(title: "Text button",
+                                                                                           action: {self.textButton = true }))
+        
         sut = ModalInfoViewController(viewModel: viewModel)
         
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button")
@@ -50,6 +54,10 @@ extension ModalInfoViewControllerTests {
         XCTAssertFalse(secondaryButton)
         try sut.secondaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(secondaryButton)
+        
+        XCTAssertFalse(textButton)
+        try sut.textButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(textButton)
     }
     
     func test_attributedModalInfoView() throws {
@@ -82,6 +90,12 @@ extension ModalInfoViewController {
     var secondaryButton: UIButton {
         get throws {
             try XCTUnwrap(view[child: "modal-info-secondary-button"])
+        }
+    }
+    
+    var textButton: UIButton {
+        get throws {
+            try XCTUnwrap(view[child: "modal-info-text-button"])
         }
     }
 }

@@ -17,13 +17,16 @@ struct MockModalInfoButtonsViewModel: ModalInfoViewModel,
                                       ModalInfoExtraViewModel,
                                       PageWithPrimaryButtonViewModel,
                                       PageWithSecondaryButtonViewModel,
+                                      PageWithTextButtonViewModel,
                                       BaseViewModel {
+    
     
     let title: GDSLocalisedString = "This is the Modal Buttons view"
     let body: GDSLocalisedString = "We can use this if we want the user to complete an action with buttons"
     let bodyTextColor: UIColor = .label
     let primaryButtonViewModel: ButtonViewModel
     let secondaryButtonViewModel: ButtonViewModel
+    let textButtonViewModel: ButtonViewModel
     let rightBarButtonTitle: GDSLocalisedString? = "Close"
     let backButtonIsHidden: Bool = false
     let preventModalDismiss: Bool = true
