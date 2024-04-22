@@ -90,16 +90,13 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
             if let vm = viewModel as? PageWithTextButtonViewModel {
                 textButton.setTitle(vm.textButtonViewModel.title, for: .normal)
                 textButton.accessibilityIdentifier = "modal-info-text-button"
-            }
-            else {
+            } else {
                 textButton.isHidden = true
             }
-
         }
     }
 
-    @IBAction func textButtonAction(_ sender: Any) {
+    @IBAction private func textButtonAction(_ sender: Any) {
         (viewModel as? PageWithTextButtonViewModel)?.textButtonViewModel.action()
     }
-    
 }

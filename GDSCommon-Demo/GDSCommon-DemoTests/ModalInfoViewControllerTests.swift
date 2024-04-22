@@ -38,7 +38,7 @@ extension ModalInfoViewControllerTests {
                                                   secondaryButtonViewModel: MockButtonViewModel(title: "Secondary button",
                                                                                                 icon: MockButtonIconViewModel(),
                                                                                                 action: { self.secondaryButton = true }),
-                                                  textButtonViewModel: MockButtonViewModel(title: "Text button", 
+                                                  textButtonViewModel: MockButtonViewModel(title: "Text button",
                                                                                            action: {self.textButton = true }))
         
         sut = ModalInfoViewController(viewModel: viewModel)
