@@ -36,6 +36,7 @@ extension UIColor {
     public static let gdsMidGrey = UIColor(.gdsMidGrey)
     public static let gdsOrange = UIColor(.gdsOrange)
     public static let gdsPink = UIColor(.gdsPink)
+    public static let gdsRed = UIColor(.gdsRed)
     public static let gdsPurple = UIColor(.gdsPurple)
     public static let gdsTurquoise = UIColor(.gdsTurquoise)
     // TODO: DCMAW-6572 Review colours based on investigation from Design
@@ -67,6 +68,7 @@ extension UIColor {
         case gdsOrange = "Orange"
         case gdsPink = "Pink"
         case gdsPurple = "Purple"
+        case gdsRed = "Red"
         case gdsTurquoise = "Turquoise"
         // TODO: DCMAW-6572 Review colours based on investigation from Design
         case dialogBackground = "DialogBackground"
