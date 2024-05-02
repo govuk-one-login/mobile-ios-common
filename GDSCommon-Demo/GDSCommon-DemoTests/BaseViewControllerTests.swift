@@ -33,7 +33,6 @@ final class BaseViewControllerTests: XCTestCase {
 extension BaseViewControllerTests {
     func test_labelContents() throws {
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         let rightBarButton: UIBarButtonItem = try XCTUnwrap(sut.navigationItem.rightBarButtonItem)
         XCTAssertEqual(rightBarButton.title, "right bar button")
@@ -42,7 +41,6 @@ extension BaseViewControllerTests {
     func test_didAppear() {
         XCTAssertFalse(didAppear)
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(didAppear)
     }
@@ -50,12 +48,18 @@ extension BaseViewControllerTests {
     func test_didDismiss() {
         XCTAssertFalse(didAppear)
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(didAppear)
         
         XCTAssertFalse(didDismiss)
         _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
         XCTAssertTrue(didDismiss)
+    }
+    
+    func test_rightBarButtonSetsAccessbilityIDOnViewLoad() {
+        XCTAssertNil(sut.navigationItem.rightBarButtonItem?.accessibilityIdentifier)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
+        XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.accessibilityIdentifier, "right-bar-button")
     }
 }

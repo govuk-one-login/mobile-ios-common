@@ -30,6 +30,7 @@ open class BaseViewController: UIViewController {
                                                            style: .done,
                                                            target: self,
                                                            action: #selector(dismissScreen))
+            self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = "right-bar-button"
         }
     }
     
