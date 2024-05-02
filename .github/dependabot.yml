@@ -7,8 +7,12 @@ updates:
     schedule:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
   - package-ecosystem: "swift"
     directory: "/"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "chore"
     open-pull-requests-limit: 5
