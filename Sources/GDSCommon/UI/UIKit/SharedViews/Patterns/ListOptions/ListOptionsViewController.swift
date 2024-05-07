@@ -75,7 +75,7 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
             }
         }
     }
-    @IBOutlet weak var tableTitleLabel: UILabel! {
+    @IBOutlet private var tableTitleLabel: UILabel! {
         didSet {
             tableTitleLabel.font = UIFont.bodyBold
             tableTitleLabel.accessibilityIdentifier = "tableViewTitleLabel"
@@ -114,7 +114,7 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         viewModel.buttonViewModel.action()
     }
     
-    @IBOutlet weak var secondaryButton: SecondaryButton! {
+    @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
             if let buttonViewModel = viewModel.secondaryButtonViewModel {
                 secondaryButton.titleLabel?.textAlignment = .center
@@ -132,7 +132,7 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         }
     }
     
-    @IBAction func didTapSecondaryButton(_ sender: Any) {
+    @IBAction private func didTapSecondaryButton(_ sender: Any) {
         if let buttonViewModel = viewModel.secondaryButtonViewModel {
             buttonViewModel.action()
         }
