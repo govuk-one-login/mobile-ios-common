@@ -64,6 +64,24 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         }
     }
     
+    @IBOutlet private var stackView: UIStackView! {
+        didSet {
+            stackView.accessibilityIdentifier = "childStackView"
+            
+            if let childView = viewModel.childView {
+                stackView.addArrangedSubview(childView)
+            } else {
+                stackView.isHidden = true
+            }
+        }
+    }
+    @IBOutlet weak var tableTitleLabel: UILabel! {
+        didSet {
+            tableTitleLabel.font = UIFont.bodyBold
+            tableTitleLabel.accessibilityIdentifier = "tableViewTitleLabel"
+            tableTitleLabel.text = viewModel.listTitle
+        }
+    }
     @IBOutlet private var tableViewList: UITableView! {
         didSet {
             tableViewList.accessibilityIdentifier = "tableViewList"
@@ -95,6 +113,30 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         viewModel.resultAction(cell.gdsLocalisedString)
         viewModel.buttonViewModel.action()
     }
+    
+    @IBOutlet weak var secondaryButton: SecondaryButton! {
+        didSet {
+            if let buttonViewModel = viewModel.secondaryButtonViewModel {
+                secondaryButton.titleLabel?.textAlignment = .center
+                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+                secondaryButton.accessibilityIdentifier = "listOptions-secondary-button"
+                secondaryButton.isHidden = false
+                
+                if let icon = viewModel.secondaryButtonViewModel?.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
+            } else {
+                secondaryButton.isHidden = true
+            }
+        }
+    }
+    
+    @IBAction func didTapSecondaryButton(_ sender: Any) {
+        if let buttonViewModel = viewModel.secondaryButtonViewModel {
+            buttonViewModel.action()
+        }
+    }
 }
 
 
@@ -108,7 +150,7 @@ extension ListOptionsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let descriptor = viewModel.listRows[indexPath.row]
         let cell = ListTableViewCell(gdsLocalisedString: descriptor)
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+//        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         cell.selectionStyle = .none
         cell.textLabel?.textColor = .label
         cell.textLabel?.numberOfLines = 0
