@@ -140,43 +140,43 @@ extension ListOptionsViewControllerTests {
 extension ListOptionsViewController {
     var titleLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "titleLabel"])
+            try XCTUnwrap(view[child: "list-title-label"])
         }
     }
     
     var bodyLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "bodyLabel"])
+            try XCTUnwrap(view[child: "list-body-label"])
         }
     }
     
     var tableViewList: UITableView {
         get throws {
-            try XCTUnwrap(view[child: "tableViewList"])
+            try XCTUnwrap(view[child: "list-table-view"])
         }
     }
     
     var primaryButton: RoundedButton {
         get throws {
-            try XCTUnwrap(view[child: "primaryButton"])
+            try XCTUnwrap(view[child: "list-primary-button"])
         }
     }
     
     var secondaryButton: SecondaryButton {
         get throws {
-            try XCTUnwrap(view[child: "listOptions-secondary-button"])
+            try XCTUnwrap(view[child: "list-secondary-button"])
         }
     }
     
     var stackView: UIStackView {
         get throws {
-            try XCTUnwrap(view[child: "childStackView"])
+            try XCTUnwrap(view[child: "list-child-stack-view"])
         }
     }
     
     var tableTitleLable: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "tableViewTitleLabel"])
+            try XCTUnwrap(view[child: "list-tabel-title"])
         }
     }
 }

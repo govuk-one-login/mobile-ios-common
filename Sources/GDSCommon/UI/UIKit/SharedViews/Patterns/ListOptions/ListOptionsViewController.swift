@@ -51,22 +51,22 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold
             titleLabel.accessibilityTraits = .header
-            titleLabel.accessibilityIdentifier = "titleLabel"
+            titleLabel.accessibilityIdentifier = "list-title-label"
         }
     }
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            bodyLabel.text = viewModel.body
+            bodyLabel.text = viewModel.body?.value
             bodyLabel.font = .body
             bodyLabel.isHidden = viewModel.body == nil
-            bodyLabel.accessibilityIdentifier = "bodyLabel"
+            bodyLabel.accessibilityIdentifier = "list-body-label"
         }
     }
     
     @IBOutlet private var stackView: UIStackView! {
         didSet {
-            stackView.accessibilityIdentifier = "childStackView"
+            stackView.accessibilityIdentifier = "list-child-stack-view"
             
             if let childView = viewModel.childView {
                 stackView.addArrangedSubview(childView)
@@ -78,22 +78,22 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
     @IBOutlet private var tableTitleLabel: UILabel! {
         didSet {
             tableTitleLabel.font = UIFont.bodyBold
-            tableTitleLabel.accessibilityIdentifier = "tableViewTitleLabel"
-            tableTitleLabel.text = viewModel.listTitle
+            tableTitleLabel.accessibilityIdentifier = "list-tabel-title"
+            tableTitleLabel.text = viewModel.listTitle?.value
         }
     }
     @IBOutlet private var tableViewList: UITableView! {
         didSet {
-            tableViewList.accessibilityIdentifier = "tableViewList"
+            tableViewList.accessibilityIdentifier = "list-table-view"
         }
     }
     
     @IBOutlet private var footerLabel: UILabel! {
         didSet {
-            footerLabel.text = viewModel.listFooter
+            footerLabel.text = viewModel.listFooter?.value
             footerLabel.font = .footnote
             footerLabel.textColor = .secondaryLabel
-            footerLabel.accessibilityIdentifier = "footerLabel"
+            footerLabel.accessibilityIdentifier = "list-footer-label"
             footerLabel.isHidden = viewModel.listFooter == nil
         }
     }
@@ -101,7 +101,7 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
             primaryButton.setTitle(viewModel.buttonViewModel.title, for: .normal)
-            primaryButton.accessibilityIdentifier = "primaryButton"
+            primaryButton.accessibilityIdentifier = "list-primary-button"
             primaryButton.isEnabled = false
         }
     }
@@ -116,7 +116,7 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
-            secondaryButton.accessibilityIdentifier = "listOptions-secondary-button"
+            secondaryButton.accessibilityIdentifier = "list-secondary-button"
             if let buttonViewModel = viewModel.secondaryButtonViewModel {
                 secondaryButton.titleLabel?.textAlignment = .center
                 secondaryButton.setTitle(buttonViewModel.title, for: .normal)
