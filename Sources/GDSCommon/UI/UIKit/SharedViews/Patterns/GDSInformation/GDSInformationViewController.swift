@@ -83,7 +83,11 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
-            primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
+            if let sbvm = viewModel as? DismissableListOptionsViewModel {
+                primaryButton.isHidden = true
+            } else {
+                primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
+            }
             primaryButton.accessibilityIdentifier = "information-primary-button"
         }
     }

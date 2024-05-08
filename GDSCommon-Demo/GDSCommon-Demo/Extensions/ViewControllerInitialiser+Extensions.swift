@@ -57,11 +57,19 @@ extension ResultsViewController {
 }
 
 extension ListOptionsViewController {
-    convenience init(popToRoot: @escaping (UINavigationController) -> Void, navController: UINavigationController) {
-        let viewModel = MockListViewModel(dismissAction: {
-            popToRoot(navController)
-        })
-        self.init(viewModel: viewModel)
+    convenience init(popToRoot: @escaping (UINavigationController) -> Void, navController: UINavigationController, isDismissable: Bool = false) {        
+        if isDismissable {
+            var selectedItem: String? = "Table view list item 3"
+            let viewModel = MockDismissableListViewModel(resultAction: { string in
+                print("Selected Item", string)
+            }, selectedItem: selectedItem)
+            self.init(viewModel: viewModel)
+        } else {
+            let dismissableViewModel = MockListViewModel(dismissAction: {
+                popToRoot(navController)
+            })
+            self.init(viewModel: dismissableViewModel)
+        }
     }
 }
 

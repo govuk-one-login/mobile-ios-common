@@ -19,6 +19,7 @@ enum Screens: String, CaseIterable {
     case gdsModalButtonsInfoView = "Modal Info Buttons View"
     case gdsAttributedModalInfoView = "Attributed Modal Info View"
     case gdsListOptions = "List Options"
+    case gdsDismissabletOptions = "Dismissable List Options"
     case gdsIntroView = "Intro View"
     case gdsDatePicker = "Date Picker"
     case gdsTextInput = "Text Input"
@@ -78,6 +79,8 @@ enum Screens: String, CaseIterable {
             return view
         case .gdsListOptions:
             return ListOptionsViewController(popToRoot: popToRoot, navController: navigationController)
+        case .gdsDismissabletOptions:
+            return ListOptionsViewController(popToRoot: popToRoot, navController: navigationController, isDismissable: true)
         case .gdsIntroView:
             let viewModel = MockIntroViewModel(introButtonViewModel: MockButtonViewModel.primary, rightBarButtonTitle: nil)
             return IntroViewController(viewModel: viewModel)

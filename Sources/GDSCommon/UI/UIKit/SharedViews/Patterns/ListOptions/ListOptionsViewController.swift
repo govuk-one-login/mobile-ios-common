@@ -30,6 +30,10 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let viewModel = viewModel as? DismissableListOptionsViewModel {
+            title = viewModel.navigationTitle
+        }
+        
         tableViewList.register(ListTableViewCell.self, forCellReuseIdentifier: "listTableViewCell")
         tableViewList.dataSource = self
         tableViewList.delegate = self
@@ -48,8 +52,13 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
 
     @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
+            if let viewModel = viewModel as? DismissableListOptionsViewModel {
+                titleLabel.font = viewModel.titleFont
+            } else {
+                titleLabel.font = .largeTitleBold
+            }
+            
             titleLabel.text = viewModel.title.value
-            titleLabel.font = .largeTitleBold
             titleLabel.accessibilityTraits = .header
             titleLabel.accessibilityIdentifier = "titleLabel"
         }
@@ -82,9 +91,13 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
     
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
-            primaryButton.setTitle(viewModel.buttonViewModel.title, for: .normal)
+            if let _ = viewModel as? DismissableListOptionsViewModel {
+                primaryButton.isHidden = true
+            } else {
+                primaryButton.setTitle(viewModel.buttonViewModel.title, for: .normal)
+                primaryButton.isEnabled = false
+            }
             primaryButton.accessibilityIdentifier = "primaryButton"
-            primaryButton.isEnabled = false
         }
     }
     
@@ -112,16 +125,31 @@ extension ListOptionsViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         cell.textLabel?.textColor = .label
         cell.textLabel?.numberOfLines = 0
+        
         return cell
     }
 }
 
 extension ListOptionsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let viewModel = viewModel as? DismissableListOptionsViewModel {
+            let item = viewModel.listRows[indexPath.row]
+            if item.value == viewModel.selectedItem {
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            }
+        }
         viewWillLayoutSubviews()
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        primaryButton.isEnabled = true
+        if let viewModel = viewModel as? DismissableListOptionsViewModel {
+            guard let selectedIndex = tableViewList.indexPathForSelectedRow,
+                  let cell = tableViewList.cellForRow(at: selectedIndex) as? ListTableViewCell else { return }
+            
+            viewModel.resultAction(cell.gdsLocalisedString)
+            dismiss(animated: true)
+        } else {
+            primaryButton.isEnabled = true
+        }
     }
 }
