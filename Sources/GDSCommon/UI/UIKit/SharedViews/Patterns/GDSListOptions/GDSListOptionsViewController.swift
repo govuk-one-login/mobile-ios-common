@@ -14,13 +14,13 @@ import UIKit
 /// The action can be customised by configuring the `didDismiss` method.
 /// `footerLabel` is configured separately from the `UITableView` to address some
 /// dynamic type issues with multi-line footers.
-public final class ListOptionsViewController: BaseViewController, TitledViewController {
-    public override var nibName: String? { "ListOptions" }
-    public let viewModel: ListOptionsViewModel
+public final class GDSListOptionsViewController: BaseViewController, TitledViewController {
+    public override var nibName: String? { "GDSListOptions" }
+    public let viewModel: GDSListOptionsViewModel
 
-    public init(viewModel: ListOptionsViewModel) {
+    public init(viewModel: GDSListOptionsViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ListOptions", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSListOptions", bundle: .module)
     }
     
     required init?(coder: NSCoder) {
@@ -140,7 +140,7 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
 }
 
 
-extension ListOptionsViewController: UITableViewDataSource {
+extension GDSListOptionsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.listRows.count
     }
@@ -158,7 +158,7 @@ extension ListOptionsViewController: UITableViewDataSource {
     }
 }
 
-extension ListOptionsViewController: UITableViewDelegate {
+extension GDSListOptionsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         viewWillLayoutSubviews()
     }

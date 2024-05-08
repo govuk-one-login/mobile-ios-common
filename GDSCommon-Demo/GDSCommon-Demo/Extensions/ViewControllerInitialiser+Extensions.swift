@@ -56,7 +56,7 @@ extension ResultsViewController {
     }
 }
 
-extension ListOptionsViewController {
+extension GDSListOptionsViewController {
     convenience init(popToRoot: @escaping (UINavigationController) -> Void, navController: UINavigationController) {
         let viewModel = MockListViewModel(dismissAction: {
             popToRoot(navController)

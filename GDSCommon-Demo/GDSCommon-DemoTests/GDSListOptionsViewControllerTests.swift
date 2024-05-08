@@ -2,9 +2,9 @@
 @testable import GDSCommon_Demo
 import XCTest
 
-final class ListOptionsViewControllerTests: XCTestCase {
-    var sut: ListOptionsViewController!
-    var viewModel: ListOptionsViewModel!
+final class GDSListOptionsViewControllerTests: XCTestCase {
+    var sut: GDSListOptionsViewController!
+    var viewModel: GDSListOptionsViewModel!
     var resultAction: ((GDSLocalisedString) -> Void)!
 
     var didSetStringKey: String?
@@ -57,7 +57,7 @@ final class ListOptionsViewControllerTests: XCTestCase {
     }
 }
 
-extension ListOptionsViewControllerTests {
+extension GDSListOptionsViewControllerTests {
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
@@ -137,7 +137,7 @@ extension ListOptionsViewControllerTests {
     }
 }
 
-extension ListOptionsViewController {
+extension GDSListOptionsViewController {
     var titleLabel: UILabel {
         get throws {
             try XCTUnwrap(view[child: "list-title-label"])
