@@ -6,7 +6,7 @@ struct MockListViewModel: ListOptionsViewModel, BaseViewModel {
     let title: GDSLocalisedString = "This is the List Options screen pattern"
     let body: String? = "This is the optional body label. If the view model property is `nil` then the label is hidden."
     let childView: UIView?
-    let listTitle: String? = "This is the tables optional title"
+    let listTitle: String?
     let listRows: [GDSLocalisedString] = ["Table view list item 1", "Table view list item two", "Table view list item 3", "Table view list item IV"]
     let listFooter: String? = "Optional footer. Configure it on the view model in a similar way as the `body` property. The right bar button works the same way."
     let buttonViewModel: ButtonViewModel
@@ -26,7 +26,10 @@ struct MockListViewModel: ListOptionsViewModel, BaseViewModel {
         screenView()
     }
     
-    init(resultAction: ((GDSLocalisedString) -> Void)? = nil,
+    init(childView: UIView? = nil,
+         secondaryButtonViewModel: ButtonViewModel? = nil,
+         listTitle: String? = nil,
+         resultAction: ((GDSLocalisedString) -> Void)? = nil,
          screenView: (() -> Void)? = nil,
          dismissAction: (() -> Void)? = nil,
          buttonAction: (() -> Void)? = nil) {
@@ -40,10 +43,9 @@ struct MockListViewModel: ListOptionsViewModel, BaseViewModel {
                                               icon: nil,
                                               shouldLoadOnTap: false,
                                               action: dismissAction ?? {})
-        
-        secondaryButtonViewModel = MockButtonViewModel(title: "Secondary Button", icon: nil, shouldLoadOnTap: false, action: dismissAction ?? {})
-        
-        childView = BulletView(viewModel: MockBulletViewModel(title: nil))
+        self.childView = childView
+        self.secondaryButtonViewModel = secondaryButtonViewModel
+        self.listTitle = nil
     }
 }
 

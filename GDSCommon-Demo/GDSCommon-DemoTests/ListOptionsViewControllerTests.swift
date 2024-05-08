@@ -39,6 +39,22 @@ final class ListOptionsViewControllerTests: XCTestCase {
         
         super.tearDown()
     }
+    
+    private func setupSUTWithOptionals() {
+        
+        let childView = BulletView(viewModel: MockBulletViewModel(title: nil))
+        let buttonViewModel = MockButtonViewModel(title: "Secondary Button") {
+            self.didDismiss = true
+        }
+        viewModel = MockListViewModel(childView: childView, secondaryButtonViewModel: buttonViewModel, listTitle: "TitleLabel") { localisedString in
+            self.didSetStringKey = localisedString.stringKey
+        } screenView: {
+            self.screenDidAppear = true
+        } dismissAction: {
+            self.didDismiss = true
+        }
+        sut = .init(viewModel: viewModel)
+    }
 }
 
 extension ListOptionsViewControllerTests {
@@ -104,6 +120,21 @@ extension ListOptionsViewControllerTests {
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertEqual(didSetStringKey, "Table view list item 1")
     }
+    
+    func testSecondaryButton() throws {
+        setupSUTWithOptionals()
+        XCTAssertFalse(try sut.secondaryButton.isHidden)
+        
+        XCTAssertFalse(didDismiss)
+        try sut.secondaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didDismiss)
+    }
+    
+    func testContentHiddenWhenNil() throws {
+        XCTAssertTrue(try sut.secondaryButton.isHidden)
+        XCTAssertTrue(try sut.stackView.isHidden)
+        XCTAssertNil(try sut.tableTitleLable.text)
+    }
 }
 
 extension ListOptionsViewController {
@@ -128,6 +159,24 @@ extension ListOptionsViewController {
     var primaryButton: RoundedButton {
         get throws {
             try XCTUnwrap(view[child: "primaryButton"])
+        }
+    }
+    
+    var secondaryButton: SecondaryButton {
+        get throws {
+            try XCTUnwrap(view[child: "listOptions-secondary-button"])
+        }
+    }
+    
+    var stackView: UIStackView {
+        get throws {
+            try XCTUnwrap(view[child: "childStackView"])
+        }
+    }
+    
+    var tableTitleLable: UILabel {
+        get throws {
+            try XCTUnwrap(view[child: "tableViewTitleLabel"])
         }
     }
 }

@@ -116,10 +116,10 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
+            secondaryButton.accessibilityIdentifier = "listOptions-secondary-button"
             if let buttonViewModel = viewModel.secondaryButtonViewModel {
                 secondaryButton.titleLabel?.textAlignment = .center
                 secondaryButton.setTitle(buttonViewModel.title, for: .normal)
-                secondaryButton.accessibilityIdentifier = "listOptions-secondary-button"
                 secondaryButton.isHidden = false
                 
                 if let icon = viewModel.secondaryButtonViewModel?.icon {
@@ -150,7 +150,7 @@ extension ListOptionsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let descriptor = viewModel.listRows[indexPath.row]
         let cell = ListTableViewCell(gdsLocalisedString: descriptor)
-//        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         cell.selectionStyle = .none
         cell.textLabel?.textColor = .label
         cell.textLabel?.numberOfLines = 0
