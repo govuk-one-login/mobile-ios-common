@@ -1,7 +1,7 @@
 import UIKit
 
 public final class ListTableViewCell: UITableViewCell {
-    var gdsLocalisedString: GDSLocalisedString {
+    public var gdsLocalisedString: GDSLocalisedString {
         didSet {
             self.textLabel?.text = gdsLocalisedString.value
         }
