@@ -20,7 +20,11 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
             self.didSetStringKey = gdsString.stringKey
         }
         
-        viewModel = MockListViewModel { localisedString in
+        let secondaryButtonViewModel = MockButtonViewModel(title: "Secondary Button") {
+            self.didDismiss = true
+        }
+        
+        viewModel = MockListViewModel(secondaryButtonViewModel: secondaryButtonViewModel) { localisedString in
             self.didSetStringKey = localisedString.stringKey
         } screenView: {
             self.screenDidAppear = true
@@ -40,13 +44,9 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
         super.tearDown()
     }
     
-    private func setupSUTWithOptionals() {
+    private func setupSUTWithNilOptionals() {
         
-        let childView = BulletView(viewModel: MockBulletViewModel(title: nil))
-        let buttonViewModel = MockButtonViewModel(title: "Secondary Button") {
-            self.didDismiss = true
-        }
-        viewModel = MockListViewModel(childView: childView, secondaryButtonViewModel: buttonViewModel, listTitle: "TitleLabel") { localisedString in
+        viewModel = MockListViewModel(childView: nil, secondaryButtonViewModel: nil, listTitle: nil) { localisedString in
             self.didSetStringKey = localisedString.stringKey
         } screenView: {
             self.screenDidAppear = true
@@ -122,7 +122,6 @@ extension GDSListOptionsViewControllerTests {
     }
     
     func testSecondaryButton() throws {
-        setupSUTWithOptionals()
         XCTAssertFalse(try sut.secondaryButton.isHidden)
         
         XCTAssertFalse(didDismiss)
@@ -131,9 +130,10 @@ extension GDSListOptionsViewControllerTests {
     }
     
     func testContentHiddenWhenNil() throws {
+        setupSUTWithNilOptionals()
         XCTAssertTrue(try sut.secondaryButton.isHidden)
         XCTAssertTrue(try sut.stackView.isHidden)
-        XCTAssertNil(try sut.tableTitleLabel.text)
+        XCTAssertTrue(try sut.tableTitleLabel.isHidden)
     }
 }
 
@@ -176,7 +176,7 @@ extension GDSListOptionsViewController {
     
     var tableTitleLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "list-tabel-title"])
+            try XCTUnwrap(view[child: "list-table-title"])
         }
     }
 }

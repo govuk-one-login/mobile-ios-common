@@ -28,7 +28,7 @@ struct MockListViewModel: GDSListOptionsViewModel, BaseViewModel {
     
     init(childView: UIView? = nil,
          secondaryButtonViewModel: ButtonViewModel? = nil,
-         listTitle: GDSLocalisedString? = nil,
+         listTitle: GDSLocalisedString? = "Optional table title",
          resultAction: ((GDSLocalisedString) -> Void)? = nil,
          screenView: (() -> Void)? = nil,
          dismissAction: (() -> Void)? = nil,
@@ -45,7 +45,7 @@ struct MockListViewModel: GDSListOptionsViewModel, BaseViewModel {
                                               action: dismissAction ?? {})
         self.childView = childView
         self.secondaryButtonViewModel = secondaryButtonViewModel
-        self.listTitle = nil
+        self.listTitle = listTitle
     }
 }
 

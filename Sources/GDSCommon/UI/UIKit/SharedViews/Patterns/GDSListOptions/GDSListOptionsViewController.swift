@@ -81,8 +81,9 @@ public final class GDSListOptionsViewController: BaseViewController, TitledViewC
     @IBOutlet private var tableTitleLabel: UILabel! {
         didSet {
             tableTitleLabel.font = UIFont.bodyBold
-            tableTitleLabel.accessibilityIdentifier = "list-tabel-title"
+            tableTitleLabel.accessibilityIdentifier = "list-table-title"
             tableTitleLabel.text = viewModel.listTitle?.value
+            tableTitleLabel.isHidden = viewModel.listTitle?.value == nil
         }
     }
     @IBOutlet private var tableViewList: UITableView! {
