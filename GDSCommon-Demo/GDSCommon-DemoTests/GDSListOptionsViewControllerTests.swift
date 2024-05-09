@@ -133,7 +133,7 @@ extension GDSListOptionsViewControllerTests {
     func testContentHiddenWhenNil() throws {
         XCTAssertTrue(try sut.secondaryButton.isHidden)
         XCTAssertTrue(try sut.stackView.isHidden)
-        XCTAssertNil(try sut.tableTitleLable.text)
+        XCTAssertNil(try sut.tableTitleLabel.text)
     }
 }
 
