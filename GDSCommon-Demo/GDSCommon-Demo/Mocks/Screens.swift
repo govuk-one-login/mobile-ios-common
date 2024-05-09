@@ -77,7 +77,7 @@ enum Screens: String, CaseIterable {
             let view = ModalInfoViewController(viewModel: MockAttributedModalInfoViewModel())
             return view
         case .gdsListOptions:
-            return ListOptionsViewController(popToRoot: popToRoot, navController: navigationController)
+            return GDSListOptionsViewController(popToRoot: popToRoot, navController: navigationController)
         case .gdsIntroView:
             let viewModel = MockIntroViewModel(introButtonViewModel: MockButtonViewModel.primary, rightBarButtonTitle: nil)
             return IntroViewController(viewModel: viewModel)

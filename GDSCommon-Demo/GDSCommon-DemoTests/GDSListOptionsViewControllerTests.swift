@@ -2,9 +2,9 @@
 @testable import GDSCommon_Demo
 import XCTest
 
-final class ListOptionsViewControllerTests: XCTestCase {
-    var sut: ListOptionsViewController!
-    var viewModel: ListOptionsViewModel!
+final class GDSListOptionsViewControllerTests: XCTestCase {
+    var sut: GDSListOptionsViewController!
+    var viewModel: GDSListOptionsViewModel!
     var resultAction: ((GDSLocalisedString) -> Void)!
 
     var didSetStringKey: String?
@@ -20,7 +20,11 @@ final class ListOptionsViewControllerTests: XCTestCase {
             self.didSetStringKey = gdsString.stringKey
         }
         
-        viewModel = MockListViewModel { localisedString in
+        let secondaryButtonViewModel = MockButtonViewModel(title: "Secondary Button") {
+            self.didDismiss = true
+        }
+        
+        viewModel = MockListViewModel(secondaryButtonViewModel: secondaryButtonViewModel) { localisedString in
             self.didSetStringKey = localisedString.stringKey
         } screenView: {
             self.screenDidAppear = true
@@ -39,9 +43,21 @@ final class ListOptionsViewControllerTests: XCTestCase {
         
         super.tearDown()
     }
+    
+    private func setupSUTWithNilOptionals() {
+        
+        viewModel = MockListViewModel(childView: nil, secondaryButtonViewModel: nil, listTitle: nil) { localisedString in
+            self.didSetStringKey = localisedString.stringKey
+        } screenView: {
+            self.screenDidAppear = true
+        } dismissAction: {
+            self.didDismiss = true
+        }
+        sut = .init(viewModel: viewModel)
+    }
 }
 
-extension ListOptionsViewControllerTests {
+extension GDSListOptionsViewControllerTests {
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
@@ -104,30 +120,63 @@ extension ListOptionsViewControllerTests {
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertEqual(didSetStringKey, "Table view list item 1")
     }
+    
+    func testSecondaryButton() throws {
+        XCTAssertFalse(try sut.secondaryButton.isHidden)
+        
+        XCTAssertFalse(didDismiss)
+        try sut.secondaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didDismiss)
+    }
+    
+    func testContentHiddenWhenNil() throws {
+        setupSUTWithNilOptionals()
+        XCTAssertTrue(try sut.secondaryButton.isHidden)
+        XCTAssertTrue(try sut.stackView.isHidden)
+        XCTAssertTrue(try sut.tableTitleLabel.isHidden)
+    }
 }
 
-extension ListOptionsViewController {
+extension GDSListOptionsViewController {
     var titleLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "titleLabel"])
+            try XCTUnwrap(view[child: "list-title-label"])
         }
     }
     
     var bodyLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "bodyLabel"])
+            try XCTUnwrap(view[child: "list-body-label"])
         }
     }
     
     var tableViewList: UITableView {
         get throws {
-            try XCTUnwrap(view[child: "tableViewList"])
+            try XCTUnwrap(view[child: "list-table-view"])
         }
     }
     
     var primaryButton: RoundedButton {
         get throws {
-            try XCTUnwrap(view[child: "primaryButton"])
+            try XCTUnwrap(view[child: "list-primary-button"])
+        }
+    }
+    
+    var secondaryButton: SecondaryButton {
+        get throws {
+            try XCTUnwrap(view[child: "list-secondary-button"])
+        }
+    }
+    
+    var stackView: UIStackView {
+        get throws {
+            try XCTUnwrap(view[child: "list-child-stack-view"])
+        }
+    }
+    
+    var tableTitleLabel: UILabel {
+        get throws {
+            try XCTUnwrap(view[child: "list-table-title"])
         }
     }
 }

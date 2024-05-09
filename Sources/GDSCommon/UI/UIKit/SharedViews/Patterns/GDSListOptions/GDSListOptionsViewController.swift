@@ -1,11 +1,14 @@
 import UIKit
 
-/// View controller for `ListOptions` screen.
+/// View controller for `GDSListOptions` screen.
 ///   - `titleLabel` (type: `UILabel`)
 ///   - `bodyLabel` (type: `UILabel`)
+///   - `stackView` (type: `UIStackView`)
+///   - `tableTitleLabel` (type: `UILabel`)
 ///   - `tableViewList` (type: `UITableView`)
 ///   - `footerLabel` (type: `UILabel`)
 ///   - `primaryButton`  (type: ``RoundedButton`` inherits from SecondaryButton)
+///   - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
 ///
 /// Two navigation items can be configured:
 /// - Back button via setting the `hideBackButton` boolean property on the view controller
@@ -14,13 +17,13 @@ import UIKit
 /// The action can be customised by configuring the `didDismiss` method.
 /// `footerLabel` is configured separately from the `UITableView` to address some
 /// dynamic type issues with multi-line footers.
-public final class ListOptionsViewController: BaseViewController, TitledViewController {
-    public override var nibName: String? { "ListOptions" }
-    public let viewModel: ListOptionsViewModel
+public final class GDSListOptionsViewController: BaseViewController, TitledViewController {
+    public override var nibName: String? { "GDSListOptions" }
+    public let viewModel: GDSListOptionsViewModel
 
-    public init(viewModel: ListOptionsViewModel) {
+    public init(viewModel: GDSListOptionsViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel as? BaseViewModel, nibName: "ListOptions", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSListOptions", bundle: .module)
     }
     
     required init?(coder: NSCoder) {
@@ -51,31 +54,50 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
             titleLabel.text = viewModel.title.value
             titleLabel.font = .largeTitleBold
             titleLabel.accessibilityTraits = .header
-            titleLabel.accessibilityIdentifier = "titleLabel"
+            titleLabel.accessibilityIdentifier = "list-title-label"
         }
     }
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            bodyLabel.text = viewModel.body
+            bodyLabel.text = viewModel.body?.value
             bodyLabel.font = .body
             bodyLabel.isHidden = viewModel.body == nil
-            bodyLabel.accessibilityIdentifier = "bodyLabel"
+            bodyLabel.accessibilityIdentifier = "list-body-label"
         }
     }
     
+    @IBOutlet private var stackView: UIStackView! {
+        didSet {
+            stackView.accessibilityIdentifier = "list-child-stack-view"
+            
+            if let childView = viewModel.childView {
+                stackView.addArrangedSubview(childView)
+            } else {
+                stackView.isHidden = true
+            }
+        }
+    }
+    @IBOutlet private var tableTitleLabel: UILabel! {
+        didSet {
+            tableTitleLabel.font = UIFont.bodyBold
+            tableTitleLabel.accessibilityIdentifier = "list-table-title"
+            tableTitleLabel.text = viewModel.listTitle?.value
+            tableTitleLabel.isHidden = viewModel.listTitle?.value == nil
+        }
+    }
     @IBOutlet private var tableViewList: UITableView! {
         didSet {
-            tableViewList.accessibilityIdentifier = "tableViewList"
+            tableViewList.accessibilityIdentifier = "list-table-view"
         }
     }
     
     @IBOutlet private var footerLabel: UILabel! {
         didSet {
-            footerLabel.text = viewModel.listFooter
+            footerLabel.text = viewModel.listFooter?.value
             footerLabel.font = .footnote
             footerLabel.textColor = .secondaryLabel
-            footerLabel.accessibilityIdentifier = "footerLabel"
+            footerLabel.accessibilityIdentifier = "list-footer-label"
             footerLabel.isHidden = viewModel.listFooter == nil
         }
     }
@@ -83,7 +105,7 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
             primaryButton.setTitle(viewModel.buttonViewModel.title, for: .normal)
-            primaryButton.accessibilityIdentifier = "primaryButton"
+            primaryButton.accessibilityIdentifier = "list-primary-button"
             primaryButton.isEnabled = false
         }
     }
@@ -95,10 +117,34 @@ public final class ListOptionsViewController: BaseViewController, TitledViewCont
         viewModel.resultAction(cell.gdsLocalisedString)
         viewModel.buttonViewModel.action()
     }
+    
+    @IBOutlet private var secondaryButton: SecondaryButton! {
+        didSet {
+            secondaryButton.accessibilityIdentifier = "list-secondary-button"
+            if let buttonViewModel = viewModel.secondaryButtonViewModel {
+                secondaryButton.titleLabel?.textAlignment = .center
+                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+                secondaryButton.isHidden = false
+                
+                if let icon = viewModel.secondaryButtonViewModel?.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
+            } else {
+                secondaryButton.isHidden = true
+            }
+        }
+    }
+    
+    @IBAction private func didTapSecondaryButton(_ sender: Any) {
+        if let buttonViewModel = viewModel.secondaryButtonViewModel {
+            buttonViewModel.action()
+        }
+    }
 }
 
 
-extension ListOptionsViewController: UITableViewDataSource {
+extension GDSListOptionsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.listRows.count
     }
@@ -116,7 +162,7 @@ extension ListOptionsViewController: UITableViewDataSource {
     }
 }
 
-extension ListOptionsViewController: UITableViewDelegate {
+extension GDSListOptionsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         viewWillLayoutSubviews()
     }
