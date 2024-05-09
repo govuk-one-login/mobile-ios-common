@@ -1,11 +1,14 @@
 import UIKit
 
-/// View controller for `ListOptions` screen.
+/// View controller for `GDSListOptions` screen.
 ///   - `titleLabel` (type: `UILabel`)
 ///   - `bodyLabel` (type: `UILabel`)
+///   - `stackView` (type: `UIStackView`)
+///   - `tableTitleLabel` (type: `UILabel`)
 ///   - `tableViewList` (type: `UITableView`)
 ///   - `footerLabel` (type: `UILabel`)
 ///   - `primaryButton`  (type: ``RoundedButton`` inherits from SecondaryButton)
+///   - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
 ///
 /// Two navigation items can be configured:
 /// - Back button via setting the `hideBackButton` boolean property on the view controller

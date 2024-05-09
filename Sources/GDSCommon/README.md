@@ -274,12 +274,15 @@ The content on the screen is set from the `viewModel`, which must conform to the
 This screen includes the following views:
 - `titleLabel` (type: `UILabel`)
 - `bodyLabel` (type: `UILabel`?)
+- `stackView` (type: `UIStackView`)
 - `footerLabel` (type: `UILabel`?)
+- `tableTitleLabel` (type: `UILabel`)
 - `tableViewList` (type: `UITableView`)
 - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
+- `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
     
-This screen provides an optional `bodyLabel` that could be used for instructional information below a `titleLabel` heading. The main content of this screen is the table view (`UITableView`) which allows the user to submit selected information back to the site of the initialisation of the view model via a call-back closure with a `GDSLocalisedString` parameter.
-There is a single Call To Action (CTA) on this screen. The navigation back button and right bar button are configurable.
+This screen provides an optional `bodyLabel` that could be used for instructional information below a `titleLabel` heading. There is a stack view below `BodyLabel` which allows you to place childs views for any information to show or functionalty, this is refered to `childView` in the view model. The main content of this screen is the table view (`UITableView`) which allows the user to submit selected information back to the site of the initialisation of the view model via a call-back closure with a `GDSLocalisedString` parameter, the table also has an optional `tableTitleLabel`.
+There is a primary Call To Action (CTA) on this screen and an optional secondary CTA which is hidden by default, if the `secondaryButtonView` is not nil in the view model this button is shown. The navigation back button and right bar button are configurable.
 If this screen should be presented as a modal view, this should be done at the call site:
 
 ```swift
