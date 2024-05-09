@@ -174,7 +174,7 @@ extension GDSListOptionsViewController {
         }
     }
     
-    var tableTitleLable: UILabel {
+    var tableTitleLabel: UILabel {
         get throws {
             try XCTUnwrap(view[child: "list-tabel-title"])
         }
