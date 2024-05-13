@@ -111,10 +111,6 @@ public final class GDSListOptionsViewController: BaseViewController, TitledViewC
     }
     
     @IBAction private func primaryButton(_ sender: Any) {
-        guard let selectedIndex = tableViewList.indexPathForSelectedRow,
-              let cell = tableViewList.cellForRow(at: selectedIndex) as? ListTableViewCell else { return }
-        
-        viewModel.resultAction(cell.gdsLocalisedString)
         viewModel.buttonViewModel.action()
     }
     
@@ -169,5 +165,8 @@ extension GDSListOptionsViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         primaryButton.isEnabled = true
+        if let cell = tableViewList.cellForRow(at: indexPath) as? ListTableViewCell {
+            viewModel.resultAction(cell.gdsLocalisedString)
+        }
     }
 }

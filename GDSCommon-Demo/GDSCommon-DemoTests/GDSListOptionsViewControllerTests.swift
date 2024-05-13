@@ -4,8 +4,7 @@ import XCTest
 
 final class GDSListOptionsViewControllerTests: XCTestCase {
     var sut: GDSListOptionsViewController!
-    var viewModel: GDSListOptionsViewModel!
-    var resultAction: ((GDSLocalisedString) -> Void)!
+    var viewModel: MockListViewModel!
 
     var didSetStringKey: String?
     var screenDidAppear: Bool!
@@ -16,28 +15,22 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
         screenDidAppear = false
         didDismiss = false
         
-        resultAction = { gdsString in
-            self.didSetStringKey = gdsString.stringKey
-        }
-        
         let secondaryButtonViewModel = MockButtonViewModel(title: "Secondary Button") {
             self.didDismiss = true
         }
         
-        viewModel = MockListViewModel(secondaryButtonViewModel: secondaryButtonViewModel) { localisedString in
-            self.didSetStringKey = localisedString.stringKey
-        } screenView: {
+        viewModel = MockListViewModel(secondaryButtonViewModel: secondaryButtonViewModel) {
             self.screenDidAppear = true
         } dismissAction: {
             self.didDismiss = true
         }
+        
         sut = .init(viewModel: viewModel)
     }
     
     override func tearDown() {
         screenDidAppear = nil
         didDismiss = nil
-        resultAction = nil
         viewModel = nil
         sut = nil
         
@@ -45,14 +38,12 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
     }
     
     private func setupSUTWithNilOptionals() {
-        
-        viewModel = MockListViewModel(childView: nil, secondaryButtonViewModel: nil, listTitle: nil) { localisedString in
-            self.didSetStringKey = localisedString.stringKey
-        } screenView: {
+        viewModel = MockListViewModel(childView: nil, secondaryButtonViewModel: nil, listTitle: nil) {
             self.screenDidAppear = true
         } dismissAction: {
             self.didDismiss = true
         }
+        
         sut = .init(viewModel: viewModel)
     }
 }
@@ -113,12 +104,17 @@ extension GDSListOptionsViewControllerTests {
         XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.font, .bodySemiBold)
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Action button")
-
-        try sut.tableViewList.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
         
-        XCTAssertNil(didSetStringKey)
+        XCTAssertFalse(didDismiss)
         try sut.primaryButton.sendActions(for: .touchUpInside)
-        XCTAssertEqual(didSetStringKey, "Table view list item 1")
+        XCTAssertTrue(didDismiss)
+    }
+    
+    func testDidSelectTableViewSetsSelectedIndex() throws {
+        XCTAssertEqual(viewModel.selectedIndex.stringKey, "")
+        try sut.tableViewList.reloadData()
+        try sut.tableView(sut.tableViewList, didSelectRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(viewModel.selectedIndex.stringKey, "Table view list item 1")
     }
     
     func testSecondaryButton() throws {
