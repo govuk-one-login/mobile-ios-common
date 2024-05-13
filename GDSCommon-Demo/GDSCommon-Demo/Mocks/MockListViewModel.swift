@@ -17,7 +17,7 @@ class MockListViewModel: GDSListOptionsViewModel, BaseViewModel {
     let screenView: () -> Void
     let dismissAction: () -> Void
     
-    lazy var resultAction:(GDSLocalisedString) -> Void = {{ index in
+    lazy var resultAction: (GDSLocalisedString) -> Void = {{ index in
         self.selectedIndex = index
     }}()
     
