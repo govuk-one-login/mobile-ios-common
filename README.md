@@ -1,8 +1,8 @@
-# GDS Common Utilities
+# GDS Mobile Design System
 
 A collection of utilities that are specific to GDS.
 
-## GDS Common
+## GDS Mobile Design System ("Common")
 
 A set of UI components and patterns that implements the [GOV.UK Design System](https://design-system.service.gov.uk) for mobile. 
 
