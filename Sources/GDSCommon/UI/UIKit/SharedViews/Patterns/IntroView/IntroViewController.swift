@@ -57,6 +57,9 @@ public final class IntroViewController: BaseViewController, TitledViewController
     @IBAction private func didTapContinueButton() {
         introButton.isLoading = true
         viewModel.introButtonViewModel.action()
+    }
+    
+    public func enableContinueButton() {
         introButton.isLoading = false
     }
 }
