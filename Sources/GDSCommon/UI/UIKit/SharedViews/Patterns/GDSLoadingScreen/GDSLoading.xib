@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GDSLoadingViewController" customModule="GDSCommon">
+            <connections>
+                <outlet property="loadingLabel" destination="6xh-fI-b5v" id="BpF-J5-CRV"/>
+                <outlet property="view" destination="Pdc-aH-I0R" id="Pko-Q8-oqb"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Pdc-aH-I0R">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="JXV-F6-epx">
+                    <rect key="frame" x="178" y="369.33333333333331" width="37" height="37"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xh-fI-b5v">
+                    <rect key="frame" x="16" y="418.33333333333331" width="361" height="20.333333333333314"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="mdb-ke-TWI"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="JXV-F6-epx" firstAttribute="centerX" secondItem="mdb-ke-TWI" secondAttribute="centerX" id="0Dg-cX-PUX"/>
+                <constraint firstItem="6xh-fI-b5v" firstAttribute="centerX" secondItem="mdb-ke-TWI" secondAttribute="centerX" id="U8h-sQ-H0m"/>
+                <constraint firstItem="6xh-fI-b5v" firstAttribute="bottom" secondItem="mdb-ke-TWI" secondAttribute="centerY" id="VeG-3Y-5NB"/>
+                <constraint firstItem="6xh-fI-b5v" firstAttribute="top" secondItem="JXV-F6-epx" secondAttribute="bottom" constant="12" id="btO-p5-mxO"/>
+                <constraint firstItem="mdb-ke-TWI" firstAttribute="trailing" secondItem="6xh-fI-b5v" secondAttribute="trailing" constant="16" id="vqd-Dw-qrR"/>
+                <constraint firstItem="6xh-fI-b5v" firstAttribute="leading" secondItem="mdb-ke-TWI" secondAttribute="leading" constant="16" id="yhJ-Lm-TwC"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="93"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
