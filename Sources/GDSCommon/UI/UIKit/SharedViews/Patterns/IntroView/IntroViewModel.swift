@@ -6,4 +6,5 @@ public protocol IntroViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
     var introButtonViewModel: ButtonViewModel { get }
+    var autoEnableIntroButton: Bool { get }
 }
