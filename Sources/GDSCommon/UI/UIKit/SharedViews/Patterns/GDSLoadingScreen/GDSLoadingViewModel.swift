@@ -1,5 +1,5 @@
 import Foundation
 
 public protocol GDSLoadingViewModel {
-    var loadingLabelKey: String { get }
+    var loadingLabelKey: GDSLocalisedString { get }
 }

@@ -1,8 +1,18 @@
 import GDSCommon
 
-struct MockGDSLoadingViewModel: BaseViewModel {
-    let loadingLabelKey: String = "Loading"
+struct MockGDSLoadingViewModel: GDSLoadingViewModel, BaseViewModel {
+    var rightBarButtonTitle: GDSLocalisedString?
+    var backButtonIsHidden: Bool = false
+    var loadingLabelKey: GDSLocalisedString = "Loading"
+
+    var appearAction: (() -> Void)? = nil
+    var dismissAction: (() -> Void)? = nil
     
-    func didAppear() { }
-    func didDismiss() { } 
+    func didAppear() { 
+        appearAction?()
+    }
+    
+    func didDismiss() {
+        dismissAction?()
+    }
 }
