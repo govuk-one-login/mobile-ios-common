@@ -2,12 +2,12 @@ import Foundation
 import UIKit
 
 public final class GDSLoadingViewController: BaseViewController {
-    public override var nibName: String? { "GDSLoadingScreen" }
+    public override var nibName: String? { "GDSLoading" }
     private let viewModel: GDSLoadingViewModel
 
     public init(viewModel: GDSLoadingViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSLoadingScreen", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSLoading", bundle: .module)
     }
 
     required init?(coder: NSCoder) {
@@ -16,18 +16,8 @@ public final class GDSLoadingViewController: BaseViewController {
 
     @IBOutlet private var loadingLabel: UILabel! {
         didSet {
-            loadingLabel.text = NSLocalizedString(key: viewModel.loadingLabelKey)
+            loadingLabel.text = viewModel.loadingLabelKey.value
             loadingLabel.accessibilityIdentifier = "loadingLabel"
         }
-    }
-
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-        setBackButtonTitle()
-    }
-
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
 }

@@ -62,6 +62,8 @@
 		C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */; };
 		C8CFBFF92ADDA0C700BE35C5 /* MockOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */; };
 		C8FC500D2B1F770900083CB4 /* MockErrorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FC500C2B1F770900083CB4 /* MockErrorViewModel.swift */; };
+		D0726FA52BF76CAF0043AEF1 /* MockGDSLoadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0726FA42BF76CAF0043AEF1 /* MockGDSLoadingViewModel.swift */; };
+		D0726FA72BF77BE20043AEF1 /* GDSLoadingViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0726FA62BF77BE20043AEF1 /* GDSLoadingViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +134,8 @@
 		C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIntroViewModel.swift; sourceTree = "<group>"; };
 		C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOptionViewModel.swift; sourceTree = "<group>"; };
 		C8FC500C2B1F770900083CB4 /* MockErrorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorViewModel.swift; sourceTree = "<group>"; };
+		D0726FA42BF76CAF0043AEF1 /* MockGDSLoadingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGDSLoadingViewModel.swift; sourceTree = "<group>"; };
+		D0726FA62BF77BE20043AEF1 /* GDSLoadingViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSLoadingViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,7 @@
 				96588BEB2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift */,
 				C8A3955E2B20BA6700333669 /* GDSErrorViewControllerTests.swift */,
 				1E891B762B63CCB000744E3D /* GDSInformationViewControllerTests.swift */,
+				D0726FA62BF77BE20043AEF1 /* GDSLoadingViewControllerTests.swift */,
 			);
 			path = "GDSCommon-DemoTests";
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 		2BF197202ABDA04600AC9620 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				D0726FA42BF76CAF0043AEF1 /* MockGDSLoadingViewModel.swift */,
 				2BF197212ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift */,
 				2B17F8F12B5EB939006926D0 /* MockPopoverItemViewModel.swift */,
 				2BF197232ABDA06D00AC9620 /* MockButtonViewModel.swift */,
@@ -402,6 +408,7 @@
 				2B0844092ABC79C300188BA0 /* ModalInfoViewControllerTests.swift in Sources */,
 				9634B46A2ACDAE8E00A60CC8 /* GDSListOptionsViewControllerTests.swift in Sources */,
 				96588BDC2AD02AB30035FF93 /* Date+Extensions.swift in Sources */,
+				D0726FA72BF77BE20043AEF1 /* GDSLoadingViewControllerTests.swift in Sources */,
 				C8C90DCF2ADDADFD00158516 /* (null) in Sources */,
 				96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */,
 				C8C343AA2B927C7200E92FB9 /* MockModalInfoViewModel.swift in Sources */,
@@ -442,6 +449,7 @@
 				C8C9297F2ACDCA1700A130C3 /* MockIntroViewModel.swift in Sources */,
 				21D9929F2B13F4DA00F4982F /* MockResultsViewModel.swift in Sources */,
 				2BF197222ABDA05500AC9620 /* MockInstructionWithImageViewModel.swift in Sources */,
+				D0726FA52BF76CAF0043AEF1 /* MockGDSLoadingViewModel.swift in Sources */,
 				2BCBA1262ACDB408009ED436 /* MockQRScanningViewModel.swift in Sources */,
 				96FEBF932ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift in Sources */,
 				C8FC500D2B1F770900083CB4 /* MockErrorViewModel.swift in Sources */,
