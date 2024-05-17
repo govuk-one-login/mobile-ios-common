@@ -84,7 +84,7 @@ extension IntroViewControllerTests {
         try sut.introButton.sendActions(for: .touchUpInside)
         XCTAssertFalse(try sut.introButton.isEnabled)
         XCTAssertTrue(buttonAction)
-        sut.enableContinueButton()
+        sut.enableIntroButton()
         XCTAssertTrue(try sut.introButton.isEnabled)
     }
     
