@@ -50,6 +50,7 @@ enum Screens: String, CaseIterable {
                                                  isLoading: false)
     }
     
+    // swiftlint:disable function_body_length
     func create(in navigationController: UINavigationController) -> UIViewController {
         switch self {
         case .gdsInstructions:
@@ -104,6 +105,7 @@ enum Screens: String, CaseIterable {
             return GDSLoadingViewController()
         }
     }
+    // swiftlint:enable function_body_length
     
     func popToRoot(_ navigationController: UINavigationController) {
         navigationController.popViewController(animated: true)

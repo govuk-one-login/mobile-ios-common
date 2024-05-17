@@ -5,10 +5,10 @@ struct MockGDSLoadingViewModel: GDSLoadingViewModel, BaseViewModel {
     var backButtonIsHidden: Bool = false
     var loadingLabelKey: GDSLocalisedString = "Loading"
 
-    var appearAction: (() -> Void)? = nil
-    var dismissAction: (() -> Void)? = nil
-    
-    func didAppear() { 
+    var appearAction: (() -> Void)?
+    var dismissAction: (() -> Void)?
+
+    func didAppear() {
         appearAction?()
     }
     
