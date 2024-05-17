@@ -82,7 +82,10 @@ extension IntroViewControllerTests {
     func test_buttonAction() throws {
         XCTAssertFalse(buttonAction)
         try sut.introButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(try sut.introButton.isEnabled)
         XCTAssertTrue(buttonAction)
+        sut.enableIntroButton()
+        XCTAssertTrue(try sut.introButton.isEnabled)
     }
     
     func test_viewDidAppear() throws {
