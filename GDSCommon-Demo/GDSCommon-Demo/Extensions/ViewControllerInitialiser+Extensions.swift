@@ -72,3 +72,11 @@ extension GDSInformationViewController {
         self.init(viewModel: viewModel)
     }
 }
+
+extension GDSLoadingViewController {
+    convenience init() {
+        let viewModel = MockGDSLoadingViewModel()
+
+        self.init(viewModel: viewModel)
+    }
+}

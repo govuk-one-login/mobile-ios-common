@@ -312,6 +312,14 @@ The `primaryButton` and `secondaryButton` are `UIButton`s and placed within a `U
 The configuration for these views are set from the `viewModel`, which must conform to the `PageWithPrimaryButtonViewModel` and `PageWithSecondaryButtonViewModel` protocols respectively. If the `viewmodel` does not conform to these protocols and provide these properties, the buttons will be hidden.
 
 
+### GDSLoadingScreen
+This screen includes the following views:
+- `loadingLabel` (type: `UILabel`)
+
+This screen is typically used to as a loading screen for asynchronous tasks to inform the user and prevent interaction with the app UI.
+The screen features a large activity indicator and a title with text which is configurable and should be localised.
+
+
 ### IntroScreen
 This screen includes the following views:
 - `introImage` (type: `UIImageView`)
