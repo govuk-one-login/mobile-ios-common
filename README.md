@@ -1,12 +1,11 @@
-# GDS Common Utilities
+# GDS Mobile Design System
 
-A collection of utilities that are specific to GDS.
+Use this design system to make government apps consistent with GOV.UK.
+Learn from the research and experience of other app teams, [GOV.UK Design System](https://design-system.service.gov.uk) and avoid repeating work that's already been done.
 
-## GDS Common
-
-A set of UI components and patterns that implements the [GOV.UK Design System](https://design-system.service.gov.uk) for mobile. 
-
-[Read More...](./Sources/GDSCommon/README.md)
+- Make services look and feel like GOV.UK using [styles](./Sources/GDSCommon/Styles/README.md).
+- Use pre-built reusable [components](./Sources/GDSCommon/Components/README.md) to build consistent apps.
+- [Patterns](./Sources/GDSCommon/Patterns/README.md) are best practice design solutions for specific user-focused tasks and pages.
 
 ## GDS Common - Demo
 
