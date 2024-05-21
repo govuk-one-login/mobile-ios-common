@@ -70,3 +70,15 @@ extension GDSLocalisedStringTests {
         XCTAssertNil(sut.attributedValue)
     }
 }
+
+extension GDSLocalisedStringTests {
+    func test_equatable() {
+        let stringOne = GDSLocalisedString(stringKey: "firstNonStringLiteral", "one", "two", "three")
+        XCTAssertEqual(stringOne, stringOne)
+        
+        let stringTwo = GDSLocalisedString(stringKey: "secondNonStringLiteral", "one", "two", "three")
+        let stringThree = GDSLocalisedString(stringKey: "firstNonStringLiteral", "one", "two", "three", "four")
+        XCTAssertNotEqual(stringOne, stringTwo)
+        XCTAssertNotEqual(stringOne, stringThree)
+    }
+}

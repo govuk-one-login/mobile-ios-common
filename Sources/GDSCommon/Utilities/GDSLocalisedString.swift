@@ -84,3 +84,11 @@ extension GDSLocalisedString: CustomStringConvertible {
         value
     }
 }
+
+extension GDSLocalisedString: Equatable {
+    public static func == (lhs: GDSLocalisedString, rhs: GDSLocalisedString) -> Bool {
+        lhs.stringKey == rhs.stringKey &&
+        lhs.variableKeys == rhs.variableKeys &&
+        lhs.bundle == rhs.bundle
+    }
+}
