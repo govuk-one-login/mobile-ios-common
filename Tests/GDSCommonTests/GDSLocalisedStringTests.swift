@@ -81,4 +81,13 @@ extension GDSLocalisedStringTests {
         XCTAssertNotEqual(stringOne, stringTwo)
         XCTAssertNotEqual(stringOne, stringThree)
     }
+    
+    func test_equatableAttributes() {
+        let stringOne = GDSLocalisedString(stringKey: "firstNonStringLiteral",
+                                           attributes: [("one", [NSAttributedString.Key.foregroundColor: UIColor.red.cgColor])])
+        XCTAssertEqual(stringOne, stringOne)
+        
+        let stringTwo = GDSLocalisedString(stringKey: "firstNonStringLiteral")
+        XCTAssertNotEqual(stringOne, stringTwo)
+    }
 }

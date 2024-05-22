@@ -89,6 +89,16 @@ extension GDSLocalisedString: Equatable {
     public static func == (lhs: GDSLocalisedString, rhs: GDSLocalisedString) -> Bool {
         lhs.stringKey == rhs.stringKey &&
         lhs.variableKeys == rhs.variableKeys &&
-        lhs.bundle == rhs.bundle
+        lhs.bundle == rhs.bundle &&
+        compare(lhs: lhs.attributes, to: rhs.attributes)
+    }
+    
+    private static func compare(lhs: Attributes?, to rhs: Attributes?) -> Bool {
+        let isSameLength = lhs?.count == rhs?.count
+        let zipped = zip(lhs ?? [], rhs ?? [])
+        return zipped
+            .allSatisfy { lhsAttribute, rhsAttribute in
+                lhsAttribute.0 == rhsAttribute.0
+            } && isSameLength
     }
 }
