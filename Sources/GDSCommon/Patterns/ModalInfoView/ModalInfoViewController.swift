@@ -54,6 +54,10 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
             if let pbvm = viewModel as? PageWithPrimaryButtonViewModel {
                 primaryButton.setTitle(pbvm.primaryButtonViewModel.title, for: .normal)
                 primaryButton.accessibilityIdentifier = "modal-info-primary-button"
+                if let icon = pbvm.primaryButtonViewModel.icon {
+                    primaryButton.symbolPosition = icon.symbolPosition
+                    primaryButton.icon = icon.iconName
+                }
             } else {
                 primaryButton.isHidden = true
             }
