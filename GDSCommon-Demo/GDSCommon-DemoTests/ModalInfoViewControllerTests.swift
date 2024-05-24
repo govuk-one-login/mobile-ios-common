@@ -44,6 +44,7 @@ extension ModalInfoViewControllerTests {
         sut = ModalInfoViewController(viewModel: viewModel)
         
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button")
+        XCTAssertNil((try sut.primaryButton as? RoundedButton)?.icon)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button")
         XCTAssertTrue(sut.isModalInPresentation)
         
@@ -65,6 +66,22 @@ extension ModalInfoViewControllerTests {
         sut = ModalInfoViewController(viewModel: viewModel)
         
         XCTAssertEqual(try sut.bodyLabel.attributedText?.string, "We can use this attribubted text if we want the user to complete an action")
+    }
+    
+    func test_primaryButtonIcon() throws {
+        viewModel = MockModalInfoButtonsViewModel(primaryButtonViewModel: MockButtonViewModel(title: "Primary button",
+                                                                                              icon: MockButtonIconViewModel(),
+                                                                                              action: { self.primaryButton = true }),
+                                                  secondaryButtonViewModel: MockButtonViewModel(title: "Secondary button",
+                                                                                                icon: MockButtonIconViewModel(),
+                                                                                                action: { self.secondaryButton = true }),
+                                                  textButtonViewModel: MockButtonViewModel(title: "Text button",
+                                                                                           action: {self.textButton = true }))
+        
+        sut = ModalInfoViewController(viewModel: viewModel)
+        
+        let button = try sut.primaryButton as? RoundedButton
+        XCTAssertNotNil(button?.icon)
     }
 }
 
