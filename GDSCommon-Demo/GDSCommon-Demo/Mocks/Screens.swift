@@ -13,6 +13,7 @@ import UIKit
 ///             the view as a `UIViewController` to push/present on the navigation stack.
 enum Screens: String, CaseIterable {
     case gdsInstructions = "GDS Instructions View"
+    case gdsInstructionsWithColouredButton = "GDS Instructions View (with coloured button)"
     case gdsInstructionsWithImage = "GDS Instructions View (with image)"
     case gdsInstructionsWithImageModally = "GDS Instructions View (with image) - modal"
     case gdsModalInfoView = "Modal Info View"
@@ -55,6 +56,12 @@ enum Screens: String, CaseIterable {
         switch self {
         case .gdsInstructions:
             return GDSInstructionsViewController(popToRoot: popToRoot, navController: navigationController)
+        case .gdsInstructionsWithColouredButton:
+            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: MockColoredButtonViewModel.primary,
+                                                         secondaryButtonViewModel: MockButtonViewModel.secondaryQR) {
+
+            }
+            return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel.primary,
                                                                primaryButtonViewModel: MockButtonViewModel.primary,
