@@ -10,3 +10,7 @@ public protocol ButtonViewModel {
 public protocol ColoredButtonViewModel: ButtonViewModel {
     var backgroundColor: UIColor { get }
 }
+
+extension ColoredButtonViewModel {
+    var backgroundColor: UIColor { .gdsGreen }
+}
