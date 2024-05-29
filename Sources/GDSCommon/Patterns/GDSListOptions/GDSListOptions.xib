@@ -112,7 +112,7 @@
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Continue">
-                                <color key="titleColor" name="AccentColor"/>
+                                <color key="titleColor" name="Green"/>
                             </state>
                             <connections>
                                 <action selector="primaryButton:" destination="-1" eventType="touchUpInside" id="FFe-0O-ZjA"/>
@@ -123,7 +123,7 @@
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Secondary Button">
-                                <color key="titleColor" name="AccentColor"/>
+                                <color key="titleColor" name="GreenSecondary"/>
                             </state>
                             <connections>
                                 <action selector="didTapSecondaryButton:" destination="-1" eventType="touchUpInside" id="H6P-Pz-8yO"/>
@@ -149,8 +149,11 @@
         </view>
     </objects>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.43900001049041748" blue="0.23499999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="Green">
+            <color red="0.0" green="0.4392156862745098" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="GreenSecondary">
+            <color red="0.0" green="0.4392156862745098" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
