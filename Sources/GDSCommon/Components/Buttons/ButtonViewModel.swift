@@ -6,3 +6,11 @@ public protocol ButtonViewModel {
     var shouldLoadOnTap: Bool { get }
     var action: () -> Void { get }
 }
+
+public protocol ColoredButtonViewModel: ButtonViewModel {
+    var backgroundColor: UIColor { get }
+}
+
+extension ColoredButtonViewModel {
+    var backgroundColor: UIColor { .gdsGreen }
+}

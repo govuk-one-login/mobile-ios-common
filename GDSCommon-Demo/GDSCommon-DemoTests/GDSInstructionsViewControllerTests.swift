@@ -109,7 +109,18 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "button title")
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
     }
-    
+
+    func test_coloredButton() throws {
+        let coloredButton = MockColoredButtonViewModel(title: "Test", action: { }, backgroundColor: .gdsRed)
+        viewModel = MockGDSInstructionsViewModel(childView: bulletView, buttonViewModel: coloredButton, secondaryButtonViewModel: nil, screenView: { }) {
+            self.didTapButton = true
+        }
+        sut = GDSInstructionsViewController(viewModel: viewModel)
+        XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Test")
+        XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsRed)
+    }
+
     func testSecondaryButton() throws {
         XCTAssertNotNil(try sut.secondaryButton)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "button title")
@@ -161,5 +172,21 @@ struct MockButtonViewModel: ButtonViewModel {
         self.icon = icon
         self.shouldLoadOnTap = shouldLoadOnTap
         self.action = action
+    }
+}
+
+struct MockColoredButtonViewModel: ColoredButtonViewModel {
+    let title: GDSLocalisedString
+    let icon: ButtonIconViewModel?
+    let shouldLoadOnTap: Bool
+    let action: () -> Void
+    let backgroundColor: UIColor
+
+    init(title: GDSLocalisedString, icon: ButtonIconViewModel? = nil, shouldLoadOnTap: Bool = false, action: @escaping () -> Void, backgroundColor: UIColor) {
+        self.title = title
+        self.icon = icon
+        self.shouldLoadOnTap = shouldLoadOnTap
+        self.action = action
+        self.backgroundColor = backgroundColor
     }
 }

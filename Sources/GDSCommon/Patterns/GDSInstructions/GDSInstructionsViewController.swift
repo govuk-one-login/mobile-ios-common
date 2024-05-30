@@ -64,6 +64,9 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
         didSet {
             primaryButton.setTitle(viewModel.buttonViewModel.title.value, for: .normal)
             primaryButton.accessibilityIdentifier = "instructions-button"
+            if let buttonModel = viewModel.buttonViewModel as? ColoredButtonViewModel {
+                primaryButton.backgroundColor = buttonModel.backgroundColor
+            }
         }
     }
     
