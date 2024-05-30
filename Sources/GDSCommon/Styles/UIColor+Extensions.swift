@@ -17,7 +17,6 @@ extension UIColor {
         }
     }
     public static let gdsGreen = UIColor(.gdsGreen)
-    public static let gdsGreenSecondary = UIColor(.gdsGreenSecondary)
     public static let gdsDarkGreen = UIColor(.gdsDarkGreen)
     public static let gdsYellow = UIColor(.gdsYellow)
     public static let gdsGrey = UIColor(.gdsGrey)
@@ -49,7 +48,6 @@ extension UIColor {
     /// Enum for GDS Design System colours with raw type of `String` to allow type safe access to the asset catalog
     public enum GDSColours: String, CaseIterable {
         case gdsGreen = "Green"
-        case gdsGreenSecondary = "GreenSecondary"
         case gdsDarkGreen = "DarkGreen"
         case gdsYellow = "Yellow"
         case gdsGrey = "Grey"
