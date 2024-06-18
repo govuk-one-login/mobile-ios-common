@@ -31,7 +31,7 @@ public class SecondaryButton: UIButton {
     @available(iOS 14, *)
     required public init(action: UIAction) {
         super.init(frame: .zero)
-        
+        commonInit()
         self.addAction(action, for: .touchUpInside)
     }
     

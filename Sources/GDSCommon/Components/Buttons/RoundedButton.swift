@@ -37,7 +37,7 @@ public final class RoundedButton: SecondaryButton {
     @available(iOS 14, *)
     required public init(action: UIAction) {
         super.init()
-
+        gdsInit()
         self.addAction(action, for: .touchUpInside)
     }
 
