@@ -28,6 +28,13 @@ public class SecondaryButton: UIButton {
         commonInit()
     }
     
+    @available(iOS 14, *)
+    required public init(action: UIAction) {
+        super.init(frame: .zero)
+        
+        self.addAction(action, for: .touchUpInside)
+    }
+    
     private func commonInit() {
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
