@@ -33,7 +33,14 @@ public final class RoundedButton: SecondaryButton {
         super.init(coder: aDecoder)
         gdsInit()
     }
-    
+
+    @available(iOS 14, *)
+    required public init(action: UIAction) {
+        super.init()
+        gdsInit()
+        self.addAction(action, for: .touchUpInside)
+    }
+
     private let activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.style = .medium

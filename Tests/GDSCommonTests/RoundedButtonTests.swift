@@ -4,16 +4,18 @@ import XCTest
 
 final class GDSButtonTests: XCTestCase {
     var sut: RoundedButton!
-    
+    var didTapButton: Bool!
+
     override func setUp() {
         super.setUp()
-        
+        didTapButton = false
         sut = .init()
     }
     
     override func tearDown() {
         sut = nil
-        
+        didTapButton = nil
+
         super.tearDown()
     }
 }
@@ -48,5 +50,18 @@ extension GDSButtonTests {
         XCTAssertFalse(sut.isLoading)
         XCTAssertFalse(sut.isTitleHidden)
         XCTAssertTrue(sut.isEnabled)
+    }
+
+    @available(iOS 14, *)
+    func test_buttonUIAction() {
+        let action = UIAction { _ in
+            self.didTapButton = true
+        }
+
+        sut = RoundedButton(action: action)
+
+        XCTAssertFalse(didTapButton)
+        sut.sendActions(for: .touchUpInside)
+        XCTAssertTrue(didTapButton)
     }
 }
