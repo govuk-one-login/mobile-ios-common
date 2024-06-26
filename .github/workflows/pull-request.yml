@@ -20,7 +20,7 @@ jobs:
         run: echo "/usr/local/bin" >> $GITHUB_PATH
 
       - name: Checkout
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # pin@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # pin@v4
         with:
           lfs: 'true'
           fetch-depth: 0
@@ -43,9 +43,9 @@ jobs:
       - name: Build and Test
         run: |
           xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
-           -destination "platform=iOS Simulator,name=iPhone 15,OS=latest" \
+           -destination "platform=iOS Simulator,name=iPhone 15,OS=17.5" \
            -enableCodeCoverage YES \
-           -resultBundlePath result.xcresult
+           -resultBundlePath result.xcresult | xcbeautify
 
       - name: Run SonarCloud Scanning
         run: |
