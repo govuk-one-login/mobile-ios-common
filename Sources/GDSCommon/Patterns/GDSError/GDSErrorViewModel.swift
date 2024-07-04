@@ -9,3 +9,7 @@ public protocol GDSErrorViewModel {
     var primaryButtonViewModel: ButtonViewModel { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
 }
+
+public protocol GDSTertiaryButtonViewModel {
+    var tertiaryButtonViewModel: ButtonViewModel { get }
+}

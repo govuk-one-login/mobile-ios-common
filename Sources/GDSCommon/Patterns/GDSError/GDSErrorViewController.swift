@@ -10,7 +10,7 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     public override var nibName: String? { "GDSError" }
     
     public private(set) var viewModel: GDSErrorViewModel
-
+    
     public init(viewModel: GDSErrorViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSError", bundle: .module)
@@ -44,7 +44,7 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
             bodyLabel.accessibilityIdentifier = "error-body"
         }
     }
-
+    
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
             primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
@@ -77,4 +77,22 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     @IBAction private func secondaryButtonAction(_ sender: Any) {
         viewModel.secondaryButtonViewModel?.action()
     }
+    
+    @IBOutlet weak var tertiaryButton: SecondaryButton! {
+        didSet {
+            if let buttonViewModel = (viewModel as? GDSTertiaryButtonViewModel)?
+                .tertiaryButtonViewModel {
+                tertiaryButton.setTitle(buttonViewModel.title, for: .normal)
+            } else {
+                tertiaryButton.isHidden = true
+            }
+            
+            tertiaryButton.accessibilityIdentifier = "error-tertiary-button"
+        }
+    }
+    
+    @IBAction func tertiaryButtonAction(_ sender: Any) {
+        (viewModel as? GDSTertiaryButtonViewModel)?.tertiaryButtonViewModel.action()
+    }
+    
 }
