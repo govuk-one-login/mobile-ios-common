@@ -20,7 +20,7 @@ import UIKit
 ///  `UIStackView` constrained to the bottom of the screen. This is the main
 ///   Call To Action (CTA) on this screen.
 public class GDSInstructionsViewController: BaseViewController, TitledViewController {
-    private let viewModel: GDSInstructionsViewModel
+    public let viewModel: GDSInstructionsViewModel
     
     /// Initialiser for the `GDSInstructions` view controller.
     /// Requires a single parameter.
