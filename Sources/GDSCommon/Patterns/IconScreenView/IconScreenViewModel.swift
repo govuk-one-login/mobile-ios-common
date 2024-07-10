@@ -10,6 +10,7 @@ import UIKit
 /// for any code that needs to be performed when the screen appears.
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
+@MainActor
 public protocol IconScreenViewModel {
     var imageName: String { get }
     var title: GDSLocalisedString { get }

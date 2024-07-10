@@ -6,6 +6,7 @@ import UIKit
 /// the earliest or latest dates selectable from the date picker.
 /// Additionally, there is a `setSelectedDate` method for setting `selectedDate`
 @available(iOS 13.4, *)
+@MainActor
 public protocol DatePickerViewModel {
     var pickerStyle: UIDatePickerStyle { get }
     var selectedDate: Date? { get set }

@@ -1,3 +1,4 @@
+@MainActor
 public protocol ButtonIconViewModel {
     var iconName: String { get }
     var symbolPosition: SymbolPosition { get }

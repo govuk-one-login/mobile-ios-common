@@ -8,6 +8,7 @@ final class ResultsViewControllerTests: XCTestCase {
     var screenDidAppear = false
     var screenDidDismiss = false
     
+    @MainActor
     override func setUp() {
         super.setUp()
         
@@ -19,7 +20,7 @@ final class ResultsViewControllerTests: XCTestCase {
         
         sut = ResultsViewController(viewModel: viewModel)
     }
-    
+
     override func tearDown() {
         viewModel = nil
         sut = nil
@@ -63,6 +64,7 @@ extension ResultsViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
+    @MainActor
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -72,6 +74,7 @@ extension ResultsViewControllerTests {
         XCTAssertEqual(view.text, "Results title")
     }
     
+    @MainActor
     func test_labelContents() throws {
         XCTAssertEqual(sut.viewModel.image, "checkmark.circle")
         XCTAssertEqual(try sut.titleLabel.text, "Results title")

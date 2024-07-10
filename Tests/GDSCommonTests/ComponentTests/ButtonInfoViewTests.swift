@@ -6,6 +6,7 @@ import XCTest
 final class ButtonInfoViewTests: XCTestCase {
     var sut: ButtonInfoView!
 
+    @MainActor
     override func setUp() {
         super.setUp()
 

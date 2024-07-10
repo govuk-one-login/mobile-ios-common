@@ -6,7 +6,7 @@ import UIKit
 /// - `icon` type is ``String``
 /// - `tint` type is ``UIColor``
 /// - `action` type is ``() -> Void``
-
+@MainActor
 public protocol PopoverItemViewModel {
     var title: String { get }
     var titleFont: UIFont { get }

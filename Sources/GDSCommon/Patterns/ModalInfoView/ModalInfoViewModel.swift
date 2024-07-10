@@ -4,6 +4,7 @@ import UIKit
 /// - `title` type is ``GDSLocalisedString``
 /// - `body` type is ``GDSLocalisedString``
 /// - `bodyTextColour` type is ``UIColor``
+@MainActor
 public protocol ModalInfoViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString { get }
@@ -12,6 +13,7 @@ public protocol ModalInfoViewModel {
 
 /// View model for extra configuration on the `ModalInfoViewController`
 /// - `preventModalDismiss` type is ``Bool``
+@MainActor
 public protocol ModalInfoExtraViewModel {
     var preventModalDismiss: Bool { get }
 }

@@ -6,6 +6,7 @@ final class PopoverTableViewCellTests: XCTestCase {
     
     var didSelectItem: Bool = false
     
+    @MainActor
     override func setUp() {
         super.setUp()
         

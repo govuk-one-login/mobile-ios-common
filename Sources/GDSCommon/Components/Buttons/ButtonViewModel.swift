@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 public protocol ButtonViewModel {
     var title: GDSLocalisedString { get }
     var icon: ButtonIconViewModel? { get }

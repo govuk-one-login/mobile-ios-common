@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 /// `TextInputViewModel` protocol to be used with `TextInputViewController`
+@MainActor
 public protocol TextInputViewModel {
     associatedtype InputType: LosslessStringConvertible
     

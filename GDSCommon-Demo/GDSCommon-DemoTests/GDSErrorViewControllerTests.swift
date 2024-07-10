@@ -9,6 +9,7 @@ final class GDSErrorViewControllerTests: XCTestCase {
     var viewDidAppear = false
     var viewDidDismiss = false
     
+    @MainActor
     override func setUp() {
         super.setUp()
         
@@ -100,6 +101,7 @@ extension GDSErrorViewControllerTests {
         XCTAssertTrue(viewDidAppear)
     }
     
+    @MainActor
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()

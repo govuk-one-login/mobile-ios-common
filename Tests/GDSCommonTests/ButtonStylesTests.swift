@@ -7,6 +7,7 @@ import XCTest
 final class ButtonStylesTests: XCTestCase {}
 
 extension ButtonStylesTests {
+    @MainActor
     func test_primaryButton() throws {
         let sut = ButtonView(buttonViewModel: MockButtonViewModel(title: "", action: { }))
             .buttonStyle(.primary)
@@ -24,6 +25,7 @@ extension ButtonStylesTests {
         XCTAssertEqual(try Primary().inspect(isPressed: false).cornerRadius(), 16)
     }
     
+    @MainActor
     func test_secondaryButton() throws {
         let sut = ButtonView(buttonViewModel: MockButtonViewModel(title: "", action: { }))
             .buttonStyle(.secondary)
@@ -39,6 +41,7 @@ extension ButtonStylesTests {
         XCTAssertEqual(try Secondary().inspect(isPressed: false).flexFrame().minHeight, 44)
     }
     
+    @MainActor
     func test_supportButton() throws {
         let sut = ButtonView(buttonViewModel: MockButtonViewModel(title: "", action: { }))
             .buttonStyle(.support)

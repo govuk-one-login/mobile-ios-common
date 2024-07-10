@@ -10,6 +10,7 @@ import UIKit
 ///
 /// `childView` is added at the bottom of the `stackView` that contains the `title` and
 /// `body`. Because it is of type `UIView` the kind of view that can be added here is very flexible.
+@MainActor
 public protocol GDSInstructionsViewModel {
     var title: GDSLocalisedString { get }
     var body: String { get }

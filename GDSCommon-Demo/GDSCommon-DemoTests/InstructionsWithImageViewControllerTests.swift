@@ -15,6 +15,7 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
     var didTapSecondaryButton = false
     var didTapWarningButton = false
 
+    @MainActor
     override func setUp() {
         super.setUp()
         
@@ -59,6 +60,7 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
+    @MainActor
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -100,6 +102,7 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertNotNil(try sut.imageView)
     }
     
+    @MainActor
     func test_primaryButton() throws {
         XCTAssertNotNil(try sut.primaryButton)
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Action Button")
@@ -110,7 +113,8 @@ extension InstructionsWithImageViewControllerTests {
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTapPrimaryButton)
     }
-    
+
+    @MainActor
     func test_secondaryButton() throws {
         XCTAssertNotNil(try sut.secondaryButton)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary Button")

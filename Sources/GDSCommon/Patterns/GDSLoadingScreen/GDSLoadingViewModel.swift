@@ -7,6 +7,7 @@ import Foundation
 /// screens modally and calling custom methods when screens appear and dismiss.
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
+@MainActor
 public protocol GDSLoadingViewModel {
     var loadingLabelKey: GDSLocalisedString { get }
 }
