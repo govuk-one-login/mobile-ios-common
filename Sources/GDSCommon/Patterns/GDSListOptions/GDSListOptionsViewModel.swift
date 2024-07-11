@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 /// Protocol for the view model required to initilise a ``ListOptionsViewController``
+@MainActor
 public protocol GDSListOptionsViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString? { get }

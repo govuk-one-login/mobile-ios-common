@@ -11,6 +11,7 @@ import UIKit
 /// - Returns: - The view name as a `String`
 ///             isModal as a `Bool` to determine if it should be presented modally, the default is false
 ///             the view as a `UIViewController` to push/present on the navigation stack.
+@MainActor
 enum Screens: String, CaseIterable {
     case gdsInstructions = "GDS Instructions View"
     case gdsInstructionsWithColouredButton = "GDS Instructions View (with coloured button)"
@@ -102,8 +103,10 @@ enum Screens: String, CaseIterable {
         case .gdsQRCodeScannerModal:
             let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {  navigationController.dismiss(animated: true) } dismissAction: {}
             return ScanningViewController(viewModel: viewModel)
-        case .gdsResultsView, .gdsResultsViewModal:
-            return ResultsViewController(popToRoot: self == .gdsResultsView ? popToRoot : nil, navController: navigationController)
+        case .gdsResultsView:
+            return ResultsViewController(popToRoot: popToRoot, navController: navigationController)
+        case .gdsResultsViewModal:
+            return ResultsViewController(popToRoot: nil, navController: navigationController)
         case .gdsErrorView:
             return GDSErrorViewController(viewModel: MockErrorViewModel())
         case .gdsInformationView:

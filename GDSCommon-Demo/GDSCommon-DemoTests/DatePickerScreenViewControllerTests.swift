@@ -16,6 +16,7 @@ final class DatePickerScreenViewControllerTests: XCTestCase {
     var didTapButton = false
     var didDismissScreen = false
     
+    @MainActor
     override func setUp() {
         super.setUp()
         gdsLocalisedString = "exampleString"
@@ -56,6 +57,7 @@ final class DatePickerScreenViewControllerTests: XCTestCase {
 
 @available(iOS 13.4, *)
 extension DatePickerScreenViewControllerTests {
+    @MainActor
     func testScreenAppears() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
@@ -69,6 +71,7 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertNil(sut.viewModel.datePickerViewModel.selectedDate)
     }
     
+    @MainActor
     func testScreenAppears_ButtonDisabled() {
         datePickerVM = ReusableDatePickerViewModel(minDate: nil,
                                                    maxDate: nil)
@@ -87,6 +90,7 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertFalse(try sut.primaryButton.isEnabled)
     }
     
+    @MainActor
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -96,6 +100,7 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertEqual(view.text, "Date picker screen title")
     }
     
+    @MainActor
     func testLabelContents() {
         XCTAssertEqual(try sut.titleLabel.text, "Date picker screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
@@ -105,6 +110,7 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertEqual(try sut.footerLabel.text, "Example date picker footer")
     }
     
+    @MainActor
     func testTitleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
@@ -120,6 +126,7 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertTrue(didDismissScreen)
     }
     
+    @MainActor
     func testPrimaryButton() throws {
         datePickerVM = ReusableDatePickerViewModel(minDate: Date(),
                                                    maxDate: nil,
@@ -149,6 +156,7 @@ extension DatePickerScreenViewControllerTests {
         XCTAssertFalse(didTapButton)
     }
     
+    @MainActor
     func testPrimaryButton_ButtonActive() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()

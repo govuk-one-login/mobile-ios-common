@@ -10,6 +10,7 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
     var screenDidAppear: Bool!
     var didDismiss: Bool!
     
+    @MainActor
     override func setUp() {
         super.setUp()
         screenDidAppear = false
@@ -37,6 +38,7 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
         super.tearDown()
     }
     
+    @MainActor
     private func setupSUTWithNilOptionals() {
         viewModel = MockListViewModel(childView: nil, secondaryButtonViewModel: nil, listTitle: nil) {
             self.screenDidAppear = true
@@ -65,6 +67,7 @@ extension GDSListOptionsViewControllerTests {
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
     }
     
+    @MainActor
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -110,6 +113,7 @@ extension GDSListOptionsViewControllerTests {
         XCTAssertTrue(didDismiss)
     }
     
+    @MainActor
     func testDidSelectTableViewSetsSelectedIndex() throws {
         XCTAssertEqual(viewModel.selectedIndex.stringKey, "")
         try sut.tableViewList.reloadData()
@@ -125,6 +129,7 @@ extension GDSListOptionsViewControllerTests {
         XCTAssertTrue(didDismiss)
     }
     
+    @MainActor
     func testContentHiddenWhenNil() throws {
         setupSUTWithNilOptionals()
         XCTAssertTrue(try sut.secondaryButton.isHidden)

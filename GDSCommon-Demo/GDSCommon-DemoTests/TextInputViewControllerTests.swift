@@ -14,6 +14,7 @@ final class TextInputViewControllerTests: XCTestCase {
     var didTapButton = false
     var didDismissScreen = false
     
+    @MainActor
     override func setUp() {
         super.setUp()
 
@@ -22,8 +23,6 @@ final class TextInputViewControllerTests: XCTestCase {
         resultAction = { bool in
             self.didSetResult.append(bool)
         }
-        
-        let textFieldViewModel = MockTextFieldViewModel<InputType>()
         
         let viewModel = MockTextInputViewModel<InputType> { result in
             self.didSetResult = [result]
@@ -58,6 +57,7 @@ extension TextInputViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
+    @MainActor
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()

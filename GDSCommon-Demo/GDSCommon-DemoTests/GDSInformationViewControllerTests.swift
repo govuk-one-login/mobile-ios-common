@@ -13,6 +13,7 @@ final class GDSInformationViewControllerTests: XCTestCase {
     var viewDidAppear = false
     var viewDidDismiss = false
     
+    @MainActor
     override func setUp() {
         super.setUp()
         
@@ -57,16 +58,19 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
     }
     
+    @MainActor
     func test_primaryButtonNoIcon() throws {
         XCTAssertNil(viewModel.primaryButtonViewModel.icon)
         XCTAssertNil(try sut.primaryButton.icon)
     }
 
+    @MainActor
     func test_secondaryButtonNoIcon() throws {
         XCTAssertNil(viewModel.secondaryButtonViewModel?.icon)
         XCTAssertNil(try sut.secondaryButton.icon)
     }
     
+    @MainActor
     func test_secondaryButtonWithIcon() throws {
         secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title",
                                                        icon: MockButtonIconViewModel()) {}
@@ -97,7 +101,8 @@ extension GDSInformationViewControllerTests {
         sut.endAppearanceTransition()
         XCTAssertTrue(viewDidAppear)
     }
-    
+
+    @MainActor
     func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()

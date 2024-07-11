@@ -19,6 +19,7 @@ final class ModalInfoViewControllerTests: XCTestCase {
 }
 
 extension ModalInfoViewControllerTests {
+    @MainActor
     func test_modalInfoView() throws {
         viewModel = MockModalInfoViewModel()
         sut = ModalInfoViewController(viewModel: viewModel)
@@ -32,6 +33,7 @@ extension ModalInfoViewControllerTests {
         XCTAssertFalse(sut.isModalInPresentation)
     }
     
+    @MainActor
     func test_modalInfoViewButtons() throws {
         viewModel = MockModalInfoButtonsViewModel(primaryButtonViewModel: MockButtonViewModel(title: "Primary button",
                                                                                               action: { self.primaryButton = true }),
@@ -61,6 +63,7 @@ extension ModalInfoViewControllerTests {
         XCTAssertTrue(textButton)
     }
     
+    @MainActor
     func test_attributedModalInfoView() throws {
         viewModel = MockAttributedModalInfoViewModel()
         sut = ModalInfoViewController(viewModel: viewModel)
@@ -68,6 +71,7 @@ extension ModalInfoViewControllerTests {
         XCTAssertEqual(try sut.bodyLabel.attributedText?.string, "We can use this attribubted text if we want the user to complete an action")
     }
     
+    @MainActor
     func test_primaryButtonIcon() throws {
         viewModel = MockModalInfoButtonsViewModel(primaryButtonViewModel: MockButtonViewModel(title: "Primary button",
                                                                                               icon: MockButtonIconViewModel(),

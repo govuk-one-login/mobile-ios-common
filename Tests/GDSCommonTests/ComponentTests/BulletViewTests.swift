@@ -31,6 +31,7 @@ extension BulletViewTests {
         try XCTAssertTrue(sut.titleLabel.accessibilityTraits.contains(.header))
     }
     
+    @MainActor
     func test_initWithViewModel() {
         struct MockBulletViewModel: BulletViewModel {
             let title: String? = nil

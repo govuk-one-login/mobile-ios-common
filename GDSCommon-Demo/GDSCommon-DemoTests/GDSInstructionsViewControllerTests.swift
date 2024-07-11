@@ -1,7 +1,6 @@
 import GDSCommon
 import XCTest
 
-@MainActor
 final class GDSInstructionsViewControllerTests: XCTestCase {
     var buttonViewModel: ButtonViewModel!
     var viewModel: GDSInstructionsViewModel!
@@ -12,6 +11,7 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
     var didTapButton = false
     var didDismiss = false
     
+    @MainActor
     override func setUp() {
         super.setUp()
         
@@ -34,7 +34,7 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
         
         sut = GDSInstructionsViewController(viewModel: viewModel)
     }
-    
+
     override func tearDown() {
         buttonViewModel = nil
         bulletView = nil
@@ -52,6 +52,7 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertTrue(screenDidAppear)
     }
     
+    @MainActor
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -110,6 +111,7 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
     }
 
+    @MainActor
     func test_coloredButton() throws {
         let coloredButton = MockColoredButtonViewModel(title: "Test", action: { }, backgroundColor: .gdsRed)
         viewModel = MockGDSInstructionsViewModel(childView: bulletView, buttonViewModel: coloredButton, secondaryButtonViewModel: nil, screenView: { }) {

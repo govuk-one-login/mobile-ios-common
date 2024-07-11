@@ -24,6 +24,7 @@ final class DatePickerViewModelTests: XCTestCase {
 
 @available(iOS 13.4, *)
 extension DatePickerViewModelTests {
+    @MainActor
     func testViewModel() throws {
         let selected = try XCTUnwrap(sut.selectedDate)
         XCTAssertTrue(Calendar.current.isDateInToday(selected))

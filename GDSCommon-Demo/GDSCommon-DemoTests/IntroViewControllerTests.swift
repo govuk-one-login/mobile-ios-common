@@ -8,6 +8,7 @@ final class IntroViewControllerTests: XCTestCase {
     var viewDidAppear = false
     var viewDidDismiss = false
     
+    @MainActor
     override func setUp() {
         super.setUp()
         
@@ -70,6 +71,7 @@ extension IntroViewControllerTests {
         XCTAssertEqual(try sut.introButton.title(for: .normal), "Intro screen button title")
     }
     
+    @MainActor
     func testVoiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()

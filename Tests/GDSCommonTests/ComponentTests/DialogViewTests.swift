@@ -1,9 +1,7 @@
 @testable import GDSCommon
 import XCTest
 
-@MainActor
 final class DialogViewTests: XCTestCase {
-    
     private var sut: DialogView<CheckmarkDialogAccessoryView>!
     private var viewController: UIViewController!
     private var window: UIWindow!
