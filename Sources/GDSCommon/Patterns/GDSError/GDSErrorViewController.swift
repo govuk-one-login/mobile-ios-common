@@ -81,7 +81,7 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     
     @IBOutlet private var tertiaryButton: SecondaryButton! {
         didSet {
-            if let buttonViewModel = (viewModel as? GDSTertiaryButtonViewModel)?.tertiaryButtonViewModel {
+            if let buttonViewModel = (viewModel as? GDSScreenWithTertiaryButtonViewModel)?.tertiaryButtonViewModel {
                 tertiaryButton.setTitle(buttonViewModel.title, for: .normal)
                 
             } else {
@@ -93,6 +93,6 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     }
     
     @IBAction private func tertiaryButtonAction(_ sender: Any) {
-        (viewModel as? GDSTertiaryButtonViewModel)?.tertiaryButtonViewModel.action()
+        (viewModel as? GDSScreenWithTertiaryButtonViewModel)?.tertiaryButtonViewModel.action()
     }
 }

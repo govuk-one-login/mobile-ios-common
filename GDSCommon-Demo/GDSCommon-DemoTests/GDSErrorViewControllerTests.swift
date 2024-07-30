@@ -70,7 +70,7 @@ private struct TestViewModel: GDSErrorViewModel, BaseViewModel {
     }
 }
 
-private struct TestViewModelWithTertiary: GDSErrorViewModel, GDSTertiaryButtonViewModel, BaseViewModel {
+private struct TestViewModelWithTertiary: GDSErrorViewModel, GDSScreenWithTertiaryButtonViewModel, BaseViewModel {
     let image: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "Error screen title"
     let body: GDSLocalisedString = "Error screen body"
