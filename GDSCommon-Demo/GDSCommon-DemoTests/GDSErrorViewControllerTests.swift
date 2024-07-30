@@ -136,6 +136,7 @@ extension GDSErrorViewControllerTests {
         XCTAssertTrue(secondaryButton)
     }
     
+    @MainActor
     func test_tertiaryButtonContentAndAction() throws {
         viewModel = nil
         sut = nil
