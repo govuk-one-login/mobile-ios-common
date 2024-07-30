@@ -239,9 +239,9 @@ The `primaryButton`, `secondaryButton` and `tertiaryButton` are placed in a `UIS
 `GDSErrorViewController` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site.
 
 A navigation item can be configured:
-- The `primaryButton`'s action is set from the ``primaryButtonViewModel`` in ``GDSErrorViewModel`` protocol.
-- The `secondaryButton`'s action is set from the ``secondaryButtonViewModel`` in ``GDSErrorViewModel`` protocol.
-- The `tertiaryButton`'s action is set from the ``tertiaryButtonViewModel` in ``GDSTertiaryButtonViewModel`` protocol.
+- The `primaryButton`'s action is set from the ``primaryButtonViewModel`` in the ``GDSErrorViewModel`` protocol.
+- The `secondaryButton`'s action is set from the ``secondaryButtonViewModel`` in the ``GDSErrorViewModel`` protocol.
+- The `tertiaryButton`'s action is set from the ``tertiaryButtonViewModel` in the ``GDSTertiaryButtonViewModel`` protocol.
 
 If the viewModel conforms to BaseViewModel:
 - A back button can be set via the `hideBackButton` boolean property on the view controller
