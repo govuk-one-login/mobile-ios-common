@@ -6,6 +6,7 @@ import UIKit
 ///     - `bodyLabel` (type: `UILabel`)
 ///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
 ///     - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
+///     - `tertiaryButton` (type: ``SecondaryButton`` inherits from ``UIButton``)
 public final class GDSErrorViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSError" }
     
@@ -78,21 +79,18 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
         viewModel.secondaryButtonViewModel?.action()
     }
     
-    @IBOutlet weak var tertiaryButton: SecondaryButton! {
+    @IBOutlet private var tertiaryButton: SecondaryButton! {
         didSet {
-            if let buttonViewModel = (viewModel as? GDSTertiaryButtonViewModel)?
-                .tertiaryButtonViewModel {
+            if let buttonViewModel = (viewModel as? GDSTertiaryButtonViewModel)?.tertiaryButtonViewModel {
                 tertiaryButton.setTitle(buttonViewModel.title, for: .normal)
+                tertiaryButton.accessibilityIdentifier = "error-tertiary-button"
             } else {
                 tertiaryButton.isHidden = true
             }
-            
-            tertiaryButton.accessibilityIdentifier = "error-tertiary-button"
         }
     }
     
-    @IBAction func tertiaryButtonAction(_ sender: Any) {
+    @IBAction private func tertiaryButtonAction(_ sender: Any) {
         (viewModel as? GDSTertiaryButtonViewModel)?.tertiaryButtonViewModel.action()
     }
-    
 }

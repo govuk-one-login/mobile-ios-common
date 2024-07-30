@@ -30,6 +30,7 @@ enum Screens: String, CaseIterable {
     case gdsResultsView = "Results View"
     case gdsResultsViewModal = "Results View (Modal)"
     case gdsErrorView = "Error View"
+    case gdsErrorViewWithTertiary = "Error View (with 3 buttons)"
     case gdsInformationView = "Information View"
     case gdsLoadingView = "GDS Loading View"
 
@@ -109,6 +110,8 @@ enum Screens: String, CaseIterable {
             return ResultsViewController(popToRoot: nil, navController: navigationController)
         case .gdsErrorView:
             return GDSErrorViewController(viewModel: MockErrorViewModel())
+        case .gdsErrorViewWithTertiary:
+            return GDSErrorViewController(viewModel: MockErrorViewModelWithTertiary())
         case .gdsInformationView:
             return GDSInformationViewController()
         case .gdsLoadingView:
