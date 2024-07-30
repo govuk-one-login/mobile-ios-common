@@ -9,3 +9,9 @@ public protocol GDSErrorViewModel {
     var primaryButtonViewModel: ButtonViewModel { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
 }
+
+/// Conform view models that inherit from ``ErrorViewModel`` to this protocol to set a tertiary button
+@MainActor
+public protocol GDSScreenWithTertiaryButtonViewModel {
+    var tertiaryButtonViewModel: ButtonViewModel { get }
+}

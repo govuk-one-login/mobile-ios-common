@@ -6,6 +6,7 @@ final class GDSErrorViewControllerTests: XCTestCase {
     var sut: GDSErrorViewController!
     var primaryButton = false
     var secondaryButton = false
+    var tertiaryButton = false
     var viewDidAppear = false
     var viewDidDismiss = false
     
@@ -39,7 +40,7 @@ private struct TestViewModel: GDSErrorViewModel, BaseViewModel {
     let body: GDSLocalisedString = "Error screen body"
     let primaryButtonViewModel: ButtonViewModel
     let secondaryButtonViewModel: ButtonViewModel?
-
+    
     let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
     let backButtonIsHidden: Bool = false
     let appearAction: () -> Void
@@ -69,6 +70,47 @@ private struct TestViewModel: GDSErrorViewModel, BaseViewModel {
     }
 }
 
+private struct TestViewModelWithTertiary: GDSErrorViewModel, GDSScreenWithTertiaryButtonViewModel, BaseViewModel {
+    let image: String = "exclamationmark.circle"
+    let title: GDSLocalisedString = "Error screen title"
+    let body: GDSLocalisedString = "Error screen body"
+    let primaryButtonViewModel: ButtonViewModel
+    let secondaryButtonViewModel: ButtonViewModel?
+    let tertiaryButtonViewModel: ButtonViewModel
+    
+    let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
+    let backButtonIsHidden: Bool = false
+    let appearAction: () -> Void
+    let dismissAction: () -> Void
+    
+    init(primaryButtonAction: @escaping () -> Void,
+         secondaryButtonAction: @escaping () -> Void,
+         tertiaryButtonAction: @escaping () -> Void,
+         appearAction: @escaping () -> Void,
+         dismissAction: @escaping () -> Void
+    ) {
+        primaryButtonViewModel = MockButtonViewModel(title: "Error primary button title") {
+            primaryButtonAction()
+        }
+        secondaryButtonViewModel = MockButtonViewModel(title: "Error secondary button title") {
+            secondaryButtonAction()
+        }
+        tertiaryButtonViewModel = MockButtonViewModel(title: "Error tertiary button title") {
+            tertiaryButtonAction()
+        }
+        self.appearAction = appearAction
+        self.dismissAction = dismissAction
+    }
+    
+    func didAppear() {
+        appearAction()
+    }
+    
+    func didDismiss() {
+        dismissAction()
+    }
+}
+
 extension GDSErrorViewControllerTests {
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.errorImage)
@@ -79,6 +121,7 @@ extension GDSErrorViewControllerTests {
         XCTAssertFalse(try sut.errorBodyLabel.accessibilityTraits.contains(.header))
         XCTAssertEqual(try sut.errorPrimaryButton.title(for: .normal), "Error primary button title")
         XCTAssertEqual(try sut.errorSecondaryButton.title(for: .normal), "Error secondary button title")
+        XCTAssertTrue(try sut.errorTertiaryButton.isHidden)
     }
     
     func test_primaryButtonAction() throws {
@@ -91,6 +134,32 @@ extension GDSErrorViewControllerTests {
         XCTAssertFalse(secondaryButton)
         try sut.errorSecondaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(secondaryButton)
+    }
+    
+    @MainActor
+    func test_tertiaryButtonContentAndAction() throws {
+        viewModel = nil
+        sut = nil
+        
+        viewModel = TestViewModelWithTertiary {
+            self.primaryButton = true
+        } secondaryButtonAction: {
+            self.secondaryButton = true
+        } tertiaryButtonAction: {
+            self.tertiaryButton = true
+        } appearAction: {
+            self.viewDidAppear = true
+        } dismissAction: {
+            self.viewDidDismiss = true
+        }
+        sut = GDSErrorViewController(viewModel: viewModel)
+        
+        XCTAssertFalse(tertiaryButton)
+        try sut.errorTertiaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(tertiaryButton)
+        
+        XCTAssertFalse(try sut.errorTertiaryButton.isHidden)
+        XCTAssertEqual(try sut.errorTertiaryButton.title(for: .normal), "Error tertiary button title")
     }
     
     func test_didAppear() throws {
@@ -152,6 +221,12 @@ extension GDSErrorViewController {
     var errorSecondaryButton: UIButton {
         get throws {
             try XCTUnwrap(view[child: "error-secondary-button"])
+        }
+    }
+    
+    var errorTertiaryButton: UIButton {
+        get throws {
+            try XCTUnwrap(view[child: "error-tertiary-button"])
         }
     }
 }

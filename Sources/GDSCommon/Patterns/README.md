@@ -232,15 +232,16 @@ The content on the screen is set from the `viewModel`, which must conform to the
 
 ## GDSError
 
-This screen is typically used as an error screen, consisting of an alert icon, a title, body and the option of one or two buttons.
+This screen is typically used as an error screen, consisting of an alert icon, a title, body and the option of one, two or three buttons.
 A `UIStackView` holds the `errorImageView` and encases a second `UIStackView` which holds the `errorTitle` and `errorBody`. These views are placed within a `ScrollView`.
-The `primaryButton` and `secondaryButton` are placed in a `UIStackView`, below the `ScrollView`.
+The `primaryButton`, `secondaryButton` and `tertiaryButton` are placed in a `UIStackView`, below the `ScrollView`.
 
 `GDSErrorViewController` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site.
 
 A navigation item can be configured:
-- The `primaryButton`'s action is set from the ``primaryButtonViewModel`` in the viewModel.
-- The `secondaryButton`'s action is set from the ``secondaryButtonViewModel`` in the viewModel.
+- The `primaryButton`'s action is set from the ``primaryButtonViewModel`` in the ``GDSErrorViewModel`` protocol.
+- The `secondaryButton`'s action is set from the ``secondaryButtonViewModel`` in the ``GDSErrorViewModel`` protocol.
+- The `tertiaryButton`'s action is set from the ``tertiaryButtonViewModel` in the ``GDSTertiaryButtonViewModel`` protocol.
 
 If the viewModel conforms to BaseViewModel:
 - A back button can be set via the `hideBackButton` boolean property on the view controller
