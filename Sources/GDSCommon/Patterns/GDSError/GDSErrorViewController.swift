@@ -83,10 +83,12 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
         didSet {
             if let buttonViewModel = (viewModel as? GDSTertiaryButtonViewModel)?.tertiaryButtonViewModel {
                 tertiaryButton.setTitle(buttonViewModel.title, for: .normal)
-                tertiaryButton.accessibilityIdentifier = "error-tertiary-button"
+                
             } else {
                 tertiaryButton.isHidden = true
             }
+            
+            tertiaryButton.accessibilityIdentifier = "error-tertiary-button"
         }
     }
     
