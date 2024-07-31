@@ -24,9 +24,13 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     
     @IBOutlet private var errorImage: UIImageView! {
         didSet {
-            let font = UIFont(style: .largeTitle, weight: .light)
-            let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
-            errorImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
+            if let image = viewModel.image {
+                let font = UIFont(style: .largeTitle, weight: .light)
+                let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
+                errorImage.image = UIImage(systemName: image, withConfiguration: configuration)
+            } else {
+                errorImage.isHidden = true
+            }
             errorImage.accessibilityIdentifier = "error-image"
         }
     }
@@ -63,8 +67,6 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
         didSet {
             if let buttonViewModel = viewModel.secondaryButtonViewModel {
                 secondaryButton.setTitle(buttonViewModel.title, for: .normal)
-                secondaryButton.accessibilityIdentifier = "error-secondary-button"
-                
                 if let icon = buttonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
@@ -72,6 +74,7 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
             } else {
                 secondaryButton.isHidden = true
             }
+            secondaryButton.accessibilityIdentifier = "error-secondary-button"
         }
     }
     
@@ -83,11 +86,9 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
         didSet {
             if let buttonViewModel = (viewModel as? GDSScreenWithTertiaryButtonViewModel)?.tertiaryButtonViewModel {
                 tertiaryButton.setTitle(buttonViewModel.title, for: .normal)
-                
             } else {
                 tertiaryButton.isHidden = true
             }
-            
             tertiaryButton.accessibilityIdentifier = "error-tertiary-button"
         }
     }

@@ -2,7 +2,21 @@ import GDSCommon
 import UIKit
 
 struct MockErrorViewModel: GDSErrorViewModel, BaseViewModel {
-    let image: String = "exclamationmark.circle"
+    let image: String? = "exclamationmark.circle"
+    let title: GDSLocalisedString = "This is an Error View title"
+    let body: GDSLocalisedString = "This is an Error View body This is an Error View body"
+    let primaryButtonViewModel: ButtonViewModel = MockButtonViewModel.primary
+    let secondaryButtonViewModel: ButtonViewModel? = MockButtonViewModel.secondary
+    let rightBarButtonTitle: GDSLocalisedString? = nil
+    let backButtonIsHidden: Bool = false
+    
+    func didAppear() {}
+    
+    func didDismiss() {}
+}
+
+struct MockErrorViewModelNoIcon: GDSErrorViewModel, BaseViewModel {
+    let image: String? = nil
     let title: GDSLocalisedString = "This is an Error View title"
     let body: GDSLocalisedString = "This is an Error View body This is an Error View body"
     let primaryButtonViewModel: ButtonViewModel = MockButtonViewModel.primary
@@ -16,7 +30,7 @@ struct MockErrorViewModel: GDSErrorViewModel, BaseViewModel {
 }
 
 struct MockErrorViewModelWithTertiary: GDSErrorViewModel, BaseViewModel, GDSScreenWithTertiaryButtonViewModel {
-    let image: String = "exclamationmark.circle"
+    let image: String? = "exclamationmark.circle"
     let title: GDSLocalisedString = "This is an Error View title"
     let body: GDSLocalisedString = "This is an Error View body This is an Error View body"
     let primaryButtonViewModel: ButtonViewModel = MockButtonViewModel.primary

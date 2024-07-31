@@ -35,7 +35,43 @@ final class GDSErrorViewControllerTests: XCTestCase {
 }
 
 private struct TestViewModel: GDSErrorViewModel, BaseViewModel {
-    let image: String = "exclamationmark.circle"
+    let image: String? = "exclamationmark.circle"
+    let title: GDSLocalisedString = "Error screen title"
+    let body: GDSLocalisedString = "Error screen body"
+    let primaryButtonViewModel: ButtonViewModel
+    let secondaryButtonViewModel: ButtonViewModel?
+    
+    let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
+    let backButtonIsHidden: Bool = false
+    let appearAction: () -> Void
+    let dismissAction: () -> Void
+    
+    init(primaryButtonAction: @escaping () -> Void,
+         secondaryButtonAction: @escaping () -> Void,
+         appearAction: @escaping () -> Void,
+         dismissAction: @escaping () -> Void
+    ) {
+        primaryButtonViewModel = MockButtonViewModel(title: "Error primary button title") {
+            primaryButtonAction()
+        }
+        secondaryButtonViewModel = MockButtonViewModel(title: "Error secondary button title") {
+            secondaryButtonAction()
+        }
+        self.appearAction = appearAction
+        self.dismissAction = dismissAction
+    }
+    
+    func didAppear() {
+        appearAction()
+    }
+    
+    func didDismiss() {
+        dismissAction()
+    }
+}
+
+private struct TestViewModelNoIcon: GDSErrorViewModel, BaseViewModel {
+    let image: String? = nil
     let title: GDSLocalisedString = "Error screen title"
     let body: GDSLocalisedString = "Error screen body"
     let primaryButtonViewModel: ButtonViewModel
@@ -71,7 +107,7 @@ private struct TestViewModel: GDSErrorViewModel, BaseViewModel {
 }
 
 private struct TestViewModelWithTertiary: GDSErrorViewModel, GDSScreenWithTertiaryButtonViewModel, BaseViewModel {
-    let image: String = "exclamationmark.circle"
+    let image: String? = "exclamationmark.circle"
     let title: GDSLocalisedString = "Error screen title"
     let body: GDSLocalisedString = "Error screen body"
     let primaryButtonViewModel: ButtonViewModel
@@ -137,10 +173,18 @@ extension GDSErrorViewControllerTests {
     }
     
     @MainActor
-    func test_tertiaryButtonContentAndAction() throws {
-        viewModel = nil
-        sut = nil
+    func test_noIcon() throws {
+        viewModel = TestViewModelNoIcon(primaryButtonAction: { },
+                                        secondaryButtonAction: { },
+                                        appearAction: { },
+                                        dismissAction: { })
+        sut = GDSErrorViewController(viewModel: viewModel)
         
+        XCTAssertTrue(try sut.errorImage.isHidden)
+    }
+    
+    @MainActor
+    func test_tertiaryButtonContentAndAction() throws {
         viewModel = TestViewModelWithTertiary {
             self.primaryButton = true
         } secondaryButtonAction: {
