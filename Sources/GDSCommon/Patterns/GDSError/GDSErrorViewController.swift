@@ -11,7 +11,8 @@ private struct ErrorViewModel: GDSErrorViewModel {
         if let viewModel = viewModelV2 as? GDSErrorViewModelWithImage {
             self.image = viewModel.image
         } else {
-            preconditionFailure("Please upgrade to GDSErrorViewModelV2")
+            assertionFailure("Please upgrade to GDSErrorViewModelV2")
+            self.image = ""
         }
         self.title = viewModelV2.title
         self.body = viewModelV2.body
@@ -30,14 +31,17 @@ private struct ErrorViewModel: GDSErrorViewModel {
 public final class GDSErrorViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSError" }
     
-    public var viewModel: GDSErrorViewModel {
-        ErrorViewModel(viewModelV2: viewModelV2)
-    }
+    public private(set) var viewModel: GDSErrorViewModel
     public private(set) var viewModelV2: GDSErrorViewModelV2
     
-    public init(viewModelV2: GDSErrorViewModelV2) {
-        self.viewModelV2 = viewModelV2
-        super.init(viewModel: viewModelV2 as? BaseViewModel, nibName: "GDSError", bundle: .module)
+    public init(viewModel: GDSErrorViewModelV2) {
+        if let viewModel = viewModel as? GDSErrorViewModel {
+            self.viewModel = viewModel
+        } else {
+            self.viewModel = ErrorViewModel(viewModelV2: viewModel)
+        }
+        self.viewModelV2 = viewModel
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSError", bundle: .module)
     }
     
     @available(*, unavailable, renamed: "init(coordinator:)")
@@ -47,7 +51,7 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     
     @IBOutlet private var errorImage: UIImageView! {
         didSet {
-            if viewModel is GDSErrorViewModelV2 {
+            if let viewModel = viewModelV2 as? GDSErrorViewModelWithImage {
                 let font = UIFont(style: .largeTitle, weight: .light)
                 let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
                 errorImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
