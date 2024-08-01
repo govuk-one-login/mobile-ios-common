@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-struct MockErrorViewModel: GDSErrorViewModel, BaseViewModel {
+struct MockErrorViewModel: GDSErrorViewModelV2, BaseViewModel {
     let image: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "This is an Error View title"
     let body: GDSLocalisedString = "This is an Error View body This is an Error View body"
@@ -28,7 +28,7 @@ struct MockErrorViewModelNoIcon: GDSErrorViewModelV2, BaseViewModel {
     func didDismiss() {}
 }
 
-struct MockErrorViewModelWithTertiary: GDSErrorViewModel, BaseViewModel, GDSScreenWithTertiaryButtonViewModel {
+struct MockErrorViewModelWithTertiary: GDSErrorViewModelV2, BaseViewModel, GDSScreenWithTertiaryButtonViewModel {
     let image: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "This is an Error View title"
     let body: GDSLocalisedString = "This is an Error View body This is an Error View body"

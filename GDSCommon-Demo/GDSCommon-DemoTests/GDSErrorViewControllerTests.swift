@@ -2,7 +2,7 @@ import GDSCommon
 import XCTest
 
 final class GDSErrorViewControllerTests: XCTestCase {
-    var viewModel: GDSErrorViewModel!
+    var viewModel: GDSErrorViewModelV2!
     var sut: GDSErrorViewController!
     var primaryButton = false
     var secondaryButton = false
@@ -34,7 +34,7 @@ final class GDSErrorViewControllerTests: XCTestCase {
     }
 }
 
-private struct TestViewModel: GDSErrorViewModel, BaseViewModel {
+private struct TestViewModel: GDSErrorViewModelV2, GDSErrorViewModelWithImage, BaseViewModel {
     let image: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "Error screen title"
     let body: GDSLocalisedString = "Error screen body"
@@ -105,7 +105,7 @@ private struct TestViewModelNoIcon: GDSErrorViewModelV2, BaseViewModel {
     }
 }
 
-private struct TestViewModelWithTertiary: GDSErrorViewModel, GDSScreenWithTertiaryButtonViewModel, BaseViewModel {
+private struct TestViewModelWithTertiary: GDSErrorViewModelV2, GDSErrorViewModelWithImage, GDSScreenWithTertiaryButtonViewModel, BaseViewModel {
     let image: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "Error screen title"
     let body: GDSLocalisedString = "Error screen body"
