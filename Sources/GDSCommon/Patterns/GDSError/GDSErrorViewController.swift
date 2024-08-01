@@ -11,7 +11,6 @@ private struct ErrorViewModel: GDSErrorViewModel {
         if let viewModel = viewModelV2 as? GDSErrorViewModelWithImage {
             self.image = viewModel.image
         } else {
-            assertionFailure("Please upgrade to GDSErrorViewModelV2")
             self.image = ""
         }
         self.title = viewModelV2.title
