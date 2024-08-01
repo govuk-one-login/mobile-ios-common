@@ -1,5 +1,25 @@
 import UIKit
 
+private struct ErrorViewModel: GDSErrorViewModel {
+    let image: String
+    let title: GDSLocalisedString
+    let body: GDSLocalisedString
+    let primaryButtonViewModel: ButtonViewModel
+    let secondaryButtonViewModel: ButtonViewModel?
+    
+    init(viewModelV2: GDSErrorViewModelV2) {
+        if let viewModel = viewModelV2 as? GDSErrorViewModelWithImage {
+            self.image = viewModel.image
+        } else {
+            preconditionFailure("Please upgrade to GDSErrorViewModelV2")
+        }
+        self.title = viewModelV2.title
+        self.body = viewModelV2.body
+        self.primaryButtonViewModel = viewModelV2.primaryButtonViewModel
+        self.secondaryButtonViewModel = viewModelV2.secondaryButtonViewModel
+    }
+}
+
 /// View controller for `GDSError` screen
 ///     - `errorImage` (type: `String`)
 ///     - `titleLabel` (type: `UILabel`)
@@ -10,11 +30,14 @@ import UIKit
 public final class GDSErrorViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSError" }
     
-    public private(set) var viewModel: GDSErrorViewModel
+    public var viewModel: GDSErrorViewModel {
+        ErrorViewModel(viewModelV2: viewModelV2)
+    }
+    public private(set) var viewModelV2: GDSErrorViewModelV2
     
-    public init(viewModel: GDSErrorViewModel) {
-        self.viewModel = viewModel
-        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSError", bundle: .module)
+    public init(viewModelV2: GDSErrorViewModelV2) {
+        self.viewModelV2 = viewModelV2
+        super.init(viewModel: viewModelV2 as? BaseViewModel, nibName: "GDSError", bundle: .module)
     }
     
     @available(*, unavailable, renamed: "init(coordinator:)")
@@ -24,10 +47,10 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     
     @IBOutlet private var errorImage: UIImageView! {
         didSet {
-            if let image = viewModel.image {
+            if viewModel is GDSErrorViewModelV2 {
                 let font = UIFont(style: .largeTitle, weight: .light)
                 let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
-                errorImage.image = UIImage(systemName: image, withConfiguration: configuration)
+                errorImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
             } else {
                 errorImage.isHidden = true
             }

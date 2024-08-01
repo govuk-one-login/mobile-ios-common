@@ -61,9 +61,8 @@ enum Screens: String, CaseIterable {
             return GDSInstructionsViewController(popToRoot: popToRoot, navController: navigationController)
         case .gdsInstructionsWithColouredButton:
             let viewModel = MockGDSInstructionsViewModel(buttonViewModel: MockColoredButtonViewModel.primary,
-                                                         secondaryButtonViewModel: MockButtonViewModel.secondaryQR) {
-                
-            }
+                                                         secondaryButtonViewModel: MockButtonViewModel.secondaryQR,
+                                                         dismissAction: { })
             return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel.primary,
