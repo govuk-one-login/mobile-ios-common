@@ -22,4 +22,3 @@ public protocol GDSErrorViewModelWithImage {
 public protocol GDSScreenWithTertiaryButtonViewModel {
     var tertiaryButtonViewModel: ButtonViewModel { get }
 }
-
