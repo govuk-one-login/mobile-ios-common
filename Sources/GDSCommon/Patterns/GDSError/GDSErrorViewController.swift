@@ -1,6 +1,6 @@
 import UIKit
 
-private struct ErrorViewModel: GDSErrorViewModel {
+private struct ErrorViewModelInitialiser: GDSErrorViewModel {
     let image: String
     let title: GDSLocalisedString
     let body: GDSLocalisedString
@@ -37,7 +37,7 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
         if let viewModel = viewModel as? GDSErrorViewModel {
             self.viewModel = viewModel
         } else {
-            self.viewModel = ErrorViewModel(viewModelV2: viewModel)
+            self.viewModel = ErrorViewModelInitialiser(viewModelV2: viewModel)
         }
         self.viewModelV2 = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSError", bundle: .module)
