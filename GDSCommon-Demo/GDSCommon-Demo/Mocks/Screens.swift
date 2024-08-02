@@ -30,10 +30,11 @@ enum Screens: String, CaseIterable {
     case gdsResultsView = "Results View"
     case gdsResultsViewModal = "Results View (Modal)"
     case gdsErrorView = "Error View"
+    case gdsErrorViewNoIcon = "Error View (with no icon)"
     case gdsErrorViewWithTertiary = "Error View (with 3 buttons)"
     case gdsInformationView = "Information View"
     case gdsLoadingView = "GDS Loading View"
-
+    
     var isModal: Bool {
         switch self {
         case .gdsModalInfoView,
@@ -60,21 +61,20 @@ enum Screens: String, CaseIterable {
             return GDSInstructionsViewController(popToRoot: popToRoot, navController: navigationController)
         case .gdsInstructionsWithColouredButton:
             let viewModel = MockGDSInstructionsViewModel(buttonViewModel: MockColoredButtonViewModel.primary,
-                                                         secondaryButtonViewModel: MockButtonViewModel.secondaryQR) {
-
-            }
+                                                         secondaryButtonViewModel: MockButtonViewModel.secondaryQR,
+                                                         dismissAction: { })
             return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel.primary,
                                                                primaryButtonViewModel: MockButtonViewModel.primary,
-                                                               screenView: {}, dismissAction: {})
+                                                               screenView: { }, dismissAction: { })
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsInstructionsWithImageModally:
             let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel.primary,
                                                                primaryButtonViewModel: MockButtonViewModel.primary,
                                                                secondaryButtonViewModel: MockButtonViewModel.secondaryQR,
                                                                rightBarButtonTitle: "Close",
-                                                               screenView: {}, dismissAction: {})
+                                                               screenView: { }, dismissAction: { })
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsModalInfoView:
             let view = ModalInfoViewController(viewModel: MockModalInfoViewModel())
@@ -99,10 +99,10 @@ enum Screens: String, CaseIterable {
         case .gdsIconScreen:
             return IconScreenViewController()
         case .gdsQRCodeScanner:
-            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) { navigationController.popViewController(animated: true) } dismissAction: {}
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) { navigationController.popViewController(animated: true) } dismissAction: { }
             return ScanningViewController(viewModel: viewModel)
         case .gdsQRCodeScannerModal:
-            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) {  navigationController.dismiss(animated: true) } dismissAction: {}
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) { navigationController.dismiss(animated: true) } dismissAction: { }
             return ScanningViewController(viewModel: viewModel)
         case .gdsResultsView:
             return ResultsViewController(popToRoot: popToRoot, navController: navigationController)
@@ -110,6 +110,8 @@ enum Screens: String, CaseIterable {
             return ResultsViewController(popToRoot: nil, navController: navigationController)
         case .gdsErrorView:
             return GDSErrorViewController(viewModel: MockErrorViewModel())
+        case .gdsErrorViewNoIcon:
+            return GDSErrorViewController(viewModel: MockErrorViewModelNoIcon())
         case .gdsErrorViewWithTertiary:
             return GDSErrorViewController(viewModel: MockErrorViewModelWithTertiary())
         case .gdsInformationView:

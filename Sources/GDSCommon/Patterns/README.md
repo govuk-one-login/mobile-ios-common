@@ -1,7 +1,6 @@
 # Patterns
 
 ## BaseViewController
-
 ``BaseViewController`` inherits from `UIViewController`. ``BaseViewController`` includes the repetitive code that all screens should have to avoid repetition and reduce risk of missing important functionality and to make it easier to amend, or fix defects if they arise.
 
 Screen view controllers should generally inherit from ``BaseViewController`` instead of `UIViewController` unless the functionality of the screen needs to be intentionally different from standard screens.
@@ -48,6 +47,7 @@ struct ConcreteModalInfoViewModel: ExampleInfoViewModel, BaseViewModel {
 }
 ```
 
+
 ## GDSInstructions
 This screen includes the following views:
 - `titleLabel` (type: `UILabel`)
@@ -80,7 +80,6 @@ The content on the screen is set from the `viewModel`, which must conform to the
 
 
 ## PopoverTableViewController
-
 ``PopoverTableViewController`` inherits from `UIViewController`. This allows showing a list, as a popover giving the user multiple options from one button. To use this the view controller will need to conform to `UIPopoverPresentationControllerDelegate`.
 
 This screen includes the following views:
@@ -119,7 +118,6 @@ The content on the screen is set from the `viewModel`, which must conform to the
 
 
 ## ListOptions
-
 This screen includes the following views:
 - `titleLabel` (type: `UILabel`)
 - `bodyLabel` (type: `UILabel`?)
@@ -161,7 +159,7 @@ The `primaryButton` and `secondaryButton` are `UIButton`s and placed within a `U
 The configuration for these views are set from the `viewModel`, which must conform to the `PageWithPrimaryButtonViewModel` and `PageWithSecondaryButtonViewModel` protocols respectively. If the `viewmodel` does not conform to these protocols and provide these properties, the buttons will be hidden.
 
 
-### GDSLoadingScreen
+## GDSLoadingScreen
  This screen includes the following views:
  - `loadingLabel` (type: `UILabel`)
 
@@ -230,9 +228,9 @@ This screen includes the following views:
 This screen includes an title, subtitle and button. These views a situated within a `UIStackView` which has margins set to align the subviews within it. This view is typically added as a subview to the `IconScreen` through the `IconScreen`s view model `childViews` property.
 The content on the screen is set from the `viewModel`, which must conform to the `OptionViewModel` protocol.
 
-## GDSError
 
-This screen is typically used as an error screen, consisting of an alert icon, a title, body and the option of one, two or three buttons.
+## GDSError
+This screen is typically used as an error screen, consisting of an optional alert icon, a title, body and the option of one, two or three buttons.
 A `UIStackView` holds the `errorImageView` and encases a second `UIStackView` which holds the `errorTitle` and `errorBody`. These views are placed within a `ScrollView`.
 The `primaryButton`, `secondaryButton` and `tertiaryButton` are placed in a `UIStackView`, below the `ScrollView`.
 
@@ -252,8 +250,8 @@ If the viewModel conforms to BaseViewModel:
 ### Example:
 
 ```swift
-struct MockErrorViewModel: GDSErrorViewModel, BaseViewModel {
-    let image: String = "exclamationmark.circle"
+struct MockErrorViewModel: GDSErrorViewModelV2, GDSErrorViewModelWithImage, BaseViewModel {
+    let image: String? = "exclamationmark.circle"
     let title: GDSLocalisedString = "This is an Error View title"
     let body: GDSLocalisedString = "This is an Error View body This is an Error View body"
     let primaryButtonViewModel: ButtonViewModel 
@@ -273,8 +271,8 @@ struct MockErrorViewModel: GDSErrorViewModel, BaseViewModel {
 }
 ```
 
-## GDSInformation
 
+## GDSInformation
 This screen is designed to present information to users, consisting of an image, title, (optional) body, (optional) footnote, primary button and an (optional) secondary button.
 
 As part of the confirguation of the image, it has the following customisation: 
@@ -323,6 +321,7 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, BaseViewModel {
     func didDismiss() {}
 }
 ```
+
 
 # Accessibility
 

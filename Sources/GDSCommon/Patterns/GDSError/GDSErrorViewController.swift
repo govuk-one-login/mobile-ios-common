@@ -1,5 +1,25 @@
 import UIKit
 
+private struct ErrorViewModelInitialiser: GDSErrorViewModel {
+    let image: String
+    let title: GDSLocalisedString
+    let body: GDSLocalisedString
+    let primaryButtonViewModel: ButtonViewModel
+    let secondaryButtonViewModel: ButtonViewModel?
+    
+    init(viewModelV2: GDSErrorViewModelV2) {
+        if let viewModel = viewModelV2 as? GDSErrorViewModelWithImage {
+            self.image = viewModel.image
+        } else {
+            self.image = ""
+        }
+        self.title = viewModelV2.title
+        self.body = viewModelV2.body
+        self.primaryButtonViewModel = viewModelV2.primaryButtonViewModel
+        self.secondaryButtonViewModel = viewModelV2.secondaryButtonViewModel
+    }
+}
+
 /// View controller for `GDSError` screen
 ///     - `errorImage` (type: `String`)
 ///     - `titleLabel` (type: `UILabel`)
@@ -11,9 +31,15 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     public override var nibName: String? { "GDSError" }
     
     public private(set) var viewModel: GDSErrorViewModel
+    public private(set) var viewModelV2: GDSErrorViewModelV2
     
-    public init(viewModel: GDSErrorViewModel) {
-        self.viewModel = viewModel
+    public init(viewModel: GDSErrorViewModelV2) {
+        if let viewModel = viewModel as? GDSErrorViewModel {
+            self.viewModel = viewModel
+        } else {
+            self.viewModel = ErrorViewModelInitialiser(viewModelV2: viewModel)
+        }
+        self.viewModelV2 = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSError", bundle: .module)
     }
     
@@ -24,9 +50,13 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     
     @IBOutlet private var errorImage: UIImageView! {
         didSet {
-            let font = UIFont(style: .largeTitle, weight: .light)
-            let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
-            errorImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
+            if let viewModel = viewModelV2 as? GDSErrorViewModelWithImage {
+                let font = UIFont(style: .largeTitle, weight: .light)
+                let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
+                errorImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
+            } else {
+                errorImage.isHidden = true
+            }
             errorImage.accessibilityIdentifier = "error-image"
         }
     }
@@ -63,8 +93,6 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
         didSet {
             if let buttonViewModel = viewModel.secondaryButtonViewModel {
                 secondaryButton.setTitle(buttonViewModel.title, for: .normal)
-                secondaryButton.accessibilityIdentifier = "error-secondary-button"
-                
                 if let icon = buttonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
@@ -72,6 +100,7 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
             } else {
                 secondaryButton.isHidden = true
             }
+            secondaryButton.accessibilityIdentifier = "error-secondary-button"
         }
     }
     
@@ -81,18 +110,16 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
     
     @IBOutlet private var tertiaryButton: SecondaryButton! {
         didSet {
-            if let buttonViewModel = (viewModel as? GDSScreenWithTertiaryButtonViewModel)?.tertiaryButtonViewModel {
+            if let buttonViewModel = (viewModelV2 as? GDSScreenWithTertiaryButtonViewModel)?.tertiaryButtonViewModel {
                 tertiaryButton.setTitle(buttonViewModel.title, for: .normal)
-                
             } else {
                 tertiaryButton.isHidden = true
             }
-            
             tertiaryButton.accessibilityIdentifier = "error-tertiary-button"
         }
     }
     
     @IBAction private func tertiaryButtonAction(_ sender: Any) {
-        (viewModel as? GDSScreenWithTertiaryButtonViewModel)?.tertiaryButtonViewModel.action()
+        (viewModelV2 as? GDSScreenWithTertiaryButtonViewModel)?.tertiaryButtonViewModel.action()
     }
 }
