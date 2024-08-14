@@ -18,11 +18,11 @@ jobs:
 
     steps:
       - name: Run pull request workflow
-        uses: govuk-one-login/mobile-ios-pipelines@d13d6d60fdd6d32b57de33c9c92f08566d9a4dba
+        uses: govuk-one-login/mobile-ios-pipelines@f2e6562e116cd7a6a250fe24863b563a50a5fe24
         with:
           action_type: 'Pull Request'
           workspace: GDSCommon-Demo.xcworkspace
-          package_scheme: GDSCommon-Demo
+          scheme: GDSCommon-Demo
           xcode_version: 15.2
           run_destination: platform=iOS Simulator,name=iPhone 15,OS=17.5
           sonar_token: ${{ secrets.SONAR_TOKEN }}
