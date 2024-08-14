@@ -3,71 +3,26 @@ name: iOS Pull Request
 on:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
-    branches: [ main ]
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
-    name: Build and Test default scheme using any available iPhone simulator
+  build_and_test:
+    name: Build and Test Package
     if: github.event.pull_request.draft == false
     runs-on: macos-14
 
     steps:
-      - name: Add path globally
-        run: echo "/usr/local/bin" >> $GITHUB_PATH
-
-      - name: Checkout
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # pin@v4
+      - name: Run pull request workflow
+        uses: govuk-one-login/mobile-ios-pipelines@d13d6d60fdd6d32b57de33c9c92f08566d9a4dba
         with:
-          lfs: 'true'
-          fetch-depth: 0
-
-      - name: Run Linter
-        run: |
-          brew install swiftlint
-          swiftlint --strict
-
-      - name: Validate Pull Request Name
-        id: versioning
-        uses: Oliver-Binns/Versioning@4695fba9f63bed5b557094f9a64f7a2b1a7639e8 # pin@v1.1.0
-        with:
-          ACTION_TYPE: 'Validate'
-
-      - name: Xcode select
-        run: |
-          sudo xcode-select -s /Applications/Xcode_15.2.app
-
-      - name: Build and Test
-        run: |
-          xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
-           -destination "platform=iOS Simulator,name=iPhone 15,OS=17.5" \
-           -enableCodeCoverage YES \
-           -resultBundlePath result.xcresult | xcbeautify
-
-      - name: Run SonarCloud Scanning
-        run: |
-          bash xccov-to-sonarqube-generic.sh result.xcresult > sonarqube-generic-coverage.xml
-
-          brew install sonar-scanner
-
-          pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-
-          sonar-scanner \
-            -Dsonar.token=$SONAR_TOKEN \
-            -Dsonar.coverageReportPaths="sonarqube-generic-coverage.xml" \
-            -Dsonar.pullrequest.key=$pull_number \
-            -Dsonar.pullrequest.branch=${{github.head_ref}} \
-            -Dsonar.pullrequest.base=${{github.base_ref}}
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check SonarCloud Results
-        uses: sonarsource/sonarqube-quality-gate-action@d304d050d930b02a896b0f85935344f023928496 # pin@v1.1.0
-        # Force to fail step after specific time
-        timeout-minutes: 5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          action_type: 'Pull Request'
+          workspace: GDSCommon-Demo.xcworkspace
+          package_scheme: GDSCommon-Demo
+          xcode_version: 15.2
+          run_destination: platform=iOS Simulator,name=iPhone 15,OS=17.5
+          sonar_token: ${{ secrets.SONAR_TOKEN }}
