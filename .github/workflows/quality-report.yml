@@ -27,7 +27,7 @@ jobs:
 
       - name: Build and Test
         run: |
-          xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
+          set -o pipefail && xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
            -destination "platform=iOS Simulator,name=iPhone 15,OS=17.5" \
            -enableCodeCoverage YES \
            -resultBundlePath result.xcresult | xcbeautify
