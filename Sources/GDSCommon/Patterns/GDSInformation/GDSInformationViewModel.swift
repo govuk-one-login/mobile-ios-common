@@ -32,3 +32,8 @@ public protocol GDSInformationViewModel {
     var primaryButtonViewModel: ButtonViewModel { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
 }
+
+@MainActor
+public protocol GDSInformationViewModelWithChildView {
+    var childView: UIView? { get }
+}
