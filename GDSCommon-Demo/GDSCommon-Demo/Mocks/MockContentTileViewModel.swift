@@ -3,7 +3,7 @@ import UIKit
 import GDSCommon
 
 struct MockContentTileViewModel: ContentTileViewModel {
-    var image: UIImage? = UIImage(named: "licence")
+    var image: UIImage? = UIImage(named: "placeholder")
     var caption: GDSLocalisedString? = "Example caption"
     var title: GDSLocalisedString = "Example title"
     var body: GDSLocalisedString? = "Example body"

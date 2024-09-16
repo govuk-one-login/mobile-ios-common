@@ -17,6 +17,7 @@ public final class ContentTileView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 16
+        view.widthAnchor.constraint(equalToConstant: CGFloat(343)).isActive = true
         view.layer.masksToBounds = true
         return view
     }()
@@ -29,11 +30,18 @@ public final class ContentTileView: UIView {
         return stackView
     }()
     
+    lazy var imageContainerView: UIView = {
+        let imageContainerView = UIView()
+        imageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        imageContainerView.layer.masksToBounds = true
+        return imageContainerView
+    }()
+    
     lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = viewModel.image
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.heightAnchor.constraint(equalToConstant: CGFloat(132)).isActive = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -53,7 +61,7 @@ public final class ContentTileView: UIView {
         captionLabel.font = UIFont(style: .subheadline, weight: .regular)
         captionLabel.text = viewModel.caption?.value
         captionLabel.numberOfLines = 0
-        captionLabel.adjustsFontForContentSizeCategory = true
+//        captionLabel.adjustsFontForContentSizeCategory = true
         return captionLabel
     }()
     
@@ -62,9 +70,9 @@ public final class ContentTileView: UIView {
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = .bodyBold
+//        titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.text = viewModel.title.value
         titleLabel.numberOfLines = 0
-        titleLabel.adjustsFontForContentSizeCategory = true
         return titleLabel
     }()
     
@@ -75,13 +83,14 @@ public final class ContentTileView: UIView {
         bodyLabel.font = .body
         bodyLabel.text = viewModel.body?.value
         bodyLabel.numberOfLines = 0
-        bodyLabel.adjustsFontForContentSizeCategory = true
+//        bodyLabel.adjustsFontForContentSizeCategory = true
         return bodyLabel
     }()
     
     lazy var linkButton: SecondaryButton = {
         let subtitleLabel = SecondaryButton()
         subtitleLabel.titleLabel?.textColor = .gdsGreen
+//        subtitleLabel.adjustsImageSizeForAccessibilityContentSizeCategory = true
         subtitleLabel.icon = "arrow.right"
         subtitleLabel.contentHorizontalAlignment = .left
         subtitleLabel.setTitle(viewModel.actionText?.title.value, for: .normal)
@@ -91,6 +100,7 @@ public final class ContentTileView: UIView {
     
     lazy var primaryButton: RoundedButton = {
         let primaryButton = RoundedButton()
+//        primaryButton.adjustsImageSizeForAccessibilityContentSizeCategory = true
         primaryButton.setTitle(viewModel.actionButton?.title.value, for: .normal)
         return primaryButton
     }()
@@ -166,7 +176,7 @@ public final class ContentTileView: UIView {
         ])
         
         labelStackView.spacing = 8
-        labelStackView.layoutMargins = UIEdgeInsets(top: 16,
+        labelStackView.layoutMargins = UIEdgeInsets(top: 8,
                                                     left: 16,
                                                     bottom: 16,
                                                     right: 0)
@@ -181,7 +191,13 @@ public final class ContentTileView: UIView {
                                                     right: 16)
         textStackView.isLayoutMarginsRelativeArrangement = true
         
-        textStackView.addArrangedSubview(captionLabel)
+        let topStackView = UIStackView()
+        topStackView.axis = .horizontal
+        
+        topStackView.addArrangedSubview(captionLabel)
+        topStackView.addArrangedSubview(closeButton)
+        
+        textStackView.addArrangedSubview(topStackView)
         textStackView.addArrangedSubview(titleLabel)
         textStackView.addArrangedSubview(bodyLabel)
         
@@ -208,11 +224,6 @@ public final class ContentTileView: UIView {
         
         addImage()
         containerStackView.addArrangedSubview(labelStackView)
-        
-        NSLayoutConstraint.activate([
-            closeButton.widthAnchor.constraint(equalToConstant: 20),
-            closeButton.heightAnchor.constraint(equalToConstant: 24)
-        ])
     }
     
     public override func layoutSubviews() {
@@ -231,8 +242,23 @@ public final class ContentTileView: UIView {
     
     private func addImage() {
         if viewModel.image != nil {
-            imageView.addSubview(closeButton)
-            containerStackView.addArrangedSubview(imageView)
+            imageContainerView.addSubview(imageView)
+            imageContainerView.addSubview(closeButton)
+            
+            NSLayoutConstraint.activate([
+                imageView.topAnchor.constraint(equalTo: imageContainerView.safeAreaLayoutGuide.topAnchor),
+                imageView.rightAnchor.constraint(equalTo: imageContainerView.rightAnchor),
+                imageView.leftAnchor.constraint(equalTo: imageContainerView.leftAnchor),
+                imageView.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
+                imageView.heightAnchor.constraint(equalTo: imageContainerView.heightAnchor)
+            ])
+            
+            containerStackView.addArrangedSubview(imageContainerView)
+            
+            NSLayoutConstraint.activate([
+                closeButton.topAnchor.constraint(equalTo: imageContainerView.safeAreaLayoutGuide.topAnchor, constant: 16),
+                closeButton.rightAnchor.constraint(equalTo: imageContainerView.rightAnchor, constant: -16),
+            ])
         }
     }
 }
