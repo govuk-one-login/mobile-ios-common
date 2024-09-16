@@ -118,8 +118,8 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         didSet {
             if let childView = (viewModel as? GDSInformationViewModelWithChildView)?.childView {
                 stackView.addArrangedSubview(childView)
+                stackView.accessibilityIdentifier = "information-optional-stack-view"
             }
-            stackView.accessibilityIdentifier = "information-optional-stack-view"
         }
     }
 

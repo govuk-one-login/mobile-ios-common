@@ -122,6 +122,22 @@ extension GDSInformationViewControllerTests {
         _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
         XCTAssertTrue(viewDidDismiss)
     }
+
+    func test_optionalChildView() throws {
+        let childView = try XCTUnwrap(sut.childView)
+        let childViewBody1: UILabel = try XCTUnwrap(childView[child: "body1-text"])
+        let childViewBody2: UILabel = try XCTUnwrap(childView[child: "body2-text"])
+        let bulletTitle: UILabel = try XCTUnwrap(childView[child: "bullet-title"])
+        let stack: UIStackView = try XCTUnwrap(childView[child: "bullet-stack"])
+        let bulletLabels: [UILabel] = try XCTUnwrap(stack.arrangedSubviews as? [UILabel])
+        
+        XCTAssertEqual(childViewBody1.text, "Some text")
+        XCTAssertEqual(bulletTitle.text, "bullet title")
+        XCTAssertEqual(bulletLabels[0].text, "\t●\tbullet 1")
+        XCTAssertEqual(bulletLabels[1].text, "\t●\tbullet 2")
+        XCTAssertEqual(bulletLabels[2].text, "\t●\tbullet 3")
+        XCTAssertEqual(childViewBody2.text, "More text")
+    }
 }
 
 struct MockButtonIconViewModel: ButtonIconViewModel {
@@ -163,6 +179,12 @@ extension GDSInformationViewController {
     var secondaryButton: SecondaryButton {
         get throws {
             try XCTUnwrap(view[child: "information-secondary-button"])
+        }
+    }
+
+    var childView: UIStackView {
+        get throws {
+            try XCTUnwrap(view[child: "information-optional-stack-view"])
         }
     }
 }

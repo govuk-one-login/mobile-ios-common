@@ -65,14 +65,6 @@ extension GDSListOptionsViewController {
     }
 }
 
-//extension GDSInformationViewController {
-//    convenience init() {
-//        let viewModel = MockGDSInformationViewModel()
-//        
-//        self.init(viewModel: viewModel)
-//    }
-//}
-
 extension GDSInformationViewController {
     convenience init() {
         let viewModel = MockGDSInformationViewModelWithChildView()
