@@ -56,6 +56,7 @@
 		96FEBF922ACEC0F30067CC10 /* MockDatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FEBF902ACEC0F30067CC10 /* MockDatePickerViewModel.swift */; };
 		96FEBF932ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FEBF912ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift */; };
 		96FEFC192ACD9FF400313194 /* InstructionsWithImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0843F62ABC797E00188BA0 /* InstructionsWithImageViewControllerTests.swift */; };
+		AB320F3C2C93028C00659EDA /* MockContentTileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB320F3B2C93028C00659EDA /* MockContentTileViewModel.swift */; };
 		C8A3955F2B20BA6700333669 /* GDSErrorViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A3955E2B20BA6700333669 /* GDSErrorViewControllerTests.swift */; };
 		C8C343AA2B927C7200E92FB9 /* MockModalInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF1972A2ABDA1B800AC9620 /* MockModalInfoViewModel.swift */; };
 		C8C90DCF2ADDADFD00158516 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -130,6 +131,7 @@
 		968598AF2B03A7C300462D0B /* MockBase.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockBase.xib; sourceTree = "<group>"; };
 		96FEBF902ACEC0F30067CC10 /* MockDatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatePickerViewModel.swift; sourceTree = "<group>"; };
 		96FEBF912ACEC0F30067CC10 /* MockDatePickerScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatePickerScreenViewModel.swift; sourceTree = "<group>"; };
+		AB320F3B2C93028C00659EDA /* MockContentTileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContentTileViewModel.swift; sourceTree = "<group>"; };
 		C8A3955E2B20BA6700333669 /* GDSErrorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSErrorViewControllerTests.swift; sourceTree = "<group>"; };
 		C8C9297E2ACDCA1700A130C3 /* MockIntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockIntroViewModel.swift; sourceTree = "<group>"; };
 		C8CFBFF82ADDA0C700BE35C5 /* MockOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOptionViewModel.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				C8FC500C2B1F770900083CB4 /* MockErrorViewModel.swift */,
 				2B9375182B500DAD00E2A6B9 /* MockBulletViewModel.swift */,
 				1E891B712B628AA000744E3D /* MockGDSInformationViewModel.swift */,
+				AB320F3B2C93028C00659EDA /* MockContentTileViewModel.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				9634B4662ACDAAEF00A60CC8 /* MockListViewModel.swift in Sources */,
 				2BF197242ABDA06D00AC9620 /* MockButtonViewModel.swift in Sources */,
 				C8CFBFF92ADDA0C700BE35C5 /* MockOptionViewModel.swift in Sources */,
+				AB320F3C2C93028C00659EDA /* MockContentTileViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
