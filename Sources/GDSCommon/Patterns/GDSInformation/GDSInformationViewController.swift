@@ -65,7 +65,18 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             }
         }
     }
-    
+
+    /// Stack View: `UIStackView`. Any `UIView` which is on the `GDSInformationViewModelWithChildView` view model's `childView` property.
+    /// This will be added to the `stackView` below the existing `bodyLabel`
+    @IBOutlet private var stackView: UIStackView! {
+        didSet {
+            if let childView = (viewModel as? GDSInformationViewModelWithChildView)?.childView {
+                stackView.addArrangedSubview(childView)
+                stackView.accessibilityIdentifier = "information-optional-stack-view"
+            }
+        }
+    }
+
     @IBOutlet private var footnoteLabel: UILabel! {
         didSet {
             if let footnoteContent = viewModel.footnote {
@@ -108,17 +119,6 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
                 }
             } else {
                 secondaryButton.isHidden = true
-            }
-        }
-    }
-
-    /// Stack View: `UIStackView`. Any `UIView` which is on the `GDSInformationViewModelWithChildView` view model's `childView` property.
-    /// This will be added to the `stackView` below the existing `bodyLabel`
-    @IBOutlet private var stackView: UIStackView! {
-        didSet {
-            if let childView = (viewModel as? GDSInformationViewModelWithChildView)?.childView {
-                stackView.addArrangedSubview(childView)
-                stackView.accessibilityIdentifier = "information-optional-stack-view"
             }
         }
     }

@@ -55,9 +55,9 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, GDSInformationViewM
 
     private func createMockBulletView() -> BulletView {
         let bulletView = BulletView(title: "bullet title",
-                                text: ["bullet 1",
-                                       "bullet 2",
-                                       "bullet 3"],
+                                    text: ["bullet 1",
+                                           "bullet 2",
+                                           "bullet 3"],
                                     titleFont: .body)
         return bulletView
     }
