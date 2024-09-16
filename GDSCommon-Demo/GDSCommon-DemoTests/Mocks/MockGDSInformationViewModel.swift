@@ -41,16 +41,11 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, GDSInformationViewM
     private func createChildView() -> UIView {
         let bulletView = createMockBulletView()
         let body = UILabel()
-        body.text = "Some text"
-        body.accessibilityIdentifier = "body1-text"
+        body.text = GDSLocalisedString(stringLiteral: "More text").value
+        body.accessibilityIdentifier = "body-text"
         body.adjustsFontForContentSizeCategory = true
         body.numberOfLines = 0
-        let body2 = UILabel()
-        body2.text = GDSLocalisedString(stringLiteral: "More text").value
-        body2.accessibilityIdentifier = "body2-text"
-        body2.adjustsFontForContentSizeCategory = true
-        body2.numberOfLines = 0
-        let stackView = UIStackView(arrangedSubviews: [body, bulletView, body2])
+        let stackView = UIStackView(arrangedSubviews: [bulletView, body])
         stackView.axis = .vertical
         stackView.alignment = .top
         stackView.spacing = 12
@@ -61,7 +56,8 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, GDSInformationViewM
         let bulletView = BulletView(title: "bullet title",
                                 text: ["bullet 1",
                                        "bullet 2",
-                                       "bullet 3"])
+                                       "bullet 3"],
+                                    titleFont: .body)
         return bulletView
     }
 }

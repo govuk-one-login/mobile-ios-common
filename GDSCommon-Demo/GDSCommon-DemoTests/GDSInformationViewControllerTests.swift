@@ -125,18 +125,16 @@ extension GDSInformationViewControllerTests {
 
     func test_optionalChildView() throws {
         let childView = try XCTUnwrap(sut.childView)
-        let childViewBody1: UILabel = try XCTUnwrap(childView[child: "body1-text"])
-        let childViewBody2: UILabel = try XCTUnwrap(childView[child: "body2-text"])
+        let childViewBody: UILabel = try XCTUnwrap(childView[child: "body-text"])
         let bulletTitle: UILabel = try XCTUnwrap(childView[child: "bullet-title"])
         let stack: UIStackView = try XCTUnwrap(childView[child: "bullet-stack"])
         let bulletLabels: [UILabel] = try XCTUnwrap(stack.arrangedSubviews as? [UILabel])
-        
-        XCTAssertEqual(childViewBody1.text, "Some text")
+
         XCTAssertEqual(bulletTitle.text, "bullet title")
         XCTAssertEqual(bulletLabels[0].text, "\t●\tbullet 1")
         XCTAssertEqual(bulletLabels[1].text, "\t●\tbullet 2")
         XCTAssertEqual(bulletLabels[2].text, "\t●\tbullet 3")
-        XCTAssertEqual(childViewBody2.text, "More text")
+        XCTAssertEqual(childViewBody.text, "More text")
     }
 }
 
