@@ -45,6 +45,7 @@ struct MockGDSInformationViewModelWithChildView: GDSInformationViewModel, GDSInf
         let body = UILabel()
         body.text = GDSLocalisedString(stringLiteral: "More (optional) text can follow, too").value
         body.adjustsFontForContentSizeCategory = true
+        body.font = .body
         body.numberOfLines = 0
         let stackView = UIStackView(arrangedSubviews: [bulletView, body])
         stackView.axis = .vertical

@@ -43,6 +43,7 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, GDSInformationViewM
         let body = UILabel()
         body.text = GDSLocalisedString(stringLiteral: "More text").value
         body.accessibilityIdentifier = "body-text"
+        body.font = .body
         body.adjustsFontForContentSizeCategory = true
         body.numberOfLines = 0
         let stackView = UIStackView(arrangedSubviews: [bulletView, body])
