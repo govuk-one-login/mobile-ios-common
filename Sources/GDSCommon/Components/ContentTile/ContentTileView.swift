@@ -93,7 +93,7 @@ public final class ContentTileView: UIView {
         subtitleLabel.icon = "arrow.right"
         subtitleLabel.contentHorizontalAlignment = .left
         subtitleLabel.setTitle(viewModel.actionText?.title.value, for: .normal)
-        subtitleLabel.isEnabled = false
+//        subtitleLabel.isEnabled = false
         return subtitleLabel
     }()
     
