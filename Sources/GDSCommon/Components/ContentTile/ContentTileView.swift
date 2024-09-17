@@ -61,7 +61,7 @@ public final class ContentTileView: UIView {
         captionLabel.font = UIFont(style: .subheadline, weight: .regular)
         captionLabel.text = viewModel.caption?.value
         captionLabel.numberOfLines = 0
-//        captionLabel.adjustsFontForContentSizeCategory = true
+        captionLabel.adjustsFontForContentSizeCategory = true
         return captionLabel
     }()
     
@@ -70,7 +70,7 @@ public final class ContentTileView: UIView {
         titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = .bodyBold
-//        titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.text = viewModel.title.value
         titleLabel.numberOfLines = 0
         return titleLabel
@@ -83,14 +83,13 @@ public final class ContentTileView: UIView {
         bodyLabel.font = .body
         bodyLabel.text = viewModel.body?.value
         bodyLabel.numberOfLines = 0
-//        bodyLabel.adjustsFontForContentSizeCategory = true
+        bodyLabel.adjustsFontForContentSizeCategory = true
         return bodyLabel
     }()
     
     lazy var linkButton: SecondaryButton = {
         let subtitleLabel = SecondaryButton()
         subtitleLabel.titleLabel?.textColor = .gdsGreen
-//        subtitleLabel.adjustsImageSizeForAccessibilityContentSizeCategory = true
         subtitleLabel.icon = "arrow.right"
         subtitleLabel.contentHorizontalAlignment = .left
         subtitleLabel.setTitle(viewModel.actionText?.title.value, for: .normal)
@@ -100,7 +99,6 @@ public final class ContentTileView: UIView {
     
     lazy var primaryButton: RoundedButton = {
         let primaryButton = RoundedButton()
-//        primaryButton.adjustsImageSizeForAccessibilityContentSizeCategory = true
         primaryButton.setTitle(viewModel.actionButton?.title.value, for: .normal)
         return primaryButton
     }()
@@ -108,6 +106,7 @@ public final class ContentTileView: UIView {
     lazy var closeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.contentHorizontalAlignment = .right
         button.tintColor = .gdsGreen
         button.translatesAutoresizingMaskIntoConstraints = false
         button.adjustsImageSizeForAccessibilityContentSizeCategory = true
@@ -208,21 +207,8 @@ public final class ContentTileView: UIView {
         lineStackView.addArrangedSubview(separatorView)
         
         labelStackView.addArrangedSubview(lineStackView)
-        
-        let buttonView = UIStackView()
-        buttonView.axis = .vertical
-        buttonView.spacing = 8
-        buttonView.layoutMargins = UIEdgeInsets(top: 0,
-                                                left: 0,
-                                                bottom: 0,
-                                                right: 16)
-        buttonView.isLayoutMarginsRelativeArrangement = true
-        buttonView.addArrangedSubview(linkButton)
-        buttonView.addArrangedSubview(primaryButton)
-        
-        labelStackView.addArrangedSubview(buttonView)
-        
         addImage()
+        addButtons()
         containerStackView.addArrangedSubview(labelStackView)
     }
     
@@ -241,7 +227,9 @@ public final class ContentTileView: UIView {
     
     
     private func addImage() {
-        if viewModel.image != nil {
+        guard viewModel.image != nil else {
+            return
+        }
             imageContainerView.addSubview(imageView)
             imageContainerView.addSubview(closeButton)
             
@@ -256,9 +244,27 @@ public final class ContentTileView: UIView {
             containerStackView.addArrangedSubview(imageContainerView)
             
             NSLayoutConstraint.activate([
-                closeButton.topAnchor.constraint(equalTo: imageContainerView.safeAreaLayoutGuide.topAnchor, constant: 16),
+                closeButton.topAnchor.constraint(equalTo: imageContainerView.safeAreaLayoutGuide.topAnchor, constant: 8),
                 closeButton.rightAnchor.constraint(equalTo: imageContainerView.rightAnchor, constant: -16),
             ])
+    }
+    
+    private func addButtons() {
+        let buttonView = UIStackView()
+        buttonView.axis = .vertical
+        buttonView.spacing = 16
+        buttonView.layoutMargins = UIEdgeInsets(top: 0,
+                                                left: 0,
+                                                bottom: 0,
+                                                right: 16)
+        buttonView.isLayoutMarginsRelativeArrangement = true
+        
+        if viewModel.actionText != nil {
+            buttonView.addArrangedSubview(linkButton)
         }
+        if viewModel.actionButton != nil {
+            buttonView.addArrangedSubview(primaryButton)
+        }
+        labelStackView.addArrangedSubview(buttonView)
     }
 }
