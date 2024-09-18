@@ -33,36 +33,42 @@ public final class ContentTile: NibView {
             containerStackView.accessibilityIdentifier = "containerStackView"
             
             containerStackView.backgroundColor = .red
+//            containerStackView.addSubview(closeButton)
         }
     }
     
-    @IBOutlet weak var imageContainerView: UIView! {
+    @IBOutlet weak var closeButton: UIButton! {
         didSet {
-            imageContainerView.backgroundColor = .green
+            closeButton.setTitle("", for: .normal)
+            closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+            closeButton.contentHorizontalAlignment = .right
+            closeButton.tintColor = .gdsGreen
+            closeButton.translatesAutoresizingMaskIntoConstraints = false
+            closeButton.adjustsImageSizeForAccessibilityContentSizeCategory = true
+            closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         }
     }
     
     @IBOutlet weak var imageView: UIImageView! {
         didSet {
-            imageView.image = viewModel.image
-            imageView.backgroundColor = .black
-        }
-    }
-    
-    @IBOutlet weak var bottomStackView: UIStackView! {
-        didSet {
-            bottomStackView.backgroundColor = .orange
+            if viewModel.image != nil {
+                imageView.image = viewModel.image
+            }
+            imageView.accessibilityIdentifier = "content-tile-image"
         }
     }
     
     @IBOutlet weak var textStack: UIStackView! {
         didSet {
-//            let topStackView = UIStackView()
-//            topStackView.axis = .horizontal
-//            topStackView.addArrangedSubview(captionLabel)
-//            topStackView.addArrangedSubview(closeButton)
-//            textStack.addSubview(topStackView)
             textStack.spacing = 8
+            textStack.layoutMargins = UIEdgeInsets(top: 8, 
+                                                   left: 16,
+                                                   bottom: 0,
+                                                   right: 16)
+            textStack.isLayoutMarginsRelativeArrangement = true
+            textStack.accessibilityIdentifier = "content-text-stack"
+            
+            textStack.backgroundColor = .orange
         }
     }
     
@@ -74,6 +80,7 @@ public final class ContentTile: NibView {
             captionLabel.adjustsFontForContentSizeCategory = true
             captionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
             captionLabel.translatesAutoresizingMaskIntoConstraints = false
+            captionLabel.accessibilityIdentifier = "content-tile-caption"
         }
     }
     
@@ -85,6 +92,7 @@ public final class ContentTile: NibView {
             titleLabel.numberOfLines = 0
             titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            titleLabel.accessibilityIdentifier = "content-tile-title"
         }
     }
     
@@ -96,6 +104,7 @@ public final class ContentTile: NibView {
             bodyLabel.adjustsFontForContentSizeCategory = true
             bodyLabel.setContentCompressionResistancePriority(.required, for: .vertical)
             bodyLabel.translatesAutoresizingMaskIntoConstraints = false
+            bodyLabel.accessibilityIdentifier = "content-tile-body"
         }
     }
     
@@ -103,31 +112,76 @@ public final class ContentTile: NibView {
         didSet {
             let separatorView = SeparatorView()
             separatorStack.addArrangedSubview(separatorView)
+            separatorStack.layoutMargins = UIEdgeInsets(top: 8,
+                                                   left: 16,
+                                                   bottom: 0,
+                                                   right: 0)
+            separatorStack.isLayoutMarginsRelativeArrangement = true
+            separatorStack.accessibilityIdentifier = "content-tile-separator"
+            
+            separatorStack.backgroundColor = .gray
         }
     }
     
     
     @IBOutlet weak var buttonStack: UIStackView! {
         didSet {
-            buttonStack.backgroundColor = .purple
+            buttonStack.spacing = 16
+            buttonStack.layoutMargins = UIEdgeInsets(top: 8,
+                                                   left: 16,
+                                                   bottom: 16,
+                                                   right: 16)
+            buttonStack.isLayoutMarginsRelativeArrangement = true
+            
+            buttonStack.backgroundColor = .yellow
         }
     }
     
     @IBOutlet weak var linkButton: SecondaryButton! {
         didSet {
-            linkButton.titleLabel?.text = viewModel.actionText?.title.value
-//            linkButton.icon = viewModel.actionText?.icon?.iconName
-//            linkButton.symbolPosition = .afterTitle
-            linkButton.titleLabel?.textColor = .gdsGreen
-            linkButton.contentHorizontalAlignment = .left
+            if let buttonViewModel = viewModel.secondaryButtonViewModel {
+                linkButton.setTitle(buttonViewModel.title.value, for: .normal)
+                linkButton.titleLabel?.textColor = .gdsGreen
+                linkButton.contentHorizontalAlignment = .left
+//                if let icon = buttonViewModel.icon {
+//                    linkButton.symbolPosition = icon.symbolPosition
+//                    linkButton.icon = icon.iconName
+//                }
+            } else {
+                linkButton.isHidden = true
+            }
+            linkButton.accessibilityIdentifier = "content-tile-link"
+            linkButton.backgroundColor = .white
         }
     }
     
     @IBOutlet weak var primaryButton: RoundedButton! {
         didSet {
-            primaryButton.titleLabel?.text = viewModel.actionButton?.title.value
+            primaryButton.setTitle(viewModel.primaryButtonViewModel?.title.value, for: .normal)
+            primaryButton.accessibilityIdentifier = "content-tile-button"
+            
+            primaryButton.backgroundColor = .white
         }
     }
     
+    @IBAction private func primaryButtonAction(_ sender: Any) {
+        primaryButton.isLoading = true
+        viewModel.primaryButtonViewModel?.action()
+        primaryButton.isLoading = false
+    }
     
+//    lazy var closeButton: UIButton = {
+//        let button = UIButton(type: .custom)
+//        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+////        button.contentHorizontalAlignment = .right
+//        button.tintColor = .gdsGreen
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.adjustsImageSizeForAccessibilityContentSizeCategory = true
+//        button.addTarget(self, action: #selector(close), for: .touchUpInside)
+//        return button
+//    }()
+    
+    @objc private func close() {
+        viewModel.dismissButton?.action()
+    }
 }
