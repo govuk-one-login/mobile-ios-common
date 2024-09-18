@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,8 +17,8 @@
                 <outlet property="containerStackView" destination="nuc-zi-aER" id="tmd-gm-fiY"/>
                 <outlet property="containerView" destination="e5l-T6-HYY" id="qd4-Xf-bVd"/>
                 <outlet property="imageView" destination="ndO-H5-AMN" id="o9J-jD-8tL"/>
-                <outlet property="linkButton" destination="pAR-cF-nm2" id="3jc-nD-nbq"/>
                 <outlet property="primaryButton" destination="FRk-Ks-D9H" id="oY0-93-pbF"/>
+                <outlet property="secondaryButton" destination="pAR-cF-nm2" id="3jc-nD-nbq"/>
                 <outlet property="separatorStack" destination="D7Q-NS-IHB" id="hFX-ql-5wg"/>
                 <outlet property="textStack" destination="VIe-7s-SPk" id="VCj-3F-PNN"/>
                 <outlet property="titleLabel" destination="uoK-UE-05d" id="J46-VQ-XW2"/>
@@ -62,22 +62,25 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="D7Q-NS-IHB">
-                            <rect key="frame" x="0.0" y="61" width="393" height="629.33333333333326"/>
+                            <rect key="frame" x="0.0" y="61" width="393" height="629.33333333333337"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <viewLayoutGuide key="safeArea" id="CRu-FP-SQ4"/>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="U4u-VG-SlR">
                             <rect key="frame" x="0.0" y="690.33333333333337" width="393" height="68.666666666666629"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pAR-cF-nm2">
+                                <button opaque="NO" contentMode="left" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pAR-cF-nm2" customClass="SecondaryButton" customModule="GDSCommon">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="34.333333333333336"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" button="YES" link="YES"/>
                                     </accessibility>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                    <connections>
+                                        <action selector="secondaryButtonAction:" destination="-1" eventType="touchUpInside" id="rlc-qJ-Vex"/>
+                                    </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="FRk-Ks-D9H">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="FRk-Ks-D9H" customClass="RoundedButton" customModule="GDSCommon">
                                     <rect key="frame" x="0.0" y="34.333333333333258" width="393" height="34.333333333333343"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" title="Button"/>

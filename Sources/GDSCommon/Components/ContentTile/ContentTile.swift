@@ -21,8 +21,6 @@ public final class ContentTile: NibView {
             containerView.widthAnchor.constraint(equalToConstant: CGFloat(343)).isActive = true
             containerView.layer.masksToBounds = true
             containerView.accessibilityIdentifier = "containerView"
-            
-            containerView.backgroundColor = .blue
         }
     }
     
@@ -31,7 +29,6 @@ public final class ContentTile: NibView {
             containerStackView.translatesAutoresizingMaskIntoConstraints = false
             containerStackView.accessibilityIdentifier = "containerStackView"
             
-            containerStackView.backgroundColor = .red
             containerStackView.addSubview(closeButton)
             NSLayoutConstraint.activate([
                 closeButton.trailingAnchor.constraint(greaterThanOrEqualTo: containerStackView.trailingAnchor, constant: -16),
@@ -58,8 +55,6 @@ public final class ContentTile: NibView {
                                                    right: 16)
             textStack.isLayoutMarginsRelativeArrangement = true
             textStack.accessibilityIdentifier = "content-text-stack"
-            
-            textStack.backgroundColor = .orange
         }
     }
     
@@ -109,8 +104,6 @@ public final class ContentTile: NibView {
                                                    right: 0)
             separatorStack.isLayoutMarginsRelativeArrangement = true
             separatorStack.accessibilityIdentifier = "content-tile-separator"
-            
-            separatorStack.backgroundColor = .gray
         }
     }
     
@@ -128,30 +121,32 @@ public final class ContentTile: NibView {
         }
     }
     
-    @IBOutlet weak var linkButton: SecondaryButton! {
+    @IBOutlet weak var secondaryButton: SecondaryButton! {
         didSet {
             if let buttonViewModel = viewModel.secondaryButtonViewModel {
-                linkButton.setTitle(buttonViewModel.title.value, for: .normal)
-                linkButton.titleLabel?.textColor = .gdsGreen
-                linkButton.contentHorizontalAlignment = .left
-//                if let icon = buttonViewModel.icon {
-//                    linkButton.symbolPosition = icon.symbolPosition
-//                    linkButton.icon = icon.iconName
-//                }
+                secondaryButton.setTitle(buttonViewModel.title.value, for: .normal)
+                secondaryButton.titleLabel?.textColor = .gdsGreen
+                secondaryButton.contentHorizontalAlignment = .left
+                if let icon = buttonViewModel.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
             } else {
-                linkButton.isHidden = true
+                secondaryButton.isHidden = true
             }
-            linkButton.accessibilityIdentifier = "content-tile-link"
-            linkButton.backgroundColor = .white
+            secondaryButton.accessibilityIdentifier = "content-tile-link"
+            secondaryButton.backgroundColor = .white
         }
+    }
+    
+    @IBAction func secondaryButtonAction(_ sender: Any) {
+        viewModel.secondaryButtonViewModel?.action()
     }
     
     @IBOutlet weak var primaryButton: RoundedButton! {
         didSet {
             primaryButton.setTitle(viewModel.primaryButtonViewModel?.title.value, for: .normal)
             primaryButton.accessibilityIdentifier = "content-tile-button"
-            
-            primaryButton.backgroundColor = .white
         }
     }
     
