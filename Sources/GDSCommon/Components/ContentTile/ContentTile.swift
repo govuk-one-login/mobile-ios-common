@@ -4,8 +4,7 @@ import UIKit
 public final class ContentTile: NibView {
     public let viewModel: ContentTileViewModel
     
-    public init(frame: CGRect, viewModel: ContentTileViewModel
-    ) {
+    public init(frame: CGRect, viewModel: ContentTileViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame, bundle: .module)
         self.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
@@ -14,8 +13,8 @@ public final class ContentTile: NibView {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-        @IBOutlet var containerView: UIView! {
+    
+    @IBOutlet var containerView: UIView! {
         didSet {
             containerView.translatesAutoresizingMaskIntoConstraints = false
             containerView.layer.cornerRadius = 16
@@ -33,19 +32,11 @@ public final class ContentTile: NibView {
             containerStackView.accessibilityIdentifier = "containerStackView"
             
             containerStackView.backgroundColor = .red
-//            containerStackView.addSubview(closeButton)
-        }
-    }
-    
-    @IBOutlet weak var closeButton: UIButton! {
-        didSet {
-            closeButton.setTitle("", for: .normal)
-            closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-            closeButton.contentHorizontalAlignment = .right
-            closeButton.tintColor = .gdsGreen
-            closeButton.translatesAutoresizingMaskIntoConstraints = false
-            closeButton.adjustsImageSizeForAccessibilityContentSizeCategory = true
-            closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+            containerStackView.addSubview(closeButton)
+            NSLayoutConstraint.activate([
+                closeButton.trailingAnchor.constraint(greaterThanOrEqualTo: containerStackView.trailingAnchor, constant: -16),
+                closeButton.topAnchor.constraint(greaterThanOrEqualTo: containerStackView.topAnchor, constant: 8)
+            ])
         }
     }
     
@@ -170,16 +161,17 @@ public final class ContentTile: NibView {
         primaryButton.isLoading = false
     }
     
-//    lazy var closeButton: UIButton = {
-//        let button = UIButton(type: .custom)
-//        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-////        button.contentHorizontalAlignment = .right
-//        button.tintColor = .gdsGreen
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.adjustsImageSizeForAccessibilityContentSizeCategory = true
-//        button.addTarget(self, action: #selector(close), for: .touchUpInside)
-//        return button
-//    }()
+    lazy var closeButton: UIButton = {
+        let button = UIButton(type: .custom)
+        let font = UIFont(style: .body, weight: .regular)
+        let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
+        button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
+        button.tintColor = .gdsGreen
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.adjustsImageSizeForAccessibilityContentSizeCategory = true
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
+        return button
+    }()
     
     @objc private func close() {
         viewModel.dismissButton?.action()
