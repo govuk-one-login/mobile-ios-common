@@ -7,26 +7,22 @@ public final class ContentTile: NibView {
     public init(frame: CGRect, viewModel: ContentTileViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame, bundle: .module)
-        self.widthAnchor.constraint(equalToConstant: frame.width).isActive = true
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBOutlet var containerView: UIView! {
+    @IBOutlet private var containerView: UIView! {
         didSet {
-            containerView.translatesAutoresizingMaskIntoConstraints = false
             containerView.layer.cornerRadius = 16
-            containerView.widthAnchor.constraint(equalToConstant: CGFloat(343)).isActive = true
             containerView.layer.masksToBounds = true
             containerView.accessibilityIdentifier = "containerView"
         }
     }
     
-    @IBOutlet weak var containerStackView: UIStackView! {
+    @IBOutlet private var containerStackView: UIStackView! {
         didSet {
-            containerStackView.translatesAutoresizingMaskIntoConstraints = false
             containerStackView.accessibilityIdentifier = "containerStackView"
             
             guard viewModel.dismissButton != nil else {
@@ -40,18 +36,23 @@ public final class ContentTile: NibView {
         }
     }
     
-    @IBOutlet weak var imageView: UIImageView! {
+    @IBOutlet private var imageView: UIImageView! {
         didSet {
-            if viewModel.image == nil {
+            imageView.accessibilityIdentifier = "content-tile-image"
+            guard let image = viewModel.image else {
                 imageView.isHidden = true
+                return
             }
             
+            NSLayoutConstraint.activate([
+                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: image.size.width / image.size.height)
+            ])
             imageView.image = viewModel.image
-            imageView.accessibilityIdentifier = "content-tile-image"
+            
         }
     }
     
-    @IBOutlet weak var textStack: UIStackView! {
+    @IBOutlet private var textStack: UIStackView! {
         didSet {
             textStack.spacing = 8
             textStack.layoutMargins = UIEdgeInsets(top: 8,
@@ -63,7 +64,7 @@ public final class ContentTile: NibView {
         }
     }
     
-    @IBOutlet weak var captionLabel: UILabel! {
+    @IBOutlet private var captionLabel: UILabel! {
         didSet {
             if viewModel.caption == nil {
                 captionLabel.isHidden = true
@@ -79,7 +80,7 @@ public final class ContentTile: NibView {
         }
     }
     
-    @IBOutlet weak var titleLabel: UILabel! {
+    @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .bodyBold
@@ -91,7 +92,7 @@ public final class ContentTile: NibView {
         }
     }
     
-    @IBOutlet weak var bodyLabel: UILabel! {
+    @IBOutlet private var bodyLabel: UILabel! {
         didSet {
             if viewModel.body == nil {
                 bodyLabel.isHidden = true
@@ -106,11 +107,10 @@ public final class ContentTile: NibView {
         }
     }
     
-    @IBOutlet weak var separatorStack: UIStackView! {
+    @IBOutlet private var separatorStack: UIStackView! {
         didSet {
-            if viewModel.seperatorLine == false {
-                separatorStack.isHidden = true
-            }
+            separatorStack.isHidden = !viewModel.showSeparatorLine
+            
             let separatorView = SeparatorView()
             separatorStack.addArrangedSubview(separatorView)
             separatorStack.layoutMargins = UIEdgeInsets(top: 8,
@@ -123,7 +123,7 @@ public final class ContentTile: NibView {
     }
     
     
-    @IBOutlet weak var buttonStack: UIStackView! {
+    @IBOutlet private var buttonStack: UIStackView! {
         didSet {
             buttonStack.spacing = 16
             buttonStack.layoutMargins = UIEdgeInsets(top: 8,
@@ -141,7 +141,7 @@ public final class ContentTile: NibView {
         }
     }
     
-    lazy var secondaryButton: SecondaryButton = {
+    private lazy var secondaryButton: SecondaryButton = {
         let secondaryButton = SecondaryButton()
         secondaryButton.titleLabel?.textColor = .gdsGreen
         if let icon = viewModel.secondaryButtonViewModel?.icon {
@@ -150,16 +150,28 @@ public final class ContentTile: NibView {
         }
         secondaryButton.contentHorizontalAlignment = .left
         secondaryButton.setTitle(viewModel.secondaryButtonViewModel?.title.value, for: .normal)
+        secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
+        secondaryButton.isUserInteractionEnabled = true
         return secondaryButton
     }()
     
-    lazy var primaryButton: RoundedButton = {
+    @objc private func secondaryButtonTapped() {
+        viewModel.secondaryButtonViewModel?.action()
+    }
+    
+    private lazy var primaryButton: RoundedButton = {
         let primaryButton = RoundedButton()
         primaryButton.setTitle(viewModel.primaryButtonViewModel?.title.value, for: .normal)
+        primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
+        primaryButton.isUserInteractionEnabled = true
         return primaryButton
     }()
     
-    lazy var closeButton: UIButton = {
+    @objc private func primaryButtonTapped() {
+        viewModel.primaryButtonViewModel?.action()
+    }
+    
+    private lazy var closeButton: UIButton = {
         let button = UIButton(type: .custom)
         let font = UIFont(style: .body, weight: .regular)
         let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)

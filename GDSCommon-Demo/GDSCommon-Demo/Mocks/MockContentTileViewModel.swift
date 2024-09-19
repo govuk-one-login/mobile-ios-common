@@ -7,8 +7,12 @@ struct MockContentTileViewModel: ContentTileViewModel {
     var caption: GDSLocalisedString? = "Example caption"
     var title: GDSLocalisedString = "Example title"
     var body: GDSLocalisedString? = "Example body"
+    var showSeparatorLine: Bool = true
     var secondaryButtonViewModel: ButtonViewModel? = MockButtonViewModel.secondary
     var primaryButtonViewModel: ButtonViewModel? = MockButtonViewModel.primary
-    var dismissButton: ButtonViewModel?
+    var dismissButton: ButtonViewModel? = MockButtonViewModel(title: "", icon: MockButtonIconViewModel(iconName: "xmark",
+                                                                                                       symbolPosition: .beforeTitle),
+                                                              shouldLoadOnTap: false,
+                                                              action: { print("button tapped")})
 
 }

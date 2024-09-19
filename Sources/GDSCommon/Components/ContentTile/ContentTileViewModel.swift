@@ -7,7 +7,7 @@ public protocol ContentTileViewModel {
     var caption: GDSLocalisedString? { get }
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString? { get }
-    var seperatorLine: Bool { get }
+    var showSeparatorLine: Bool { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
     var primaryButtonViewModel: ButtonViewModel? { get }
     var dismissButton: ButtonViewModel? { get }
