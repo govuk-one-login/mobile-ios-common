@@ -12,7 +12,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/nalexn/ViewInspector",
-            .upToNextMajor(from: "0.9.7"))
+            .upToNextMajor(from: "0.10.0"))
     ],
     targets: [
         .target(name: "GDSCommon"),
