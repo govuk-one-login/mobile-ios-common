@@ -33,6 +33,7 @@ enum Screens: String, CaseIterable {
     case gdsErrorViewNoIcon = "Error View (with no icon)"
     case gdsErrorViewWithTertiary = "Error View (with 3 buttons)"
     case gdsInformationView = "Information View"
+    case gdsInformationViewWithChildView = "Information View (with optional child view)"
     case gdsLoadingView = "GDS Loading View"
     
     var isModal: Bool {
@@ -116,6 +117,8 @@ enum Screens: String, CaseIterable {
             return GDSErrorViewController(viewModel: MockErrorViewModelWithTertiary())
         case .gdsInformationView:
             return GDSInformationViewController()
+        case .gdsInformationViewWithChildView:
+            return GDSInformationViewController(viewModel: MockGDSInformationViewModelWithChildView())
         case .gdsLoadingView:
             return GDSLoadingViewController()
         }

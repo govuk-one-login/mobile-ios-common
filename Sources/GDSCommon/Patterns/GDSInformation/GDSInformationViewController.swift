@@ -11,6 +11,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     public override var nibName: String? { "GDSInformation" }
     
     public private(set) var viewModel: GDSInformationViewModel
+
     private let defaultImageHeight: CGFloat = 55
     private let imagePaddingCompensation: CGFloat = 11
     
@@ -64,7 +65,18 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             }
         }
     }
-    
+
+    /// Stack View: `UIStackView`. Any `UIView` which is on the `GDSInformationViewModelWithChildView` view model's `childView` property.
+    /// This will be added to the `stackView` below the existing `bodyLabel`
+    @IBOutlet private var stackView: UIStackView! {
+        didSet {
+            if let viewModel = viewModel as? GDSInformationViewModelWithChildView {
+                stackView.addArrangedSubview(viewModel.childView)
+                stackView.accessibilityIdentifier = "information-optional-stack-view"
+            }
+        }
+    }
+
     @IBOutlet private var footnoteLabel: UILabel! {
         didSet {
             if let footnoteContent = viewModel.footnote {
@@ -110,7 +122,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             }
         }
     }
-    
+
     @IBAction private func secondaryButtonAction(_ sender: Any) {
         viewModel.secondaryButtonViewModel?.action()
     }
