@@ -29,6 +29,9 @@ public final class ContentTile: NibView {
             containerStackView.translatesAutoresizingMaskIntoConstraints = false
             containerStackView.accessibilityIdentifier = "containerStackView"
             
+            guard viewModel.dismissButton != nil else {
+                return
+            }
             containerStackView.addSubview(closeButton)
             NSLayoutConstraint.activate([
                 closeButton.trailingAnchor.constraint(greaterThanOrEqualTo: containerStackView.trailingAnchor, constant: -16),
@@ -39,9 +42,11 @@ public final class ContentTile: NibView {
     
     @IBOutlet weak var imageView: UIImageView! {
         didSet {
-            if viewModel.image != nil {
-                imageView.image = viewModel.image
+            if viewModel.image == nil {
+                imageView.isHidden = true
             }
+            
+            imageView.image = viewModel.image
             imageView.accessibilityIdentifier = "content-tile-image"
         }
     }
@@ -49,7 +54,7 @@ public final class ContentTile: NibView {
     @IBOutlet weak var textStack: UIStackView! {
         didSet {
             textStack.spacing = 8
-            textStack.layoutMargins = UIEdgeInsets(top: 8, 
+            textStack.layoutMargins = UIEdgeInsets(top: 8,
                                                    left: 16,
                                                    bottom: 0,
                                                    right: 16)
@@ -60,6 +65,10 @@ public final class ContentTile: NibView {
     
     @IBOutlet weak var captionLabel: UILabel! {
         didSet {
+            if viewModel.caption == nil {
+                captionLabel.isHidden = true
+            }
+            
             captionLabel.text = viewModel.caption?.value
             captionLabel.font = UIFont(style: .subheadline, weight: .regular)
             captionLabel.numberOfLines = 0
@@ -84,6 +93,9 @@ public final class ContentTile: NibView {
     
     @IBOutlet weak var bodyLabel: UILabel! {
         didSet {
+            if viewModel.body == nil {
+                bodyLabel.isHidden = true
+            }
             bodyLabel.text = viewModel.body?.value
             bodyLabel.font = .body
             bodyLabel.numberOfLines = 0
@@ -96,12 +108,15 @@ public final class ContentTile: NibView {
     
     @IBOutlet weak var separatorStack: UIStackView! {
         didSet {
+            if viewModel.seperatorLine == false {
+                separatorStack.isHidden = true
+            }
             let separatorView = SeparatorView()
             separatorStack.addArrangedSubview(separatorView)
             separatorStack.layoutMargins = UIEdgeInsets(top: 8,
-                                                   left: 16,
-                                                   bottom: 0,
-                                                   right: 0)
+                                                        left: 16,
+                                                        bottom: 0,
+                                                        right: 0)
             separatorStack.isLayoutMarginsRelativeArrangement = true
             separatorStack.accessibilityIdentifier = "content-tile-separator"
         }
@@ -112,49 +127,37 @@ public final class ContentTile: NibView {
         didSet {
             buttonStack.spacing = 16
             buttonStack.layoutMargins = UIEdgeInsets(top: 8,
-                                                   left: 16,
-                                                   bottom: 16,
-                                                   right: 16)
+                                                     left: 16,
+                                                     bottom: 16,
+                                                     right: 16)
             buttonStack.isLayoutMarginsRelativeArrangement = true
             
-            buttonStack.backgroundColor = .yellow
-        }
-    }
-    
-    @IBOutlet weak var secondaryButton: SecondaryButton! {
-        didSet {
-            if let buttonViewModel = viewModel.secondaryButtonViewModel {
-                secondaryButton.setTitle(buttonViewModel.title.value, for: .normal)
-                secondaryButton.titleLabel?.textColor = .gdsGreen
-                secondaryButton.contentHorizontalAlignment = .left
-                if let icon = buttonViewModel.icon {
-                    secondaryButton.symbolPosition = icon.symbolPosition
-                    secondaryButton.icon = icon.iconName
-                }
-            } else {
-                secondaryButton.isHidden = true
+            if viewModel.secondaryButtonViewModel != nil {
+                buttonStack.addArrangedSubview(secondaryButton)
             }
-            secondaryButton.accessibilityIdentifier = "content-tile-link"
-            secondaryButton.backgroundColor = .white
+            if viewModel.primaryButtonViewModel != nil {
+                buttonStack.addArrangedSubview(primaryButton)
+            }
         }
     }
     
-    @IBAction func secondaryButtonAction(_ sender: Any) {
-        viewModel.secondaryButtonViewModel?.action()
-    }
-    
-    @IBOutlet weak var primaryButton: RoundedButton! {
-        didSet {
-            primaryButton.setTitle(viewModel.primaryButtonViewModel?.title.value, for: .normal)
-            primaryButton.accessibilityIdentifier = "content-tile-button"
+    lazy var secondaryButton: SecondaryButton = {
+        let secondaryButton = SecondaryButton()
+        secondaryButton.titleLabel?.textColor = .gdsGreen
+        if let icon = viewModel.secondaryButtonViewModel?.icon {
+            secondaryButton.symbolPosition = icon.symbolPosition
+            secondaryButton.icon = icon.iconName
         }
-    }
+        secondaryButton.contentHorizontalAlignment = .left
+        secondaryButton.setTitle(viewModel.secondaryButtonViewModel?.title.value, for: .normal)
+        return secondaryButton
+    }()
     
-    @IBAction private func primaryButtonAction(_ sender: Any) {
-        primaryButton.isLoading = true
-        viewModel.primaryButtonViewModel?.action()
-        primaryButton.isLoading = false
-    }
+    lazy var primaryButton: RoundedButton = {
+        let primaryButton = RoundedButton()
+        primaryButton.setTitle(viewModel.primaryButtonViewModel?.title.value, for: .normal)
+        return primaryButton
+    }()
     
     lazy var closeButton: UIButton = {
         let button = UIButton(type: .custom)
