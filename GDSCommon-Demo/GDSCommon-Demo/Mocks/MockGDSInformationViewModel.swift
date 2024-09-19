@@ -36,7 +36,7 @@ struct MockGDSInformationViewModelWithChildView: GDSInformationViewModel, GDSInf
 
     func didDismiss() {}
 
-    var childView: UIView? {
+    var childView: UIView {
         createChildView()
     }
 

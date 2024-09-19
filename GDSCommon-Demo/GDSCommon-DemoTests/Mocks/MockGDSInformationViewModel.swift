@@ -8,7 +8,7 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, GDSInformationViewM
     let imageHeightConstraint: CGFloat? = 55
     let title: GDSLocalisedString = "Information screen title"
     let body: GDSLocalisedString? = "Information screen body"
-    var childView: UIView? {
+    var childView: UIView {
         createChildView()
     }
     let footnote: GDSLocalisedString? = "Information screen footnote"

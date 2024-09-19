@@ -35,5 +35,5 @@ public protocol GDSInformationViewModel {
 
 @MainActor
 public protocol GDSInformationViewModelWithChildView {
-    var childView: UIView? { get }
+    var childView: UIView { get }
 }

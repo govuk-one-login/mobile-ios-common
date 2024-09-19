@@ -70,9 +70,8 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     /// This will be added to the `stackView` below the existing `bodyLabel`
     @IBOutlet private var stackView: UIStackView! {
         didSet {
-            if let viewModel = viewModel as? GDSInformationViewModelWithChildView,
-                let childView = viewModel.childView {
-                stackView.addArrangedSubview(childView)
+            if let viewModel = viewModel as? GDSInformationViewModelWithChildView {
+                stackView.addArrangedSubview(viewModel.childView)
                 stackView.accessibilityIdentifier = "information-optional-stack-view"
             }
         }
