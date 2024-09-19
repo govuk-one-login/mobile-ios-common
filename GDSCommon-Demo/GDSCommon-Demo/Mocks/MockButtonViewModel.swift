@@ -27,7 +27,7 @@ extension MockButtonViewModel {
         MockButtonViewModel(title: "Action button",
                             icon: nil,
                             shouldLoadOnTap: false,
-                            action: { print("button tapped") })
+                            action: {})
     }
     
     static var secondary: MockButtonViewModel {
@@ -35,7 +35,7 @@ extension MockButtonViewModel {
                             icon: MockButtonIconViewModel(iconName: "arrow.up.right",
                                                           symbolPosition: .afterTitle),
                             shouldLoadOnTap: false,
-                            action: { print("button 2 tapped") })
+                            action: {})
     }
     
     static var secondaryQR: MockButtonViewModel {
@@ -49,6 +49,14 @@ extension MockButtonViewModel {
     static var text: MockButtonViewModel {
         MockButtonViewModel(title: "Secondary Button",
                             icon: MockButtonIconViewModel(iconName: "qrcode",
+                                                          symbolPosition: .beforeTitle),
+                            shouldLoadOnTap: false,
+                            action: {})
+    }
+    
+    static var icon: MockButtonViewModel {
+        MockButtonViewModel(title: "",
+                            icon: MockButtonIconViewModel(iconName: "xmark",
                                                           symbolPosition: .beforeTitle),
                             shouldLoadOnTap: false,
                             action: {})

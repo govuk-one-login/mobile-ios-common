@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public final class ContentTile: NibView {
+public final class ContentTileView: NibView {
     public let viewModel: ContentTileViewModel
     
     public init(frame: CGRect, viewModel: ContentTileViewModel) {
@@ -25,9 +25,6 @@ public final class ContentTile: NibView {
         didSet {
             containerStackView.accessibilityIdentifier = "containerStackView"
             
-            guard viewModel.dismissButton != nil else {
-                return
-            }
             containerStackView.addSubview(closeButton)
             NSLayoutConstraint.activate([
                 closeButton.trailingAnchor.constraint(greaterThanOrEqualTo: containerStackView.trailingAnchor, constant: -16),
@@ -39,15 +36,14 @@ public final class ContentTile: NibView {
     @IBOutlet private var imageView: UIImageView! {
         didSet {
             imageView.accessibilityIdentifier = "content-tile-image"
-            guard let image = viewModel.image else {
+            if let view = viewModel as? ContentTileViewModelWithImage {
+                NSLayoutConstraint.activate([
+                    imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: view.image.size.width / view.image.size.height)
+                ])
+                imageView.image = view.image
+            } else {
                 imageView.isHidden = true
-                return
             }
-            
-            NSLayoutConstraint.activate([
-                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: image.size.width / image.size.height)
-            ])
-            imageView.image = viewModel.image
             
         }
     }
@@ -66,16 +62,16 @@ public final class ContentTile: NibView {
     
     @IBOutlet private var captionLabel: UILabel! {
         didSet {
-            if viewModel.caption == nil {
+            if let view = viewModel as? ContentTileViewModelWithCaption {
+                captionLabel.text = view.caption.value
+                captionLabel.font = UIFont(style: .subheadline, weight: .regular)
+                captionLabel.numberOfLines = 0
+                captionLabel.adjustsFontForContentSizeCategory = true
+                captionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+                captionLabel.translatesAutoresizingMaskIntoConstraints = false
+            } else {
                 captionLabel.isHidden = true
             }
-            
-            captionLabel.text = viewModel.caption?.value
-            captionLabel.font = UIFont(style: .subheadline, weight: .regular)
-            captionLabel.numberOfLines = 0
-            captionLabel.adjustsFontForContentSizeCategory = true
-            captionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-            captionLabel.translatesAutoresizingMaskIntoConstraints = false
             captionLabel.accessibilityIdentifier = "content-tile-caption"
         }
     }
@@ -94,15 +90,16 @@ public final class ContentTile: NibView {
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            if viewModel.body == nil {
+            if let view = viewModel as? ContentTileViewModelWithBody {
+                bodyLabel.text = view.body.value
+                bodyLabel.font = .body
+                bodyLabel.numberOfLines = 0
+                bodyLabel.adjustsFontForContentSizeCategory = true
+                bodyLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+                bodyLabel.translatesAutoresizingMaskIntoConstraints = false
+            } else {
                 bodyLabel.isHidden = true
             }
-            bodyLabel.text = viewModel.body?.value
-            bodyLabel.font = .body
-            bodyLabel.numberOfLines = 0
-            bodyLabel.adjustsFontForContentSizeCategory = true
-            bodyLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-            bodyLabel.translatesAutoresizingMaskIntoConstraints = false
             bodyLabel.accessibilityIdentifier = "content-tile-body"
         }
     }
@@ -132,58 +129,71 @@ public final class ContentTile: NibView {
                                                      right: 16)
             buttonStack.isLayoutMarginsRelativeArrangement = true
             
-            if viewModel.secondaryButtonViewModel != nil {
-                buttonStack.addArrangedSubview(secondaryButton)
-            }
-            if viewModel.primaryButtonViewModel != nil {
-                buttonStack.addArrangedSubview(primaryButton)
-            }
+            buttonStack.addArrangedSubview(secondaryButton)
+            buttonStack.addArrangedSubview(primaryButton)
         }
     }
     
     private lazy var secondaryButton: SecondaryButton = {
         let secondaryButton = SecondaryButton()
-        secondaryButton.titleLabel?.textColor = .gdsGreen
-        if let icon = viewModel.secondaryButtonViewModel?.icon {
-            secondaryButton.symbolPosition = icon.symbolPosition
-            secondaryButton.icon = icon.iconName
+
+        if let view = viewModel as? ContentTileViewModelWithSecondaryButton {
+            secondaryButton.titleLabel?.textColor = .gdsGreen
+            if let icon = view.secondaryButtonViewModel.icon {
+                secondaryButton.symbolPosition = icon.symbolPosition
+                secondaryButton.icon = icon.iconName
+            }
+            secondaryButton.contentHorizontalAlignment = .left
+            secondaryButton.setTitle(view.secondaryButtonViewModel.title.value, for: .normal)
+            secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
+            secondaryButton.isUserInteractionEnabled = true
+            return secondaryButton
+        } else {
+            secondaryButton.isHidden = true
         }
-        secondaryButton.contentHorizontalAlignment = .left
-        secondaryButton.setTitle(viewModel.secondaryButtonViewModel?.title.value, for: .normal)
-        secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
-        secondaryButton.isUserInteractionEnabled = true
         return secondaryButton
     }()
     
     @objc private func secondaryButtonTapped() {
-        viewModel.secondaryButtonViewModel?.action()
+        (viewModel as? ContentTileViewModelWithSecondaryButton)?.secondaryButtonViewModel.action()
     }
     
     private lazy var primaryButton: RoundedButton = {
         let primaryButton = RoundedButton()
-        primaryButton.setTitle(viewModel.primaryButtonViewModel?.title.value, for: .normal)
-        primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
-        primaryButton.isUserInteractionEnabled = true
+
+        if let view = viewModel as? ContentTileViewModelWithPrimaryButton {
+            primaryButton.setTitle(view.primaryButtonViewModel.title.value, for: .normal)
+            primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
+            primaryButton.isUserInteractionEnabled = true
+            return primaryButton
+        } else {
+            primaryButton.isHidden = true
+        }
         return primaryButton
     }()
     
     @objc private func primaryButtonTapped() {
-        viewModel.primaryButtonViewModel?.action()
+        (viewModel as? ContentTileViewModelWithPrimaryButton)?.primaryButtonViewModel.action()
     }
     
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .custom)
-        let font = UIFont(style: .body, weight: .regular)
-        let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
-        button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
-        button.tintColor = .gdsGreen
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.adjustsImageSizeForAccessibilityContentSizeCategory = true
-        button.addTarget(self, action: #selector(close), for: .touchUpInside)
+        if let view = viewModel as? ContentTileViewModelWithDismissButton {
+            let font = UIFont(style: .body, weight: .regular)
+            let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
+            button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
+            button.tintColor = .gdsGreen
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.adjustsImageSizeForAccessibilityContentSizeCategory = true
+            button.addTarget(self, action: #selector(close), for: .touchUpInside)
+            return button
+        } else {
+            button.isHidden = true
+        }
         return button
     }()
     
     @objc private func close() {
-        viewModel.dismissButton?.action()
+        (viewModel as? ContentTileViewModelWithDismissButton)?.closeButton.action()
     }
 }

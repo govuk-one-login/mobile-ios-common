@@ -1,14 +1,40 @@
 import Foundation
 import UIKit
 
+public typealias ContentTile = ContentTileViewModel & ContentTileViewModelWithImage & ContentTileViewModelWithDismissButton & ContentTileViewModelWithCaption & ContentTileViewModelWithBody & ContentTileViewModelWithSecondaryButton & ContentTileViewModelWithPrimaryButton
+
 @MainActor
 public protocol ContentTileViewModel {
-    var image: UIImage? { get }
-    var caption: GDSLocalisedString? { get }
     var title: GDSLocalisedString { get }
-    var body: GDSLocalisedString? { get }
     var showSeparatorLine: Bool { get }
-    var secondaryButtonViewModel: ButtonViewModel? { get }
-    var primaryButtonViewModel: ButtonViewModel? { get }
-    var dismissButton: ButtonViewModel? { get }
+}
+
+@MainActor
+public protocol ContentTileViewModelWithImage {
+    var image: UIImage { get }
+}
+
+@MainActor
+public protocol ContentTileViewModelWithDismissButton {
+    var closeButton: ButtonViewModel { get }
+}
+
+@MainActor
+public protocol ContentTileViewModelWithCaption {
+    var caption: GDSLocalisedString { get }
+}
+
+@MainActor
+public protocol ContentTileViewModelWithBody {
+    var body: GDSLocalisedString { get }
+}
+
+@MainActor
+public protocol ContentTileViewModelWithSecondaryButton {
+    var secondaryButtonViewModel: ButtonViewModel { get }
+}
+
+@MainActor
+public protocol ContentTileViewModelWithPrimaryButton {
+    var primaryButtonViewModel: ButtonViewModel { get }
 }
