@@ -5,8 +5,7 @@ struct MockGDSInstructionsViewModel: GDSInstructionsViewModel, BaseViewModel {
     let title: GDSLocalisedString = "This is the Instructions View"
     let body: String = "We can add a subtitle here to give some extra context"
     let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
-    let childView: UIView = ContentTileView(frame: .zero,
-                                        viewModel: MockContentTileViewModel())
+    let childView: UIView = BulletView(viewModel: MockBulletViewModel())
     let buttonViewModel: ButtonViewModel
     let secondaryButtonViewModel: ButtonViewModel?
     let backButtonIsHidden: Bool = false

@@ -53,15 +53,6 @@ extension MockButtonViewModel {
                             shouldLoadOnTap: false,
                             action: {})
     }
-    
-    static var icon: MockButtonViewModel {
-        MockButtonViewModel(title: "",
-                            icon: MockButtonIconViewModel(iconName: "xmark",
-                                                          symbolPosition: .beforeTitle),
-                            shouldLoadOnTap: false,
-                            action: {})
-    }
-
 }
 
 extension MockColoredButtonViewModel {

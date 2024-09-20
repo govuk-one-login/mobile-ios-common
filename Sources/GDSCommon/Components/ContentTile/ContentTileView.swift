@@ -57,6 +57,7 @@ public final class ContentTileView: NibView {
                                                    right: 16)
             textStack.isLayoutMarginsRelativeArrangement = true
             textStack.accessibilityIdentifier = "content-text-stack"
+            textStack.backgroundColor = viewModel.backgroundColour
         }
     }
     
@@ -128,6 +129,7 @@ public final class ContentTileView: NibView {
                                                      bottom: 16,
                                                      right: 16)
             buttonStack.isLayoutMarginsRelativeArrangement = true
+            buttonStack.backgroundColor = viewModel.backgroundColour
             
             buttonStack.addArrangedSubview(secondaryButton)
             buttonStack.addArrangedSubview(primaryButton)
@@ -151,6 +153,7 @@ public final class ContentTileView: NibView {
         } else {
             secondaryButton.isHidden = true
         }
+        secondaryButton.accessibilityIdentifier = "content-secondary-button"
         return secondaryButton
     }()
     
@@ -169,6 +172,7 @@ public final class ContentTileView: NibView {
         } else {
             primaryButton.isHidden = true
         }
+        primaryButton.accessibilityIdentifier = "content-primary-button"
         return primaryButton
     }()
     

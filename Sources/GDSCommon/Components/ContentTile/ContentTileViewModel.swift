@@ -7,6 +7,8 @@ public typealias ContentTile = ContentTileViewModel & ContentTileViewModelWithIm
 public protocol ContentTileViewModel {
     var title: GDSLocalisedString { get }
     var showSeparatorLine: Bool { get }
+    var backgroundColour: UIColor? { get }
+    var isTappable: Bool { get }
 }
 
 @MainActor
