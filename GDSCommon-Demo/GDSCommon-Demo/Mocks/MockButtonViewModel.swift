@@ -53,7 +53,6 @@ extension MockButtonViewModel {
                             shouldLoadOnTap: false,
                             action: {})
     }
-
 }
 
 extension MockColoredButtonViewModel {
