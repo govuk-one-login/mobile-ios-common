@@ -27,8 +27,6 @@ internal final class ContentTileViewTests: XCTestCase {
         }))
         
         sut = .init(frame: .zero, viewModel: viewModel)
-        
-        
     }
     
     override func tearDown() {
@@ -112,7 +110,6 @@ extension ContentTileViewTests {
         viewModel.secondaryButtonViewModel.action()
         XCTAssertTrue(didTapSecondaryButton)
     }
-
 }
 
 extension ContentTileView {

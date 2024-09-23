@@ -36,10 +36,7 @@ public final class ContentTileView: NibView {
     @IBOutlet private var imageView: UIImageView! {
         didSet {
             imageView.accessibilityIdentifier = "content-tile-image"
-            if let viewModel = viewModel as? ContentTileViewModelWithImage {
-                guard viewModel.image.size.height > 0 else {
-                    return
-                }
+            if let viewModel = viewModel as? ContentTileViewModelWithImage, viewModel.image.size.height > 0 {
                 NSLayoutConstraint.activate([
                     imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: viewModel.image.size.width / viewModel.image.size.height)
                 ])
@@ -122,7 +119,6 @@ public final class ContentTileView: NibView {
         }
     }
     
-    
     @IBOutlet private var buttonStack: UIStackView! {
         didSet {
             buttonStack.spacing = 16
@@ -141,7 +137,7 @@ public final class ContentTileView: NibView {
     private lazy var secondaryButton: SecondaryButton = {
         let secondaryButton = SecondaryButton()
         secondaryButton.accessibilityIdentifier = "content-secondary-button"
-
+        
         if let view = viewModel as? ContentTileViewModelWithSecondaryButton {
             secondaryButton.titleLabel?.textColor = .gdsGreen
             if let icon = view.secondaryButtonViewModel.icon {
@@ -168,7 +164,7 @@ public final class ContentTileView: NibView {
     private lazy var primaryButton: RoundedButton = {
         let primaryButton = RoundedButton()
         primaryButton.accessibilityIdentifier = "content-primary-button"
-
+        
         if let view = viewModel as? ContentTileViewModelWithPrimaryButton {
             primaryButton.setTitle(view.primaryButtonViewModel.title.value, for: .normal)
             primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
