@@ -37,13 +37,13 @@ public final class ContentTileView: NibView {
         didSet {
             imageView.accessibilityIdentifier = "content-tile-image"
             if let viewModel = viewModel as? ContentTileViewModelWithImage {
-                guard view.image.size.height > 0 else {
+                guard viewModel.image.size.height > 0 else {
                     return
                 }
                 NSLayoutConstraint.activate([
-                    imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: view.image.size.width / view.image.size.height)
+                    imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: viewModel.image.size.width / viewModel.image.size.height)
                 ])
-                imageView.image = view.image
+                imageView.image = viewModel.image
             } else {
                 imageView.isHidden = true
             }
@@ -160,7 +160,9 @@ public final class ContentTileView: NibView {
     }()
     
     @objc private func secondaryButtonTapped() {
-        (viewModel as? ContentTileViewModelWithSecondaryButton)?.secondaryButtonViewModel.action()
+        if let viewModel = viewModel as? ContentTileViewModelWithSecondaryButton {
+            viewModel.secondaryButtonViewModel.action()
+        }
     }
     
     private lazy var primaryButton: RoundedButton = {
@@ -179,14 +181,16 @@ public final class ContentTileView: NibView {
     }()
     
     @objc private func primaryButtonTapped() {
-        (viewModel as? ContentTileViewModelWithPrimaryButton)?.primaryButtonViewModel.action()
+        if let viewModel = viewModel as? ContentTileViewModelWithPrimaryButton {
+            viewModel.primaryButtonViewModel.action()
+        }
     }
     
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.accessibilityIdentifier = "content-close-button"
         
-        if ((viewModel as? ContentTileViewModelWithDismissButton) != nil) {
+        if viewModel is ContentTileViewModelWithDismissButton {
             let font = UIFont(style: .body, weight: .regular)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
             button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
@@ -202,6 +206,8 @@ public final class ContentTileView: NibView {
     }()
     
     @objc private func close() {
-        (viewModel as? ContentTileViewModelWithDismissButton)?.closeButton.action()
+        if let viewModel = viewModel as? ContentTileViewModelWithDismissButton {
+            viewModel.closeButton.action()
+        }
     }
 }

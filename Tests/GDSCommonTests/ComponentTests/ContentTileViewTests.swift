@@ -3,7 +3,7 @@ import XCTest
 
 internal final class ContentTileViewTests: XCTestCase {
     var sut: ContentTileView!
-    var viewModel: ContentTile!
+    var viewModel: ExpandedContentTileViewModel!
     
     var didTapPrimaryButton: Bool = false
     var didTapSecondaryButton: Bool = false

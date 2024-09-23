@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public typealias ContentTile = ContentTileViewModel &
+public typealias ExpandedContentTileViewModel = ContentTileViewModel &
 ContentTileViewModelWithImage &
 ContentTileViewModelWithDismissButton &
 ContentTileViewModelWithCaption &

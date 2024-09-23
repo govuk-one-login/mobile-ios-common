@@ -2,7 +2,7 @@ import Foundation
 import GDSCommon
 import UIKit
 
-struct MockContentTileViewModel: ContentTile {
+struct MockContentTileViewModel: ExpandedContentTileViewModel {
     var image: UIImage = UIImage(named: "placeholder") ?? UIImage()
     var caption: GDSLocalisedString = "test caption"
     var title: GDSLocalisedString = "test title"
