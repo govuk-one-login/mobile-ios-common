@@ -38,10 +38,30 @@ internal final class ContentTileViewTests: XCTestCase {
     }
 }
 
+private struct TestViewModel: ContentTileViewModel {
+    var title: GDSLocalisedString = "test caption"
+    var showSeparatorLine: Bool = false
+    var backgroundColour: UIColor?
+}
+
+
 @MainActor
 extension ContentTileViewTests {
     func test_imageContents() throws {
         XCTAssertNotNil(try sut.image)
+    }
+    
+    func test_hiddenContents() throws {
+        let viewModel = TestViewModel()
+        sut = ContentTileView(frame: .zero, viewModel: viewModel)
+        
+        XCTAssertTrue(try sut.image.isHidden)
+        XCTAssertTrue(try sut.captionLabel.isHidden)
+        XCTAssertTrue(try sut.bodyLabel.isHidden)
+        XCTAssertTrue(try sut.divider.isHidden)
+        XCTAssertTrue(try sut.closeButton.isHidden)
+        XCTAssertTrue(try sut.primaryButton.isHidden)
+        XCTAssertTrue(try sut.secondaryButton.isHidden)
     }
     
     func test_closeButton() throws {
@@ -79,13 +99,11 @@ extension ContentTileViewTests {
         XCTAssertEqual(try sut.primaryButton.titleLabel?.text, viewModel.primaryButtonViewModel.title.value)
         
         XCTAssertFalse(didTapPrimaryButton)
-        viewModel?.primaryButtonViewModel.action()
+        viewModel.primaryButtonViewModel.action()
         XCTAssertTrue(didTapPrimaryButton)
     }
     
     func test_secondaryButton() throws {
-        let viewModel = viewModel as ContentTileViewModelWithSecondaryButton
-        
         XCTAssertEqual(try sut.secondaryButton.titleLabel?.text, viewModel.secondaryButtonViewModel.title.value)
         XCTAssertEqual(try sut.secondaryButton.titleLabel?.tintColor, UIColor.gdsGreen)
         XCTAssertNil(try sut.secondaryButton.icon)

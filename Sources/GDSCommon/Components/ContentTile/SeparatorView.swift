@@ -16,7 +16,7 @@ public class SeparatorView: UIView {
     }
 
     private func setUp() {
-        backgroundColor = .lightGray
+        backgroundColor = .gdsDarkGrey
     }
 
     public override var intrinsicContentSize: CGSize {

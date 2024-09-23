@@ -184,7 +184,9 @@ public final class ContentTileView: NibView {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .custom)
-        if let view = viewModel as? ContentTileViewModelWithDismissButton {
+        button.accessibilityIdentifier = "content-close-button"
+        
+        if let _ = viewModel as? ContentTileViewModelWithDismissButton {
             let font = UIFont(style: .body, weight: .regular)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
             button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
@@ -192,7 +194,6 @@ public final class ContentTileView: NibView {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.adjustsImageSizeForAccessibilityContentSizeCategory = true
             button.addTarget(self, action: #selector(close), for: .touchUpInside)
-            button.accessibilityIdentifier = "content-close-button"
             return button
         } else {
             button.isHidden = true
