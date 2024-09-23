@@ -37,6 +37,9 @@ public final class ContentTileView: NibView {
         didSet {
             imageView.accessibilityIdentifier = "content-tile-image"
             if let view = viewModel as? ContentTileViewModelWithImage {
+                guard view.image.size.height > 0 else {
+                    return
+                }
                 NSLayoutConstraint.activate([
                     imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: view.image.size.width / view.image.size.height)
                 ])
@@ -44,7 +47,6 @@ public final class ContentTileView: NibView {
             } else {
                 imageView.isHidden = true
             }
-            
         }
     }
     

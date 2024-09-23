@@ -12,6 +12,7 @@ internal final class ContentTileViewTests: XCTestCase {
     @MainActor
     override func setUp() {
         super.setUp()
+        
         viewModel = MockContentTileViewModel(secondaryButtonViewModel: MockButtonViewModel(title: "test secondary button",
                                                                                            action: {
             self.didTapSecondaryButton = true
@@ -26,23 +27,33 @@ internal final class ContentTileViewTests: XCTestCase {
         }))
         
         sut = .init(frame: .zero, viewModel: viewModel)
+        
+        
     }
     
     override func tearDown() {
         sut = nil
-        
+        viewModel = nil
         super.tearDown()
     }
 }
 
 @MainActor
 extension ContentTileViewTests {
-    func test_closeContents() throws {
+    func test_imageContents() throws {
+        XCTAssertNotNil(try sut.image)
+    }
+    
+    func test_closeButton() throws {
         let font = UIFont(style: .body, weight: .regular)
         let config = UIImage.SymbolConfiguration(font: font, scale: .default)
         
         XCTAssertEqual(try sut.closeButton.image(for: .normal), UIImage(systemName: "xmark", withConfiguration: config))
         XCTAssertEqual(try sut.closeButton.tintColor, .gdsGreen)
+        
+        XCTAssertFalse(didTapCloseButton)
+        viewModel.closeButton.action()
+        XCTAssertTrue(didTapCloseButton)
     }
     
     func test_captionContents() {
@@ -67,16 +78,20 @@ extension ContentTileViewTests {
     func test_primaryButton() throws {
         XCTAssertEqual(try sut.primaryButton.titleLabel?.text, viewModel.primaryButtonViewModel.title.value)
         
-        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(didTapPrimaryButton)
+        viewModel?.primaryButtonViewModel.action()
         XCTAssertTrue(didTapPrimaryButton)
     }
     
     func test_secondaryButton() throws {
-        XCTAssertEqual(try sut.secondaryButton.titleLabel?.text, viewModel.secondaryButtonViewModel.title.value)
-        XCTAssertEqual(try sut.secondaryButton.titleLabel?.textColor, UIColor.gdsGreen)
-        XCTAssertEqual(try sut.secondaryButton.icon, "arrow.up.right")
+        let viewModel = viewModel as ContentTileViewModelWithSecondaryButton
         
-        try sut.secondaryButton.sendActions(for: .touchUpInside)
+        XCTAssertEqual(try sut.secondaryButton.titleLabel?.text, viewModel.secondaryButtonViewModel.title.value)
+        XCTAssertEqual(try sut.secondaryButton.titleLabel?.tintColor, UIColor.gdsGreen)
+        XCTAssertNil(try sut.secondaryButton.icon)
+        
+        XCTAssertFalse(didTapSecondaryButton)
+        viewModel.secondaryButtonViewModel.action()
         XCTAssertTrue(didTapSecondaryButton)
     }
 

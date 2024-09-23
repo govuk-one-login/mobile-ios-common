@@ -8,7 +8,7 @@ struct MockContentTileViewModel: ContentTile {
     var title: GDSLocalisedString = "test title"
     var body: GDSLocalisedString = "test body"
     var showSeparatorLine: Bool = true
-    var backgroundColour: UIColor? = .systemBackground
+    var backgroundColour: UIColor?
     var secondaryButtonViewModel: ButtonViewModel
     var primaryButtonViewModel: ButtonViewModel
     var closeButton: ButtonViewModel
