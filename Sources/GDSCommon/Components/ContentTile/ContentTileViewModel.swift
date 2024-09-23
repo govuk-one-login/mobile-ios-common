@@ -1,7 +1,13 @@
 import Foundation
 import UIKit
 
-public typealias ContentTile = ContentTileViewModel & ContentTileViewModelWithImage & ContentTileViewModelWithDismissButton & ContentTileViewModelWithCaption & ContentTileViewModelWithBody & ContentTileViewModelWithSecondaryButton & ContentTileViewModelWithPrimaryButton
+public typealias ContentTile = ContentTileViewModel &
+ContentTileViewModelWithImage &
+ContentTileViewModelWithDismissButton &
+ContentTileViewModelWithCaption &
+ContentTileViewModelWithBody &
+ContentTileViewModelWithSecondaryButton &
+ContentTileViewModelWithPrimaryButton
 
 @MainActor
 public protocol ContentTileViewModel {

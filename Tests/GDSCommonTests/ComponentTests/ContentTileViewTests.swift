@@ -17,7 +17,7 @@ internal final class ContentTileViewTests: XCTestCase {
                                                                                            action: {
             self.didTapSecondaryButton = true
         }),
-                                             primaryButtonViewModel: MockButtonViewModel(title: "test primary button", 
+                                             primaryButtonViewModel: MockButtonViewModel(title: "test primary button",
                                                                                          action: {
             self.didTapPrimaryButton = true
         }),

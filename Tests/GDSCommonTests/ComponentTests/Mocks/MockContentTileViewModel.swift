@@ -1,6 +1,6 @@
 import Foundation
-import UIKit
 import GDSCommon
+import UIKit
 
 struct MockContentTileViewModel: ContentTile {
     var image: UIImage = UIImage(named: "placeholder") ?? UIImage()
