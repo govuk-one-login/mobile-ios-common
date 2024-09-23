@@ -138,6 +138,7 @@ public final class ContentTileView: NibView {
     
     private lazy var secondaryButton: SecondaryButton = {
         let secondaryButton = SecondaryButton()
+        secondaryButton.accessibilityIdentifier = "content-secondary-button"
 
         if let view = viewModel as? ContentTileViewModelWithSecondaryButton {
             secondaryButton.titleLabel?.textColor = .gdsGreen
@@ -153,7 +154,6 @@ public final class ContentTileView: NibView {
         } else {
             secondaryButton.isHidden = true
         }
-        secondaryButton.accessibilityIdentifier = "content-secondary-button"
         return secondaryButton
     }()
     
@@ -163,6 +163,7 @@ public final class ContentTileView: NibView {
     
     private lazy var primaryButton: RoundedButton = {
         let primaryButton = RoundedButton()
+        primaryButton.accessibilityIdentifier = "content-primary-button"
 
         if let view = viewModel as? ContentTileViewModelWithPrimaryButton {
             primaryButton.setTitle(view.primaryButtonViewModel.title.value, for: .normal)
@@ -172,7 +173,6 @@ public final class ContentTileView: NibView {
         } else {
             primaryButton.isHidden = true
         }
-        primaryButton.accessibilityIdentifier = "content-primary-button"
         return primaryButton
     }()
     
@@ -190,6 +190,7 @@ public final class ContentTileView: NibView {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.adjustsImageSizeForAccessibilityContentSizeCategory = true
             button.addTarget(self, action: #selector(close), for: .touchUpInside)
+            button.accessibilityIdentifier = "content-close-button"
             return button
         } else {
             button.isHidden = true
