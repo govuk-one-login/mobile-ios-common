@@ -62,8 +62,8 @@ public final class ContentTileView: NibView {
     
     @IBOutlet private var captionLabel: UILabel! {
         didSet {
-            if let view = viewModel as? ContentTileViewModelWithCaption {
-                captionLabel.text = view.caption.value
+            if let viewModel = viewModel as? ContentTileViewModelWithCaption {
+                captionLabel.text = viewModel.caption.value
                 captionLabel.font = UIFont(style: .subheadline, weight: .regular)
                 captionLabel.numberOfLines = 0
                 captionLabel.adjustsFontForContentSizeCategory = true
@@ -90,8 +90,8 @@ public final class ContentTileView: NibView {
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            if let view = viewModel as? ContentTileViewModelWithBody {
-                bodyLabel.text = view.body.value
+            if let viewModel = viewModel as? ContentTileViewModelWithBody {
+                bodyLabel.text = viewModel.body.value
                 bodyLabel.font = .body
                 bodyLabel.numberOfLines = 0
                 bodyLabel.adjustsFontForContentSizeCategory = true
@@ -138,14 +138,14 @@ public final class ContentTileView: NibView {
         let secondaryButton = SecondaryButton()
         secondaryButton.accessibilityIdentifier = "content-secondary-button"
         
-        if let view = viewModel as? ContentTileViewModelWithSecondaryButton {
+        if let viewModel = viewModel as? ContentTileViewModelWithSecondaryButton {
             secondaryButton.titleLabel?.textColor = .gdsGreen
-            if let icon = view.secondaryButtonViewModel.icon {
+            if let icon = viewModel.secondaryButtonViewModel.icon {
                 secondaryButton.symbolPosition = icon.symbolPosition
                 secondaryButton.icon = icon.iconName
             }
             secondaryButton.contentHorizontalAlignment = .left
-            secondaryButton.setTitle(view.secondaryButtonViewModel.title.value, for: .normal)
+            secondaryButton.setTitle(viewModel.secondaryButtonViewModel.title.value, for: .normal)
             secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
             secondaryButton.isUserInteractionEnabled = true
             return secondaryButton
@@ -165,8 +165,8 @@ public final class ContentTileView: NibView {
         let primaryButton = RoundedButton()
         primaryButton.accessibilityIdentifier = "content-primary-button"
         
-        if let view = viewModel as? ContentTileViewModelWithPrimaryButton {
-            primaryButton.setTitle(view.primaryButtonViewModel.title.value, for: .normal)
+        if let viewModel = viewModel as? ContentTileViewModelWithPrimaryButton {
+            primaryButton.setTitle(viewModel.primaryButtonViewModel.title.value, for: .normal)
             primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
             primaryButton.isUserInteractionEnabled = true
             return primaryButton
