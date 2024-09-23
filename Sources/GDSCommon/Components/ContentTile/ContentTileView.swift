@@ -36,7 +36,7 @@ public final class ContentTileView: NibView {
     @IBOutlet private var imageView: UIImageView! {
         didSet {
             imageView.accessibilityIdentifier = "content-tile-image"
-            if let view = viewModel as? ContentTileViewModelWithImage {
+            if let viewModel = viewModel as? ContentTileViewModelWithImage {
                 guard view.image.size.height > 0 else {
                     return
                 }
