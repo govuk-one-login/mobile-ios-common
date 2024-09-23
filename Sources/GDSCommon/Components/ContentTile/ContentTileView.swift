@@ -186,7 +186,7 @@ public final class ContentTileView: NibView {
         let button = UIButton(type: .custom)
         button.accessibilityIdentifier = "content-close-button"
         
-        if let _ = viewModel as? ContentTileViewModelWithDismissButton {
+        if ((viewModel as? ContentTileViewModelWithDismissButton) != nil) {
             let font = UIFont(style: .body, weight: .regular)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
             button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
