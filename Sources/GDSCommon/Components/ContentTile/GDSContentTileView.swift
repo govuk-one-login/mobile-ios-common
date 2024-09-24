@@ -1,10 +1,10 @@
 import Foundation
 import UIKit
 
-public final class ContentTileView: NibView {
-    public let viewModel: ContentTileViewModel
+public final class GDSContentTileView: NibView {
+    public let viewModel: GDSContentTileViewModel
     
-    public init(frame: CGRect, viewModel: ContentTileViewModel) {
+    public init(frame: CGRect, viewModel: GDSContentTileViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame, bundle: .module)
     }
@@ -36,7 +36,7 @@ public final class ContentTileView: NibView {
     @IBOutlet private var imageView: UIImageView! {
         didSet {
             imageView.accessibilityIdentifier = "content-tile-image"
-            if let viewModel = viewModel as? ContentTileViewModelWithImage, viewModel.image.size.height > 0 {
+            if let viewModel = viewModel as? GDSContentTileViewModelWithImage, viewModel.image.size.height > 0 {
                 NSLayoutConstraint.activate([
                     imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: viewModel.image.size.width / viewModel.image.size.height)
                 ])
@@ -62,7 +62,7 @@ public final class ContentTileView: NibView {
     
     @IBOutlet private var captionLabel: UILabel! {
         didSet {
-            if let viewModel = viewModel as? ContentTileViewModelWithCaption {
+            if let viewModel = viewModel as? GDSContentTileViewModelWithCaption {
                 captionLabel.text = viewModel.caption.value
                 captionLabel.font = UIFont(style: .subheadline, weight: .regular)
                 captionLabel.numberOfLines = 0
@@ -90,7 +90,7 @@ public final class ContentTileView: NibView {
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
-            if let viewModel = viewModel as? ContentTileViewModelWithBody {
+            if let viewModel = viewModel as? GDSContentTileViewModelWithBody {
                 bodyLabel.text = viewModel.body.value
                 bodyLabel.font = .body
                 bodyLabel.numberOfLines = 0
@@ -138,7 +138,7 @@ public final class ContentTileView: NibView {
         let secondaryButton = SecondaryButton()
         secondaryButton.accessibilityIdentifier = "content-secondary-button"
         
-        if let viewModel = viewModel as? ContentTileViewModelWithSecondaryButton {
+        if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
             secondaryButton.titleLabel?.textColor = .gdsGreen
             if let icon = viewModel.secondaryButtonViewModel.icon {
                 secondaryButton.symbolPosition = icon.symbolPosition
@@ -156,7 +156,7 @@ public final class ContentTileView: NibView {
     }()
     
     @objc private func secondaryButtonTapped() {
-        if let viewModel = viewModel as? ContentTileViewModelWithSecondaryButton {
+        if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
             viewModel.secondaryButtonViewModel.action()
         }
     }
@@ -165,7 +165,7 @@ public final class ContentTileView: NibView {
         let primaryButton = RoundedButton()
         primaryButton.accessibilityIdentifier = "content-primary-button"
         
-        if let viewModel = viewModel as? ContentTileViewModelWithPrimaryButton {
+        if let viewModel = viewModel as? GDSContentTileViewModelWithPrimaryButton {
             primaryButton.setTitle(viewModel.primaryButtonViewModel.title.value, for: .normal)
             primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
             primaryButton.isUserInteractionEnabled = true
@@ -177,7 +177,7 @@ public final class ContentTileView: NibView {
     }()
     
     @objc private func primaryButtonTapped() {
-        if let viewModel = viewModel as? ContentTileViewModelWithPrimaryButton {
+        if let viewModel = viewModel as? GDSContentTileViewModelWithPrimaryButton {
             viewModel.primaryButtonViewModel.action()
         }
     }
@@ -186,7 +186,7 @@ public final class ContentTileView: NibView {
         let button = UIButton(type: .custom)
         button.accessibilityIdentifier = "content-close-button"
         
-        if viewModel is ContentTileViewModelWithDismissButton {
+        if viewModel is GDSContentTileViewModelWithDismissButton {
             let font = UIFont(style: .body, weight: .regular)
             let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
             button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
@@ -202,7 +202,7 @@ public final class ContentTileView: NibView {
     }()
     
     @objc private func close() {
-        if let viewModel = viewModel as? ContentTileViewModelWithDismissButton {
+        if let viewModel = viewModel as? GDSContentTileViewModelWithDismissButton {
             viewModel.closeButton.action()
         }
     }
