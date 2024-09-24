@@ -1,8 +1,8 @@
 import GDSCommon
 import XCTest
 
-internal final class ContentTileViewTests: XCTestCase {
-    var sut: ContentTileView!
+internal final class GDSContentTileViewTests: XCTestCase {
+    var sut: GDSContentTileView!
     var viewModel: ExpandedContentTileViewModel!
     
     var didTapPrimaryButton: Bool = false
@@ -36,7 +36,7 @@ internal final class ContentTileViewTests: XCTestCase {
     }
 }
 
-private struct TestViewModel: ContentTileViewModel {
+private struct TestViewModel: GDSContentTileViewModel {
     var title: GDSLocalisedString = "test caption"
     var showSeparatorLine: Bool = false
     var backgroundColour: UIColor?
@@ -44,14 +44,14 @@ private struct TestViewModel: ContentTileViewModel {
 
 
 @MainActor
-extension ContentTileViewTests {
+extension GDSContentTileViewTests {
     func test_imageContents() throws {
         XCTAssertNotNil(try sut.image)
     }
     
     func test_hiddenContents() throws {
         let viewModel = TestViewModel()
-        sut = ContentTileView(frame: .zero, viewModel: viewModel)
+        sut = GDSContentTileView(frame: .zero, viewModel: viewModel)
         
         XCTAssertTrue(try sut.image.isHidden)
         XCTAssertTrue(try sut.captionLabel.isHidden)
@@ -112,7 +112,7 @@ extension ContentTileViewTests {
     }
 }
 
-extension ContentTileView {
+extension GDSContentTileView {
     var image: UIImageView {
         get throws {
             try XCTUnwrap(self[child: "content-tile-image"])
