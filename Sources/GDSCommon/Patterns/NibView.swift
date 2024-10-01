@@ -27,14 +27,22 @@ open class NibView: UIView {
     
     func setupNib(_ nibName: String, bundle: Bundle?) {
         if let view = loadViewFromNib(nibName, bundle: bundle) {
-            self.view = view
-            self.view?.frame = bounds
-            self.view?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.translatesAutoresizingMaskIntoConstraints = false
+
             addSubview(view)
+
+            NSLayoutConstraint.activate([
+                topAnchor.constraint(equalTo: view.topAnchor),
+                bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+
+            self.view = view
         }
     }
     
-    func loadViewFromNib(_ nibName: String, bundle: Bundle?) -> UIView? {
+    private func loadViewFromNib(_ nibName: String, bundle: Bundle?) -> UIView? {
         let bundle = bundle ?? Bundle(for: Self.self)
         if bundle.path(forResource: nibName, ofType: "nib") != nil {
             let nib = UINib(nibName: nibName, bundle: bundle)
