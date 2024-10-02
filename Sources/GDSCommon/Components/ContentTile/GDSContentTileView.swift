@@ -15,8 +15,6 @@ public final class GDSContentTileView: NibView {
     
     @IBOutlet private var containerView: UIView! {
         didSet {
-            containerView.layer.cornerRadius = 16
-            containerView.layer.masksToBounds = true
             containerView.accessibilityIdentifier = "containerView"
         }
     }
