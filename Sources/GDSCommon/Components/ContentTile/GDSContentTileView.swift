@@ -139,13 +139,13 @@ public final class GDSContentTileView: NibView {
         secondaryButton.accessibilityIdentifier = "content-secondary-button"
         
         if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
-            secondaryButton.titleLabel?.textColor = .gdsGreen
             if let icon = viewModel.secondaryButtonViewModel.icon {
                 secondaryButton.symbolPosition = icon.symbolPosition
                 secondaryButton.icon = icon.iconName
             }
             secondaryButton.contentHorizontalAlignment = .left
             secondaryButton.setTitle(viewModel.secondaryButtonViewModel.title.value, for: .normal)
+            secondaryButton.setTitleColor(.gdsGreen, for: .normal)
             secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
             secondaryButton.isUserInteractionEnabled = true
             return secondaryButton

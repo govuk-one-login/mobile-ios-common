@@ -103,7 +103,7 @@ extension GDSContentTileViewTests {
     
     func test_secondaryButton() throws {
         XCTAssertEqual(try sut.secondaryButton.titleLabel?.text, viewModel.secondaryButtonViewModel.title.value)
-        XCTAssertEqual(try sut.secondaryButton.titleLabel?.tintColor, UIColor.gdsGreen)
+        XCTAssertEqual(try sut.secondaryButton.currentTitleColor, UIColor.gdsGreen)
         XCTAssertNil(try sut.secondaryButton.icon)
         
         XCTAssertFalse(didTapSecondaryButton)
