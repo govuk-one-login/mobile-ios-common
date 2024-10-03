@@ -21,6 +21,7 @@ public final class GDSContentTileView: NibView {
     
     @IBOutlet private var containerStackView: UIStackView! {
         didSet {
+            containerStackView.backgroundColor = viewModel.backgroundColour
             containerStackView.addSubview(closeButton)
             
             NSLayoutConstraint.activate([
@@ -112,9 +113,6 @@ public final class GDSContentTileView: NibView {
     
     @IBOutlet private var buttonStack: UIStackView! {
         didSet {
-            buttonStack.isLayoutMarginsRelativeArrangement = true
-            buttonStack.backgroundColor = viewModel.backgroundColour
-            
             buttonStack.addArrangedSubview(secondaryButton)
             buttonStack.addArrangedSubview(primaryButton)
         }
