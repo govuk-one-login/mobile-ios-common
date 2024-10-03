@@ -110,6 +110,7 @@ public final class GDSContentTileView: NibView {
                 secondaryButton.setTitle(viewModel.secondaryButtonViewModel.title.value, for: .normal)
                 secondaryButton.setTitleColor(.gdsGreen, for: .normal)
                 secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
+                secondaryButton.contentHorizontalAlignment = .left
                 secondaryButton.isUserInteractionEnabled = true
                 secondaryButton.accessibilityIdentifier = "content-secondary-button"
                 buttonStack.addArrangedSubview(secondaryButton)
