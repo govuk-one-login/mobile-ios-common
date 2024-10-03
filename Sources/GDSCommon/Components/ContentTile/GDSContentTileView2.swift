@@ -6,7 +6,7 @@ public final class GDSContentTileView2: NibView {
     
     public init(viewModel: GDSContentTileViewModel) {
         self.viewModel = viewModel
-        super.init(forcedNibName: "GDSContentTileView", bundle: .module)
+        super.init(forcedNibName: "GDSContentTileView2", bundle: .module)
         self.accessibilityIdentifier = "containerView"
     }
     
