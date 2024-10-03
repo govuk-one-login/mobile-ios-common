@@ -17,22 +17,25 @@ public final class GDSContentTileView2: NibView {
     @IBOutlet private var containerView: UIView! {
         didSet {
             containerView.backgroundColor = viewModel.backgroundColour
-            containerView.addSubview(closeButton)
             
-            NSLayoutConstraint.activate([
-                closeButton.trailingAnchor.constraint(
-                    greaterThanOrEqualTo: containerView.trailingAnchor,
-                    constant: -16
-                ),
-                closeButton.topAnchor.constraint(
-                    greaterThanOrEqualTo: containerView.topAnchor,
-                    constant: 8
-                )
-            ])
+            if viewModel is GDSContentTileViewModelWithDismissButton {
+                containerView.addSubview(closeButton)
+                
+                NSLayoutConstraint.activate([
+                    closeButton.trailingAnchor.constraint(
+                        greaterThanOrEqualTo: containerView.trailingAnchor,
+                        constant: -16
+                    ),
+                    closeButton.topAnchor.constraint(
+                        greaterThanOrEqualTo: containerView.topAnchor,
+                        constant: 8
+                    )
+                ])
+            }
+
             containerView.accessibilityIdentifier = "containerStackView"
         }
     }
-    
     
     @IBOutlet private var imageView: UIImageView! {
         didSet {
@@ -51,7 +54,6 @@ public final class GDSContentTileView2: NibView {
             imageView.accessibilityIdentifier = "content-tile-image"
         }
     }
-    
     
     @IBOutlet private var captionLabel: UILabel! {
         didSet {
@@ -74,7 +76,6 @@ public final class GDSContentTileView2: NibView {
             titleLabel.accessibilityIdentifier = "content-tile-title"
         }
     }
-    
     
     @IBOutlet private var bodyLabel: UILabel! {
         didSet {
@@ -121,7 +122,6 @@ public final class GDSContentTileView2: NibView {
             viewModel.secondaryButtonViewModel.action()
         }
     }
-    
         
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
@@ -142,20 +142,14 @@ public final class GDSContentTileView2: NibView {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .custom)
+        let font = UIFont(style: .body, weight: .regular)
+        let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
+        button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
+        button.tintColor = .gdsGreen
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.adjustsImageSizeForAccessibilityContentSizeCategory = true
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
         button.accessibilityIdentifier = "content-close-button"
-        
-        if viewModel is GDSContentTileViewModelWithDismissButton {
-            let font = UIFont(style: .body, weight: .regular)
-            let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
-            button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
-            button.tintColor = .gdsGreen
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.adjustsImageSizeForAccessibilityContentSizeCategory = true
-            button.addTarget(self, action: #selector(close), for: .touchUpInside)
-            return button
-        } else {
-            button.isHidden = true
-        }
         return button
     }()
     
