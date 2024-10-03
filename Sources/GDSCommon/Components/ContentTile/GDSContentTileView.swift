@@ -108,52 +108,37 @@ public final class GDSContentTileView: NibView {
     
     @IBOutlet private var buttonStack: UIStackView! {
         didSet {
-            buttonStack.addArrangedSubview(secondaryButton)
-            buttonStack.addArrangedSubview(primaryButton)
+            if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
+                let secondaryButton = SecondaryButton()
+                if let icon = viewModel.secondaryButtonViewModel.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
+                secondaryButton.contentHorizontalAlignment = .left
+                secondaryButton.setTitle(viewModel.secondaryButtonViewModel.title.value, for: .normal)
+                secondaryButton.setTitleColor(.gdsGreen, for: .normal)
+                secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
+                secondaryButton.isUserInteractionEnabled = true
+                secondaryButton.accessibilityIdentifier = "content-secondary-button"
+                buttonStack.addArrangedSubview(secondaryButton)
+            }
+            
+            if let viewModel = viewModel as? GDSContentTileViewModelWithPrimaryButton {
+                let primaryButton = RoundedButton()
+                primaryButton.setTitle(viewModel.primaryButtonViewModel.title.value, for: .normal)
+                primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
+                primaryButton.isUserInteractionEnabled = true
+                primaryButton.accessibilityIdentifier = "content-primary-button"
+                buttonStack.addArrangedSubview(primaryButton)
+            }
         }
     }
-    
-    private lazy var secondaryButton: SecondaryButton = {
-        let secondaryButton = SecondaryButton()
-        secondaryButton.accessibilityIdentifier = "content-secondary-button"
-        
-        if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
-            if let icon = viewModel.secondaryButtonViewModel.icon {
-                secondaryButton.symbolPosition = icon.symbolPosition
-                secondaryButton.icon = icon.iconName
-            }
-            secondaryButton.contentHorizontalAlignment = .left
-            secondaryButton.setTitle(viewModel.secondaryButtonViewModel.title.value, for: .normal)
-            secondaryButton.setTitleColor(.gdsGreen, for: .normal)
-            secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
-            secondaryButton.isUserInteractionEnabled = true
-            return secondaryButton
-        } else {
-            secondaryButton.isHidden = true
-        }
-        return secondaryButton
-    }()
     
     @objc private func secondaryButtonTapped() {
         if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
             viewModel.secondaryButtonViewModel.action()
         }
     }
-    
-    private lazy var primaryButton: RoundedButton = {
-        let primaryButton = RoundedButton()
-        primaryButton.accessibilityIdentifier = "content-primary-button"
-        
-        if let viewModel = viewModel as? GDSContentTileViewModelWithPrimaryButton {
-            primaryButton.setTitle(viewModel.primaryButtonViewModel.title.value, for: .normal)
-            primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
-            primaryButton.isUserInteractionEnabled = true
-            return primaryButton
-        } else {
-            primaryButton.isHidden = true
-        }
-        return primaryButton
-    }()
     
     @objc private func primaryButtonTapped() {
         if let viewModel = viewModel as? GDSContentTileViewModelWithPrimaryButton {
