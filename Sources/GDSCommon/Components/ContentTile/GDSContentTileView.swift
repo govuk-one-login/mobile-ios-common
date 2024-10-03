@@ -99,6 +99,9 @@ public final class GDSContentTileView: NibView {
                 let separatorView = SeparatorView()
                 separatorView.accessibilityIdentifier = "content-tile-separator"
                 buttonStack.addArrangedSubview(separatorView)
+                NSLayoutConstraint.activate([
+                    separatorView.heightAnchor.constraint(equalToConstant: 1)
+                ])
             }
             
             if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
