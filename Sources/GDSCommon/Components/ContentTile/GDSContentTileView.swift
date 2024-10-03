@@ -68,7 +68,6 @@ public final class GDSContentTileView: NibView {
                 captionLabel.text = viewModel.caption.value
                 captionLabel.font = UIFont(style: .subheadline, weight: .regular)
                 captionLabel.numberOfLines = 0
-                captionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
             } else {
                 captionLabel.isHidden = true
             }
@@ -81,7 +80,6 @@ public final class GDSContentTileView: NibView {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .bodyBold
             titleLabel.numberOfLines = 0
-            titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
             titleLabel.accessibilityIdentifier = "content-tile-title"
         }
     }
@@ -92,7 +90,6 @@ public final class GDSContentTileView: NibView {
                 bodyLabel.text = viewModel.body.value
                 bodyLabel.font = .body
                 bodyLabel.numberOfLines = 0
-                bodyLabel.setContentCompressionResistancePriority(.required, for: .vertical)
             } else {
                 bodyLabel.isHidden = true
             }
