@@ -47,11 +47,6 @@ public final class GDSContentTileView: NibView {
     
     @IBOutlet private var textStack: UIStackView! {
         didSet {
-            textStack.spacing = 8
-            textStack.layoutMargins = UIEdgeInsets(top: 8,
-                                                   left: 16,
-                                                   bottom: 0,
-                                                   right: 16)
             textStack.isLayoutMarginsRelativeArrangement = true
             textStack.accessibilityIdentifier = "content-text-stack"
             textStack.backgroundColor = viewModel.backgroundColour
@@ -104,26 +99,19 @@ public final class GDSContentTileView: NibView {
     
     @IBOutlet private var separatorStack: UIStackView! {
         didSet {
-            separatorStack.isHidden = !viewModel.showSeparatorLine
-            
-            let separatorView = SeparatorView()
-            separatorStack.addArrangedSubview(separatorView)
-            separatorStack.layoutMargins = UIEdgeInsets(top: 8,
-                                                        left: 16,
-                                                        bottom: 0,
-                                                        right: 0)
-            separatorStack.isLayoutMarginsRelativeArrangement = true
+            if viewModel.showSeparatorLine {
+                let separatorView = SeparatorView()
+                separatorStack.addArrangedSubview(separatorView)
+                separatorStack.isLayoutMarginsRelativeArrangement = true
+            } else {
+                separatorStack.isHidden = true
+            }
             separatorStack.accessibilityIdentifier = "content-tile-separator"
         }
     }
     
     @IBOutlet private var buttonStack: UIStackView! {
         didSet {
-            buttonStack.spacing = 16
-            buttonStack.layoutMargins = UIEdgeInsets(top: 8,
-                                                     left: 16,
-                                                     bottom: 16,
-                                                     right: 16)
             buttonStack.isLayoutMarginsRelativeArrangement = true
             buttonStack.backgroundColor = viewModel.backgroundColour
             
