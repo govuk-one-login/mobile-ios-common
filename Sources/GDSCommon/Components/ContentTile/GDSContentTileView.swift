@@ -4,19 +4,14 @@ import UIKit
 public final class GDSContentTileView: NibView {
     public let viewModel: GDSContentTileViewModel
     
-    public init(frame: CGRect, viewModel: GDSContentTileViewModel) {
+    public init(viewModel: GDSContentTileViewModel) {
         self.viewModel = viewModel
-        super.init(frame: frame, bundle: .module)
+        super.init(forcedNibName: "GDSContentTileView", bundle: .module)
+        self.accessibilityIdentifier = "containerView"
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @IBOutlet private var containerView: UIView! {
-        didSet {
-            containerView.accessibilityIdentifier = "containerView"
-        }
     }
     
     @IBOutlet private var containerStackView: UIStackView! {
