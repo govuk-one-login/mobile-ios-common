@@ -14,7 +14,7 @@ public final class GDSContentTileView2: NibView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @IBOutlet var containerView: UIView! {
+    @IBOutlet private var containerView: UIView! {
         didSet {
             containerView.backgroundColor = viewModel.backgroundColour
             containerView.addSubview(closeButton)
@@ -34,7 +34,7 @@ public final class GDSContentTileView2: NibView {
     }
     
     
-    @IBOutlet var imageView: UIImageView! {
+    @IBOutlet private var imageView: UIImageView! {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithImage,
                viewModel.image.size.height > 0 {
@@ -53,7 +53,7 @@ public final class GDSContentTileView2: NibView {
     }
     
     
-    @IBOutlet var captionLabel: UILabel! {
+    @IBOutlet private var captionLabel: UILabel! {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithCaption {
                 captionLabel.text = viewModel.caption.value
@@ -66,7 +66,7 @@ public final class GDSContentTileView2: NibView {
         }
     }
     
-    @IBOutlet var titleLabel: UILabel! {
+    @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .bodyBold
@@ -76,7 +76,7 @@ public final class GDSContentTileView2: NibView {
     }
     
     
-    @IBOutlet var bodyLabel: UILabel! {
+    @IBOutlet private var bodyLabel: UILabel! {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithBody {
                 bodyLabel.text = viewModel.body.value
@@ -89,7 +89,7 @@ public final class GDSContentTileView2: NibView {
         }
     }
     
-    @IBOutlet var separatorView: UIView! {
+    @IBOutlet private var separatorView: UIView! {
         didSet {
             if viewModel.showSeparatorLine {
                 separatorView.backgroundColor = .gdsGrey
@@ -100,7 +100,7 @@ public final class GDSContentTileView2: NibView {
         }
     }
     
-    @IBOutlet var secondaryButton: SecondaryButton! {
+    @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
                 secondaryButton.setTitle(viewModel.secondaryButtonViewModel.title.value, for: .normal)
@@ -116,14 +116,14 @@ public final class GDSContentTileView2: NibView {
         }
     }
     
-    @IBAction func secondaryButtonAction(_ sender: Any) {
+    @IBAction private func secondaryButtonAction(_ sender: Any) {
         if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
             viewModel.secondaryButtonViewModel.action()
         }
     }
     
         
-    @IBOutlet var primaryButton: RoundedButton! {
+    @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithPrimaryButton {
                 primaryButton.setTitle(viewModel.primaryButtonViewModel.title.value, for: .normal)
@@ -134,7 +134,7 @@ public final class GDSContentTileView2: NibView {
         }
     }
     
-    @IBAction func primaryButtonAction(_ sender: Any) {
+    @IBAction private func primaryButtonAction(_ sender: Any) {
         if let viewModel = viewModel as? GDSContentTileViewModelWithPrimaryButton {
             viewModel.primaryButtonViewModel.action()
         }

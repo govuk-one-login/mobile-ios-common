@@ -11,14 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GDSContentTileView2" customModule="GDSCommon">
             <connections>
-                <outlet property="bodyLabel" destination="hAj-4f-hLY" id="doh-CG-TYi"/>
-                <outlet property="captionLabel" destination="jjS-qS-4i2" id="k2v-dl-9ns"/>
-                <outlet property="containerView" destination="N0W-AZ-cP0" id="3Se-wd-woA"/>
-                <outlet property="imageView" destination="AGt-xz-WsO" id="1ny-Or-pvT"/>
-                <outlet property="primaryButton" destination="NUM-lv-DXq" id="yzR-WU-c83"/>
-                <outlet property="secondaryButton" destination="nsZ-6g-9Sr" id="Nkw-7p-wNH"/>
-                <outlet property="separatorView" destination="Vb4-jw-Flu" id="h0f-yg-2in"/>
-                <outlet property="titleLabel" destination="p4w-Yh-QKY" id="Qko-Gy-Jfm"/>
+                <outlet property="bodyLabel" destination="hAj-4f-hLY" id="RZV-kl-ixX"/>
+                <outlet property="captionLabel" destination="jjS-qS-4i2" id="dFV-vf-6Hz"/>
+                <outlet property="containerView" destination="N0W-AZ-cP0" id="AAS-pM-qok"/>
+                <outlet property="imageView" destination="AGt-xz-WsO" id="S7d-1w-Zdd"/>
+                <outlet property="primaryButton" destination="NUM-lv-DXq" id="WCs-6D-tIv"/>
+                <outlet property="secondaryButton" destination="nsZ-6g-9Sr" id="tw8-eR-6Eq"/>
+                <outlet property="separatorView" destination="Vb4-jw-Flu" id="l3R-Ua-tLH"/>
+                <outlet property="titleLabel" destination="p4w-Yh-QKY" id="B4t-nr-cyi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -63,17 +63,16 @@
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Button"/>
                             <connections>
-                                <action selector="secondaryButtonAction:" destination="-1" eventType="touchUpInside" id="mA9-k4-sUV"/>
+                                <action selector="secondaryButtonAction:" destination="-1" eventType="touchUpInside" id="K2n-bn-MbX"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NUM-lv-DXq" customClass="SecondaryButton" customModule="GDSCommon">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NUM-lv-DXq" customClass="RoundedButton" customModule="GDSCommon">
                             <rect key="frame" x="8" y="143" width="377" height="33"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Button"/>
                             <connections>
-                                <action selector="primaryButtonAction:" destination="-1" eventType="touchUpInside" id="ojv-lK-imm"/>
-                                <action selector="secondaryButtonAction:" destination="-1" eventType="touchUpInside" id="sQU-dL-Ygn"/>
+                                <action selector="primaryButtonAction:" destination="-1" eventType="touchUpInside" id="y5V-98-Iaw"/>
                             </connections>
                         </button>
                     </subviews>
