@@ -35,32 +35,32 @@
                             <rect key="frame" x="0.0" y="585" width="393" height="267"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjS-qS-4i2" userLabel="captionLabel">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="119.33333333333333"/>
+                                    <rect key="frame" x="8" y="8" width="377" height="69.333333333333329"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4w-Yh-QKY" userLabel="titleLabel">
-                                    <rect key="frame" x="0.0" y="127.33333333333336" width="393" height="20.333333333333329"/>
+                                    <rect key="frame" x="8" y="85.333333333333371" width="377" height="20.333333333333314"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAj-4f-hLY" userLabel="bodyLabel">
-                                    <rect key="frame" x="0.0" y="155.66666666666663" width="393" height="20.333333333333343"/>
+                                    <rect key="frame" x="8" y="113.66666666666663" width="377" height="20.333333333333343"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vb4-jw-Flu">
-                                    <rect key="frame" x="0.0" y="184" width="393" height="1"/>
+                                    <rect key="frame" x="8" y="142" width="377" height="1"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="6uG-gJ-Hj5"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nsZ-6g-9Sr" customClass="SecondaryButton" customModule="GDSCommon">
-                                    <rect key="frame" x="0.0" y="193" width="393" height="33"/>
+                                    <rect key="frame" x="8" y="151" width="377" height="33"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Button"/>
@@ -69,7 +69,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NUM-lv-DXq" customClass="RoundedButton" customModule="GDSCommon">
-                                    <rect key="frame" x="0.0" y="234" width="393" height="33"/>
+                                    <rect key="frame" x="8" y="192" width="377" height="33"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Button"/>
@@ -78,6 +78,7 @@
                                     </connections>
                                 </button>
                             </subviews>
+                            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                         </stackView>
                     </subviews>
                 </stackView>
