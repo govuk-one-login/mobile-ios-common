@@ -73,6 +73,7 @@ public final class GDSContentTileView2: NibView {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .bodyBold
             titleLabel.numberOfLines = 0
+            titleLabel.setContentHuggingPriority(.required, for: .vertical)
             titleLabel.accessibilityIdentifier = "content-tile-title"
         }
     }
@@ -83,6 +84,7 @@ public final class GDSContentTileView2: NibView {
                 bodyLabel.text = viewModel.body.value
                 bodyLabel.font = .body
                 bodyLabel.numberOfLines = 0
+                bodyLabel.setContentHuggingPriority(.required, for: .vertical)
             } else {
                 bodyLabel.isHidden = true
             }
