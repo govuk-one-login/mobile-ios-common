@@ -93,21 +93,14 @@ public final class GDSContentTileView: NibView {
         }
     }
     
-    @IBOutlet private var separatorStack: UIStackView! {
+    @IBOutlet private var buttonStack: UIStackView! {
         didSet {
             if viewModel.showSeparatorLine {
                 let separatorView = SeparatorView()
-                separatorStack.addArrangedSubview(separatorView)
-                separatorStack.isLayoutMarginsRelativeArrangement = true
-            } else {
-                separatorStack.isHidden = true
+                separatorView.accessibilityIdentifier = "content-tile-separator"
+                buttonStack.addArrangedSubview(separatorView)
             }
-            separatorStack.accessibilityIdentifier = "content-tile-separator"
-        }
-    }
-    
-    @IBOutlet private var buttonStack: UIStackView! {
-        didSet {
+            
             if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
                 let secondaryButton = SecondaryButton()
                 if let icon = viewModel.secondaryButtonViewModel.icon {
