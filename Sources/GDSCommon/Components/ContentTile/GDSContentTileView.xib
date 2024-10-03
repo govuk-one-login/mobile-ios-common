@@ -14,8 +14,7 @@
                 <outlet property="bodyLabel" destination="sEr-UI-8SY" id="p5e-Yi-fN7"/>
                 <outlet property="buttonStack" destination="U4u-VG-SlR" id="3Xt-82-zb1"/>
                 <outlet property="captionLabel" destination="xrQ-OE-IN9" id="Fgs-6c-W2U"/>
-                <outlet property="containerStackView" destination="nuc-zi-aER" id="tmd-gm-fiY"/>
-                <outlet property="containerView" destination="e5l-T6-HYY" id="qd4-Xf-bVd"/>
+                <outlet property="containerStackView" destination="nuc-zi-aER" id="joh-pH-N1H"/>
                 <outlet property="imageView" destination="ndO-H5-AMN" id="o9J-jD-8tL"/>
                 <outlet property="separatorStack" destination="D7Q-NS-IHB" id="hFX-ql-5wg"/>
                 <outlet property="textStack" destination="VIe-7s-SPk" id="VCj-3F-PNN"/>
