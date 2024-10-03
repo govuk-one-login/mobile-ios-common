@@ -21,24 +21,34 @@ public final class GDSContentTileView: NibView {
     
     @IBOutlet private var containerStackView: UIStackView! {
         didSet {
-            containerStackView.accessibilityIdentifier = "containerStackView"
-            
             containerStackView.addSubview(closeButton)
+            
             NSLayoutConstraint.activate([
-                closeButton.trailingAnchor.constraint(greaterThanOrEqualTo: containerStackView.trailingAnchor, constant: -16),
-                closeButton.topAnchor.constraint(greaterThanOrEqualTo: containerStackView.topAnchor, constant: 8)
+                closeButton.trailingAnchor.constraint(
+                    greaterThanOrEqualTo: containerStackView.trailingAnchor,
+                    constant: -16
+                ),
+                closeButton.topAnchor.constraint(
+                    greaterThanOrEqualTo: containerStackView.topAnchor,
+                    constant: 8
+                )
             ])
+            containerStackView.accessibilityIdentifier = "containerStackView"
         }
     }
     
     @IBOutlet private var imageView: UIImageView! {
         didSet {
             imageView.accessibilityIdentifier = "content-tile-image"
-            if let viewModel = viewModel as? GDSContentTileViewModelWithImage, viewModel.image.size.height > 0 {
-                NSLayoutConstraint.activate([
-                    imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: viewModel.image.size.width / viewModel.image.size.height)
-                ])
+            if let viewModel = viewModel as? GDSContentTileViewModelWithImage,
+               viewModel.image.size.height > 0 {
                 imageView.image = viewModel.image
+                NSLayoutConstraint.activate([
+                    imageView.widthAnchor.constraint(
+                        equalTo: imageView.heightAnchor,
+                        multiplier: viewModel.image.size.width / viewModel.image.size.height
+                    )
+                ])
             } else {
                 imageView.isHidden = true
             }
@@ -47,7 +57,6 @@ public final class GDSContentTileView: NibView {
     
     @IBOutlet private var textStack: UIStackView! {
         didSet {
-            textStack.isLayoutMarginsRelativeArrangement = true
             textStack.accessibilityIdentifier = "content-text-stack"
             textStack.backgroundColor = viewModel.backgroundColour
         }
@@ -59,9 +68,7 @@ public final class GDSContentTileView: NibView {
                 captionLabel.text = viewModel.caption.value
                 captionLabel.font = UIFont(style: .subheadline, weight: .regular)
                 captionLabel.numberOfLines = 0
-                captionLabel.adjustsFontForContentSizeCategory = true
                 captionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-                captionLabel.translatesAutoresizingMaskIntoConstraints = false
             } else {
                 captionLabel.isHidden = true
             }
@@ -73,10 +80,8 @@ public final class GDSContentTileView: NibView {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .bodyBold
-            titleLabel.adjustsFontForContentSizeCategory = true
             titleLabel.numberOfLines = 0
             titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-            titleLabel.translatesAutoresizingMaskIntoConstraints = false
             titleLabel.accessibilityIdentifier = "content-tile-title"
         }
     }
@@ -87,9 +92,7 @@ public final class GDSContentTileView: NibView {
                 bodyLabel.text = viewModel.body.value
                 bodyLabel.font = .body
                 bodyLabel.numberOfLines = 0
-                bodyLabel.adjustsFontForContentSizeCategory = true
                 bodyLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-                bodyLabel.translatesAutoresizingMaskIntoConstraints = false
             } else {
                 bodyLabel.isHidden = true
             }
