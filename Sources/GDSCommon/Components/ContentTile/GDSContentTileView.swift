@@ -62,7 +62,10 @@ public final class GDSContentTileView: NibView {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithCaption {
                 captionLabel.text = viewModel.caption.value
-                captionLabel.font = UIFont(style: .subheadline, weight: .regular)
+                captionLabel.font = UIFont(
+                    style: .subheadline,
+                    weight: .regular
+                )
                 captionLabel.numberOfLines = 0
             } else {
                 captionLabel.isHidden = true
@@ -101,19 +104,31 @@ public final class GDSContentTileView: NibView {
                 separatorView.accessibilityIdentifier = "content-tile-separator"
                 buttonStack.addArrangedSubview(separatorView)
                 NSLayoutConstraint.activate([
-                    separatorView.heightAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale)
+                    separatorView.heightAnchor.constraint(
+                        equalToConstant: 1 / UIScreen.main.scale
+                    )
                 ])
             }
             
             if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
                 let secondaryButton = SecondaryButton()
+                secondaryButton.setTitle(
+                    viewModel.secondaryButtonViewModel.title.value,
+                    for: .normal
+                )
+                secondaryButton.setTitleColor(
+                    .gdsGreen,
+                    for: .normal
+                )
                 if let icon = viewModel.secondaryButtonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
                 }
-                secondaryButton.setTitle(viewModel.secondaryButtonViewModel.title.value, for: .normal)
-                secondaryButton.setTitleColor(.gdsGreen, for: .normal)
-                secondaryButton.addTarget(self, action: #selector(secondaryButtonTapped), for: .touchUpInside)
+                secondaryButton.addTarget(
+                    self,
+                    action: #selector(secondaryButtonTapped),
+                    for: .touchUpInside
+                )
                 secondaryButton.contentHorizontalAlignment = .left
                 secondaryButton.isUserInteractionEnabled = true
                 secondaryButton.accessibilityIdentifier = "content-secondary-button"
@@ -122,8 +137,15 @@ public final class GDSContentTileView: NibView {
             
             if let viewModel = viewModel as? GDSContentTileViewModelWithPrimaryButton {
                 let primaryButton = RoundedButton()
-                primaryButton.setTitle(viewModel.primaryButtonViewModel.title.value, for: .normal)
-                primaryButton.addTarget(self, action: #selector(primaryButtonTapped), for: .touchUpInside)
+                primaryButton.setTitle(
+                    viewModel.primaryButtonViewModel.title.value,
+                    for: .normal
+                )
+                primaryButton.addTarget(
+                    self,
+                    action: #selector(primaryButtonTapped),
+                    for: .touchUpInside
+                )
                 primaryButton.isUserInteractionEnabled = true
                 primaryButton.accessibilityIdentifier = "content-primary-button"
                 buttonStack.addArrangedSubview(primaryButton)
@@ -148,13 +170,29 @@ public final class GDSContentTileView: NibView {
         button.accessibilityIdentifier = "content-close-button"
         
         if viewModel is GDSContentTileViewModelWithDismissButton {
-            let font = UIFont(style: .body, weight: .regular)
-            let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
-            button.setImage(UIImage(systemName: "xmark", withConfiguration: configuration), for: .normal)
+            let font = UIFont(
+                style: .body,
+                weight: .regular
+            )
+            let configuration = UIImage.SymbolConfiguration(
+                font: font,
+                scale: .default
+            )
+            button.setImage(
+                UIImage(
+                    systemName: "xmark",
+                    withConfiguration: configuration
+                ),
+                for: .normal
+            )
             button.tintColor = .gdsGreen
             button.translatesAutoresizingMaskIntoConstraints = false
             button.adjustsImageSizeForAccessibilityContentSizeCategory = true
-            button.addTarget(self, action: #selector(close), for: .touchUpInside)
+            button.addTarget(
+                self,
+                action: #selector(close),
+                for: .touchUpInside
+            )
             return button
         } else {
             button.isHidden = true
