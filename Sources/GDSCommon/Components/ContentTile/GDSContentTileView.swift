@@ -32,14 +32,12 @@ public final class GDSContentTileView: NibView {
                     )
                 ])
             }
-
             containerStackView.accessibilityIdentifier = "containerStackView"
         }
     }
     
     @IBOutlet private var imageView: UIImageView! {
         didSet {
-            imageView.accessibilityIdentifier = "content-tile-image"
             if let viewModel = viewModel as? GDSContentTileViewModelWithImage,
                viewModel.image.size.height > 0 {
                 imageView.image = viewModel.image
@@ -52,6 +50,7 @@ public final class GDSContentTileView: NibView {
             } else {
                 imageView.isHidden = true
             }
+            imageView.accessibilityIdentifier = "content-tile-image"
         }
     }
     
@@ -96,7 +95,9 @@ public final class GDSContentTileView: NibView {
                 let separatorView = UIView()
                 separatorView.backgroundColor = .gdsGrey
                 separatorView.accessibilityIdentifier = "content-tile-separator"
+
                 buttonStack.addArrangedSubview(separatorView)
+                
                 NSLayoutConstraint.activate([
                     separatorView.heightAnchor.constraint(
                         equalToConstant: 1 / UIScreen.main.scale
@@ -126,6 +127,7 @@ public final class GDSContentTileView: NibView {
                 secondaryButton.contentHorizontalAlignment = .left
                 secondaryButton.isUserInteractionEnabled = true
                 secondaryButton.accessibilityIdentifier = "content-secondary-button"
+                
                 buttonStack.addArrangedSubview(secondaryButton)
             }
             
@@ -142,6 +144,7 @@ public final class GDSContentTileView: NibView {
                 )
                 primaryButton.isUserInteractionEnabled = true
                 primaryButton.accessibilityIdentifier = "content-primary-button"
+                
                 buttonStack.addArrangedSubview(primaryButton)
             }
         }
