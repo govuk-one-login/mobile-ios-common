@@ -111,14 +111,14 @@ public final class GDSContentTileView: NibView {
                     viewModel.secondaryButtonViewModel.title.value,
                     for: .normal
                 )
-                secondaryButton.setTitleColor(
-                    .gdsGreen,
-                    for: .normal
-                )
                 if let icon = viewModel.secondaryButtonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
                 }
+                secondaryButton.setTitleColor(
+                    .gdsGreen,
+                    for: .normal
+                )
                 secondaryButton.addTarget(
                     self,
                     action: #selector(secondaryButtonTapped),
