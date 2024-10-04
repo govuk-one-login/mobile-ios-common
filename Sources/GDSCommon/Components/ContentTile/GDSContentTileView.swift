@@ -96,11 +96,12 @@ public final class GDSContentTileView: NibView {
     @IBOutlet private var buttonStack: UIStackView! {
         didSet {
             if viewModel.showSeparatorLine {
-                let separatorView = SeparatorView()
+                let separatorView = UIView()
+                separatorView.backgroundColor = .gdsGrey
                 separatorView.accessibilityIdentifier = "content-tile-separator"
                 buttonStack.addArrangedSubview(separatorView)
                 NSLayoutConstraint.activate([
-                    separatorView.heightAnchor.constraint(equalToConstant: 1)
+                    separatorView.heightAnchor.constraint(equalToConstant: 1 / UIScreen.main.scale)
                 ])
             }
             
