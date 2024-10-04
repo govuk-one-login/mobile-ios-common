@@ -55,13 +55,6 @@ public final class GDSContentTileView: NibView {
         }
     }
     
-    @IBOutlet private var textStack: UIStackView! {
-        didSet {
-            textStack.accessibilityIdentifier = "content-text-stack"
-            textStack.backgroundColor = viewModel.backgroundColour
-        }
-    }
-    
     @IBOutlet private var captionLabel: UILabel! {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithCaption {
@@ -70,7 +63,6 @@ public final class GDSContentTileView: NibView {
                     style: .subheadline,
                     weight: .regular
                 )
-                captionLabel.numberOfLines = 0
             } else {
                 captionLabel.isHidden = true
             }
@@ -82,7 +74,6 @@ public final class GDSContentTileView: NibView {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .bodyBold
-            titleLabel.numberOfLines = 0
             titleLabel.accessibilityIdentifier = "content-tile-title"
         }
     }
@@ -92,7 +83,6 @@ public final class GDSContentTileView: NibView {
             if let viewModel = viewModel as? GDSContentTileViewModelWithBody {
                 bodyLabel.text = viewModel.body.value
                 bodyLabel.font = .body
-                bodyLabel.numberOfLines = 0
             } else {
                 bodyLabel.isHidden = true
             }

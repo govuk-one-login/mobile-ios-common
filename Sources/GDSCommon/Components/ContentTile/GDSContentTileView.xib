@@ -16,7 +16,6 @@
                 <outlet property="captionLabel" destination="xrQ-OE-IN9" id="Fgs-6c-W2U"/>
                 <outlet property="containerStackView" destination="nuc-zi-aER" id="joh-pH-N1H"/>
                 <outlet property="imageView" destination="ndO-H5-AMN" id="o9J-jD-8tL"/>
-                <outlet property="textStack" destination="VIe-7s-SPk" id="VCj-3F-PNN"/>
                 <outlet property="titleLabel" destination="uoK-UE-05d" id="J46-VQ-XW2"/>
             </connections>
         </placeholder>
