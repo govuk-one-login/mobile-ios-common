@@ -32,7 +32,6 @@ public final class GDSContentTileView2: NibView {
                     )
                 ])
             }
-
             containerView.accessibilityIdentifier = "containerStackView"
         }
     }
@@ -59,8 +58,10 @@ public final class GDSContentTileView2: NibView {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithCaption {
                 captionLabel.text = viewModel.caption.value
-                captionLabel.font = UIFont(style: .subheadline, weight: .regular)
-                captionLabel.numberOfLines = 0
+                captionLabel.font = UIFont(
+                    style: .subheadline,
+                    weight: .regular
+                )
             } else {
                 captionLabel.isHidden = true
             }
@@ -72,8 +73,6 @@ public final class GDSContentTileView2: NibView {
         didSet {
             titleLabel.text = viewModel.title.value
             titleLabel.font = .bodyBold
-            titleLabel.numberOfLines = 0
-            titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
             titleLabel.accessibilityIdentifier = "content-tile-title"
         }
     }
@@ -83,8 +82,6 @@ public final class GDSContentTileView2: NibView {
             if let viewModel = viewModel as? GDSContentTileViewModelWithBody {
                 bodyLabel.text = viewModel.body.value
                 bodyLabel.font = .body
-                bodyLabel.numberOfLines = 0
-                bodyLabel.setContentHuggingPriority(.defaultHigh + 1, for: .vertical)
             } else {
                 bodyLabel.isHidden = true
             }
@@ -96,6 +93,11 @@ public final class GDSContentTileView2: NibView {
         didSet {
             if viewModel.showSeparatorLine {
                 separatorView.backgroundColor = .gdsGrey
+                NSLayoutConstraint.activate([
+                    separatorView.heightAnchor.constraint(
+                        equalToConstant: 1 / UIScreen.main.scale
+                    )
+                ])
             } else {
                 separatorView.isHidden = true
             }
@@ -106,12 +108,18 @@ public final class GDSContentTileView2: NibView {
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithSecondaryButton {
-                secondaryButton.setTitle(viewModel.secondaryButtonViewModel.title.value, for: .normal)
-                secondaryButton.setTitleColor(.gdsGreen, for: .normal)
+                secondaryButton.setTitle(
+                    viewModel.secondaryButtonViewModel.title.value,
+                    for: .normal
+                )
                 if let icon = viewModel.secondaryButtonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
                 }
+                secondaryButton.setTitleColor(
+                    .gdsGreen,
+                    for: .normal
+                )
             } else {
                 secondaryButton.isHidden = true
             }
@@ -128,7 +136,10 @@ public final class GDSContentTileView2: NibView {
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
             if let viewModel = viewModel as? GDSContentTileViewModelWithPrimaryButton {
-                primaryButton.setTitle(viewModel.primaryButtonViewModel.title.value, for: .normal)
+                primaryButton.setTitle(
+                    viewModel.primaryButtonViewModel.title.value,
+                    for: .normal
+                )
             } else {
                 primaryButton.isHidden = true
             }
