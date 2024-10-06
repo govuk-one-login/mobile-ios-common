@@ -85,7 +85,7 @@ public final class GDSContentTileView: NibView {
     @IBOutlet private var separatorView: UIView! {
         didSet {
             if viewModel.showSeparatorLine {
-                separatorView.backgroundColor = .gdsGrey
+                separatorView.backgroundColor = .separator
             } else {
                 separatorView.isHidden = true
             }
@@ -101,14 +101,14 @@ public final class GDSContentTileView: NibView {
                     viewModel.secondaryButtonViewModel.title.value,
                     for: .normal
                 )
-                secondaryButton.setTitleColor(
-                    .gdsGreen,
-                    for: .normal
-                )
                 if let icon = viewModel.secondaryButtonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
                 }
+                secondaryButton.setTitleColor(
+                    .accent,
+                    for: .normal
+                )
                 secondaryButton.addTarget(
                     self,
                     action: #selector(secondaryButtonTapped),
@@ -155,8 +155,10 @@ public final class GDSContentTileView: NibView {
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .custom)
         if viewModel is GDSContentTileViewModelWithDismissButton {
-            let font = UIFont(style: .body, weight: .regular)
-            let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
+            let configuration = UIImage.SymbolConfiguration(
+                font: .body,
+                scale: .default
+            )
             button.setImage(
                 UIImage(
                     systemName: "xmark",
@@ -169,7 +171,7 @@ public final class GDSContentTileView: NibView {
                 action: #selector(close),
                 for: .touchUpInside
             )
-            button.tintColor = .gdsGreen
+            button.tintColor = .accent
             button.translatesAutoresizingMaskIntoConstraints = false
             button.adjustsImageSizeForAccessibilityContentSizeCategory = true
             return button

@@ -29,10 +29,10 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="licence" translatesAutoresizingMaskIntoConstraints="NO" id="ndO-H5-AMN">
-                            <rect key="frame" x="0.0" y="8" width="393" height="54"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="54"/>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VIe-7s-SPk" userLabel="labelStack">
-                            <rect key="frame" x="0.0" y="62" width="393" height="93"/>
+                            <rect key="frame" x="0.0" y="54" width="393" height="93"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="xrQ-OE-IN9">
                                     <rect key="frame" x="16" y="7.9999999999999982" width="361" height="20.333333333333329"/>
@@ -59,13 +59,13 @@
                             <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J38-G5-hfM">
-                            <rect key="frame" x="0.0" y="155" width="393" height="1"/>
+                            <rect key="frame" x="0.0" y="147" width="393" height="2.6666666666666572"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liR-LH-o5A" userLabel="separatorView">
-                                    <rect key="frame" x="16" y="0.0" width="377" height="1"/>
+                                    <rect key="frame" x="16" y="0.0" width="377" height="2.6666666666666665"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="m3q-Kz-cb3"/>
+                                        <constraint firstAttribute="height" constant="2.5" id="m3q-Kz-cb3"/>
                                     </constraints>
                                     <edgeInsets key="layoutMargins" top="0.0" left="8" bottom="0.0" right="0.0"/>
                                 </view>
@@ -73,11 +73,11 @@
                             <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="0.0"/>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U4u-VG-SlR" userLabel="buttonStack">
-                            <rect key="frame" x="0.0" y="156" width="393" height="595"/>
+                            <rect key="frame" x="0.0" y="149.66666666666669" width="393" height="601.33333333333326"/>
                             <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                         </stackView>
                     </subviews>
-                    <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
+                    <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="8" right="0.0"/>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="2x9-0a-uGY"/>
