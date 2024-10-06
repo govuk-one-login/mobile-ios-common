@@ -15,10 +15,8 @@
                 <outlet property="buttonStack" destination="U4u-VG-SlR" id="3Xt-82-zb1"/>
                 <outlet property="captionLabel" destination="xrQ-OE-IN9" id="Fgs-6c-W2U"/>
                 <outlet property="containerStackView" destination="nuc-zi-aER" id="tmd-gm-fiY"/>
-                <outlet property="containerView" destination="e5l-T6-HYY" id="qd4-Xf-bVd"/>
                 <outlet property="imageView" destination="ndO-H5-AMN" id="o9J-jD-8tL"/>
-                <outlet property="separatorStack" destination="D7Q-NS-IHB" id="hFX-ql-5wg"/>
-                <outlet property="textStack" destination="VIe-7s-SPk" id="VCj-3F-PNN"/>
+                <outlet property="separatorView" destination="liR-LH-o5A" id="nNO-X1-UIv"/>
                 <outlet property="titleLabel" destination="uoK-UE-05d" id="J46-VQ-XW2"/>
             </connections>
         </placeholder>
@@ -31,43 +29,55 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="licence" translatesAutoresizingMaskIntoConstraints="NO" id="ndO-H5-AMN">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="54"/>
+                            <rect key="frame" x="0.0" y="8" width="393" height="54"/>
                         </imageView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VIe-7s-SPk">
-                            <rect key="frame" x="0.0" y="54" width="393" height="61"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VIe-7s-SPk" userLabel="labelStack">
+                            <rect key="frame" x="0.0" y="62" width="393" height="93"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xrQ-OE-IN9">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="20.333333333333332"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="xrQ-OE-IN9">
+                                    <rect key="frame" x="16" y="7.9999999999999982" width="361" height="20.333333333333329"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uoK-UE-05d">
-                                    <rect key="frame" x="0.0" y="20.333333333333329" width="393" height="20.333333333333329"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="uoK-UE-05d">
+                                    <rect key="frame" x="16" y="36.333333333333329" width="361" height="20.333333333333329"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sEr-UI-8SY">
-                                    <rect key="frame" x="0.0" y="40.666666666666671" width="393" height="20.333333333333329"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="sEr-UI-8SY">
+                                    <rect key="frame" x="16" y="64.666666666666671" width="361" height="20.333333333333329"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="D7Q-NS-IHB">
-                            <rect key="frame" x="0.0" y="115" width="393" height="644"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <viewLayoutGuide key="safeArea" id="CRu-FP-SQ4"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J38-G5-hfM">
+                            <rect key="frame" x="0.0" y="155" width="393" height="1"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liR-LH-o5A" userLabel="separatorView">
+                                    <rect key="frame" x="16" y="0.0" width="377" height="1"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="m3q-Kz-cb3"/>
+                                    </constraints>
+                                    <edgeInsets key="layoutMargins" top="0.0" left="8" bottom="0.0" right="0.0"/>
+                                </view>
+                            </subviews>
+                            <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="0.0"/>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="U4u-VG-SlR">
-                            <rect key="frame" x="0.0" y="759" width="393" height="0.0"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U4u-VG-SlR" userLabel="buttonStack">
+                            <rect key="frame" x="0.0" y="156" width="393" height="595"/>
+                            <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
                         </stackView>
                     </subviews>
+                    <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="2x9-0a-uGY"/>
