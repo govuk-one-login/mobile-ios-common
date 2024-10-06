@@ -18,20 +18,18 @@ public final class GDSContentTileView: NibView {
         didSet {
             containerStackView.backgroundColor = viewModel.backgroundColour
             
-            if viewModel is GDSContentTileViewModelWithDismissButton {
-                containerStackView.addSubview(closeButton)
-                
-                NSLayoutConstraint.activate([
-                    closeButton.trailingAnchor.constraint(
-                        greaterThanOrEqualTo: containerStackView.trailingAnchor,
-                        constant: -16
-                    ),
-                    closeButton.topAnchor.constraint(
-                        greaterThanOrEqualTo: containerStackView.topAnchor,
-                        constant: 8
-                    )
-                ])
-            }
+            containerStackView.addSubview(closeButton)
+            NSLayoutConstraint.activate([
+                closeButton.trailingAnchor.constraint(
+                    greaterThanOrEqualTo: containerStackView.trailingAnchor,
+                    constant: -16
+                ),
+                closeButton.topAnchor.constraint(
+                    greaterThanOrEqualTo: containerStackView.topAnchor,
+                    constant: 8
+                )
+            ])
+            
             containerStackView.accessibilityIdentifier = "containerStackView"
         }
     }
@@ -164,28 +162,24 @@ public final class GDSContentTileView: NibView {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .custom)
-        let font = UIFont(
-            style: .body,
-            weight: .regular
-        )
-        let configuration = UIImage.SymbolConfiguration(
-            font: font,
-            scale: .default
-        )
-        button.setImage(
-            UIImage(
-                systemName: "xmark",
-                withConfiguration: configuration
-            ),
-            for: .normal
-        )
-        button.tintColor = .gdsGreen
-        button.adjustsImageSizeForAccessibilityContentSizeCategory = true
-        button.addTarget(
-            self,
-            action: #selector(close),
-            for: .touchUpInside
-        )
+        if viewModel is GDSContentTileViewModelWithDismissButton {
+            let font = UIFont(style: .body, weight: .regular)
+            let configuration = UIImage.SymbolConfiguration(font: font, scale: .default)
+            button.setImage(
+                UIImage(
+                    systemName: "xmark",
+                    withConfiguration: configuration
+                ),
+                for: .normal
+            )
+            button.tintColor = .gdsGreen
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.adjustsImageSizeForAccessibilityContentSizeCategory = true
+            button.addTarget(self, action: #selector(close), for: .touchUpInside)
+            return button
+        } else {
+            button.isHidden = true
+        }
         button.accessibilityIdentifier = "content-close-button"
         return button
     }()
