@@ -164,10 +164,14 @@ public final class GDSContentTileView: NibView {
                 ),
                 for: .normal
             )
+            button.addTarget(
+                self,
+                action: #selector(close),
+                for: .touchUpInside
+            )
             button.tintColor = .gdsGreen
             button.translatesAutoresizingMaskIntoConstraints = false
             button.adjustsImageSizeForAccessibilityContentSizeCategory = true
-            button.addTarget(self, action: #selector(close), for: .touchUpInside)
             return button
         } else {
             button.isHidden = true
