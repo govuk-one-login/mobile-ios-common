@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,13 +27,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qwi-5Y-ocZ">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AGt-xz-WsO">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="577"/>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tba-yC-S7C" userLabel="innerStackView">
-                            <rect key="frame" x="0.0" y="585" width="393" height="267"/>
+                            <rect key="frame" x="0.0" y="585" width="393" height="174"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjS-qS-4i2" userLabel="captionLabel">
                                     <rect key="frame" x="16" y="7.9999999999999982" width="361" height="20.333333333333329"/>
@@ -41,23 +42,23 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4w-Yh-QKY" userLabel="titleLabel">
-                                    <rect key="frame" x="16" y="36.333333333333371" width="361" height="20.333333333333329"/>
+                                    <rect key="frame" x="16" y="36.333333333333371" width="361" height="11.333333333333336"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAj-4f-hLY" userLabel="bodyLabel">
-                                    <rect key="frame" x="16" y="64.666666666666629" width="361" height="20.333333333333329"/>
+                                    <rect key="frame" x="16" y="55.666666666666636" width="361" height="20.333333333333336"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vb4-jw-Flu">
-                                    <rect key="frame" x="16" y="93" width="361" height="50"/>
+                                    <rect key="frame" x="16" y="84" width="361" height="0.0"/>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="nsZ-6g-9Sr" customClass="SecondaryButton" customModule="GDSCommon">
-                                    <rect key="frame" x="16" y="151" width="361" height="33"/>
+                                    <rect key="frame" x="16" y="92" width="361" height="33"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Button"/>
@@ -66,7 +67,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="NUM-lv-DXq" customClass="RoundedButton" customModule="GDSCommon">
-                                    <rect key="frame" x="16" y="192" width="361" height="33"/>
+                                    <rect key="frame" x="16" y="133" width="361" height="33"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                     <state key="normal" title="Button"/>
@@ -80,12 +81,13 @@
                     </subviews>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="Wqs-zd-Txu"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="qwi-5Y-ocZ" firstAttribute="trailing" secondItem="N0W-AZ-cP0" secondAttribute="trailing" id="Hrd-qe-kDZ"/>
-                <constraint firstItem="qwi-5Y-ocZ" firstAttribute="bottom" secondItem="N0W-AZ-cP0" secondAttribute="bottom" id="TmS-Tp-xqs"/>
-                <constraint firstItem="qwi-5Y-ocZ" firstAttribute="leading" secondItem="N0W-AZ-cP0" secondAttribute="leading" id="e5u-ZI-8Ff"/>
-                <constraint firstItem="qwi-5Y-ocZ" firstAttribute="top" secondItem="N0W-AZ-cP0" secondAttribute="top" id="eQt-Xk-sKs"/>
+                <constraint firstItem="qwi-5Y-ocZ" firstAttribute="trailing" secondItem="Wqs-zd-Txu" secondAttribute="trailing" id="Hrd-qe-kDZ"/>
+                <constraint firstItem="qwi-5Y-ocZ" firstAttribute="bottom" secondItem="Wqs-zd-Txu" secondAttribute="bottom" id="TmS-Tp-xqs"/>
+                <constraint firstItem="qwi-5Y-ocZ" firstAttribute="leading" secondItem="Wqs-zd-Txu" secondAttribute="leading" id="e5u-ZI-8Ff"/>
+                <constraint firstItem="qwi-5Y-ocZ" firstAttribute="top" secondItem="Wqs-zd-Txu" secondAttribute="top" id="eQt-Xk-sKs"/>
             </constraints>
             <point key="canvasLocation" x="6" y="21"/>
         </view>
