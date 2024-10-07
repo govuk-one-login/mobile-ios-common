@@ -184,7 +184,7 @@ public final class GDSContentTileView: NibView {
     
     @objc private func close() {
         if let viewModel = viewModel as? GDSContentTileViewModelWithDismissButton {
-            viewModel.closeButton.action()
+            viewModel.closeButtonAction()
         }
     }
 }

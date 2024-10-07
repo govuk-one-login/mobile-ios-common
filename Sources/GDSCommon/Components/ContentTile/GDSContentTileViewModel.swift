@@ -23,7 +23,7 @@ public protocol GDSContentTileViewModelWithImage {
 
 @MainActor
 public protocol GDSContentTileViewModelWithDismissButton {
-    var closeButton: ButtonViewModel { get }
+    var closeButtonAction: () -> Void { get }
 }
 
 @MainActor
