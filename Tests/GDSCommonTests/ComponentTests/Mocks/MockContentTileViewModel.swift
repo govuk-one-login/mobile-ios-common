@@ -11,5 +11,5 @@ struct MockContentTileViewModel: ExpandedContentTileViewModel {
     var backgroundColour: UIColor?
     var secondaryButtonViewModel: ButtonViewModel
     var primaryButtonViewModel: ButtonViewModel
-    var closeButton: ButtonViewModel
+    var closeButtonAction: () -> Void
 }

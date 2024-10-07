@@ -2,12 +2,12 @@ import Foundation
 import UIKit
 
 public typealias ExpandedContentTileViewModel = GDSContentTileViewModel &
-GDSContentTileViewModelWithImage &
-GDSContentTileViewModelWithDismissButton &
-GDSContentTileViewModelWithCaption &
-GDSContentTileViewModelWithBody &
-GDSContentTileViewModelWithSecondaryButton &
-GDSContentTileViewModelWithPrimaryButton
+                                                GDSContentTileViewModelWithImage &
+                                                GDSContentTileViewModelWithDismissButton &
+                                                GDSContentTileViewModelWithCaption &
+                                                GDSContentTileViewModelWithBody &
+                                                GDSContentTileViewModelWithSecondaryButton &
+                                                GDSContentTileViewModelWithPrimaryButton
 
 @MainActor
 public protocol GDSContentTileViewModel {
@@ -23,7 +23,7 @@ public protocol GDSContentTileViewModelWithImage {
 
 @MainActor
 public protocol GDSContentTileViewModelWithDismissButton {
-    var closeButton: ButtonViewModel { get }
+    var closeButtonAction: () -> Void { get }
 }
 
 @MainActor
