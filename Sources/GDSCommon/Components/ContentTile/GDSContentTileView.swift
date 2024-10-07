@@ -28,7 +28,7 @@ public final class GDSContentTileView: NibView {
                     constant: 8
                 )
             ])
-            containerStackView.accessibilityIdentifier = "containerStackView"
+            containerStackView.accessibilityIdentifier = "container-stack-view"
         }
     }
     

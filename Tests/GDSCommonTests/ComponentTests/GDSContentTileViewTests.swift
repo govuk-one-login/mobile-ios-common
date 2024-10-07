@@ -1,7 +1,7 @@
 import GDSCommon
 import XCTest
 
-internal final class GDSContentTileViewTests: XCTestCase {
+final class GDSContentTileViewTests: XCTestCase {
     var sut: GDSContentTileView!
     var viewModel: ExpandedContentTileViewModel!
     
@@ -13,35 +13,73 @@ internal final class GDSContentTileViewTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        viewModel = MockContentTileViewModel(secondaryButtonViewModel: MockButtonViewModel(title: "test secondary button",
-                                                                                           action: {
-            self.didTapSecondaryButton = true
-        }),
-                                             primaryButtonViewModel: MockButtonViewModel(title: "test primary button",
-                                                                                         action: {
-            self.didTapPrimaryButton = true
-        }),
-                                             closeButton: MockButtonViewModel(title: "test close button",
-                                                                              action: {
+        viewModel = FullContentTileTestViewModel(
+            primaryButtonViewModel: MockButtonViewModel(
+                title: "Primary Button Title",
+                action: {
+                    self.didTapPrimaryButton = true
+                }
+            ),
+            secondaryButtonViewModel: MockButtonViewModel(
+                title: "Secondary Button Title",
+                action: {
+                    self.didTapSecondaryButton = true
+                }
+            )
+        ) {
             self.didTapCloseButton = true
-        }))
+        }
         
-        sut = .init(frame: .zero, viewModel: viewModel)
+        sut = .init(viewModel: viewModel)
     }
     
     override func tearDown() {
         sut = nil
         viewModel = nil
+        
         super.tearDown()
     }
 }
 
-private struct TestViewModel: GDSContentTileViewModel {
-    var title: GDSLocalisedString = "test caption"
-    var showSeparatorLine: Bool = false
-    var backgroundColour: UIColor?
+private struct FullContentTileTestViewModel: ExpandedContentTileViewModel {
+    var image: UIImage
+    var caption: GDSLocalisedString
+    var title: GDSLocalisedString
+    var body: GDSLocalisedString
+    var primaryButtonViewModel: any ButtonViewModel
+    var secondaryButtonViewModel: any ButtonViewModel
+    var showSeparatorLine: Bool = true
+    var backgroundColour: UIColor? = .systemBackground
+    var closeButtonAction: () -> Void
+    
+    init(
+        image: UIImage = UIImage(named: "placeholder") ?? UIImage(),
+        caption: GDSLocalisedString = "Test Caption",
+        title: GDSLocalisedString = "Test Title",
+        body: GDSLocalisedString = "Test Body",
+        primaryButtonViewModel: any ButtonViewModel,
+        secondaryButtonViewModel: any ButtonViewModel,
+        showSeparatorLine: Bool = true,
+        backgroundColour: UIColor? = .systemBackground,
+        closeButtonAction: @escaping () -> Void
+    ) {
+        self.image = image
+        self.caption = caption
+        self.title = title
+        self.body = body
+        self.primaryButtonViewModel = primaryButtonViewModel
+        self.secondaryButtonViewModel = secondaryButtonViewModel
+        self.showSeparatorLine = showSeparatorLine
+        self.backgroundColour = backgroundColour
+        self.closeButtonAction = closeButtonAction
+    }
 }
 
+private struct PartialContentTileViewModel: GDSContentTileViewModel {
+    var title: GDSLocalisedString
+    var showSeparatorLine: Bool
+    var backgroundColour: UIColor?
+}
 
 @MainActor
 extension GDSContentTileViewTests {
@@ -50,27 +88,20 @@ extension GDSContentTileViewTests {
     }
     
     func test_hiddenContents() throws {
-        let viewModel = TestViewModel()
-        sut = GDSContentTileView(frame: .zero, viewModel: viewModel)
+        let viewModel = PartialContentTileViewModel(title: "Test Title",
+                                                    showSeparatorLine: false)
+        sut = GDSContentTileView(viewModel: viewModel)
         
         XCTAssertTrue(try sut.image.isHidden)
         XCTAssertTrue(try sut.captionLabel.isHidden)
         XCTAssertTrue(try sut.bodyLabel.isHidden)
-        XCTAssertTrue(try sut.divider.isHidden)
+        XCTAssertTrue(try sut.separator.isHidden)
         XCTAssertTrue(try sut.closeButton.isHidden)
-        XCTAssertTrue(try sut.primaryButton.isHidden)
-        XCTAssertTrue(try sut.secondaryButton.isHidden)
     }
     
     func test_closeButton() throws {
-        let font = UIFont(style: .body, weight: .regular)
-        let config = UIImage.SymbolConfiguration(font: font, scale: .default)
-        
-        XCTAssertEqual(try sut.closeButton.image(for: .normal), UIImage(systemName: "xmark", withConfiguration: config))
-        XCTAssertEqual(try sut.closeButton.tintColor, .gdsGreen)
-        
         XCTAssertFalse(didTapCloseButton)
-        viewModel.closeButton.action()
+        viewModel.closeButtonAction()
         XCTAssertTrue(didTapCloseButton)
     }
     
@@ -81,7 +112,7 @@ extension GDSContentTileViewTests {
     
     func test_titleContents() {
         XCTAssertEqual(try sut.titleLabel.text, viewModel.title.value)
-        XCTAssertEqual(try sut.titleLabel.font, UIFont(style: .body, weight: .bold))
+        XCTAssertEqual(try sut.titleLabel.font, .bodySemiBold)
     }
     
     func test_bodyContents() {
@@ -90,7 +121,7 @@ extension GDSContentTileViewTests {
     }
     
     func test_separatorView() {
-        XCTAssertNotNil(try sut.divider)
+        XCTAssertNotNil(try sut.separator)
     }
     
     func test_primaryButton() throws {
@@ -115,49 +146,49 @@ extension GDSContentTileViewTests {
 extension GDSContentTileView {
     var image: UIImageView {
         get throws {
-            try XCTUnwrap(self[child: "content-tile-image"])
+            try XCTUnwrap(view?[child: "content-tile-image"])
         }
     }
     
     var captionLabel: UILabel {
         get throws {
-            try XCTUnwrap(self[child: "content-tile-caption"])
+            try XCTUnwrap(view?[child: "content-tile-caption"])
         }
     }
     
     var titleLabel: UILabel {
         get throws {
-            try XCTUnwrap(self[child: "content-tile-title"])
+            try XCTUnwrap(view?[child: "content-tile-title"])
         }
     }
     
     var bodyLabel: UILabel {
         get throws {
-            try XCTUnwrap(self[child: "content-tile-body"])
+            try XCTUnwrap(view?[child: "content-tile-body"])
         }
     }
     
     var secondaryButton: SecondaryButton {
         get throws {
-            try XCTUnwrap(self[child: "content-secondary-button"])
+            try XCTUnwrap(view?[child: "content-secondary-button"])
         }
     }
     
     var primaryButton: RoundedButton {
         get throws {
-            try XCTUnwrap(self[child: "content-primary-button"])
+            try XCTUnwrap(view?[child: "content-primary-button"])
         }
     }
     
     var closeButton: UIButton {
         get throws {
-            try XCTUnwrap(self[child: "content-close-button"])
+            try XCTUnwrap(view?[child: "content-close-button"])
         }
     }
     
-    var divider: UIStackView {
+    var separator: UIView {
         get throws {
-            try XCTUnwrap(self[child: "content-tile-separator"])
+            try XCTUnwrap(view?[child: "content-tile-separator"])
         }
     }
 }
