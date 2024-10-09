@@ -28,12 +28,24 @@ public protocol GDSInformationViewModel {
     var imageHeightConstraint: CGFloat? { get }
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString? { get }
-    var footnote: GDSLocalisedString? { get }
-    var primaryButtonViewModel: ButtonViewModel { get }
-    var secondaryButtonViewModel: ButtonViewModel? { get }
 }
 
 @MainActor
-public protocol GDSInformationViewModelWithChildView {
+public protocol GDSInformationViewModelFootnote {
+    var footnote: GDSLocalisedString { get }
+}
+
+@MainActor
+public protocol GDSInformationViewModelPrimaryButton {
+    var primaryButtonViewModel: ButtonViewModel { get }
+}
+
+@MainActor
+public protocol GDSInformationViewModelSecondaryButton {
+    var secondaryButtonViewModel: ButtonViewModel { get }
+}
+
+@MainActor
+public protocol GDSInformationViewModelChildView {
     var childView: UIView { get }
 }

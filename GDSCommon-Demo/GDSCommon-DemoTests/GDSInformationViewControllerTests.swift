@@ -60,13 +60,11 @@ extension GDSInformationViewControllerTests {
     
     @MainActor
     func test_primaryButtonNoIcon() throws {
-        XCTAssertNil(viewModel.primaryButtonViewModel.icon)
         XCTAssertNil(try sut.primaryButton.icon)
     }
 
     @MainActor
     func test_secondaryButtonNoIcon() throws {
-        XCTAssertNil(viewModel.secondaryButtonViewModel?.icon)
         XCTAssertNil(try sut.secondaryButton.icon)
     }
     
@@ -79,7 +77,6 @@ extension GDSInformationViewControllerTests {
                                                 secondaryButtonViewModel: secondaryButtonViewModel) { } dismissAction: { }
         sut = GDSInformationViewController(viewModel: viewModel)
         
-        XCTAssertNotNil(viewModel.secondaryButtonViewModel?.icon)
         XCTAssertNotNil(try sut.secondaryButton.icon)
     }
     

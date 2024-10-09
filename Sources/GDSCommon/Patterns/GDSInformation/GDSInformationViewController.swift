@@ -59,10 +59,10 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         didSet {
             if let bodyContent = viewModel.body {
                 bodyLabel.text = bodyContent.value
-                bodyLabel.accessibilityIdentifier = "information-body"
             } else {
                 bodyLabel.isHidden = true
             }
+            bodyLabel.accessibilityIdentifier = "information-body"
         }
     }
 
@@ -70,19 +70,18 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     /// This will be added to the `stackView` below the existing `bodyLabel`
     @IBOutlet private var stackView: UIStackView! {
         didSet {
-            if let viewModel = viewModel as? GDSInformationViewModelWithChildView {
+            if let viewModel = viewModel as? GDSInformationViewModelChildView {
                 stackView.addArrangedSubview(viewModel.childView)
-                stackView.accessibilityIdentifier = "information-optional-stack-view"
             }
+            stackView.accessibilityIdentifier = "information-optional-stack-view"
         }
     }
-
+    
     @IBOutlet private var footnoteLabel: UILabel! {
         didSet {
-            if let footnoteContent = viewModel.footnote {
+            if let footnoteContent = viewModel as? GDSInformationViewModelFootnote {
                 footnoteLabel.font = .init(style: .footnote)
-                footnoteLabel.text = footnoteContent.value
-                footnoteLabel.accessibilityIdentifier = "information-footnote"
+                footnoteLabel.text = footnoteContent.footnote.value
                 
                 if #available(iOS 15.0, *) {
                     footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
@@ -90,40 +89,47 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             } else {
                 footnoteLabel.isHidden = true
             }
+            footnoteLabel.accessibilityIdentifier = "information-footnote"
         }
     }
     
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
-            primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
+            if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
+                primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
+            } else {
+                primaryButton.isHidden = true
+            }
             primaryButton.accessibilityIdentifier = "information-primary-button"
         }
     }
     
     @IBAction private func primaryButtonAction(_ sender: Any) {
-        primaryButton.isLoading = true
-        viewModel.primaryButtonViewModel.action()
-        primaryButton.isLoading = false
+        if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
+            buttonViewModel.primaryButtonViewModel.action()
+        }
     }
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
-            if let buttonViewModel = viewModel.secondaryButtonViewModel {
-                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+            if let buttonViewModel = viewModel as? GDSInformationViewModelSecondaryButton {
+                secondaryButton.setTitle(buttonViewModel.secondaryButtonViewModel.title.value, for: .normal)
                 secondaryButton.titleLabel?.textAlignment = .center
-                secondaryButton.accessibilityIdentifier = "information-secondary-button"
                 
-                if let icon = buttonViewModel.icon {
+                if let icon = buttonViewModel.secondaryButtonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
                 }
             } else {
                 secondaryButton.isHidden = true
             }
+            secondaryButton.accessibilityIdentifier = "information-secondary-button"
         }
     }
 
     @IBAction private func secondaryButtonAction(_ sender: Any) {
-        viewModel.secondaryButtonViewModel?.action()
+        if let buttonViewModel = viewModel as? GDSInformationViewModelSecondaryButton {
+            buttonViewModel.secondaryButtonViewModel.action()
+        }
     }
 }
