@@ -21,12 +21,14 @@ import UIKit
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
 
-public typealias GDSInformationViewModelAdditionalConfig = GDSInformationViewModelOptionalFootnote &
-                                                           GDSInformationViewModelPrimaryButton &
-                                                           GDSInformationViewModelOptionalSecondaryButton
+@available(*, deprecated, renamed: "GDSInformationViewModelV2", message: "Should conform to additional protocols if additional configuration is required")
+public typealias GDSInformationViewModel = GDSInformationViewModelV2 &
+                                           GDSInformationViewModelOptionalFootnote &
+                                           GDSInformationViewModelPrimaryButton &
+                                           GDSInformationViewModelOptionalSecondaryButton
 
 @MainActor
-public protocol GDSInformationViewModel: GDSInformationViewModelAdditionalConfig {
+public protocol GDSInformationViewModelV2 {
     var image: String { get }
     var imageWeight: UIFont.Weight? { get }
     var imageColour: UIColor? { get }

@@ -10,9 +10,9 @@ import UIKit
 public final class GDSInformationViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSInformation" }
     
-    public private(set) var viewModel: GDSInformationViewModel
+    public private(set) var viewModel: GDSInformationViewModelV2
     
-    public init(viewModel: GDSInformationViewModel) {
+    public init(viewModel: GDSInformationViewModelV2) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSInformation", bundle: .module)
     }
@@ -76,9 +76,9 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     
     @IBOutlet private var footnoteLabel: UILabel! {
         didSet {
-            if let footnoteContent = viewModel.footnote {
+            if let viewModel = viewModel as? GDSInformationViewModelOptionalFootnote {
                 footnoteLabel.font = .init(style: .footnote)
-                footnoteLabel.text = footnoteContent.value
+                footnoteLabel.text = viewModel.footnote?.value
 
                 if #available(iOS 15.0, *) {
                     footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
@@ -98,8 +98,8 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
                 } else {
                     primaryButton.isHidden = true
                 }
-            } else {
-                primaryButton.setTitle(viewModel.primaryButtonViewModel.title.value, for: .normal)
+            } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
+                primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
             }
             primaryButton.accessibilityIdentifier = "information-primary-button"
         }
@@ -108,20 +108,22 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     @IBAction private func primaryButtonAction(_ sender: Any) {
         if let buttonViewModel = viewModel as? GDSInformationViewModelOptionalPrimaryButton {
             buttonViewModel.primaryButtonViewModel?.action()
-        } else {
-            viewModel.primaryButtonViewModel.action()
+        } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
+            buttonViewModel.primaryButtonViewModel.action()
         }
     }
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
-            if let buttonViewModel = viewModel.secondaryButtonViewModel {
-                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
-                secondaryButton.titleLabel?.textAlignment = .center
+            if let buttonViewModel = viewModel as? GDSInformationViewModelOptionalSecondaryButton {
+                if let button = buttonViewModel.secondaryButtonViewModel {
+                    secondaryButton.setTitle(button.title, for: .normal)
+                    secondaryButton.titleLabel?.textAlignment = .center
 
-                if let icon = buttonViewModel.icon {
-                    secondaryButton.symbolPosition = icon.symbolPosition
-                    secondaryButton.icon = icon.iconName
+                    if let icon = button.icon {
+                        secondaryButton.symbolPosition = icon.symbolPosition
+                        secondaryButton.icon = icon.iconName
+                    }
                 }
             } else {
                 secondaryButton.isHidden = true
@@ -131,6 +133,8 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     }
 
     @IBAction private func secondaryButtonAction(_ sender: Any) {
-        viewModel.secondaryButtonViewModel?.action()
+        if let buttonViewModel = viewModel as? GDSInformationViewModelOptionalSecondaryButton {
+            buttonViewModel.secondaryButtonViewModel?.action()
+        }
     }
 }
