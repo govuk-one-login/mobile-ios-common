@@ -86,6 +86,13 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
                 if #available(iOS 15.0, *) {
                     footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
                 }
+            } else if let viewModel = viewModel as? GDSInformationViewModelWithFootnote {
+                footnoteLabel.font = .init(style: .footnote)
+                footnoteLabel.text = viewModel.footnote.value
+
+                if #available(iOS 15.0, *) {
+                    footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
+                }
             } else {
                 footnoteLabel.isHidden = true
             }
@@ -126,6 +133,14 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
                 }
+            } else if let buttonViewModel = viewModel as? GDSInformationViewModelWithSecondaryButton {
+                secondaryButton.setTitle(buttonViewModel.secondaryButtonViewModel.title.value, for: .normal)
+                secondaryButton.titleLabel?.textAlignment = .center
+                
+                if let icon = buttonViewModel.secondaryButtonViewModel.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
             } else {
                 secondaryButton.isHidden = true
             }
@@ -136,6 +151,8 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     @IBAction private func secondaryButtonAction(_ sender: Any) {
         if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton {
             buttonViewModel.secondaryButtonViewModel?.action()
+        } else if let buttonViewModel = viewModel as? GDSInformationViewModelWithSecondaryButton {
+            buttonViewModel.secondaryButtonViewModel.action()
         }
     }
 }

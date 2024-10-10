@@ -66,16 +66,22 @@ struct MockGDSInformationViewModel: GDSInformationViewModel,
 }
 
 struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
-                                      GDSInformationViewModelWithOptionalPrimaryButton {
+                                      GDSInformationViewModelWithFootnote,
+                                      GDSInformationViewModelWithOptionalPrimaryButton,
+                                      GDSInformationViewModelWithSecondaryButton {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = .semibold
     let imageColour: UIColor? = .gdsPrimary
     let imageHeightConstraint: CGFloat? = 55
-    let title: GDSLocalisedString = "Information screen title"
-    let body: GDSLocalisedString? = "Information screen body"
+    let title: GDSLocalisedString = "V2 Information screen title"
+    let body: GDSLocalisedString? = "V2 Information screen body"
+    var footnote: GDSLocalisedString = "V2 Information screen footnote"
     let primaryButtonViewModel: ButtonViewModel?
+    var secondaryButtonViewModel: ButtonViewModel
     
-    init(primaryButtonViewModel: ButtonViewModel?) {
+    init(primaryButtonViewModel: ButtonViewModel?,
+         secondaryButtonViewModel: ButtonViewModel) {
         self.primaryButtonViewModel = primaryButtonViewModel
+        self.secondaryButtonViewModel = secondaryButtonViewModel
     }
 }

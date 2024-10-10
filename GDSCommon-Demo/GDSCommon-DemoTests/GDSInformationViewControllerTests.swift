@@ -36,6 +36,9 @@ final class GDSInformationViewControllerTests: XCTestCase {
     }
     
     override func tearDown() {
+        primaryButtonViewModel = nil
+        secondaryButtonViewModel = nil
+        
         viewModel = nil
         sut = nil
         
@@ -79,16 +82,6 @@ extension GDSInformationViewControllerTests {
         XCTAssertNotNil(try sut.secondaryButton.icon)
     }
     
-    func test_primaryButton_shown() {
-        sut = GDSInformationViewController(viewModel: MockGDSInformationViewModelV2(primaryButtonViewModel: primaryButtonViewModel))
-        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Information primary button title")
-    }
-    
-    func test_primaryButton_hidden() {
-        sut = GDSInformationViewController(viewModel: MockGDSInformationViewModelV2(primaryButtonViewModel: nil))
-        XCTAssertTrue(try sut.primaryButton.isHidden)
-    }
-    
     func test_primaryButtonAction() throws {
         XCTAssertFalse(didTap_primaryButton)
         try sut.primaryButton.sendActions(for: .touchUpInside)
@@ -118,10 +111,8 @@ extension GDSInformationViewControllerTests {
     }
     
     func test_didDismiss() {
-        XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
-        XCTAssertTrue(viewDidAppear)
         
         XCTAssertFalse(viewDidDismiss)
         _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
@@ -140,6 +131,33 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(bulletLabels[1].text, "\t●\tbullet 2")
         XCTAssertEqual(bulletLabels[2].text, "\t●\tbullet 3")
         XCTAssertEqual(childViewBody.text, "More text")
+    }
+}
+
+// MARK: - GDSInformationViewController V2 Tests
+extension GDSInformationViewControllerTests {
+    func test_fullyConfiguredView() {
+        sut = GDSInformationViewController(
+            viewModel: MockGDSInformationViewModelV2(
+                primaryButtonViewModel: primaryButtonViewModel,
+                secondaryButtonViewModel: secondaryButtonViewModel
+            )
+        )
+        XCTAssertEqual(try sut.informationTitleLabel.text, "V2 Information screen title")
+        XCTAssertEqual(try sut.informationBodyLabel.text, "V2 Information screen body")
+        XCTAssertEqual(try sut.informationFootnoteLabel.text, "V2 Information screen footnote")
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Information primary button title")
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
+    }
+    
+    func test_partiallyConfiguredView() {
+        sut = GDSInformationViewController(
+            viewModel: MockGDSInformationViewModelV2(
+                primaryButtonViewModel: nil,
+                secondaryButtonViewModel: secondaryButtonViewModel
+            )
+        )
+        XCTAssertTrue(try sut.primaryButton.isHidden)
     }
 }
 

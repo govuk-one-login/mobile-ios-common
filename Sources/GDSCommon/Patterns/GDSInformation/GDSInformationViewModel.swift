@@ -38,6 +38,11 @@ public protocol GDSInformationViewModelV2 {
 }
 
 @MainActor
+public protocol GDSInformationViewModelWithFootnote {
+    var footnote: GDSLocalisedString { get }
+}
+
+@MainActor
 public protocol GDSInformationViewModelWithOptionalFootnote {
     var footnote: GDSLocalisedString? { get }
 }
@@ -50,6 +55,11 @@ public protocol GDSInformationViewModelPrimaryButton {
 @MainActor
 public protocol GDSInformationViewModelWithOptionalPrimaryButton {
     var primaryButtonViewModel: ButtonViewModel? { get }
+}
+
+@MainActor
+public protocol GDSInformationViewModelWithSecondaryButton {
+    var secondaryButtonViewModel: ButtonViewModel { get }
 }
 
 @MainActor
