@@ -49,7 +49,7 @@ public protocol GDSInformationViewModelPrimaryButton {
 
 public extension GDSInformationViewModelPrimaryButton {
     var primaryButtonViewModel: ButtonViewModel {
-        MockButtonViewModel.primary
+        FallBackButtonViewModel.primary
     }
 }
 
