@@ -41,6 +41,11 @@ final class GDSInformationViewControllerTests: XCTestCase {
         viewModel = nil
         sut = nil
         
+        didTap_primaryButton = false
+        didTap_secondaryButton = false
+        viewDidAppear = false
+        viewDidDismiss = false
+        
         super.tearDown()
     }
 }
@@ -81,7 +86,6 @@ extension GDSInformationViewControllerTests {
         viewModel = MockGDSInformationViewModel(primaryButtonViewModel: primaryButtonViewModel,
                                                 secondaryButtonViewModel: secondaryButtonViewModel) { } dismissAction: { }
         sut = GDSInformationViewController(viewModel: viewModel)
-        
         XCTAssertNotNil(try sut.secondaryButton.icon)
     }
     

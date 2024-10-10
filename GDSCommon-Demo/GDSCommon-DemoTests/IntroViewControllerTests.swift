@@ -4,6 +4,7 @@ import XCTest
 final class IntroViewControllerTests: XCTestCase {
     var viewModel: IntroViewModel!
     var sut: IntroViewController!
+    
     var buttonAction = false
     var viewDidAppear = false
     var viewDidDismiss = false
@@ -25,6 +26,10 @@ final class IntroViewControllerTests: XCTestCase {
     override func tearDown() {
         viewModel = nil
         sut = nil
+        
+        buttonAction = false
+        viewDidAppear = false
+        viewDidDismiss = false
         
         super.tearDown()
     }

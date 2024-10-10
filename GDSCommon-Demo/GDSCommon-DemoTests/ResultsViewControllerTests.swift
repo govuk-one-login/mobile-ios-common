@@ -25,6 +25,9 @@ final class ResultsViewControllerTests: XCTestCase {
         viewModel = nil
         sut = nil
         
+        screenDidAppear = false
+        screenDidDismiss = false
+        
         super.tearDown()
     }
 }

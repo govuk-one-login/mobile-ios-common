@@ -3,18 +3,15 @@
 import XCTest
 
 final class GDSLoadingViewControllerTests: XCTestCase {
-    
     var viewModel: MockGDSLoadingViewModel!
     var sut: GDSLoadingViewController!
-    var didAppear: Bool!
-    var didDismiss: Bool!
+    
+    var didAppear = false
+    var didDismiss = false
     
     @MainActor
     override func setUp() {
         super.setUp()
-        
-        didAppear = false
-        didDismiss = false
         
         viewModel = MockGDSLoadingViewModel(rightBarButtonTitle: "Cancel", loadingLabelKey: "Test key") {
             self.didAppear = true
@@ -28,8 +25,10 @@ final class GDSLoadingViewControllerTests: XCTestCase {
     override func tearDown() {
         viewModel = nil
         sut = nil
-        didAppear = nil
-        didDismiss = nil
+        
+        didAppear = false
+        didDismiss = false
+        
         super.tearDown()
     }
     
@@ -38,7 +37,6 @@ final class GDSLoadingViewControllerTests: XCTestCase {
         XCTAssertFalse(didAppear)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
-        sut.viewWillAppear(false)
         XCTAssertTrue(didAppear)
     }
     

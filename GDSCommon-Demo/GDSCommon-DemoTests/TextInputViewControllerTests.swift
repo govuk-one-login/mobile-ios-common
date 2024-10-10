@@ -4,25 +4,19 @@ import XCTest
 
 final class TextInputViewControllerTests: XCTestCase {
     typealias InputType = Bool
-    var sut: TextInputViewController<InputType>!
     var viewModel: (any TextInputViewModel)?
-    
+    var sut: TextInputViewController<InputType>!
+
     var resultAction: ((Bool) -> Void)!
     
-    var didSetResult: [Bool] = [false]
-    var screenDidAppear: Bool = false
+    var didSetResult = [false]
+    var screenDidAppear = false
     var didTapButton = false
     var didDismissScreen = false
     
     @MainActor
     override func setUp() {
         super.setUp()
-
-        screenDidAppear = false
-        
-        resultAction = { bool in
-            self.didSetResult.append(bool)
-        }
         
         let viewModel = MockTextInputViewModel<InputType> { result in
             self.didSetResult = [result]
@@ -33,12 +27,18 @@ final class TextInputViewControllerTests: XCTestCase {
         }
 
         sut = .init(viewModel: viewModel)
+        
+        resultAction = { bool in
+            self.didSetResult.append(bool)
+        }
     }
     
     override func tearDown() {
-        resultAction = nil
         viewModel = nil
         sut = nil
+        
+        resultAction = nil
+
         didSetResult = []
         didTapButton = false
         didDismissScreen = false

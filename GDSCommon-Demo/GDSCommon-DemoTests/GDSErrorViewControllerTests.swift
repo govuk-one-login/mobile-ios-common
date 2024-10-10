@@ -30,6 +30,12 @@ final class GDSErrorViewControllerTests: XCTestCase {
         viewModel = nil
         sut = nil
         
+        primaryButton = false
+        secondaryButton = false
+        tertiaryButton = false
+        viewDidAppear = false
+        viewDidDismiss = false
+        
         super.tearDown()
     }
 }
@@ -181,7 +187,6 @@ extension GDSErrorViewControllerTests {
                                         appearAction: { },
                                         dismissAction: { })
         sut = GDSErrorViewController(viewModel: viewModel)
-        
         XCTAssertTrue(try sut.errorImage.isHidden)
     }
     
@@ -212,7 +217,6 @@ extension GDSErrorViewControllerTests {
     func test_didAppear() {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(viewDidAppear)
     }
@@ -230,7 +234,6 @@ extension GDSErrorViewControllerTests {
     func test_didDismiss() {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(viewDidAppear)
         

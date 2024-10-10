@@ -10,45 +10,62 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
     
     var screenDidAppear = false
     var screenDidDismiss = false
-
+    
+    var didTapWarningButton = false
     var didTapPrimaryButton = false
     var didTapSecondaryButton = false
-    var didTapWarningButton = false
-
+    
     @MainActor
     override func setUp() {
         super.setUp()
         
-        viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel(title: "Action Button",
-                                                                                                   shouldLoadOnTap: false,
-                                                                                                   action: { self.didTapWarningButton = true }),
-                                                       primaryButtonViewModel: MockButtonViewModel(title: "Action Button",
-                                                                                                   icon: MockButtonIconViewModel(iconName: "qrcode",
-                                                                                                                                 symbolPosition: .beforeTitle),
-                                                                                                   shouldLoadOnTap: false,
-                                                                                                   action: { self.didTapPrimaryButton = true }),
-                                                       secondaryButtonViewModel: MockButtonViewModel(title: "Secondary Button",
-                                                                                                     icon: MockButtonIconViewModel(iconName: "qrcode",
-                                                                                                                                   symbolPosition: .beforeTitle),
-                                                                                                     shouldLoadOnTap: false,
-                                                                                                     action: { self.didTapSecondaryButton = true }),
-                                                       rightBarButtonTitle: "close",
-                                                       screenView: {
-            self.screenDidAppear = true
-        }, dismissAction: {
-            self.screenDidDismiss = true
-        })
+        viewModel = MockInstructionsWithImageViewModel(
+            warningButtonViewModel: MockButtonViewModel(
+                title: "Warning Button",
+                shouldLoadOnTap: false,
+                action: {
+                    self.didTapWarningButton = true
+                }),
+            primaryButtonViewModel: MockButtonViewModel(
+                title: "Action Button",
+                icon: MockButtonIconViewModel(iconName: "qrcode",
+                                              symbolPosition: .beforeTitle),
+                shouldLoadOnTap: false,
+                action: {
+                    self.didTapPrimaryButton = true
+                }),
+            secondaryButtonViewModel: MockButtonViewModel(
+                title: "Secondary Button",
+                icon: MockButtonIconViewModel(iconName: "qrcode",
+                                              symbolPosition: .beforeTitle),
+                shouldLoadOnTap: false,
+                action: {
+                    self.didTapSecondaryButton = true
+                }),
+            rightBarButtonTitle: "close",
+            screenView: {
+                self.screenDidAppear = true
+            },
+            dismissAction: {
+                self.screenDidDismiss = true
+            })
         
         sut = InstructionsWithImageViewController(viewModel: viewModel)
-        
-        attachToWindow(viewController: sut)
     }
-
+    
     override func tearDown() {
         buttonViewModel = nil
         warningButtonViewModel = nil
         viewModel = nil
         sut = nil
+        
+        screenDidAppear = false
+        screenDidDismiss = false
+        
+        didTapWarningButton = false
+        didTapPrimaryButton = false
+        didTapSecondaryButton = false
+        
         super.tearDown()
     }
 }
@@ -119,7 +136,7 @@ extension InstructionsWithImageViewControllerTests {
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTapPrimaryButton)
     }
-
+    
     @MainActor
     func test_secondaryButton() throws {
         XCTAssertNotNil(try sut.secondaryButton)
@@ -135,7 +152,7 @@ extension InstructionsWithImageViewControllerTests {
     @MainActor
     func test_warningButton() throws {
         XCTAssertNotNil(try sut.warningButton)
-        XCTAssertEqual(try sut.warningButton.title(for: .normal), "Action Button")
+        XCTAssertEqual(try sut.warningButton.title(for: .normal), "Warning Button")
         XCTAssertEqual(try sut.warningButton.backgroundColor, nil)
         
         try sut.warningButton.sendActions(for: .touchUpInside)
