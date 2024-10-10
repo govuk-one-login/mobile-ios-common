@@ -11,6 +11,7 @@ public final class ResultsViewController: BaseViewController, TitledViewControll
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "ResultsView", bundle: .module)
     }
     
+    @available(*, unavailable, renamed: "init(viewModel:)")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

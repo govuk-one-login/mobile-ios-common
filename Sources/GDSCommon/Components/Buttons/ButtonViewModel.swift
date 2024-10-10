@@ -15,3 +15,17 @@ public protocol ColoredButtonViewModel: ButtonViewModel {
 extension ColoredButtonViewModel {
     var backgroundColor: UIColor { .gdsGreen }
 }
+
+struct MockButtonViewModel: ButtonViewModel {
+    let title: GDSLocalisedString
+    let icon: ButtonIconViewModel?
+    let shouldLoadOnTap: Bool
+    let action: () -> Void
+    
+    static var primary: MockButtonViewModel {
+        MockButtonViewModel(title: "Action button",
+                            icon: nil,
+                            shouldLoadOnTap: false,
+                            action: {})
+    }
+}

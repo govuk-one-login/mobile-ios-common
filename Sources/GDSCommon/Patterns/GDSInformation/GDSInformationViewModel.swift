@@ -20,8 +20,13 @@ import UIKit
 /// screens modally and calling custom methods when screens appear and dismiss.
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
+
+public typealias GDSInformationViewModelAdditionalConfig = GDSInformationViewModelOptionalFootnote &
+                                                           GDSInformationViewModelPrimaryButton &
+                                                           GDSInformationViewModelOptionalSecondaryButton
+
 @MainActor
-public protocol GDSInformationViewModel {
+public protocol GDSInformationViewModel: GDSInformationViewModelAdditionalConfig {
     var image: String { get }
     var imageWeight: UIFont.Weight? { get }
     var imageColour: UIColor? { get }
@@ -31,8 +36,8 @@ public protocol GDSInformationViewModel {
 }
 
 @MainActor
-public protocol GDSInformationViewModelFootnote {
-    var footnote: GDSLocalisedString { get }
+public protocol GDSInformationViewModelOptionalFootnote {
+    var footnote: GDSLocalisedString? { get }
 }
 
 @MainActor
@@ -40,9 +45,20 @@ public protocol GDSInformationViewModelPrimaryButton {
     var primaryButtonViewModel: ButtonViewModel { get }
 }
 
+public extension GDSInformationViewModelPrimaryButton {
+    var primaryButtonViewModel: ButtonViewModel {
+        MockButtonViewModel.primary
+    }
+}
+
 @MainActor
-public protocol GDSInformationViewModelSecondaryButton {
-    var secondaryButtonViewModel: ButtonViewModel { get }
+public protocol GDSInformationViewModelOptionalPrimaryButton {
+    var primaryButtonViewModel: ButtonViewModel? { get }
+}
+
+@MainActor
+public protocol GDSInformationViewModelOptionalSecondaryButton {
+    var secondaryButtonViewModel: ButtonViewModel? { get }
 }
 
 @MainActor

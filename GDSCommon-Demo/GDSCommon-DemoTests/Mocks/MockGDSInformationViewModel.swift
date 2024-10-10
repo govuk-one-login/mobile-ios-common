@@ -2,9 +2,6 @@ import GDSCommon
 import UIKit
 
 struct MockGDSInformationViewModel: GDSInformationViewModel,
-                                    GDSInformationViewModelFootnote,
-                                    GDSInformationViewModelPrimaryButton,
-                                    GDSInformationViewModelSecondaryButton,
                                     GDSInformationViewModelChildView,
                                     BaseViewModel {
     let image: String = "lock"
@@ -16,9 +13,9 @@ struct MockGDSInformationViewModel: GDSInformationViewModel,
     var childView: UIView {
         createChildView()
     }
-    let footnote: GDSLocalisedString = "Information screen footnote"
+    let footnote: GDSLocalisedString? = "Information screen footnote"
     let primaryButtonViewModel: ButtonViewModel
-    let secondaryButtonViewModel: ButtonViewModel
+    let secondaryButtonViewModel: ButtonViewModel?
     
     let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
     let backButtonIsHidden: Bool = false
@@ -26,7 +23,7 @@ struct MockGDSInformationViewModel: GDSInformationViewModel,
     let dismissAction: () -> Void
     
     init(primaryButtonViewModel: ButtonViewModel,
-         secondaryButtonViewModel: ButtonViewModel,
+         secondaryButtonViewModel: ButtonViewModel?,
          appearAction: @escaping () -> Void,
          dismissAction: @escaping () -> Void) {
         self.primaryButtonViewModel = primaryButtonViewModel

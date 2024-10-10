@@ -14,16 +14,17 @@ public final class IconScreenViewController: BaseViewController, TitledViewContr
     
     public let viewModel: IconScreenViewModel
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     /// Initialiser for the `IconScreenView` view controller.
     /// Requires a single parameter.
     /// - Parameter viewModel: `IconScreenViewModel`
     public init(viewModel: IconScreenViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "IconScreenView", bundle: .module)
+    }
+    
+    @available(*, unavailable, renamed: "init(viewModel:)")
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     /// Image view: ``UIImageView``

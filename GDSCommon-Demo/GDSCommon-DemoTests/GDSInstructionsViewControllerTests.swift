@@ -26,7 +26,8 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
         }
         
         viewModel = MockGDSInstructionsViewModel(childView: bulletView,
-                                                 buttonViewModel: buttonViewModel, secondaryButtonViewModel: buttonViewModel) {
+                                                 buttonViewModel: buttonViewModel,
+                                                 secondaryButtonViewModel: buttonViewModel) {
             self.screenDidAppear = true
         } dismissAction: {
             self.didDismiss = true

@@ -25,6 +25,7 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
         isModalInPresentation = (viewModel as? ModalInfoExtraViewModel)?.preventModalDismiss ?? false
     }
     
+    @available(*, unavailable, renamed: "init(viewModel:)")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -14,6 +14,7 @@ open class BaseViewController: UIViewController {
         super.init(nibName: nibName, bundle: bundle)
     }
     
+    @available(*, unavailable, renamed: "init(viewModel:)")
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

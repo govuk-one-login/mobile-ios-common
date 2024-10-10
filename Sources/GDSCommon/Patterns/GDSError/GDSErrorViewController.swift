@@ -43,7 +43,7 @@ public final class GDSErrorViewController: BaseViewController, TitledViewControl
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSError", bundle: .module)
     }
     
-    @available(*, unavailable, renamed: "init(coordinator:)")
+    @available(*, unavailable, renamed: "init(viewModel:)")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
