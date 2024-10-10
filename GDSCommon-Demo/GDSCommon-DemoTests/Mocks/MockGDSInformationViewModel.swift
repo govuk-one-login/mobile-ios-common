@@ -79,4 +79,3 @@ struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
         self.primaryButtonViewModel = primaryButtonViewModel
     }
 }
-
