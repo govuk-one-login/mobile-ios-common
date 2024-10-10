@@ -1,6 +1,7 @@
 import GDSCommon
 import XCTest
 
+@MainActor
 final class GDSInformationViewControllerTests: XCTestCase {
     var viewModel: GDSInformationViewModel!
     var sut: GDSInformationViewController!
@@ -20,6 +21,7 @@ final class GDSInformationViewControllerTests: XCTestCase {
         primaryButtonViewModel = MockButtonViewModel(title: "Information primary button title") {
             self.didTap_primaryButton = true
         }
+        
         secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title") {
             self.didTap_secondaryButton = true
         }
@@ -58,17 +60,14 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
     }
     
-    @MainActor
     func test_primaryButtonNoIcon() throws {
         XCTAssertNil(try sut.primaryButton.icon)
     }
 
-    @MainActor
     func test_secondaryButtonNoIcon() throws {
         XCTAssertNil(try sut.secondaryButton.icon)
     }
     
-    @MainActor
     func test_secondaryButtonWithIcon() throws {
         secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title",
                                                        icon: MockButtonIconViewModel()) {}
@@ -78,6 +77,16 @@ extension GDSInformationViewControllerTests {
         sut = GDSInformationViewController(viewModel: viewModel)
         
         XCTAssertNotNil(try sut.secondaryButton.icon)
+    }
+    
+    func test_primaryButton_shown() {
+        sut = GDSInformationViewController(viewModel: MockGDSInformationViewModelV2(primaryButtonViewModel: primaryButtonViewModel))
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Information primary button title")
+    }
+    
+    func test_primaryButton_hidden() {
+        sut = GDSInformationViewController(viewModel: MockGDSInformationViewModelV2(primaryButtonViewModel: nil))
+        XCTAssertTrue(try sut.primaryButton.isHidden)
     }
     
     func test_primaryButtonAction() throws {
@@ -99,7 +108,6 @@ extension GDSInformationViewControllerTests {
         XCTAssertTrue(viewDidAppear)
     }
 
-    @MainActor
     func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()

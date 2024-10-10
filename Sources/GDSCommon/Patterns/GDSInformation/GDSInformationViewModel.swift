@@ -1,17 +1,17 @@
 import UIKit
 
-/// View model for the ``GDSInformationViewController``
+/// ``GDSInformationViewModelV2`` Is the view model for the ``GDSInformationViewController``
 /// - `image` type is `String`
 /// - `imageWeight` type is `UIFont.Weight`?
 /// - `imageColour` type is `UIColor`?
 /// - `imageHeightConstraint` type is `CGFloat`?
 /// - `title` type is ``GDSLocalisedString``
 /// - `body` type is ``GDSLocalisedString``?
+/// The following properties are included on additional protocols, which combine to make ``GDSInformationViewModel``
 /// - `footnote` type is ``GDSLocalisedString``?
 /// - `primaryButtonViewModel` type is ``ButtonViewModel``
 /// - `secondaryButtonViewModel` type is ``ButtonViewModel``?
-///
-/// There are several optional properties as part of this protocol to extend the functionality
+/// There are a number of optional properties as part of this protocol to extend the functionality
 /// of the ``GDSInformationViewController``. When properties are `nil`, default
 /// configuration has been created to account for the lack of specific configuration.
 /// Concrete implementations of this protocol can be combined with conformance to

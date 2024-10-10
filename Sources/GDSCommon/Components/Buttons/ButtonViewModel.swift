@@ -25,7 +25,8 @@ struct MockButtonViewModel: ButtonViewModel {
     static var primary: MockButtonViewModel {
         MockButtonViewModel(title: "Action button",
                             icon: nil,
-                            shouldLoadOnTap: false,
-                            action: {})
+                            shouldLoadOnTap: false) {
+            /* This is empty as it is only used on the extension of GDSInformationViewModelPrimaryButton */
+        }
     }
 }

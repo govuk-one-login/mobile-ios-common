@@ -64,3 +64,19 @@ struct MockGDSInformationViewModel: GDSInformationViewModel,
         return bulletView
     }
 }
+
+struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
+                                      GDSInformationViewModelOptionalPrimaryButton {
+    let image: String = "lock"
+    let imageWeight: UIFont.Weight? = .semibold
+    let imageColour: UIColor? = .gdsPrimary
+    let imageHeightConstraint: CGFloat? = 55
+    let title: GDSLocalisedString = "Information screen title"
+    let body: GDSLocalisedString? = "Information screen body"
+    let primaryButtonViewModel: ButtonViewModel?
+    
+    init(primaryButtonViewModel: ButtonViewModel?) {
+        self.primaryButtonViewModel = primaryButtonViewModel
+    }
+}
+
