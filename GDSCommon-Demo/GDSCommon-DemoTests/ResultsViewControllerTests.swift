@@ -25,6 +25,9 @@ final class ResultsViewControllerTests: XCTestCase {
         viewModel = nil
         sut = nil
         
+        screenDidAppear = false
+        screenDidDismiss = false
+        
         super.tearDown()
     }
 }
@@ -57,6 +60,7 @@ private struct TestViewModel: ResultsViewModel, BaseViewModel {
 }
 
 extension ResultsViewControllerTests {
+    @MainActor
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
@@ -82,6 +86,7 @@ extension ResultsViewControllerTests {
         XCTAssertEqual(try sut.resultsButton.title(for: .normal), "Results button title")
     }
     
+    @MainActor
     func test_buttonAction() throws {
         XCTAssertFalse(screenDidDismiss)
         try sut.resultsButton.sendActions(for: .touchUpInside)

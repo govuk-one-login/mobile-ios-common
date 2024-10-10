@@ -6,15 +6,12 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
     var sut: GDSListOptionsViewController!
     var viewModel: MockListViewModel!
 
-    var didSetStringKey: String?
-    var screenDidAppear: Bool!
-    var didDismiss: Bool!
+    var screenDidAppear = false
+    var didDismiss = false
     
     @MainActor
     override func setUp() {
         super.setUp()
-        screenDidAppear = false
-        didDismiss = false
         
         let secondaryButtonViewModel = MockButtonViewModel(title: "Secondary Button") {
             self.didDismiss = true
@@ -30,10 +27,11 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
     }
     
     override func tearDown() {
-        screenDidAppear = nil
-        didDismiss = nil
         viewModel = nil
         sut = nil
+        
+        screenDidAppear = false
+        didDismiss = false
         
         super.tearDown()
     }
@@ -51,19 +49,19 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
 }
 
 extension GDSListOptionsViewControllerTests {
+    @MainActor
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
-        sut.viewWillAppear(false)
         XCTAssertTrue(screenDidAppear)
     }
     
+    @MainActor
     func testWillAppear() {
         XCTAssertNil(sut.navigationItem.rightBarButtonItem)
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
-        sut.viewDidAppear(false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
     }
     
@@ -77,6 +75,7 @@ extension GDSListOptionsViewControllerTests {
         XCTAssertEqual(view.text, "This is the List Options screen pattern")
     }
     
+    @MainActor
     func testLabelContents() {
         XCTAssertEqual(try sut.titleLabel.text, "This is the List Options screen pattern")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
@@ -87,6 +86,7 @@ extension GDSListOptionsViewControllerTests {
         XCTAssertEqual(try sut.bodyLabel.font, .body)
     }
     
+    @MainActor
     func testTitleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
@@ -102,6 +102,7 @@ extension GDSListOptionsViewControllerTests {
         XCTAssertTrue(didDismiss)
     }
     
+    @MainActor
     func testPrimaryButton() throws {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)
@@ -121,6 +122,7 @@ extension GDSListOptionsViewControllerTests {
         XCTAssertEqual(viewModel.selectedIndex.stringKey, "Table view list item 1")
     }
     
+    @MainActor
     func testSecondaryButton() throws {
         XCTAssertFalse(try sut.secondaryButton.isHidden)
         

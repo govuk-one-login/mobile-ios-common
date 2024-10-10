@@ -17,16 +17,17 @@ public final class InstructionsWithImageViewController: BaseViewController, Titl
     
     public let viewModel: InstructionsWithImageViewModel
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     /// Initialiser for the `InstructionsWithImage` view controller.
     /// Requires a single parameter.
     /// - Parameter viewModel: `InstructionsWithImageViewModel`
     public init(viewModel: InstructionsWithImageViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "InstructionsWithImage", bundle: .module)
+    }
+    
+    @available(*, unavailable, renamed: "init(viewModel:)")
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     /// Title label: ``UILabel``

@@ -30,6 +30,12 @@ final class GDSErrorViewControllerTests: XCTestCase {
         viewModel = nil
         sut = nil
         
+        primaryButton = false
+        secondaryButton = false
+        tertiaryButton = false
+        viewDidAppear = false
+        viewDidDismiss = false
+        
         super.tearDown()
     }
 }
@@ -147,6 +153,7 @@ private struct TestViewModelWithTertiary: GDSErrorViewModelV2, GDSErrorViewModel
 }
 
 extension GDSErrorViewControllerTests {
+    @MainActor
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.errorImage)
         XCTAssertEqual(try sut.errorTitleLabel.text, "Error screen title")
@@ -159,12 +166,14 @@ extension GDSErrorViewControllerTests {
         XCTAssertTrue(try sut.errorTertiaryButton.isHidden)
     }
     
+    @MainActor
     func test_primaryButtonAction() throws {
         XCTAssertFalse(primaryButton)
         try sut.errorPrimaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(primaryButton)
     }
     
+    @MainActor
     func test_secondaryButtonAction() throws {
         XCTAssertFalse(secondaryButton)
         try sut.errorSecondaryButton.sendActions(for: .touchUpInside)
@@ -178,7 +187,6 @@ extension GDSErrorViewControllerTests {
                                         appearAction: { },
                                         dismissAction: { })
         sut = GDSErrorViewController(viewModel: viewModel)
-        
         XCTAssertTrue(try sut.errorImage.isHidden)
     }
     
@@ -205,10 +213,10 @@ extension GDSErrorViewControllerTests {
         XCTAssertEqual(try sut.errorTertiaryButton.title(for: .normal), "Error tertiary button title")
     }
     
-    func test_didAppear() throws {
+    @MainActor
+    func test_didAppear() {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(viewDidAppear)
     }
@@ -226,7 +234,6 @@ extension GDSErrorViewControllerTests {
     func test_didDismiss() {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
-        sut.viewDidAppear(false)
         sut.endAppearanceTransition()
         XCTAssertTrue(viewDidAppear)
         

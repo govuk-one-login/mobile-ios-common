@@ -10,53 +10,72 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
     
     var screenDidAppear = false
     var screenDidDismiss = false
-
+    
+    var didTapWarningButton = false
     var didTapPrimaryButton = false
     var didTapSecondaryButton = false
-    var didTapWarningButton = false
-
+    
     @MainActor
     override func setUp() {
         super.setUp()
         
-        viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel(title: "Action Button",
-                                                                                                   shouldLoadOnTap: false,
-                                                                                                   action: { self.didTapWarningButton = true }),
-                                                       primaryButtonViewModel: MockButtonViewModel(title: "Action Button",
-                                                                                                   icon: MockButtonIconViewModel(iconName: "qrcode",
-                                                                                                                                 symbolPosition: .beforeTitle),
-                                                                                                   shouldLoadOnTap: false,
-                                                                                                   action: { self.didTapPrimaryButton = true }),
-                                                       secondaryButtonViewModel: MockButtonViewModel(title: "Secondary Button",
-                                                                                                     icon: MockButtonIconViewModel(iconName: "qrcode",
-                                                                                                                                   symbolPosition: .beforeTitle),
-                                                                                                     shouldLoadOnTap: false,
-                                                                                                     action: { self.didTapSecondaryButton = true }),
-                                                       rightBarButtonTitle: "close",
-                                                       screenView: {
-            self.screenDidAppear = true
-        }, dismissAction: {
-            self.screenDidDismiss = true
-        })
+        viewModel = MockInstructionsWithImageViewModel(
+            warningButtonViewModel: MockButtonViewModel(
+                title: "Warning Button",
+                shouldLoadOnTap: false,
+                action: {
+                    self.didTapWarningButton = true
+                }),
+            primaryButtonViewModel: MockButtonViewModel(
+                title: "Action Button",
+                icon: MockButtonIconViewModel(iconName: "qrcode",
+                                              symbolPosition: .beforeTitle),
+                shouldLoadOnTap: false,
+                action: {
+                    self.didTapPrimaryButton = true
+                }),
+            secondaryButtonViewModel: MockButtonViewModel(
+                title: "Secondary Button",
+                icon: MockButtonIconViewModel(iconName: "qrcode",
+                                              symbolPosition: .beforeTitle),
+                shouldLoadOnTap: false,
+                action: {
+                    self.didTapSecondaryButton = true
+                }),
+            rightBarButtonTitle: "close",
+            screenView: {
+                self.screenDidAppear = true
+            },
+            dismissAction: {
+                self.screenDidDismiss = true
+            })
         
         sut = InstructionsWithImageViewController(viewModel: viewModel)
-        
-        attachToWindow(viewController: sut)
     }
-
+    
     override func tearDown() {
         buttonViewModel = nil
         warningButtonViewModel = nil
         viewModel = nil
         sut = nil
+        
+        screenDidAppear = false
+        screenDidDismiss = false
+        
+        didTapWarningButton = false
+        didTapPrimaryButton = false
+        didTapSecondaryButton = false
+        
         super.tearDown()
     }
 }
 
 extension InstructionsWithImageViewControllerTests {
+    @MainActor
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
-        sut.viewDidAppear(false)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
         XCTAssertTrue(screenDidAppear)
     }
     
@@ -70,6 +89,7 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertEqual(view.text, "This is the Instructions with image view")
     }
     
+    @MainActor
     func testTitleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
@@ -85,10 +105,12 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertTrue(screenDidDismiss)
     }
     
+    @MainActor
     func test_backButton() {
         XCTAssertFalse(sut.navigationItem.hidesBackButton)
     }
     
+    @MainActor
     func test_labelContents() {
         XCTAssertEqual(try sut.titleLabel.text, "This is the Instructions with image view")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
@@ -98,6 +120,7 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertEqual(try sut.bodyLabel.textColor, .gdsGrey)
     }
     
+    @MainActor
     func test_imageView() throws {
         XCTAssertNotNil(try sut.imageView)
     }
@@ -113,7 +136,7 @@ extension InstructionsWithImageViewControllerTests {
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTapPrimaryButton)
     }
-
+    
     @MainActor
     func test_secondaryButton() throws {
         XCTAssertNotNil(try sut.secondaryButton)
@@ -126,9 +149,10 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertTrue(didTapSecondaryButton)
     }
     
+    @MainActor
     func test_warningButton() throws {
         XCTAssertNotNil(try sut.warningButton)
-        XCTAssertEqual(try sut.warningButton.title(for: .normal), "Action Button")
+        XCTAssertEqual(try sut.warningButton.title(for: .normal), "Warning Button")
         XCTAssertEqual(try sut.warningButton.backgroundColor, nil)
         
         try sut.warningButton.sendActions(for: .touchUpInside)

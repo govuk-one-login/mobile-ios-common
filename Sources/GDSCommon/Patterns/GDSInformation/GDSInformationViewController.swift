@@ -10,17 +10,14 @@ import UIKit
 public final class GDSInformationViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSInformation" }
     
-    public private(set) var viewModel: GDSInformationViewModel
-
-    private let defaultImageHeight: CGFloat = 55
-    private let imagePaddingCompensation: CGFloat = 11
+    public private(set) var viewModel: GDSInformationViewModelV2
     
-    public init(viewModel: GDSInformationViewModel) {
+    public init(viewModel: GDSInformationViewModelV2) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSInformation", bundle: .module)
     }
     
-    @available(*, unavailable, renamed: "init(coordinator:)")
+    @available(*, unavailable, renamed: "init(viewModel:)")
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -33,12 +30,15 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
             informationImage.accessibilityIdentifier = "information-image"
             
-            let heightConstraint: CGFloat
-            
-            if let value = viewModel.imageHeightConstraint {
-                heightConstraint = value + imagePaddingCompensation
-            } else {
-                heightConstraint = defaultImageHeight
+            /// Minimum height constraint for the image view
+            var heightConstraint: CGFloat {
+                if let value = viewModel.imageHeightConstraint {
+                    /// The minimum height constraint for the image view configured plus an 11pt buffer
+                    value + 11
+                } else {
+                    /// The default minimum height constraint for the image view is 55pts
+                    55
+                }
             }
             
             NSLayoutConstraint.activate([
@@ -59,10 +59,10 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         didSet {
             if let bodyContent = viewModel.body {
                 bodyLabel.text = bodyContent.value
-                bodyLabel.accessibilityIdentifier = "information-body"
             } else {
                 bodyLabel.isHidden = true
             }
+            bodyLabel.accessibilityIdentifier = "information-body"
         }
     }
 
@@ -72,58 +72,87 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         didSet {
             if let viewModel = viewModel as? GDSInformationViewModelWithChildView {
                 stackView.addArrangedSubview(viewModel.childView)
-                stackView.accessibilityIdentifier = "information-optional-stack-view"
             }
+            stackView.accessibilityIdentifier = "information-optional-stack-view"
         }
     }
-
+    
     @IBOutlet private var footnoteLabel: UILabel! {
         didSet {
-            if let footnoteContent = viewModel.footnote {
+            if let viewModel = viewModel as? GDSInformationViewModelWithOptionalFootnote {
                 footnoteLabel.font = .init(style: .footnote)
-                footnoteLabel.text = footnoteContent.value
-                footnoteLabel.accessibilityIdentifier = "information-footnote"
-                
+                footnoteLabel.text = viewModel.footnote?.value
+
+                if #available(iOS 15.0, *) {
+                    footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
+                }
+            } else if let viewModel = viewModel as? GDSInformationViewModelWithFootnote {
+                footnoteLabel.font = .init(style: .footnote)
+                footnoteLabel.text = viewModel.footnote.value
+
                 if #available(iOS 15.0, *) {
                     footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
                 }
             } else {
                 footnoteLabel.isHidden = true
             }
+            footnoteLabel.accessibilityIdentifier = "information-footnote"
         }
     }
     
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
-            primaryButton.setTitle(viewModel.primaryButtonViewModel.title, for: .normal)
+            if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton,
+                let button = buttonViewModel.primaryButtonViewModel {
+                primaryButton.setTitle(button.title.value, for: .normal)
+            } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
+                primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
+            } else {
+                primaryButton.isHidden = true
+            }
             primaryButton.accessibilityIdentifier = "information-primary-button"
         }
     }
     
     @IBAction private func primaryButtonAction(_ sender: Any) {
-        primaryButton.isLoading = true
-        viewModel.primaryButtonViewModel.action()
-        primaryButton.isLoading = false
+        if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton {
+            buttonViewModel.primaryButtonViewModel?.action()
+        } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
+            buttonViewModel.primaryButtonViewModel.action()
+        }
     }
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
-            if let buttonViewModel = viewModel.secondaryButtonViewModel {
-                secondaryButton.setTitle(buttonViewModel.title, for: .normal)
+            if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton,
+               let button = buttonViewModel.secondaryButtonViewModel {
+                secondaryButton.setTitle(button.title, for: .normal)
                 secondaryButton.titleLabel?.textAlignment = .center
-                secondaryButton.accessibilityIdentifier = "information-secondary-button"
                 
-                if let icon = buttonViewModel.icon {
+                if let icon = button.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
+                }
+            } else if let buttonViewModel = viewModel as? GDSInformationViewModelWithSecondaryButton {
+                secondaryButton.setTitle(buttonViewModel.secondaryButtonViewModel.title.value, for: .normal)
+                secondaryButton.titleLabel?.textAlignment = .center
+                
+                if let icon = buttonViewModel.secondaryButtonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
                 }
             } else {
                 secondaryButton.isHidden = true
             }
+            secondaryButton.accessibilityIdentifier = "information-secondary-button"
         }
     }
 
     @IBAction private func secondaryButtonAction(_ sender: Any) {
-        viewModel.secondaryButtonViewModel?.action()
+        if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton {
+            buttonViewModel.secondaryButtonViewModel?.action()
+        } else if let buttonViewModel = viewModel as? GDSInformationViewModelWithSecondaryButton {
+            buttonViewModel.secondaryButtonViewModel.action()
+        }
     }
 }

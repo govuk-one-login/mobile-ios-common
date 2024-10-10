@@ -13,15 +13,6 @@ class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel, BaseVi
 
     let screenView: () -> Void
     let dismissAction: () -> Void
-
-    func didAppear() {
-        screenView()
-    }
-    
-    func didDismiss() {
-        dismissAction()
-    }
-    
     
     init(title: GDSLocalisedString = "This is the Instructions with image view",
          body: NSAttributedString = NSAttributedString("We can use this body to provide details or context as to what we want the users to do"),
@@ -41,5 +32,13 @@ class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel, BaseVi
         self.rightBarButtonTitle = rightBarButtonTitle
         self.screenView = screenView
         self.dismissAction = dismissAction
+    }
+    
+    func didAppear() {
+        screenView()
+    }
+    
+    func didDismiss() {
+        dismissAction()
     }
 }

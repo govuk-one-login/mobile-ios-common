@@ -23,7 +23,7 @@ final class ScanningViewControllerTests: XCTestCase {
         } dismissAction: {
             self.didDismiss = true
         }
- 
+        
         captureSession = MockCaptureSession()
         
         sut = ScanningViewController(viewModel: viewModel,
@@ -41,15 +41,18 @@ final class ScanningViewControllerTests: XCTestCase {
         presenter = nil
         super.tearDown()
     }
-    
-    
-    func test_titleLabel() throws {
+}
+
+extension ScanningViewControllerTests {
+    @MainActor
+    func test_titleLabel() {
         XCTAssertNotNil(sut.title)
         XCTAssertEqual(sut.title, "QR Scanning Title")
         
         XCTAssertFalse(sut.navigationItem.hidesBackButton)
     }
     
+    @MainActor
     func test_instructionsLabel() throws {
         try XCTAssertNotNil(sut.instructionsLabel)
         try XCTAssertEqual(sut.instructionsLabel.text, "QR Scanning instruction area, we can instruct the user from here")
@@ -57,6 +60,7 @@ final class ScanningViewControllerTests: XCTestCase {
         try XCTAssertEqual(sut.instructionsLabel.font, .init(style: .body, weight: .bold))
     }
     
+    @MainActor
     func test_didDismiss() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
@@ -72,11 +76,13 @@ final class ScanningViewControllerTests: XCTestCase {
         XCTAssertTrue(didDismiss)
     }
     
-    func test_nibName() throws {
+    @MainActor
+    func test_nibName() {
         XCTAssertNotNil(sut.nibName)
         XCTAssertEqual(sut.nibName, "Scanner")
     }
     
+    @MainActor
     func testStopScanning() {
         XCTAssertTrue(sut.captureSession.isRunning)
         sut.stopScanning()
@@ -86,6 +92,7 @@ final class ScanningViewControllerTests: XCTestCase {
                      timeout: 2)
     }
     
+    @MainActor
     func test_detectedBarcode_noResults() throws {
         let barcodeRequest = try XCTUnwrap(sut.barcodeRequest as? MockDetectBarcodeRequest)
         barcodeRequest.requestHandler?(MockBarcodeRequest(results: nil), nil)
@@ -94,6 +101,7 @@ final class ScanningViewControllerTests: XCTestCase {
         waitForTruth(!self.didCompleteScan, timeout: 2)
     }
     
+    @MainActor
     func test_detectBarcode_successful() throws {
         let barcodeRequest = try XCTUnwrap(sut.barcodeRequest as? MockDetectBarcodeRequest)
         barcodeRequest.requestHandler?(MockBarcodeRequest(results: [
@@ -104,6 +112,7 @@ final class ScanningViewControllerTests: XCTestCase {
         waitForTruth(self.didCompleteScan, timeout: 2)
     }
     
+    @MainActor
     func test_detectBarcode_failure() throws {
         let barcodeRequest = try XCTUnwrap(sut.barcodeRequest as? MockDetectBarcodeRequest)
         barcodeRequest.requestHandler?(MockBarcodeRequest(results: [
@@ -114,6 +123,7 @@ final class ScanningViewControllerTests: XCTestCase {
         waitForTruth(!self.didCompleteScan, timeout: 2)
     }
     
+    @MainActor
     func test_metadataCapture_setupCorrectly() throws {
         let output = try XCTUnwrap(captureSession.output
                                    as? AVCaptureVideoDataOutput)

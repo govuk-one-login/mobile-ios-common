@@ -4,25 +4,19 @@ import XCTest
 
 final class TextInputViewControllerTests: XCTestCase {
     typealias InputType = Bool
-    var sut: TextInputViewController<InputType>!
     var viewModel: (any TextInputViewModel)?
-    
+    var sut: TextInputViewController<InputType>!
+
     var resultAction: ((Bool) -> Void)!
     
-    var didSetResult: [Bool] = [false]
-    var screenDidAppear: Bool = false
+    var didSetResult = [false]
+    var screenDidAppear = false
     var didTapButton = false
     var didDismissScreen = false
     
     @MainActor
     override func setUp() {
         super.setUp()
-
-        screenDidAppear = false
-        
-        resultAction = { bool in
-            self.didSetResult.append(bool)
-        }
         
         let viewModel = MockTextInputViewModel<InputType> { result in
             self.didSetResult = [result]
@@ -33,12 +27,18 @@ final class TextInputViewControllerTests: XCTestCase {
         }
 
         sut = .init(viewModel: viewModel)
+        
+        resultAction = { bool in
+            self.didSetResult.append(bool)
+        }
     }
     
     override func tearDown() {
-        resultAction = nil
         viewModel = nil
         sut = nil
+        
+        resultAction = nil
+
         didSetResult = []
         didTapButton = false
         didDismissScreen = false
@@ -49,6 +49,7 @@ final class TextInputViewControllerTests: XCTestCase {
 }
 
 extension TextInputViewControllerTests {
+    @MainActor
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
         sut.beginAppearanceTransition(false, animated: false)
@@ -67,6 +68,7 @@ extension TextInputViewControllerTests {
         XCTAssertEqual(view.text, "Text input screen title")
     }
     
+    @MainActor
     func testLabels() {
         XCTAssertEqual(try sut.titleLabel.text, "Text input screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
@@ -74,6 +76,7 @@ extension TextInputViewControllerTests {
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
     }
     
+    @MainActor
     func testTextField() throws {
         try XCTAssertEqual(sut.textField.text, "")
         
@@ -95,6 +98,7 @@ extension TextInputViewControllerTests {
         try XCTAssertEqual(sut.textField.keyboardType, .default)
     }
     
+    @MainActor
     func testTitleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
@@ -110,12 +114,14 @@ extension TextInputViewControllerTests {
         XCTAssertTrue(didDismissScreen)
     }
     
+    @MainActor
     func testTextFieldFooter() throws {
         try XCTAssertEqual(sut.textFieldFooter.text, "This is an optional footer. It is configured on the view model. If `nil` the label is hidden.")
         try XCTAssertEqual(sut.textFieldFooter.font, .footnote)
         try XCTAssertEqual(sut.textFieldFooter.textColor, .secondaryLabel)
     }
     
+    @MainActor
     func testPrimaryButton() throws {
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
         XCTAssertEqual(try sut.primaryButton.titleLabel?.textColor, .white)

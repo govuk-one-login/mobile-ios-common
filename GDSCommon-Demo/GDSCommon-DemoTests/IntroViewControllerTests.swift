@@ -4,6 +4,7 @@ import XCTest
 final class IntroViewControllerTests: XCTestCase {
     var viewModel: IntroViewModel!
     var sut: IntroViewController!
+    
     var buttonAction = false
     var viewDidAppear = false
     var viewDidDismiss = false
@@ -25,6 +26,10 @@ final class IntroViewControllerTests: XCTestCase {
     override func tearDown() {
         viewModel = nil
         sut = nil
+        
+        buttonAction = false
+        viewDidAppear = false
+        viewDidDismiss = false
         
         super.tearDown()
     }
@@ -61,6 +66,7 @@ private struct TestViewModel: IntroViewModel, BaseViewModel {
 }
 
 extension IntroViewControllerTests {
+    @MainActor
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.introImage)
         XCTAssertEqual(try sut.titleLabel.text, "Intro screen title")
@@ -81,6 +87,7 @@ extension IntroViewControllerTests {
         XCTAssertEqual(view.text, "Intro screen title")
     }
     
+    @MainActor
     func test_buttonAction() throws {
         XCTAssertFalse(buttonAction)
         try sut.introButton.sendActions(for: .touchUpInside)
@@ -90,6 +97,7 @@ extension IntroViewControllerTests {
         XCTAssertTrue(try sut.introButton.isEnabled)
     }
     
+    @MainActor
     func test_viewDidAppear() throws {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)

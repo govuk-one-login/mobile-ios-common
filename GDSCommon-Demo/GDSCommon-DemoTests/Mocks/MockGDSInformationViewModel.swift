@@ -1,7 +1,9 @@
 import GDSCommon
 import UIKit
 
-struct MockGDSInformationViewModel: GDSInformationViewModel, GDSInformationViewModelWithChildView, BaseViewModel {
+struct MockGDSInformationViewModel: GDSInformationViewModel,
+                                    GDSInformationViewModelWithChildView,
+                                    BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = .semibold
     let imageColour: UIColor? = .gdsPrimary
@@ -21,7 +23,7 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, GDSInformationViewM
     let dismissAction: () -> Void
     
     init(primaryButtonViewModel: ButtonViewModel,
-         secondaryButtonViewModel: ButtonViewModel,
+         secondaryButtonViewModel: ButtonViewModel?,
          appearAction: @escaping () -> Void,
          dismissAction: @escaping () -> Void) {
         self.primaryButtonViewModel = primaryButtonViewModel
@@ -60,5 +62,26 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, GDSInformationViewM
                                            "bullet 3"],
                                     titleFont: .body)
         return bulletView
+    }
+}
+
+struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
+                                      GDSInformationViewModelWithFootnote,
+                                      GDSInformationViewModelWithOptionalPrimaryButton,
+                                      GDSInformationViewModelWithSecondaryButton {
+    let image: String = "lock"
+    let imageWeight: UIFont.Weight? = .semibold
+    let imageColour: UIColor? = .gdsPrimary
+    let imageHeightConstraint: CGFloat? = 55
+    let title: GDSLocalisedString = "V2 Information screen title"
+    let body: GDSLocalisedString? = "V2 Information screen body"
+    var footnote: GDSLocalisedString = "V2 Information screen footnote"
+    let primaryButtonViewModel: ButtonViewModel?
+    var secondaryButtonViewModel: ButtonViewModel
+    
+    init(primaryButtonViewModel: ButtonViewModel?,
+         secondaryButtonViewModel: ButtonViewModel) {
+        self.primaryButtonViewModel = primaryButtonViewModel
+        self.secondaryButtonViewModel = secondaryButtonViewModel
     }
 }

@@ -1,7 +1,28 @@
 import GDSCommon
 import UIKit
 
-struct MockGDSInformationViewModel: GDSInformationViewModel, BaseViewModel {
+struct MockGDSInformationViewModelPlain: GDSInformationViewModelV2,
+                                         GDSInformationViewModelWithOptionalPrimaryButton,
+                                         BaseViewModel {
+    let image: String = "lock"
+    let imageWeight: UIFont.Weight? = nil
+    let imageColour: UIColor? = nil
+    let imageHeightConstraint: CGFloat? = nil
+    let title: GDSLocalisedString = "This is an Information View title"
+    let body: GDSLocalisedString? = "This is an (optional) Information View body."
+    let footnote: GDSLocalisedString? = nil
+    let primaryButtonViewModel: ButtonViewModel? = nil
+    let secondaryButtonViewModel: ButtonViewModel? = nil
+    let rightBarButtonTitle: GDSLocalisedString? = nil
+    let backButtonIsHidden: Bool = false
+    
+    func didAppear() {}
+    
+    func didDismiss() {}
+}
+
+struct MockGDSInformationViewModel: GDSInformationViewModel,
+                                    BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = nil
     let imageColour: UIColor? = nil
@@ -19,7 +40,9 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, BaseViewModel {
     func didDismiss() {}
 }
 
-struct MockGDSInformationViewModelWithChildView: GDSInformationViewModel, GDSInformationViewModelWithChildView, BaseViewModel {
+struct MockGDSInformationViewModelWithChildView: GDSInformationViewModel,
+                                                 GDSInformationViewModelWithChildView,
+                                                 BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = nil
     let imageColour: UIColor? = nil
