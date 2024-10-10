@@ -41,13 +41,4 @@ extension SecondaryButtonTests {
         sut.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTapButton)
     }
-    
-    @MainActor
-    func test_fallBackButton() {
-        let fallBackButton = FallBackButtonViewModel.primary
-        XCTAssertEqual(fallBackButton.title.value, "Action button")
-        XCTAssertNil(fallBackButton.icon)
-        XCTAssertFalse(fallBackButton.shouldLoadOnTap)
-        fallBackButton.action()
-    }
 }

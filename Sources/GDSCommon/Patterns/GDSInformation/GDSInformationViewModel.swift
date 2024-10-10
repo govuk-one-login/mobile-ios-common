@@ -23,9 +23,9 @@ import UIKit
 
 @available(*, deprecated, renamed: "GDSInformationViewModelV2", message: "Should conform to additional protocols if additional configuration is required")
 public typealias GDSInformationViewModel = GDSInformationViewModelV2 &
-                                           GDSInformationViewModelOptionalFootnote &
+                                           GDSInformationViewModelWithOptionalFootnote &
                                            GDSInformationViewModelPrimaryButton &
-                                           GDSInformationViewModelOptionalSecondaryButton
+                                           GDSInformationViewModelWithOptionalSecondaryButton
 
 @MainActor
 public protocol GDSInformationViewModelV2 {
@@ -38,7 +38,7 @@ public protocol GDSInformationViewModelV2 {
 }
 
 @MainActor
-public protocol GDSInformationViewModelOptionalFootnote {
+public protocol GDSInformationViewModelWithOptionalFootnote {
     var footnote: GDSLocalisedString? { get }
 }
 
@@ -47,23 +47,17 @@ public protocol GDSInformationViewModelPrimaryButton {
     var primaryButtonViewModel: ButtonViewModel { get }
 }
 
-public extension GDSInformationViewModelPrimaryButton {
-    var primaryButtonViewModel: ButtonViewModel {
-        FallBackButtonViewModel.primary
-    }
-}
-
 @MainActor
-public protocol GDSInformationViewModelOptionalPrimaryButton {
+public protocol GDSInformationViewModelWithOptionalPrimaryButton {
     var primaryButtonViewModel: ButtonViewModel? { get }
 }
 
 @MainActor
-public protocol GDSInformationViewModelOptionalSecondaryButton {
+public protocol GDSInformationViewModelWithOptionalSecondaryButton {
     var secondaryButtonViewModel: ButtonViewModel? { get }
 }
 
 @MainActor
-public protocol GDSInformationViewModelChildView {
+public protocol GDSInformationViewModelWithChildView {
     var childView: UIView { get }
 }

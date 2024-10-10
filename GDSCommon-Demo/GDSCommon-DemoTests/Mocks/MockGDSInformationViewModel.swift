@@ -2,7 +2,7 @@ import GDSCommon
 import UIKit
 
 struct MockGDSInformationViewModel: GDSInformationViewModel,
-                                    GDSInformationViewModelChildView,
+                                    GDSInformationViewModelWithChildView,
                                     BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = .semibold
@@ -66,7 +66,7 @@ struct MockGDSInformationViewModel: GDSInformationViewModel,
 }
 
 struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
-                                      GDSInformationViewModelOptionalPrimaryButton {
+                                      GDSInformationViewModelWithOptionalPrimaryButton {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = .semibold
     let imageColour: UIColor? = .gdsPrimary

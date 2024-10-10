@@ -30,12 +30,15 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
             informationImage.accessibilityIdentifier = "information-image"
             
-            let heightConstraint: CGFloat
-            
-            if let value = viewModel.imageHeightConstraint {
-                heightConstraint = value + 11
-            } else {
-                heightConstraint = 55
+            /// Minimum height constraint for the image view
+            var heightConstraint: CGFloat {
+                if let value = viewModel.imageHeightConstraint {
+                    /// The minimum height constraint for the image view configured plus an 11pt buffer
+                    value + 11
+                } else {
+                    /// The default minimum height constraint for the image view is 55pts
+                    55
+                }
             }
             
             NSLayoutConstraint.activate([
@@ -67,7 +70,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     /// This will be added to the `stackView` below the existing `bodyLabel`
     @IBOutlet private var stackView: UIStackView! {
         didSet {
-            if let viewModel = viewModel as? GDSInformationViewModelChildView {
+            if let viewModel = viewModel as? GDSInformationViewModelWithChildView {
                 stackView.addArrangedSubview(viewModel.childView)
             }
             stackView.accessibilityIdentifier = "information-optional-stack-view"
@@ -76,7 +79,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     
     @IBOutlet private var footnoteLabel: UILabel! {
         didSet {
-            if let viewModel = viewModel as? GDSInformationViewModelOptionalFootnote {
+            if let viewModel = viewModel as? GDSInformationViewModelWithOptionalFootnote {
                 footnoteLabel.font = .init(style: .footnote)
                 footnoteLabel.text = viewModel.footnote?.value
 
@@ -92,21 +95,20 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
-            if let buttonViewModel = viewModel as? GDSInformationViewModelOptionalPrimaryButton {
-                if let button = buttonViewModel.primaryButtonViewModel {
-                    primaryButton.setTitle(button.title.value, for: .normal)
-                } else {
-                    primaryButton.isHidden = true
-                }
+            if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton,
+                let button = buttonViewModel.primaryButtonViewModel {
+                primaryButton.setTitle(button.title.value, for: .normal)
             } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
                 primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
+            } else {
+                primaryButton.isHidden = true
             }
             primaryButton.accessibilityIdentifier = "information-primary-button"
         }
     }
     
     @IBAction private func primaryButtonAction(_ sender: Any) {
-        if let buttonViewModel = viewModel as? GDSInformationViewModelOptionalPrimaryButton {
+        if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton {
             buttonViewModel.primaryButtonViewModel?.action()
         } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
             buttonViewModel.primaryButtonViewModel.action()
@@ -115,15 +117,14 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     
     @IBOutlet private var secondaryButton: SecondaryButton! {
         didSet {
-            if let buttonViewModel = viewModel as? GDSInformationViewModelOptionalSecondaryButton {
-                if let button = buttonViewModel.secondaryButtonViewModel {
-                    secondaryButton.setTitle(button.title, for: .normal)
-                    secondaryButton.titleLabel?.textAlignment = .center
-
-                    if let icon = button.icon {
-                        secondaryButton.symbolPosition = icon.symbolPosition
-                        secondaryButton.icon = icon.iconName
-                    }
+            if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton,
+               let button = buttonViewModel.secondaryButtonViewModel {
+                secondaryButton.setTitle(button.title, for: .normal)
+                secondaryButton.titleLabel?.textAlignment = .center
+                
+                if let icon = button.icon {
+                    secondaryButton.symbolPosition = icon.symbolPosition
+                    secondaryButton.icon = icon.iconName
                 }
             } else {
                 secondaryButton.isHidden = true
@@ -133,7 +134,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     }
 
     @IBAction private func secondaryButtonAction(_ sender: Any) {
-        if let buttonViewModel = viewModel as? GDSInformationViewModelOptionalSecondaryButton {
+        if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton {
             buttonViewModel.secondaryButtonViewModel?.action()
         }
     }
