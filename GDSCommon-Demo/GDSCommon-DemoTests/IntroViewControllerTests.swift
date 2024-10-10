@@ -61,6 +61,7 @@ private struct TestViewModel: IntroViewModel, BaseViewModel {
 }
 
 extension IntroViewControllerTests {
+    @MainActor
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.introImage)
         XCTAssertEqual(try sut.titleLabel.text, "Intro screen title")
@@ -81,6 +82,7 @@ extension IntroViewControllerTests {
         XCTAssertEqual(view.text, "Intro screen title")
     }
     
+    @MainActor
     func test_buttonAction() throws {
         XCTAssertFalse(buttonAction)
         try sut.introButton.sendActions(for: .touchUpInside)
@@ -90,6 +92,7 @@ extension IntroViewControllerTests {
         XCTAssertTrue(try sut.introButton.isEnabled)
     }
     
+    @MainActor
     func test_viewDidAppear() throws {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)

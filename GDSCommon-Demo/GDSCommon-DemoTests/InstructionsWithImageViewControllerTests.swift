@@ -54,9 +54,11 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
 }
 
 extension InstructionsWithImageViewControllerTests {
+    @MainActor
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
-        sut.viewDidAppear(false)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
         XCTAssertTrue(screenDidAppear)
     }
     
@@ -70,6 +72,7 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertEqual(view.text, "This is the Instructions with image view")
     }
     
+    @MainActor
     func testTitleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
@@ -85,10 +88,12 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertTrue(screenDidDismiss)
     }
     
+    @MainActor
     func test_backButton() {
         XCTAssertFalse(sut.navigationItem.hidesBackButton)
     }
     
+    @MainActor
     func test_labelContents() {
         XCTAssertEqual(try sut.titleLabel.text, "This is the Instructions with image view")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
@@ -98,6 +103,7 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertEqual(try sut.bodyLabel.textColor, .gdsGrey)
     }
     
+    @MainActor
     func test_imageView() throws {
         XCTAssertNotNil(try sut.imageView)
     }
@@ -126,6 +132,7 @@ extension InstructionsWithImageViewControllerTests {
         XCTAssertTrue(didTapSecondaryButton)
     }
     
+    @MainActor
     func test_warningButton() throws {
         XCTAssertNotNil(try sut.warningButton)
         XCTAssertEqual(try sut.warningButton.title(for: .normal), "Action Button")

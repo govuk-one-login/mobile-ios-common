@@ -1,7 +1,6 @@
 import GDSCommon
 import XCTest
 
-@MainActor
 final class GDSInformationViewControllerTests: XCTestCase {
     var viewModel: GDSInformationViewModel!
     var sut: GDSInformationViewController!
@@ -47,6 +46,7 @@ final class GDSInformationViewControllerTests: XCTestCase {
 }
 
 extension GDSInformationViewControllerTests {
+    @MainActor
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.informationImage)
         XCTAssertEqual(try sut.informationImage.tintColor, .gdsPrimary)
@@ -63,14 +63,17 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
     }
     
+    @MainActor
     func test_primaryButtonNoIcon() throws {
         XCTAssertNil(try sut.primaryButton.icon)
     }
 
+    @MainActor
     func test_secondaryButtonNoIcon() throws {
         XCTAssertNil(try sut.secondaryButton.icon)
     }
     
+    @MainActor
     func test_secondaryButtonWithIcon() throws {
         secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title",
                                                        icon: MockButtonIconViewModel()) {}
@@ -82,18 +85,21 @@ extension GDSInformationViewControllerTests {
         XCTAssertNotNil(try sut.secondaryButton.icon)
     }
     
+    @MainActor
     func test_primaryButtonAction() throws {
         XCTAssertFalse(didTap_primaryButton)
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTap_primaryButton)
     }
     
+    @MainActor
     func test_secondaryButtonAction() throws {
         XCTAssertFalse(didTap_secondaryButton)
         try sut.secondaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTap_secondaryButton)
     }
     
+    @MainActor
     func test_didAppear() throws {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
@@ -101,6 +107,7 @@ extension GDSInformationViewControllerTests {
         XCTAssertTrue(viewDidAppear)
     }
 
+    @MainActor
     func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -110,6 +117,7 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(view.text, "Information screen title")
     }
     
+    @MainActor
     func test_didDismiss() {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -119,6 +127,7 @@ extension GDSInformationViewControllerTests {
         XCTAssertTrue(viewDidDismiss)
     }
 
+    @MainActor
     func test_optionalChildView() throws {
         let childView = try XCTUnwrap(sut.childView)
         let childViewBody: UILabel = try XCTUnwrap(childView[child: "body-text"])
@@ -136,6 +145,7 @@ extension GDSInformationViewControllerTests {
 
 // MARK: - GDSInformationViewController V2 Tests
 extension GDSInformationViewControllerTests {
+    @MainActor
     func test_fullyConfiguredView() {
         sut = GDSInformationViewController(
             viewModel: MockGDSInformationViewModelV2(
@@ -150,6 +160,7 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
     }
     
+    @MainActor
     func test_partiallyConfiguredView() {
         sut = GDSInformationViewController(
             viewModel: MockGDSInformationViewModelV2(

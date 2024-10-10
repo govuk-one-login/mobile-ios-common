@@ -35,21 +35,23 @@ final class GDSInstructionsViewControllerTests: XCTestCase {
         
         sut = GDSInstructionsViewController(viewModel: viewModel)
     }
-
+    
     override func tearDown() {
         buttonViewModel = nil
         bulletView = nil
         viewModel = nil
         sut = nil
-    
+        
         super.tearDown()
     }
 }
 
 extension GDSInstructionsViewControllerTests {
+    @MainActor
     func testDidAppear() {
         XCTAssertFalse(screenDidAppear)
-        sut.viewDidAppear(false)
+        sut.beginAppearanceTransition(true, animated: false)
+        sut.endAppearanceTransition()
         XCTAssertTrue(screenDidAppear)
     }
     
@@ -63,10 +65,12 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertEqual(view.text, "test title")
     }
     
+    @MainActor
     func test_backButton() {
         XCTAssertFalse(sut.navigationItem.hidesBackButton)
     }
     
+    @MainActor
     func test_labelContents() {
         XCTAssertEqual(try sut.titleLabel.text, "test title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
@@ -77,6 +81,7 @@ extension GDSInstructionsViewControllerTests {
         )
     }
     
+    @MainActor
     func testTitleBar() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
         sut.navigationItem.hidesBackButton = true
@@ -85,13 +90,14 @@ extension GDSInstructionsViewControllerTests {
         sut.beginAppearanceTransition(true, animated: false)
         XCTAssertNotNil(sut.navigationItem.rightBarButtonItem)
         XCTAssertEqual(sut.navigationItem.rightBarButtonItem?.title, "right bar button")
-
+        
         XCTAssertFalse(didDismiss)
-
+        
         _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
         XCTAssertTrue(didDismiss)
     }
     
+    @MainActor
     func test_bullets() throws {
         let bullets = try XCTUnwrap(sut.stackView.arrangedSubviews[2] as? BulletView)
         
@@ -106,12 +112,13 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertEqual(bulletLabels[2].text, "\t●\tbullet 3")
     }
     
+    @MainActor
     func test_primaryButton() throws {
         XCTAssertNotNil(try sut.primaryButton)
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "button title")
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
     }
-
+    
     @MainActor
     func test_coloredButton() throws {
         let coloredButton = MockColoredButtonViewModel(title: "Test", action: { }, backgroundColor: .gdsRed)
@@ -123,7 +130,8 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Test")
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsRed)
     }
-
+    
+    @MainActor
     func testSecondaryButton() throws {
         XCTAssertNotNil(try sut.secondaryButton)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "button title")
@@ -184,7 +192,7 @@ struct MockColoredButtonViewModel: ColoredButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let backgroundColor: UIColor
-
+    
     init(title: GDSLocalisedString, icon: ButtonIconViewModel? = nil, shouldLoadOnTap: Bool = false, action: @escaping () -> Void, backgroundColor: UIColor) {
         self.title = title
         self.icon = icon

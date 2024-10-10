@@ -8,6 +8,7 @@ final class BaseViewControllerTests: XCTestCase {
     var didAppear: Bool!
     var didDismiss: Bool!
     
+    @MainActor
     override func setUp() {
         super.setUp()
         didAppear = false
@@ -31,6 +32,7 @@ final class BaseViewControllerTests: XCTestCase {
 }
 
 extension BaseViewControllerTests {
+    @MainActor
     func test_labelContents() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -38,6 +40,7 @@ extension BaseViewControllerTests {
         XCTAssertEqual(rightBarButton.title, "right bar button")
     }
     
+    @MainActor
     func test_didAppear() {
         XCTAssertFalse(didAppear)
         sut.beginAppearanceTransition(true, animated: false)
@@ -45,6 +48,7 @@ extension BaseViewControllerTests {
         XCTAssertTrue(didAppear)
     }
     
+    @MainActor
     func test_didDismiss() {
         XCTAssertFalse(didAppear)
         sut.beginAppearanceTransition(true, animated: false)
@@ -56,6 +60,7 @@ extension BaseViewControllerTests {
         XCTAssertTrue(didDismiss)
     }
     
+    @MainActor
     func test_rightBarButtonSetsAccessbilityIDOnViewLoad() {
         XCTAssertNil(sut.navigationItem.rightBarButtonItem?.accessibilityIdentifier)
         sut.beginAppearanceTransition(true, animated: false)
