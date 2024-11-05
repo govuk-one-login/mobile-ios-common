@@ -8,28 +8,22 @@ final class GDSContentTileViewTests: XCTestCase {
     var didTapPrimaryButton: Bool = false
     var didTapSecondaryButton: Bool = false
     var didTapCloseButton: Bool = false
+    var didTapCard: Bool = false
     
     @MainActor
     override func setUp() {
         super.setUp()
         
-        viewModel = FullContentTileTestViewModel(
-            primaryButtonViewModel: MockButtonViewModel(
-                title: "Primary Button Title",
-                action: {
-                    self.didTapPrimaryButton = true
-                }
-            ),
-            secondaryButtonViewModel: MockButtonViewModel(
-                title: "Secondary Button Title",
-                action: {
-                    self.didTapSecondaryButton = true
-                }
-            )
-        ) {
+        viewModel = FullContentTileTestViewModel {
+            self.didTapPrimaryButton = true
+        } secondaryButtonAction: {
+            self.didTapSecondaryButton = true
+        } closeButtonAction: {
             self.didTapCloseButton = true
+        } cardTappedAction: {
+            self.didTapCard = true
         }
-        
+                
         sut = .init(viewModel: viewModel)
     }
     
@@ -37,45 +31,46 @@ final class GDSContentTileViewTests: XCTestCase {
         sut = nil
         viewModel = nil
         
+        didTapPrimaryButton = false
+        didTapSecondaryButton = false
+        didTapCloseButton = false
+        didTapCard = false
+        
         super.tearDown()
     }
 }
 
 private struct FullContentTileTestViewModel: ExpandedContentTileViewModel {
-    var image: UIImage
-    var caption: GDSLocalisedString
-    var title: GDSLocalisedString
-    var body: GDSLocalisedString
-    var primaryButtonViewModel: any ButtonViewModel
-    var secondaryButtonViewModel: any ButtonViewModel
+    var image: UIImage = UIImage(named: "placeholder") ?? UIImage()
+    var caption: GDSLocalisedString = "test caption"
+    var title: GDSLocalisedString = "test title"
+    var body: GDSLocalisedString = "test body"
     var showSeparatorLine: Bool = true
     var backgroundColour: UIColor? = .systemBackground
+    var primaryButtonViewModel: ButtonViewModel
+    var secondaryButtonViewModel: ButtonViewModel
+
     var closeButtonAction: () -> Void
-    
+    var cardTappedAction: () -> Void
+
     init(
-        image: UIImage = UIImage(named: "placeholder") ?? UIImage(),
-        caption: GDSLocalisedString = "Test Caption",
-        title: GDSLocalisedString = "Test Title",
-        body: GDSLocalisedString = "Test Body",
-        primaryButtonViewModel: any ButtonViewModel,
-        secondaryButtonViewModel: any ButtonViewModel,
-        showSeparatorLine: Bool = true,
-        backgroundColour: UIColor? = .systemBackground,
-        closeButtonAction: @escaping () -> Void
+        primaryButtonAction: @escaping () -> Void,
+        secondaryButtonAction: @escaping () -> Void,
+        closeButtonAction: @escaping () -> Void,
+        cardTappedAction: @escaping () -> Void
     ) {
-        self.image = image
-        self.caption = caption
-        self.title = title
-        self.body = body
-        self.primaryButtonViewModel = primaryButtonViewModel
-        self.secondaryButtonViewModel = secondaryButtonViewModel
-        self.showSeparatorLine = showSeparatorLine
-        self.backgroundColour = backgroundColour
+        primaryButtonViewModel = MockButtonViewModel(title: "Primary Button") {
+            primaryButtonAction()
+        }
+        secondaryButtonViewModel = MockButtonViewModel(title: "Secondary Button") {
+            secondaryButtonAction()
+        }
         self.closeButtonAction = closeButtonAction
+        self.cardTappedAction = cardTappedAction
     }
 }
 
-private struct PartialContentTileViewModel: GDSContentTileViewModel {
+struct PartialContentTileViewModel: GDSContentTileViewModel {
     var title: GDSLocalisedString
     var showSeparatorLine: Bool
     var backgroundColour: UIColor?
