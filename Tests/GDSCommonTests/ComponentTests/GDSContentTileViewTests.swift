@@ -136,6 +136,12 @@ extension GDSContentTileViewTests {
         viewModel.secondaryButtonViewModel.action()
         XCTAssertTrue(didTapSecondaryButton)
     }
+    
+    func test_cardIsTapable() {
+        XCTAssertFalse(didTapCard)
+        viewModel.cardTappedAction()
+        XCTAssert(didTapCard)
+    }
 }
 
 extension GDSContentTileView {
