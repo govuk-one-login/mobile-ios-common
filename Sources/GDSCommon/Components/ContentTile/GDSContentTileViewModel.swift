@@ -4,6 +4,7 @@ import UIKit
 public typealias ExpandedContentTileViewModel = GDSContentTileViewModel &
                                                 GDSContentTileViewModelWithImage &
                                                 GDSContentTileViewModelWithDismissButton &
+                                                GDSContentTileViewModelWithTapAction &
                                                 GDSContentTileViewModelWithCaption &
                                                 GDSContentTileViewModelWithBody &
                                                 GDSContentTileViewModelWithSecondaryButton &
@@ -24,6 +25,11 @@ public protocol GDSContentTileViewModelWithImage {
 @MainActor
 public protocol GDSContentTileViewModelWithDismissButton {
     var closeButtonAction: () -> Void { get }
+}
+
+@MainActor
+public protocol GDSContentTileViewModelWithTapAction {
+    var cardTappedAction: () -> Void { get }
 }
 
 @MainActor

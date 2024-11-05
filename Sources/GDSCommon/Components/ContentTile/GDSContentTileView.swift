@@ -13,8 +13,24 @@ public final class GDSContentTileView: NibView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func enableTappableCard() {
+        if viewModel is GDSContentTileViewModelWithTapAction {
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapCard))
+            gestureRecognizer.numberOfTapsRequired = 1
+            gestureRecognizer.numberOfTouchesRequired = 1
+            containerStackView.addGestureRecognizer(gestureRecognizer)
+        }
+    }
+    
+    @objc private func didTapCard() {
+        if let viewModel = viewModel as? GDSContentTileViewModelWithTapAction {
+            viewModel.cardTappedAction()
+        }
+    }
+    
     @IBOutlet private var containerStackView: UIStackView! {
         didSet {
+            enableTappableCard()
             containerStackView.backgroundColor = viewModel.backgroundColour
             
             containerStackView.addSubview(closeButton)
