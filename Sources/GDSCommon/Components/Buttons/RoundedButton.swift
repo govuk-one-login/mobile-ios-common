@@ -9,7 +9,7 @@ public final class RoundedButton: SecondaryButton {
     
     public var isTitleHidden: Bool = false {
         didSet {
-           titleLabel?.isHidden = isTitleHidden
+            titleLabel?.isHidden = isTitleHidden
         }
     }
     
@@ -98,10 +98,7 @@ public final class RoundedButton: SecondaryButton {
     }
     
     private func gdsInit() {
+        minimumSize = 44
         buttonBackground()
-        
-        NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)
-        ])
     }
 }

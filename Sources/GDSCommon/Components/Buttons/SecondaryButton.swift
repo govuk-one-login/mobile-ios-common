@@ -10,7 +10,9 @@ public class SecondaryButton: UIButton {
     public var fontWeight: UIFont.Weight = .regular
     public var color: UIColor = .accent
     public var symbolPosition: SymbolPosition = .afterTitle
-    
+
+    var minimumSize: CGFloat = 24
+
     public override var intrinsicContentSize: CGSize {
         let titlesize = titleLabel?.intrinsicContentSize ?? .zero
         
@@ -57,11 +59,8 @@ public class SecondaryButton: UIButton {
                 self.buttonBackground()
             }
         }
-        
-        NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(greaterThanOrEqualToConstant: 24),
-            self.widthAnchor.constraint(greaterThanOrEqualToConstant: 24)
-        ])
+
+        layoutSubviews()
     }
     
     deinit {
@@ -70,6 +69,11 @@ public class SecondaryButton: UIButton {
     }
     
     public override func layoutSubviews() {
+        NSLayoutConstraint.activate([
+            self.heightAnchor.constraint(greaterThanOrEqualToConstant: minimumSize),
+            self.widthAnchor.constraint(greaterThanOrEqualToConstant: minimumSize)
+        ])
+
         super.layoutSubviews()
         guard let width = titleLabel?.frame.width else { return }
         titleLabel?.preferredMaxLayoutWidth = width
