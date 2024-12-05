@@ -90,7 +90,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you use Face ID, anyone with a Face ID saved to your phone will be able to sign in to this app" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrR-Dr-3eh" userLabel="Grey text">
                             <rect key="frame" x="16" y="0.0" width="361" height="33.666666666666664"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                            <color key="textColor" name="Grey"/>
+                            <color key="textColor" name="DarkGrey"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="358" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2l-9h-5cw" customClass="RoundedButton" customModule="GDSCommon">
@@ -132,7 +132,7 @@
     </objects>
     <resources>
         <image name="lock" catalog="system" width="111" height="128"/>
-        <namedColor name="Grey">
+        <namedColor name="DarkGrey">
             <color red="0.31372549019607843" green="0.35294117647058826" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
