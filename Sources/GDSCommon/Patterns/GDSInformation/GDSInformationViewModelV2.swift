@@ -20,32 +20,17 @@ import UIKit
 /// screens modally and calling custom methods when screens appear and dismiss.
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
-@MainActor
-public protocol GDSInformationViewModelV2 {
-    var image: String { get }
-    var imageWeight: UIFont.Weight? { get }
-    var imageColour: UIColor? { get }
-    var imageHeightConstraint: CGFloat? { get }
-    var title: GDSLocalisedString { get }
-    var body: GDSLocalisedString? { get }
-}
+@available(*, deprecated, renamed: "GDSCentreAlignedViewModel", message: "Should conform to GDSCentreAlignedViewModelWithImage and additional protocols if additional configuration is required")
+public typealias GDSInformationViewModelV2 = GDSCentreAlignedViewModel & GDSCentreAlignedViewModelWithImage
 
-@MainActor
-public protocol GDSInformationViewModelWithFootnote {
-    var footnote: GDSLocalisedString { get }
-}
+@available(*, deprecated, renamed: "GDSCentreAlignedViewModelWithFootnote", message: "Should swap to non-optional alternative")
+public typealias GDSInformationViewModelWithFootnote = GDSCentreAlignedViewModelWithFootnote
 
-@MainActor
-public protocol GDSInformationViewModelPrimaryButton {
-    var primaryButtonViewModel: ButtonViewModel { get }
-}
+@available(*, deprecated, renamed: "GDSCentreAlignedViewModelWithPrimaryButton", message: "Should swap to non-optional alternative")
+public typealias GDSInformationViewModelPrimaryButton = GDSCentreAlignedViewModelWithPrimaryButton
 
-@MainActor
-public protocol GDSInformationViewModelWithSecondaryButton {
-    var secondaryButtonViewModel: ButtonViewModel { get }
-}
+@available(*, deprecated, renamed: "GDSCentreAlignedViewModelWithSecondaryButton", message: "Should swap to non-optional alternative")
+public typealias GDSInformationViewModelWithSecondaryButton = GDSCentreAlignedViewModelWithSecondaryButton
 
-@MainActor
-public protocol GDSInformationViewModelWithChildView {
-    var childView: UIView { get }
-}
+@available(*, deprecated, renamed: "GDSCentreAlignedViewModelWithChildView", message: "Should swap to non-optional alternative")
+public typealias GDSInformationViewModelWithChildView = GDSCentreAlignedViewModelWithChildView
