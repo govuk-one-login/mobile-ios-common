@@ -20,7 +20,7 @@ import UIKit
 /// screens modally and calling custom methods when screens appear and dismiss.
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
-@available(*, deprecated, renamed: "GDSCentreAlignedViewModel", message: "Should conform to GDSCentreAlignedViewModelWithImage and additional protocols if additional configuration is required")
+@available(*, deprecated, renamed: "GDSCentreAlignedViewModel", message: "Should conform to GDSCentreAlignedViewModelWithImage and additional protocols if required")
 public typealias GDSInformationViewModelV2 = GDSCentreAlignedViewModel & GDSCentreAlignedViewModelWithImage
 
 @available(*, deprecated, renamed: "GDSCentreAlignedViewModelWithFootnote", message: "Should swap to non-optional alternative")
