@@ -139,7 +139,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
                 primaryButton.setTitle(button.title.value, for: .normal)
             } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
                 primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
-            }  else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
+            } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
                 primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
             } else {
                 primaryButton.isHidden = true
@@ -197,7 +197,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             buttonViewModel.secondaryButtonViewModel?.action()
         } else if let buttonViewModel = viewModel as? GDSInformationViewModelWithSecondaryButton {
             buttonViewModel.secondaryButtonViewModel.action()
-        }  else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
+        } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
             buttonViewModel.secondaryButtonViewModel.action()
         }
     }
