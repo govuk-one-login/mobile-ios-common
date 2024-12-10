@@ -1,13 +1,13 @@
 import GDSCommon
 import UIKit
 
-// Confirming to the original deprecated protocol
+// Conforming to the original deprecated protocol
 struct MockGDSInformationViewModel: GDSInformationViewModel,
                                     BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = nil
     let imageColour: UIColor? = nil
-    let imageHeightConstraint: CGFloat = 55 // not optional anymore
+    let imageHeightConstraint: CGFloat? = nil
     let title: GDSLocalisedString = "This is an Information View title"
     let body: GDSLocalisedString? = "This is an (optional) Information View body."
     let footnote: GDSLocalisedString? = "This is an (optional) Information View footnote where additional information for the buttons can be detailed."
@@ -31,7 +31,7 @@ struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
     let title: GDSLocalisedString = "This is an Information View title"
     let body: GDSLocalisedString? = "This is an (optional) Information View body."
     let image: String = "lock"
-    let imageHeightConstraint: CGFloat = 44 // not optional anymore
+    let imageHeightConstraint: CGFloat? = nil
     let imageWeight: UIFont.Weight? = nil
     let imageColour: UIColor? = nil
     let footnote: GDSLocalisedString = "This is an (optional) Information View footnote where additional information for the buttons can be detailed."
@@ -65,17 +65,17 @@ struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
 }
 
 // Conforming to new protocol to that replaces the deprecated protocols
-struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
-                                      GDSCentreAlignedViewModelWithImage,
-                                      GDSCentreAlignedViewModelWithFootnote,
-                                      GDSCentreAlignedViewModelWithChildView,
-                                      GDSCentreAlignedViewModelWithPrimaryButton,
-                                      GDSCentreAlignedViewModelWithSecondaryButton,
+struct MockGDSCentreAlignedViewModel: GDSInformationViewModelWithTitleAndBody,
+                                      GDSInformationViewModelWithImage,
+                                      GDSInformationViewModelWithDynamicFootnote,
+                                      GDSInformationViewModelPrimaryButton,
+                                      GDSInformationViewModelWithSecondaryButton,
+                                      GDSInformationViewModelWithChildView,
                                       BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = nil
     let imageColour: UIColor? = nil
-    let imageHeightConstraint: CGFloat = 77
+    let imageHeightConstraint: CGFloat? = 77
     let title: GDSLocalisedString = "This is an Information View title"
     let body: GDSLocalisedString? = "This is an (optional) Information View body."
     let footnote: GDSLocalisedString = "This is an (optional) Information View footnote where additional information for the buttons can be detailed."
