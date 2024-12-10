@@ -13,7 +13,7 @@ jobs:
   build:
     name: Build and Test default scheme using any available iPhone simulator
     if: github.event.pull_request.draft == false
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
       - name: Add path globally
