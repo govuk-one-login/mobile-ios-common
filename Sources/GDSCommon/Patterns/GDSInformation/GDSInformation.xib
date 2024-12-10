@@ -13,9 +13,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GDSInformationViewController" customModule="GDSCommon">
             <connections>
                 <outlet property="bodyLabel" destination="YqY-LQ-KLH" id="8vP-tX-FiS"/>
+                <outlet property="bottomStack" destination="7KN-rE-n2x" id="RXb-Mv-Rdg"/>
                 <outlet property="footnoteLabel" destination="zrR-Dr-3eh" id="ruf-SY-cCX"/>
                 <outlet property="informationImage" destination="vXP-wQ-k57" id="Nxf-ym-LI1"/>
                 <outlet property="primaryButton" destination="a2l-9h-5cw" id="AAv-Xb-ZDH"/>
+                <outlet property="scrollView" destination="dfR-DQ-wIF" id="mLM-ds-e9u"/>
                 <outlet property="secondaryButton" destination="5JG-e4-Yqj" id="2RO-Qb-cCX"/>
                 <outlet property="stackView" destination="u2P-6P-arU" id="XUT-af-SU9"/>
                 <outlet property="titleLabel" destination="tXa-cd-Nuw" id="ea9-Gw-C2m"/>

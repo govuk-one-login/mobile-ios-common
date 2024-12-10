@@ -10,9 +10,9 @@ import UIKit
 public final class GDSInformationViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSInformation" }
     
-    public private(set) var viewModel: GDSCentreAlignedViewModel
+    public private(set) var viewModel: GDSInformationViewModelV2
     
-    public init(viewModel: GDSCentreAlignedViewModel) {
+    public init(viewModel: GDSInformationViewModelV2) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSInformation", bundle: .module)
     }
@@ -22,53 +22,84 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         fatalError("init(coder:) has not been implemented")
     }
     
+    // problems:
+    // - when device is already on large dynamic size it doesnt work
+    // - footnote in scroll view
+    // - look into the if statements - the footnote for original viewModel should have the height constraint
+        
+    @IBOutlet var bottomStack: UIStackView!
+    @IBOutlet var scrollView: UIScrollView!
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Position the footnote initially based on the current content size.
+        checkContentSizeCategory()
+        
+        // Observer to position footnote when the user changes their preferred content size.
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkContentSizeCategory),
+                                               name: UIContentSizeCategory.didChangeNotification,
+                                               object: nil)
+    }
+    
+    @objc private func checkContentSizeCategory() {
+        let currentFontSize = UIApplication.shared.preferredContentSizeCategory
+        
+        if currentFontSize >= .accessibilityLarge {
+            moveFootnoteToScrollView()
+        } else {
+            moveFootnoteToBottomStackView()
+        }
+    }
+    
+    private func moveFootnoteToScrollView() {
+        if footnoteLabel.superview == bottomStack {
+            // remove footnote from bottom stack
+            bottomStack.removeArrangedSubview(footnoteLabel)
+            footnoteLabel.removeFromSuperview()
+            
+            // add to scroll view
+            stackView.addArrangedSubview(footnoteLabel)
+            
+            footnoteLabel.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
+    private func moveFootnoteToBottomStackView() {
+        if  footnoteLabel.superview != bottomStack {
+            // remove from scroll view
+            bottomStack.removeArrangedSubview(footnoteLabel)
+            footnoteLabel.removeFromSuperview()
+            
+            // add to stack
+            bottomStack.insertArrangedSubview(footnoteLabel, at: 0)
+        }
+    }
+    
     @IBOutlet private var informationImage: UIImageView! {
         didSet {
-            if let viewModel = viewModel as? GDSInformationViewModel {
-                let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight ?? .semibold)
-                let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
-                
-                informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
-                informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
-                informationImage.accessibilityIdentifier = "information-image"
-                
-                /// The minimum height constraint for the image view configured plus an 11pt buffer
-                let heightConstraint: CGFloat = viewModel.imageHeightConstraint + 11
-
-                NSLayoutConstraint.activate([
-                    informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
-                ])
-            } else if let viewModel = viewModel as? GDSInformationViewModelV2 {
-                let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight ?? .semibold)
-                let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
-                
-                informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
-                informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
-                informationImage.accessibilityIdentifier = "information-image"
-                
-                /// The minimum height constraint for the image view configured plus an 11pt buffer
-                let heightConstraint: CGFloat = viewModel.imageHeightConstraint + 11
-
-                NSLayoutConstraint.activate([
-                    informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
-                ])
-            } else if let viewModel = viewModel as? GDSCentreAlignedViewModelWithImage {
-                let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight ?? .semibold)
-                let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
-                
-                informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
-                informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
-                informationImage.accessibilityIdentifier = "information-image"
-                
-                /// The minimum height constraint for the image view configured plus an 11pt buffer
-                let heightConstraint: CGFloat = viewModel.imageHeightConstraint + 11
-
-                NSLayoutConstraint.activate([
-                    informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
-                ])
-            } else {
-                informationImage.isHidden = true
+            let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight ?? .semibold)
+            let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
+            
+            informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
+            informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
+            informationImage.accessibilityIdentifier = "information-image"
+            
+            /// Minimum height constraint for the image view
+            var heightConstraint: CGFloat {
+                if let value = viewModel.imageHeightConstraint {
+                    /// The minimum height constraint for the image view configured plus an 11pt buffer
+                    value + 11
+                } else {
+                    /// The default minimum height constraint for the image view is 55pts
+                    55
+                }
             }
+            
+            NSLayoutConstraint.activate([
+                informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
+            ])
         }
     }
     
@@ -97,8 +128,6 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         didSet {
             if let viewModel = viewModel as? GDSInformationViewModelWithChildView {
                 stackView.addArrangedSubview(viewModel.childView)
-            } else if let viewModel = viewModel as? GDSCentreAlignedViewModelWithChildView {
-                stackView.addArrangedSubview(viewModel.childView)
             }
             stackView.accessibilityIdentifier = "information-optional-stack-view"
         }
@@ -109,22 +138,9 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             if let viewModel = viewModel as? GDSInformationViewModelWithOptionalFootnote {
                 footnoteLabel.font = .init(style: .footnote)
                 footnoteLabel.text = viewModel.footnote?.value
-
-                if #available(iOS 15.0, *) {
-                    footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
-                }
-            } else if let viewModel = viewModel as? GDSInformationViewModelWithFootnote {
+            } else if let viewModel = viewModel as? GDSInformationViewModelWithDynamicFootnote {
                 footnoteLabel.font = .init(style: .footnote)
                 footnoteLabel.text = viewModel.footnote.value
-
-                if #available(iOS 15.0, *) {
-                    footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
-                }
-            } else if let viewModel = viewModel as? GDSCentreAlignedViewModelWithFootnote {
-                footnoteLabel.font = .init(style: .footnote)
-                footnoteLabel.text = viewModel.footnote.value
-                
-                // add footenote functionality
             } else {
                 footnoteLabel.isHidden = true
             }
@@ -139,8 +155,6 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
                 primaryButton.setTitle(button.title.value, for: .normal)
             } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
                 primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
-            } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
-                primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
             } else {
                 primaryButton.isHidden = true
             }
@@ -152,8 +166,6 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton {
             buttonViewModel.primaryButtonViewModel?.action()
         } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
-            buttonViewModel.primaryButtonViewModel.action()
-        } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
             buttonViewModel.primaryButtonViewModel.action()
         }
     }
@@ -177,14 +189,6 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
                 }
-            } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
-                secondaryButton.setTitle(buttonViewModel.secondaryButtonViewModel.title.value, for: .normal)
-                secondaryButton.titleLabel?.textAlignment = .center
-                
-                if let icon = buttonViewModel.secondaryButtonViewModel.icon {
-                    secondaryButton.symbolPosition = icon.symbolPosition
-                    secondaryButton.icon = icon.iconName
-                }
             } else {
                 secondaryButton.isHidden = true
             }
@@ -196,8 +200,6 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton {
             buttonViewModel.secondaryButtonViewModel?.action()
         } else if let buttonViewModel = viewModel as? GDSInformationViewModelWithSecondaryButton {
-            buttonViewModel.secondaryButtonViewModel.action()
-        } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
             buttonViewModel.secondaryButtonViewModel.action()
         }
     }
