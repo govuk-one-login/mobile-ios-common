@@ -27,8 +27,8 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     // - footnote in scroll view
     // - look into the if statements - the footnote for original viewModel should have the height constraint
         
-    @IBOutlet var bottomStack: UIStackView!
-    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet private var bottomStack: UIStackView!
+    @IBOutlet private var scrollView: UIScrollView!
     
     public override func viewDidLoad() {
         super.viewDidLoad()

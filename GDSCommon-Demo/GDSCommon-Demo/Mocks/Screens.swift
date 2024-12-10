@@ -34,7 +34,7 @@ enum Screens: String, CaseIterable {
     case gdsErrorViewWithTertiary = "Error View (with 3 buttons)"
     case gdsInformationView = "Original Information View"
     case gdsInformationViewV2 = "Information View V2"
-    case gdsCentreAlignedView = "Centre Aligned View)"
+    case gdsCentreAlignedView = "Centre Aligned View"
     case gdsLoadingView = "GDS Loading View"
     
     var isModal: Bool {
