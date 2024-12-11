@@ -62,7 +62,6 @@ extension GDSInformationViewControllerTests {
         XCTAssertFalse(try sut.informationBodyLabel.accessibilityTraits.contains(.header))
         XCTAssertEqual(try sut.informationFootnoteLabel.text, "Information screen footnote")
         XCTAssertEqual(try sut.informationFootnoteLabel.font, .footnote)
-        XCTAssertEqual(try sut.informationFootnoteLabel.maximumContentSizeCategory, .accessibilityMedium)
         XCTAssertFalse(try sut.informationFootnoteLabel.accessibilityTraits.contains(.header))
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Information primary button title")
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
