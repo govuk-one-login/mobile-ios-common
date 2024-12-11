@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Run Quality Report
-    runs-on: macos-14
+    runs-on: macos-15
     permissions:
       contents: write
 
@@ -23,7 +23,7 @@ jobs:
 
       - name: Xcode select
         run: |
-          sudo xcode-select -s /Applications/Xcode_15.2.app
+          sudo xcode-select -s /Applications/Xcode_16.app
 
       - name: Build and Test
         run: |

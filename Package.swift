@@ -10,9 +10,8 @@ let package = Package(
         .library(name: "GDSCommon", targets: ["GDSCommon"])
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/nalexn/ViewInspector",
-            .upToNextMajor(from: "0.9.7"))
+        .package(url: "https://github.com/nalexn/ViewInspector",
+                 .upToNextMajor(from: .init(0, 10, 1)))
     ],
     targets: [
         .target(name: "GDSCommon"),
