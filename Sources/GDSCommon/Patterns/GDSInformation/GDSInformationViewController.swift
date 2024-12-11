@@ -21,8 +21,10 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+    
+    // swiftlint:disable private_outlet
     @IBOutlet internal var bottomStack: UIStackView!
+    // swiftlint:enable private_outlet
 
     internal var isFootnoteInScrollView = false
  
