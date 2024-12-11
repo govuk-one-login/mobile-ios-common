@@ -25,26 +25,33 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     @IBOutlet private var bottomStack: UIStackView!
     @IBOutlet private var scrollView: UIScrollView!
     
-    public override func viewDidLoad() {
-        super.viewDidLoad()
+    private var hasFootnoteBeenRemoved = false
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        // Position the footnote initially based on the current content size.
-        checkContentSizeCategory()
-        
-        // Observer to position footnote when the user changes their preferred content size.
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkContentSizeCategory),
-                                               name: UIContentSizeCategory.didChangeNotification,
-                                               object: nil)
+        checkBottomStackHeight()
     }
     
-    @objc private func checkContentSizeCategory() {
-        let currentFontSize = UIApplication.shared.preferredContentSizeCategory
+    private func checkBottomStackHeight() {
+        let footnoteHeight = footnoteLabel.frame.height
+        let bottomStackHeight = bottomStack.frame.height
+        let screenHeight = UIScreen.main.bounds.height
         
-        if currentFontSize >= .accessibilityLarge {
-            moveFootnoteToScrollView()
-        } else {
-            moveFootnoteToBottomStackView()
+        // if bottom stack covers more than 1/3 of screen
+        if bottomStackHeight >= screenHeight / 3 {
+            if !(hasFootnoteBeenRemoved) {
+                hasFootnoteBeenRemoved = true
+                // move footnote to scroll view
+                moveFootnoteToScrollView()
+            }
+            
+        } else if (bottomStackHeight + footnoteHeight) < screenHeight / 3 {
+            if hasFootnoteBeenRemoved {
+                hasFootnoteBeenRemoved = false
+                // return footnote back to bottom stack
+                moveFootnoteToBottomStackView()
+            }
         }
     }
     
@@ -69,6 +76,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             
             // add to stack
             bottomStack.insertArrangedSubview(footnoteLabel, at: 0)
+            view.layoutIfNeeded()
         }
     }
     
