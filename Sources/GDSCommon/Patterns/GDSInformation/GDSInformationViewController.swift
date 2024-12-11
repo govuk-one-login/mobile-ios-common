@@ -40,15 +40,12 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         let screenHeight = UIScreen.main.bounds.height
         
         // if bottom stack covers more than 1/3 of screen
-        if bottomStackHeight >= screenHeight / 3 {
-            if !(isFootnoteInScrollView) {
+        if bottomStackHeight >= screenHeight / 3,
+           !(isFootnoteInScrollView) {
                 moveFootnoteToScrollView()
-            }
-            
-        } else if (bottomStackHeight + footnoteHeight) < screenHeight / 3 {
-            if isFootnoteInScrollView {
+        } else if (bottomStackHeight + footnoteHeight) < screenHeight / 3,
+                  isFootnoteInScrollView {
                 moveFootnoteToBottomStackView()
-            }
         }
     }
     
