@@ -10,9 +10,9 @@ import UIKit
 public final class GDSInformationViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSInformation" }
     
-    public private(set) var viewModel: GDSInformationViewModelV2
+    public private(set) var viewModel: GDSInformationViewModelWithTitleAndBody
     
-    public init(viewModel: GDSInformationViewModelV2) {
+    public init(viewModel: GDSInformationViewModelWithTitleAndBody) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSInformation", bundle: .module)
     }
@@ -74,27 +74,29 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     
     @IBOutlet private var informationImage: UIImageView! {
         didSet {
-            let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight ?? .semibold)
-            let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
-            
-            informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
-            informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
-            informationImage.accessibilityIdentifier = "information-image"
-            
-            /// Minimum height constraint for the image view
-            var heightConstraint: CGFloat {
-                if let value = viewModel.imageHeightConstraint {
-                    /// The minimum height constraint for the image view configured plus an 11pt buffer
-                    value + 11
-                } else {
-                    /// The default minimum height constraint for the image view is 55pts
-                    55
+            if let viewModel = viewModel as? GDSInformationViewModelWithImage {
+                let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight ?? .semibold)
+                let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
+                
+                informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
+                informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
+                informationImage.accessibilityIdentifier = "information-image"
+                
+                /// Minimum height constraint for the image view
+                var heightConstraint: CGFloat {
+                    if let value = viewModel.imageHeightConstraint {
+                        /// The minimum height constraint for the image view configured plus an 11pt buffer
+                        value + 11
+                    } else {
+                        /// The default minimum height constraint for the image view is 55pts
+                        55
+                    }
                 }
+                
+                NSLayoutConstraint.activate([
+                    informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
+                ])
             }
-            
-            NSLayoutConstraint.activate([
-                informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
-            ])
         }
     }
     

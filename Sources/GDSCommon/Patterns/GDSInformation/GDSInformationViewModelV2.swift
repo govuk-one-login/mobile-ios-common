@@ -34,9 +34,9 @@ public protocol GDSInformationViewModelWithTitleAndBody {
 @MainActor
 public protocol GDSInformationViewModelWithImage {
     var image: String { get }
-    var imageHeightConstraint: CGFloat? { get }
     var imageWeight: UIFont.Weight? { get }
     var imageColour: UIColor? { get }
+    var imageHeightConstraint: CGFloat? { get }
 }
 
 @MainActor

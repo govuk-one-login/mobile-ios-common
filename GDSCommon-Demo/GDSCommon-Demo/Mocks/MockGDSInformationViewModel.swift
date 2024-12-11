@@ -75,7 +75,7 @@ struct MockGDSCentreAlignedViewModel: GDSInformationViewModelWithTitleAndBody,
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = nil
     let imageColour: UIColor? = nil
-    let imageHeightConstraint: CGFloat? = 77
+    let imageHeightConstraint: CGFloat? = nil
     let title: GDSLocalisedString = "This is an Information View title"
     let body: GDSLocalisedString? = "This is an (optional) Information View body."
     let footnote: GDSLocalisedString = "This is an (optional) Information View footnote where additional information for the buttons can be detailed."
