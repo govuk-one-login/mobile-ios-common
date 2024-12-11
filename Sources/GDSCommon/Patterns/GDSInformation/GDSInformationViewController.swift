@@ -22,11 +22,10 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         fatalError("init(coder:) has not been implemented")
     }
         
-    @IBOutlet private var bottomStack: UIStackView!
-    @IBOutlet private var scrollView: UIScrollView!
-    
-    private var hasFootnoteBeenRemoved = false
-    
+    @IBOutlet internal var bottomStack: UIStackView!
+
+    internal var isFootnoteInScrollView = false
+ 
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -40,16 +39,12 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         
         // if bottom stack covers more than 1/3 of screen
         if bottomStackHeight >= screenHeight / 3 {
-            if !(hasFootnoteBeenRemoved) {
-                hasFootnoteBeenRemoved = true
-                // move footnote to scroll view
+            if !(isFootnoteInScrollView) {
                 moveFootnoteToScrollView()
             }
             
         } else if (bottomStackHeight + footnoteHeight) < screenHeight / 3 {
-            if hasFootnoteBeenRemoved {
-                hasFootnoteBeenRemoved = false
-                // return footnote back to bottom stack
+            if isFootnoteInScrollView {
                 moveFootnoteToBottomStackView()
             }
         }
@@ -61,6 +56,8 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             bottomStack.removeArrangedSubview(footnoteLabel)
             footnoteLabel.removeFromSuperview()
             
+            isFootnoteInScrollView = true
+            
             // add to scroll view
             stackView.addArrangedSubview(footnoteLabel)
             
@@ -71,8 +68,10 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     private func moveFootnoteToBottomStackView() {
         if  footnoteLabel.superview != bottomStack {
             // remove from scroll view
-            bottomStack.removeArrangedSubview(footnoteLabel)
+            stackView.removeArrangedSubview(footnoteLabel)
             footnoteLabel.removeFromSuperview()
+            
+            isFootnoteInScrollView = false
             
             // add to stack
             bottomStack.insertArrangedSubview(footnoteLabel, at: 0)

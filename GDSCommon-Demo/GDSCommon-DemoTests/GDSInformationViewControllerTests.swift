@@ -1,4 +1,4 @@
-import GDSCommon
+@testable import GDSCommon
 import XCTest
 
 final class GDSInformationViewControllerTests: XCTestCase {
@@ -50,8 +50,8 @@ final class GDSInformationViewControllerTests: XCTestCase {
     }
 }
 
+@MainActor
 extension GDSInformationViewControllerTests {
-    @MainActor
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.informationImage)
         XCTAssertEqual(try sut.informationImage.tintColor, .gdsPrimary)
@@ -67,17 +67,40 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
     }
     
-    @MainActor
+    func test_footnoteMovesToScrollView() throws {
+        sut.loadView()
+        // When bottom stack height is half of the screen size
+        sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 2
+        sut.viewDidLayoutSubviews()
+        
+        // Footnote is inside the scroll view
+        XCTAssertTrue(sut.isFootnoteInScrollView)
+    }
+    
+    func test_footnoteMovesToBackToStackView() throws {
+        sut.loadView()
+        // When bottom stack height is half of the screen size
+        sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 2
+        sut.viewDidLayoutSubviews()
+        
+        XCTAssertTrue(sut.isFootnoteInScrollView)
+        
+        // When bottom stack is only a quarter of the screen size
+        sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 4
+        sut.viewDidLayoutSubviews()
+        
+        // Footnote is not inside the scroll
+        XCTAssertFalse(sut.isFootnoteInScrollView)
+    }
+    
     func test_primaryButtonNoIcon() throws {
         XCTAssertNil(try sut.primaryButton.icon)
     }
 
-    @MainActor
     func test_secondaryButtonNoIcon() throws {
         XCTAssertNil(try sut.secondaryButton.icon)
     }
     
-    @MainActor
     func test_secondaryButtonWithIcon() throws {
         secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title",
                                                        icon: MockButtonIconViewModel()) {}
@@ -88,21 +111,18 @@ extension GDSInformationViewControllerTests {
         XCTAssertNotNil(try sut.secondaryButton.icon)
     }
     
-    @MainActor
     func test_primaryButtonAction() throws {
         XCTAssertFalse(didTap_primaryButton)
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTap_primaryButton)
     }
     
-    @MainActor
     func test_secondaryButtonAction() throws {
         XCTAssertFalse(didTap_secondaryButton)
         try sut.secondaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(didTap_secondaryButton)
     }
     
-    @MainActor
     func test_didAppear() throws {
         XCTAssertFalse(viewDidAppear)
         sut.beginAppearanceTransition(true, animated: false)
@@ -110,7 +130,6 @@ extension GDSInformationViewControllerTests {
         XCTAssertTrue(viewDidAppear)
     }
 
-    @MainActor
     func test_voiceOverFocusElement() throws {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -120,7 +139,6 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(view.text, "Information screen title")
     }
     
-    @MainActor
     func test_didDismiss() {
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
@@ -130,7 +148,6 @@ extension GDSInformationViewControllerTests {
         XCTAssertTrue(viewDidDismiss)
     }
 
-    @MainActor
     func test_optionalChildView() throws {
         let childView = try XCTUnwrap(sut.childView)
         let childViewBody: UILabel = try XCTUnwrap(childView[child: "body-text"])
@@ -147,8 +164,8 @@ extension GDSInformationViewControllerTests {
 }
 
 // MARK: - GDSInformationViewController V2 Tests
+@MainActor
 extension GDSInformationViewControllerTests {
-    @MainActor
     func test_fullyConfiguredView() {
         sut = GDSInformationViewController(
             viewModel: MockGDSInformationViewModelV2(
@@ -163,7 +180,6 @@ extension GDSInformationViewControllerTests {
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
     }
     
-    @MainActor
     func test_partiallyConfiguredView() {
         sut = GDSInformationViewController(
             viewModel: MockGDSInformationViewModelV2(
