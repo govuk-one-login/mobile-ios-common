@@ -20,13 +20,11 @@ import UIKit
 /// screens modally and calling custom methods when screens appear and dismiss.
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
-
 @available(*, deprecated,
             renamed: "GDSInformationViewModelWithTitleAndBody",
             message: "Should conform to GDSInformationViewModelWithTitleAndBody and GDSInformationViewModelWithImage")
 public typealias GDSInformationViewModelV2 = GDSInformationViewModelWithTitleAndBody & GDSInformationViewModelWithImage
 
-@available(*, deprecated, renamed: "GDSCentreAlignedViewModelWithDynamicFootnote", message: "Should swap to dynamic alternative")
 @MainActor
 public protocol GDSInformationViewModelWithFootnote {
     var footnote: GDSLocalisedString { get }

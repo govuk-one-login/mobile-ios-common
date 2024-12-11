@@ -67,7 +67,7 @@ struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
 // Conforming to new protocol to that replaces the deprecated protocols
 struct MockGDSCentreAlignedViewModel: GDSInformationViewModelWithTitleAndBody,
                                       GDSInformationViewModelWithImage,
-                                      GDSInformationViewModelWithDynamicFootnote,
+                                      GDSInformationViewModelWithFootnote,
                                       GDSInformationViewModelPrimaryButton,
                                       GDSInformationViewModelWithSecondaryButton,
                                       GDSInformationViewModelWithChildView,

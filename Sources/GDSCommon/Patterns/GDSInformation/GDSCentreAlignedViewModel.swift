@@ -13,8 +13,3 @@ public protocol GDSInformationViewModelWithImage {
     var imageWeight: UIFont.Weight? { get }
     var imageColour: UIColor? { get }
 }
-
-@MainActor
-public protocol GDSInformationViewModelWithDynamicFootnote {
-    var footnote: GDSLocalisedString { get }
-}

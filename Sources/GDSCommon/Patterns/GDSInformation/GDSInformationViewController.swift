@@ -138,7 +138,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             if let viewModel = viewModel as? GDSInformationViewModelWithOptionalFootnote {
                 footnoteLabel.font = .init(style: .footnote)
                 footnoteLabel.text = viewModel.footnote?.value
-            } else if let viewModel = viewModel as? GDSInformationViewModelWithDynamicFootnote {
+            } else if let viewModel = viewModel as? GDSInformationViewModelWithFootnote {
                 footnoteLabel.font = .init(style: .footnote)
                 footnoteLabel.text = viewModel.footnote.value
             } else {
