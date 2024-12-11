@@ -21,19 +21,19 @@ struct MockGDSInformationViewModel: GDSInformationViewModel,
     func didDismiss() {}
 }
 
-// Conforming to deprecated V2 protocols
+// Conforming to the deprecated GDSInformationViewModelV2 protocol
 struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
                                       GDSInformationViewModelWithFootnote,
                                       GDSInformationViewModelPrimaryButton,
                                       GDSInformationViewModelWithSecondaryButton,
                                       GDSInformationViewModelWithChildView,
                                       BaseViewModel {
-    let title: GDSLocalisedString = "This is an Information View title"
-    let body: GDSLocalisedString? = "This is an (optional) Information View body."
     let image: String = "lock"
-    let imageHeightConstraint: CGFloat? = nil
     let imageWeight: UIFont.Weight? = nil
     let imageColour: UIColor? = nil
+    let imageHeightConstraint: CGFloat? = nil
+    let title: GDSLocalisedString = "This is an Information View title"
+    let body: GDSLocalisedString? = "This is an (optional) Information View body."
     let footnote: GDSLocalisedString = "This is an (optional) Information View footnote where additional information for the buttons can be detailed."
     let primaryButtonViewModel: ButtonViewModel = MockButtonViewModel.primary
     let secondaryButtonViewModel: ButtonViewModel = MockButtonViewModel.secondary
@@ -64,7 +64,7 @@ struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
     }
 }
 
-// Conforming to new protocol to that replaces the deprecated protocols
+// Conforming to the new GDSInformationViewModelWithTitleAndBody and GDSInformationViewModelWithImage protocols
 struct MockGDSCentreAlignedViewModel: GDSInformationViewModelWithTitleAndBody,
                                       GDSInformationViewModelWithImage,
                                       GDSInformationViewModelWithFootnote,

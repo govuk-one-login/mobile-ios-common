@@ -26,6 +26,20 @@ import UIKit
 public typealias GDSInformationViewModelV2 = GDSInformationViewModelWithTitleAndBody & GDSInformationViewModelWithImage
 
 @MainActor
+public protocol GDSInformationViewModelWithTitleAndBody {
+    var title: GDSLocalisedString { get }
+    var body: GDSLocalisedString? { get }
+}
+
+@MainActor
+public protocol GDSInformationViewModelWithImage {
+    var image: String { get }
+    var imageHeightConstraint: CGFloat? { get }
+    var imageWeight: UIFont.Weight? { get }
+    var imageColour: UIColor? { get }
+}
+
+@MainActor
 public protocol GDSInformationViewModelWithFootnote {
     var footnote: GDSLocalisedString { get }
 }

@@ -21,11 +21,6 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // problems:
-    // - when device is already on large dynamic size it doesnt work
-    // - footnote in scroll view
-    // - look into the if statements - the footnote for original viewModel should have the height constraint
         
     @IBOutlet private var bottomStack: UIStackView!
     @IBOutlet private var scrollView: UIScrollView!
