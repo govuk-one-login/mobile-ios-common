@@ -70,7 +70,7 @@ extension GDSInformationViewControllerTests {
     func test_footnoteMovesToScrollView() throws {
         sut.loadView()
         // When bottom stack height is half of the screen size
-        sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 2
+        try sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 2
         sut.viewDidLayoutSubviews()
         
         // Footnote is inside the scroll view
@@ -80,13 +80,13 @@ extension GDSInformationViewControllerTests {
     func test_footnoteMovesToBackToStackView() throws {
         sut.loadView()
         // When bottom stack height is half of the screen size
-        sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 2
+        try sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 2
         sut.viewDidLayoutSubviews()
         
         XCTAssertTrue(sut.isFootnoteInScrollView)
         
         // When bottom stack is only a quarter of the screen size
-        sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 4
+        try sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 4
         sut.viewDidLayoutSubviews()
         
         // Footnote is not inside the scroll
@@ -236,6 +236,12 @@ extension GDSInformationViewController {
     var childView: UIStackView {
         get throws {
             try XCTUnwrap(view[child: "information-optional-stack-view"])
+        }
+    }
+    
+    var bottomStack: UIStackView {
+        get throws {
+            try XCTUnwrap(view[child: "information-bottom-stack-view"])
         }
     }
 }

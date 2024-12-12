@@ -22,9 +22,11 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
         fatalError("init(coder:) has not been implemented")
     }
     
-    // swiftlint:disable private_outlet
-    @IBOutlet internal var bottomStack: UIStackView!
-    // swiftlint:enable private_outlet
+    @IBOutlet private var bottomStack: UIStackView! {
+        didSet {
+            bottomStack.accessibilityIdentifier = "information-bottom-stack-view"
+        }
+    }
 
     internal var isFootnoteInScrollView = false
  
@@ -74,6 +76,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             
             // add to stack
             bottomStack.insertArrangedSubview(footnoteLabel, at: 0)
+            
             view.layoutIfNeeded()
         }
     }
