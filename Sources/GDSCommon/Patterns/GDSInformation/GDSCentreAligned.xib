@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GDSInformationViewController" customModule="GDSCommon">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GDSCentreAlignedScreen" customModule="GDSCommon">
             <connections>
                 <outlet property="bodyLabel" destination="YqY-LQ-KLH" id="8vP-tX-FiS"/>
+                <outlet property="bottomStack" destination="7KN-rE-n2x" id="RXb-Mv-Rdg"/>
                 <outlet property="footnoteLabel" destination="zrR-Dr-3eh" id="ruf-SY-cCX"/>
-                <outlet property="informationImage" destination="vXP-wQ-k57" id="Nxf-ym-LI1"/>
+                <outlet property="image" destination="vXP-wQ-k57" id="n1a-bf-hpc"/>
                 <outlet property="primaryButton" destination="a2l-9h-5cw" id="AAv-Xb-ZDH"/>
                 <outlet property="secondaryButton" destination="5JG-e4-Yqj" id="2RO-Qb-cCX"/>
                 <outlet property="stackView" destination="u2P-6P-arU" id="XUT-af-SU9"/>
@@ -28,24 +29,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfR-DQ-wIF">
-                    <rect key="frame" x="0.0" y="59" width="393" height="547.33333333333337"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="573.33333333333337"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="ZtM-YU-IyV" userLabel="Stack View_outer">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="547.33333333333337"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZtM-YU-IyV" userLabel="Stack View_outer">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="573.33333333333337"/>
                             <subviews>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="358" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="xoh-ez-VnF">
-                                    <rect key="frame" x="16" y="8" width="361" height="181"/>
+                                    <rect key="frame" x="16" y="0.0" width="361" height="230"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vXP-wQ-k57">
-                                    <rect key="frame" x="16" y="214" width="361" height="18.333333333333343"/>
-                                    <color key="tintColor" systemColor="labelColor"/>
-                                </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="u2P-6P-arU" userLabel="Stack View_inner">
-                                    <rect key="frame" x="16" y="257.33333333333331" width="361" height="77"/>
+                                    <rect key="frame" x="16" y="230.00000000000003" width="361" height="113.33333333333334"/>
                                     <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vXP-wQ-k57">
+                                            <rect key="frame" x="0.0" y="1" width="361" height="18.333333333333332"/>
+                                            <color key="tintColor" systemColor="labelColor"/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXa-cd-Nuw">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="40.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="36.333333333333314" width="361" height="40.666666666666657"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                             </accessibility>
@@ -54,7 +55,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Body" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqY-LQ-KLH">
-                                            <rect key="frame" x="0.0" y="56.666666666666693" width="361" height="20.333333333333336"/>
+                                            <rect key="frame" x="0.0" y="93" width="361" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -62,14 +63,14 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" placeholderIntrinsicWidth="358" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="GUd-YE-dfk">
-                                    <rect key="frame" x="16" y="358.33333333333331" width="361" height="180.99999999999994"/>
+                                    <rect key="frame" x="16" y="343.33333333333331" width="361" height="229.99999999999994"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </view>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="GUd-YE-dfk" firstAttribute="height" secondItem="xoh-ez-VnF" secondAttribute="height" id="SE6-41-D2d"/>
                             </constraints>
-                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="16" bottom="8" trailing="16"/>
+                            <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                         </stackView>
                     </subviews>
                     <constraints>
@@ -84,17 +85,17 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="26A-Eq-Ewd"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="j4e-HS-iiV"/>
                 </scrollView>
-                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="7KN-rE-n2x" userLabel="Stack View_button">
-                    <rect key="frame" x="0.0" y="622.33333333333337" width="393" height="179.66666666666663"/>
+                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7KN-rE-n2x" userLabel="Stack View_button">
+                    <rect key="frame" x="0.0" y="648.33333333333337" width="393" height="153.66666666666663"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you use Face ID, anyone with a Face ID saved to your phone will be able to sign in to this app" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrR-Dr-3eh" userLabel="Grey text">
-                            <rect key="frame" x="16" y="8" width="361" height="33.666666666666664"/>
+                            <rect key="frame" x="16" y="0.0" width="361" height="33.666666666666664"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                            <color key="textColor" name="Grey"/>
+                            <color key="textColor" name="DarkGrey"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="358" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2l-9h-5cw" customClass="RoundedButton" customModule="GDSCommon">
-                            <rect key="frame" x="16" y="62.666666666666629" width="361" height="44"/>
+                            <rect key="frame" x="16" y="49.666666666666629" width="361" height="44"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Continue"/>
@@ -103,7 +104,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="326" placeholderIntrinsicHeight="44" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JG-e4-Yqj" customClass="SecondaryButton" customModule="GDSCommon">
-                            <rect key="frame" x="16" y="127.66666666666663" width="361" height="44"/>
+                            <rect key="frame" x="16" y="109.66666666666663" width="361" height="44"/>
                             <accessibility key="accessibilityConfiguration" identifier="exit-button"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -113,7 +114,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="16"/>
+                    <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="8Tm-mu-GBd"/>
@@ -127,12 +128,12 @@
                 <constraint firstItem="dfR-DQ-wIF" firstAttribute="leading" secondItem="8Tm-mu-GBd" secondAttribute="leading" id="n2z-Nk-NoJ"/>
                 <constraint firstItem="8Tm-mu-GBd" firstAttribute="trailing" secondItem="dfR-DQ-wIF" secondAttribute="trailing" id="ncZ-v0-3GC"/>
             </constraints>
-            <point key="canvasLocation" x="137.68115942028987" y="119.86607142857142"/>
+            <point key="canvasLocation" x="136.64122137404578" y="119.71830985915494"/>
         </view>
     </objects>
     <resources>
-        <image name="lock" catalog="system" width="125" height="128"/>
-        <namedColor name="Grey">
+        <image name="lock" catalog="system" width="111" height="128"/>
+        <namedColor name="DarkGrey">
             <color red="0.31372549019607843" green="0.35294117647058826" blue="0.37254901960784315" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
