@@ -39,4 +39,3 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
         return stackView
     }
 }
-
