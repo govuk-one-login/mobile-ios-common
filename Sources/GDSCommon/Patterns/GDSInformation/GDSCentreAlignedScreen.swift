@@ -1,5 +1,7 @@
 import UIKit
 
+public typealias GDSInformationViewController = GDSCentreAlignedScreen
+
 /// View controller for `GDSInformation` screen
 ///     - `informationImage` (type: `String`)
 ///     - `titleLabel` (type: `UILabel`)
@@ -7,14 +9,14 @@ import UIKit
 ///     - `footnoteLabel`  (type: `UILabel`)
 ///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
 ///     - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
-public final class GDSInformationViewController: BaseViewController, TitledViewController {
-    public override var nibName: String? { "GDSInformation" }
+public final class GDSCentreAlignedScreen: BaseViewController, TitledViewController {
+    public override var nibName: String? { "GDSCentreAligned" }
     
-    public private(set) var viewModel: GDSInformationViewModelWithTitleAndBody
+    public private(set) var viewModel: GDSCentreAlignedViewModel
     
-    public init(viewModel: GDSInformationViewModelWithTitleAndBody) {
+    public init(viewModel: GDSCentreAlignedViewModel) {
         self.viewModel = viewModel
-        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSInformation", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSCentreAligned", bundle: .module)
     }
     
     @available(*, unavailable, renamed: "init(viewModel:)")
@@ -83,7 +85,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     
     @IBOutlet private var informationImage: UIImageView! {
         didSet {
-            if let viewModel = viewModel as? GDSInformationViewModelWithImage {
+            if let viewModel = viewModel as? GDSCentreAlignedViewModelWithImage {
                 let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight ?? .semibold)
                 let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
                 
@@ -132,7 +134,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     /// This will be added to the `stackView` below the existing `bodyLabel`
     @IBOutlet private var stackView: UIStackView! {
         didSet {
-            if let viewModel = viewModel as? GDSInformationViewModelWithChildView {
+            if let viewModel = viewModel as? GDSCentreAlignedViewModelWithChildView {
                 stackView.addArrangedSubview(viewModel.childView)
             }
             stackView.accessibilityIdentifier = "information-optional-stack-view"
@@ -144,7 +146,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             if let viewModel = viewModel as? GDSInformationViewModelWithOptionalFootnote {
                 footnoteLabel.font = .init(style: .footnote)
                 footnoteLabel.text = viewModel.footnote?.value
-            } else if let viewModel = viewModel as? GDSInformationViewModelWithFootnote {
+            } else if let viewModel = viewModel as? GDSCentreAlignedViewModelWithFootnote {
                 footnoteLabel.font = .init(style: .footnote)
                 footnoteLabel.text = viewModel.footnote.value
             } else {
@@ -159,7 +161,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
             if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton,
                 let button = buttonViewModel.primaryButtonViewModel {
                 primaryButton.setTitle(button.title.value, for: .normal)
-            } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
+            } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
                 primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
             } else {
                 primaryButton.isHidden = true
@@ -171,7 +173,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     @IBAction private func primaryButtonAction(_ sender: Any) {
         if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton {
             buttonViewModel.primaryButtonViewModel?.action()
-        } else if let buttonViewModel = viewModel as? GDSInformationViewModelPrimaryButton {
+        } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
             buttonViewModel.primaryButtonViewModel.action()
         }
     }
@@ -187,7 +189,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
                 }
-            } else if let buttonViewModel = viewModel as? GDSInformationViewModelWithSecondaryButton {
+            } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
                 secondaryButton.setTitle(buttonViewModel.secondaryButtonViewModel.title.value, for: .normal)
                 secondaryButton.titleLabel?.textAlignment = .center
                 
@@ -205,7 +207,7 @@ public final class GDSInformationViewController: BaseViewController, TitledViewC
     @IBAction private func secondaryButtonAction(_ sender: Any) {
         if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton {
             buttonViewModel.secondaryButtonViewModel?.action()
-        } else if let buttonViewModel = viewModel as? GDSInformationViewModelWithSecondaryButton {
+        } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
             buttonViewModel.secondaryButtonViewModel.action()
         }
     }

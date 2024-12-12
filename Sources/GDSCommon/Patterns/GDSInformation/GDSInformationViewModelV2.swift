@@ -21,40 +21,26 @@ import UIKit
 /// For example, this might include tracking an analytics screen view, but it could be used
 /// for other code such as making an API call.
 @available(*, deprecated,
-            renamed: "GDSInformationViewModelWithTitleAndBody",
-            message: "Should conform to GDSInformationViewModelWithTitleAndBody and GDSInformationViewModelWithImage")
-public typealias GDSInformationViewModelV2 = GDSInformationViewModelWithTitleAndBody & GDSInformationViewModelWithImage
+            renamed: "CentreAlignedViewModel",
+            message: "Should conform to CentreAlignedViewModel and CentreAlignedViewModelWithImage")
+public typealias GDSInformationViewModelV2 = GDSCentreAlignedViewModel & GDSCentreAlignedViewModelWithImage
 
-@MainActor
-public protocol GDSInformationViewModelWithTitleAndBody {
-    var title: GDSLocalisedString { get }
-    var body: GDSLocalisedString? { get }
-}
+@available(*, deprecated,
+            renamed: "CentreAlignedViewModelWithFootnote",
+            message: "Should conform to CentreAlignedViewModelWithFootnote instead")
+public typealias GDSInformationViewModelWithFootnote = GDSCentreAlignedViewModelWithFootnote
 
-@MainActor
-public protocol GDSInformationViewModelWithImage {
-    var image: String { get }
-    var imageWeight: UIFont.Weight? { get }
-    var imageColour: UIColor? { get }
-    var imageHeightConstraint: CGFloat? { get }
-}
+@available(*, deprecated,
+            renamed: "CentreAlignedViewModelWithPrimaryButton",
+            message: "Should conform to CentreAlignedViewModelWithPrimaryButton instead")
+public typealias GDSInformationViewModelPrimaryButton = GDSCentreAlignedViewModelWithPrimaryButton
 
-@MainActor
-public protocol GDSInformationViewModelWithFootnote {
-    var footnote: GDSLocalisedString { get }
-}
+@available(*, deprecated,
+            renamed: "CentreAlignedViewModelWithSecondaryButton",
+            message: "Should conform to CentreAlignedViewModelWithSecondaryButton instead")
+public typealias GDSInformationViewModelWithSecondaryButton = GDSCentreAlignedViewModelWithSecondaryButton
 
-@MainActor
-public protocol GDSInformationViewModelPrimaryButton {
-    var primaryButtonViewModel: ButtonViewModel { get }
-}
-
-@MainActor
-public protocol GDSInformationViewModelWithSecondaryButton {
-    var secondaryButtonViewModel: ButtonViewModel { get }
-}
-
-@MainActor
-public protocol GDSInformationViewModelWithChildView {
-    var childView: UIView { get }
-}
+@available(*, deprecated,
+            renamed: "CentreAlignedViewModelWithChildView",
+            message: "Should conform to CentreAlignedViewModelWithChildView instead")
+public typealias GDSInformationViewModelWithChildView = GDSCentreAlignedViewModelWithChildView
