@@ -13,9 +13,9 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
     let imageWeight: UIFont.Weight? = nil
     let imageColour: UIColor? = nil
     let imageHeightConstraint: CGFloat? = nil
-    let title: GDSLocalisedString = "This is a centre aligned Screen title"
-    let body: GDSLocalisedString? = "This is an optional centre aligned Screen body."
-    let footnote: GDSLocalisedString = "This is an optional centre aligned ccreen footnote where additional information for the buttons can be detailed."
+    let title: GDSLocalisedString = "This is a centre aligned screen title"
+    let body: GDSLocalisedString? = "This is an optional centre aligned screen body."
+    let footnote: GDSLocalisedString = "This is an optional centre aligned screen footnote where additional information for the buttons can be detailed."
     let primaryButtonViewModel: ButtonViewModel = MockButtonViewModel.primary
     let secondaryButtonViewModel: ButtonViewModel = MockButtonViewModel.secondary
     let rightBarButtonTitle: GDSLocalisedString? = nil
