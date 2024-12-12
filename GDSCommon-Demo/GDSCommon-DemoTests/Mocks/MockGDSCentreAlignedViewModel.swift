@@ -1,21 +1,25 @@
 import GDSCommon
 import UIKit
 
-struct MockGDSInformationViewModel: GDSInformationViewModel,
-                                    GDSInformationViewModelWithChildView,
-                                    BaseViewModel {
+struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
+                                      GDSCentreAlignedViewModelWithImage,
+                                      GDSCentreAlignedViewModelWithFootnote,
+                                      GDSCentreAlignedViewModelWithPrimaryButton,
+                                      GDSCentreAlignedViewModelWithSecondaryButton,
+                                      GDSCentreAlignedViewModelWithChildView,
+                                      BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = .semibold
     let imageColour: UIColor? = .gdsPrimary
     let imageHeightConstraint: CGFloat? = 55
-    let title: GDSLocalisedString = "Information screen title"
-    let body: GDSLocalisedString? = "Information screen body"
+    let title: GDSLocalisedString = "Centre aligned screen title"
+    let body: GDSLocalisedString? = "Centre aligned screen body"
     var childView: UIView {
         createChildView()
     }
-    let footnote: GDSLocalisedString? = "Information screen footnote"
+    let footnote: GDSLocalisedString = "Centre aligned screen footnote"
     let primaryButtonViewModel: ButtonViewModel
-    let secondaryButtonViewModel: ButtonViewModel?
+    let secondaryButtonViewModel: ButtonViewModel
     
     let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
     let backButtonIsHidden: Bool = false
@@ -23,7 +27,7 @@ struct MockGDSInformationViewModel: GDSInformationViewModel,
     let dismissAction: () -> Void
     
     init(primaryButtonViewModel: ButtonViewModel,
-         secondaryButtonViewModel: ButtonViewModel?,
+         secondaryButtonViewModel: ButtonViewModel,
          appearAction: @escaping () -> Void,
          dismissAction: @escaping () -> Void) {
         self.primaryButtonViewModel = primaryButtonViewModel
@@ -75,12 +79,30 @@ struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
     let imageHeightConstraint: CGFloat? = 55
     let title: GDSLocalisedString = "V2 Information screen title"
     let body: GDSLocalisedString? = "V2 Information screen body"
-    var footnote: GDSLocalisedString = "V2 Information screen footnote"
+    let footnote: GDSLocalisedString = "V2 Information screen footnote"
     let primaryButtonViewModel: ButtonViewModel?
-    var secondaryButtonViewModel: ButtonViewModel
+    let secondaryButtonViewModel: ButtonViewModel
     
     init(primaryButtonViewModel: ButtonViewModel?,
          secondaryButtonViewModel: ButtonViewModel) {
+        self.primaryButtonViewModel = primaryButtonViewModel
+        self.secondaryButtonViewModel = secondaryButtonViewModel
+    }
+}
+
+struct MockGDSInformationViewModel: GDSInformationViewModel {
+    let title: GDSLocalisedString = "Information screen title"
+    let body: GDSLocalisedString? = "Information screen body"
+    let image: String = "lock"
+    let imageWeight: UIFont.Weight? = .semibold
+    let imageColour: UIColor? = .gdsPrimary
+    let imageHeightConstraint: CGFloat? = 55
+    let footnote: GDSLocalisedString? = "Information screen footnote"
+    let primaryButtonViewModel: ButtonViewModel
+    let secondaryButtonViewModel: ButtonViewModel?
+
+    init(primaryButtonViewModel: ButtonViewModel,
+         secondaryButtonViewModel: ButtonViewModel?) {
         self.primaryButtonViewModel = primaryButtonViewModel
         self.secondaryButtonViewModel = secondaryButtonViewModel
     }

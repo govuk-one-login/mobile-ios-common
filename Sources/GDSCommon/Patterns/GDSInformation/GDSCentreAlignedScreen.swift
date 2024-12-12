@@ -26,7 +26,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
     
     @IBOutlet private var bottomStack: UIStackView! {
         didSet {
-            bottomStack.accessibilityIdentifier = "information-bottom-stack-view"
+            bottomStack.accessibilityIdentifier = "centre-aligned-screen-bottom-stack-view"
         }
     }
 
@@ -83,15 +83,15 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         }
     }
     
-    @IBOutlet private var informationImage: UIImageView! {
+    @IBOutlet private var image: UIImageView! {
         didSet {
             if let viewModel = viewModel as? GDSCentreAlignedViewModelWithImage {
                 let font = UIFont(style: .largeTitle, weight: viewModel.imageWeight ?? .semibold)
                 let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
                 
-                informationImage.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
-                informationImage.tintColor = viewModel.imageColour ?? .gdsPrimary
-                informationImage.accessibilityIdentifier = "information-image"
+                image.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
+                image.tintColor = viewModel.imageColour ?? .gdsPrimary
+                image.accessibilityIdentifier = "centre-aligned-screen-image"
                 
                 /// Minimum height constraint for the image view
                 var heightConstraint: CGFloat {
@@ -105,7 +105,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
                 }
                 
                 NSLayoutConstraint.activate([
-                    informationImage.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
+                    image.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
                 ])
             }
         }
@@ -115,7 +115,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         didSet {
             titleLabel.font = .init(style: .largeTitle, weight: .bold, design: .default)
             titleLabel.text = viewModel.title.value
-            titleLabel.accessibilityIdentifier = "information-title"
+            titleLabel.accessibilityIdentifier = "centre-aligned-screen-title"
         }
     }
     
@@ -126,7 +126,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             } else {
                 bodyLabel.isHidden = true
             }
-            bodyLabel.accessibilityIdentifier = "information-body"
+            bodyLabel.accessibilityIdentifier = "centre-aligned-screen-body"
         }
     }
 
@@ -137,7 +137,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             if let viewModel = viewModel as? GDSCentreAlignedViewModelWithChildView {
                 stackView.addArrangedSubview(viewModel.childView)
             }
-            stackView.accessibilityIdentifier = "information-optional-stack-view"
+            stackView.accessibilityIdentifier = "centre-aligned-screen-optional-stack-view"
         }
     }
     
@@ -152,7 +152,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             } else {
                 footnoteLabel.isHidden = true
             }
-            footnoteLabel.accessibilityIdentifier = "information-footnote"
+            footnoteLabel.accessibilityIdentifier = "centre-aligned-screen-footnote"
         }
     }
     
@@ -166,7 +166,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             } else {
                 primaryButton.isHidden = true
             }
-            primaryButton.accessibilityIdentifier = "information-primary-button"
+            primaryButton.accessibilityIdentifier = "centre-aligned-screen-primary-button"
         }
     }
     
@@ -200,7 +200,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             } else {
                 secondaryButton.isHidden = true
             }
-            secondaryButton.accessibilityIdentifier = "information-secondary-button"
+            secondaryButton.accessibilityIdentifier = "centre-aligned-screen-secondary-button"
         }
     }
 

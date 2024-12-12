@@ -1,13 +1,12 @@
 @testable import GDSCommon
 import XCTest
 
-final class GDSInformationViewControllerTests: XCTestCase {
-    var viewModel: GDSInformationViewModel!
-    var sut: GDSInformationViewController!
+final class GDSCentreAlignedScreenTests: XCTestCase {
+    var viewModel: GDSCentreAlignedViewModel!
+    var sut: GDSCentreAlignedScreen!
     
     var primaryButtonViewModel: MockButtonViewModel!
     var secondaryButtonViewModel: MockButtonViewModel!
-    
     var didTap_primaryButton = false
     var didTap_secondaryButton = false
     var viewDidAppear = false
@@ -17,21 +16,21 @@ final class GDSInformationViewControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        primaryButtonViewModel = MockButtonViewModel(title: "Information primary button title") {
+        primaryButtonViewModel = MockButtonViewModel(title: "Primary button title") {
             self.didTap_primaryButton = true
         }
         
-        secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title") {
+        secondaryButtonViewModel = MockButtonViewModel(title: "Secondary button title") {
             self.didTap_secondaryButton = true
         }
         
-        viewModel = MockGDSInformationViewModel(primaryButtonViewModel: primaryButtonViewModel,
-                                                secondaryButtonViewModel: secondaryButtonViewModel) {
+        viewModel = MockGDSCentreAlignedViewModel(primaryButtonViewModel: primaryButtonViewModel,
+                                                  secondaryButtonViewModel: secondaryButtonViewModel) {
             self.viewDidAppear = true
         } dismissAction: {
             self.viewDidDismiss = true
         }
-        sut = GDSInformationViewController(viewModel: viewModel)
+        sut = GDSCentreAlignedScreen(viewModel: viewModel)
     }
     
     override func tearDown() {
@@ -51,20 +50,20 @@ final class GDSInformationViewControllerTests: XCTestCase {
 }
 
 @MainActor
-extension GDSInformationViewControllerTests {
+extension GDSCentreAlignedScreenTests {
     func test_labelContents() throws {
-        XCTAssertNotNil(try sut.informationImage)
-        XCTAssertEqual(try sut.informationImage.tintColor, .gdsPrimary)
-        XCTAssertEqual(try sut.informationTitleLabel.text, "Information screen title")
-        XCTAssertEqual(try sut.informationTitleLabel.font, .largeTitleBold)
-        XCTAssertTrue(try sut.informationTitleLabel.accessibilityTraits.contains(.header))
-        XCTAssertEqual(try sut.informationBodyLabel.text, "Information screen body")
-        XCTAssertFalse(try sut.informationBodyLabel.accessibilityTraits.contains(.header))
-        XCTAssertEqual(try sut.informationFootnoteLabel.text, "Information screen footnote")
-        XCTAssertEqual(try sut.informationFootnoteLabel.font, .footnote)
-        XCTAssertFalse(try sut.informationFootnoteLabel.accessibilityTraits.contains(.header))
-        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Information primary button title")
-        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
+        XCTAssertNotNil(try sut.image)
+        XCTAssertEqual(try sut.image.tintColor, .gdsPrimary)
+        XCTAssertEqual(try sut.titleLabel.text, "Centre aligned screen title")
+        XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
+        XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
+        XCTAssertEqual(try sut.bodyLabel.text, "Centre aligned screen body")
+        XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
+        XCTAssertEqual(try sut.footnoteLabel.text, "Centre aligned screen footnote")
+        XCTAssertEqual(try sut.footnoteLabel.font, .footnote)
+        XCTAssertFalse(try sut.footnoteLabel.accessibilityTraits.contains(.header))
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button title")
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button title")
     }
     
     func test_footnoteMovesToScrollView() throws {
@@ -102,12 +101,16 @@ extension GDSInformationViewControllerTests {
     }
     
     func test_secondaryButtonWithIcon() throws {
-        secondaryButtonViewModel = MockButtonViewModel(title: "Information secondary button title",
+        secondaryButtonViewModel = MockButtonViewModel(title: "Secondary button with no icon",
                                                        icon: MockButtonIconViewModel()) {}
         
-        viewModel = MockGDSInformationViewModel(primaryButtonViewModel: primaryButtonViewModel,
-                                                secondaryButtonViewModel: secondaryButtonViewModel) { } dismissAction: { }
-        sut = GDSInformationViewController(viewModel: viewModel)
+        viewModel = MockGDSCentreAlignedViewModel(primaryButtonViewModel: primaryButtonViewModel,
+                                                  secondaryButtonViewModel: secondaryButtonViewModel) {
+        } dismissAction: {
+            
+        }
+        sut = GDSCentreAlignedScreen(viewModel: viewModel)
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button with no icon")
         XCTAssertNotNil(try sut.secondaryButton.icon)
     }
     
@@ -136,7 +139,7 @@ extension GDSInformationViewControllerTests {
         
         let screen = try XCTUnwrap(sut as VoiceOverFocus)
         let view = try XCTUnwrap(screen.initialVoiceOverView as? UILabel)
-        XCTAssertEqual(view.text, "Information screen title")
+        XCTAssertEqual(view.text, "Centre aligned screen title")
     }
     
     func test_didDismiss() {
@@ -163,21 +166,19 @@ extension GDSInformationViewControllerTests {
     }
 }
 
-// MARK: - GDSInformationViewController V2 Tests
+// MARK: - GDSInformationVieWModelV2 Tests
 @MainActor
-extension GDSInformationViewControllerTests {
-    func test_fullyConfiguredView() {
-        sut = GDSInformationViewController(
-            viewModel: MockGDSInformationViewModelV2(
-                primaryButtonViewModel: primaryButtonViewModel,
-                secondaryButtonViewModel: secondaryButtonViewModel
-            )
-        )
-        XCTAssertEqual(try sut.informationTitleLabel.text, "V2 Information screen title")
-        XCTAssertEqual(try sut.informationBodyLabel.text, "V2 Information screen body")
-        XCTAssertEqual(try sut.informationFootnoteLabel.text, "V2 Information screen footnote")
-        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Information primary button title")
-        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Information secondary button title")
+extension GDSCentreAlignedScreenTests {
+    func test_fullyConfiguredView_v2ViewModel() {
+        let viewModel = MockGDSInformationViewModelV2(primaryButtonViewModel: primaryButtonViewModel,
+                                                      secondaryButtonViewModel: secondaryButtonViewModel)
+        sut = GDSInformationViewController(viewModel: viewModel)
+        
+        XCTAssertEqual(try sut.titleLabel.text, "V2 Information screen title")
+        XCTAssertEqual(try sut.bodyLabel.text, "V2 Information screen body")
+        XCTAssertEqual(try sut.footnoteLabel.text, "V2 Information screen footnote")
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button title")
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button title")
     }
     
     func test_partiallyConfiguredView() {
@@ -191,57 +192,74 @@ extension GDSInformationViewControllerTests {
     }
 }
 
+// MARK: GDSInformationViewModel Tests
+@MainActor
+extension GDSCentreAlignedScreenTests {
+    func test_fullyConfiguredView_originalViewModel() {
+        let viewModel = MockGDSInformationViewModel(primaryButtonViewModel: primaryButtonViewModel,
+                                                    secondaryButtonViewModel: secondaryButtonViewModel)
+        sut = GDSInformationViewController(viewModel: viewModel)
+        
+        XCTAssertEqual(try sut.titleLabel.text, "Information screen title")
+        XCTAssertEqual(try sut.bodyLabel.text, "Information screen body")
+        XCTAssertEqual(try sut.footnoteLabel.text, "Information screen footnote")
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button title")
+        XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button title")
+    }
+}
+
+
 struct MockButtonIconViewModel: ButtonIconViewModel {
     var iconName: String = "arrow.up.right"
     var symbolPosition: SymbolPosition = .afterTitle
 }
 
-extension GDSInformationViewController {
-    var informationImage: UIImageView {
+extension GDSCentreAlignedScreen {
+    var image: UIImageView {
         get throws {
-            try XCTUnwrap(view[child: "information-image"])
+            try XCTUnwrap(view[child: "centre-aligned-screen-image"])
         }
     }
     
-    var informationTitleLabel: UILabel {
+    var titleLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "information-title"])
+            try XCTUnwrap(view[child: "centre-aligned-screen-title"])
         }
     }
     
-    var informationBodyLabel: UILabel {
+    var bodyLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "information-body"])
+            try XCTUnwrap(view[child: "centre-aligned-screen-body"])
         }
     }
     
-    var informationFootnoteLabel: UILabel {
+    var footnoteLabel: UILabel {
         get throws {
-            try XCTUnwrap(view[child: "information-footnote"])
+            try XCTUnwrap(view[child: "centre-aligned-screen-footnote"])
         }
     }
     
     var primaryButton: RoundedButton {
         get throws {
-            try XCTUnwrap(view[child: "information-primary-button"])
+            try XCTUnwrap(view[child: "centre-aligned-screen-primary-button"])
         }
     }
     
     var secondaryButton: SecondaryButton {
         get throws {
-            try XCTUnwrap(view[child: "information-secondary-button"])
+            try XCTUnwrap(view[child: "centre-aligned-screen-secondary-button"])
         }
     }
 
     var childView: UIStackView {
         get throws {
-            try XCTUnwrap(view[child: "information-optional-stack-view"])
+            try XCTUnwrap(view[child: "centre-aligned-screen-optional-stack-view"])
         }
     }
     
     var bottomStack: UIStackView {
         get throws {
-            try XCTUnwrap(view[child: "information-bottom-stack-view"])
+            try XCTUnwrap(view[child: "centre-aligned-screen-bottom-stack-view"])
         }
     }
 }

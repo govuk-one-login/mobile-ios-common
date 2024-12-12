@@ -10,12 +10,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GDSInformationViewController" customModule="GDSCommon">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GDSCentreAlignedScreen" customModule="GDSCommon">
             <connections>
                 <outlet property="bodyLabel" destination="YqY-LQ-KLH" id="8vP-tX-FiS"/>
                 <outlet property="bottomStack" destination="7KN-rE-n2x" id="RXb-Mv-Rdg"/>
                 <outlet property="footnoteLabel" destination="zrR-Dr-3eh" id="ruf-SY-cCX"/>
-                <outlet property="informationImage" destination="vXP-wQ-k57" id="Nxf-ym-LI1"/>
+                <outlet property="image" destination="vXP-wQ-k57" id="n1a-bf-hpc"/>
                 <outlet property="primaryButton" destination="a2l-9h-5cw" id="AAv-Xb-ZDH"/>
                 <outlet property="secondaryButton" destination="5JG-e4-Yqj" id="2RO-Qb-cCX"/>
                 <outlet property="stackView" destination="u2P-6P-arU" id="XUT-af-SU9"/>
