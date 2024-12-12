@@ -2,8 +2,8 @@ import UIKit
 
 public typealias GDSInformationViewController = GDSCentreAlignedScreen
 
-/// View controller for `GDSInformation` screen
-///     - `informationImage` (type: `String`)
+/// View controller for `GDSCentreALigned` screen
+///     - `image` (type: `String`)
 ///     - `titleLabel` (type: `UILabel`)
 ///     - `bodyLabel` (type: `UILabel`)
 ///     - `footnoteLabel`  (type: `UILabel`)

@@ -272,8 +272,8 @@ struct MockErrorViewModel: GDSErrorViewModelV2, GDSErrorViewModelWithImage, Base
 ```
 
 
-## GDSInformation
-This screen is designed to present information to users, consisting of an image, title, (optional) body, (optional) footnote, primary button and an (optional) secondary button.
+## GDSCentreAlignedScreen
+This screen is designed to present information to users, consisting of an image, title, (optional) body, (optional) footnote, (optional) primary button and an (optional) secondary button.
 
 As part of the confirguation of the image, it has the following customisation: 
 - `imageWeight` is used to determine the weight of the image (default: .semibold)
@@ -290,15 +290,9 @@ if let value = viewModel.imageHeightConstraint {
 }
 ```
 
-In `GDSInformationViewController` `footnote` is given a maximum content size, this is to stop the footnote covering the ScrollView when the devices' dynamic type is set to maximum.
+In the GDSCentreAlignedScreen, the footnote moves from the bottom stack to the scroll view if larger dynamic type sizes cause the stack (footnote and buttons) to cover more than 1/3 of the screen.
 
-```swift
-if #available(iOS 15.0, *) {
-    footnoteLabel.maximumContentSizeCategory = .accessibilityMedium
-}
-```
-
-`GDSInformationViewController` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site.
+`GDSCentreAlignedScreen` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site.
 
 ### Example:
 
