@@ -91,7 +91,6 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
                 
                 image.image = UIImage(systemName: viewModel.image, withConfiguration: configuration)
                 image.tintColor = viewModel.imageColour ?? .gdsPrimary
-                image.accessibilityIdentifier = "centre-aligned-screen-image"
                 
                 /// Minimum height constraint for the image view
                 var heightConstraint: CGFloat {
@@ -107,7 +106,10 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
                 NSLayoutConstraint.activate([
                     image.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
                 ])
+            } else {
+                image.isHidden = true
             }
+            image.accessibilityIdentifier = "centre-aligned-screen-image"
         }
     }
     
