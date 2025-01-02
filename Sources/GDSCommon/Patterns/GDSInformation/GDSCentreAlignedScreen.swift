@@ -107,6 +107,8 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
                 NSLayoutConstraint.activate([
                     image.heightAnchor.constraint(greaterThanOrEqualToConstant: heightConstraint)
                 ])
+            } else {
+                image.isHidden = true
             }
         }
     }
