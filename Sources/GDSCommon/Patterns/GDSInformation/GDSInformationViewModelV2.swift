@@ -1,26 +1,26 @@
 import UIKit
 
 @available(*, deprecated,
-            renamed: "CentreAlignedViewModel",
-            message: "Should conform to CentreAlignedViewModel and CentreAlignedViewModelWithImage")
+            renamed: "GDSCentreAlignedViewModel",
+            message: "Should conform to GDSCentreAlignedViewModel and GDSCentreAlignedViewModelWithImage")
 public typealias GDSInformationViewModelV2 = GDSCentreAlignedViewModel & GDSCentreAlignedViewModelWithImage
 
 @available(*, deprecated,
-            renamed: "CentreAlignedViewModelWithFootnote",
-            message: "Should conform to CentreAlignedViewModelWithFootnote instead")
+            renamed: "GDSCentreAlignedViewModelWithFootnote",
+            message: "Should conform to GDSCentreAlignedViewModelWithFootnote instead")
 public typealias GDSInformationViewModelWithFootnote = GDSCentreAlignedViewModelWithFootnote
 
 @available(*, deprecated,
-            renamed: "CentreAlignedViewModelWithPrimaryButton",
-            message: "Should conform to CentreAlignedViewModelWithPrimaryButton instead")
+            renamed: "GDSCentreAlignedViewModelWithPrimaryButton",
+            message: "Should conform to GDSCentreAlignedViewModelWithPrimaryButton instead")
 public typealias GDSInformationViewModelPrimaryButton = GDSCentreAlignedViewModelWithPrimaryButton
 
 @available(*, deprecated,
-            renamed: "CentreAlignedViewModelWithSecondaryButton",
-            message: "Should conform to CentreAlignedViewModelWithSecondaryButton instead")
+            renamed: "GDSCentreAlignedViewModelWithSecondaryButton",
+            message: "Should conform to GDSCentreAlignedViewModelWithSecondaryButton instead")
 public typealias GDSInformationViewModelWithSecondaryButton = GDSCentreAlignedViewModelWithSecondaryButton
 
 @available(*, deprecated,
-            renamed: "CentreAlignedViewModelWithChildView",
-            message: "Should conform to CentreAlignedViewModelWithChildView instead")
+            renamed: "GDSCentreAlignedViewModelWithChildView",
+            message: "Should conform to GDSCentreAlignedViewModelWithChildView instead")
 public typealias GDSInformationViewModelWithChildView = GDSCentreAlignedViewModelWithChildView
