@@ -164,6 +164,20 @@ extension GDSCentreAlignedScreenTests {
         XCTAssertEqual(bulletLabels[2].text, "\t●\tbullet 3")
         XCTAssertEqual(childViewBody.text, "More text")
     }
+    
+    func test_imageIsNotHidden() throws {
+        XCTAssertFalse(try sut.image.isHidden)
+    }
+    
+    func test_imageIsHidden() throws {
+        viewModel = MockGDSCentreAlignedViewModelNoImage(primaryButtonViewModel: primaryButtonViewModel,
+                                                         secondaryButtonViewModel: secondaryButtonViewModel,
+                                                         appearAction: {},
+                                                         dismissAction: {})
+        
+        sut = GDSCentreAlignedScreen(viewModel: viewModel)
+        XCTAssertTrue(try sut.image.isHidden)
+    }
 }
 
 // MARK: - GDSInformationVieWModelV2 Tests

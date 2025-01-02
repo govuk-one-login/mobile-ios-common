@@ -69,6 +69,41 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
     }
 }
 
+struct MockGDSCentreAlignedViewModelNoImage: GDSCentreAlignedViewModel,
+                                             GDSCentreAlignedViewModelWithFootnote,
+                                             GDSCentreAlignedViewModelWithPrimaryButton,
+                                             GDSCentreAlignedViewModelWithSecondaryButton,
+                                             BaseViewModel {
+    let title: GDSLocalisedString = "Centre aligned screen title"
+    let body: GDSLocalisedString? = "Centre aligned screen body"
+    let footnote: GDSLocalisedString = "Centre aligned screen footnote"
+    let primaryButtonViewModel: ButtonViewModel
+    let secondaryButtonViewModel: ButtonViewModel
+    
+    let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
+    let backButtonIsHidden: Bool = false
+    let appearAction: () -> Void
+    let dismissAction: () -> Void
+    
+    init(primaryButtonViewModel: ButtonViewModel,
+         secondaryButtonViewModel: ButtonViewModel,
+         appearAction: @escaping () -> Void,
+         dismissAction: @escaping () -> Void) {
+        self.primaryButtonViewModel = primaryButtonViewModel
+        self.secondaryButtonViewModel = secondaryButtonViewModel
+        self.appearAction = appearAction
+        self.dismissAction = dismissAction
+    }
+    
+    func didAppear() {
+        appearAction()
+    }
+    
+    func didDismiss() {
+        dismissAction()
+    }
+}
+
 struct MockGDSInformationViewModelV2: GDSInformationViewModelV2,
                                       GDSInformationViewModelWithFootnote,
                                       GDSInformationViewModelWithOptionalPrimaryButton,
