@@ -32,7 +32,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="629"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="89O-HG-BkV">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="523.33333333333337"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="515.33333333333337"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Cyo-Rv-pRC">
                                     <rect key="frame" x="0.0" y="8" width="393" height="189"/>
@@ -82,10 +82,10 @@
                                     <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                 </stackView>
                             </subviews>
-                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="8" trailing="0.0"/>
+                            <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="0.0" bottom="0.0" trailing="0.0"/>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axh-CZ-aV7" userLabel="FooterLabel">
-                            <rect key="frame" x="16" y="523.33333333333337" width="361" height="15.666666666666629"/>
+                            <rect key="frame" x="16" y="515.33333333333337" width="361" height="15.666666666666629"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
