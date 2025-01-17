@@ -38,7 +38,7 @@ final class GDSListOptionsViewControllerTests: XCTestCase {
     
     @MainActor
     private func setupSUTWithNilOptionals() {
-        viewModel = MockListViewModel(childView: nil, secondaryButtonViewModel: nil, listTitle: nil) {
+        viewModel = MockListViewModel(secondaryButtonViewModel: nil, listTitle: nil) {
             self.screenDidAppear = true
         } dismissAction: {
             self.didDismiss = true
@@ -135,8 +135,11 @@ extension GDSListOptionsViewControllerTests {
     func testContentHiddenWhenNil() throws {
         setupSUTWithNilOptionals()
         XCTAssertTrue(try sut.secondaryButton.isHidden)
-        XCTAssertTrue(try sut.stackView.isHidden)
         XCTAssertTrue(try sut.tableTitleLabel.isHidden)
+    }
+    
+    func testChildViewIsPopulated() throws {
+        XCTAssertNotNil(try sut.stackView)
     }
 }
 
