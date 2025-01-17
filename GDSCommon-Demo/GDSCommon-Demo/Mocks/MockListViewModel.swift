@@ -6,9 +6,9 @@ class MockListViewModel: GDSListOptionsViewModel, BaseViewModel {
     let body: GDSLocalisedString? = "This is the optional body label. If the view model property is `nil` then the label is hidden."
     var childView: UIView? {
         let bodyLabel = UILabel()
-        // swiftlint:disable:next line_length
+        // swiftlint:disable line_length
         bodyLabel.text = GDSLocalisedString(stringLiteral: "This is a body label inside the optional childView. This childView has no layout margins, add right and left margins of 16 points programtically if required").value
-        // swiftlint:enable:next line_length
+        // swiftlint:enable line_length
         bodyLabel.numberOfLines = 0
         bodyLabel.font = .body
         bodyLabel.adjustsFontForContentSizeCategory = true
