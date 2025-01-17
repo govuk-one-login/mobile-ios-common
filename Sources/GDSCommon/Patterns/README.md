@@ -130,6 +130,20 @@ This screen includes the following views:
     
 This screen provides an optional `bodyLabel` that could be used for instructional information below a `titleLabel` heading. There is a stack view below `BodyLabel` which allows you to place childs views for any information to show or functionalty, this is refered to `childView` in the view model. The main content of this screen is the table view (`UITableView`) which allows the user to submit selected information back to the site of the initialisation of the view model via a call-back closure with a `GDSLocalisedString` parameter, the table also has an optional `tableTitleLabel`.
 There is a primary Call To Action (CTA) on this screen and an optional secondary CTA which is hidden by default, if the `secondaryButtonView` is not nil in the view model this button is shown. The navigation back button and right bar button are configurable.
+
+The `childView` has no layout margins, if components other than an image are being placed into the childView you should add the layout margins programtically.
+```swift
+    var childView: UIView? {
+        let bodyLabel = UILabel()
+        bodyLabel.text = GDSLocalisedString(stringLiteral: "This is a body label inside the optional childView. This childView has no layout margins, add right and left margins of 16 points programtically if required").value
+        bodyLabel.numberOfLines = 0
+        let stackView = UIStackView(arrangedSubviews: [bodyLabel])
+        
+        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        return stackView
+    }
+```
 If this screen should be presented as a modal view, this should be done at the call site:
 
 ```swift
