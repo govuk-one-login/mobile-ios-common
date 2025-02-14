@@ -20,7 +20,6 @@ final class InstructionsWithImageViewControllerTests: XCTestCase {
         super.setUp()
         
         viewModel = MockInstructionsWithImageViewModel(
-            imageWithLabel: MockImageWithLabel(),
             warningButtonViewModel: MockButtonViewModel(
                 title: "Warning Button",
                 shouldLoadOnTap: false,
@@ -176,7 +175,7 @@ extension InstructionsWithImageViewController {
     
     var imageView: UIImageView {
         get throws {
-            try XCTUnwrap(view[child: "An example licence"])
+            try XCTUnwrap(view[child: "imageView"])
         }
     }
     

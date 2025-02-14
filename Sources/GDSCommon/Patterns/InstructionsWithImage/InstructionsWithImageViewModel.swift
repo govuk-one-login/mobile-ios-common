@@ -10,17 +10,12 @@ import UIKit
 public protocol InstructionsWithImageViewModel {
     var title: GDSLocalisedString { get }
     var body: NSAttributedString { get }
-    var imageWithLabel: ImageWithLabel { get }
+    var image: UIImage { get }
     var warningButtonViewModel: ButtonViewModel? { get }
     var primaryButtonViewModel: ButtonViewModel { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
 }
 
-public protocol InstructionsWithImageTypeViewModel {
-    var imageWithLabel: ImageWithLabel { get }
-}
-
-public protocol ImageWithLabel {
-    var image: UIImage { get }
-    var imageLabel: GDSLocalisedString { get }
+public protocol InstructionsWithImageWithAltTextViewModel {
+    var imageAltText: GDSLocalisedString { get }
 }

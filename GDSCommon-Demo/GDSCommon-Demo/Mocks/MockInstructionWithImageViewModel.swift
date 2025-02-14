@@ -1,15 +1,13 @@
 import GDSCommon
 import UIKit
 
-struct MockImageWithLabel: ImageWithLabel {
-    let image: UIImage = UIImage(named: "licence")!
-    let imageLabel: GDSLocalisedString = .init(stringLiteral: "An example licence")
-}
-
-class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel, BaseViewModel {
+class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel,
+                                          InstructionsWithImageWithAltTextViewModel,
+                                          BaseViewModel {
     var title: GDSLocalisedString
     var body: NSAttributedString
-    var imageWithLabel: ImageWithLabel = MockImageWithLabel()
+    var image: UIImage
+    var imageAltText: GDSLocalisedString
     var warningButtonViewModel: ButtonViewModel?
     var primaryButtonViewModel: ButtonViewModel
     var secondaryButtonViewModel: ButtonViewModel?
@@ -21,7 +19,8 @@ class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel, BaseVi
 
     init(title: GDSLocalisedString = "This is the Instructions with image view",
          body: NSAttributedString = NSAttributedString("We can use this body to provide details or context as to what we want the users to do"),
-         imageWithLabel: MockImageWithLabel,
+         image: UIImage = UIImage(named: "licence")!,
+         imageAltText: GDSLocalisedString = "An example licence",
          warningButtonViewModel: ButtonViewModel? = nil,
          primaryButtonViewModel: ButtonViewModel,
          secondaryButtonViewModel: ButtonViewModel? = nil,
@@ -30,7 +29,8 @@ class MockInstructionsWithImageViewModel: InstructionsWithImageViewModel, BaseVi
          dismissAction: @escaping () -> Void) {
         self.title = title
         self.body = body
-        self.imageWithLabel = imageWithLabel
+        self.image = image
+        self.imageAltText = imageAltText
         self.warningButtonViewModel = warningButtonViewModel
         self.primaryButtonViewModel = primaryButtonViewModel
         self.secondaryButtonViewModel = secondaryButtonViewModel
