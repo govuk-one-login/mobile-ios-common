@@ -52,8 +52,8 @@ public final class InstructionsWithImageViewController: BaseViewController, Titl
     /// Image view: ``UIImageView``
     @IBOutlet private var imageView: UIImageView! {
         didSet {
-            imageView.image = viewModel.image
-            imageView.accessibilityIdentifier = "imageView"
+            imageView.image = viewModel.imageWithLabel.image
+            imageView.accessibilityIdentifier = viewModel.imageWithLabel.imageLabel.value
         }
     }
     
