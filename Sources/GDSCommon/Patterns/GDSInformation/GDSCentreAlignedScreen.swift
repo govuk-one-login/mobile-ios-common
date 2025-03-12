@@ -168,6 +168,9 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             } else {
                 primaryButton.isHidden = true
             }
+            if let voiceoverHint = viewModel as? GDSCentreAlignedViewModelWithVoiceoverHint {
+                primaryButton.accessibilityHint = voiceoverHint.voiceoverHint
+            }
             primaryButton.accessibilityIdentifier = "centre-aligned-screen-primary-button"
         }
     }

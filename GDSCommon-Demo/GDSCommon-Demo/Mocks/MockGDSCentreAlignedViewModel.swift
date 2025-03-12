@@ -8,6 +8,7 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
                                       GDSCentreAlignedViewModelWithPrimaryButton,
                                       GDSCentreAlignedViewModelWithSecondaryButton,
                                       GDSCentreAlignedViewModelWithChildView,
+                                      GDSCentreAlignedViewModelWithVoiceoverHint,
                                       BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = nil
@@ -20,6 +21,7 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
     let secondaryButtonViewModel: ButtonViewModel = MockButtonViewModel.secondary
     let rightBarButtonTitle: GDSLocalisedString? = nil
     let backButtonIsHidden: Bool = false
+    let voiceoverHint: String = "This includes a voiceover hint"
 
     func didAppear() {}
 
