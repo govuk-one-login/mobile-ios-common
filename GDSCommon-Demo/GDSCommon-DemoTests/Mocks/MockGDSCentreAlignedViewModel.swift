@@ -7,6 +7,7 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
                                       GDSCentreAlignedViewModelWithPrimaryButton,
                                       GDSCentreAlignedViewModelWithSecondaryButton,
                                       GDSCentreAlignedViewModelWithChildView,
+                                      GDSCentreAlignedViewModelWithVoiceoverHint,
                                       BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = .semibold
@@ -25,6 +26,7 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
     let backButtonIsHidden: Bool = false
     let appearAction: () -> Void
     let dismissAction: () -> Void
+    let voiceoverHint: String = "Centre aligned screen accessibility hint"
     
     init(primaryButtonViewModel: ButtonViewModel,
          secondaryButtonViewModel: ButtonViewModel,

@@ -63,6 +63,7 @@ extension GDSCentreAlignedScreenTests {
         XCTAssertEqual(try sut.footnoteLabel.font, .footnote)
         XCTAssertFalse(try sut.footnoteLabel.accessibilityTraits.contains(.header))
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button title")
+        XCTAssertEqual(try sut.primaryButton.accessibilityHint, "Centre aligned screen accessibility hint")
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button title")
     }
     

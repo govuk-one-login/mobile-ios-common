@@ -21,7 +21,7 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
     let secondaryButtonViewModel: ButtonViewModel = MockButtonViewModel.secondary
     let rightBarButtonTitle: GDSLocalisedString? = nil
     let backButtonIsHidden: Bool = false
-    let voiceoverHint: String = "This includes a voiceover hint"
+    let voiceoverHint: String = "This includes an accessibility hint"
 
     func didAppear() {}
 
