@@ -7,6 +7,7 @@ struct MockButtonViewModel: ButtonViewModel {
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
     let action: () -> Void
+    let voiceoverHint: String?
 }
 
 struct MockButtonIconViewModel: ButtonIconViewModel {
@@ -20,6 +21,7 @@ struct MockColoredButtonViewModel: ColoredButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let backgroundColor: UIColor
+    let voiceoverHint: String? = nil
 }
 
 extension MockButtonViewModel {
@@ -27,7 +29,8 @@ extension MockButtonViewModel {
         MockButtonViewModel(title: "Action button",
                             icon: nil,
                             shouldLoadOnTap: false,
-                            action: {})
+                            action: {},
+                            voiceoverHint: "This includes an accessibility hint")
     }
     
     static var secondary: MockButtonViewModel {
@@ -35,7 +38,8 @@ extension MockButtonViewModel {
                             icon: MockButtonIconViewModel(iconName: "arrow.up.right",
                                                           symbolPosition: .afterTitle),
                             shouldLoadOnTap: false,
-                            action: {})
+                            action: {},
+                            voiceoverHint: nil)
     }
     
     static var secondaryQR: MockButtonViewModel {
@@ -43,7 +47,8 @@ extension MockButtonViewModel {
                             icon: MockButtonIconViewModel(iconName: "qrcode",
                                                           symbolPosition: .beforeTitle),
                             shouldLoadOnTap: false,
-                            action: {})
+                            action: {},
+                            voiceoverHint: nil)
     }
     
     static var text: MockButtonViewModel {
@@ -51,7 +56,8 @@ extension MockButtonViewModel {
                             icon: MockButtonIconViewModel(iconName: "qrcode",
                                                           symbolPosition: .beforeTitle),
                             shouldLoadOnTap: false,
-                            action: {})
+                            action: {},
+                            voiceoverHint: nil)
     }
 }
 

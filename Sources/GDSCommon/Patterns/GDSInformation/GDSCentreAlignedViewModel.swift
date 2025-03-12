@@ -53,7 +53,3 @@ public protocol GDSCentreAlignedViewModelWithSecondaryButton {
 public protocol GDSCentreAlignedViewModelWithChildView {
     var childView: UIView { get }
 }
-
-public protocol GDSCentreAlignedViewModelWithVoiceoverHint {
-    var voiceoverHint: String { get }
-}

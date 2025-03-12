@@ -16,7 +16,8 @@ final class GDSCentreAlignedScreenTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        primaryButtonViewModel = MockButtonViewModel(title: "Primary button title") {
+        primaryButtonViewModel = MockButtonViewModel(title: "Primary button title",
+                                                     voiceoverHint: "Centre aligned screen accessibility hint") {
             self.didTap_primaryButton = true
         }
         

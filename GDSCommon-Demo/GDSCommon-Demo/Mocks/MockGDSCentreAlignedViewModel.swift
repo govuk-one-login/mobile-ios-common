@@ -8,7 +8,6 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
                                       GDSCentreAlignedViewModelWithPrimaryButton,
                                       GDSCentreAlignedViewModelWithSecondaryButton,
                                       GDSCentreAlignedViewModelWithChildView,
-                                      GDSCentreAlignedViewModelWithVoiceoverHint,
                                       BaseViewModel {
     let image: String = "lock"
     let imageWeight: UIFont.Weight? = nil
