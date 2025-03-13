@@ -195,6 +195,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
                 secondaryButton.setTitle(buttonViewModel.secondaryButtonViewModel.title.value, for: .normal)
                 secondaryButton.titleLabel?.textAlignment = .center
+                secondaryButton.accessibilityHint = buttonViewModel.secondaryButtonViewModel.voiceOverHint?.value
                 
                 if let icon = buttonViewModel.secondaryButtonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
