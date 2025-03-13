@@ -23,9 +23,9 @@ final class ButtonViewModelTests: XCTestCase {
     func test_voiceoverhint() {
         XCTAssertNil(sut.voiceOverHint)
         
-        sut = TestButtonViewModel() {
-            self.didTapButton = true
-        }
+        sut = TestButtonViewModel(title: "test title",
+                                  action: { },
+                                  voiceOverHint: "test voiceover hint")
         
         XCTAssertNotNil(sut.voiceOverHint)
         XCTAssertEqual(sut.voiceOverHint?.value, "test voiceover hint")
@@ -33,9 +33,9 @@ final class ButtonViewModelTests: XCTestCase {
 }
 
 struct TestButtonViewModel: ButtonViewModel {
-    let title: GDSLocalisedString = "test title"
+    let title: GDSLocalisedString
     let icon: ButtonIconViewModel? = nil
     let shouldLoadOnTap: Bool = false
     let action: () -> Void
-    let voiceOverHint: GDSLocalisedString? = "test voiceover hint"
+    let voiceOverHint: GDSLocalisedString?
 }
