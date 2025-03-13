@@ -6,7 +6,7 @@ public protocol ButtonViewModel {
     var icon: ButtonIconViewModel? { get }
     var shouldLoadOnTap: Bool { get }
     var action: () -> Void { get }
-    var voiceoverHint: String? { get }
+    var voiceoverHint: GDSLocalisedString? { get }
 }
 
 public protocol ColoredButtonViewModel: ButtonViewModel {

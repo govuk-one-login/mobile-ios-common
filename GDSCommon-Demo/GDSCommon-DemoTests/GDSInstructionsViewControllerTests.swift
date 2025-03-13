@@ -173,13 +173,13 @@ extension GDSInstructionsViewController {
 }
 
 struct MockButtonViewModel: ButtonViewModel {
-    let voiceoverHint: String?
+    let voiceoverHint: GDSLocalisedString?
     let title: GDSLocalisedString
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
     let action: () -> Void
     
-    init(title: GDSLocalisedString, icon: ButtonIconViewModel? = nil, shouldLoadOnTap: Bool = false, voiceoverHint: String? = nil, action: @escaping () -> Void) {
+    init(title: GDSLocalisedString, icon: ButtonIconViewModel? = nil, shouldLoadOnTap: Bool = false, voiceoverHint: GDSLocalisedString? = nil, action: @escaping () -> Void) {
         self.title = title
         self.icon = icon
         self.shouldLoadOnTap = shouldLoadOnTap
@@ -189,7 +189,7 @@ struct MockButtonViewModel: ButtonViewModel {
 }
 
 struct MockColoredButtonViewModel: ColoredButtonViewModel {
-    let voiceoverHint: String? = nil
+    let voiceoverHint: GDSLocalisedString? = nil
     let title: GDSLocalisedString
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool

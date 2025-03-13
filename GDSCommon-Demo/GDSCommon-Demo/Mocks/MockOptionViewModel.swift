@@ -17,7 +17,7 @@ struct MockOptionViewModel2: OptionViewModel {
 }
 
 struct MockOptionButtonViewModel: ButtonViewModel {
-    let voiceoverHint: String? = nil
+    let voiceoverHint: GDSLocalisedString? = nil
     let title: GDSLocalisedString = "Example button text"
     let icon: ButtonIconViewModel? = nil
     let shouldLoadOnTap: Bool = true

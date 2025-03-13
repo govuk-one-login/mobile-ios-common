@@ -7,7 +7,7 @@ struct MockButtonViewModel: ButtonViewModel {
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
     let action: () -> Void
-    let voiceoverHint: String?
+    let voiceoverHint: GDSLocalisedString?
 }
 
 struct MockButtonIconViewModel: ButtonIconViewModel {
@@ -21,7 +21,7 @@ struct MockColoredButtonViewModel: ColoredButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let backgroundColor: UIColor
-    let voiceoverHint: String? = nil
+    let voiceoverHint: GDSLocalisedString? = nil
 }
 
 extension MockButtonViewModel {

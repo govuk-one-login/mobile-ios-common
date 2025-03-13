@@ -165,7 +165,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
                 primaryButton.setTitle(button.title.value, for: .normal)
             } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
                 primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
-                primaryButton.accessibilityHint = buttonViewModel.primaryButtonViewModel.voiceoverHint
+                primaryButton.accessibilityHint = buttonViewModel.primaryButtonViewModel.voiceoverHint?.value
             } else {
                 primaryButton.isHidden = true
             }
