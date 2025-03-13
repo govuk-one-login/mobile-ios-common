@@ -2,12 +2,11 @@ import Foundation
 import GDSCommon
 import UIKit
 
-struct MockButtonViewModel: ButtonViewModel {
+struct MockButtonViewModel: ButtonViewModel {    
     let title: GDSLocalisedString
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
     let action: () -> Void
-    let voiceoverHint: GDSLocalisedString?
 }
 
 struct MockButtonIconViewModel: ButtonIconViewModel {
@@ -21,7 +20,14 @@ struct MockColoredButtonViewModel: ColoredButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let backgroundColor: UIColor
-    let voiceoverHint: GDSLocalisedString? = nil
+}
+
+struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
+    let title: GDSLocalisedString
+    let icon: ButtonIconViewModel?
+    let shouldLoadOnTap: Bool
+    let action: () -> Void
+    let voiceOverHint: GDSLocalisedString?
 }
 
 extension MockButtonViewModel {
@@ -29,8 +35,7 @@ extension MockButtonViewModel {
         MockButtonViewModel(title: "Action button",
                             icon: nil,
                             shouldLoadOnTap: false,
-                            action: {},
-                            voiceoverHint: "This includes an accessibility hint")
+                            action: {})
     }
     
     static var secondary: MockButtonViewModel {
@@ -38,8 +43,7 @@ extension MockButtonViewModel {
                             icon: MockButtonIconViewModel(iconName: "arrow.up.right",
                                                           symbolPosition: .afterTitle),
                             shouldLoadOnTap: false,
-                            action: {},
-                            voiceoverHint: nil)
+                            action: {})
     }
     
     static var secondaryQR: MockButtonViewModel {
@@ -47,8 +51,7 @@ extension MockButtonViewModel {
                             icon: MockButtonIconViewModel(iconName: "qrcode",
                                                           symbolPosition: .beforeTitle),
                             shouldLoadOnTap: false,
-                            action: {},
-                            voiceoverHint: nil)
+                            action: {})
     }
     
     static var text: MockButtonViewModel {
@@ -56,8 +59,15 @@ extension MockButtonViewModel {
                             icon: MockButtonIconViewModel(iconName: "qrcode",
                                                           symbolPosition: .beforeTitle),
                             shouldLoadOnTap: false,
-                            action: {},
-                            voiceoverHint: nil)
+                            action: {})
+    }
+    
+    static var withVoiceoverHint: MockButtonViewModelWithVoiceOverHint {
+        MockButtonViewModelWithVoiceOverHint(title: "Primary Button",
+                                             icon: nil,
+                                             shouldLoadOnTap: false,
+                                             action: { },
+                                             voiceOverHint: "This includes a voiceover hint")
     }
 }
 

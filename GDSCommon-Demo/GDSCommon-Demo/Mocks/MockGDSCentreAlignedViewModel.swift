@@ -16,11 +16,10 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
     let title: GDSLocalisedString = "This is a centre aligned screen title"
     let body: GDSLocalisedString? = "This is an optional centre aligned screen body."
     let footnote: GDSLocalisedString = "This is an optional centre aligned screen footnote where additional information for the buttons can be detailed."
-    let primaryButtonViewModel: ButtonViewModel = MockButtonViewModel.primary
+    let primaryButtonViewModel: ButtonViewModel = MockButtonViewModel.withVoiceoverHint
     let secondaryButtonViewModel: ButtonViewModel = MockButtonViewModel.secondary
     let rightBarButtonTitle: GDSLocalisedString? = nil
     let backButtonIsHidden: Bool = false
-    let voiceoverHint: String = "This includes an accessibility hint"
 
     func didAppear() {}
 

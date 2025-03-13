@@ -40,8 +40,7 @@ struct MockDatePickerScreenViewModel: DatePickerScreenViewModel, BaseViewModel {
             self.buttonViewModel = MockButtonViewModel(title: "button title",
                                                        icon: nil,
                                                        shouldLoadOnTap: false,
-                                                       action: buttonAction ?? {},
-                                                       voiceoverHint: nil)
+                                                       action: buttonAction ?? {})
         }
     }
 }

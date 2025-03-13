@@ -53,8 +53,7 @@ class MockListViewModel: GDSListOptionsViewModel, BaseViewModel {
         buttonViewModel = MockButtonViewModel(title: "Action button",
                                               icon: nil,
                                               shouldLoadOnTap: false,
-                                              action: dismissAction ?? {},
-                                              voiceoverHint: nil)
+                                              action: dismissAction ?? {})
         self.secondaryButtonViewModel = secondaryButtonViewModel
         self.listTitle = listTitle
     }
