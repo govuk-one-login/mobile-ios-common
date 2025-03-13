@@ -2,7 +2,7 @@ import Foundation
 import GDSCommon
 import UIKit
 
-struct MockButtonViewModel: ButtonViewModel {    
+struct MockButtonViewModel: ButtonViewModel {
     let title: GDSLocalisedString
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
