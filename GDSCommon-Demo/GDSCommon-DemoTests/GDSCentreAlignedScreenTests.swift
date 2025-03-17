@@ -99,6 +99,20 @@ extension GDSCentreAlignedScreenTests {
         XCTAssertNil(try sut.primaryButton.icon)
     }
 
+    func test_primaryButtonHasIcon() throws {
+        primaryButtonViewModel = MockButtonViewModel(title: "Primary button with icon",
+                                                     icon: MockButtonIconViewModel()) {}
+        viewModel = MockGDSCentreAlignedViewModel(primaryButtonViewModel: primaryButtonViewModel,
+                                                  secondaryButtonViewModel: secondaryButtonViewModel) {
+            // empty implementation
+        } dismissAction: {
+            // empty implementation
+        }
+        sut = GDSCentreAlignedScreen(viewModel: viewModel)
+        XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button with icon")
+        XCTAssertNotNil(try sut.primaryButton.icon)
+    }
+
     func test_secondaryButtonNoIcon() throws {
         XCTAssertNil(try sut.secondaryButton.icon)
     }
@@ -109,8 +123,9 @@ extension GDSCentreAlignedScreenTests {
         
         viewModel = MockGDSCentreAlignedViewModel(primaryButtonViewModel: primaryButtonViewModel,
                                                   secondaryButtonViewModel: secondaryButtonViewModel) {
+            // empty implementation
         } dismissAction: {
-            
+            // empty implementation
         }
         sut = GDSCentreAlignedScreen(viewModel: viewModel)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button with no icon")
