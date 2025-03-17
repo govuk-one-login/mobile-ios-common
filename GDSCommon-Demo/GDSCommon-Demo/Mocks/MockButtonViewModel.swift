@@ -27,7 +27,7 @@ struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
     let action: () -> Void
-    let voiceOverHint: GDSLocalisedString?
+    let accessibilityHint: GDSLocalisedString?
 }
 
 extension MockButtonViewModel {
@@ -67,7 +67,7 @@ extension MockButtonViewModel {
                                              icon: nil,
                                              shouldLoadOnTap: false,
                                              action: { },
-                                             voiceOverHint: "This includes a voiceover hint")
+                                             accessibilityHint: "This includes a voiceover hint")
     }
 }
 

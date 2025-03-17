@@ -177,14 +177,14 @@ struct MockButtonViewModel: ButtonViewModel {
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
     let action: () -> Void
-    let voiceOverHint: GDSLocalisedString?
+    let accessibilityHint: GDSLocalisedString?
     
     init(title: GDSLocalisedString, icon: ButtonIconViewModel? = nil, shouldLoadOnTap: Bool = false, voiceOverHint: GDSLocalisedString? = nil, action: @escaping () -> Void) {
         self.title = title
         self.icon = icon
         self.shouldLoadOnTap = shouldLoadOnTap
         self.action = action
-        self.voiceOverHint = voiceOverHint
+        self.accessibilityHint = voiceOverHint
     }
 }
 
