@@ -6,10 +6,15 @@ public protocol ButtonViewModel {
     var icon: ButtonIconViewModel? { get }
     var shouldLoadOnTap: Bool { get }
     var action: () -> Void { get }
+    var accessibilityHint: GDSLocalisedString? { get }
 }
 
 public protocol ColoredButtonViewModel: ButtonViewModel {
     var backgroundColor: UIColor { get }
+}
+
+extension ButtonViewModel {
+    public var accessibilityHint: GDSLocalisedString? { nil }
 }
 
 extension ColoredButtonViewModel {

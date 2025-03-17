@@ -22,6 +22,14 @@ struct MockColoredButtonViewModel: ColoredButtonViewModel {
     let backgroundColor: UIColor
 }
 
+struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
+    let title: GDSLocalisedString
+    let icon: ButtonIconViewModel?
+    let shouldLoadOnTap: Bool
+    let action: () -> Void
+    let accessibilityHint: GDSLocalisedString?
+}
+
 extension MockButtonViewModel {
     static var primary: MockButtonViewModel {
         MockButtonViewModel(title: "Action button",
@@ -52,6 +60,14 @@ extension MockButtonViewModel {
                                                           symbolPosition: .beforeTitle),
                             shouldLoadOnTap: false,
                             action: {})
+    }
+    
+    static var withVoiceoverHint: MockButtonViewModelWithVoiceOverHint {
+        MockButtonViewModelWithVoiceOverHint(title: "Primary Button",
+                                             icon: nil,
+                                             shouldLoadOnTap: false,
+                                             action: { },
+                                             accessibilityHint: "This includes a voiceover hint")
     }
 }
 

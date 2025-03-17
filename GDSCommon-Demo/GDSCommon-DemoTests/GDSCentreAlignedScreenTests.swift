@@ -16,7 +16,8 @@ final class GDSCentreAlignedScreenTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        primaryButtonViewModel = MockButtonViewModel(title: "Primary button title") {
+        primaryButtonViewModel = MockButtonViewModel(title: "Primary button title",
+                                                     voiceOverHint: "Centre aligned screen accessibility hint") {
             self.didTap_primaryButton = true
         }
         
@@ -63,9 +64,11 @@ extension GDSCentreAlignedScreenTests {
         XCTAssertEqual(try sut.footnoteLabel.font, .footnote)
         XCTAssertFalse(try sut.footnoteLabel.accessibilityTraits.contains(.header))
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button title")
+        XCTAssertEqual(try sut.primaryButton.accessibilityHint, "Centre aligned screen accessibility hint")
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button title")
+        XCTAssertNil(try sut.secondaryButton.accessibilityHint)
     }
-    
+
     func test_footnoteMovesToScrollView() throws {
         sut.loadView()
         // When bottom stack height is half of the screen size
