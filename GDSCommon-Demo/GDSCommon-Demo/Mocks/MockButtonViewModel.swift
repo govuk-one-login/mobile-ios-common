@@ -46,6 +46,18 @@ extension MockButtonViewModel {
                             action: {})
     }
     
+    static var tertiary: MockButtonViewModel {
+        MockButtonViewModel(
+            title: "Tertiary Button",
+            icon: MockButtonIconViewModel(
+                iconName: "arrow.up.right",
+                symbolPosition: .afterTitle
+            ),
+            shouldLoadOnTap: false,
+            action: {}
+        )
+    }
+    
     static var secondaryQR: MockButtonViewModel {
         MockButtonViewModel(title: "Secondary Button",
                             icon: MockButtonIconViewModel(iconName: "qrcode",
