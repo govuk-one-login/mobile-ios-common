@@ -6,6 +6,7 @@ public protocol URLOpener {
 }
 
 extension UIApplication: URLOpener {
+    @MainActor
     public func open(url: URL) {
         open(url)
     }
