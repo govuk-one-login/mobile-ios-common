@@ -29,9 +29,9 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             bottomStack.accessibilityIdentifier = "centre-aligned-screen-bottom-stack-view"
         }
     }
-
+    
     internal var isFootnoteInScrollView = false
- 
+    
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -46,10 +46,10 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         // if bottom stack covers more than 1/3 of screen
         if bottomStackHeight >= screenHeight / 3,
            !(isFootnoteInScrollView) {
-                moveFootnoteToScrollView()
+            moveFootnoteToScrollView()
         } else if (bottomStackHeight + footnoteHeight) < screenHeight / 3,
                   isFootnoteInScrollView {
-                moveFootnoteToBottomStackView()
+            moveFootnoteToBottomStackView()
         }
     }
     
@@ -131,7 +131,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             bodyLabel.accessibilityIdentifier = "centre-aligned-screen-body"
         }
     }
-
+    
     /// Stack View: `UIStackView`. Any `UIView` which is on the `GDSInformationViewModelWithChildView` view model's `childView` property.
     /// This will be added to the `stackView` below the existing `bodyLabel`
     @IBOutlet private var stackView: UIStackView! {
@@ -161,7 +161,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
     @IBOutlet private var primaryButton: RoundedButton! {
         didSet {
             if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton,
-                let button = buttonViewModel.primaryButtonViewModel {
+               let button = buttonViewModel.primaryButtonViewModel {
                 primaryButton.setTitle(button.title.value, for: .normal)
             } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
                 primaryButton.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
@@ -211,7 +211,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             secondaryButton.accessibilityIdentifier = "centre-aligned-screen-secondary-button"
         }
     }
-
+    
     @IBAction private func secondaryButtonAction(_ sender: Any) {
         if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton {
             buttonViewModel.secondaryButtonViewModel?.action()

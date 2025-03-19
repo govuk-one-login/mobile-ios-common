@@ -70,7 +70,6 @@ extension GDSCentreAlignedScreenTests {
     }
 
     func test_footnoteMovesToScrollView() throws {
-        sut.loadView()
         // When bottom stack height is half of the screen size
         try sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 2
         sut.viewDidLayoutSubviews()
@@ -80,7 +79,6 @@ extension GDSCentreAlignedScreenTests {
     }
     
     func test_footnoteMovesToBackToStackView() throws {
-        sut.loadView()
         // When bottom stack height is half of the screen size
         try sut.bottomStack.frame.size.height = UIScreen.main.bounds.height / 2
         sut.viewDidLayoutSubviews()

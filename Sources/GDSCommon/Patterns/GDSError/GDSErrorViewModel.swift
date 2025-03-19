@@ -13,6 +13,17 @@ public protocol GDSErrorViewModelV2 {
     var secondaryButtonViewModel: ButtonViewModel? { get }
 }
 
+/// Protocol for the view model required to initilise ``GDSErrorScreen``
+@MainActor
+public protocol GDSErrorViewModelV3 {
+    var title: GDSLocalisedString { get }
+    var body: GDSLocalisedString? { get }
+    var childView: UIView? { get }
+    var buttonViewModels: [ButtonViewModel] { get }
+    var image: String? { get }
+    var voiceOverPrefix: String? { get }
+}
+
 /// Conform view models that inherit from ``GDSErrorViewModelV2`` to this protocol to set a image icon
 @MainActor
 public protocol GDSErrorViewModelWithImage {
