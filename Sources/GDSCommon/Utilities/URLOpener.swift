@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 public protocol URLOpener {
     func open(url: URL)
 }
