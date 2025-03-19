@@ -59,7 +59,7 @@ extension UIView {
     
     public func bindToSuperviewSafeArea(
         padding: CGFloat = 0
-    ){
+    ) {
         guard let superview = self.superview else {
             print("Error! `superview` was nil, call `addSubview(view: UIView)` before calling `bindToSuperviewSafeArea()` to fix this.")
             return

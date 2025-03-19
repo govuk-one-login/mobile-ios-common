@@ -27,7 +27,7 @@ public extension UIControl {
             self.closure = closure
             objc_setAssociatedObject(
                 object,
-                "[\(arc4random())]",
+                "[\(UInt64.random(in: 0..<UInt64.max))]",
                 self,
                 .OBJC_ASSOCIATION_RETAIN
             )
