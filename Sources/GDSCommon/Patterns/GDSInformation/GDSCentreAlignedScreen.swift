@@ -2,6 +2,7 @@ import UIKit
 
 public typealias GDSInformationViewController = GDSCentreAlignedScreen
 
+// swiftlint: disable type_body_length
 /// View controller for `GDSCentreALigned` screen
 ///     - `image` (type: `String`)
 ///     - `titleLabel` (type: `UILabel`)
@@ -210,9 +211,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
                 result.symbolPosition = icon.symbolPosition
                 result.icon = icon.iconName
             }
-        }
-        
-        else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
+        } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
             result.setTitle(buttonViewModel.secondaryButtonViewModel.title.value, for: .normal)
             result.titleLabel?.textAlignment = .center
             result.accessibilityHint = buttonViewModel.secondaryButtonViewModel.accessibilityHint?.value
@@ -329,3 +328,4 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         }
     }
 }
+// swiftlint: enable type_body_length
