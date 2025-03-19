@@ -37,6 +37,8 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         } else {
             result.isHidden = true
         }
+        result.font = UIFont(style: .body)
+        result.adjustsFontForContentSizeCategory = true
         result.accessibilityIdentifier = "centre-aligned-screen-body"
         result.textAlignment = .center
         result.lineBreakMode = .byTruncatingTail
@@ -148,7 +150,6 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             ],
             spacing: defaultSpacing
         )
-        //        result.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         result.accessibilityIdentifier = "centre-aligned-screen-bottom-stack-view"
         return result
     }()
@@ -168,6 +169,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             result.isHidden = true
         }
         result.accessibilityIdentifier = "centre-aligned-screen-footnote"
+        result.adjustsFontForContentSizeCategory = true
         result.textColor = .gdsDarkGrey
         return result
     }()
