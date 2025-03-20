@@ -4,6 +4,8 @@ import UIKit
 @available(*, deprecated, renamed: "GDSErrorViewModelV2", message: "Should also conform to GDSErrorViewModelWithImage if image is required")
 public typealias GDSErrorViewModel = GDSErrorViewModelV2 & GDSErrorViewModelWithImage
 
+// TODO: DCMAW-12110 - Revisit how we handle buttons to support a tertiary button, or array of buttons in ViewModel
+
 /// Protocol for the view model required to initilise ``GDSErrorViewController``
 @MainActor
 public protocol GDSErrorViewModelV2 {
