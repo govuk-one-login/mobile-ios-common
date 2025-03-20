@@ -21,3 +21,14 @@ extension TitledViewController {
         titleLabel
     }
 }
+
+@MainActor
+protocol TitledViewControllerV2: VoiceOverFocus {
+    var titleLabel: UILabel { get }
+}
+
+extension TitledViewControllerV2 {
+    public var initialVoiceOverView: UIView {
+        titleLabel
+    }
+}

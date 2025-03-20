@@ -10,11 +10,11 @@ public typealias GDSInformationViewController = GDSCentreAlignedScreen
 ///     - `footnoteLabel`  (type: `UILabel`)
 ///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
 ///     - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
-public final class GDSCentreAlignedScreen: BaseViewController, TitledViewController {
+public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControllerV2 {
     
     let defaultSpacing = 16.0 // Use Design system when available
     
-    lazy var titleLabel: UILabel! = { // Note: Only using Force here due to conformance requirement
+    lazy var titleLabel: UILabel = {
         let result = UILabel()
         result.font = UIFont(
             style: .largeTitle,
@@ -30,7 +30,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         return result
     }()
     
-    private lazy var bodyLabel: UILabel! = {
+    private lazy var bodyLabel: UILabel = {
         let result = UILabel()
         if let bodyContent = viewModel.body {
             result.text = bodyContent.value
