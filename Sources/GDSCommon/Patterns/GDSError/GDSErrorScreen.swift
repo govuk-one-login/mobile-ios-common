@@ -102,7 +102,6 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         result.accessibilityLabel = "\(viewModel.errorDefaults.voiceOverPrefix): \(viewModel.title) :"
         result.textAlignment = .center
         result.numberOfLines = 0
-        result.backgroundColor = .yellow
         return result
     }()
     
