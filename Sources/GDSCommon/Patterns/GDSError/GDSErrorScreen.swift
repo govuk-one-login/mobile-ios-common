@@ -8,39 +8,6 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
     
     let defaultSpacing = 16.0 // Use Design system when available
     
-    lazy var titleLabel: UILabel = {
-        let result = UILabel()
-        result.font = UIFont(
-            style: .largeTitle,
-            weight: .bold,
-            design: .default
-        )
-        result.text = viewModel.title.value
-        result.accessibilityIdentifier = "error-screen-title"
-        result.accessibilityTraits = [.header]
-        result.accessibilityLabel = "\(viewModel.errorDefaults.voiceOverPrefix): \(viewModel.title) :"
-        result.textAlignment = .center
-        result.lineBreakMode = .byTruncatingTail
-        result.numberOfLines = 0
-        return result
-    }()
-    
-    private lazy var bodyLabel: UILabel = {
-        let result = UILabel()
-        if let bodyContent = viewModel.body {
-            result.text = bodyContent.value
-        } else {
-            result.isHidden = true
-        }
-        result.font = UIFont(style: .body)
-        result.adjustsFontForContentSizeCategory = true
-        result.accessibilityIdentifier = "error-screen-body"
-        result.textAlignment = .center
-        result.lineBreakMode = .byTruncatingTail
-        result.numberOfLines = 0
-        return result
-    }()
-    
     private lazy var containerStackView: UIStackView = {
         let result = UIStackView(
             views: [
@@ -81,12 +48,6 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         return result
     }()
     
-    private lazy var bottomSpacer: UIView = {
-        let result = UIView()
-        result.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-        return result
-    }()
-    
     private lazy var scrollViewInnerStackView: UIStackView = {
         let result = UIStackView(
             views: [
@@ -106,6 +67,12 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         return result
     }()
     
+    private lazy var bottomSpacer: UIView = {
+        let result = UIView()
+        result.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        return result
+    }()
+    
     private lazy var imageView: UIImageView = {
         let result = UIImageView()
         let font = UIFont(style: .largeTitle, weight: .regular)
@@ -121,6 +88,39 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
             result.heightAnchor.constraint(greaterThanOrEqualToConstant: 107)
         ])
         result.accessibilityIdentifier = "error-screen-image"
+        return result
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let result = UILabel()
+        result.font = UIFont(
+            style: .largeTitle,
+            weight: .bold,
+            design: .default
+        )
+        result.text = viewModel.title.value
+        result.accessibilityIdentifier = "error-screen-title"
+        result.accessibilityTraits = [.header]
+        result.accessibilityLabel = "\(viewModel.errorDefaults.voiceOverPrefix): \(viewModel.title) :"
+        result.textAlignment = .center
+        result.lineBreakMode = .byTruncatingTail
+        result.numberOfLines = 0
+        return result
+    }()
+    
+    private lazy var bodyLabel: UILabel = {
+        let result = UILabel()
+        if let bodyContent = viewModel.body {
+            result.text = bodyContent.value
+        } else {
+            result.isHidden = true
+        }
+        result.font = UIFont(style: .body)
+        result.adjustsFontForContentSizeCategory = true
+        result.accessibilityIdentifier = "error-screen-body"
+        result.textAlignment = .center
+        result.lineBreakMode = .byTruncatingTail
+        result.numberOfLines = 0
         return result
     }()
     
@@ -157,6 +157,22 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
             ))
         }
         return views
+    }
+    
+    public init(
+        viewModel: GDSErrorViewModelV3
+    ) {
+        self.viewModel = viewModel
+        super.init(
+            viewModel: viewModel as? BaseViewModel,
+            nibName: nil,
+            bundle: Bundle.module
+        )
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
     }
     
     private func buttonForButtonViewModel(
@@ -203,21 +219,5 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         scrollViewOuterStackView.heightAnchor.constraint(
             greaterThanOrEqualTo: scrollView.heightAnchor
         ).isActive = true
-    }
-    
-    public init(
-        viewModel: GDSErrorViewModelV3
-    ) {
-        self.viewModel = viewModel
-        super.init(
-            viewModel: viewModel as? BaseViewModel,
-            nibName: nil,
-            bundle: Bundle.module
-        )
-    }
-    
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
     }
 }
