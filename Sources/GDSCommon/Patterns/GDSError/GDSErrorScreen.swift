@@ -3,9 +3,7 @@ import UIKit
 public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
     
     public private(set) var viewModel: GDSErrorViewModelV3
-    
-    var isFootnoteInScrollView = false
-    
+        
     let defaultSpacing = 16.0 // Use Design system when available
     
     private lazy var containerStackView: UIStackView = {
@@ -103,8 +101,8 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         result.accessibilityTraits = [.header]
         result.accessibilityLabel = "\(viewModel.errorDefaults.voiceOverPrefix): \(viewModel.title) :"
         result.textAlignment = .center
-        result.lineBreakMode = .byTruncatingTail
         result.numberOfLines = 0
+        result.backgroundColor = .yellow
         return result
     }()
     

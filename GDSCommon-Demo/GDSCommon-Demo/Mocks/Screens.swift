@@ -13,12 +13,12 @@ import UIKit
 ///             the view as a `UIViewController` to push/present on the navigation stack.
 @MainActor
 enum Screens: String, CaseIterable {
-    case gdsErrorScreenNoButtons = "New Error Screen (with no buttons)"
-    case gdsErrorScreen = "New Error Screen (with 2 buttons)"
-    case gdsErrorScreen3Buttons = "New Error Screen (with 3 buttons)"
-    case gdsErrorScreenModal = "New Error Screen (modal)"
-    case gdsErrorScreenWarning = "New Error Screen (warning)"
-    case gdsErrorScreenAppUpdate = "New Error Screen (app update)"
+    case gdsErrorScreenNoButtons = "Design System Error Screen (with no buttons)"
+    case gdsErrorScreen = "Design System Error Screen (with 2 buttons)"
+    case gdsErrorScreen3Buttons = "Design System Error Screen (with 3 buttons)"
+    case gdsErrorScreenModal = "Design System Error Screen (modal)"
+    case gdsErrorScreenWarning = "Design System Error Screen (warning)"
+    case gdsErrorScreenAppUpdate = "Design System Error Screen (app update)"
     case gdsInstructions = "GDS Instructions View"
     case gdsInstructionsWithColouredButton = "GDS Instructions View (with coloured button)"
     case gdsInstructionsWithImage = "GDS Instructions View (with image)"
