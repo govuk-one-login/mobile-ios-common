@@ -13,6 +13,12 @@ import UIKit
 ///             the view as a `UIViewController` to push/present on the navigation stack.
 @MainActor
 enum Screens: String, CaseIterable {
+    case gdsErrorScreenNoButtons = "Design System Error Screen (with no buttons)"
+    case gdsErrorScreen = "Design System Error Screen (with 2 buttons)"
+    case gdsErrorScreen3Buttons = "Design System Error Screen (with 3 buttons)"
+    case gdsErrorScreenModal = "Design System Error Screen (modal)"
+    case gdsErrorScreenWarning = "Design System Error Screen (warning)"
+    case gdsErrorScreenAppUpdate = "Design System Error Screen (app update)"
     case gdsInstructions = "GDS Instructions View"
     case gdsInstructionsWithColouredButton = "GDS Instructions View (with coloured button)"
     case gdsInstructionsWithImage = "GDS Instructions View (with image)"
@@ -44,7 +50,8 @@ enum Screens: String, CaseIterable {
                 .gdsQRCodeScannerModal,
                 .gdsResultsViewModal,
                 .gdsAttributedModalInfoView,
-                .gdsInstructionsWithImageModally:
+                .gdsInstructionsWithImageModally,
+                .gdsErrorScreenModal:
             return true
         default:
             return false
@@ -52,8 +59,10 @@ enum Screens: String, CaseIterable {
     }
     
     private var dialogPresenter: DialogPresenter {
-        DialogView<CheckmarkDialogAccessoryView>(title: "QR Scan Success",
-                                                 isLoading: false)
+        DialogView<CheckmarkDialogAccessoryView>(
+            title: "QR Scan Success",
+            isLoading: false
+        )
     }
     
     // swiftlint:disable function_body_length
@@ -62,37 +71,55 @@ enum Screens: String, CaseIterable {
         case .gdsInstructions:
             return GDSInstructionsViewController(popToRoot: popToRoot, navController: navigationController)
         case .gdsInstructionsWithColouredButton:
-            let viewModel = MockGDSInstructionsViewModel(buttonViewModel: MockColoredButtonViewModel.primary,
-                                                         secondaryButtonViewModel: MockButtonViewModel.secondaryQR,
-                                                         dismissAction: { })
+            let viewModel = MockGDSInstructionsViewModel(
+                buttonViewModel: MockColoredButtonViewModel.primary,
+                secondaryButtonViewModel: MockButtonViewModel.secondaryQR,
+                dismissAction: { }
+            )
             return GDSInstructionsViewController(viewModel: viewModel)
         case .gdsInstructionsWithImage:
-            let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel.primary,
-                                                               primaryButtonViewModel: MockButtonViewModel.primary,
-                                                               screenView: { }, dismissAction: { })
+            let viewModel = MockInstructionsWithImageViewModel(
+                warningButtonViewModel: MockButtonViewModel.primary,
+                primaryButtonViewModel: MockButtonViewModel.primary,
+                screenView: { },
+                dismissAction: { }
+            )
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsInstructionsWithImageModally:
-            let viewModel = MockInstructionsWithImageViewModel(warningButtonViewModel: MockButtonViewModel.primary,
-                                                               primaryButtonViewModel: MockButtonViewModel.primary,
-                                                               secondaryButtonViewModel: MockButtonViewModel.secondaryQR,
-                                                               rightBarButtonTitle: "Close",
-                                                               screenView: { }, dismissAction: { })
+            let viewModel = MockInstructionsWithImageViewModel(
+                warningButtonViewModel: MockButtonViewModel.primary,
+                primaryButtonViewModel: MockButtonViewModel.primary,
+                secondaryButtonViewModel: MockButtonViewModel.secondaryQR,
+                rightBarButtonTitle: "Close",
+                screenView: { },
+                dismissAction: { }
+            )
             return InstructionsWithImageViewController(viewModel: viewModel)
         case .gdsModalInfoView:
             let view = ModalInfoViewController(viewModel: MockModalInfoViewModel())
             return view
         case .gdsModalButtonsInfoView:
-            let view = ModalInfoViewController(viewModel: MockModalInfoButtonsViewModel(primaryButtonViewModel: MockButtonViewModel.primary,
-                                                                                        secondaryButtonViewModel: MockButtonViewModel.secondary,
-                                                                                        textButtonViewModel: MockButtonViewModel.secondary))
+            let view = ModalInfoViewController(
+                viewModel: MockModalInfoButtonsViewModel(
+                    primaryButtonViewModel: MockButtonViewModel.primary,
+                    secondaryButtonViewModel: MockButtonViewModel.secondary,
+                    textButtonViewModel: MockButtonViewModel.secondary
+                )
+            )
             return view
         case .gdsAttributedModalInfoView:
             let view = ModalInfoViewController(viewModel: MockAttributedModalInfoViewModel())
             return view
         case .gdsListOptions:
-            return GDSListOptionsViewController(popToRoot: popToRoot, navController: navigationController)
+            return GDSListOptionsViewController(
+                popToRoot: popToRoot,
+                navController: navigationController
+            )
         case .gdsIntroView:
-            let viewModel = MockIntroViewModel(introButtonViewModel: MockButtonViewModel.primary, rightBarButtonTitle: nil)
+            let viewModel = MockIntroViewModel(
+                introButtonViewModel: MockButtonViewModel.primary,
+                rightBarButtonTitle: nil
+            )
             return IntroViewController(viewModel: viewModel)
         case .gdsDatePicker:
             return DatePickerScreenViewController()
@@ -101,10 +128,15 @@ enum Screens: String, CaseIterable {
         case .gdsIconScreen:
             return IconScreenViewController()
         case .gdsQRCodeScanner:
-            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) { navigationController.popViewController(animated: true) } dismissAction: { }
+            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) { navigationController.popViewController(animated: true)
+            }
+            dismissAction: { }
             return ScanningViewController(viewModel: viewModel)
         case .gdsQRCodeScannerModal:
-            let viewModel = MockQRScanningViewModel(dialogPresenter: dialogPresenter) { navigationController.dismiss(animated: true) } dismissAction: { }
+            let viewModel = MockQRScanningViewModel(
+                dialogPresenter: dialogPresenter
+            ) { navigationController.dismiss(animated: true) }
+            dismissAction: { }
             return ScanningViewController(viewModel: viewModel)
         case .gdsResultsView:
             return ResultsViewController(popToRoot: popToRoot, navController: navigationController)
@@ -124,6 +156,19 @@ enum Screens: String, CaseIterable {
             return GDSCentreAlignedScreen(viewModel: MockGDSCentreAlignedViewModel())
         case .gdsLoadingView:
             return GDSLoadingViewController()
+        
+        case .gdsErrorScreen:
+            return GDSErrorScreen(viewModel: MockErrorViewModelV3WithTwoButtons())
+        case .gdsErrorScreenModal:
+            return GDSErrorScreen(viewModel: MockErrorViewModelV3Modal())
+        case .gdsErrorScreenNoButtons:
+            return GDSErrorScreen(viewModel: MockErrorViewModelV3WithNoButtons())
+        case .gdsErrorScreen3Buttons:
+            return GDSErrorScreen(viewModel: MockErrorViewModelV3WithThreeButtons())
+        case .gdsErrorScreenWarning:
+            return GDSErrorScreen(viewModel: MockErrorViewModelV3Warning())
+        case .gdsErrorScreenAppUpdate:
+            return GDSErrorScreen(viewModel: MockErrorViewModelV3AppUpdate())
         }
     }
     // swiftlint:enable function_body_length
