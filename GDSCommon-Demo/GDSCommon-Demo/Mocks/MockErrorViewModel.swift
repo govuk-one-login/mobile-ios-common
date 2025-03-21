@@ -2,25 +2,32 @@ import GDSCommon
 import UIKit
 
 private func mockChildView(
-    _ alignment: UIStackView.Alignment = .leading
+_ alignment: UIControl.ContentHorizontalAlignment = .left
 ) -> UIView {
     let label = UILabel()
     label.font = UIFont(style: .body)
     label.text = "This is a child view"
+    label.adjustsFontForContentSizeCategory = true
     
     let button = SecondaryButton()
     button.setTitle(GDSLocalisedString("Text"), for: .normal)
-    button.titleLabel?.textAlignment = .left
+    button.contentHorizontalAlignment = alignment
     button.titleLabel?.textColor = .gdsGreen
     button.symbolPosition = .afterTitle
     button.icon = "arrow.up.right"
     
+    let buttonStack = UIStackView(
+        views: [button],
+        axis: .horizontal,
+        distribution: .fill
+    )
+        
     return UIStackView(
         views: [
             label,
-            button
+            buttonStack
         ],
-        alignment: alignment,
+        alignment: .fill,
         distribution: .equalSpacing
     )
 }

@@ -82,6 +82,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         )
         result.tintColor = .gdsPrimary
         result.contentMode = .scaleAspectFit
+        result.adjustsImageSizeForAccessibilityContentSizeCategory = true
         NSLayoutConstraint.activate([
             result.heightAnchor.constraint(greaterThanOrEqualToConstant: 107)
         ])
@@ -99,6 +100,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         result.text = viewModel.title.value
         result.accessibilityIdentifier = "error-screen-title"
         result.accessibilityTraits = [.header]
+        result.adjustsFontForContentSizeCategory = true
         result.accessibilityLabel = "\(viewModel.errorDefaults.voiceOverPrefix): \(viewModel.title) :"
         result.textAlignment = .center
         result.numberOfLines = 0
