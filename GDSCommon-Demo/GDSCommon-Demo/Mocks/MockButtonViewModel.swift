@@ -7,6 +7,21 @@ struct MockButtonViewModel: ButtonViewModel {
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
     let action: () -> Void
+    let overrideContentAlignment: UIControl.ContentHorizontalAlignment
+    
+    public init(
+        title: GDSLocalisedString,
+        icon: ButtonIconViewModel?,
+        shouldLoadOnTap: Bool,
+        action: @escaping () -> Void,
+        overrideContentAlignment: UIControl.ContentHorizontalAlignment = .center
+    ) {
+        self.title = title
+        self.icon = icon
+        self.shouldLoadOnTap = shouldLoadOnTap
+        self.action = action
+        self.overrideContentAlignment = overrideContentAlignment
+    }
 }
 
 struct MockButtonIconViewModel: ButtonIconViewModel {
@@ -20,6 +35,7 @@ struct MockColoredButtonViewModel: ColoredButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let backgroundColor: UIColor
+    let overrideContentAlignment: UIControl.ContentHorizontalAlignment = .center
 }
 
 struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
@@ -28,6 +44,7 @@ struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let accessibilityHint: GDSLocalisedString?
+    let overrideContentAlignment: UIControl.ContentHorizontalAlignment = .center
 }
 
 extension MockButtonViewModel {
@@ -44,6 +61,18 @@ extension MockButtonViewModel {
                                                           symbolPosition: .afterTitle),
                             shouldLoadOnTap: false,
                             action: {})
+    }
+    
+    static var tertiary: MockButtonViewModel {
+        MockButtonViewModel(
+            title: "Tertiary Button",
+            icon: MockButtonIconViewModel(
+                iconName: "arrow.up.right",
+                symbolPosition: .afterTitle
+            ),
+            shouldLoadOnTap: false,
+            action: {}
+        )
     }
     
     static var secondaryQR: MockButtonViewModel {
@@ -69,6 +98,32 @@ extension MockButtonViewModel {
                                              action: { },
                                              accessibilityHint: "This includes a voiceover hint")
     }
+    
+    static var textCentered: MockButtonViewModel {
+        MockButtonViewModel(
+            title: "Text Button",
+            icon: MockButtonIconViewModel(
+                iconName: "arrow.up.right",
+                symbolPosition: .afterTitle
+            ),
+            shouldLoadOnTap: false,
+            action: {}
+        )
+    }
+    
+    static var textLeading: MockButtonViewModel {
+        MockButtonViewModel(
+            title: "Text Button",
+            icon: MockButtonIconViewModel(
+                iconName: "arrow.up.right",
+                symbolPosition: .afterTitle
+            ),
+            shouldLoadOnTap: false,
+            action: {},
+            overrideContentAlignment: UIControl.ContentHorizontalAlignment.leading
+        )
+    }
+    
 }
 
 extension MockColoredButtonViewModel {

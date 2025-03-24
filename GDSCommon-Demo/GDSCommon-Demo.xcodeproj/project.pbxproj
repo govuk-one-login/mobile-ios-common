@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03A7F4EC2D8D794700CFA364 /* ErrorScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7F4EB2D8D794100CFA364 /* ErrorScreenTests.swift */; };
+		03A7F4F02D8D8D8C00CFA364 /* MockGDSErrorViewModelV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A7F4EE2D8D892B00CFA364 /* MockGDSErrorViewModelV3.swift */; };
 		1E3851602D0B179F00006E06 /* MockGDSCentreAlignedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E38515F2D0B179400006E06 /* MockGDSCentreAlignedViewModel.swift */; };
 		1E891B722B628AA000744E3D /* MockGDSInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E891B712B628AA000744E3D /* MockGDSInformationViewModel.swift */; };
 		1E891B772B63CCB000744E3D /* GDSCentreAlignedScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E891B762B63CCB000744E3D /* GDSCentreAlignedScreenTests.swift */; };
@@ -77,6 +79,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03A7F4EB2D8D794100CFA364 /* ErrorScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorScreenTests.swift; sourceTree = "<group>"; };
+		03A7F4EE2D8D892B00CFA364 /* MockGDSErrorViewModelV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSErrorViewModelV3.swift; sourceTree = "<group>"; };
 		1E38515F2D0B179400006E06 /* MockGDSCentreAlignedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSCentreAlignedViewModel.swift; sourceTree = "<group>"; };
 		1E891B712B628AA000744E3D /* MockGDSInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGDSInformationViewModel.swift; sourceTree = "<group>"; };
 		1E891B762B63CCB000744E3D /* GDSCentreAlignedScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDSCentreAlignedScreenTests.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		2B0844012ABC79BB00188BA0 /* GDSCommon-DemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				03A7F4EB2D8D794100CFA364 /* ErrorScreenTests.swift */,
 				7C51376E2AD99E9D00163E83 /* Mocks */,
 				968598AF2B03A7C300462D0B /* MockBase.xib */,
 				2B08440D2ABC7A4300188BA0 /* TestExtensions */,
@@ -262,6 +267,7 @@
 				968598AC2B03878900462D0B /* MockBaseViewModel.swift */,
 				7C51376F2AD99EB600163E83 /* Scanning */,
 				2BD04BF42B729A1C00AC5279 /* MockGDSCentreAlignedViewModel.swift */,
+				03A7F4EE2D8D892B00CFA364 /* MockGDSErrorViewModelV3.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -406,6 +412,7 @@
 			files = (
 				96588BEC2AD6AD8A0035FF93 /* TextInputViewControllerTests.swift in Sources */,
 				2B0844092ABC79C300188BA0 /* ModalInfoViewControllerTests.swift in Sources */,
+				03A7F4EC2D8D794700CFA364 /* ErrorScreenTests.swift in Sources */,
 				9634B46A2ACDAE8E00A60CC8 /* GDSListOptionsViewControllerTests.swift in Sources */,
 				96588BDC2AD02AB30035FF93 /* Date+Extensions.swift in Sources */,
 				D0726FA72BF77BE20043AEF1 /* GDSLoadingViewControllerTests.swift in Sources */,
@@ -422,6 +429,7 @@
 				C8A3955F2B20BA6700333669 /* GDSErrorViewControllerTests.swift in Sources */,
 				2B08440B2ABC79C300188BA0 /* MockGDSInstructionsViewModel.swift in Sources */,
 				7CBC376B2ADB01C200572312 /* MockCaptureSession.swift in Sources */,
+				03A7F4F02D8D8D8C00CFA364 /* MockGDSErrorViewModelV3.swift in Sources */,
 				2B0844112ABC7A7700188BA0 /* XCTestCase.swift in Sources */,
 				96588BE02AD046420035FF93 /* DatePickerScreenViewControllerTests.swift in Sources */,
 				2BB5C7892AD3F7DE006BE7E2 /* ScanningViewControllerTests.swift in Sources */,
@@ -673,7 +681,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Demo;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -708,7 +716,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Demo;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;

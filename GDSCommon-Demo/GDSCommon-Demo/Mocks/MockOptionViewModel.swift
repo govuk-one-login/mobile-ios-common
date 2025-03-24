@@ -1,4 +1,5 @@
 import GDSCommon
+import UIKit
 
 struct MockOptionViewModel1: OptionViewModel {
     let title: GDSLocalisedString = "Example title text 1"
@@ -21,4 +22,5 @@ struct MockOptionButtonViewModel: ButtonViewModel {
     let icon: ButtonIconViewModel? = nil
     let shouldLoadOnTap: Bool = true
     let action: () -> Void = { }
+    let overrideContentAlignment: UIControl.ContentHorizontalAlignment = .center
 }
