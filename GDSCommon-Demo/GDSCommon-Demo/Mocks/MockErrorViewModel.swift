@@ -46,7 +46,7 @@ struct MockErrorViewModel: GDSErrorViewModelV2, GDSErrorViewModelWithImage, Base
 }
 
 struct MockErrorViewModelV3WithTwoButtons: GDSErrorViewModelV3, BaseViewModel {
-    var image: String? = nil 
+    var image: String?
     let voiceOverPrefix: String? = nil
     let title: GDSLocalisedString = "This is an Error View title"
     let body: GDSLocalisedString? = "This is an Error View body that should span onto multiple lines"
@@ -64,7 +64,7 @@ struct MockErrorViewModelV3WithTwoButtons: GDSErrorViewModelV3, BaseViewModel {
 }
 
 struct MockErrorViewModelV3Warning: GDSErrorViewModelV3, BaseViewModel {
-    var image: String? = nil
+    var image: String?
     let voiceOverPrefix: String? = "Warning"
     let title: GDSLocalisedString = "This is an Warning Error View title"
     let body: GDSLocalisedString? = "This is an Warning Error View body that should span onto multiple lines"
@@ -99,7 +99,7 @@ struct MockErrorViewModelV3AppUpdate: GDSErrorViewModelV3, BaseViewModel {
 }
 
 struct MockErrorViewModelV3Modal: GDSErrorViewModelV3, BaseViewModel {
-    var image: String? = nil
+    var image: String?
     let voiceOverPrefix: String? = nil
     let title: GDSLocalisedString = "This is an modal Error View title"
     let body: GDSLocalisedString? = "This is an modal Error View body that should span onto multiple lines"
@@ -117,8 +117,8 @@ struct MockErrorViewModelV3Modal: GDSErrorViewModelV3, BaseViewModel {
 }
 
 struct MockErrorViewModelV3WithNoButtons: GDSErrorViewModelV3, BaseViewModel {
-    var image: String? = nil
-    let voiceOverPrefix: String? = nil 
+    var image: String?
+    let voiceOverPrefix: String? = nil
     let title: GDSLocalisedString = "This is an Error View title"
     let body: GDSLocalisedString? = "This is an Error View body that should span onto multiple lines"
     let rightBarButtonTitle: GDSLocalisedString? = nil
@@ -132,8 +132,8 @@ struct MockErrorViewModelV3WithNoButtons: GDSErrorViewModelV3, BaseViewModel {
 }
 
 struct MockErrorViewModelV3WithThreeButtons: GDSErrorViewModelV3, BaseViewModel {
-    var image: String? = nil
-    let voiceOverPrefix: String? = nil 
+    var image: String?
+    let voiceOverPrefix: String? = nil
     let title: GDSLocalisedString = "This is an Error View title"
     let body: GDSLocalisedString? = "This is an Error View body that should span onto multiple lines"
     
