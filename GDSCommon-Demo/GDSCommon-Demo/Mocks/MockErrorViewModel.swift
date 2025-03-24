@@ -16,7 +16,7 @@ var singleLineBold: ScreenBodyItem {
 
 var singleParagraph: ScreenBodyItem {
     BodyTextViewModel(
-        text: "Body single paragraph - Lorem ipsum dolor sit amet consectetur. Purus aliquam mattis vitae enim mauris vestibulum massa tellus.)"
+        text: "Body single paragraph - Lorem ipsum dolor sit amet consectetur. Purus aliquam mattis vitae enim mauris vestibulum massa tellus."
     )
 }
  
