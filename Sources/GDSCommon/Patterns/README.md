@@ -243,17 +243,19 @@ This screen includes an title, subtitle and button. These views a situated withi
 The content on the screen is set from the `viewModel`, which must conform to the `OptionViewModel` protocol.
 
 
-## GDSError
-This screen is typically used as an error screen, consisting of an optional alert icon, a title, body and the option of one, two or three buttons.
-A `UIStackView` holds the `errorImageView` and encases a second `UIStackView` which holds the `errorTitle` and `errorBody`. These views are placed within a `ScrollView`.
-The `primaryButton`, `secondaryButton` and `tertiaryButton` are placed in a `UIStackView`, below the `ScrollView`.
+## GDSErrorScreen
+This screen is typically used as an error screen, consisting of an alert icon, a title, body and the option of no, one, two or three buttons.
+A container `UIStackView` holds the `scrollView` and the `bottomStackView`.
 
-`GDSErrorViewController` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site.
+The `bottomStackView` holds a nested `UIStackView` which contains the action buttons. 
+
+The `ScrollView` contains another `UIStackView` containing spacers and another `UIStackView` containing the Icon (`imageView`) and title (`titleLabel`), and another `UIStackView` to contain the array of body content views generate from the `[ScreenBodyItem]` array passed into the view model.
+
+`GDSErrorScreen` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site.
 
 A navigation item can be configured:
-- The `primaryButton`'s action is set from the ``primaryButtonViewModel`` in the ``GDSErrorViewModel`` protocol.
-- The `secondaryButton`'s action is set from the ``secondaryButtonViewModel`` in the ``GDSErrorViewModel`` protocol.
-- The `tertiaryButton`'s action is set from the ``tertiaryButtonViewModel` in the ``GDSTertiaryButtonViewModel`` protocol.
+- An array of `ButtonViewModel` passed into the view model `GDSErrorViewModelV3`, then presents either none, one, two three buttons. 
+- The first in the array is always treated as the `PrimaryButton` and all others as `SecondaryButton`
 
 If the viewModel conforms to BaseViewModel:
 - A back button can be set via the `hideBackButton` boolean property on the view controller
@@ -264,25 +266,38 @@ If the viewModel conforms to BaseViewModel:
 ### Example:
 
 ```swift
-struct MockErrorViewModel: GDSErrorViewModelV2, GDSErrorViewModelWithImage, BaseViewModel {
-    let image: String? = "exclamationmark.circle"
+struct MockErrorViewModelV3: GDSErrorViewModelV3, BaseViewModel {
+    var image: ErrorScreenImage = .error
     let title: GDSLocalisedString = "This is an Error View title"
-    let body: GDSLocalisedString = "This is an Error View body This is an Error View body"
-    let primaryButtonViewModel: ButtonViewModel 
-    let secondaryButtonViewModel: ButtonViewModel? = nil
-    let rightBarButtonTitle: GDSLocalisedString?
+    let rightBarButtonTitle: GDSLocalisedString? = nil
     let backButtonIsHidden: Bool = false
     
-    init(action: @escaping () -> Void) {
-        self.primaryButtonViewModel = ButtonViewModel(titleKey: "Try again") { 
-            action() 
-        } 
-    }
+    var bodyContent: [ScreenBodyItem] = [
+        BodyTextViewModel(
+            text: "Body single line (regular)"
+        ),
+        BodyTextViewModel(
+        text:
+        """
+            Body multiple paragraphs - Lorem ipsum dolor sit amet consectetur.
+            
+            Purus aliquam mattis vitae enim mauris vestibulum massa tellus.
+        """
+        ),
+        MockButtonViewModel.textCentered
+    ]
+    
+    var buttonViewModels: [any ButtonViewModel] = [
+        MockButtonViewModel.primary,
+        MockButtonViewModel.secondary
+    ]
     
     func didAppear() {}
-    
     func didDismiss() {}
 }
+
+
+
 ```
 
 

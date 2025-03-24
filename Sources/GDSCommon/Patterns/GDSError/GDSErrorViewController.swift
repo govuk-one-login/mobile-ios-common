@@ -1,5 +1,6 @@
 import UIKit
 
+@available(*, deprecated, message: "Update errors to use new DesignSystem GDSErrorScreen with GDSErrorViewModelV3") // Deprecated 24/03/2025
 private struct ErrorViewModelInitialiser: GDSErrorViewModel {
     let image: String
     let title: GDSLocalisedString
@@ -27,6 +28,7 @@ private struct ErrorViewModelInitialiser: GDSErrorViewModel {
 ///     - `primaryButton`  (type: ``RoundedButton`` inherits from ``SecondaryButton``)
 ///     - `secondaryButton`  (type: ``SecondaryButton`` inherits from ``UIButton``)
 ///     - `tertiaryButton` (type: ``SecondaryButton`` inherits from ``UIButton``)
+@available(*, deprecated, renamed: "GDSErrorScreen", message: "Update errors to use new DesignSystem GDSErrorScreen with GDSErrorViewModelV3") // Deprecated 24/03/2025
 public final class GDSErrorViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSError" }
     
