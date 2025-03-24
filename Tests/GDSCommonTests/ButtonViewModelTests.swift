@@ -36,6 +36,7 @@ struct TestButtonViewModel: ButtonViewModel {
     let title: GDSLocalisedString
     let icon: ButtonIconViewModel? = nil
     let shouldLoadOnTap: Bool = false
+    var contentAlignment: UIControl.ContentHorizontalAlignment? = .center
     let action: () -> Void
     let accessibilityHint: GDSLocalisedString?
 }

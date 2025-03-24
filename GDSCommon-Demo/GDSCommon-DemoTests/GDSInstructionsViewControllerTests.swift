@@ -178,13 +178,22 @@ struct MockButtonViewModel: ButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let accessibilityHint: GDSLocalisedString?
+    var contentAlignment: UIControl.ContentHorizontalAlignment?
     
-    init(title: GDSLocalisedString, icon: ButtonIconViewModel? = nil, shouldLoadOnTap: Bool = false, voiceOverHint: GDSLocalisedString? = nil, action: @escaping () -> Void) {
+    init(
+        title: GDSLocalisedString,
+        icon: ButtonIconViewModel? = nil,
+        shouldLoadOnTap: Bool = false,
+        voiceOverHint: GDSLocalisedString? = nil,
+        contentAlignment: UIControl.ContentHorizontalAlignment? = .center,
+        action: @escaping () -> Void
+    ) {
         self.title = title
         self.icon = icon
         self.shouldLoadOnTap = shouldLoadOnTap
         self.action = action
         self.accessibilityHint = voiceOverHint
+        self.contentAlignment = contentAlignment
     }
 }
 
@@ -192,14 +201,23 @@ struct MockColoredButtonViewModel: ColoredButtonViewModel {
     let title: GDSLocalisedString
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
-    let action: () -> Void
     let backgroundColor: UIColor
+    let contentAlignment: UIControl.ContentHorizontalAlignment?
+    let action: () -> Void
     
-    init(title: GDSLocalisedString, icon: ButtonIconViewModel? = nil, shouldLoadOnTap: Bool = false, action: @escaping () -> Void, backgroundColor: UIColor) {
+    init(
+        title: GDSLocalisedString,
+        icon: ButtonIconViewModel? = nil,
+        shouldLoadOnTap: Bool = false,
+        contentAlignment: UIControl.ContentHorizontalAlignment? = .center,
+        action: @escaping () -> Void,
+        backgroundColor: UIColor
+    ) {
         self.title = title
         self.icon = icon
         self.shouldLoadOnTap = shouldLoadOnTap
         self.action = action
         self.backgroundColor = backgroundColor
+        self.contentAlignment = contentAlignment
     }
 }

@@ -7,6 +7,21 @@ struct MockButtonViewModel: ButtonViewModel {
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
     let action: () -> Void
+    let contentAlignment: UIControl.ContentHorizontalAlignment?
+    
+    public init(
+        title: GDSLocalisedString,
+        icon: ButtonIconViewModel?,
+        shouldLoadOnTap: Bool,
+        action: @escaping () -> Void,
+        contentAlignment: UIControl.ContentHorizontalAlignment? = .center
+    ) {
+        self.title = title
+        self.icon = icon
+        self.shouldLoadOnTap = shouldLoadOnTap
+        self.action = action
+        self.contentAlignment = contentAlignment
+    }
 }
 
 struct MockButtonIconViewModel: ButtonIconViewModel {
@@ -20,6 +35,7 @@ struct MockColoredButtonViewModel: ColoredButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let backgroundColor: UIColor
+    let contentAlignment: UIControl.ContentHorizontalAlignment? = .center
 }
 
 struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
@@ -28,6 +44,7 @@ struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let accessibilityHint: GDSLocalisedString?
+    let contentAlignment: UIControl.ContentHorizontalAlignment? = .center
 }
 
 extension MockButtonViewModel {
@@ -81,6 +98,32 @@ extension MockButtonViewModel {
                                              action: { },
                                              accessibilityHint: "This includes a voiceover hint")
     }
+    
+    static var textCentered: MockButtonViewModel {
+        MockButtonViewModel(
+            title: "Text Button",
+            icon: MockButtonIconViewModel(
+                iconName: "arrow.up.right",
+                symbolPosition: .afterTitle
+            ),
+            shouldLoadOnTap: false,
+            action: {}
+        )
+    }
+    
+    static var textLeading: MockButtonViewModel {
+        MockButtonViewModel(
+            title: "Text Button",
+            icon: MockButtonIconViewModel(
+                iconName: "arrow.up.right",
+                symbolPosition: .afterTitle
+            ),
+            shouldLoadOnTap: false,
+            action: {},
+            contentAlignment: UIControl.ContentHorizontalAlignment.leading
+        )
+    }
+    
 }
 
 extension MockColoredButtonViewModel {

@@ -2,6 +2,7 @@
 import XCTest
 
 struct MockErrorViewModelV3: GDSErrorViewModelV3, BaseViewModel {
+    
     var image: String?
     let voiceOverPrefix: String?
     let title: GDSLocalisedString = "This is an Error View title"
@@ -12,6 +13,7 @@ struct MockErrorViewModelV3: GDSErrorViewModelV3, BaseViewModel {
     let appearAction: () -> Void
     let dismissAction: () -> Void
     
+    var bodyContent: [any GDSCommon.ScreenBodyItem]
     var childView: UIView? {
         let childViewLabel = UILabel()
         childViewLabel.font = UIFont(style: .body)
@@ -29,12 +31,14 @@ struct MockErrorViewModelV3: GDSErrorViewModelV3, BaseViewModel {
         buttonViewModels: [any ButtonViewModel],
         image: String? = nil,
         voiceOverPrefix: String? = nil,
+        bodyContent: [ScreenBodyItem] = [],
         appearAction: @escaping () -> Void,
         dismissAction: @escaping () -> Void
     ) {
         self.buttonViewModels = buttonViewModels
         self.image = image
         self.voiceOverPrefix = voiceOverPrefix
+        self.bodyContent = bodyContent
         self.appearAction = appearAction
         self.dismissAction = dismissAction
     }

@@ -120,11 +120,6 @@ extension GDSErrorScreenTests {
         XCTAssertEqual(try sut.titleLabel.text, "This is an Error View title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
-        XCTAssertEqual(try sut.bodyLabel.text, "This is an Error View body that should span onto multiple lines")
-        XCTAssertFalse(try sut.bodyLabel.accessibilityTraits.contains(.header))
-       
-        // Child View
-        XCTAssertNotNil(try sut.childView)
        
         // Buttons
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary Action")
@@ -238,6 +233,8 @@ extension GDSErrorScreenTests {
         XCTAssertNotNil(sut.view[child: "error-screen-button-1"]) // Secondary
         XCTAssertNotNil(sut.view[child: "error-screen-button-2"]) // Tertiary
     }
+    
+    // TODO: Add tests for BodyContentItems
   
 }
 
@@ -251,12 +248,6 @@ extension GDSErrorScreen {
     var titleLabel: UILabel {
         get throws {
             try XCTUnwrap(view[child: "error-screen-title"])
-        }
-    }
-    
-    var bodyLabel: UILabel {
-        get throws {
-            try XCTUnwrap(view[child: "error-screen-body"])
         }
     }
     
@@ -278,9 +269,9 @@ extension GDSErrorScreen {
         }
     }
     
-    var childView: UIStackView {
+    var bodyContentView: UIStackView {
         get throws {
-            try XCTUnwrap(view[child: "error-screen-child-view"])
+            try XCTUnwrap(view[child: "error-screen-body-content-stack-view"])
         }
     }
     

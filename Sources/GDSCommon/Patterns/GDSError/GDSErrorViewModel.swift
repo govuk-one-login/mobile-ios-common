@@ -17,8 +17,7 @@ public protocol GDSErrorViewModelV2 {
 @MainActor
 public protocol GDSErrorViewModelV3 {
     var title: GDSLocalisedString { get }
-    var body: GDSLocalisedString? { get }
-    var childView: UIView? { get }
+    var bodyContent: [ScreenBodyItem] { get }
     var buttonViewModels: [ButtonViewModel] { get }
     var image: String? { get }
     var voiceOverPrefix: String? { get }
