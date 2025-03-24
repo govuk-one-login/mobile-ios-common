@@ -1,3 +1,4 @@
 // MARK: Generic Strings
 "GDSCommonBackButton" = "Yn ôl";
 "GDSCommonVoiceOverErrorPrefix" = "Gwall";
+"GDSCommonVoiceOverWarningPrefix" = "Rhybudd";

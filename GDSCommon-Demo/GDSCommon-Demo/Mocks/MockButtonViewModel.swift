@@ -7,20 +7,20 @@ struct MockButtonViewModel: ButtonViewModel {
     let icon: ButtonIconViewModel?
     let shouldLoadOnTap: Bool
     let action: () -> Void
-    let contentAlignment: UIControl.ContentHorizontalAlignment?
+    let overrideContentAlignment: UIControl.ContentHorizontalAlignment
     
     public init(
         title: GDSLocalisedString,
         icon: ButtonIconViewModel?,
         shouldLoadOnTap: Bool,
         action: @escaping () -> Void,
-        contentAlignment: UIControl.ContentHorizontalAlignment? = .center
+        overrideContentAlignment: UIControl.ContentHorizontalAlignment = .center
     ) {
         self.title = title
         self.icon = icon
         self.shouldLoadOnTap = shouldLoadOnTap
         self.action = action
-        self.contentAlignment = contentAlignment
+        self.overrideContentAlignment = overrideContentAlignment
     }
 }
 
@@ -35,7 +35,7 @@ struct MockColoredButtonViewModel: ColoredButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let backgroundColor: UIColor
-    let contentAlignment: UIControl.ContentHorizontalAlignment? = .center
+    let overrideContentAlignment: UIControl.ContentHorizontalAlignment = .center
 }
 
 struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
@@ -44,7 +44,7 @@ struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
     let shouldLoadOnTap: Bool
     let action: () -> Void
     let accessibilityHint: GDSLocalisedString?
-    let contentAlignment: UIControl.ContentHorizontalAlignment? = .center
+    let overrideContentAlignment: UIControl.ContentHorizontalAlignment = .center
 }
 
 extension MockButtonViewModel {
@@ -120,7 +120,7 @@ extension MockButtonViewModel {
             ),
             shouldLoadOnTap: false,
             action: {},
-            contentAlignment: UIControl.ContentHorizontalAlignment.leading
+            overrideContentAlignment: UIControl.ContentHorizontalAlignment.leading
         )
     }
     

@@ -49,8 +49,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
     private lazy var scrollViewInnerStackView: UIStackView = {
         let result = UIStackView(
             views: [
-                imageView,
-                titleLabel,
+                scrollViewIconTitleStackView,
                 bodyContentStackView
             ],
             spacing: defaultSpacing,
@@ -60,18 +59,27 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         return result
     }()
     
+    private lazy var scrollViewIconTitleStackView: UIStackView = {
+        let result = UIStackView(
+            views: [
+                imageView,
+                titleLabel
+            ],
+            spacing: defaultSpacing,
+            distribution: .equalSpacing
+        )
+        result.accessibilityIdentifier = "error-screen-icon-title-stack-view"
+        result.shouldGroupAccessibilityChildren = true
+        result.accessibilityTraits = [.header]
+        result.isAccessibilityElement = true
+        result.accessibilityLabel = "\(viewModel.image.voiceoverPrefix): \(viewModel.title) :"
+        return result
+    }()
+    
     private lazy var bottomSpacer: UIView = {
         let result = UIView()
         result.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         return result
-    }()
-    
-    private let defautlIcon = "exclamationmark.circle"
-    private lazy var voiceOverPrefix: String = {
-        guard let prefix = viewModel.voiceOverPrefix else {
-            return NSLocalizedString(key: "GDSCommonVoiceOverErrorPrefix", bundle: .module)
-        }
-        return prefix
     }()
     
     private lazy var imageView: UIImageView = {
@@ -80,7 +88,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         let configuration = UIImage.SymbolConfiguration(font: font, scale: .large)
         
         result.image = UIImage(
-            systemName: viewModel.image ?? defautlIcon,
+            systemName: viewModel.image.icon,
             withConfiguration: configuration
         )
         result.tintColor = .gdsPrimary
@@ -102,9 +110,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         )
         result.text = viewModel.title.value
         result.accessibilityIdentifier = "error-screen-title"
-        result.accessibilityTraits = [.header]
         result.adjustsFontForContentSizeCategory = true
-        result.accessibilityLabel = "\(voiceOverPrefix): \(viewModel.title) :"
         result.textAlignment = .center
         result.numberOfLines = 0
         return result
@@ -188,7 +194,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         result.accessibilityIdentifier = "error-screen-button-\(index)"
         
         if !isPrimaryButton {
-            result.titleLabel?.textColor = .gdsGreen
+            result.titleLabel?.textColor = .accent
         }
         
         result.addAction {
@@ -234,9 +240,9 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         
         if let buttonViewModel = contentItem as? ButtonViewModel {
             let result = SecondaryButton()
-            result.setTitle(buttonViewModel.title, for: .normal)
             result.contentHorizontalAlignment = buttonViewModel.overrideContentAlignment
-            result.titleLabel?.textColor = .gdsGreen
+            result.setTitle(buttonViewModel.title, for: .normal)
+            result.titleLabel?.textColor = .accent
             result.symbolPosition = buttonViewModel.icon?.symbolPosition ?? .afterTitle
             result.icon = buttonViewModel.icon?.iconName
             result.accessibilityHint = buttonViewModel.accessibilityHint?.value
@@ -250,7 +256,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
             let result = UILabel()
             result.font = UIFont(
                 style: .body,
-                weight:  bodyTextViewModel.fontWeight
+                weight: bodyTextViewModel.fontWeight
             )
             result.text = bodyTextViewModel.text
             result.adjustsFontForContentSizeCategory = true

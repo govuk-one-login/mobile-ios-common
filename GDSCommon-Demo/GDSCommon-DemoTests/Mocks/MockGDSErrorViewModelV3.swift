@@ -3,10 +3,8 @@ import XCTest
 
 struct MockErrorViewModelV3: GDSErrorViewModelV3, BaseViewModel {
     
-    var image: String?
-    let voiceOverPrefix: String?
+    var image: ErrorScreenImage = .error
     let title: GDSLocalisedString = "This is an Error View title"
-    let body: GDSLocalisedString? = "This is an Error View body that should span onto multiple lines"
     
     let rightBarButtonTitle: GDSLocalisedString? = "Cancel"
     let backButtonIsHidden: Bool = false
@@ -14,30 +12,17 @@ struct MockErrorViewModelV3: GDSErrorViewModelV3, BaseViewModel {
     let dismissAction: () -> Void
     
     var bodyContent: [any GDSCommon.ScreenBodyItem]
-    var childView: UIView? {
-        let childViewLabel = UILabel()
-        childViewLabel.font = UIFont(style: .body)
-        childViewLabel.text = "This is a child view"
-        return UIStackView(
-            views: [
-                childViewLabel
-            ]
-        )
-    }
-    
     var buttonViewModels: [any ButtonViewModel]
     
     public init(
         buttonViewModels: [any ButtonViewModel],
-        image: String? = nil,
-        voiceOverPrefix: String? = nil,
+        image: ErrorScreenImage,
         bodyContent: [ScreenBodyItem] = [],
         appearAction: @escaping () -> Void,
         dismissAction: @escaping () -> Void
     ) {
         self.buttonViewModels = buttonViewModels
         self.image = image
-        self.voiceOverPrefix = voiceOverPrefix
         self.bodyContent = bodyContent
         self.appearAction = appearAction
         self.dismissAction = dismissAction

@@ -19,8 +19,7 @@ public protocol GDSErrorViewModelV3 {
     var title: GDSLocalisedString { get }
     var bodyContent: [ScreenBodyItem] { get }
     var buttonViewModels: [ButtonViewModel] { get }
-    var image: String? { get }
-    var voiceOverPrefix: String? { get }
+    var image: ErrorScreenImage { get }
 }
 
 /// Conform view models that inherit from ``GDSErrorViewModelV2`` to this protocol to set a image icon

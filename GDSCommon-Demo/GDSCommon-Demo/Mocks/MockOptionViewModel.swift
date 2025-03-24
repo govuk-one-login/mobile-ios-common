@@ -22,5 +22,5 @@ struct MockOptionButtonViewModel: ButtonViewModel {
     let icon: ButtonIconViewModel? = nil
     let shouldLoadOnTap: Bool = true
     let action: () -> Void = { }
-    let contentAlignment: UIControl.ContentHorizontalAlignment? = .center
+    let overrideContentAlignment: UIControl.ContentHorizontalAlignment = .center
 }

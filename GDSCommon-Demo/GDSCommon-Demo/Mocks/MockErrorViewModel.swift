@@ -1,26 +1,26 @@
 import GDSCommon
 import UIKit
 
-private var singleLineRegular: ScreenBodyItem {
+var singleLineRegular: ScreenBodyItem {
     BodyTextViewModel(
         text: "Body single line (regular)"
     )
 }
 
-private var singleLineBold: ScreenBodyItem {
+var singleLineBold: ScreenBodyItem {
     BodyTextViewModel(
         text: "Body single line (body)",
         fontWeight: .bold
     )
 }
 
-private var singleParagraph: ScreenBodyItem {
+var singleParagraph: ScreenBodyItem {
     BodyTextViewModel(
         text: "Body single paragraph - Lorem ipsum dolor sit amet consectetur. Purus aliquam mattis vitae enim mauris vestibulum massa tellus.)"
     )
 }
  
-private var multipleParagraph: ScreenBodyItem {
+var multipleParagraph: ScreenBodyItem {
     BodyTextViewModel(
         text:
         """
@@ -45,8 +45,7 @@ struct MockErrorViewModel: GDSErrorViewModelV2, GDSErrorViewModelWithImage, Base
 }
 
 struct MockErrorViewModelV3WithNoButtons: GDSErrorViewModelV3, BaseViewModel {
-    var image: String?
-    let voiceOverPrefix: String? = nil
+    var image: ErrorScreenImage = .error
     let title: GDSLocalisedString = "This is an Error View title"
     let rightBarButtonTitle: GDSLocalisedString? = nil
     let backButtonIsHidden: Bool = false
@@ -64,8 +63,7 @@ struct MockErrorViewModelV3WithNoButtons: GDSErrorViewModelV3, BaseViewModel {
 }
 
 struct MockErrorViewModelV3WithTwoButtons: GDSErrorViewModelV3, BaseViewModel {
-    var image: String?
-    let voiceOverPrefix: String? = nil
+    var image: ErrorScreenImage = .error
     let title: GDSLocalisedString = "This is an Error View title"
     let rightBarButtonTitle: GDSLocalisedString? = nil
     let backButtonIsHidden: Bool = false
@@ -86,8 +84,7 @@ struct MockErrorViewModelV3WithTwoButtons: GDSErrorViewModelV3, BaseViewModel {
 }
 
 struct MockErrorViewModelV3WithThreeButtons: GDSErrorViewModelV3, BaseViewModel {
-    var image: String?
-    let voiceOverPrefix: String? = nil
+    var image: ErrorScreenImage = .error
     let title: GDSLocalisedString = "This is an Error View title"
     
     let rightBarButtonTitle: GDSLocalisedString? = nil
@@ -110,8 +107,7 @@ struct MockErrorViewModelV3WithThreeButtons: GDSErrorViewModelV3, BaseViewModel 
 }
 
 struct MockErrorViewModelV3Modal: GDSErrorViewModelV3, BaseViewModel {
-    var image: String?
-    let voiceOverPrefix: String? = nil
+    var image: ErrorScreenImage = .error
     let title: GDSLocalisedString = "This is an modal Error View title"
     let rightBarButtonTitle: GDSLocalisedString? = "Cancel"
     let backButtonIsHidden: Bool = false
@@ -132,8 +128,7 @@ struct MockErrorViewModelV3Modal: GDSErrorViewModelV3, BaseViewModel {
 }
 
 struct MockErrorViewModelV3Warning: GDSErrorViewModelV3, BaseViewModel {
-    var image: String?
-    let voiceOverPrefix: String? = "Warning"
+    var image: ErrorScreenImage = .warning
     let title: GDSLocalisedString = "This is an Warning Error View title"
     let rightBarButtonTitle: GDSLocalisedString? = nil
     let backButtonIsHidden: Bool = false
@@ -154,8 +149,7 @@ struct MockErrorViewModelV3Warning: GDSErrorViewModelV3, BaseViewModel {
 }
 
 struct MockErrorViewModelV3AppUpdate: GDSErrorViewModelV3, BaseViewModel {
-    var image: String? = "exclamationmark.arrow.trianglehead.counterclockwise.rotate.90"
-    let voiceOverPrefix: String? = nil
+    var image: ErrorScreenImage = .appUpdate
     let title: GDSLocalisedString = "This is an App Update Error View title"
     let rightBarButtonTitle: GDSLocalisedString? = nil
     let backButtonIsHidden: Bool = false

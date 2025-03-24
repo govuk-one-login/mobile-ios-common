@@ -1,4 +1,5 @@
 @testable import GDSCommon
+@testable import GDSCommon_Demo
 import XCTest
 
 final class GDSErrorScreenTests: XCTestCase {
@@ -16,15 +17,14 @@ final class GDSErrorScreenTests: XCTestCase {
     @MainActor
     override func setUp() {
         super.setUp()
-        sut = createSUT(image: "exclamationmark.circle")
+        sut = createSUT()
     }
     
     // swiftlint: disable function_body_length
     @MainActor
     private func createSUT(
-        image: String? = nil,
-        buttonsToAdd: Int = 3,
-        voiceOverPrefix: String? = "Error"
+        image: ErrorScreenImage = .error,
+        buttonsToAdd: Int = 3
     ) -> GDSErrorScreen {
         let primaryButtonViewModel = MockButtonViewModel(
             title: "Primary Action",
@@ -79,7 +79,14 @@ final class GDSErrorScreenTests: XCTestCase {
         let viewModel = MockErrorViewModelV3(
             buttonViewModels: buttonViewModels,
             image: image,
-            voiceOverPrefix: voiceOverPrefix,
+            bodyContent: [
+                singleLineRegular,
+                singleParagraph,
+                MockButtonViewModel(
+                    title: "Button",
+                    action: {}
+                )
+            ],
             appearAction: {
                 self.viewDidAppear = true
             },
@@ -119,7 +126,7 @@ extension GDSErrorScreenTests {
         // Labels
         XCTAssertEqual(try sut.titleLabel.text, "This is an Error View title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
-        XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
+        XCTAssertTrue(try sut.icontTitleStack.accessibilityTraits.contains(.header))
        
         // Buttons
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary Action")
@@ -234,8 +241,25 @@ extension GDSErrorScreenTests {
         XCTAssertNotNil(sut.view[child: "error-screen-button-2"]) // Tertiary
     }
     
-    // TODO: Add tests for BodyContentItems
-  
+    func test_errorContentItems() throws {
+        sut = createSUT()
+        
+        XCTAssertEqual(try sut.bodyContentView.arrangedSubviews.count, 3)
+        let label = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[0] as? UILabel)
+        XCTAssertEqual(label.text, "Body single line (regular)")
+        
+        let paragraphLabel = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[1] as? UILabel)
+        XCTAssertEqual(
+            paragraphLabel.text,
+            """
+            Body single paragraph - Lorem ipsum dolor sit amet consectetur. Purus aliquam mattis vitae enim mauris vestibulum massa tellus.
+            """
+        )
+        
+        let button = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[2] as? SecondaryButton)
+        XCTAssertEqual(button.titleLabel?.text, "Button")
+    }
+    
 }
 
 extension GDSErrorScreen {
@@ -248,6 +272,12 @@ extension GDSErrorScreen {
     var titleLabel: UILabel {
         get throws {
             try XCTUnwrap(view[child: "error-screen-title"])
+        }
+    }
+    
+    var icontTitleStack: UIStackView {
+        get throws {
+            try XCTUnwrap(view[child: "error-screen-icon-title-stack-view"])
         }
     }
     
