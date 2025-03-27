@@ -55,6 +55,7 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
             if let pbvm = viewModel as? PageWithPrimaryButtonViewModel {
                 primaryButton.setTitle(pbvm.primaryButtonViewModel.title, for: .normal)
                 primaryButton.accessibilityIdentifier = "modal-info-primary-button"
+                primaryButton.accessibilityHint = pbvm.primaryButtonViewModel.accessibilityHint?.value
                 if let icon = pbvm.primaryButtonViewModel.icon {
                     primaryButton.symbolPosition = icon.symbolPosition
                     primaryButton.icon = icon.iconName
@@ -76,6 +77,7 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
             if let sbvm = viewModel as? PageWithSecondaryButtonViewModel {
                 secondaryButton.setTitle(sbvm.secondaryButtonViewModel.title, for: .normal)
                 secondaryButton.accessibilityIdentifier = "modal-info-secondary-button"
+                secondaryButton.accessibilityHint = sbvm.secondaryButtonViewModel.accessibilityHint?.value
                 if let icon = sbvm.secondaryButtonViewModel.icon {
                     secondaryButton.symbolPosition = icon.symbolPosition
                     secondaryButton.icon = icon.iconName
