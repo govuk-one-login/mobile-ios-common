@@ -36,21 +36,22 @@ extension ModalInfoViewControllerTests {
     @MainActor
     func test_modalInfoViewButtons() throws {
         viewModel = MockModalInfoButtonsViewModel(primaryButtonViewModel: MockButtonViewModel(title: "Primary button",
-                                                                                              accessibilityHint: "This includes an accessibility hint",
                                                                                               action: { self.primaryButton = true }),
                                                   secondaryButtonViewModel: MockButtonViewModel(title: "Secondary button",
                                                                                                 icon: MockButtonIconViewModel(),
                                                                                                 action: { self.secondaryButton = true }),
                                                   textButtonViewModel: MockButtonViewModel(title: "Text button",
+                                                                                           accessibilityHint: "This includes an accessibility hint",
                                                                                            action: {self.textButton = true }))
         
         sut = ModalInfoViewController(viewModel: viewModel)
         
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button")
-        XCTAssertEqual(try sut.primaryButton.accessibilityHint, "This includes an accessibility hint")
+        XCTAssertNil(try sut.primaryButton.accessibilityHint)
         XCTAssertNil((try sut.primaryButton as? RoundedButton)?.icon)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button")
         XCTAssertNil(try sut.secondaryButton.accessibilityHint)
+        XCTAssertEqual(try sut.textButton.accessibilityHint, "This includes an accessibility hint")
         XCTAssertTrue(sut.isModalInPresentation)
         
         XCTAssertFalse(primaryButton)

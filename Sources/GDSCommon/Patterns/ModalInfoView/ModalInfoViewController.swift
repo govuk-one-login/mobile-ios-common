@@ -97,6 +97,7 @@ public final class ModalInfoViewController: BaseViewController, TitledViewContro
             if let vm = viewModel as? PageWithTextButtonViewModel {
                 textButton.setTitle(vm.textButtonViewModel.title, for: .normal)
                 textButton.accessibilityIdentifier = "modal-info-text-button"
+                textButton.accessibilityHint = vm.textButtonViewModel.accessibilityHint?.value
             } else {
                 textButton.isHidden = true
             }
