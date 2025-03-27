@@ -184,7 +184,7 @@ struct MockButtonViewModel: ButtonViewModel {
         title: GDSLocalisedString,
         icon: ButtonIconViewModel? = nil,
         shouldLoadOnTap: Bool = false,
-        voiceOverHint: GDSLocalisedString? = nil,
+        accessibilityHint: GDSLocalisedString? = nil,
         contentAlignment: UIControl.ContentHorizontalAlignment? = .center,
         action: @escaping () -> Void
     ) {
@@ -192,7 +192,7 @@ struct MockButtonViewModel: ButtonViewModel {
         self.icon = icon
         self.shouldLoadOnTap = shouldLoadOnTap
         self.action = action
-        self.accessibilityHint = voiceOverHint
+        self.accessibilityHint = accessibilityHint
         self.contentAlignment = contentAlignment
     }
 }

@@ -36,6 +36,7 @@ extension ModalInfoViewControllerTests {
     @MainActor
     func test_modalInfoViewButtons() throws {
         viewModel = MockModalInfoButtonsViewModel(primaryButtonViewModel: MockButtonViewModel(title: "Primary button",
+                                                                                              accessibilityHint: "This includes an accessibility hint",
                                                                                               action: { self.primaryButton = true }),
                                                   secondaryButtonViewModel: MockButtonViewModel(title: "Secondary button",
                                                                                                 icon: MockButtonIconViewModel(),
@@ -46,8 +47,10 @@ extension ModalInfoViewControllerTests {
         sut = ModalInfoViewController(viewModel: viewModel)
         
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button")
+        XCTAssertEqual(try sut.primaryButton.accessibilityHint, "This includes an accessibility hint")
         XCTAssertNil((try sut.primaryButton as? RoundedButton)?.icon)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button")
+        XCTAssertNil(try sut.secondaryButton.accessibilityHint)
         XCTAssertTrue(sut.isModalInPresentation)
         
         XCTAssertFalse(primaryButton)

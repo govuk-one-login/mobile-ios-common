@@ -30,7 +30,7 @@ final class GDSErrorScreenTests: XCTestCase {
             title: "Primary Action",
             icon: nil,
             shouldLoadOnTap: false,
-            voiceOverHint: "Button hint",
+            accessibilityHint: "Button hint",
             action: {
                 self.didTap_primaryButton = true
             }
@@ -39,7 +39,7 @@ final class GDSErrorScreenTests: XCTestCase {
             title: "Secondary Action",
             icon: MockButtonIconViewModel(),
             shouldLoadOnTap: false,
-            voiceOverHint: "Button hint",
+            accessibilityHint: "Button hint",
             action: {
                 self.didTap_secondaryButton = true
             }
@@ -49,7 +49,7 @@ final class GDSErrorScreenTests: XCTestCase {
             title: "Tertiary Action",
             icon: MockButtonIconViewModel(),
             shouldLoadOnTap: false,
-            voiceOverHint: "Button hint",
+            accessibilityHint: "Button hint",
             action: {
                 self.didTap_tertiaryButton = true
             }
