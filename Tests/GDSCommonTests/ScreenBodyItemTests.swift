@@ -3,7 +3,7 @@ import Testing
 import UIKit
 
 @MainActor
-struct SScreenBodyItemTests {
+struct ScreenBodyItemTests {
     @Test
     func bodyTextViewModel() {
         let viewModel = BodyTextViewModel(text: "Test text")
@@ -18,9 +18,10 @@ struct SScreenBodyItemTests {
     func bulletViewModel() throws {
         let viewModel = MockBulletViewModel()
         let view = viewModel.uiView as? BulletView
+        #expect(viewModel.uiView is BulletView)
         #expect(view?.titleLabel.text == "test title")
         let bulletLabels: [UILabel] = try view?.bulletLabels as? [UILabel] ?? []
-        #expect(view?.bulletLabels.map(\.text) == ["item 1", "item 2", "item 3"])
+        #expect(bulletLabels.map(\.text) == ["item 1", "item 2", "item 3"])
     }
     
     func buttonViewModel() {
