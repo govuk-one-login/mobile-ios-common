@@ -23,7 +23,16 @@ jobs:
 
       - name: Xcode select
         run: |
-          sudo xcode-select -s /Applications/Xcode_16.app
+          sudo xcode-select -s /Applications/Xcode_16.2.app
+
+      - name: Install and configure dependencies
+        run: |
+          brew update
+          brew install sonar-scanner rbenv ruby-build
+          gem install bundler:2.6.6
+          rbenv init
+          rbenv install 3.2.2
+          rbenv global 3.2.2
 
       - name: Build and Test
         run: |
