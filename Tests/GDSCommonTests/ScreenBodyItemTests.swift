@@ -15,6 +15,7 @@ struct ScreenBodyItemTests {
         #expect(label?.numberOfLines == 0)
     }
     
+    @Test
     func bulletViewModel() throws {
         let viewModel = MockBulletViewModel()
         let view = viewModel.uiView as? BulletView
@@ -24,16 +25,10 @@ struct ScreenBodyItemTests {
         #expect(bulletLabels.map(\.text) == ["item 1", "item 2", "item 3"])
     }
     
+    @Test
     func buttonViewModel() {
         let viewModel = MockButtonViewModel(title: "button title", action: {})
         let view = viewModel.uiView as? UIButton
         #expect(view?.titleLabel?.text == "button title")
     }
-}
-
-@MainActor
-struct MockBulletViewModel: BulletViewModel {
-    var title: String? = "test title"
-    var titleFont: UIFont? = .title3
-    var text = ["item 1", "item 2", "item 3"]
 }
