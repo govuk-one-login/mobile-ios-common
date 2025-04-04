@@ -13,10 +13,7 @@ extension BulletViewModel {
         let result = BulletView(
             title: self.title,
             text: self.text,
-            titleFont: self.titleFont ?? UIFont(
-                style: .title2,
-                weight: .bold
-            )
+            titleFont: self.titleFont ?? .title3Bold
         )
         return result
     }

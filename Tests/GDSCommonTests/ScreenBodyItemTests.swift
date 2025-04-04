@@ -22,7 +22,8 @@ struct ScreenBodyItemTests {
         #expect(viewModel.uiView is BulletView)
         #expect(view?.titleLabel.text == "test title")
         let bulletLabels: [UILabel] = try view?.bulletLabels as? [UILabel] ?? []
-        #expect(bulletLabels.map(\.text) == ["item 1", "item 2", "item 3"])
+        #expect(view?.titleLabel.font == .title3Bold)
+        #expect(bulletLabels.map(\.text) == ["\t●\titem 1", "\t●\titem 2", "\t●\titem 3"])
     }
     
     @Test
