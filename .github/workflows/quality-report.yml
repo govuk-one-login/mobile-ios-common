@@ -28,11 +28,7 @@ jobs:
       - name: Install and configure dependencies
         run: |
           brew update
-          brew install sonar-scanner rbenv ruby-build
-          gem install bundler:2.6.6
-          rbenv init
-          rbenv install 3.2.2
-          rbenv global 3.2.2
+          brew install sonar-scanner
 
       - name: Build and Test
         run: |
@@ -44,8 +40,6 @@ jobs:
       - name: Run SonarCloud Scanning
         run: |
           bash xccov-to-sonarqube-generic.sh result.xcresult > sonarqube-generic-coverage.xml
-
-          brew install sonar-scanner
 
           sonar-scanner \
             -Dsonar.token=$SONAR_TOKEN \
