@@ -228,57 +228,9 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         result.append(
             contentsOf:
                 viewModel.bodyContent.compactMap { screenBodyItem in
-                    createViewForBodyContentItem(screenBodyItem)
+                    screenBodyItem.uiView
                 }
         )
         return result
     }()
-    
-    private func createViewForBodyContentItem(
-        _ contentItem: ScreenBodyItem
-    ) -> UIView? {
-        
-        if let buttonViewModel = contentItem as? ButtonViewModel {
-            let result = SecondaryButton()
-            result.contentHorizontalAlignment = buttonViewModel.overrideContentAlignment
-            result.setTitle(buttonViewModel.title, for: .normal)
-            result.titleLabel?.textColor = .accent
-            result.symbolPosition = buttonViewModel.icon?.symbolPosition ?? .afterTitle
-            result.icon = buttonViewModel.icon?.iconName
-            result.accessibilityHint = buttonViewModel.accessibilityHint?.value
-            result.addAction {
-                buttonViewModel.action()
-            }
-            return result
-        }
-        
-        if let bodyTextViewModel = contentItem as? BodyTextViewModel {
-            let result = UILabel()
-            result.font = UIFont(
-                style: .body,
-                weight: bodyTextViewModel.fontWeight
-            )
-            result.text = bodyTextViewModel.text
-            result.adjustsFontForContentSizeCategory = true
-            result.lineBreakMode = .byTruncatingTail
-            result.textAlignment = .center
-            result.numberOfLines = 0
-            return result
-        }
-        
-        if let bulletViewModel = contentItem as? BulletViewModel {
-            let result = BulletView(
-                title: bulletViewModel.title,
-                text: bulletViewModel.text,
-                titleFont: bulletViewModel.titleFont ?? UIFont(
-                    style: .title2,
-                    weight: .bold
-                )
-            )
-            return result
-        }
-        
-        return nil
-    }
-    
 }

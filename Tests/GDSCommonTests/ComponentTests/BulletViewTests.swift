@@ -58,6 +58,13 @@ extension BulletViewTests {
         try XCTAssertEqual(sut.titleLabel.text, "Title")
         try XCTAssertEqual(sut.titleLabel.font, .init(style: .title3, weight: .semibold))
     }
+    
+    @MainActor
+    func test_viewModelIsScreenBodyItem() async throws {
+        let viewModel = MockBulletViewModel()
+        XCTAssert(viewModel.uiView is BulletView)
+        let view = try XCTUnwrap(viewModel.uiView as? BulletView)
+    }
 }
 
 extension BulletView {
