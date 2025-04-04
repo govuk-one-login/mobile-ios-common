@@ -40,6 +40,11 @@ jobs:
         run: |
           sudo xcode-select -s /Applications/Xcode_16.app
 
+      - name: Install and configure dependencies
+        run: |
+          brew update
+          brew install sonar-scanner
+
       - name: Build and Test
         run: |
           set -o pipefail && xcodebuild -workspace "GDSCommon-Demo.xcworkspace" -scheme GDSCommon-Demo test \
@@ -50,8 +55,6 @@ jobs:
       - name: Run SonarCloud Scanning
         run: |
           bash xccov-to-sonarqube-generic.sh result.xcresult > sonarqube-generic-coverage.xml
-
-          brew install sonar-scanner
 
           pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
 
