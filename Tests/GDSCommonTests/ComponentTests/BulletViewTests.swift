@@ -61,7 +61,7 @@ extension BulletViewTests {
     
     @MainActor
     func test_viewModelIsScreenBodyItem() async throws {
-        let viewModel = MockBulletViewModel(title: "title", text: ["item 1", "item 2", "item 3"])
+        let viewModel = MockBulletViewModel()
         XCTAssert(viewModel.uiView is BulletView)
         let view = try XCTUnwrap(viewModel.uiView as? BulletView)
     }
