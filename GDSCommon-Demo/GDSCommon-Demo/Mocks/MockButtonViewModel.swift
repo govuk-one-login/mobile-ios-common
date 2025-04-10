@@ -101,7 +101,7 @@ extension MockButtonViewModel {
     
     static var textCentered: MockButtonViewModel {
         MockButtonViewModel(
-            title: "Text Button",
+            title: "The GOV.UK Design System helps teams that work on government services follow the Government Design Principles and GOV.UK Service Manual.",
             icon: MockButtonIconViewModel(
                 iconName: "arrow.up.right",
                 symbolPosition: .afterTitle

@@ -23,6 +23,7 @@ extension ButtonViewModel {
         result.symbolPosition = self.icon?.symbolPosition ?? .afterTitle
         result.icon = self.icon?.iconName
         result.accessibilityHint = self.accessibilityHint?.value
+        result.titleLabel?.textAlignment = overrideContentAlignment == .center ? .center : .left
         result.addAction {
             self.action()
         }

@@ -55,6 +55,8 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
             spacing: defaultSpacing,
             distribution: .equalSpacing
         )
+        result.isLayoutMarginsRelativeArrangement = true
+        result.layoutMargins = UIEdgeInsets(top: 0, left: defaultSpacing, bottom: 0, right: defaultSpacing)
         result.accessibilityIdentifier = "error-screen-inner-stack-view"
         return result
     }()
@@ -135,6 +137,8 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
             spacing: defaultSpacing,
             distribution: hasButtons ? .fillProportionally : .equalCentering
         )
+        result.isLayoutMarginsRelativeArrangement = true
+        result.layoutMargins = UIEdgeInsets(top: 0, left: defaultSpacing, bottom: 0, right: defaultSpacing)
         result.accessibilityIdentifier = "error-screen-bottom-stack-view"
         return result
     }()
@@ -205,14 +209,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
     
     private func setup() {
         self.view.addSubview(containerStackView)
-        containerStackView.bindToSuperviewSafeArea(
-            insetBy: UIEdgeInsets(
-                top: 0,
-                left: defaultSpacing,
-                bottom: 0,
-                right: defaultSpacing
-            )
-        )
+        containerStackView.bindToSuperviewSafeArea(insetBy: .zero)
         self.view.backgroundColor = .systemBackground
         addRelativeViewConstraints()
     }
