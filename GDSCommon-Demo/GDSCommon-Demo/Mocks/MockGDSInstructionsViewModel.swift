@@ -24,7 +24,8 @@ struct MockGDSInstructionsViewModel: GDSInstructionsViewModel, BaseViewModel {
                 "sixth numbered list element",
                 "seventh numbered list element",
                 "eighth numbered list element",
-                "ninth numbered list element"
+                "ninth numbered list element",
+                "tenth numbered list element"
             ]
         )
     )

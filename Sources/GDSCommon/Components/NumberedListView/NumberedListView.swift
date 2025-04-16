@@ -67,7 +67,7 @@ public final class NumberedListView: UIView {
                             number.font = .body
                             number.textAlignment = .right
                             number.adjustsFontForContentSizeCategory = true
-                            number.adjustsFontSizeToFitWidth = true
+                            number.widthAnchor.constraint(equalToConstant: viewModel.maxNumberWidth).isActive = true
                             return number
                         }(),
                         {
