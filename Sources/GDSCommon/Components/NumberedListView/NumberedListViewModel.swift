@@ -10,8 +10,8 @@ public protocol NumberedListViewModel {
 extension NumberedListViewModel {
     var numberLabels: [UILabel] {
         listItemStrings
-            .enumerated()
-            .map { index, _ in
+            .indices
+            .map { index in
                 let number = UILabel()
                 number.text = "\(index + 1)."
                 number.font = .body
