@@ -20,8 +20,6 @@ extension NumberedListViewModel {
     }
     
     var maxNumberWidth: CGFloat {
-        numberLabels.max {
-            $0.intrinsicContentSize.width < $1.intrinsicContentSize.width
-        }?.intrinsicContentSize.width ?? 0
+        numberLabels.map(\.intrinsicContentSize.width).max() ?? 0
     }
 }

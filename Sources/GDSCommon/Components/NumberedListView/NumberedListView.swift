@@ -59,7 +59,7 @@ public final class NumberedListView: UIView {
         viewModel.listItemStrings
             .enumerated()
             .map { index, string in
-                UIStackView(
+                let listRowStack = UIStackView(
                     views: [
                         {
                             let number = UILabel()
@@ -85,6 +85,8 @@ public final class NumberedListView: UIView {
                     alignment: .top,
                     distribution: .fillProportionally
                 )
+                listRowStack.accessibilityIdentifier = "numbered-list-row-stack-view-\(index)"
+                return listRowStack
             }
     }()
 }
