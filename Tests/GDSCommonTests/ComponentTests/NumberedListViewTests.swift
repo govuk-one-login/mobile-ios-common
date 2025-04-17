@@ -22,8 +22,14 @@ final class NumberedListViewTests: XCTestCase {
 }
 
 extension NumberedListViewTests {
-    func test_numberedListViewTitle() throws {
+    func test_numberedListViewTitleSet() throws {
         XCTAssertEqual(try sut.titleLabel.text, "numbered list test title")
+    }
+    
+    func test_numberedListViewTitleNotSet() throws {
+        viewModel = MockNumberedListViewModel(title: nil)
+        sut = .init(viewModel: viewModel)
+        XCTAssertTrue(try sut.titleLabel.isHidden)
     }
     
     func test_numberedListViewRowOneNumber() throws {

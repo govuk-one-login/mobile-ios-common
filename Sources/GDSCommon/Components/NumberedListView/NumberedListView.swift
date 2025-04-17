@@ -35,11 +35,15 @@ public final class NumberedListView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let result = UILabel()
-        result.text = viewModel.title.value
-        result.font = viewModel.titleFont
-        result.adjustsFontForContentSizeCategory = true
-        result.textAlignment = .left
-        result.numberOfLines = 0
+        if let title = viewModel.title {
+            result.text = title.value
+            result.font = viewModel.titleFont
+            result.adjustsFontForContentSizeCategory = true
+            result.textAlignment = .left
+            result.numberOfLines = 0
+        } else {
+            result.isHidden = true
+        }
         result.accessibilityIdentifier = "numbered-list-title"
         return result
     }()
