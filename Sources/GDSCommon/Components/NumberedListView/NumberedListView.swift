@@ -14,7 +14,7 @@ public final class NumberedListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUp() {
+    private func setUp() {
         backgroundColor = .systemBackground
         addSubview(containerStackView)
         containerStackView.bindToSuperviewEdges()
