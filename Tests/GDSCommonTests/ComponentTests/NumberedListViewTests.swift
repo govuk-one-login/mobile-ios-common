@@ -29,7 +29,6 @@ extension NumberedListViewTests {
         XCTAssertEqual(try sut.titleLabel.textAlignment, .left)
         XCTAssertEqual(try sut.titleLabel.numberOfLines, 0)
         XCTAssertEqual(try sut.titleLabel.accessibilityTraits, [.header])
-
     }
     
     func test_numberedListViewTitleNotSet() throws {

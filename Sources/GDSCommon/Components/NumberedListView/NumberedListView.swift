@@ -29,7 +29,6 @@ public final class NumberedListView: UIView {
             spacing: 12,
             distribution: .fillProportionally
         )
-        result.accessibilityIdentifier = "numbered-list-container-stack-view"
         return result
     }()
     
@@ -57,7 +56,6 @@ public final class NumberedListView: UIView {
         )
         result.isLayoutMarginsRelativeArrangement = true
         result.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        result.accessibilityIdentifier = "numbered-list-stack-view"
         return result
     }()
     
