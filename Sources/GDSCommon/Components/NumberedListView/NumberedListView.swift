@@ -41,6 +41,7 @@ public final class NumberedListView: UIView {
             result.adjustsFontForContentSizeCategory = true
             result.textAlignment = .left
             result.numberOfLines = 0
+            result.accessibilityTraits = [.header]
         } else {
             result.isHidden = true
         }

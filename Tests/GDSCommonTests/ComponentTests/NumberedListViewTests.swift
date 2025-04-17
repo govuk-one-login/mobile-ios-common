@@ -24,6 +24,12 @@ final class NumberedListViewTests: XCTestCase {
 extension NumberedListViewTests {
     func test_numberedListViewTitleSet() throws {
         XCTAssertEqual(try sut.titleLabel.text, "numbered list test title")
+        XCTAssertEqual(try sut.titleLabel.font, .body)
+        XCTAssertTrue(try sut.titleLabel.adjustsFontForContentSizeCategory)
+        XCTAssertEqual(try sut.titleLabel.textAlignment, .left)
+        XCTAssertEqual(try sut.titleLabel.numberOfLines, 0)
+        XCTAssertEqual(try sut.titleLabel.accessibilityTraits, [.header])
+
     }
     
     func test_numberedListViewTitleNotSet() throws {
