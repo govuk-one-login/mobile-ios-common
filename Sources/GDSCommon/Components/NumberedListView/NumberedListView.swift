@@ -71,7 +71,7 @@ public final class NumberedListView: UIView {
                             number.font = .body
                             number.textAlignment = .right
                             number.adjustsFontForContentSizeCategory = true
-                            number.widthAnchor.constraint(equalToConstant: viewModel.maxNumberWidth).isActive = true
+                            number.widthAnchor.constraint(equalToConstant: maxNumberWidth).isActive = true
                             return number
                         }(),
                         {
@@ -96,5 +96,9 @@ public final class NumberedListView: UIView {
                 listRowStack.accessibilityIdentifier = "numbered-list-row-stack-view-\(index)"
                 return listRowStack
             }
+    }()
+    
+    private lazy var maxNumberWidth = {
+        viewModel.numberLabels.map(\.intrinsicContentSize.width).max() ?? 0
     }()
 }

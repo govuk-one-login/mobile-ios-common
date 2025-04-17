@@ -8,7 +8,7 @@ public protocol NumberedListViewModel {
 }
 
 extension NumberedListViewModel {
-    private var numberLabels: [UILabel] {
+    var numberLabels: [UILabel] {
         listItemStrings
             .indices
             .map { index in
@@ -17,9 +17,5 @@ extension NumberedListViewModel {
                 number.font = .body
                 return number
             }
-    }
-    
-    var maxNumberWidth: CGFloat {
-        numberLabels.map(\.intrinsicContentSize.width).max() ?? 0
     }
 }
