@@ -8,7 +8,7 @@ public protocol NumberedListViewModel {
 }
 
 extension NumberedListViewModel {
-    var numberLabels: [UILabel] {
+    private var numberLabels: [UILabel] {
         listItemStrings
             .indices
             .map { index in

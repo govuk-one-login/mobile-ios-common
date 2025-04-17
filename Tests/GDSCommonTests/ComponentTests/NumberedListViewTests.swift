@@ -53,7 +53,7 @@ extension NumberedListViewTests {
     
     func test_numberedListViewRowTwoLabel() throws {
         let rowLabel = try sut.listRow(index: 1).arrangedSubviews[1] as? UILabel
-        XCTAssertEqual(rowLabel?.text, "test numbered list element 2")
+        XCTAssertEqual(rowLabel?.attributedText?.string, "test numbered list element 2")
         XCTAssertEqual(rowLabel?.font, .body)
         XCTAssertEqual(rowLabel?.textAlignment, .left)
         XCTAssertEqual(rowLabel?.adjustsFontForContentSizeCategory, true)

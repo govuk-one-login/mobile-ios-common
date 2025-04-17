@@ -3,9 +3,9 @@ import UIKit
 public final class NumberedListView: UIView {
     let viewModel: NumberedListViewModel
     
-    public init(viewModel: NumberedListViewModel) {
+    public init(viewModel: NumberedListViewModel, frame: CGRect = .zero) {
         self.viewModel = viewModel
-        super.init(frame: .zero)
+        super.init(frame: frame)
         setUp()
     }
     
@@ -72,8 +72,12 @@ public final class NumberedListView: UIView {
                         }(),
                         {
                             let content = UILabel()
-                            content.text = string.value
                             content.font = .body
+                            if let attributedString = string.attributedValue {
+                                content.attributedText = attributedString
+                            } else {
+                                content.text = string.value
+                            }
                             content.numberOfLines = 0
                             content.textAlignment = .left
                             content.adjustsFontForContentSizeCategory = true

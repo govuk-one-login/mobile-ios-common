@@ -1,31 +1,22 @@
 import GDSCommon
 import UIKit
 
-struct TestNumberedListViewModel: NumberedListViewModel {
-    var title: GDSLocalisedString
-    var titleFont: UIFont?
-    var listItemStrings: [GDSLocalisedString]
-}
-
 struct MockGDSInstructionsViewModel: GDSInstructionsViewModel, BaseViewModel {
     let title: GDSLocalisedString = "This is the Instructions View"
     let body: String = "We can add a subtitle here to give some extra context"
     let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
     let childView: UIView = NumberedListView(
-        viewModel: TestNumberedListViewModel(
-            title: "Test Numbered List View",
+        viewModel: MockNumberedListViewModel(
+            title: "Test numbered list view",
             titleFont: .body,
             listItemStrings: [
                 "first numbered list element",
-                "second numbered list element",
+                .init(
+                    stringLiteral: "second numbered list element",
+                    attributes: [("numbered list", [.font: UIFont.bodyBold])]
+                ),
                 "third numbered list element",
-                "fourth numbered list element",
-                "fifth numbered list element",
-                "sixth numbered list element",
-                "seventh numbered list element",
-                "eighth numbered list element",
-                "ninth numbered list element",
-                "tenth numbered list element"
+                "fourth numbered list element"
             ]
         )
     )
