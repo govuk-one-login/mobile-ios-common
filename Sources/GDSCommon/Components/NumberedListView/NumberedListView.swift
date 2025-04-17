@@ -52,7 +52,8 @@ public final class NumberedListView: UIView {
     private lazy var listStackView: UIStackView = {
         let result = UIStackView(
             views: listRows,
-            spacing: 8
+            spacing: 8,
+            distribution: .fillProportionally
         )
         result.isLayoutMarginsRelativeArrangement = true
         result.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
