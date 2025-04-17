@@ -99,8 +99,7 @@ public final class NumberedListView: UIView {
     }()
     
     private lazy var maxNumberWidth: CGFloat = {
-        viewModel
-            .listItemStrings
+        viewModel.listItemStrings
             .indices
             .map { index in
                 let number = UILabel()
