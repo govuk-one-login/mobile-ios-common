@@ -4,7 +4,7 @@ import XCTest
 @MainActor
 final class NumberedListViewTests: XCTestCase {
     var viewModel: ListViewModel!
-    var sut: NumberedListView!
+    var sut: ListView!
     
     override func setUp() {
         super.setUp()
@@ -110,7 +110,7 @@ extension NumberedListViewTests {
     }
 }
 
-extension NumberedListView {
+extension ListView {
     var titleLabel: UILabel {
         get throws {
             try XCTUnwrap(self[child: "numbered-list-title"])

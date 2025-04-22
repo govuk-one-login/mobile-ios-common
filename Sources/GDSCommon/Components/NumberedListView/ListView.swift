@@ -1,6 +1,6 @@
 import UIKit
 
-public final class NumberedListView: UIView {
+public final class ListView: UIView {
     let viewModel: ListViewModel
     
     public init(viewModel: ListViewModel, frame: CGRect = .zero) {
