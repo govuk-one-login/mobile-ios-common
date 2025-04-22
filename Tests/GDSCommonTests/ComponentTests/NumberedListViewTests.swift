@@ -32,7 +32,7 @@ extension NumberedListViewTests {
     }
     
     func test_numberedListViewTitleHeader() throws {
-        viewModel = MockNumberedListViewModel(titleFont: (font: .body, isHeader: true))
+        viewModel = MockNumberedListViewModel(titleConfig: (font: .body, isHeader: true))
         sut = .init(viewModel: viewModel)
         XCTAssertEqual(try sut.titleLabel.accessibilityTraits, [.header])
     }

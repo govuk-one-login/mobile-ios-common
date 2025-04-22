@@ -8,7 +8,7 @@ struct MockNumberedListViewModel: NumberedListViewModel {
     
     init(
         title: GDSLocalisedString? = "numbered list test title",
-        titleFont: TitleConfig? = (font: .body, isHeader: false),
+        titleConfig: TitleConfig? = (font: .body, isHeader: false),
         listItemStrings: [GDSLocalisedString] = [
             "test numbered list element 1",
             GDSLocalisedString(
@@ -19,7 +19,7 @@ struct MockNumberedListViewModel: NumberedListViewModel {
         ]
     ) {
         self.title = title
-        self.titleConfig = titleFont
+        self.titleConfig = titleConfig
         self.listItemStrings = listItemStrings
     }
 }
