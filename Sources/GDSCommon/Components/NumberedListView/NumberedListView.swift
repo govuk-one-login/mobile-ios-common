@@ -1,9 +1,9 @@
 import UIKit
 
 public final class NumberedListView: UIView {
-    let viewModel: NumberedListViewModel
+    let viewModel: ListViewModel
     
-    public init(viewModel: NumberedListViewModel, frame: CGRect = .zero) {
+    public init(viewModel: ListViewModel, frame: CGRect = .zero) {
         self.viewModel = viewModel
         super.init(frame: frame)
         setUp()

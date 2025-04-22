@@ -1,7 +1,7 @@
 import GDSCommon
 import UIKit
 
-struct MockNumberedListViewModel: NumberedListViewModel {
+struct MockNumberedListViewModel: ListViewModel {
     var title: GDSLocalisedString?
     var titleConfig: TitleConfig?
     var listItemStrings: [GDSLocalisedString]

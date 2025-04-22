@@ -3,7 +3,7 @@ import XCTest
 
 @MainActor
 final class NumberedListViewTests: XCTestCase {
-    var viewModel: NumberedListViewModel!
+    var viewModel: ListViewModel!
     var sut: NumberedListView!
     
     override func setUp() {
