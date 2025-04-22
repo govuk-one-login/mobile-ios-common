@@ -1,4 +1,12 @@
 // MARK: Generic Strings
+
 "GDSCommonBackButton" = "Back";
+
 "GDSCommonVoiceOverErrorPrefix" = "Error";
+
 "GDSCommonVoiceOverWarningPrefix" = "Warning";
+
+
+// MARK: Numbered List
+
+"NumberedList" = "Numbered list, %@ items.";

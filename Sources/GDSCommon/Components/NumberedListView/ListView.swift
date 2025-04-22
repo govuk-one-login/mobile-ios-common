@@ -99,10 +99,17 @@ public final class ListView: UIView {
                 )
                 listRowStack.isAccessibilityElement = true
                 listRowStack.accessibilityLabel = {
-                    let listLabel = "\(indexIncremented), \(string.value)"
-                    return indexIncremented == 1 ?
-                    "Numbered list, \(viewModel.listItemStrings.count) items. \(listLabel)"
-                    : listLabel
+                    let summaryLabel = GDSLocalisedString(
+                        stringKey: "NumberedList",
+                        String(viewModel.listItemStrings.count),
+                        bundle: .module
+                    )
+                    let number = NSLocalizedString(
+                        key: String(indexIncremented),
+                        bundle: .module
+                    )
+                    let listLabel = "\(number), \(string.value)"
+                    return indexIncremented == 1 ? "\(summaryLabel.value) \(listLabel)" : listLabel
                 }()
                 listRowStack.accessibilityIdentifier = "numbered-list-row-stack-view-\(index)"
                 return listRowStack
