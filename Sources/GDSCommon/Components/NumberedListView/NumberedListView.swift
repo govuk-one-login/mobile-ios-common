@@ -36,11 +36,14 @@ public final class NumberedListView: UIView {
         let result = UILabel()
         if let title = viewModel.title {
             result.text = title.value
-            result.font = viewModel.titleFont
+            result.font = viewModel.titleConfig?.font
             result.adjustsFontForContentSizeCategory = true
             result.textAlignment = .left
             result.numberOfLines = 0
-            result.accessibilityTraits = [.header]
+            if let isHeading = viewModel.titleConfig?.isHeading,
+               isHeading {
+                result.accessibilityTraits = [.header]
+            }
         } else {
             result.isHidden = true
         }
@@ -63,11 +66,12 @@ public final class NumberedListView: UIView {
         viewModel.listItemStrings
             .enumerated()
             .map { index, string in
+                let indexIncremented = index + 1
                 let listRowStack = UIStackView(
                     views: [
                         {
                             let number = UILabel()
-                            number.text = "\(index + 1)."
+                            number.text = "\(indexIncremented)."
                             number.font = .body
                             number.textAlignment = .right
                             number.adjustsFontForContentSizeCategory = true
@@ -93,6 +97,13 @@ public final class NumberedListView: UIView {
                     alignment: .top,
                     distribution: .fillProportionally
                 )
+                listRowStack.isAccessibilityElement = true
+                listRowStack.accessibilityLabel = {
+                    let listLabel = "\(indexIncremented), \(string.value)"
+                    return indexIncremented == 1 ?
+                    "Numbered list, \(viewModel.listItemStrings.count) items. \(listLabel)"
+                    : listLabel
+                }()
                 listRowStack.accessibilityIdentifier = "numbered-list-row-stack-view-\(index)"
                 return listRowStack
             }

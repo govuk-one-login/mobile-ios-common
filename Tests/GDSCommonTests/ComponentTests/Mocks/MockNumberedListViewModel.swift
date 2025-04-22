@@ -3,12 +3,12 @@ import UIKit
 
 struct MockNumberedListViewModel: NumberedListViewModel {
     var title: GDSLocalisedString?
-    var titleFont: UIFont?
+    var titleConfig: TitleConfig?
     var listItemStrings: [GDSLocalisedString]
     
     init(
         title: GDSLocalisedString? = "numbered list test title",
-        titleFont: UIFont? = .body,
+        titleFont: TitleConfig? = (font: .body, isHeading: false),
         listItemStrings: [GDSLocalisedString] = [
             "test numbered list element 1",
             GDSLocalisedString(
@@ -19,7 +19,7 @@ struct MockNumberedListViewModel: NumberedListViewModel {
         ]
     ) {
         self.title = title
-        self.titleFont = titleFont
+        self.titleConfig = titleFont
         self.listItemStrings = listItemStrings
     }
 }
