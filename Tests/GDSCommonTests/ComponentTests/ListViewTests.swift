@@ -2,7 +2,7 @@ import GDSCommon
 import XCTest
 
 @MainActor
-final class NumberedListViewTests: XCTestCase {
+final class ListViewTests: XCTestCase {
     var viewModel: ListViewModel!
     var sut: ListView!
     
@@ -21,7 +21,7 @@ final class NumberedListViewTests: XCTestCase {
     }
 }
 
-extension NumberedListViewTests {
+extension ListViewTests {
     func test_numberedListViewTitleSet() throws {
         XCTAssertEqual(try sut.titleLabel.text, "numbered list test title")
         XCTAssertEqual(try sut.titleLabel.font, .body)
@@ -44,12 +44,12 @@ extension NumberedListViewTests {
     }
     
     func test_numberedListViewRowOneAccessibilityLabel() throws {
-        let firstRow = try sut.listRow(index: 0)
+        let firstRow = try sut.listRow(index: 1)
         XCTAssertEqual(firstRow.accessibilityLabel, "Numbered list, 3 items. 1, test numbered list element 1")
     }
     
     func test_numberedListViewRowOneNumber() throws {
-        let rowNumber = try sut.listRow(index: 0).arrangedSubviews[0] as? UILabel
+        let rowNumber = try sut.listRow(index: 1).arrangedSubviews[0] as? UILabel
         XCTAssertEqual(rowNumber?.text, "1.")
         XCTAssertEqual(rowNumber?.font, .body)
         XCTAssertEqual(rowNumber?.textAlignment, .right)
@@ -57,7 +57,7 @@ extension NumberedListViewTests {
     }
     
     func test_numberedListViewRowOneLabel() throws {
-        let rowLabel = try sut.listRow(index: 0).arrangedSubviews[1] as? UILabel
+        let rowLabel = try sut.listRow(index: 1).arrangedSubviews[1] as? UILabel
         XCTAssertEqual(rowLabel?.text, "test numbered list element 1")
         XCTAssertEqual(rowLabel?.font, .body)
         XCTAssertEqual(rowLabel?.textAlignment, .left)
@@ -66,12 +66,12 @@ extension NumberedListViewTests {
     }
     
     func test_numberedListViewRowTwoAccessibilityLabel() throws {
-        let firstRow = try sut.listRow(index: 1)
+        let firstRow = try sut.listRow(index: 2)
         XCTAssertEqual(firstRow.accessibilityLabel, "2, test numbered list element 2")
     }
     
     func test_numberedListViewRowTwoNumber() throws {
-        let rowNumber = try sut.listRow(index: 1).arrangedSubviews[0] as? UILabel
+        let rowNumber = try sut.listRow(index: 2).arrangedSubviews[0] as? UILabel
         XCTAssertEqual(rowNumber?.text, "2.")
         XCTAssertEqual(rowNumber?.font, .body)
         XCTAssertEqual(rowNumber?.textAlignment, .right)
@@ -79,7 +79,7 @@ extension NumberedListViewTests {
     }
     
     func test_numberedListViewRowTwoLabel() throws {
-        let rowLabel = try sut.listRow(index: 1).arrangedSubviews[1] as? UILabel
+        let rowLabel = try sut.listRow(index: 2).arrangedSubviews[1] as? UILabel
         XCTAssertEqual(rowLabel?.attributedText?.string, "test numbered list element 2")
         XCTAssertEqual(rowLabel?.font, .body)
         XCTAssertEqual(rowLabel?.textAlignment, .left)
@@ -88,12 +88,12 @@ extension NumberedListViewTests {
     }
     
     func test_numberedListViewRowThreeAccessibilityLabel() throws {
-        let firstRow = try sut.listRow(index: 2)
+        let firstRow = try sut.listRow(index: 3)
         XCTAssertEqual(firstRow.accessibilityLabel, "3, test numbered list element 3")
     }
     
     func test_numberedListViewRowThreeNumber() throws {
-        let rowNumber = try sut.listRow(index: 2).arrangedSubviews[0] as? UILabel
+        let rowNumber = try sut.listRow(index: 3).arrangedSubviews[0] as? UILabel
         XCTAssertEqual(rowNumber?.text, "3.")
         XCTAssertEqual(rowNumber?.font, .body)
         XCTAssertEqual(rowNumber?.textAlignment, .right)
@@ -101,7 +101,7 @@ extension NumberedListViewTests {
     }
     
     func test_numberedListViewRowThreeLabel() throws {
-        let rowLabel = try sut.listRow(index: 2).arrangedSubviews[1] as? UILabel
+        let rowLabel = try sut.listRow(index: 3).arrangedSubviews[1] as? UILabel
         XCTAssertEqual(rowLabel?.text, "test numbered list element 3")
         XCTAssertEqual(rowLabel?.font, .body)
         XCTAssertEqual(rowLabel?.textAlignment, .left)

@@ -111,7 +111,7 @@ public final class ListView: UIView {
                     let listLabel = "\(number), \(string.value)"
                     return indexIncremented == 1 ? "\(summaryLabel.value) \(listLabel)" : listLabel
                 }()
-                listRowStack.accessibilityIdentifier = "numbered-list-row-stack-view-\(index)"
+                listRowStack.accessibilityIdentifier = "numbered-list-row-stack-view-\(indexIncremented)"
                 return listRowStack
             }
     }()
