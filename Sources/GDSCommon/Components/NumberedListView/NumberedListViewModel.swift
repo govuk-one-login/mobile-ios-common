@@ -1,6 +1,6 @@
 import UIKit
 
-public typealias TitleConfig = (font: UIFont, isHeading: Bool)
+public typealias TitleConfig = (font: UIFont, isHeader: Bool)
 
 @MainActor
 public protocol NumberedListViewModel {

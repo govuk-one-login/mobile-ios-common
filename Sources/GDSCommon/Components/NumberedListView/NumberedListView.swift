@@ -40,8 +40,8 @@ public final class NumberedListView: UIView {
             result.adjustsFontForContentSizeCategory = true
             result.textAlignment = .left
             result.numberOfLines = 0
-            if let isHeading = viewModel.titleConfig?.isHeading,
-               isHeading {
+            if let isHeader = viewModel.titleConfig?.isHeader,
+               isHeader {
                 result.accessibilityTraits = [.header]
             }
         } else {
