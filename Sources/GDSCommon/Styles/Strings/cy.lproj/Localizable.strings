@@ -1,4 +1,30 @@
 // MARK: Generic Strings
+
 "GDSCommonBackButton" = "Yn ôl";
+
 "GDSCommonVoiceOverErrorPrefix" = "Gwall";
+
 "GDSCommonVoiceOverWarningPrefix" = "Rhybudd";
+
+
+// MARK: Numbered List
+
+"NumberedList" = "Rhestr wedi'i rhifo, %@ o eitemau.";
+
+"1" = "un";
+
+"2" = "dau";
+
+"3" = "tri";
+
+"4" = "pedwar";
+
+"5" = "pump";
+
+"6" = "chwech";
+
+"7" = "saith";
+
+"8" = "wyth";
+
+"9" = "naw";
