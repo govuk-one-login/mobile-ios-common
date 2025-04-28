@@ -39,3 +39,16 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
         return stackView
     }
 }
+
+
+struct MockGDSCentreAlignedViewModelNoButtons: GDSCentreAlignedViewModel,
+                                      BaseViewModel {
+    let title: GDSLocalisedString = "This is a centre aligned screen title"
+    let body: GDSLocalisedString? = "This is an optional centre aligned screen body. This screen has no buttons"
+    let rightBarButtonTitle: GDSLocalisedString? = "Dismiss"
+    let backButtonIsHidden: Bool = false
+    
+    func didAppear() {}
+    
+    func didDismiss() {}
+}

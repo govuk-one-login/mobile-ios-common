@@ -49,11 +49,14 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
     private lazy var containerStackView: UIStackView = {
         let result = UIStackView(
             views: [
-                scrollView,
-                bottomStackView
+                scrollView
             ],
             distribution: .fill
         )
+        
+        if !bottomStackView.subviews.isEmpty {
+            result.addArrangedSubview(bottomStackView)
+        }
         result.accessibilityIdentifier = "centre-aligned-screen-container-stack-view"
         return result
     }()
@@ -143,13 +146,22 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
     
     private lazy var bottomStackView: UIStackView = {
         let result = UIStackView(
-            views: [
-                footnoteLabel,
-                primaryButton,
-                secondaryButton
-            ],
+            views: [],
             spacing: defaultSpacing
         )
+        
+        if viewModel is GDSCentreAlignedViewModelWithFootnote {
+            result.addArrangedSubview(footnoteLabel)
+        }
+        
+        if viewModel is GDSCentreAlignedViewModelWithPrimaryButton {
+            result.addArrangedSubview(primaryButton)
+        }
+        
+        if viewModel is GDSCentreAlignedViewModelWithSecondaryButton {
+            result.addArrangedSubview(secondaryButton)
+        }
+
         result.accessibilityIdentifier = "centre-aligned-screen-bottom-stack-view"
         return result
     }()
