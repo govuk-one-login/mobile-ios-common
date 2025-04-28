@@ -50,7 +50,7 @@ struct MockButtonViewModelWithVoiceOverHint: ButtonViewModel {
 extension MockButtonViewModel {
     static var primary: MockButtonViewModel {
         MockButtonViewModel(title: "Action button",
-                            icon: MockButtonIconViewModel(iconName: "arrow.up.right", symbolPosition: .afterTitle),
+                            icon: MockButtonIconViewModel(iconName: "qrcode", symbolPosition: .afterTitle),
                             shouldLoadOnTap: false,
                             action: {})
     }

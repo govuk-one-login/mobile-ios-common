@@ -69,11 +69,26 @@ public final class RoundedButton: SecondaryButton {
     public override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if let nextItem = context.nextFocusedItem, nextItem.isEqual(self) {
             backgroundColor = .gdsYellow
-            setTitleColor(.black, for: .normal)
+            redrawTitle(with: .black)
         } else {
             backgroundColor = .gdsGreen
-            setTitleColor(.white, for: .normal)
+            redrawTitle(with: .white)
         }
+    }
+    
+    private func redrawTitle(with colour: UIColor) {
+        guard let icon = icon else {
+            setTitleColor(colour, for: .normal)
+            return
+        }
+        
+        let configuration = UIImage.SymbolConfiguration(font: .init(style: .body, weight: fontWeight))
+        let title = self.title(for: .normal) ?? ""
+        let textString = NSAttributedString(string: title,
+                                            attributes: [.font: UIFont(style: .body, weight: fontWeight)])
+            .addingSymbol(named: icon, configuration: configuration, tintColor: colour, symbolPosition: symbolPosition)
+        setTitleColor(colour, for: .normal)
+        setAttributedTitle(textString, for: .normal)
     }
     
     public override func accessibilityElementDidBecomeFocused() {
