@@ -234,7 +234,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             }
         }
         
-        result.titleLabel?.textColor = .gdsGreen
+        result.setTitleColor(.accent, for: .normal)
         result.isUserInteractionEnabled = true
         return result
     }()

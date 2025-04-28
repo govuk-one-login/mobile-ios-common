@@ -198,7 +198,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         result.accessibilityIdentifier = "error-screen-button-\(index)"
         
         if !isPrimaryButton {
-            result.titleLabel?.textColor = .accent
+            result.setTitleColor(.accent, for: .normal)
         }
         
         result.addAction {
