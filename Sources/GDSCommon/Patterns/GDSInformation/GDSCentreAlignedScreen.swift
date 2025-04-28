@@ -150,15 +150,21 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             spacing: defaultSpacing
         )
         
-        if viewModel is GDSCentreAlignedViewModelWithFootnote {
+        if viewModel is GDSCentreAlignedViewModelWithFootnote ||
+            viewModel is GDSInformationViewModelWithFootnote ||
+            viewModel is GDSInformationViewModel {
             result.addArrangedSubview(footnoteLabel)
         }
         
-        if viewModel is GDSCentreAlignedViewModelWithPrimaryButton {
+        if viewModel is GDSCentreAlignedViewModelWithPrimaryButton ||
+            viewModel is GDSInformationViewModelWithOptionalPrimaryButton ||
+            viewModel is GDSInformationViewModel {
             result.addArrangedSubview(primaryButton)
         }
         
-        if viewModel is GDSCentreAlignedViewModelWithSecondaryButton {
+        if viewModel is GDSCentreAlignedViewModelWithSecondaryButton ||
+            viewModel is GDSInformationViewModelWithSecondaryButton ||
+            viewModel is GDSInformationViewModel {
             result.addArrangedSubview(secondaryButton)
         }
 
