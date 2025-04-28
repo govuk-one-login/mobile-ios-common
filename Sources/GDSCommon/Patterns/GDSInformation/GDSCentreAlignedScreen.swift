@@ -203,6 +203,8 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
     
     private lazy var secondaryButton: SecondaryButton = {
         let result = SecondaryButton()
+        result.titleLabel?.textColor = .gdsGreen
+        result.isUserInteractionEnabled = true
         
         if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton,
            let button = buttonViewModel.secondaryButtonViewModel {
@@ -214,7 +216,6 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
                 result.icon = icon.iconName
             }
         } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithSecondaryButton {
-            result.titleLabel?.textColor = .gdsGreen
             result.setTitle(buttonViewModel.secondaryButtonViewModel.title.value, for: .normal)
             result.titleLabel?.textAlignment = .center
             result.accessibilityHint = buttonViewModel.secondaryButtonViewModel.accessibilityHint?.value
@@ -235,7 +236,6 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             }
         }
         
-        result.isUserInteractionEnabled = true
         return result
     }()
     
