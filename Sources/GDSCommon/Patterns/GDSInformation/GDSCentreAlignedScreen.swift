@@ -335,32 +335,30 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
     }
     
     private func moveFootnoteToScrollView() {
-        if let footnoteLabel {
-            if footnoteLabel.superview == bottomStackView {
-                // remove footnote from bottom stack
-                bottomStackView.removeArrangedSubview(footnoteLabel)
-                footnoteLabel.removeFromSuperview()
-                isFootnoteInScrollView = true
-                
-                // add to scroll view
-                scrollViewInnerStackView.addArrangedSubview(footnoteLabel)
-                footnoteLabel.translatesAutoresizingMaskIntoConstraints = false
-            }
+        if let footnoteLabel,
+           footnoteLabel.superview == bottomStackView {
+            // remove footnote from bottom stack
+            bottomStackView.removeArrangedSubview(footnoteLabel)
+            footnoteLabel.removeFromSuperview()
+            isFootnoteInScrollView = true
+            
+            // add to scroll view
+            scrollViewInnerStackView.addArrangedSubview(footnoteLabel)
+            footnoteLabel.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
     private func moveFootnoteToBottomStackView() {
-        if let footnoteLabel {
-            if  footnoteLabel.superview != bottomStackView {
-                // remove from scroll view
-                scrollViewInnerStackView.removeArrangedSubview(footnoteLabel)
-                footnoteLabel.removeFromSuperview()
-                isFootnoteInScrollView = false
-                
-                // add to stack
-                bottomStackView.insertArrangedSubview(footnoteLabel, at: 0)
-                view.layoutIfNeeded()
-            }
+        if let footnoteLabel,
+           footnoteLabel.superview != bottomStackView {
+            // remove from scroll view
+            scrollViewInnerStackView.removeArrangedSubview(footnoteLabel)
+            footnoteLabel.removeFromSuperview()
+            isFootnoteInScrollView = false
+            
+            // add to stack
+            bottomStackView.insertArrangedSubview(footnoteLabel, at: 0)
+            view.layoutIfNeeded()
         }
     }
 }
