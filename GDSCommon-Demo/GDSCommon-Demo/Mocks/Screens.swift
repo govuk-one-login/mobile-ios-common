@@ -41,6 +41,7 @@ enum Screens: String, CaseIterable {
     case gdsInformationView = "Information View - Deprecated"
     case gdsInformationViewV2 = "Information View V2 - Deprecated"
     case gdsCentreAlignedScreen = "Centre Aligned Screen"
+    case gdsCentreAlignedScreenNoButtons = "Centre Aligned Screen (no buttons)"
     case gdsLoadingView = "GDS Loading View"
     
     var isModal: Bool {
@@ -154,6 +155,8 @@ enum Screens: String, CaseIterable {
             return GDSInformationViewController(viewModel: MockGDSInformationViewModelV2())
         case .gdsCentreAlignedScreen:
             return GDSCentreAlignedScreen(viewModel: MockGDSCentreAlignedViewModel())
+        case .gdsCentreAlignedScreenNoButtons:
+            return GDSCentreAlignedScreen(viewModel: MockGDSCentreAlignedViewModelNoButtons())
         case .gdsLoadingView:
             return GDSLoadingViewController()
         
