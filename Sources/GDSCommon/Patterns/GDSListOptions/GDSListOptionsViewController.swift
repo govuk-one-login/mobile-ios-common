@@ -155,6 +155,11 @@ extension GDSListOptionsViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         cell.textLabel?.textColor = .label
         cell.textLabel?.numberOfLines = 0
+        if let viewModel = viewModel as? GDSListOptionsViewModelV2 {
+            cell.accessibilityLabel = viewModel.accessibilityLabel[indexPath.row]
+            cell.accessibilityHint = viewModel.accessibilityHint[indexPath.row]
+            cell.accessibilityTraits = viewModel.accessibilityTraits
+        }
         return cell
     }
 }
