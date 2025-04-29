@@ -150,21 +150,15 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             spacing: defaultSpacing
         )
         
-        if viewModel is GDSCentreAlignedViewModelWithFootnote ||
-            viewModel is GDSInformationViewModelWithFootnote ||
-            viewModel is GDSInformationViewModel {
+        if let footnoteLabel {
             result.addArrangedSubview(footnoteLabel)
         }
         
-        if viewModel is GDSCentreAlignedViewModelWithPrimaryButton ||
-            viewModel is GDSInformationViewModelWithOptionalPrimaryButton ||
-            viewModel is GDSInformationViewModel {
+        if let primaryButton {
             result.addArrangedSubview(primaryButton)
         }
         
-        if viewModel is GDSCentreAlignedViewModelWithSecondaryButton ||
-            viewModel is GDSInformationViewModelWithSecondaryButton ||
-            viewModel is GDSInformationViewModel {
+        if let secondaryButton {
             result.addArrangedSubview(secondaryButton)
         }
 
@@ -172,54 +166,72 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         return result
     }()
     
-    private lazy var footnoteLabel: UILabel = {
-        let result = UILabel()
-        result.numberOfLines = 0
-        result.textAlignment = .center
-        
-        if let viewModel = viewModel as? GDSInformationViewModelWithOptionalFootnote {
-            result.font = UIFont(style: .footnote)
-            result.text = viewModel.footnote?.value
-        } else if let viewModel = viewModel as? GDSCentreAlignedViewModelWithFootnote {
-            result.font = UIFont(style: .footnote)
-            result.text = viewModel.footnote.value
-        } else {
-            result.isHidden = true
+    private lazy var footnoteLabel: UILabel? = {
+        guard viewModel is GDSCentreAlignedViewModelWithFootnote ||
+            viewModel is GDSInformationViewModelWithFootnote ||
+                viewModel is GDSInformationViewModel else {
+            return nil
         }
-        result.accessibilityIdentifier = "centre-aligned-screen-footnote"
-        result.adjustsFontForContentSizeCategory = true
-        result.textColor = .gdsDarkGrey
-        return result
+            
+            let result = UILabel()
+            result.numberOfLines = 0
+            result.textAlignment = .center
+            
+            if let viewModel = viewModel as? GDSInformationViewModelWithOptionalFootnote {
+                result.font = UIFont(style: .footnote)
+                result.text = viewModel.footnote?.value
+            } else if let viewModel = viewModel as? GDSCentreAlignedViewModelWithFootnote {
+                result.font = UIFont(style: .footnote)
+                result.text = viewModel.footnote.value
+            } else {
+                result.isHidden = true
+            }
+            result.accessibilityIdentifier = "centre-aligned-screen-footnote"
+            result.adjustsFontForContentSizeCategory = true
+            result.textColor = .gdsDarkGrey
+            return result
     }()
     
     // TODO: DCMAW-12110 - Revisit how we handle buttons to support a tertiary button, or array of buttons in ViewModel
     
-    private lazy var primaryButton: RoundedButton = {
-        let result = RoundedButton()
-        
-        if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton,
-           let button = buttonViewModel.primaryButtonViewModel {
-            result.setTitle(button.title.value, for: .normal)
-        } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
-            result.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
-            result.accessibilityHint = buttonViewModel.primaryButtonViewModel.accessibilityHint?.value
-            if let icon = buttonViewModel.primaryButtonViewModel.icon {
-                result.symbolPosition = icon.symbolPosition
-                result.icon = icon.iconName
-            }
-        } else {
-            result.isHidden = true
+    private lazy var primaryButton: RoundedButton? = {
+        guard viewModel is GDSCentreAlignedViewModelWithPrimaryButton ||
+            viewModel is GDSInformationViewModelWithOptionalPrimaryButton ||
+                viewModel is GDSInformationViewModel else {
+            return nil
         }
-        result.accessibilityIdentifier = "centre-aligned-screen-primary-button"
-        result.addAction { [unowned self] in
-            if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
-                buttonViewModel.primaryButtonViewModel.action()
+            
+            let result = RoundedButton()
+            
+            if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalPrimaryButton,
+               let button = buttonViewModel.primaryButtonViewModel {
+                result.setTitle(button.title.value, for: .normal)
+            } else if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
+                result.setTitle(buttonViewModel.primaryButtonViewModel.title.value, for: .normal)
+                result.accessibilityHint = buttonViewModel.primaryButtonViewModel.accessibilityHint?.value
+                if let icon = buttonViewModel.primaryButtonViewModel.icon {
+                    result.symbolPosition = icon.symbolPosition
+                    result.icon = icon.iconName
+                }
+            } else {
+                result.isHidden = true
             }
-        }
-        return result
+            result.accessibilityIdentifier = "centre-aligned-screen-primary-button"
+            result.addAction { [unowned self] in
+                if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
+                    buttonViewModel.primaryButtonViewModel.action()
+                }
+            }
+            return result
     }()
     
-    private lazy var secondaryButton: SecondaryButton = {
+    private lazy var secondaryButton: SecondaryButton? = {
+        guard viewModel is GDSCentreAlignedViewModelWithSecondaryButton ||
+            viewModel is GDSInformationViewModelWithSecondaryButton ||
+            viewModel is GDSInformationViewModel
+        else {
+            return nil
+        }
         let result = SecondaryButton()
         
         if let buttonViewModel = viewModel as? GDSInformationViewModelWithOptionalSecondaryButton,
@@ -308,7 +320,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
     }
     
     private func checkBottomStackHeight() {
-        let footnoteHeight = footnoteLabel.frame.height
+        let footnoteHeight = footnoteLabel?.frame.height
         let bottomStackHeight = bottomStackView.frame.height
         let screenHeight = UIScreen.main.bounds.height
         
@@ -316,35 +328,39 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         if bottomStackHeight >= screenHeight / 3,
            !(isFootnoteInScrollView) {
             moveFootnoteToScrollView()
-        } else if (bottomStackHeight + footnoteHeight) < screenHeight / 3,
+        } else if (bottomStackHeight + (footnoteHeight ?? 0)) < screenHeight / 3,
                   isFootnoteInScrollView {
             moveFootnoteToBottomStackView()
         }
     }
     
     private func moveFootnoteToScrollView() {
-        if footnoteLabel.superview == bottomStackView {
-            // remove footnote from bottom stack
-            bottomStackView.removeArrangedSubview(footnoteLabel)
-            footnoteLabel.removeFromSuperview()
-            isFootnoteInScrollView = true
-            
-            // add to scroll view
-            scrollViewInnerStackView.addArrangedSubview(footnoteLabel)
-            footnoteLabel.translatesAutoresizingMaskIntoConstraints = false
+        if let footnoteLabel {
+            if footnoteLabel.superview == bottomStackView {
+                // remove footnote from bottom stack
+                bottomStackView.removeArrangedSubview(footnoteLabel)
+                footnoteLabel.removeFromSuperview()
+                isFootnoteInScrollView = true
+                
+                // add to scroll view
+                scrollViewInnerStackView.addArrangedSubview(footnoteLabel)
+                footnoteLabel.translatesAutoresizingMaskIntoConstraints = false
+            }
         }
     }
     
     private func moveFootnoteToBottomStackView() {
-        if  footnoteLabel.superview != bottomStackView {
-            // remove from scroll view
-            scrollViewInnerStackView.removeArrangedSubview(footnoteLabel)
-            footnoteLabel.removeFromSuperview()
-            isFootnoteInScrollView = false
-            
-            // add to stack
-            bottomStackView.insertArrangedSubview(footnoteLabel, at: 0)
-            view.layoutIfNeeded()
+        if let footnoteLabel {
+            if  footnoteLabel.superview != bottomStackView {
+                // remove from scroll view
+                scrollViewInnerStackView.removeArrangedSubview(footnoteLabel)
+                footnoteLabel.removeFromSuperview()
+                isFootnoteInScrollView = false
+                
+                // add to stack
+                bottomStackView.insertArrangedSubview(footnoteLabel, at: 0)
+                view.layoutIfNeeded()
+            }
         }
     }
 }
