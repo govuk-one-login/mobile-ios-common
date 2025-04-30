@@ -275,7 +275,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             insetBy: UIEdgeInsets(
                 top: 0,
                 left: defaultSpacing,
-                bottom: 8,
+                bottom: 16,
                 right: defaultSpacing
             )
         )
