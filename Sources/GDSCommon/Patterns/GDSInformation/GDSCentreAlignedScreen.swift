@@ -149,7 +149,6 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             views: [],
             spacing: defaultSpacing
         )
-        result.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 8).isActive = true
         
         if let footnoteLabel {
             result.addArrangedSubview(footnoteLabel)
@@ -276,7 +275,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             insetBy: UIEdgeInsets(
                 top: 0,
                 left: defaultSpacing,
-                bottom: 0,
+                bottom: 8,
                 right: defaultSpacing
             )
         )
