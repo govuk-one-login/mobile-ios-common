@@ -51,6 +51,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             views: [
                 scrollView
             ],
+            spacing: 0,
             distribution: .fill
         )
         
@@ -149,6 +150,9 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             views: [],
             spacing: defaultSpacing
         )
+        result.layoutMargins.top = 8
+        result.layoutMargins.bottom = 16
+        result.isLayoutMarginsRelativeArrangement = true
         
         if let footnoteLabel {
             result.addArrangedSubview(footnoteLabel)
@@ -161,7 +165,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         if let secondaryButton {
             result.addArrangedSubview(secondaryButton)
         }
-
+        
         result.accessibilityIdentifier = "centre-aligned-screen-bottom-stack-view"
         return result
     }()
@@ -275,7 +279,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             insetBy: UIEdgeInsets(
                 top: 0,
                 left: defaultSpacing,
-                bottom: 16,
+                bottom: 0,
                 right: defaultSpacing
             )
         )
