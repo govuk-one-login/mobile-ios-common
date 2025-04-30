@@ -151,7 +151,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             spacing: defaultSpacing
         )
         result.isLayoutMarginsRelativeArrangement = true
-        result.layoutMargins.top = 8
+        result.layoutMargins.top = 16
         result.layoutMargins.bottom = 16
         
         if let footnoteLabel {
@@ -330,7 +330,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         
         // if bottom stack covers more than 1/3 of screen
         if bottomStackHeight >= screenHeight / 3,
-           !(isFootnoteInScrollView) {
+           !isFootnoteInScrollView {
             moveFootnoteToScrollView()
         } else if (bottomStackHeight + (footnoteHeight ?? 0)) < screenHeight / 3,
                   isFootnoteInScrollView {

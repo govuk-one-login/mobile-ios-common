@@ -12,6 +12,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
                 scrollView,
                 bottomStackView
             ],
+            spacing: 0,
             distribution: .fill
         )
         result.accessibilityIdentifier = "error-screen-container-stack-view"
@@ -138,7 +139,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
             distribution: hasButtons ? .fillProportionally : .equalCentering
         )
         result.isLayoutMarginsRelativeArrangement = true
-        result.layoutMargins = UIEdgeInsets(top: 0, left: defaultSpacing, bottom: 0, right: defaultSpacing)
+        result.layoutMargins = UIEdgeInsets(top: 16, left: defaultSpacing, bottom: 16, right: defaultSpacing)
         result.accessibilityIdentifier = "error-screen-bottom-stack-view"
         return result
     }()
@@ -221,13 +222,6 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
     }
     
     private lazy var bodyContentViews: [UIView] = {
-        var result: [UIView] = []
-        result.append(
-            contentsOf:
-                viewModel.bodyContent.compactMap { screenBodyItem in
-                    screenBodyItem.uiView
-                }
-        )
-        return result
+        viewModel.bodyContent.map(\.uiView)
     }()
 }
