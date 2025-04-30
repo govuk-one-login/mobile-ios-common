@@ -51,6 +51,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             views: [
                 scrollView
             ],
+            spacing: 0,
             distribution: .fill
         )
         
@@ -149,6 +150,9 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             views: [],
             spacing: defaultSpacing
         )
+        result.isLayoutMarginsRelativeArrangement = true
+        result.layoutMargins.top = 16
+        result.layoutMargins.bottom = 16
         
         if let footnoteLabel {
             result.addArrangedSubview(footnoteLabel)
@@ -161,7 +165,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         if let secondaryButton {
             result.addArrangedSubview(secondaryButton)
         }
-
+        
         result.accessibilityIdentifier = "centre-aligned-screen-bottom-stack-view"
         return result
     }()
@@ -326,7 +330,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         
         // if bottom stack covers more than 1/3 of screen
         if bottomStackHeight >= screenHeight / 3,
-           !(isFootnoteInScrollView) {
+           !isFootnoteInScrollView {
             moveFootnoteToScrollView()
         } else if (bottomStackHeight + (footnoteHeight ?? 0)) < screenHeight / 3,
                   isFootnoteInScrollView {
