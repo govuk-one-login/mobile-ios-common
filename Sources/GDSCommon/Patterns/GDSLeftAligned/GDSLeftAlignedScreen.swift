@@ -44,7 +44,7 @@ public class GDSLeftAlignedScreen: BaseViewController {
         let result = UIStackView(
             views: [
                 scrollViewTitleStackView,
-                bodyContentStackView,
+                bodyContentStackView
             ],
             spacing: defaultSpacing,
             alignment: .top,
@@ -90,7 +90,7 @@ public class GDSLeftAlignedScreen: BaseViewController {
         let result = UIStackView(
             views: bodyContentViews,
             spacing: defaultSpacing,
-            alignment: .top,
+            alignment: .fill,
             distribution: .equalSpacing
         )
         result.accessibilityIdentifier = "left-aligned-screen-body-content-stack-view"

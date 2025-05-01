@@ -1,17 +1,17 @@
 import GDSCommon
 
 struct MockLeftAlignedViewModelNoButtons: GDSLeftAlignedViewModel, BaseViewModel {
-    var title: GDSLocalisedString = "Title"
-    var bodyContent: [ScreenBodyItem] = [
-        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content")),
-        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content")),
-        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content")),
-        MockButtonViewModel(title: "Button", icon: nil, shouldLoadOnTap: false, action: {})
+    let title: GDSLocalisedString = "Left aligned screen title"
+    let bodyContent: [ScreenBodyItem] = [
+        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "This screen has no buttons at the bottom"), overridingAlignment: .left),
+        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content"), overridingAlignment: .left),
+        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content"), overridingAlignment: .left),
+        MockButtonViewModel(title: "Button", icon: nil, shouldLoadOnTap: false, action: {}, overrideContentAlignment: .leading)
     ]
-    var buttonViewModels: [ButtonViewModel] = []
+    let buttonViewModels: [ButtonViewModel] = []
     
-    var rightBarButtonTitle: GDSCommon.GDSLocalisedString? = nil
-    var backButtonIsHidden: Bool = false
+    let rightBarButtonTitle: GDSCommon.GDSLocalisedString? = nil
+    let backButtonIsHidden: Bool = false
     
     func didAppear() {
         //
@@ -23,21 +23,21 @@ struct MockLeftAlignedViewModelNoButtons: GDSLeftAlignedViewModel, BaseViewModel
 }
 
 struct MockLeftAlignedViewModel: GDSLeftAlignedViewModel, BaseViewModel {
-    var title: GDSLocalisedString = "Title"
-    var bodyContent: [ScreenBodyItem] = [
-        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content")),
-        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content")),
-        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content")),
-        MockButtonViewModel(title: "Button", icon: nil, shouldLoadOnTap: false, action: {})
+    let title: GDSLocalisedString = "Left aligned screen title"
+    let bodyContent: [ScreenBodyItem] = [
+        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "This screen has 3 buttons at the bottom"), overridingAlignment: .left),
+        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content"), overridingAlignment: .left),
+        BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content"), overridingAlignment: .left),
+        MockButtonViewModel(title: "Button", icon: nil, shouldLoadOnTap: false, action: {}, overrideContentAlignment: .leading)
     ]
-    var buttonViewModels: [ButtonViewModel] = [
-        MockButtonViewModel(title: "Button", icon: nil, shouldLoadOnTap: false, action: {}),
-        MockButtonViewModel(title: "Button", icon: nil, shouldLoadOnTap: false, action: {}),
-        MockButtonViewModel(title: "Button", icon: nil, shouldLoadOnTap: false, action: {})
+    let buttonViewModels: [ButtonViewModel] = [
+        MockButtonViewModel(title: "Button 1", icon: nil, shouldLoadOnTap: false, action: {}),
+        MockButtonViewModel(title: "Button 2", icon: nil, shouldLoadOnTap: false, action: {}),
+        MockButtonViewModel(title: "Button 3", icon: nil, shouldLoadOnTap: false, action: {})
     ]
     
-    var rightBarButtonTitle: GDSCommon.GDSLocalisedString? = nil
-    var backButtonIsHidden: Bool = false
+    let rightBarButtonTitle: GDSCommon.GDSLocalisedString? = nil
+    let backButtonIsHidden: Bool = false
     
     func didAppear() {
         //

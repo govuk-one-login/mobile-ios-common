@@ -26,7 +26,7 @@ extension BodyTextViewModel {
         result.text = self.text.value
         result.adjustsFontForContentSizeCategory = true
         result.lineBreakMode = .byWordWrapping
-        result.textAlignment = .center
+        result.textAlignment = overridingAlignment ?? .center
         result.numberOfLines = 0
         return result
     }
