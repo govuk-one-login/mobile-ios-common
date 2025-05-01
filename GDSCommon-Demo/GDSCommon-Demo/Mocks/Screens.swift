@@ -13,6 +13,8 @@ import UIKit
 ///             the view as a `UIViewController` to push/present on the navigation stack.
 @MainActor
 enum Screens: String, CaseIterable {
+    case gdsLeftAlignedNoButtons = "Design System Left Aligned Screen (with no buttons)"
+    case gdsLeftAligned = "Design System Left Aligned Screen"
     case gdsErrorScreenNoButtons = "Design System Error Screen (with no buttons)"
     case gdsErrorScreen = "Design System Error Screen (with 2 buttons)"
     case gdsErrorScreen3Buttons = "Design System Error Screen (with 3 buttons)"
@@ -69,6 +71,10 @@ enum Screens: String, CaseIterable {
     // swiftlint:disable function_body_length
     func create(in navigationController: UINavigationController) -> UIViewController {
         switch self {
+        case .gdsLeftAlignedNoButtons:
+            return GDSLeftAlignedScreen(viewModel: MockLeftAlignedViewModelNoButtons())
+        case .gdsLeftAligned:
+            return GDSLeftAlignedScreen(viewModel: MockLeftAlignedViewModel())
         case .gdsInstructions:
             return GDSInstructionsViewController(popToRoot: popToRoot, navController: navigationController)
         case .gdsInstructionsWithColouredButton:

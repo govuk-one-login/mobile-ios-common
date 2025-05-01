@@ -19,6 +19,7 @@ extension ButtonViewModel {
         let result = SecondaryButton()
         result.contentHorizontalAlignment = self.overrideContentAlignment
         result.setTitle(self.title, for: .normal)
+        result.setTitleColor(.accent, for: .normal)
         result.titleLabel?.textColor = .accent
         result.symbolPosition = self.icon?.symbolPosition ?? .afterTitle
         result.icon = self.icon?.iconName
