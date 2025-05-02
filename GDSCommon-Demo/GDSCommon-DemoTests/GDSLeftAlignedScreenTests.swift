@@ -187,7 +187,7 @@ extension GDSLeftAlignedScreenTests {
         XCTAssertTrue(viewDidDismiss)
     }
     
-    func test_errorScreenWithNoButtons() throws {
+    func test_leftAligedScreenWithNoButtons() throws {
         // GIVEN we setup the SUT with no buttons
         sut = createSUT(buttonsToAdd: 0)
         
@@ -198,7 +198,7 @@ extension GDSLeftAlignedScreenTests {
         XCTAssertNil(sut.view[child: "left-aligned-screen-button-2"]) // Tertiary
     }
     
-    func test_errorScreenWithOneButton() throws {
+    func test_leftAligedScreenWithOneButton() throws {
         // GIVEN we setup the SUT with 1 button
         sut = createSUT(buttonsToAdd: 1)
         
@@ -209,7 +209,7 @@ extension GDSLeftAlignedScreenTests {
         XCTAssertNil(sut.view[child: "left-aligned-screen-button-2"]) // Tertiary
     }
     
-    func test_errorScreenWithTwoButtons() throws {
+    func test_leftAligedScreenWithTwoButtons() throws {
         // GIVEN we setup the SUT with 2 buttons
         sut = createSUT(buttonsToAdd: 2)
                 
@@ -220,7 +220,7 @@ extension GDSLeftAlignedScreenTests {
         XCTAssertNil(sut.view[child: "left-aligned-screen-button-2"]) // Tertiary
     }
     
-    func test_errorScreenWithThreeButtons() throws {
+    func test_leftAligedScreenWithThreeButtons() throws {
         // GIVEN we setup the SUT with 3 buttons
         sut = createSUT(buttonsToAdd: 3)
         
@@ -231,14 +231,16 @@ extension GDSLeftAlignedScreenTests {
         XCTAssertNotNil(sut.view[child: "left-aligned-screen-button-2"]) // Tertiary
     }
     
-    func test_errorContentItems() throws {
+    func test_leftAligedContentItems() throws {
         sut = createSUT()
         
         XCTAssertEqual(try sut.bodyContentView.arrangedSubviews.count, 3)
-        let label = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[0] as? UILabel)
+        let labelContainer = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[0] as? UIStackView)
+        let label = try XCTUnwrap(labelContainer.arrangedSubviews[0] as? UILabel)
         XCTAssertEqual(label.text, "Body single line (regular)")
         
-        let paragraphLabel = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[1] as? UILabel)
+        let paragraphContainer = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[1] as? UIStackView)
+        let paragraphLabel = try XCTUnwrap(paragraphContainer.arrangedSubviews[0] as? UILabel)
         XCTAssertEqual(
             paragraphLabel.text,
             """
@@ -246,7 +248,8 @@ extension GDSLeftAlignedScreenTests {
             """
         )
         
-        let button = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[2] as? SecondaryButton)
+        let buttonContainer = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[2] as? UIStackView)
+        let button = try XCTUnwrap(buttonContainer.arrangedSubviews[0] as? SecondaryButton)
         XCTAssertEqual(button.titleLabel?.text, "Button")
     }
     
