@@ -18,7 +18,10 @@ extension ButtonViewModel {
     public var uiView: UIView {
         let result = SecondaryButton()
         result.contentHorizontalAlignment = self.overrideContentAlignment
+        result.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        result.setContentHuggingPriority(.defaultHigh, for: .vertical)
         result.setTitle(self.title, for: .normal)
+        result.setTitleColor(.accent, for: .normal)
         result.titleLabel?.textColor = .accent
         result.symbolPosition = self.icon?.symbolPosition ?? .afterTitle
         result.icon = self.icon?.iconName

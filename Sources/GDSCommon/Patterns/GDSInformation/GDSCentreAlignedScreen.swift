@@ -151,8 +151,8 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             spacing: defaultSpacing
         )
         result.isLayoutMarginsRelativeArrangement = true
-        result.layoutMargins.top = 16
-        result.layoutMargins.bottom = 16
+        result.layoutMargins.top = defaultSpacing
+        result.layoutMargins.bottom = defaultSpacing
         
         if let footnoteLabel {
             result.addArrangedSubview(footnoteLabel)

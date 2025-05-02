@@ -345,6 +345,59 @@ struct MockGDSInformationViewModel: GDSInformationViewModel, BaseViewModel {
 }
 ```
 
+## GDSLeftAlignedScreen
+This screen is similar to `GDSErrorScreen` but content is left and top aligned.
+A container `UIStackView` holds the `scrollView` and the `bottomStackView`.
+
+The `bottomStackView` holds a nested `UIStackView` which contains the action buttons. 
+
+The `ScrollView` contains another `UIStackView` containing a spacer and another `UIStackView` containing the title (`titleLabel`), and another `UIStackView` to contain the array of body content views generate from the `[ScreenBodyItem]` array passed into the view model.
+
+`GDSLeftAlignedScreen` inherits from `BaseViewController`, so a navigation back button and right bar button can be configured. If this screen should be presented as a modal view, this should be done at the call site. It also conforms to `TitledViewControllerV2` which sets the default voiceover view to the `titleLabel`.
+
+A navigation item can be configured:
+- An array of `ButtonViewModel` passed into the view model `GDSErrorViewModelV3`, then presents either none, one, two three buttons. 
+- The first in the array is always treated as the `PrimaryButton` and all others as `SecondaryButton`
+
+If the viewModel conforms to BaseViewModel:
+- A back button can be set via the `hideBackButton` boolean property on the view controller
+- A right bar button can be set via the`rightBarButtonTitle` string property on the view controller
+- A `viewWillAppear` lifecycle event triggers the `didAppear` method in the viewModel.
+- A `dismissScreen` lifecycle event triggers the `didDismiss` method in the viewModel.
+
+### Example:
+
+```swift
+struct LeftAlignedViewModel: GDSLeftAlignedViewModel, BaseViewModel {
+    let title: GDSLocalisedString = "This is a Left Aligned Screen title"
+    let rightBarButtonTitle: GDSLocalisedString? = nil
+    let backButtonIsHidden: Bool = false
+    
+    var bodyContent: [ScreenBodyItem] = [
+        BodyTextViewModel(
+            text: "Body single line (regular)"
+        ),
+        BodyTextViewModel(
+        text:
+        """
+            Body multiple paragraphs - Lorem ipsum dolor sit amet consectetur.
+            
+            Purus aliquam mattis vitae enim mauris vestibulum massa tellus.
+        """
+        ),
+        MockButtonViewModel.textCentered
+    ]
+    
+    var buttonViewModels: [any ButtonViewModel] = [
+        MockButtonViewModel.primary,
+        MockButtonViewModel.secondary
+    ]
+    
+    func didAppear() {}
+    func didDismiss() {}
+}
+```
+
 
 # Accessibility
 
