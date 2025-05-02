@@ -369,7 +369,7 @@ If the viewModel conforms to BaseViewModel:
 
 ```swift
 struct LeftAlignedViewModel: GDSLeftAlignedViewModel, BaseViewModel {
-    let title: GDSLocalisedString = "This is an Error View title"
+    let title: GDSLocalisedString = "This is a Left Aligned Screen title"
     let rightBarButtonTitle: GDSLocalisedString? = nil
     let backButtonIsHidden: Bool = false
     
