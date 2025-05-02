@@ -54,8 +54,9 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
             alignment: .fill,
             distribution: .fill
         )
+        result.isLayoutMarginsRelativeArrangement = true
         result.layoutMargins = UIEdgeInsets(
-            top: 0,
+            top: defaultSpacing,
             left: 0,
             bottom: 0,
             right: 0
