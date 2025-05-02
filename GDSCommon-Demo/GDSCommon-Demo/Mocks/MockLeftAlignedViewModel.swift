@@ -48,7 +48,13 @@ struct MockLeftAlignedViewModelWith3Buttons: GDSLeftAlignedViewModel, BaseViewMo
         BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "This screen has 3 buttons at the bottom"), overridingAlignment: .left),
         BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content"), overridingAlignment: .left),
         BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content"), overridingAlignment: .left),
-        MockButtonViewModel(title: "Button with really long button label so that it wraps onto more than one line!", icon: nil, shouldLoadOnTap: false, action: {}, overrideContentAlignment: .leading)
+        MockButtonViewModel(
+            title: "Button with really long button label so that it wraps",
+            icon: nil,
+            shouldLoadOnTap: false,
+            action: {
+            },
+            overrideContentAlignment: .leading)
     ]
     let buttonViewModels: [ButtonViewModel] = [
         MockButtonViewModel(title: "Button 1", icon: nil, shouldLoadOnTap: false, action: {}),
