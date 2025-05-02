@@ -1,4 +1,4 @@
-/// Protocol for the view model required to initilise ``GDSErrorScreen``
+/// Protocol for the view model required to initilise ``GDSLeftAlignedScreen``
 @MainActor
 public protocol GDSLeftAlignedViewModel {
     var title: GDSLocalisedString { get }
