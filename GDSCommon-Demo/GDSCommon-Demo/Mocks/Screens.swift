@@ -74,7 +74,7 @@ enum Screens: String, CaseIterable {
         case .gdsLeftAlignedNoButtons:
             return GDSLeftAlignedScreen(viewModel: MockLeftAlignedViewModelNoButtons())
         case .gdsLeftAligned:
-            return GDSLeftAlignedScreen(viewModel: MockLeftAlignedViewModel())
+            return GDSLeftAlignedScreen(viewModel: MockLeftAlignedViewModelWith3Buttons())
         case .gdsInstructions:
             return GDSInstructionsViewController(popToRoot: popToRoot, navController: navigationController)
         case .gdsInstructionsWithColouredButton:

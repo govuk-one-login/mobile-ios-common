@@ -1,6 +1,6 @@
 import UIKit
 
-public class GDSLeftAlignedScreen: BaseViewController {
+public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
     
     public private(set) var viewModel: GDSLeftAlignedViewModel
         
@@ -51,7 +51,12 @@ public class GDSLeftAlignedScreen: BaseViewController {
             distribution: .equalSpacing
         )
         result.isLayoutMarginsRelativeArrangement = true
-        result.layoutMargins = UIEdgeInsets(top: 0, left: defaultSpacing, bottom: 0, right: defaultSpacing)
+        result.layoutMargins = UIEdgeInsets(
+            top: 0,
+            left: defaultSpacing,
+            bottom: 0,
+            right: defaultSpacing
+        )
         result.accessibilityIdentifier = "left-aligned-screen-inner-stack-view"
         return result
     }()
@@ -107,7 +112,12 @@ public class GDSLeftAlignedScreen: BaseViewController {
             distribution: hasButtons ? .fillProportionally : .equalCentering
         )
         result.isLayoutMarginsRelativeArrangement = true
-        result.layoutMargins = UIEdgeInsets(top: 16, left: defaultSpacing, bottom: 16, right: defaultSpacing)
+        result.layoutMargins = UIEdgeInsets(
+            top: defaultSpacing,
+            left: defaultSpacing,
+            bottom: defaultSpacing,
+            right: defaultSpacing
+        )
         result.accessibilityIdentifier = "left-aligned-screen-bottom-stack-view"
         return result
     }()
