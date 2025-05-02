@@ -3,7 +3,7 @@ import UIKit
 public struct BodyImageViewModel: ScreenBodyItem {
     let image: UIImage
     private var aspectRatio: CGFloat {
-        image.size.height / image.size.width
+        max(image.size.height, 1) / max(image.size.width, 1)
     }
 
     public let horizontalPadding: CGFloat?

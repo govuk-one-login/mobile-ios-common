@@ -32,4 +32,10 @@ struct ScreenBodyItemTests {
         let view = viewModel.uiView as? UIButton
         #expect(view?.titleLabel?.text == "button title")
     }
+    
+    @Test
+    func imageViewModel() {
+        let viewModel = BodyImageViewModel(image: UIImage())
+        #expect(viewModel.uiView is UIImageView)
+    }
 }
