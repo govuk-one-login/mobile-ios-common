@@ -16,6 +16,7 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
             distribution: .fill
         )
         result.accessibilityIdentifier = "left-aligned-screen-container-stack-view"
+        
         return result
     }()
     
@@ -25,6 +26,7 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
         result.addSubview(scrollViewOuterStackView)
         result.accessibilityIdentifier = "left-aligned-screen-container-scrollview"
         scrollViewOuterStackView.bindToSuperviewEdges()
+        
         return result
     }()
     
@@ -34,9 +36,11 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
                 scrollViewInnerStackView,
                 UIView()
             ],
-            distribution: .equalSpacing
+            distribution: .fill
         )
+        result.alignment = .fill
         result.accessibilityIdentifier = "left-aligned-screen-outer-stack-view"
+        
         return result
     }()
     
@@ -47,17 +51,17 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
                 bodyContentStackView
             ],
             spacing: defaultSpacing,
-            alignment: .top,
-            distribution: .equalSpacing
+            alignment: .fill,
+            distribution: .fill
         )
-        result.isLayoutMarginsRelativeArrangement = true
         result.layoutMargins = UIEdgeInsets(
             top: 0,
-            left: defaultSpacing,
+            left: 0,
             bottom: 0,
-            right: defaultSpacing
+            right: 0
         )
         result.accessibilityIdentifier = "left-aligned-screen-inner-stack-view"
+        
         return result
     }()
     
@@ -67,7 +71,14 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
                 titleLabel
             ],
             spacing: defaultSpacing,
-            distribution: .equalSpacing
+            distribution: .fill
+        )
+        result.isLayoutMarginsRelativeArrangement = true
+        result.directionalLayoutMargins = NSDirectionalEdgeInsets(
+            top: 0,
+            leading: defaultSpacing,
+            bottom: 0,
+            trailing: defaultSpacing
         )
         result.accessibilityIdentifier = "left-aligned-screen-title-stack-view"
         result.shouldGroupAccessibilityChildren = true
@@ -96,7 +107,7 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
             views: bodyContentViews,
             spacing: defaultSpacing,
             alignment: .fill,
-            distribution: .equalSpacing
+            distribution: .fill
         )
         result.accessibilityIdentifier = "left-aligned-screen-body-content-stack-view"
         return result
@@ -111,7 +122,6 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
             spacing: defaultSpacing,
             distribution: hasButtons ? .fillProportionally : .equalCentering
         )
-        result.isLayoutMarginsRelativeArrangement = true
         result.layoutMargins = UIEdgeInsets(
             top: defaultSpacing,
             left: defaultSpacing,
@@ -129,6 +139,15 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
         )
         result.axis = .vertical
         result.spacing = defaultSpacing
+        result.isLayoutMarginsRelativeArrangement = true
+        
+        result.directionalLayoutMargins = NSDirectionalEdgeInsets(
+            top: defaultSpacing,
+            leading: defaultSpacing,
+            bottom: defaultSpacing,
+            trailing: defaultSpacing
+        )
+        
         result.accessibilityIdentifier = "left-aligned-screen-button-stack-view"
         return result
     }()
@@ -199,7 +218,19 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
         ).isActive = true
     }
     
-    private lazy var bodyContentViews: [UIView] = {
-        viewModel.bodyContent.map(\.uiView)
+    private lazy var bodyContentViews: [UIStackView] = {
+        viewModel.bodyContent.map {
+            let stack = UIStackView(views: $0.uiView)
+            stack.isLayoutMarginsRelativeArrangement = true
+            stack.distribution = .fill
+            stack.alignment = .fill
+            stack.directionalLayoutMargins = NSDirectionalEdgeInsets(
+                top: 0,
+                leading: $0.horizontalPadding ?? defaultSpacing,
+                bottom: 0,
+                trailing: $0.horizontalPadding ?? defaultSpacing
+            )
+            return stack
+        }
     }()
 }
