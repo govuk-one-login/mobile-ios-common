@@ -28,6 +28,9 @@ public final class IntroViewController: BaseViewController, TitledViewController
     @IBOutlet private var introImage: UIImageView! {
         didSet {
             introImage.image = viewModel.image
+            introImage.isAccessibilityElement = true
+            introImage.accessibilityLabel = viewModel.accessibilityLabel?.value
+            introImage.accessibilityTraits = .image
             introImage.accessibilityIdentifier = "intro-image"
         }
     }

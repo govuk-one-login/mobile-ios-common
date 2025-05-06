@@ -69,6 +69,7 @@ extension IntroViewControllerTests {
     @MainActor
     func test_labelContents() throws {
         XCTAssertNotNil(try sut.introImage)
+        XCTAssertEqual(sut.accessibilityLabel, viewModel.accessibilityLabel?.value)
         XCTAssertEqual(try sut.titleLabel.text, "Intro screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
         XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))

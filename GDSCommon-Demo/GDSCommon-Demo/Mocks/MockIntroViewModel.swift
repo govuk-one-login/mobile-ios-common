@@ -8,6 +8,7 @@ struct MockIntroViewModel: IntroViewModel, BaseViewModel {
     let introButtonViewModel: ButtonViewModel
     let rightBarButtonTitle: GDSLocalisedString?
     let backButtonIsHidden: Bool = false
+    let accessibilityLabel: GDSLocalisedString? = "Intro Screen"
     
     func didAppear() { }
     func didDismiss() { }
