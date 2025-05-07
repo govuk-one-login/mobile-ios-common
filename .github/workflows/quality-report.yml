@@ -50,7 +50,7 @@ jobs:
 
       - name: Increment Version
         id: versioning
-        uses: Oliver-Binns/Versioning@ea913b155653c7f72c3ecb01768d8103ad57f639 # pin@v1.2.2
+        uses: Oliver-Binns/Versioning@768ec693878abe2f357b151572915d2ab654d13e # pin@v1.3.2
         with:
           ACTION_TYPE: 'Release'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
