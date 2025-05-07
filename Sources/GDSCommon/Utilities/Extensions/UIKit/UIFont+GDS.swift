@@ -24,6 +24,8 @@ extension UIFont {
     public static let title1 = UIFont(style: .title1, weight: .regular)
     public static let title1Bold = UIFont(style: .title1, weight: .bold)
     
+    public static let title2Bold = UIFont(style: .title2, weight: .bold)
+    
     public static let largeTitle = UIFont(style: .largeTitle, weight: .regular)
     public static let largeTitleBold = UIFont(style: .largeTitle, weight: .bold)
     
