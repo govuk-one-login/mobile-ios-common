@@ -12,8 +12,15 @@ public typealias ExpandedContentTileViewModel = GDSContentTileViewModel &
 @MainActor
 public protocol GDSContentTileViewModel {
     var title: GDSLocalisedString { get }
+    var titleFont: UIFont { get }
     var showSeparatorLine: Bool { get }
     var backgroundColour: UIColor? { get }
+}
+
+extension GDSContentTileViewModel {
+    public var titleFont: UIFont {
+        return .title2Bold
+    }
 }
 
 @MainActor

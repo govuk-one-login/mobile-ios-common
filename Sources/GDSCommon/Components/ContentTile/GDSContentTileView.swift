@@ -65,7 +65,7 @@ public final class GDSContentTileView: NibView {
     @IBOutlet private var titleLabel: UILabel! {
         didSet {
             titleLabel.text = viewModel.title.value
-            titleLabel.font = .bodySemiBold
+            titleLabel.font = viewModel.titleFont
             titleLabel.accessibilityIdentifier = "content-tile-title"
         }
     }

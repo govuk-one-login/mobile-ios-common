@@ -112,7 +112,7 @@ extension GDSContentTileViewTests {
     
     func test_titleContents() {
         XCTAssertEqual(try sut.titleLabel.text, viewModel.title.value)
-        XCTAssertEqual(try sut.titleLabel.font, .bodySemiBold)
+        XCTAssertEqual(try sut.titleLabel.font, .title2Bold)
     }
     
     func test_bodyContents() {
