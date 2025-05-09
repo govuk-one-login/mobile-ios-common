@@ -201,6 +201,10 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
         }
         
         result.addAction {
+            if let result = result as? RoundedButton {
+                result.isLoading = buttonViewModel.shouldLoadOnTap
+                result.isEnabled = false
+            }
             buttonViewModel.action()
         }
         return result
