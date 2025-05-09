@@ -94,7 +94,7 @@ extension MockButtonViewModel {
     static var withVoiceoverHint: MockButtonViewModelWithVoiceOverHint {
         MockButtonViewModelWithVoiceOverHint(title: "Primary Button",
                                              icon: nil,
-                                             shouldLoadOnTap: false,
+                                             shouldLoadOnTap: true,
                                              action: { },
                                              accessibilityHint: "This includes a voiceover hint")
     }

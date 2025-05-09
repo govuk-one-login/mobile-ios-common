@@ -223,11 +223,18 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             result.accessibilityIdentifier = "centre-aligned-screen-primary-button"
             result.addAction { [unowned self] in
                 if let buttonViewModel = viewModel as? GDSCentreAlignedViewModelWithPrimaryButton {
+                    primaryButton?.isLoading = buttonViewModel.primaryButtonViewModel.shouldLoadOnTap
+                    primaryButton?.isEnabled = false
                     buttonViewModel.primaryButtonViewModel.action()
                 }
             }
             return result
     }()
+    
+    public func resetPrimaryButton() {
+        primaryButton?.isLoading = false
+        primaryButton?.isEnabled = true
+    }
     
     private lazy var secondaryButton: SecondaryButton? = {
         guard viewModel is GDSCentreAlignedViewModelWithSecondaryButton ||
@@ -309,6 +316,11 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
     public override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        resetPrimaryButton()
     }
     
     @available(*, unavailable, renamed: "init(viewModel:)")
