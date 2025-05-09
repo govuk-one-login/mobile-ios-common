@@ -93,6 +93,48 @@ extension GDSCentreAlignedScreenTests {
         XCTAssertFalse(sut.isFootnoteInScrollView)
     }
     
+    func test_primaryButtonLoadsOnTap() throws {
+        primaryButtonViewModel = MockButtonViewModel(title: "Primary button with icon",
+                                                     icon: MockButtonIconViewModel(),
+                                                     shouldLoadOnTap: true) {}
+        viewModel = MockGDSCentreAlignedViewModel(primaryButtonViewModel: primaryButtonViewModel,
+                                                  secondaryButtonViewModel: secondaryButtonViewModel) {
+            // empty implementation
+        } dismissAction: {
+            // empty implementation
+        }
+        sut = GDSCentreAlignedScreen(viewModel: viewModel)
+        
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(try sut.primaryButton.isLoading)
+    }
+    
+    func test_primaryButtonLoadsOnTap_resetsOnViewAppear() throws {
+        primaryButtonViewModel = MockButtonViewModel(title: "Primary button with icon",
+                                                     icon: MockButtonIconViewModel(),
+                                                     shouldLoadOnTap: true) {}
+        viewModel = MockGDSCentreAlignedViewModel(primaryButtonViewModel: primaryButtonViewModel,
+                                                  secondaryButtonViewModel: secondaryButtonViewModel) {
+            // empty implementation
+        } dismissAction: {
+            // empty implementation
+        }
+        sut = GDSCentreAlignedScreen(viewModel: viewModel)
+        
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(try sut.primaryButton.isLoading)
+        XCTAssertFalse(try sut.primaryButton.isEnabled)
+
+        sut.viewDidAppear(true)
+        XCTAssertFalse(try sut.primaryButton.isLoading)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+    }
+    
+    func test_primaryButtonDoesNotLoadOnTap() throws {
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(try sut.primaryButton.isLoading)
+    }
+    
     func test_primaryButtonNoIcon() throws {
         XCTAssertNil(try sut.primaryButton.icon)
     }

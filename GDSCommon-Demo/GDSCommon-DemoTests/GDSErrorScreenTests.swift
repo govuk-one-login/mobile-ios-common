@@ -29,7 +29,7 @@ final class GDSErrorScreenTests: XCTestCase {
         let primaryButtonViewModel = MockButtonViewModel(
             title: "Primary Action",
             icon: nil,
-            shouldLoadOnTap: false,
+            shouldLoadOnTap: true,
             accessibilityHint: "Button hint",
             action: {
                 self.didTap_primaryButton = true
@@ -152,7 +152,11 @@ extension GDSErrorScreenTests {
     
     func test_primaryButtonAction() throws {
         XCTAssertFalse(didTap_primaryButton)
+        XCTAssertFalse(try sut.primaryButton.isLoading)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
         try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(try sut.primaryButton.isLoading)
+        XCTAssertFalse(try sut.primaryButton.isEnabled)
         XCTAssertTrue(didTap_primaryButton)
     }
     
