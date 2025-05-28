@@ -24,6 +24,6 @@ public protocol GDSInstructionsViewModel {
 /// `true` keeps the primary button enabled
 /// `false` disables the primary button
 @MainActor
-public protocol GDSInstructionsViewModelDisableButton {
+public protocol GDSInstructionsViewModelEnablePrimaryButton {
     var shouldEnableOnTap: Bool { get }
 }

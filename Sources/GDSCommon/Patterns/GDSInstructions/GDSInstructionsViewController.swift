@@ -103,7 +103,12 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
     
     @IBAction private func didTapPrimaryButton() {
         primaryButton.isLoading = viewModel.buttonViewModel.shouldLoadOnTap
-        resetPrimaryButton()
+        if let viewModel = viewModel as? GDSInstructionsViewModelEnablePrimaryButton {
+            primaryButton.isEnabled = viewModel.shouldEnableOnTap
+            resetPrimaryButton()
+        } else {
+            primaryButton.isEnabled = false
+        }
         viewModel.buttonViewModel.action()
     }
 
@@ -113,8 +118,8 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
         }
     }
 
-    private func resetPrimaryButton() {
-        if let viewModel = viewModel as? GDSInstructionsViewModelDisableButton {
+    public func resetPrimaryButton() {
+        if let viewModel = viewModel as? GDSInstructionsViewModelEnablePrimaryButton {
             primaryButton.isEnabled = viewModel.shouldEnableOnTap
         }
     }
