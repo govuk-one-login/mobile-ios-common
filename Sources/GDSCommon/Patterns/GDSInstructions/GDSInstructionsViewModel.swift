@@ -20,9 +20,10 @@ public protocol GDSInstructionsViewModel {
 }
 
 /// View model for ``GDSInstructionsViewController``
-/// If conforming to this view model, the primary button remains disabled when returning to the screen
-///  otherwise, the primary button is enabled and can be tapped again
+/// setting a value to determine if the primary button should be disabled or stay enabled after tapping
+/// `true` keeps the primary button enabled
+/// `false` disables the primary button
 @MainActor
 public protocol GDSInstructionsViewModelDisableButton {
-    var shouldDisableOnTap: Bool { get }
+    var shouldEnableOnTap: Bool { get }
 }

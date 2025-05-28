@@ -38,7 +38,6 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.resetPrimaryButton()
         primaryButton.isEnabled = true
         primaryButton.isLoading = false
     }
@@ -104,15 +103,10 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
     
     @IBAction private func didTapPrimaryButton() {
         primaryButton.isLoading = viewModel.buttonViewModel.shouldLoadOnTap
-        primaryButton.isEnabled = false
-        if let viewModel = viewModel as? GDSInstructionsViewModelDisableButton {
-            primaryButton.isEnabled = false
-        } else {
-            self.resetPrimaryButton()
-        }
+        resetPrimaryButton()
         viewModel.buttonViewModel.action()
     }
-    
+
     @IBAction private func didTapSecondaryButton() {
         if let buttonViewModel = viewModel.secondaryButtonViewModel {
             buttonViewModel.action()
@@ -120,6 +114,8 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
     }
 
     private func resetPrimaryButton() {
-        primaryButton.isEnabled = true
+        if let viewModel = viewModel as? GDSInstructionsViewModelDisableButton {
+            primaryButton.isEnabled = viewModel.shouldEnableOnTap
+        }
     }
 }
