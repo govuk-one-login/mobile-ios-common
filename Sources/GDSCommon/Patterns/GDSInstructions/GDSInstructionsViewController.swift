@@ -41,7 +41,12 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
         primaryButton.isEnabled = true
         primaryButton.isLoading = false
     }
-    
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        resetPrimaryButton()
+    }
+
     /// Title label: `UILabel`
     @IBOutlet private(set) var titleLabel: UILabel! {
         didSet {
@@ -103,9 +108,8 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
     
     @IBAction private func didTapPrimaryButton() {
         primaryButton.isLoading = viewModel.buttonViewModel.shouldLoadOnTap
-        if let viewModel = viewModel as? GDSInstructionsViewModelEnablePrimaryButton {
-            primaryButton.isEnabled = viewModel.shouldEnableOnTap
-            resetPrimaryButton()
+        if let viewModel = viewModel as? GDSInstructionsViewModelKeepPrimaryButtonEnabled {
+            primaryButton.isEnabled = viewModel.shouldKeepEnabled
         } else {
             primaryButton.isEnabled = false
         }
@@ -119,8 +123,8 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
     }
 
     public func resetPrimaryButton() {
-        if let viewModel = viewModel as? GDSInstructionsViewModelEnablePrimaryButton {
-            primaryButton.isEnabled = viewModel.shouldEnableOnTap
+        if let viewModel = viewModel as? GDSInstructionsViewModelKeepPrimaryButtonEnabled {
+            primaryButton.isEnabled = true
         }
     }
 }
