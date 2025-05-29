@@ -146,6 +146,16 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "button title")
         XCTAssertNotEqual(try sut.secondaryButton.backgroundColor, .gdsGreen)
     }
+
+    @MainActor
+    func test_resetPrimaryButton() throws {
+        XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(try sut.primaryButton.isEnabled)
+        sut.resetPrimaryButton()
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+    }
 }
 
 
