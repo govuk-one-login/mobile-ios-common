@@ -109,7 +109,7 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
     @IBAction private func didTapPrimaryButton() {
         primaryButton.isLoading = viewModel.buttonViewModel.shouldLoadOnTap
         if let viewModel = viewModel as? GDSInstructionsViewModelPrimaryButtonState {
-            primaryButton.isEnabled = viewModel.shouldDisablePrimaryButtonAfterTap
+            primaryButton.isEnabled = !viewModel.shouldDisablePrimaryButtonAfterTap
         } else {
             primaryButton.isEnabled = false
         }
