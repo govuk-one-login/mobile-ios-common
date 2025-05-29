@@ -115,10 +115,19 @@ extension GDSInstructionsViewControllerTests {
     @MainActor
     func test_primaryButton() throws {
         XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "button title")
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
     }
-    
+
+    @MainActor
+    func test_primaryButtonAction() throws {
+        XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(try sut.primaryButton.isEnabled)
+    }
+
     @MainActor
     func test_coloredButton() throws {
         let coloredButton = MockColoredButtonViewModel(title: "Test", action: { }, backgroundColor: .gdsRed)
