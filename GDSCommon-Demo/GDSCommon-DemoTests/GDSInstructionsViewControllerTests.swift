@@ -162,7 +162,8 @@ extension GDSInstructionsViewControllerTests {
         let buttonViewModel = MockButtonViewModel(title: GDSLocalisedString(stringLiteral: "button title")) {
             self.didTapButton = true
         }
-        viewModel = MockGDSInstructionsViewModelPrimaryButtonState(childView: bulletView,
+        viewModel = MockGDSInstructionsViewModelPrimaryButtonState(shouldDisablePrimaryButtonAfterTap: false,
+                                                                   childView: bulletView,
                                                                    buttonViewModel: buttonViewModel,
                                                                    secondaryButtonViewModel: nil,
                                                                    screenView: { }) {
@@ -173,6 +174,25 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertTrue(try sut.primaryButton.isEnabled)
         try sut.primaryButton.sendActions(for: .touchUpInside)
         XCTAssertTrue(try sut.primaryButton.isEnabled)
+    }
+
+    @MainActor
+    func test_primaryButtonActionDisabled() throws {
+        let buttonViewModel = MockButtonViewModel(title: GDSLocalisedString(stringLiteral: "button title")) {
+            self.didTapButton = true
+        }
+        viewModel = MockGDSInstructionsViewModelPrimaryButtonState(shouldDisablePrimaryButtonAfterTap: true,
+                                                                   childView: bulletView,
+                                                                   buttonViewModel: buttonViewModel,
+                                                                   secondaryButtonViewModel: nil,
+                                                                   screenView: { }) {
+            self.didTapButton = true
+        }
+        sut = GDSInstructionsViewController(viewModel: viewModel)
+        XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(try sut.primaryButton.isEnabled)
     }
 }
 

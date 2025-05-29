@@ -25,7 +25,7 @@ internal struct MockGDSInstructionsViewModel: GDSInstructionsViewModel, BaseView
 internal struct MockGDSInstructionsViewModelPrimaryButtonState: GDSInstructionsViewModel,
                                                                 GDSInstructionsViewModelPrimaryButtonState,
                                                                 BaseViewModel {
-    let shouldDisablePrimaryButtonAfterTap: Bool = false
+    let shouldDisablePrimaryButtonAfterTap: Bool
     let title: GDSLocalisedString = "test title"
     let body: String = "test body"
     let rightBarButtonTitle: GDSLocalisedString? = "right bar button"
