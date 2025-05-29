@@ -18,3 +18,12 @@ public protocol GDSInstructionsViewModel {
     var buttonViewModel: ButtonViewModel { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
 }
+
+/// View model for ``GDSInstructionsViewController``
+/// setting a value to determine if the primary button should be disabled or stay enabled after tapping
+/// `true`disables the primary button
+/// `false` keeps the primary button enabled
+@MainActor
+public protocol GDSInstructionsViewModelPrimaryButtonState {
+    var shouldDisablePrimaryButtonAfterTap: Bool { get }
+}

@@ -115,10 +115,19 @@ extension GDSInstructionsViewControllerTests {
     @MainActor
     func test_primaryButton() throws {
         XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "button title")
         XCTAssertEqual(try sut.primaryButton.backgroundColor, .gdsGreen)
     }
-    
+
+    @MainActor
+    func test_primaryButtonAction() throws {
+        XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(try sut.primaryButton.isEnabled)
+    }
+
     @MainActor
     func test_coloredButton() throws {
         let coloredButton = MockColoredButtonViewModel(title: "Test", action: { }, backgroundColor: .gdsRed)
@@ -136,6 +145,54 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertNotNil(try sut.secondaryButton)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "button title")
         XCTAssertNotEqual(try sut.secondaryButton.backgroundColor, .gdsGreen)
+    }
+
+    @MainActor
+    func test_resetPrimaryButton() throws {
+        XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(try sut.primaryButton.isEnabled)
+        sut.resetPrimaryButton()
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+    }
+
+    @MainActor
+    func test_primaryButtonActionRemainsEnabled() throws {
+        let buttonViewModel = MockButtonViewModel(title: GDSLocalisedString(stringLiteral: "button title")) {
+            self.didTapButton = true
+        }
+        viewModel = MockGDSInstructionsViewModelPrimaryButtonState(shouldDisablePrimaryButtonAfterTap: false,
+                                                                   childView: bulletView,
+                                                                   buttonViewModel: buttonViewModel,
+                                                                   secondaryButtonViewModel: nil,
+                                                                   screenView: { }) {
+            self.didTapButton = true
+        }
+        sut = GDSInstructionsViewController(viewModel: viewModel)
+        XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+    }
+
+    @MainActor
+    func test_primaryButtonActionDisabled() throws {
+        let buttonViewModel = MockButtonViewModel(title: GDSLocalisedString(stringLiteral: "button title")) {
+            self.didTapButton = true
+        }
+        viewModel = MockGDSInstructionsViewModelPrimaryButtonState(shouldDisablePrimaryButtonAfterTap: true,
+                                                                   childView: bulletView,
+                                                                   buttonViewModel: buttonViewModel,
+                                                                   secondaryButtonViewModel: nil,
+                                                                   screenView: { }) {
+            self.didTapButton = true
+        }
+        sut = GDSInstructionsViewController(viewModel: viewModel)
+        XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertFalse(try sut.primaryButton.isEnabled)
     }
 }
 
