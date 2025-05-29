@@ -156,6 +156,24 @@ extension GDSInstructionsViewControllerTests {
         sut.resetPrimaryButton()
         XCTAssertTrue(try sut.primaryButton.isEnabled)
     }
+
+    @MainActor
+    func test_primaryButtonActionRemainsEnabled() throws {
+        let buttonViewModel = MockButtonViewModel(title: GDSLocalisedString(stringLiteral: "button title")) {
+            self.didTapButton = true
+        }
+        viewModel = MockGDSInstructionsViewModelPrimaryButtonState(childView: bulletView,
+                                                                   buttonViewModel: buttonViewModel,
+                                                                   secondaryButtonViewModel: nil,
+                                                                   screenView: { }) {
+            self.didTapButton = true
+        }
+        sut = GDSInstructionsViewController(viewModel: viewModel)
+        XCTAssertNotNil(try sut.primaryButton)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+        try sut.primaryButton.sendActions(for: .touchUpInside)
+        XCTAssertTrue(try sut.primaryButton.isEnabled)
+    }
 }
 
 
