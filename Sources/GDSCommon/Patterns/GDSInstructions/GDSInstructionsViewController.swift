@@ -19,7 +19,7 @@ import UIKit
 ///  The `primaryButton` is within a
 ///  `UIStackView` constrained to the bottom of the screen. This is the main
 ///   Call To Action (CTA) on this screen.
-public class GDSInstructionsViewController: BaseViewController, TitledViewController {
+public class GDSInstructionsViewController: BaseViewController, TitledViewController, ResettableViewController {
     public let viewModel: GDSInstructionsViewModel
     
     /// Initialiser for the `GDSInstructions` view controller.
@@ -61,7 +61,7 @@ public class GDSInstructionsViewController: BaseViewController, TitledViewContro
     
     /// Primary Button: ``RoundedButton``
     /// This is the primary CTA (Call To Action) for this screen.
-    @IBOutlet private var primaryButton: RoundedButton! {
+    @IBOutlet public var primaryButton: RoundedButton! {
         didSet {
             primaryButton.setTitle(viewModel.buttonViewModel.title.value, for: .normal)
             primaryButton.accessibilityIdentifier = "instructions-button"
