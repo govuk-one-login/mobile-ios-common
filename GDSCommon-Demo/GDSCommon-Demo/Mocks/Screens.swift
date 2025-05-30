@@ -79,7 +79,10 @@ enum Screens: String, CaseIterable {
         case .gdsLeftAlignedWithImages:
             return GDSLeftAlignedScreen(viewModel: MockLeftAlignedViewModelWithImages())
         case .gdsInstructions:
-            return GDSInstructionsViewController(popToRoot: popToRoot, navController: navigationController)
+            let vc = GDSInstructionsViewController(popToRoot: popToRoot, navController: navigationController)
+            // Making sure we can access this in this way, final implementation would look different to this for the demo.
+            vc.resetPrimaryButton()
+            return vc
         case .gdsInstructionsWithColouredButton:
             let viewModel = MockGDSInstructionsViewModel(
                 buttonViewModel: MockColoredButtonViewModel.primary,
