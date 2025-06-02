@@ -67,6 +67,7 @@ public final class GDSContentTileView: NibView {
             titleLabel.text = viewModel.title.value
             titleLabel.font = viewModel.titleFont
             titleLabel.accessibilityIdentifier = "content-tile-title"
+            titleLabel.accessibilityLabel = titleLabel.text?.appending(" card")
         }
     }
     
