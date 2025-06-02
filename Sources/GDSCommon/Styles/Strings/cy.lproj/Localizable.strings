@@ -28,3 +28,8 @@
 "8" = "wyth";
 
 "9" = "naw";
+
+
+// MARK: Card component
+
+"CardComponent" = "Cerdyn %@";
