@@ -10,3 +10,8 @@
 // MARK: Numbered List
 
 "NumberedList" = "Numbered list, %@ items.";
+
+
+// MARK: Card component
+
+"CardComponent" = "%@ Card";
