@@ -31,12 +31,16 @@ public protocol GDSListOptionsViewModelV2  {
     var body: GDSLocalisedString? { get }
     var childView: UIView? { get }
     var listTitle: GDSLocalisedString? { get }
-    var listRows: [GDSLocalisedString] { get }
+    var listRows: [GDSListCellViewModel] { get }
     var listFooter: GDSLocalisedString? { get }
     var buttonViewModel: ButtonViewModel { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
     var resultAction: (GDSLocalisedString) -> Void { get }
-    var accessibilityLabel: [String] { get }
-    var accessibilityHint: [String] { get }
+}
+
+public protocol GDSListCellViewModel {
+    var title: GDSLocalisedString { get }
+    var accessibilityLabel: String { get }
+    var accessibilityHint: String { get }
     var accessibilityTraits: UIAccessibilityTraits { get }
 }

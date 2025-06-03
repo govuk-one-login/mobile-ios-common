@@ -149,16 +149,26 @@ extension GDSListOptionsViewController: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int { 1 }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let descriptor = viewModel.listRows[indexPath.row]
-        let cell = ListTableViewCell(gdsLocalisedString: descriptor)
+        var cell: ListTableViewCell
+        var descriptor: GDSLocalisedString
+        if let viewModel = viewModel as? GDSListOptionsViewModelV2 {
+            descriptor = viewModel.listRows[indexPath.row].title
+            cell = ListTableViewCell(gdsLocalisedString: descriptor)
+            cell.accessibilityLabel = viewModel.listRows[indexPath.row].accessibilityLabel
+            cell.accessibilityHint = viewModel.listRows[indexPath.row].accessibilityHint
+            cell.accessibilityTraits = viewModel.listRows[indexPath.row].accessibilityTraits
+        } else {
+            descriptor = viewModel.listRows[indexPath.row]
+            cell = ListTableViewCell(gdsLocalisedString: descriptor)
+        }
         cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         cell.selectionStyle = .none
         cell.textLabel?.textColor = .label
         cell.textLabel?.numberOfLines = 0
         if let viewModel = viewModel as? GDSListOptionsViewModelV2 {
-            cell.accessibilityLabel = viewModel.accessibilityLabel[indexPath.row]
-            cell.accessibilityHint = viewModel.accessibilityHint[indexPath.row]
-            cell.accessibilityTraits = viewModel.accessibilityTraits
+            cell.accessibilityLabel = viewModel.listRows[indexPath.row].accessibilityLabel
+            cell.accessibilityHint = viewModel.listRows[indexPath.row].accessibilityHint
+            cell.accessibilityTraits = viewModel.listRows[indexPath.row].accessibilityTraits
         }
         return cell
     }
