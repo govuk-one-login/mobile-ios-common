@@ -143,8 +143,12 @@ public final class GDSListOptionsViewController: BaseViewController, TitledViewC
 
 extension GDSListOptionsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
-//        viewModel.listRows.count
+        if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2 {
+            return v2ViewModel.listRows.count
+        } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
+            return v1ViewModel.listRows.count
+        }
+        return 0
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int { 1 }
