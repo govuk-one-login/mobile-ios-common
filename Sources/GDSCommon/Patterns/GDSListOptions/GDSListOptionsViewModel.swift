@@ -3,8 +3,8 @@ import UIKit
 
 /// Protocol for the view model required to initilise a ``ListOptionsViewController``
 
-//@MainActor
-//public protocol GDSListOptionsViewModel {
+// @MainActor
+// public protocol GDSListOptionsViewModel {
 //    var title: GDSLocalisedString { get }
 //    var body: GDSLocalisedString? { get }
 //    var childView: UIView? { get }
@@ -14,7 +14,7 @@ import UIKit
 //    var buttonViewModel: ButtonViewModel { get }
 //    var secondaryButtonViewModel: ButtonViewModel? { get }
 //    var resultAction: (GDSLocalisedString) -> Void { get }
-//}
+// }
 
 /// Protocol for the view model to initialise ``GDSListOptionsViewController`` with TableView Cell accessibility enhancements
 /// `accessibilityTraits` sets `cell.accessibiltyTraits` and tells VoiceOver if it is a button, link
@@ -55,6 +55,6 @@ public protocol GDSListOptionsViewModelV1: GDSBaseOptionViewModel {
 }
 
 @MainActor
-public protocol GDSListOptionsViewModelV2: GDSBaseOptionViewModel  {
+public protocol GDSListOptionsViewModelV2: GDSBaseOptionViewModel {
     var listRows: [GDSListCellViewModel] { get }
 }
