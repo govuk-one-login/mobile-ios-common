@@ -2,19 +2,19 @@ import Foundation
 import UIKit
 
 /// Protocol for the view model required to initilise a ``ListOptionsViewController``
-@available(*, deprecated, renamed: "GDSListOptionsViewModelV2", message: "Please use GDSListOptionsViewModelV2 for accessibility enhancements") // depreciated 3/6/2025
-@MainActor
-public protocol GDSListOptionsViewModel {
-    var title: GDSLocalisedString { get }
-    var body: GDSLocalisedString? { get }
-    var childView: UIView? { get }
-    var listTitle: GDSLocalisedString? { get }
-    var listRows: [GDSLocalisedString] { get }
-    var listFooter: GDSLocalisedString? { get }
-    var buttonViewModel: ButtonViewModel { get }
-    var secondaryButtonViewModel: ButtonViewModel? { get }
-    var resultAction: (GDSLocalisedString) -> Void { get }
-}
+
+//@MainActor
+//public protocol GDSListOptionsViewModel {
+//    var title: GDSLocalisedString { get }
+//    var body: GDSLocalisedString? { get }
+//    var childView: UIView? { get }
+//    var listTitle: GDSLocalisedString? { get }
+//    var listRows: [GDSLocalisedString] { get }
+//    var listFooter: GDSLocalisedString? { get }
+//    var buttonViewModel: ButtonViewModel { get }
+//    var secondaryButtonViewModel: ButtonViewModel? { get }
+//    var resultAction: (GDSLocalisedString) -> Void { get }
+//}
 
 /// Protocol for the view model to initialise ``GDSListOptionsViewController`` with TableView Cell accessibility enhancements
 /// `accessibilityTraits` sets `cell.accessibiltyTraits` and tells VoiceOver if it is a button, link
@@ -26,21 +26,35 @@ public protocol GDSListOptionsViewModel {
 /// Order of VoiceOver announcing accessibility seems to be:
 /// - "`accessibiltyLabel`, `accessibilityTraits`, `accessibilityHint`"
 @MainActor
-public protocol GDSListOptionsViewModelV2  {
+public protocol GDSListCellViewModel {
+    var title: GDSLocalisedString { get }
+    var action: () -> Void { get }
+    var accessibilityLabel: String { get }
+    var accessibilityHint: String { get }
+    var accessibilityTraits: UIAccessibilityTraits { get }
+}
+
+@MainActor
+public protocol GDSBaseOptionViewModel {
     var title: GDSLocalisedString { get }
     var body: GDSLocalisedString? { get }
     var childView: UIView? { get }
     var listTitle: GDSLocalisedString? { get }
-    var listRows: [GDSListCellViewModel] { get }
     var listFooter: GDSLocalisedString? { get }
     var buttonViewModel: ButtonViewModel { get }
     var secondaryButtonViewModel: ButtonViewModel? { get }
+}
+
+@available(*, deprecated, renamed: "GDSListOptionsViewModelV2", message: "Please use GDSListOptionsViewModelV2 for accessibility enhancements") // depreciated 3/6/2025
+public typealias GDSListOptionsViewModel = GDSListOptionsViewModelV1
+
+@MainActor
+public protocol GDSListOptionsViewModelV1: GDSBaseOptionViewModel {
+    var listRows: [GDSLocalisedString] { get }
     var resultAction: (GDSLocalisedString) -> Void { get }
 }
 
-public protocol GDSListCellViewModel {
-    var title: GDSLocalisedString { get }
-    var accessibilityLabel: String { get }
-    var accessibilityHint: String { get }
-    var accessibilityTraits: UIAccessibilityTraits { get }
+@MainActor
+public protocol GDSListOptionsViewModelV2: GDSBaseOptionViewModel  {
+    var listRows: [GDSListCellViewModel] { get }
 }

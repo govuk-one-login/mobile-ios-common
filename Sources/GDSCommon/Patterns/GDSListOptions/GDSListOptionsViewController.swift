@@ -19,9 +19,9 @@ import UIKit
 /// dynamic type issues with multi-line footers.
 public final class GDSListOptionsViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSListOptions" }
-    public let viewModel: GDSListOptionsViewModel
+    public let viewModel: GDSBaseOptionViewModel
 
-    public init(viewModel: GDSListOptionsViewModel) {
+    public init(viewModel: GDSBaseOptionViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSListOptions", bundle: .module)
     }
@@ -143,33 +143,30 @@ public final class GDSListOptionsViewController: BaseViewController, TitledViewC
 
 extension GDSListOptionsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.listRows.count
+        0
+//        viewModel.listRows.count
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int { 1 }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: ListTableViewCell
-        var descriptor: GDSLocalisedString
-        if let viewModel = viewModel as? GDSListOptionsViewModelV2 {
-            descriptor = viewModel.listRows[indexPath.row].title
+        var cell: UITableViewCell
+        if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2 {
+            let descriptor = v2ViewModel.listRows[indexPath.row].title
             cell = ListTableViewCell(gdsLocalisedString: descriptor)
-            cell.accessibilityLabel = viewModel.listRows[indexPath.row].accessibilityLabel
-            cell.accessibilityHint = viewModel.listRows[indexPath.row].accessibilityHint
-            cell.accessibilityTraits = viewModel.listRows[indexPath.row].accessibilityTraits
+            cell.accessibilityLabel = v2ViewModel.listRows[indexPath.row].accessibilityLabel
+            cell.accessibilityHint = v2ViewModel.listRows[indexPath.row].accessibilityHint
+            cell.accessibilityTraits = v2ViewModel.listRows[indexPath.row].accessibilityTraits
+        } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
+            let descriptor = v1ViewModel.listRows[indexPath.row]
+            cell = ListTableViewCell(gdsLocalisedString: descriptor)
         } else {
-            descriptor = viewModel.listRows[indexPath.row]
-            cell = ListTableViewCell(gdsLocalisedString: descriptor)
+            cell = .init()
         }
         cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         cell.selectionStyle = .none
         cell.textLabel?.textColor = .label
         cell.textLabel?.numberOfLines = 0
-        if let viewModel = viewModel as? GDSListOptionsViewModelV2 {
-            cell.accessibilityLabel = viewModel.listRows[indexPath.row].accessibilityLabel
-            cell.accessibilityHint = viewModel.listRows[indexPath.row].accessibilityHint
-            cell.accessibilityTraits = viewModel.listRows[indexPath.row].accessibilityTraits
-        }
         return cell
     }
 }
@@ -181,8 +178,14 @@ extension GDSListOptionsViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         primaryButton.isEnabled = true
-        if let cell = tableViewList.cellForRow(at: indexPath) as? ListTableViewCell {
-            viewModel.resultAction(cell.gdsLocalisedString)
+        if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2 {
+            if let cell = v2ViewModel.listRows[indexPath.row] as? GDSListCellViewModel {
+                cell.action()
+            }
+        } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
+            if let cell = tableViewList.cellForRow(at: indexPath) as? ListTableViewCell {
+                v1ViewModel.resultAction(cell.gdsLocalisedString)
+            }
         }
     }
 }
