@@ -17,6 +17,7 @@ import UIKit
 /// The action can be customised by configuring the `didDismiss` method.
 /// `footerLabel` is configured separately from the `UITableView` to address some
 /// dynamic type issues with multi-line footers.
+
 public final class GDSListOptionsViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSListOptions" }
     public let viewModel: GDSBaseOptionViewModel

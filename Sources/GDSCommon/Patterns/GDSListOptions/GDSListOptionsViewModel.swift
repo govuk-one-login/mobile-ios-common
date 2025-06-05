@@ -1,21 +1,6 @@
 import Foundation
 import UIKit
 
-/// Protocol for the view model required to initilise a ``ListOptionsViewController``
-
-// @MainActor
-// public protocol GDSListOptionsViewModel {
-//    var title: GDSLocalisedString { get }
-//    var body: GDSLocalisedString? { get }
-//    var childView: UIView? { get }
-//    var listTitle: GDSLocalisedString? { get }
-//    var listRows: [GDSLocalisedString] { get }
-//    var listFooter: GDSLocalisedString? { get }
-//    var buttonViewModel: ButtonViewModel { get }
-//    var secondaryButtonViewModel: ButtonViewModel? { get }
-//    var resultAction: (GDSLocalisedString) -> Void { get }
-// }
-
 /// Protocol for the view model to initialise ``GDSListOptionsViewController`` with TableView Cell accessibility enhancements
 /// `accessibilityTraits` sets `cell.accessibiltyTraits` and tells VoiceOver if it is a button, link
 ///    - note: if the option can be selected, the trait will also be set to `.selected` and announced.
@@ -25,6 +10,7 @@ import UIKit
 ///     - i.e "option 1 of 3"
 /// Order of VoiceOver announcing accessibility seems to be:
 /// - "`accessibiltyLabel`, `accessibilityTraits`, `accessibilityHint`"
+
 @MainActor
 public protocol GDSListCellViewModel {
     var title: GDSLocalisedString { get }
