@@ -160,7 +160,7 @@ extension GDSListOptionsViewController: UITableViewDataSource {
             let descriptor = v2ViewModel.listRows[indexPath.row].title
             cell = ListTableViewCell(gdsLocalisedString: descriptor)
             cell.accessibilityLabel = v2ViewModel.listRows[indexPath.row].accessibilityLabel
-            cell.accessibilityHint = v2ViewModel.listRows[indexPath.row].accessibilityHint
+            cell.accessibilityHint = NSLocalizedString(key: "GDSCommonCellAccessibilityHint", "\(indexPath.row + 1)", "\(tableViewList.numberOfRows(inSection: 0))", bundle: .module)
             cell.accessibilityTraits = v2ViewModel.listRows[indexPath.row].accessibilityTraits
         } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
             let descriptor = v1ViewModel.listRows[indexPath.row]

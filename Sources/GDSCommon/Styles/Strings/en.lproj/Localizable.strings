@@ -10,3 +10,6 @@
 // MARK: Numbered List
 
 "NumberedList" = "Numbered list, %@ items.";
+
+// MARK: tableView cell accessibility
+"GDSCommonCellAccessibilityHint" = ", option %1$@ of %2$@";

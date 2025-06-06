@@ -16,7 +16,6 @@ public protocol GDSListCellViewModel {
     var title: GDSLocalisedString { get }
     var action: () -> Void { get }
     var accessibilityLabel: String { get }
-    var accessibilityHint: String { get }
     var accessibilityTraits: UIAccessibilityTraits { get }
 }
 
