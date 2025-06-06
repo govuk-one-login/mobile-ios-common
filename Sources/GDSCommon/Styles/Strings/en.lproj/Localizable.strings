@@ -11,7 +11,10 @@
 
 "NumberedList" = "Numbered list, %@ items.";
 
-
 // MARK: Card component
 
 "CardComponent" = "%@ Card";
+
+// MARK: tableView cell accessibility
+
+"GDSCommonCellAccessibilityHint" = ", option %1$@ of %2$@";
