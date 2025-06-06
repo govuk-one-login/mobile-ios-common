@@ -148,8 +148,9 @@ extension GDSListOptionsViewController: UITableViewDataSource {
             return v2ViewModel.listRows.count
         } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
             return v1ViewModel.listRows.count
+        } else {
+            return 0
         }
-        return 0
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int { 1 }
@@ -160,7 +161,10 @@ extension GDSListOptionsViewController: UITableViewDataSource {
             let descriptor = v2ViewModel.listRows[indexPath.row].title
             cell = ListTableViewCell(gdsLocalisedString: descriptor)
             cell.accessibilityLabel = v2ViewModel.listRows[indexPath.row].accessibilityLabel
-            cell.accessibilityHint = NSLocalizedString(key: "GDSCommonCellAccessibilityHint", "\(indexPath.row + 1)", "\(tableViewList.numberOfRows(inSection: 0))", bundle: .module)
+            cell.accessibilityHint = NSLocalizedString(key: "GDSCommonCellAccessibilityHint",
+                                                       "\(indexPath.row + 1)",
+                                                       "\(tableViewList.numberOfRows(inSection: 0))",
+                                                       bundle: .module)
             cell.accessibilityTraits = v2ViewModel.listRows[indexPath.row].accessibilityTraits
         } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
             let descriptor = v1ViewModel.listRows[indexPath.row]
@@ -183,14 +187,12 @@ extension GDSListOptionsViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         primaryButton.isEnabled = true
-        if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2 {
-            if let cell = v2ViewModel.listRows[indexPath.row] as? GDSListCellViewModel {
+        if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2,
+            let cell = v2ViewModel.listRows[indexPath.row] as? GDSListCellViewModel {
                 cell.action()
-            }
-        } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
-            if let cell = tableViewList.cellForRow(at: indexPath) as? ListTableViewCell {
+        } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel,
+                    let cell = tableViewList.cellForRow(at: indexPath) as? ListTableViewCell {
                 v1ViewModel.resultAction(cell.gdsLocalisedString)
-            }
         }
     }
 }

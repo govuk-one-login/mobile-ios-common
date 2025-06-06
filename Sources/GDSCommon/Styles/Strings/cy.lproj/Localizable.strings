@@ -29,5 +29,5 @@
 
 "9" = "naw";
 
-// MARK: ```ListCellViewModel` cell accessibility
-"ListCellAccessibilityHint" = ", option %1$@ of %2$@";
+// MARK: tableView cell accessibility
+"GDSCommonCellAccessibilityHint" = ", opsiwn %1$@ o %2$@";
