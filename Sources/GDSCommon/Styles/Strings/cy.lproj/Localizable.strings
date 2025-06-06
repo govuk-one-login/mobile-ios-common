@@ -33,3 +33,5 @@
 // MARK: Card component
 
 "CardComponent" = "Cerdyn %@";
+// MARK: ```ListCellViewModel` cell accessibility
+"ListCellAccessibilityHint" = ", option %1$@ of %2$@";
