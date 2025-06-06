@@ -29,9 +29,10 @@
 
 "9" = "naw";
 
-
 // MARK: Card component
 
 "CardComponent" = "Cerdyn %@";
-// MARK: ```ListCellViewModel` cell accessibility
-"ListCellAccessibilityHint" = ", option %1$@ of %2$@";
+
+// MARK: tableView cell accessibility
+
+"GDSCommonCellAccessibilityHint" = ", opsiwn %1$@ o %2$@";
