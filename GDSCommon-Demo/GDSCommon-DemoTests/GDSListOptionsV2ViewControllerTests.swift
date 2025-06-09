@@ -119,7 +119,11 @@ extension GDSListOptionsV2ViewControllerTests {
         XCTAssertEqual(viewModel.selectedIndex.stringKey, "")
         try sut.tableViewList.reloadData()
         try sut.tableView(sut.tableViewList, didSelectRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertEqual(viewModel.listRows[0].title.stringKey, "Table view list item 1")
+        let cell = try sut.tableView(sut.tableViewList, cellForRowAt: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(cell.accessibilityHint, ", option 1 of 2")
+        XCTAssertEqual(cell.textLabel?.text, viewModel.listRows[0].title.stringKey)
+        XCTAssertEqual(cell.accessibilityTraits, .button)
+        XCTAssertEqual(cell.accessibilityLabel, "Table view list item 1")
         XCTAssertEqual(viewModel.listRows[0].accessibilityLabel, "Table view list item 1")
         XCTAssertEqual(viewModel.listRows[0].accessibilityTraits, .button)
     }
