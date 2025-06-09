@@ -6,6 +6,14 @@ struct MockListCellViewModel: GDSListCellViewModel {
     let action: () -> Void
     let accessibilityLabel: String
     let accessibilityTraits: UIAccessibilityTraits = .button
+
+    init(title: GDSLocalisedString,
+         accessibilityLabel: String,
+         action: @escaping () -> Void) {
+        self.title = title
+        self.action = action
+        self.accessibilityLabel = accessibilityLabel
+    }
 }
 
 class MockListViewModelV2: GDSListOptionsViewModelV2, BaseViewModel {
@@ -37,10 +45,6 @@ class MockListViewModelV2: GDSListOptionsViewModelV2, BaseViewModel {
     let screenView: () -> Void
     let dismissAction: () -> Void
 
-    lazy var resultAction: (GDSLocalisedString) -> Void = {{ index in
-        self.selectedIndex = index
-    }}()
-
     func didDismiss() {
         dismissAction()
     }
@@ -65,10 +69,10 @@ class MockListViewModelV2: GDSListOptionsViewModelV2, BaseViewModel {
         self.listTitle = listTitle
 
         listRows = [MockListCellViewModel(title: "Table view list item 1",
-                                          action: {},
-                                          accessibilityLabel: "Table view list item 1"),
+                                          accessibilityLabel: "Table view list item 1",
+                                          action: buttonAction ?? {}),
                     MockListCellViewModel(title: "Table view list item two",
-                                          action: {},
-                                          accessibilityLabel: "Table view list item two")]
+                                          accessibilityLabel: "Table view list item two",
+                                          action: buttonAction ?? {})]
     }
 }

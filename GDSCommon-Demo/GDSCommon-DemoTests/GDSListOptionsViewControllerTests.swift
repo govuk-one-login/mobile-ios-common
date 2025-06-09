@@ -143,6 +143,8 @@ extension GDSListOptionsViewControllerTests {
     }
 }
 
+// These are also used in `GDSListOptionsV2ViewControllerTests`
+// When deprecating `GDSListOptionsViewModel`, move these to the V2 tests
 extension GDSListOptionsViewController {
     var titleLabel: UILabel {
         get throws {
