@@ -171,6 +171,7 @@ extension GDSListOptionsViewController: UITableViewDataSource {
             cell = ListTableViewCell(gdsLocalisedString: descriptor)
         } else {
             cell = .init()
+            assertionFailure("No cells were created")
         }
         cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         cell.selectionStyle = .none
