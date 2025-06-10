@@ -32,7 +32,7 @@ jobs:
 
       - name: Validate Pull Request Name
         id: versioning
-        uses: Oliver-Binns/Versioning@768ec693878abe2f357b151572915d2ab654d13e # pin@v1.3.2
+        uses: Oliver-Binns/Versioning@b6152639f8a9674571ba9794e27a47e2593ceb43 # pin@v1.3.3
         with:
           ACTION_TYPE: 'Validate'
 
