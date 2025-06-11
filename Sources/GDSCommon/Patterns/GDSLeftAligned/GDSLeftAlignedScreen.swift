@@ -82,9 +82,6 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
             trailing: defaultSpacing
         )
         result.accessibilityIdentifier = "left-aligned-screen-title-stack-view"
-        result.shouldGroupAccessibilityChildren = true
-        result.accessibilityTraits = [.header]
-//        result.isAccessibilityElement = true
         return result
     }()
     
@@ -97,6 +94,7 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
         )
         result.text = viewModel.title.value
         result.accessibilityIdentifier = "left-aligned-screen-title"
+        result.accessibilityTraits = .header
         result.adjustsFontForContentSizeCategory = true
         result.textAlignment = .left
         result.numberOfLines = 0
