@@ -18,6 +18,10 @@ final class ListTableViewCellTests: XCTestCase {
         
         super.tearDown()
     }
+
+    private func accessibilitySetup() {
+        sut = .init(gdsLocalisedString: gdsString, accessibilityLabel: gdsString.value, accessibilityHint: "option 1", accessibilityTraits: .button)
+    }
 }
 
 extension ListTableViewCellTests {
@@ -35,5 +39,13 @@ extension ListTableViewCellTests {
         XCTAssertEqual(sut.accessoryType, .checkmark)
         sut.setSelected(false, animated: false)
         XCTAssertEqual(sut.accessoryType, .none)
+    }
+
+    func testCellAccessibilityElements() {
+        accessibilitySetup()
+        XCTAssertEqual(sut.gdsLocalisedString.value, "test string")
+        XCTAssertEqual(sut.accessibilityLabel, "test string")
+        XCTAssertEqual(sut.accessibilityHint, "option 1")
+        XCTAssertEqual(sut.accessibilityTraits, .button)
     }
 }

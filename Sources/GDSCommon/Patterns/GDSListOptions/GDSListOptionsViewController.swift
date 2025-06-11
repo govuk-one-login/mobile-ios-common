@@ -159,13 +159,16 @@ extension GDSListOptionsViewController: UITableViewDataSource {
         var cell: UITableViewCell
         if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2 {
             let descriptor = v2ViewModel.listRows[indexPath.row].title
-            cell = ListTableViewCell(gdsLocalisedString: descriptor)
-            cell.accessibilityLabel = v2ViewModel.listRows[indexPath.row].accessibilityLabel
-            cell.accessibilityHint = NSLocalizedString(key: "GDSCommonCellAccessibilityHint",
-                                                       "\(indexPath.row + 1)",
-                                                       "\(tableViewList.numberOfRows(inSection: 0))",
-                                                       bundle: .module)
-            cell.accessibilityTraits = v2ViewModel.listRows[indexPath.row].accessibilityTraits
+            cell = ListTableViewCell(gdsLocalisedString: descriptor,
+                                     accessibilityLabel:v2ViewModel
+                .listRows[indexPath.row].accessibilityLabel,
+                                     accessibilityHint: NSLocalizedString(key:
+                                                                        "GDSCommonCellAccessibilityHint",
+                                                                          "\(indexPath.row + 1)",
+                                                                          "\(tableViewList.numberOfRows(inSection: 0))",
+                                                                          bundle: .module),
+                                     accessibilityTraits: v2ViewModel
+                .listRows[indexPath.row].accessibilityTraits)
         } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
             let descriptor = v1ViewModel.listRows[indexPath.row]
             cell = ListTableViewCell(gdsLocalisedString: descriptor)
@@ -184,7 +187,7 @@ extension GDSListOptionsViewController: UITableViewDataSource {
 extension GDSListOptionsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         viewWillLayoutSubviews()
-    }
+    }   
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         primaryButton.isEnabled = true
