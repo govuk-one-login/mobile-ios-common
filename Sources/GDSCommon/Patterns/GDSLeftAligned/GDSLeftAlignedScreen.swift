@@ -84,7 +84,7 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
         result.accessibilityIdentifier = "left-aligned-screen-title-stack-view"
         result.shouldGroupAccessibilityChildren = true
         result.accessibilityTraits = [.header]
-        result.isAccessibilityElement = true
+//        result.isAccessibilityElement = true
         return result
     }()
     
