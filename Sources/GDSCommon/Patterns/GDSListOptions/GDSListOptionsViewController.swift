@@ -160,7 +160,7 @@ extension GDSListOptionsViewController: UITableViewDataSource {
         if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2 {
             let descriptor = v2ViewModel.listRows[indexPath.row].title
             cell = ListTableViewCell(gdsLocalisedString: descriptor,
-                                     accessibilityLabel:v2ViewModel
+                                     accessibilityLabel: v2ViewModel
                 .listRows[indexPath.row].accessibilityLabel,
                                      accessibilityHint: NSLocalizedString(key:
                                                                         "GDSCommonCellAccessibilityHint",
@@ -187,7 +187,7 @@ extension GDSListOptionsViewController: UITableViewDataSource {
 extension GDSListOptionsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         viewWillLayoutSubviews()
-    }   
+    }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         primaryButton.isEnabled = true
