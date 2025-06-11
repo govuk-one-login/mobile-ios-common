@@ -4,15 +4,18 @@ public struct BodyTextViewModel: ScreenBodyItem {
     var text: GDSLocalisedString
     var fontWeight: UIFont.Weight
     var overridingAlignment: NSTextAlignment?
+    var isHeader: Bool
     
     public init(
         text: GDSLocalisedString,
         fontWeight: UIFont.Weight = .regular,
-        overridingAlignment: NSTextAlignment? = nil
+        overridingAlignment: NSTextAlignment? = nil,
+        isHeader: Bool = false
     ) {
         self.text = text
         self.fontWeight = fontWeight
         self.overridingAlignment = overridingAlignment
+        self.isHeader = isHeader
     }
 }
 
@@ -28,6 +31,9 @@ extension BodyTextViewModel {
         result.lineBreakMode = .byWordWrapping
         result.textAlignment = overridingAlignment ?? .center
         result.numberOfLines = 0
+        if isHeader {
+            result.accessibilityTraits = .header
+        }
         return result
     }
 }
