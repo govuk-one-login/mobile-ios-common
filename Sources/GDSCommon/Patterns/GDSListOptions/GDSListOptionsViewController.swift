@@ -17,11 +17,12 @@ import UIKit
 /// The action can be customised by configuring the `didDismiss` method.
 /// `footerLabel` is configured separately from the `UITableView` to address some
 /// dynamic type issues with multi-line footers.
+
 public final class GDSListOptionsViewController: BaseViewController, TitledViewController {
     public override var nibName: String? { "GDSListOptions" }
-    public let viewModel: GDSListOptionsViewModel
+    public let viewModel: GDSBaseOptionViewModel
 
-    public init(viewModel: GDSListOptionsViewModel) {
+    public init(viewModel: GDSBaseOptionViewModel) {
         self.viewModel = viewModel
         super.init(viewModel: viewModel as? BaseViewModel, nibName: "GDSListOptions", bundle: .module)
     }
@@ -143,14 +144,38 @@ public final class GDSListOptionsViewController: BaseViewController, TitledViewC
 
 extension GDSListOptionsViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.listRows.count
+        if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2 {
+            return v2ViewModel.listRows.count
+        } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
+            return v1ViewModel.listRows.count
+        } else {
+            return 0
+        }
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int { 1 }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let descriptor = viewModel.listRows[indexPath.row]
-        let cell = ListTableViewCell(gdsLocalisedString: descriptor)
+        var cell: UITableViewCell
+        if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2 {
+            let descriptor = v2ViewModel.listRows[indexPath.row].title
+            cell = ListTableViewCell(gdsLocalisedString: descriptor,
+                                     accessibilityLabel: v2ViewModel
+                .listRows[indexPath.row].accessibilityLabel,
+                                     accessibilityHint: NSLocalizedString(key:
+                                                                        "GDSCommonCellAccessibilityHint",
+                                                                          "\(indexPath.row + 1)",
+                                                                          "\(tableViewList.numberOfRows(inSection: 0))",
+                                                                          bundle: .module),
+                                     accessibilityTraits: v2ViewModel
+                .listRows[indexPath.row].accessibilityTraits)
+        } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel {
+            let descriptor = v1ViewModel.listRows[indexPath.row]
+            cell = ListTableViewCell(gdsLocalisedString: descriptor)
+        } else {
+            cell = .init()
+            assertionFailure("No cells were created")
+        }
         cell.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         cell.selectionStyle = .none
         cell.textLabel?.textColor = .label
@@ -166,8 +191,12 @@ extension GDSListOptionsViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         primaryButton.isEnabled = true
-        if let cell = tableViewList.cellForRow(at: indexPath) as? ListTableViewCell {
-            viewModel.resultAction(cell.gdsLocalisedString)
+        if let v2ViewModel = viewModel as? GDSListOptionsViewModelV2,
+            let cell = v2ViewModel.listRows[indexPath.row] as? GDSListCellViewModel {
+                cell.action()
+        } else if let v1ViewModel = viewModel as? GDSListOptionsViewModel,
+                    let cell = tableViewList.cellForRow(at: indexPath) as? ListTableViewCell {
+                v1ViewModel.resultAction(cell.gdsLocalisedString)
         }
     }
 }
