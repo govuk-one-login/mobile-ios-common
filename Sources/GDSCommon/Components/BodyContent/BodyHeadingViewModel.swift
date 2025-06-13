@@ -1,6 +1,6 @@
 import UIKit
 
-public struct BodyTitleViewModel: ScreenBodyItem {
+public struct BodyHeadingViewModel: ScreenBodyItem {
     var text: GDSLocalisedString
     var overridingAlignment: NSTextAlignment?
     
@@ -13,7 +13,7 @@ public struct BodyTitleViewModel: ScreenBodyItem {
     }
 }
 
-extension BodyTitleViewModel {
+extension BodyHeadingViewModel {
     public var uiView: UIView {
         let result = UILabel()
         result.font = UIFont(
