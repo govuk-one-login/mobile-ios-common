@@ -16,6 +16,18 @@ struct ScreenBodyItemTests {
     }
     
     @Test
+    func bodyHeadingViewModel() {
+        let viewModel = BodyHeadingViewModel(text: "Test text")
+        let label = viewModel.uiView as? UILabel
+        #expect(label?.text == "Test text")
+        #expect(label?.font == UIFont.bodySemiBold)
+        #expect(label?.textAlignment == .center)
+        #expect(label?.lineBreakMode == .byWordWrapping)
+        #expect(label?.numberOfLines == 0)
+        #expect(label?.accessibilityTraits == .header)
+    }
+    
+    @Test
     func bulletViewModel() throws {
         let viewModel = MockBulletViewModel()
         let view = viewModel.uiView as? BulletView

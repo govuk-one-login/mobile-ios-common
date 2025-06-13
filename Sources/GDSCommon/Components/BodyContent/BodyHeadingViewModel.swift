@@ -16,10 +16,7 @@ public struct BodyHeadingViewModel: ScreenBodyItem {
 extension BodyHeadingViewModel {
     public var uiView: UIView {
         let result = UILabel()
-        result.font = UIFont(
-            style: .body,
-            weight: .semibold
-        )
+        result.font = .bodySemiBold
         result.text = self.text.value
         result.adjustsFontForContentSizeCategory = true
         result.lineBreakMode = .byWordWrapping
