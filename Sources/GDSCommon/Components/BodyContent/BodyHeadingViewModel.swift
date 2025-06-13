@@ -6,7 +6,7 @@ public struct BodyHeadingViewModel: ScreenBodyItem {
     
     public init(
         text: GDSLocalisedString,
-        overridingAlignment: NSTextAlignment? = nil,
+        overridingAlignment: NSTextAlignment? = nil
     ) {
         self.text = text
         self.overridingAlignment = overridingAlignment
