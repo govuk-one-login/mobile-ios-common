@@ -120,7 +120,7 @@ extension GDSLeftAlignedScreenTests {
         // Labels
         XCTAssertEqual(try sut.titleLabel.text, "This is a Left Aligned Screen title")
         XCTAssertEqual(try sut.titleLabel.font, .largeTitleBold)
-        XCTAssertTrue(try sut.titleStack.accessibilityTraits.contains(.header))
+        XCTAssertTrue(try sut.titleLabel.accessibilityTraits.contains(.header))
        
         // Buttons
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary Action")
