@@ -25,6 +25,7 @@ struct MockLeftAlignedViewModelNoButtons: GDSLeftAlignedViewModel, BaseViewModel
     let bodyContent: [ScreenBodyItem] = [
         BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "This screen has no buttons at the bottom"), overridingAlignment: .left),
         BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content"), overridingAlignment: .left),
+        BodyTitleViewModel(text: GDSLocalisedString(stringLiteral: "This is a body title or subheader in body"), overridingAlignment: .left),
         BodyTextViewModel(text: GDSLocalisedString(stringLiteral: "some body content"), overridingAlignment: .left),
         MockButtonViewModel(title: "Button", icon: nil, shouldLoadOnTap: false, action: {}, overrideContentAlignment: .leading)
     ]
