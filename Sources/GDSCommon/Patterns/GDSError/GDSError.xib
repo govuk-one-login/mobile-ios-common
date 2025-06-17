@@ -113,9 +113,6 @@
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Tertiary Button"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="icon" value="arrow.up.right"/>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="tertiaryButtonAction:" destination="-1" eventType="touchUpInside" id="FdE-W1-34q"/>
                             </connections>
