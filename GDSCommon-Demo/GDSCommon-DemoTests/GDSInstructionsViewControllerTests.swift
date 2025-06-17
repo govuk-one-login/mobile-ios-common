@@ -145,6 +145,7 @@ extension GDSInstructionsViewControllerTests {
         XCTAssertNotNil(try sut.secondaryButton)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "button title")
         XCTAssertNotEqual(try sut.secondaryButton.backgroundColor, .gdsGreen)
+        XCTAssertNil(try sut.secondaryButton.icon)
     }
 
     @MainActor
