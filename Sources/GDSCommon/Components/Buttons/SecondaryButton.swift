@@ -3,7 +3,7 @@ import UIKit
 public class SecondaryButton: UIButton {
     @IBInspectable public var icon: String? {
         didSet {
-            redrawTitle()
+            redrawTitle(with: nil)
         }
     }
     
@@ -47,7 +47,7 @@ public class SecondaryButton: UIButton {
         }
         
         NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: nil, queue: nil) { _ in
-            self.redrawTitle()
+            self.redrawTitle(with: nil)
         }
         
         if #available(iOS 14.0, *) {
@@ -82,21 +82,36 @@ public class SecondaryButton: UIButton {
     public override func setTitle(_ title: String?, for state: UIControl.State) {
         super.setTitle(title, for: state)
         super.accessibilityLabel = title
-        redrawTitle()
+        redrawTitle(with: nil)
+    }
+    
+    public override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if let nextItem = context.nextFocusedItem, nextItem.isEqual(self) {
+            backgroundColor = .gdsYellow
+            layer.cornerRadius = 4
+            redrawTitle(with: .black)
+        } else {
+            backgroundColor = .systemBackground
+            redrawTitle(with: color)
+        }
     }
 }
 
 extension SecondaryButton {
-    private func redrawTitle() {
+    private func redrawTitle(with colour: UIColor?) {
         // only need to redraw if there is an icon set
         // otherwise text will dynamically resize automatically
-        guard let icon = icon else { return }
-        
+        guard let icon = icon else {
+            setTitleColor(colour, for: .normal)
+            return
+        }
+
         let configuration = UIImage.SymbolConfiguration(font: .init(style: .body, weight: fontWeight))
         let title = self.title(for: .normal) ?? ""
         let textString = NSAttributedString(string: title,
                                             attributes: [.font: UIFont(style: .body, weight: fontWeight)])
-            .addingSymbol(named: icon, configuration: configuration, tintColor: color, symbolPosition: symbolPosition)
+            .addingSymbol(named: icon, configuration: configuration, tintColor: colour ?? color, symbolPosition: symbolPosition)
+        setTitleColor(colour, for: .focused)
         self.setAttributedTitle(textString, for: .normal)
     }
     
