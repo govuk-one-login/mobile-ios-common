@@ -211,6 +211,11 @@ extension GDSErrorViewControllerTests {
         
         XCTAssertFalse(try sut.errorTertiaryButton.isHidden)
         XCTAssertEqual(try sut.errorTertiaryButton.title(for: .normal), "Error tertiary button title")
+        
+        XCTAssertNil(sut.viewModel.primaryButtonViewModel.icon)
+        XCTAssertNil(sut.viewModel.secondaryButtonViewModel?.icon)
+        let tertiaryButton = try XCTUnwrap(sut.viewModelV2 as? GDSScreenWithTertiaryButtonViewModel)
+        XCTAssertNil(tertiaryButton.tertiaryButtonViewModel.icon)
     }
     
     @MainActor
