@@ -87,7 +87,7 @@ public final class RoundedButton: SecondaryButton {
         let textString = NSAttributedString(string: title,
                                             attributes: [.font: UIFont(style: .body, weight: fontWeight)])
             .addingSymbol(named: icon, configuration: configuration, tintColor: colour, symbolPosition: symbolPosition)
-        setTitleColor(colour, for: .focused)
+        setTitleColor(colour, for: .normal)
         setAttributedTitle(textString, for: .normal)
     }
     

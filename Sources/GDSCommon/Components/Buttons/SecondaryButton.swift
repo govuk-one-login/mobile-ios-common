@@ -121,7 +121,7 @@ extension SecondaryButton {
         let textString = NSAttributedString(string: title,
                                             attributes: [.font: UIFont(style: .body, weight: fontWeight)])
             .addingSymbol(named: icon, configuration: configuration, tintColor: colour ?? color, symbolPosition: symbolPosition)
-        setTitleColor(colour, for: .focused)
+        setTitleColor(colour, for: .normal)
         self.setAttributedTitle(textString, for: .normal)
     }
     
