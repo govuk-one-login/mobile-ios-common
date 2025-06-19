@@ -3,7 +3,7 @@ import UIKit
 public class SecondaryButton: UIButton {
     @IBInspectable public var icon: String? {
         didSet {
-            redrawTitle(with: nil)
+            redrawTitle(with: color)
         }
     }
     
@@ -47,7 +47,7 @@ public class SecondaryButton: UIButton {
         }
         
         NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: nil, queue: nil) { _ in
-            self.redrawTitle(with: nil)
+            self.redrawTitle(with: self.color)
         }
         
         if #available(iOS 14.0, *) {
@@ -82,7 +82,7 @@ public class SecondaryButton: UIButton {
     public override func setTitle(_ title: String?, for state: UIControl.State) {
         super.setTitle(title, for: state)
         super.accessibilityLabel = title
-        redrawTitle(with: nil)
+        redrawTitle(with: color)
     }
     
     public override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
