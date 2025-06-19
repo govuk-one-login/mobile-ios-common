@@ -28,6 +28,16 @@ extension SecondaryButtonTests {
     func test_buttonAccessibilityLabel() {
         XCTAssertEqual(sut.accessibilityLabel, "title")
     }
+    
+    func test_buttonAccessibilityBackground() throws {
+        sut.accessibilityElementDidBecomeFocused()
+        XCTAssertEqual(sut.backgroundColor, .gdsYellow)
+        XCTAssertEqual(sut.currentTitleColor, .black)
+        
+        sut.accessibilityElementDidLoseFocus()
+        XCTAssertEqual(sut.backgroundColor, .systemBackground)
+        XCTAssertEqual(sut.currentTitleColor, .accent)
+    }
 
     @available(iOS 14, *)
     func test_buttonUIAction() {

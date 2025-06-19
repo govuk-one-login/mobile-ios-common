@@ -95,6 +95,16 @@ public class SecondaryButton: UIButton {
             redrawTitle(with: color)
         }
     }
+    
+    public override func accessibilityElementDidBecomeFocused() {
+        backgroundColor = .gdsYellow
+        setTitleColor(.black, for: .normal)
+    }
+
+    public override func accessibilityElementDidLoseFocus() {
+        backgroundColor = .systemBackground
+        setTitleColor(color, for: .normal)
+    }
 }
 
 extension SecondaryButton {
