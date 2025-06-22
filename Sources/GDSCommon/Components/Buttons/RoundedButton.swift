@@ -1,6 +1,8 @@
 import UIKit
 
 public final class RoundedButton: SecondaryButton {
+    var initialBackgroundColor: UIColor?
+    
     public var isLoading: Bool = false {
         didSet {
             isLoading ? startLoading() : stopLoading()
@@ -68,10 +70,11 @@ public final class RoundedButton: SecondaryButton {
 
     public override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if let nextItem = context.nextFocusedItem, nextItem.isEqual(self) {
+            initialBackgroundColor = backgroundColor
             backgroundColor = .gdsYellow
             redrawTitle(with: .black)
         } else {
-            backgroundColor = .gdsGreen
+            backgroundColor = initialBackgroundColor
             redrawTitle(with: .white)
         }
     }
