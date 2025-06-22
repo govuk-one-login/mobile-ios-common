@@ -69,7 +69,11 @@ public final class RoundedButton: SecondaryButton {
     }
 
     public override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        if let nextItem = context.nextFocusedItem, nextItem.isEqual(self) {
+        handleButtonFocus(isFocused: isFocused)
+    }
+    
+    func handleButtonFocus(isFocused: Bool) {
+        if isFocused {
             initialBackgroundColor = backgroundColor
             backgroundColor = .gdsYellow
             redrawTitle(with: .black)
@@ -93,17 +97,7 @@ public final class RoundedButton: SecondaryButton {
         setTitleColor(colour, for: .normal)
         setAttributedTitle(textString, for: .normal)
     }
-    
-    public override func accessibilityElementDidBecomeFocused() {
-        backgroundColor = .gdsYellow
-        setTitleColor(.black, for: .normal)
-    }
 
-    public override func accessibilityElementDidLoseFocus() {
-        backgroundColor = .gdsGreen
-        setTitleColor(.white, for: .normal)
-    }
-    
     public override func buttonBackground() {
         backgroundColor = .gdsGreen
         color = .white

@@ -95,8 +95,10 @@ public class SecondaryButton: UIButton {
             layer.cornerRadius = 4
             redrawTitle(with: .black)
         } else {
-            backgroundColor = .systemBackground
             redrawTitle(with: color)
+            if #available(iOS 14.0, *) {
+                buttonBackground()
+            }
         }
     }
 }

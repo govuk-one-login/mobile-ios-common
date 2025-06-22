@@ -22,11 +22,11 @@ final class GDSButtonTests: XCTestCase {
 
 extension GDSButtonTests {
     func test_buttonAccessibilityBackground() throws {
-        sut.accessibilityElementDidBecomeFocused()
+        sut.handleButtonFocus(isFocused: true)
         XCTAssertEqual(sut.backgroundColor, .gdsYellow)
         XCTAssertEqual(sut.currentTitleColor, .black)
         
-        sut.accessibilityElementDidLoseFocus()
+        sut.handleButtonFocus(isFocused: false)
         XCTAssertEqual(sut.backgroundColor, .gdsGreen)
         XCTAssertEqual(sut.currentTitleColor, .white)
     }

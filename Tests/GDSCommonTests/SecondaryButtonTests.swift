@@ -33,9 +33,10 @@ extension SecondaryButtonTests {
         sut.handleFocus(isFocused: true)
         XCTAssertEqual(sut.backgroundColor, .gdsYellow)
         XCTAssertEqual(sut.currentTitleColor, .black)
+        XCTAssertEqual(sut.layer.cornerRadius, 4)
         
         sut.handleFocus(isFocused: false)
-        XCTAssertEqual(sut.backgroundColor, .systemBackground)
+        XCTAssertEqual(sut.backgroundColor, .none)
         XCTAssertEqual(sut.currentTitleColor, .accent)
     }
 
