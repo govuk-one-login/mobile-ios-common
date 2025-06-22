@@ -29,12 +29,12 @@ extension SecondaryButtonTests {
         XCTAssertEqual(sut.accessibilityLabel, "title")
     }
     
-    func test_buttonAccessibilityBackground() throws {
-        sut.accessibilityElementDidBecomeFocused()
+    func test_buttonBackground_withKeyboardFocus() throws {
+        sut.handleFocus(isFocused: true)
         XCTAssertEqual(sut.backgroundColor, .gdsYellow)
         XCTAssertEqual(sut.currentTitleColor, .black)
         
-        sut.accessibilityElementDidLoseFocus()
+        sut.handleFocus(isFocused: false)
         XCTAssertEqual(sut.backgroundColor, .systemBackground)
         XCTAssertEqual(sut.currentTitleColor, .accent)
     }

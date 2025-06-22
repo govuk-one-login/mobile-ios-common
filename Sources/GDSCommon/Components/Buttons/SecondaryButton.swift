@@ -86,7 +86,11 @@ public class SecondaryButton: UIButton {
     }
     
     public override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        if let nextItem = context.nextFocusedItem, nextItem.isEqual(self) {
+        handleFocus(isFocused: isFocused)
+    }
+    
+    func handleFocus(isFocused: Bool) {
+        if isFocused {
             backgroundColor = .gdsYellow
             layer.cornerRadius = 4
             redrawTitle(with: .black)
@@ -94,16 +98,6 @@ public class SecondaryButton: UIButton {
             backgroundColor = .systemBackground
             redrawTitle(with: color)
         }
-    }
-    
-    public override func accessibilityElementDidBecomeFocused() {
-        backgroundColor = .gdsYellow
-        setTitleColor(.black, for: .normal)
-    }
-
-    public override func accessibilityElementDidLoseFocus() {
-        backgroundColor = .systemBackground
-        setTitleColor(color, for: .normal)
     }
 }
 
