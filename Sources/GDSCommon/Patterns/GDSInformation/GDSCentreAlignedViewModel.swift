@@ -23,6 +23,7 @@ import UIKit
 @MainActor
 public protocol GDSCentreAlignedViewModel {
     var title: GDSLocalisedString { get }
+    var iconTitleAccessibilityLabel: GDSLocalisedString? { get }
     var body: GDSLocalisedString? { get }
 }
 
@@ -52,4 +53,8 @@ public protocol GDSCentreAlignedViewModelWithSecondaryButton {
 @MainActor
 public protocol GDSCentreAlignedViewModelWithChildView {
     var childView: UIView { get }
+}
+
+extension GDSCentreAlignedViewModel {
+    public var iconTitleAccessibilityLabel: GDSLocalisedString? { nil }
 }

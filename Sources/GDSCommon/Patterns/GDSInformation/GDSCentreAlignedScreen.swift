@@ -97,8 +97,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
     private lazy var scrollViewInnerStackView: UIStackView = {
         let result = UIStackView(
             views: [
-                imageView,
-                titleLabel,
+                iconAndTitleStackView,
                 bodyLabel
             ],
             spacing: defaultSpacing,
@@ -109,6 +108,21 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
             result.addArrangedSubview(viewModel.childView)
         }
         result.accessibilityIdentifier = "centre-aligned-screen-optional-stack-view"
+        return result
+    }()
+    
+    private lazy var iconAndTitleStackView: UIStackView = {
+        let result = UIStackView(
+            views: [
+                imageView,
+                titleLabel
+            ],
+            spacing: defaultSpacing,
+            distribution: .equalSpacing
+        )
+        result.accessibilityIdentifier = "centre-aligned-screen-icon-title-stack-view"
+        result.accessibilityLabel = viewModel.iconTitleAccessibilityLabel?.value
+        result.isAccessibilityElement = true
         return result
     }()
     

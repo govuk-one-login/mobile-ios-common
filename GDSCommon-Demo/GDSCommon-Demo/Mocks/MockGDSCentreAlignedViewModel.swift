@@ -42,8 +42,15 @@ struct MockGDSCentreAlignedViewModel: GDSCentreAlignedViewModel,
 
 
 struct MockGDSCentreAlignedViewModelNoButtons: GDSCentreAlignedViewModel,
-                                      BaseViewModel {
+                                               GDSCentreAlignedViewModelWithImage,
+                                               BaseViewModel {
+    let image: String = "checkmark.circle"
+    let imageWeight: UIFont.Weight? = nil
+    let imageColour: UIColor? = nil
+    let imageHeightConstraint: CGFloat? = nil
+    
     let title: GDSLocalisedString = "This is a centre aligned screen title"
+    let iconTitleAccessibilityLabel: GDSLocalisedString? = "Success This is a centre aligned screen title"
     let body: GDSLocalisedString? = "This is an optional centre aligned screen body. This screen has no buttons"
     let rightBarButtonTitle: GDSLocalisedString? = "Dismiss"
     let backButtonIsHidden: Bool = false
