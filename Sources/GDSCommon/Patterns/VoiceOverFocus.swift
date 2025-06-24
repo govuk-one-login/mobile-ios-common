@@ -35,7 +35,7 @@ extension TitledViewControllerV2 {
 
 @MainActor
 public protocol PublicTitledViewControllerV2: VoiceOverFocus {
-    var titleLabel: UILabel { get }
+    var titleLabel: UILabel! { get }
 }
 
 extension PublicTitledViewControllerV2 {
