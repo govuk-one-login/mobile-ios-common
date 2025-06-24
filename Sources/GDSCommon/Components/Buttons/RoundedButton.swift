@@ -1,6 +1,8 @@
 import UIKit
 
 public final class RoundedButton: SecondaryButton {
+    var initialBackgroundColor: UIColor?
+    
     public var isLoading: Bool = false {
         didSet {
             isLoading ? startLoading() : stopLoading()
@@ -66,41 +68,17 @@ public final class RoundedButton: SecondaryButton {
         activityIndicator.removeFromSuperview()
     }
 
-    public override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        if let nextItem = context.nextFocusedItem, nextItem.isEqual(self) {
+    override func handleFocus(isFocused: Bool) {
+        if isFocused {
+            initialBackgroundColor = backgroundColor
             backgroundColor = .gdsYellow
             redrawTitle(with: .black)
         } else {
-            backgroundColor = .gdsGreen
+            backgroundColor = initialBackgroundColor
             redrawTitle(with: .white)
         }
     }
-    
-    private func redrawTitle(with colour: UIColor) {
-        guard let icon = icon else {
-            setTitleColor(colour, for: .normal)
-            return
-        }
-        
-        let configuration = UIImage.SymbolConfiguration(font: .init(style: .body, weight: fontWeight))
-        let title = self.title(for: .normal) ?? ""
-        let textString = NSAttributedString(string: title,
-                                            attributes: [.font: UIFont(style: .body, weight: fontWeight)])
-            .addingSymbol(named: icon, configuration: configuration, tintColor: colour, symbolPosition: symbolPosition)
-        setTitleColor(colour, for: .normal)
-        setAttributedTitle(textString, for: .normal)
-    }
-    
-    public override func accessibilityElementDidBecomeFocused() {
-        backgroundColor = .gdsYellow
-        setTitleColor(.black, for: .normal)
-    }
 
-    public override func accessibilityElementDidLoseFocus() {
-        backgroundColor = .gdsGreen
-        setTitleColor(.white, for: .normal)
-    }
-    
     public override func buttonBackground() {
         backgroundColor = .gdsGreen
         color = .white
