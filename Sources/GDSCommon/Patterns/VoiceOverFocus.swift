@@ -12,7 +12,7 @@ public protocol VoiceOverFocus {
 /// from ``BaseViewController``, conform the view controller to ``TitledViewController`` to
 /// automaticaly direct VoiceOver to the ``titleLabel`` when the screen appears
 @MainActor
-protocol TitledViewController: VoiceOverFocus {
+public protocol TitledViewController: VoiceOverFocus {
     var titleLabel: UILabel! { get }
 }
 
@@ -23,7 +23,7 @@ extension TitledViewController {
 }
 
 @MainActor
-protocol TitledViewControllerV2: VoiceOverFocus {
+public protocol TitledViewControllerV2: VoiceOverFocus {
     var titleLabel: UILabel { get }
 }
 
