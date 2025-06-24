@@ -104,10 +104,11 @@ public class SecondaryButton: UIButton {
 }
 
 extension SecondaryButton {
-    private func redrawTitle(with colour: UIColor) {
+    internal func redrawTitle(with colour: UIColor) {
         // only need to redraw if there is an icon set
         // otherwise text will dynamically resize automatically
         guard let icon = icon else {
+            setTitleColor(colour, for: .normal)
             return
         }
 
@@ -116,8 +117,11 @@ extension SecondaryButton {
         let textString = NSAttributedString(string: title,
                                             attributes: [.font: UIFont(style: .body, weight: fontWeight)])
             .addingSymbol(named: icon, configuration: configuration, tintColor: colour, symbolPosition: symbolPosition)
-        setTitleColor(colour, for: .normal)
-        self.setAttributedTitle(textString, for: .normal)
+        UIView.performWithoutAnimation {
+            self.setAttributedTitle(textString, for: .normal)
+            self.setTitleColor(colour, for: .normal)
+            self.layoutIfNeeded()
+        }
     }
     
     @available(iOS 14.0, *)

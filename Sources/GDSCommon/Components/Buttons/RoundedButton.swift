@@ -68,11 +68,7 @@ public final class RoundedButton: SecondaryButton {
         activityIndicator.removeFromSuperview()
     }
 
-    public override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        handleButtonFocus(isFocused: isFocused)
-    }
-    
-    func handleButtonFocus(isFocused: Bool) {
+    override func handleFocus(isFocused: Bool) {
         if isFocused {
             initialBackgroundColor = backgroundColor
             backgroundColor = .gdsYellow
@@ -81,21 +77,6 @@ public final class RoundedButton: SecondaryButton {
             backgroundColor = initialBackgroundColor
             redrawTitle(with: .white)
         }
-    }
-    
-    private func redrawTitle(with colour: UIColor) {
-        guard let icon = icon else {
-            setTitleColor(colour, for: .normal)
-            return
-        }
-        
-        let configuration = UIImage.SymbolConfiguration(font: .init(style: .body, weight: fontWeight))
-        let title = self.title(for: .normal) ?? ""
-        let textString = NSAttributedString(string: title,
-                                            attributes: [.font: UIFont(style: .body, weight: fontWeight)])
-            .addingSymbol(named: icon, configuration: configuration, tintColor: colour, symbolPosition: symbolPosition)
-        setTitleColor(colour, for: .normal)
-        setAttributedTitle(textString, for: .normal)
     }
 
     public override func buttonBackground() {
