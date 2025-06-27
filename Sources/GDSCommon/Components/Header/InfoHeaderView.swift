@@ -13,6 +13,7 @@ class InfoHeaderView: UIView {
             distribution: .fill
         )
         result.accessibilityIdentifier = "information-screen-header-stackview"
+        result.backgroundColor = viewModel.backgroundColor
         return result
     }()
     

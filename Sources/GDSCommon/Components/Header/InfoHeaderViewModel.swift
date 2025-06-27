@@ -1,14 +1,15 @@
 import UIKit
 
 public struct InfoHeaderViewModel: ScreenBodyItem {
-    var title: GDSLocalisedString
-    var titleFont: UIFont
+    let title: GDSLocalisedString
+    let titleFont: UIFont
     
-    var subtitle: GDSLocalisedString
-    var subtitleFont: UIFont
+    let subtitle: GDSLocalisedString
+    let subtitleFont: UIFont
     
-    var alignment: NSTextAlignment
-    var spacing: CGFloat
+    let alignment: NSTextAlignment
+    let spacing: CGFloat
+    let backgroundColor: UIColor
     
     public init(
         title: GDSLocalisedString,
@@ -16,7 +17,8 @@ public struct InfoHeaderViewModel: ScreenBodyItem {
         subtitle: GDSLocalisedString,
         subtitleFont: UIFont,
         alignment: NSTextAlignment = .left,
-        spacing: CGFloat = 0
+        spacing: CGFloat = 0,
+        backgroundColor: UIColor
     ) {
         self.title = title
         self.titleFont = titleFont
@@ -24,6 +26,7 @@ public struct InfoHeaderViewModel: ScreenBodyItem {
         self.subtitleFont = subtitleFont
         self.alignment = alignment
         self.spacing = spacing
+        self.backgroundColor = backgroundColor
     }
 
     public var uiView: UIView {
