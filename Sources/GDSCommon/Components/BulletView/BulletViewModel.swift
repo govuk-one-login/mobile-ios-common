@@ -18,3 +18,9 @@ extension BulletViewModel {
         return result
     }
 }
+
+public struct BaseBulletViewModel: BulletViewModel {
+    public var title: String?
+    public var titleFont: UIFont? = .init(style: .body, weight: .bold)
+    public var text: [String]
+}
