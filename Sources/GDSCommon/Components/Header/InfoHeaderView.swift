@@ -2,6 +2,7 @@ import UIKit
 
 class InfoHeaderView: UIView {
     let viewModel: InfoHeaderViewModel
+    let defaultSpacing = 16.0 // Use Design system when available
     
     private lazy var containerStackView: UIStackView = {
         let result = UIStackView(
@@ -14,6 +15,12 @@ class InfoHeaderView: UIView {
         )
         result.accessibilityIdentifier = "information-screen-header-stackview"
         result.backgroundColor = viewModel.backgroundColor
+        result.layoutMargins = UIEdgeInsets(
+            top: defaultSpacing,
+            left: defaultSpacing,
+            bottom: defaultSpacing,
+            right: defaultSpacing
+        )
         return result
     }()
     

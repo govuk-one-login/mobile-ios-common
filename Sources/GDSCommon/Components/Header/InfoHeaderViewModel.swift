@@ -10,6 +10,7 @@ public struct InfoHeaderViewModel: ScreenBodyItem {
     let alignment: NSTextAlignment
     let spacing: CGFloat
     let backgroundColor: UIColor
+    let textColor: UIColor
     
     public let horizontalPadding: CGFloat?
     
@@ -20,7 +21,8 @@ public struct InfoHeaderViewModel: ScreenBodyItem {
         subtitleFont: UIFont,
         alignment: NSTextAlignment = .left,
         spacing: CGFloat = 0,
-        backgroundColor: UIColor
+        backgroundColor: UIColor,
+        textColor: UIColor = .white
     ) {
         self.title = title
         self.titleFont = titleFont
@@ -29,7 +31,9 @@ public struct InfoHeaderViewModel: ScreenBodyItem {
         self.alignment = alignment
         self.spacing = spacing
         self.backgroundColor = backgroundColor
-        self.horizontalPadding = 0 
+        self.textColor = textColor
+        
+        self.horizontalPadding = 0
     }
 
     public var uiView: UIView {
