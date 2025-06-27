@@ -42,12 +42,12 @@ class InfoHeaderView: UIView {
     
     public init(viewModel: InfoHeaderViewModel) {
         self.viewModel = viewModel
-        super.init()
+        super.init(frame: .zero)
         
         self.addSubview(containerStackView)
         self.containerStackView.bindToSuperviewEdges()
     }
-    
+  
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
