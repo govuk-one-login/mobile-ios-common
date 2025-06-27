@@ -28,7 +28,7 @@ class InfoHeaderView: UIView {
     lazy var titleLabel: UILabel = {
         let result = UILabel()
         result.font = viewModel.titleFont
-        result.text = viewModel.subtitle.value
+        result.text = viewModel.title.value
         result.textColor = viewModel.textColor
         result.accessibilityIdentifier = "information-screen-header-title"
         result.adjustsFontForContentSizeCategory = true
