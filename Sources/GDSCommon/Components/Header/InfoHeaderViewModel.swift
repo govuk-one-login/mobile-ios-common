@@ -11,6 +11,8 @@ public struct InfoHeaderViewModel: ScreenBodyItem {
     let spacing: CGFloat
     let backgroundColor: UIColor
     
+    public let horizontalPadding: CGFloat?
+    
     public init(
         title: GDSLocalisedString,
         titleFont: UIFont,
@@ -27,6 +29,7 @@ public struct InfoHeaderViewModel: ScreenBodyItem {
         self.alignment = alignment
         self.spacing = spacing
         self.backgroundColor = backgroundColor
+        self.horizontalPadding = 0 
     }
 
     public var uiView: UIView {
