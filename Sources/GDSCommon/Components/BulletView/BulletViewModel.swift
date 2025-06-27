@@ -23,4 +23,14 @@ public struct BaseBulletViewModel: BulletViewModel {
     public var title: String?
     public var titleFont: UIFont? = .init(style: .body, weight: .bold)
     public var text: [String]
+    
+    public init(
+        title: String? = nil,
+        titleFont: UIFont? = nil,
+        text: [String]
+    ) {
+        self.title = title
+        self.titleFont = titleFont
+        self.text = text
+    }
 }
