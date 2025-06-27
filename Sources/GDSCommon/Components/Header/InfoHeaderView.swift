@@ -10,7 +10,7 @@ class InfoHeaderView: UIView {
                 titleLabel,
                 subtitleLabel
             ],
-            spacing: 0,
+            spacing: defaultSpacing,
             distribution: .fill
         )
         result.accessibilityIdentifier = "information-screen-header-stackview"
@@ -21,6 +21,7 @@ class InfoHeaderView: UIView {
             bottom: defaultSpacing,
             right: defaultSpacing
         )
+        result.isLayoutMarginsRelativeArrangement = true
         return result
     }()
     
@@ -28,6 +29,7 @@ class InfoHeaderView: UIView {
         let result = UILabel()
         result.font = viewModel.titleFont
         result.text = viewModel.subtitle.value
+        result.textColor = viewModel.textColor
         result.accessibilityIdentifier = "information-screen-header-title"
         result.adjustsFontForContentSizeCategory = true
         result.textAlignment = viewModel.alignment
@@ -39,6 +41,7 @@ class InfoHeaderView: UIView {
         let result = UILabel()
         result.font = viewModel.subtitleFont
         result.text = viewModel.subtitle.value
+        result.textColor = viewModel.textColor
         result.accessibilityIdentifier = "information-screen-header-subtitle"
         result.adjustsFontForContentSizeCategory = true
         result.textAlignment = viewModel.alignment
