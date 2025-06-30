@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol OrientationLockingNavigationController: UINavigationController {
+public protocol OrientationLockingNavigationController: UIViewController {
     // Empty implementation
 }
 
