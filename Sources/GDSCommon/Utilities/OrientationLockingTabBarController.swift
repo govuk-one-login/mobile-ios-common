@@ -6,7 +6,7 @@ public protocol OrientationLockingNavigationController: UINavigationController {
 
 // OrientationLockingTabBarController prevents interface rotation preferences being overridden by UITabBarController.
 // It ensures the correct view controller handles rotation.
-class OrientationLockingTabBarController: UITabBarController {
+public class OrientationLockingTabBarController: UITabBarController {
     override open var shouldAutorotate: Bool {
         if let vc = self.selectedViewController?.presentedViewController, vc is OrientationLockingNavigationController {
             return vc.shouldAutorotate
