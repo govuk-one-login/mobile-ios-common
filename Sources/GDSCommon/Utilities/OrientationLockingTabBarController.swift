@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol OrientationLockingViewController: UIViewController {
+public protocol OrientationLockingNavigationController: UINavigationController {
     // Empty implementation
 }
 
@@ -8,7 +8,7 @@ public protocol OrientationLockingViewController: UIViewController {
 // It ensures the correct view controller handles rotation.
 class OrientationLockingTabBarController: UITabBarController {
     override open var shouldAutorotate: Bool {
-        if let vc = self.selectedViewController?.presentedViewController, vc is OrientationLockingViewController {
+        if let vc = self.selectedViewController?.presentedViewController, vc is OrientationLockingNavigationController {
             return vc.shouldAutorotate
         } else {
             return super.shouldAutorotate
@@ -16,7 +16,7 @@ class OrientationLockingTabBarController: UITabBarController {
     }
     
     override open var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        if let vc = self.selectedViewController?.presentedViewController, vc is OrientationLockingViewController {
+        if let vc = self.selectedViewController?.presentedViewController, vc is OrientationLockingNavigationController {
             return vc.preferredInterfaceOrientationForPresentation
         } else {
             return super.preferredInterfaceOrientationForPresentation
@@ -24,7 +24,7 @@ class OrientationLockingTabBarController: UITabBarController {
     }
     
     override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if let vc = self.selectedViewController?.presentedViewController, vc is OrientationLockingViewController {
+        if let vc = self.selectedViewController?.presentedViewController, vc is OrientationLockingNavigationController {
             return vc.supportedInterfaceOrientations
         } else {
             return super.supportedInterfaceOrientations
@@ -32,7 +32,7 @@ class OrientationLockingTabBarController: UITabBarController {
     }
     
     override open var preferredStatusBarStyle: UIStatusBarStyle {
-        if let vc = self.selectedViewController?.presentedViewController, vc is OrientationLockingViewController {
+        if let vc = self.selectedViewController?.presentedViewController, vc is OrientationLockingNavigationController {
             return vc.preferredStatusBarStyle
         } else {
             return super.preferredStatusBarStyle

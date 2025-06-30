@@ -4,7 +4,7 @@ import XCTest
 final class OrientationLockingTabBarControllerTests: XCTestCase {
     private var sut: OrientationLockingTabBarController!
     private var navigationController: UINavigationController!
-    private var orientationLockingViewController: OrientationLockingViewController!
+    private var orientationLockingViewController: OrientationLockingNavigationController!
     private var viewController: UIViewController!
     
     override func setUp() {
@@ -111,7 +111,7 @@ extension OrientationLockingTabBarControllerTests {
     }
  }
 
-class MockOrientationLockingViewController: UIViewController, OrientationLockingViewController {
+class MockOrientationLockingViewController: UINavigationController, OrientationLockingNavigationController {
     let shouldAutorotateValue: Bool
     
     init(shouldAutorotate: Bool = false) {
