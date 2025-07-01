@@ -11,10 +11,11 @@ final class OrientationLockingTabBarControllerTests: XCTestCase {
         super.setUp()
         sut = OrientationLockingTabBarController()
         navigationController = UINavigationController()
-        orientationLockingViewController = MockOrientationLockingViewController(shouldAutorotate: false)
+        orientationLockingViewController = MockOrientationLockingViewController()
         viewController = UIViewController()
         
-        sut.viewControllers = [navigationController]
+        sut.setViewControllers([navigationController], animated: true)
+        attachToWindow(viewController: sut)
     }
     
     override func tearDown() {
@@ -27,89 +28,99 @@ final class OrientationLockingTabBarControllerTests: XCTestCase {
 
 // Result of OrientationLockingTabBarController should match OrientationLockingViewController
 extension OrientationLockingTabBarControllerTests {
-    func test_shouldAutorotate_IDCheckNavigationControllerSelected() {
+    func test_shouldNotAutorotate() {
         sut.selectedViewController = navigationController
+        orientationLockingViewController = MockOrientationLockingViewController(shouldAutorotate: false)
+        
+        // Present OrientationLockingViewController modally
+        navigationController.present(orientationLockingViewController, animated: false)
+        
+        // TabBarController rotation should match MockOrientationLockingViewController rotation
+        XCTAssertEqual(sut.shouldAutorotate, false)
+    }
+    
+    func test_shouldAutorotate() {
+        sut.selectedViewController = navigationController
+        orientationLockingViewController = MockOrientationLockingViewController(shouldAutorotate: true)
         
         // Present OrientationLockingViewController modally
         navigationController.present(orientationLockingViewController, animated: true)
         
-        let result = sut.shouldAutorotate
-        XCTAssertEqual(result, false)
+        // TabBarController rotation should match MockOrientationLockingViewController rotation
+        XCTAssertEqual(sut.shouldAutorotate, true)
     }
     
-    func test_preferredInterfaceOrientationForPresentation_IDCheckNavigationControllerSelected() {
+    func test_preferredInterfaceOrientationForPresentation() {
         sut.selectedViewController = navigationController
         
         // Present OrientationLockingViewController modally
         navigationController.present(orientationLockingViewController, animated: false)
         
-        let result = sut.preferredInterfaceOrientationForPresentation
-        XCTAssertEqual(result, orientationLockingViewController.preferredInterfaceOrientationForPresentation)
+        // TabBarController rotation should match MockOrientationLockingViewController rotation
+        XCTAssertEqual(sut.preferredInterfaceOrientationForPresentation, .landscapeLeft)
     }
     
-    func test_supportedInterfaceOrientations_IDCheckNavigationControllerSelected() {
+    func test_supportedInterfaceOrientations() {
         sut.selectedViewController = navigationController
         
         // Present OrientationLockingViewController modally
         navigationController.present(orientationLockingViewController, animated: false)
         
-        let result = sut.supportedInterfaceOrientations
-        XCTAssertEqual(result, orientationLockingViewController.supportedInterfaceOrientations)
+        // TabBarController rotation should match MockOrientationLockingViewController rotation
+        XCTAssertEqual(sut.supportedInterfaceOrientations, .landscapeLeft)
     }
     
-    func test_preferredStatusBarStyle_IDCheckNavigationControllerSelected() {
+    func test_preferredStatusBarStyle() {
         sut.selectedViewController = navigationController
         
         // Present OrientationLockingViewController modally
         navigationController.present(orientationLockingViewController, animated: false)
         
-        let result = sut.preferredStatusBarStyle
-        XCTAssertEqual(result, orientationLockingViewController.preferredStatusBarStyle)
+        // TabBarController rotation should match MockOrientationLockingViewController rotation
+        XCTAssertEqual(sut.preferredStatusBarStyle, .darkContent)
     }
 }
 
 // Result of OrientationLockingTabBarController should match default behaviour of UITabBarController
- extension OrientationLockingTabBarControllerTests {
-    func test_shouldAutorotate_OtherViewControllerPresented() {
+extension OrientationLockingTabBarControllerTests {
+    func test_default_shouldAutorotate() {
         sut.selectedViewController = navigationController
         
         // Present a UIViewController modally
         navigationController.present(viewController, animated: false)
         
-        let result = sut.shouldAutorotate
-        XCTAssertEqual(result, UITabBarController().shouldAutorotate)
+        XCTAssertEqual(sut.shouldAutorotate, UITabBarController().shouldAutorotate)
     }
     
-    func test_preferredInterfaceOrientationForPresentation_OtherViewControllerPresented() {
+    func test_default_preferredInterfaceOrientationForPresentation() {
         sut.selectedViewController = navigationController
         
         // Present a UIViewController modally
         navigationController.present(viewController, animated: false)
         
-        let result = sut.preferredInterfaceOrientationForPresentation
-        XCTAssertEqual(result, UITabBarController().preferredInterfaceOrientationForPresentation)
+        // Since the UIViewController is being presented modally
+        // This value value will not be set and will be .unknown
+        XCTAssertEqual(sut.preferredInterfaceOrientationForPresentation, .unknown)
     }
     
-    func test_supportedInterfaceOrientations_OtherViewControllerPresented() {
+    func test_default_supportedInterfaceOrientations() {
         sut.selectedViewController = navigationController
         
         // Present a UIViewController modally
         navigationController.present(viewController, animated: false)
         
-        let result = sut.supportedInterfaceOrientations
-        XCTAssertEqual(result, UITabBarController().supportedInterfaceOrientations)
+        XCTAssertEqual(sut.supportedInterfaceOrientations, UITabBarController().supportedInterfaceOrientations)
     }
     
-    func test_preferredStatusBarStyle_OtherViewControllerPresented() {
+    func test_default_preferredStatusBarStyle() {
         sut.selectedViewController = navigationController
         
         // Present a UIViewController modally
         navigationController.present(viewController, animated: false)
         
-        let result = sut.preferredStatusBarStyle
-        XCTAssertEqual(result, UITabBarController().preferredStatusBarStyle)
+        XCTAssertEqual(sut.preferredStatusBarStyle, UITabBarController().preferredStatusBarStyle)
     }
- }
+}
 
 class MockOrientationLockingViewController: UINavigationController, OrientationLockingNavigationController {
     let shouldAutorotateValue: Bool
