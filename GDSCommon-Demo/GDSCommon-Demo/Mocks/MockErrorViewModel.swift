@@ -31,6 +31,19 @@ var multipleParagraph: ScreenBodyItem {
     )
 }
 
+var divider: ScreenBodyItem {
+    DividerViewModel(background: .gdsBlack)
+}
+
+@MainActor
+var bulletedList: ScreenBodyItem {
+    BaseBulletViewModel(
+        title: "Bulleted List",
+        titleFont: .title1,
+        text: ["Item 1", "Item 2", "Item 3"]
+    )
+}
+
 struct MockErrorViewModel: GDSErrorViewModelV2, GDSErrorViewModelWithImage, BaseViewModel {
     let image: String = "exclamationmark.circle"
     let title: GDSLocalisedString = "This is an Error View title"

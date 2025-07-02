@@ -79,6 +79,8 @@ final class GDSLeftAlignedScreenTests: XCTestCase {
             bodyContent: [
                 singleLineRegular,
                 singleParagraph,
+                divider,
+                bulletedList,
                 MockButtonViewModel(
                     title: "Button",
                     action: {}
@@ -238,7 +240,7 @@ extension GDSLeftAlignedScreenTests {
     func test_leftAligedContentItems() throws {
         sut = createSUT()
         
-        XCTAssertEqual(try sut.bodyContentView.arrangedSubviews.count, 3)
+        XCTAssertEqual(try sut.bodyContentView.arrangedSubviews.count, 5)
         let labelContainer = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[0] as? UIStackView)
         let label = try XCTUnwrap(labelContainer.arrangedSubviews[0] as? UILabel)
         XCTAssertEqual(label.text, "Body single line (regular)")
@@ -252,7 +254,7 @@ extension GDSLeftAlignedScreenTests {
             """
         )
         
-        let buttonContainer = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[2] as? UIStackView)
+        let buttonContainer = try XCTUnwrap(sut.bodyContentView.arrangedSubviews[4] as? UIStackView)
         let button = try XCTUnwrap(buttonContainer.arrangedSubviews[0] as? SecondaryButton)
         XCTAssertEqual(button.titleLabel?.text, "Button")
     }

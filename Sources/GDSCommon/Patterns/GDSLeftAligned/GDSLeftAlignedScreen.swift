@@ -1,8 +1,16 @@
 import UIKit
 
-public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
-    
+public class GDSLeftAlignedScreen: BaseViewController, VoiceOverFocus {
     public private(set) var viewModel: GDSLeftAlignedViewModel
+    
+    public var initialVoiceOverView: UIView {
+        if scrollViewTitleStackView.isHidden,
+           let first = viewModel.bodyContent.first {
+            return first.uiView
+        } else {
+            return titleLabel
+        }
+    }
         
     let defaultSpacing = 16.0 // Use Design system when available
     
@@ -82,6 +90,7 @@ public class GDSLeftAlignedScreen: BaseViewController, TitledViewControllerV2 {
             trailing: defaultSpacing
         )
         result.accessibilityIdentifier = "left-aligned-screen-title-stack-view"
+        result.isHidden = viewModel.title.value.isEmpty
         return result
     }()
     
