@@ -27,6 +27,7 @@ public final class GDSCentreAlignedScreen: BaseViewController, TitledViewControl
         result.textAlignment = .center
         result.lineBreakMode = .byTruncatingTail
         result.numberOfLines = 0
+        result.adjustsFontForContentSizeCategory = true
         return result
     }()
     

@@ -247,8 +247,12 @@ extension GDSCentreAlignedScreenTests {
         sut = GDSInformationViewController(viewModel: viewModel)
         
         XCTAssertEqual(try sut.titleLabel.text, "V2 Information screen title")
+        XCTAssertTrue(try sut.titleLabel.adjustsFontForContentSizeCategory)
         XCTAssertEqual(try sut.bodyLabel.text, "V2 Information screen body")
+        XCTAssertTrue(try sut.bodyLabel.adjustsFontForContentSizeCategory)
         XCTAssertEqual(try sut.footnoteLabel.text, "V2 Information screen footnote")
+        XCTAssertTrue(try sut.footnoteLabel.adjustsFontForContentSizeCategory)
+        
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary button title")
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary button title")
     }
