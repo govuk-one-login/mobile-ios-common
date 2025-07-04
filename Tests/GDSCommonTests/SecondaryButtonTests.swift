@@ -25,6 +25,10 @@ final class SecondaryButtonTests: XCTestCase {
 
 extension SecondaryButtonTests {
     
+    func test_buttonDefaultState() {
+        XCTAssertEqual(sut.titleLabel?.font, UIFont(style: .body, weight: .regular))
+    }
+    
     func test_buttonAccessibilityLabel() {
         XCTAssertEqual(sut.accessibilityLabel, "title")
     }

@@ -7,6 +7,7 @@ public class SecondaryButton: UIButton {
         }
     }
     
+    public var font: UIFont?
     public var fontWeight: UIFont.Weight = .regular
     public var color: UIColor = .accent
     public var symbolPosition: SymbolPosition = .afterTitle
@@ -36,10 +37,11 @@ public class SecondaryButton: UIButton {
     }
     
     private func commonInit() {
+        let font = font ?? UIFont(style: .body, weight: fontWeight)
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
         titleLabel?.adjustsFontForContentSizeCategory = true
-        titleLabel?.font = UIFont(style: .body, weight: fontWeight)
+        titleLabel?.font = font
         titleLabel?.tintColor = color
         
         if #available(iOS 14.0, *) {
@@ -112,10 +114,11 @@ extension SecondaryButton {
             return
         }
 
-        let configuration = UIImage.SymbolConfiguration(font: .init(style: .body, weight: fontWeight))
+        let font = font ?? UIFont(style: .body, weight: fontWeight)
+        let configuration = UIImage.SymbolConfiguration(font: font)
         let title = self.title(for: .normal) ?? ""
         let textString = NSAttributedString(string: title,
-                                            attributes: [.font: UIFont(style: .body, weight: fontWeight)])
+                                            attributes: [.font: font])
             .addingSymbol(named: icon, configuration: configuration, tintColor: colour, symbolPosition: symbolPosition)
         UIView.performWithoutAnimation {
             self.setAttributedTitle(textString, for: .normal)
@@ -126,10 +129,11 @@ extension SecondaryButton {
     
     @available(iOS 14.0, *)
     @objc public func buttonBackground() {
+        let font = font ?? UIFont(style: .body, weight: fontWeight)
         if UIAccessibility.buttonShapesEnabled {
             backgroundColor = .secondarySystemBackground
             contentEdgeInsets = .init(top: 13, left: 8, bottom: 13, right: 8)
-            titleLabel?.font = UIFont(style: .body, weight: fontWeight)
+            titleLabel?.font = font
             layer.cornerRadius = 10
             layer.cornerCurve = .continuous
         } else {
