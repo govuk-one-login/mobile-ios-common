@@ -113,11 +113,10 @@ extension SecondaryButton {
             return
         }
 
-        let localFont = font ?? UIFont(style: .body, weight: fontWeight)
-        let configuration = UIImage.SymbolConfiguration(font: localFont)
+        let configuration = UIImage.SymbolConfiguration(font: font ?? UIFont(style: .body, weight: fontWeight))
         let title = self.title(for: .normal) ?? ""
         let textString = NSAttributedString(string: title,
-                                            attributes: [.font: localFont])
+                                            attributes: [.font: font ?? UIFont(style: .body, weight: fontWeight)])
             .addingSymbol(named: icon, configuration: configuration, tintColor: colour, symbolPosition: symbolPosition)
         UIView.performWithoutAnimation {
             self.setAttributedTitle(textString, for: .normal)
