@@ -37,11 +37,10 @@ public class SecondaryButton: UIButton {
     }
     
     private func commonInit() {
-        let localFont = font ?? UIFont(style: .body, weight: fontWeight)
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
         titleLabel?.adjustsFontForContentSizeCategory = true
-        titleLabel?.font = localFont
+        titleLabel?.font = font ?? UIFont(style: .body, weight: fontWeight)
         titleLabel?.tintColor = color
         
         if #available(iOS 14.0, *) {
@@ -129,11 +128,10 @@ extension SecondaryButton {
     
     @available(iOS 14.0, *)
     @objc public func buttonBackground() {
-        let localFont = font ?? UIFont(style: .body, weight: fontWeight)
         if UIAccessibility.buttonShapesEnabled {
             backgroundColor = .secondarySystemBackground
             contentEdgeInsets = .init(top: 13, left: 8, bottom: 13, right: 8)
-            titleLabel?.font = localFont
+            titleLabel?.font = font ?? UIFont(style: .body, weight: fontWeight)
             layer.cornerRadius = 10
             layer.cornerCurve = .continuous
         } else {
