@@ -47,10 +47,6 @@ public class SecondaryButton: UIButton {
             buttonBackground()
         }
         
-        if #available(iOS 15.0, *) {
-            titleLabel?.maximumContentSizeCategory = .accessibilityMedium
-        }
-        
         NotificationCenter.default.addObserver(forName: UIContentSizeCategory.didChangeNotification, object: nil, queue: nil) { _ in
             self.redrawTitle(with: self.color)
         }
