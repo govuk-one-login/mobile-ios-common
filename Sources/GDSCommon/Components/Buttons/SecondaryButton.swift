@@ -7,7 +7,7 @@ public class SecondaryButton: UIButton {
         }
     }
     
-    public var font: UIFont?
+    public var font: UIFont.TextStyle? = .body
     public var fontWeight: UIFont.Weight = .regular
     public var color: UIColor = .accent
     public var symbolPosition: SymbolPosition = .afterTitle
@@ -40,7 +40,7 @@ public class SecondaryButton: UIButton {
         titleLabel?.numberOfLines = 0
         titleLabel?.lineBreakMode = .byWordWrapping
         titleLabel?.adjustsFontForContentSizeCategory = true
-        titleLabel?.font = font ?? UIFont(style: .body, weight: fontWeight)
+        titleLabel?.font = UIFont(style: font ?? .largeTitle , weight: fontWeight)
         titleLabel?.tintColor = color
         
         if #available(iOS 14.0, *) {
@@ -117,10 +117,10 @@ extension SecondaryButton {
             return
         }
 
-        let configuration = UIImage.SymbolConfiguration(font: font ?? UIFont(style: .body, weight: fontWeight))
+        let configuration = UIImage.SymbolConfiguration(font: UIFont(style: font ?? .largeTitle , weight: fontWeight))
         let title = self.title(for: .normal) ?? ""
         let textString = NSAttributedString(string: title,
-                                            attributes: [.font: font ?? UIFont(style: .body, weight: fontWeight)])
+                                            attributes: [.font: UIFont(style: font ?? .largeTitle , weight: fontWeight)])
             .addingSymbol(named: icon, configuration: configuration, tintColor: colour, symbolPosition: symbolPosition)
         UIView.performWithoutAnimation {
             self.setAttributedTitle(textString, for: .normal)
@@ -134,7 +134,7 @@ extension SecondaryButton {
         if UIAccessibility.buttonShapesEnabled {
             backgroundColor = .secondarySystemBackground
             contentEdgeInsets = .init(top: 13, left: 8, bottom: 13, right: 8)
-            titleLabel?.font = font ?? UIFont(style: .body, weight: fontWeight)
+            titleLabel?.font = UIFont(style: font ?? .largeTitle , weight: fontWeight)
             layer.cornerRadius = 10
             layer.cornerCurve = .continuous
         } else {
