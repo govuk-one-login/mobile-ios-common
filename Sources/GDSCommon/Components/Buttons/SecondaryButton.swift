@@ -125,6 +125,7 @@ extension SecondaryButton {
         UIView.performWithoutAnimation {
             self.setAttributedTitle(textString, for: .normal)
             self.setTitleColor(colour, for: .normal)
+            self.invalidateIntrinsicContentSize()
             self.layoutIfNeeded()
         }
     }
