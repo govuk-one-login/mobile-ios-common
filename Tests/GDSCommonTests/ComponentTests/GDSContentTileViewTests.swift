@@ -127,7 +127,7 @@ extension GDSContentTileViewTests {
     
     func test_primaryButton() throws {
         XCTAssertEqual(try sut.primaryButton.titleLabel?.text, viewModel.primaryButtonViewModel.title.value)
-        XCTAssertTrue(sut.primaryButton.isAccessibilityElement)
+        XCTAssertTrue(try sut.primaryButton.isAccessibilityElement)
 
         XCTAssertFalse(didTapPrimaryButton)
         viewModel.primaryButtonViewModel.action()
