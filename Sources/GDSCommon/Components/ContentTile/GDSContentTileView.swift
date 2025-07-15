@@ -137,7 +137,8 @@ public final class GDSContentTileView: NibView {
                 )
                 primaryButton.isUserInteractionEnabled = true
                 primaryButton.accessibilityIdentifier = "content-primary-button"
-                
+                primaryButton.isAccessibilityElement = true
+
                 buttonStack.addArrangedSubview(primaryButton)
             }
         }
