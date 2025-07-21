@@ -72,6 +72,16 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     public override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
+        cameraView.frame = view.safeAreaLayoutGuide.layoutFrame
+        DispatchQueue.main.async {
+            var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
+            if self.windowOrientation != .unknown {
+                if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: self.windowOrientation) {
+                    initialVideoOrientation = videoOrientation
+                }
+            }
+            self.previewLayer.connection!.videoOrientation = initialVideoOrientation
+        }
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -79,12 +89,35 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         makeScannerCaptureView()
         updateRegionOfInterest()
         addImageOverlay()
+        cameraView.frame = view.bounds
         previewLayer.frame = cameraView.layer.bounds
+        print("[viewWillAppear]  cameraView.frame: \(cameraView.frame), view.bounds: \(view.bounds)")
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startAnimation()
+    }
+    
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        if let videoPreviewLayerConnection = previewLayer.connection {
+            let deviceOrientation = UIDevice.current.orientation
+            guard let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation),
+                deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
+                return
+            }
+            
+            videoPreviewLayerConnection.videoOrientation = newVideoOrientation
+            
+        }
+        self.previewLayer.frame = self.cameraView.layer.bounds
+        print("[viewWillTransition]  cameraView.frame: \(cameraView.frame), view.bounds: \(view.bounds)")
+    }
+    
+    var windowOrientation: UIInterfaceOrientation {
+        return view.window?.windowScene?.interfaceOrientation ?? .unknown
     }
     
     private func updateRegionOfInterest() {
@@ -193,9 +226,10 @@ extension ScanningViewController {
         setupVideoDisplay()
         setupMetadataCapture()
         captureSession.commitConfiguration()
-        startScanning()
+//        startScanning()
         previewLayer.videoGravity = .resizeAspectFill
         cameraView.layer.addSublayer(previewLayer)
+        startScanning()
         
         overlayView = .init()
         guard let overlayView else { return }
@@ -215,5 +249,27 @@ extension ScanningViewController {
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8).isActive = true
+    }
+}
+
+extension AVCaptureVideoOrientation {
+    init?(deviceOrientation: UIDeviceOrientation) {
+        switch deviceOrientation {
+        case .portrait: self = .portrait
+        case .portraitUpsideDown: self = .portraitUpsideDown
+        case .landscapeLeft: self = .landscapeRight
+        case .landscapeRight: self = .landscapeLeft
+        default: return nil
+        }
+    }
+    
+    init?(interfaceOrientation: UIInterfaceOrientation) {
+        switch interfaceOrientation {
+        case .portrait: self = .portrait
+        case .portraitUpsideDown: self = .portraitUpsideDown
+        case .landscapeLeft: self = .landscapeLeft
+        case .landscapeRight: self = .landscapeRight
+        default: return nil
+        }
     }
 }
