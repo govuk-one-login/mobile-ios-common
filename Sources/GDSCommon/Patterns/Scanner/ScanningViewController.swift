@@ -74,7 +74,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         super.viewDidLoad()
         title = viewModel.title
         view.addSubview(cameraView)
-        cameraView.bindToSuperviewEdges()
+                cameraView.bindToSuperviewSafeArea(insetBy: .zero)
+//        cameraView.bindToSuperviewEdges()
 // child view bound to superviewedges
         DispatchQueue.main.async {
             var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
@@ -83,7 +84,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
                     initialVideoOrientation = videoOrientation
                 }
             }
-            self.previewLayer.connection!.videoOrientation = initialVideoOrientation
+            self.previewLayer.connection?.videoOrientation = initialVideoOrientation
         }
     }
     
@@ -92,7 +93,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         makeScannerCaptureView()
         updateRegionOfInterest()
         addImageOverlay()
-        previewLayer.frame = cameraView.layer.bounds
+        updatePreviewLayerFrame()
+//        previewLayer.frame = cameraView.bounds
         print("[viewWillAppear]  cameraView.frame: \(cameraView.frame), view.bounds: \(view.bounds)")
     }
     
@@ -113,12 +115,15 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
             
             previewLayer.connection?.videoOrientation = newVideoOrientation
         cameraView.layer.needsDisplayOnBoundsChange = true
+//        previewLayer.bounds = cameraView.layer.bounds
 //            previewLayer.frame = cameraView.layer.bounds
+//        previewLayer.frame = view.safeAreaLayoutGuide.layoutFrame
+        let bounds = view.bounds
         let frame = CGRect(
-            x: cameraView.layer.bounds.minY,
-            y: cameraView.layer.bounds.minX,
-            width: cameraView.layer.bounds.maxY - cameraView.layer.bounds.minY,
-            height: cameraView.layer.bounds.maxX - cameraView.layer.bounds.minX
+            x: 0/*bounds.minY*/,
+            y: 0/*bounds.minX*/,
+            width: bounds.maxY - bounds.minY,
+            height: bounds.maxX - bounds.minX
         )
         
         previewLayer.frame = frame
@@ -235,6 +240,12 @@ extension ScanningViewController {
         captureSession.addOutput(videoDataOutput)
     }
     
+    private func updatePreviewLayerFrame() {
+        let safeAreaFrame = view.safeAreaLayoutGuide.layoutFrame
+        let convertedFrame = cameraView.convert(safeAreaFrame, from: view)
+        previewLayer.frame = convertedFrame
+    }
+    
     private func makeScannerCaptureView() {
         captureSession.beginConfiguration()
         setupVideoDisplay()
@@ -242,6 +253,7 @@ extension ScanningViewController {
         captureSession.commitConfiguration()
 //        startScanning()
         previewLayer.videoGravity = .resizeAspectFill
+        cameraView.clipsToBounds = true
         cameraView.layer.addSublayer(previewLayer)
         startScanning()
         
