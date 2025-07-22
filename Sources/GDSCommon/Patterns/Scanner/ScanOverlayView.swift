@@ -1,10 +1,15 @@
 import UIKit
 
 final class ScanOverlayView: UIView {
+    private var isLandscape: Bool {
+        UIDevice.current.orientation.isLandscape
+    }
+    
     let overlayLayer = CAShapeLayer()
     
     var reticleInset: CGFloat {
-        0.1 * bounds.width
+        let base = isLandscape ? bounds.height : bounds.width
+        return 0.1 * base
     }
     
     private var reticleWidth: CGFloat {

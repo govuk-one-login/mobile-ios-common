@@ -74,9 +74,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         super.viewDidLoad()
         title = viewModel.title
         view.addSubview(cameraView)
-                cameraView.bindToSuperviewSafeArea(insetBy: .zero)
-//        cameraView.bindToSuperviewEdges()
-// child view bound to superviewedges
+        cameraView.bindToSuperviewSafeArea(insetBy: .zero)
         DispatchQueue.main.async {
             var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
             if self.windowOrientation != .unknown {
@@ -94,30 +92,24 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         updateRegionOfInterest()
         addImageOverlay()
         updatePreviewLayerFrame()
-//        previewLayer.frame = cameraView.bounds
-        print("[viewWillAppear]  cameraView.frame: \(cameraView.frame), view.bounds: \(view.bounds)")
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        startAnimation()
+        startAnimation()
     }
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-//        if let videoPreviewLayerConnection = previewLayer.connection {
             let deviceOrientation = UIDevice.current.orientation
             guard let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
-//                deviceOrientation.isPortrait || deviceOrientation.isLandscape
         else {
                 return
             }
             
             previewLayer.connection?.videoOrientation = newVideoOrientation
         cameraView.layer.needsDisplayOnBoundsChange = true
-//        previewLayer.bounds = cameraView.layer.bounds
-//            previewLayer.frame = cameraView.layer.bounds
-//        previewLayer.frame = view.safeAreaLayoutGuide.layoutFrame
+
         let bounds = view.bounds
         let frame = CGRect(
             x: 0/*bounds.minY*/,
@@ -127,12 +119,6 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         )
         
         previewLayer.frame = frame
-
-        print("[viewWillTransition]  previewLayer.frame: \(previewLayer.frame), cameraView.layer.bounds: \(cameraView.layer.bounds)")
-            cameraView.setNeedsLayout()
-            cameraView.layoutIfNeeded()
-//        }
-        print("[viewWillTransition]  cameraView.frame: \(cameraView.frame), view.bounds: \(view.bounds)")
     }
     
     var windowOrientation: UIInterfaceOrientation {
@@ -251,7 +237,6 @@ extension ScanningViewController {
         setupVideoDisplay()
         setupMetadataCapture()
         captureSession.commitConfiguration()
-//        startScanning()
         previewLayer.videoGravity = .resizeAspectFill
         cameraView.clipsToBounds = true
         cameraView.layer.addSublayer(previewLayer)
