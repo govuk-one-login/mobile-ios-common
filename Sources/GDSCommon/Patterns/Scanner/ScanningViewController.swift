@@ -28,7 +28,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         instructionsLabel
     }
     
-    @IBOutlet private var cameraView: UIView!
+//    @IBOutlet private var cameraView: UIView!
+    private let cameraView = UIView()
     
     /// Instructions label: `UILabel`
     @IBOutlet private var instructionsLabel: UILabel! {
@@ -72,7 +73,9 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     public override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
-        cameraView.frame = view.safeAreaLayoutGuide.layoutFrame
+        view.addSubview(cameraView)
+        cameraView.bindToSuperviewEdges()
+// child view bound to superviewedges
         DispatchQueue.main.async {
             var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
             if self.windowOrientation != .unknown {
@@ -89,30 +92,41 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         makeScannerCaptureView()
         updateRegionOfInterest()
         addImageOverlay()
-        cameraView.frame = view.bounds
         previewLayer.frame = cameraView.layer.bounds
         print("[viewWillAppear]  cameraView.frame: \(cameraView.frame), view.bounds: \(view.bounds)")
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        startAnimation()
+//        startAnimation()
     }
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
-        if let videoPreviewLayerConnection = previewLayer.connection {
+//        if let videoPreviewLayerConnection = previewLayer.connection {
             let deviceOrientation = UIDevice.current.orientation
-            guard let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation),
-                deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
+            guard let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
+//                deviceOrientation.isPortrait || deviceOrientation.isLandscape
+        else {
                 return
             }
             
-            videoPreviewLayerConnection.videoOrientation = newVideoOrientation
-            
-        }
-        self.previewLayer.frame = self.cameraView.layer.bounds
+            previewLayer.connection?.videoOrientation = newVideoOrientation
+        cameraView.layer.needsDisplayOnBoundsChange = true
+//            previewLayer.frame = cameraView.layer.bounds
+        let frame = CGRect(
+            x: cameraView.layer.bounds.minY,
+            y: cameraView.layer.bounds.minX,
+            width: cameraView.layer.bounds.maxY - cameraView.layer.bounds.minY,
+            height: cameraView.layer.bounds.maxX - cameraView.layer.bounds.minX
+        )
+        
+        previewLayer.frame = frame
+
+        print("[viewWillTransition]  previewLayer.frame: \(previewLayer.frame), cameraView.layer.bounds: \(cameraView.layer.bounds)")
+            cameraView.setNeedsLayout()
+            cameraView.layoutIfNeeded()
+//        }
         print("[viewWillTransition]  cameraView.frame: \(cameraView.frame), view.bounds: \(view.bounds)")
     }
     
