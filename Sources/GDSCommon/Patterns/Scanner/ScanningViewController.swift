@@ -45,7 +45,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     public var viewModel: QRScanningViewModel
     
     private var overlayView: ScanOverlayView?
-    private var imageViewSizeConstraint: [NSLayoutConstraint] = []
+    private var imageViewHeightConstraint: NSLayoutConstraint?
+    private var imageViewWidthConstraint: NSLayoutConstraint?
     
     let processingQueue = DispatchQueue(label: "barcodeScannerQueue",
                                         qos: .userInitiated,
@@ -258,18 +259,26 @@ extension ScanningViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(imageView)
         
+        imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8)
+        imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8)
+        
         imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8).isActive = true
+        imageViewHeightConstraint?.isActive = true
+        imageViewWidthConstraint?.isActive = true
     }
     
     private func updateImageOverlay() {
         guard let overlayView else { return }
-        NSLayoutConstraint.deactivate(imageView.constraints)
+//        NSLayoutConstraint.deactivate(imageView.constraints)
         imageView.removeFromSuperview()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(imageView)
+        
+        imageViewHeightConstraint?.isActive = false
+        imageViewWidthConstraint?.isActive = false
+        imageViewHeightConstraint = nil
+        imageViewWidthConstraint = nil
         
         imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
