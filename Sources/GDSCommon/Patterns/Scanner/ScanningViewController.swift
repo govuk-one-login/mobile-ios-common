@@ -45,6 +45,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     public var viewModel: QRScanningViewModel
     
     private var overlayView: ScanOverlayView?
+    private var imageViewSizeConstraint: [NSLayoutConstraint] = []
     
     let processingQueue = DispatchQueue(label: "barcodeScannerQueue",
                                         qos: .userInitiated,
@@ -101,24 +102,25 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-            let deviceOrientation = UIDevice.current.orientation
-            guard let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
+        let deviceOrientation = UIDevice.current.orientation
+        guard let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
         else {
-                return
-            }
-            
-            previewLayer.connection?.videoOrientation = newVideoOrientation
+            return
+        }
+        
+        previewLayer.connection?.videoOrientation = newVideoOrientation
         cameraView.layer.needsDisplayOnBoundsChange = true
-
+        
         let bounds = view.bounds
         let frame = CGRect(
-            x: 0/*bounds.minY*/,
-            y: 0/*bounds.minX*/,
+            x: 0,
+            y: 0,
             width: bounds.maxY - bounds.minY,
             height: bounds.maxX - bounds.minX
         )
         
         previewLayer.frame = frame
+        updateImageOverlay()
     }
     
     var windowOrientation: UIInterfaceOrientation {
@@ -253,6 +255,19 @@ extension ScanningViewController {
     
     private func addImageOverlay() {
         guard let overlayView else { return }
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        overlayView.addSubview(imageView)
+        
+        imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
+        imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8).isActive = true
+    }
+    
+    private func updateImageOverlay() {
+        guard let overlayView else { return }
+        NSLayoutConstraint.deactivate(imageView.constraints)
+        imageView.removeFromSuperview()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(imageView)
         
