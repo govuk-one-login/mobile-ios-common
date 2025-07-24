@@ -25,21 +25,22 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     private let imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
     
     public var initialVoiceOverView: UIView {
-        instructionsLabel
+        instructionLabel
     }
     
-//    @IBOutlet private var cameraView: UIView!
     private let cameraView = UIView()
     
-    /// Instructions label: `UILabel`
-    @IBOutlet private var instructionsLabel: UILabel! {
-        didSet {
-            instructionsLabel.accessibilityIdentifier = "instructionsLabel"
-            instructionsLabel.text = viewModel.instructionText
-            instructionsLabel.font = .init(style: .body, weight: .bold)
-            instructionsLabel.textColor = .white
-        }
-    }
+    private lazy var instructionLabel: UILabel = {
+        let result = UILabel()
+        result .translatesAutoresizingMaskIntoConstraints = false
+        result.accessibilityIdentifier = "instructionsLabel"
+        result.text = viewModel.instructionText
+        result.numberOfLines = 0
+        result.textAlignment = .center
+        result.font = .init(style: .body, weight: .bold)
+        result.textColor = .white
+        return result
+    }()
     
     private var isScanning: Bool = true
     public var viewModel: QRScanningViewModel
@@ -64,7 +65,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         self.captureDevice = captureDevice
         self.captureSession = captureSession
         self.previewLayer = captureSession.layer
-        super.init(viewModel: viewModel as? BaseViewModel, nibName: "Scanner", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: nil, bundle: .module)
         self.barcodeRequest = requestType.init(completionHandler: detectedBarcode(_:_:))
     }
     
@@ -74,9 +75,11 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .systemBackground
         title = viewModel.title
         view.addSubview(cameraView)
         cameraView.bindToSuperviewSafeArea(insetBy: .zero)
+        setupInstructionLabel()
         DispatchQueue.main.async {
             var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
             if self.windowOrientation != .unknown {
@@ -233,6 +236,15 @@ extension ScanningViewController {
         let safeAreaFrame = view.safeAreaLayoutGuide.layoutFrame
         let convertedFrame = cameraView.convert(safeAreaFrame, from: view)
         previewLayer.frame = convertedFrame
+    }
+    
+    private func setupInstructionLabel(){
+        view.addSubview(instructionLabel)
+        NSLayoutConstraint.activate([
+            instructionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 26),
+            instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            instructionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+        ])
     }
     
     private func makeScannerCaptureView() {
