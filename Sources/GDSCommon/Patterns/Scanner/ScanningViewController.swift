@@ -249,16 +249,16 @@ extension ScanningViewController {
         guard let overlayView else { return }
         cameraView.addSubview(overlayView, insetBy: .zero)
         
-        NSLayoutConstraint.activate([
-            overlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            overlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
     }
     
     private func addImageOverlay() {
         guard let overlayView else { return }
         imageView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(imageView)
-        
+        print("add image overlay \(imageView.frame)")
         imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8)
         imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8)
         
@@ -266,24 +266,37 @@ extension ScanningViewController {
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
         imageViewHeightConstraint?.isActive = true
         imageViewWidthConstraint?.isActive = true
+        print("add image overlay \(imageView.frame)")
+
     }
     
     private func updateImageOverlay() {
         guard let overlayView else { return }
 //        NSLayoutConstraint.deactivate(imageView.constraints)
-        imageView.removeFromSuperview()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        overlayView.addSubview(imageView)
+//        imageView.removeFromSuperview()
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        overlayView.addSubview(imageView)
+        print("update image overlay \(imageView.frame)")
         
         imageViewHeightConstraint?.isActive = false
         imageViewWidthConstraint?.isActive = false
-        imageViewHeightConstraint = nil
-        imageViewWidthConstraint = nil
-        
+//        imageViewHeightConstraint = nil
+//        imageViewWidthConstraint = nil
+        cameraView.layoutIfNeeded()
         imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8).isActive = true
+        if UIDevice.current.orientation == .portrait {
+            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 2)
+            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 2)
+        } else {
+            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height)
+            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width)
+        }
+        imageViewHeightConstraint?.isActive = true
+        imageViewWidthConstraint?.isActive = true
+        
+        print("update image overlay \(imageView.frame)")
+
     }
 }
 

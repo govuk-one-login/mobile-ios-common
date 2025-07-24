@@ -9,6 +9,7 @@ final class ScanOverlayView: UIView {
     
     var reticleInset: CGFloat {
         let base = isLandscape ? bounds.height : bounds.width
+//        print(isLandscape ? "base (height): \(base)" : "base (width): \(base)")
         return 0.1 * base
     }
     
@@ -21,7 +22,8 @@ final class ScanOverlayView: UIView {
     }
     
     var viewfinderRect: CGRect {
-        CGRect(x: (bounds.width - reticleWidth) / 2,
+        print("width: \(reticleWidth), height: \(reticleHeight)")
+        return CGRect(x: (bounds.width - reticleWidth) / 2,
                y: (bounds.height - reticleHeight) / 2,
                width: reticleWidth,
                height: reticleHeight)
