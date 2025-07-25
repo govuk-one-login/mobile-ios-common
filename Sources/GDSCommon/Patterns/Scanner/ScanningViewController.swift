@@ -25,12 +25,12 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     private let imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
     
     public var initialVoiceOverView: UIView {
-        instructionLabel
+        instructionsLabel
     }
     
     private let cameraView = UIView()
     
-    private lazy var instructionLabel: UILabel = {
+    private lazy var instructionsLabel: UILabel = {
         let result = UILabel()
         result .translatesAutoresizingMaskIntoConstraints = false
         result.accessibilityIdentifier = "instructionsLabel"
@@ -82,10 +82,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         setupInstructionLabel()
         DispatchQueue.main.async {
             var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
-            if self.windowOrientation != .unknown {
-                if let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: self.windowOrientation) {
-                    initialVideoOrientation = videoOrientation
-                }
+            if self.windowOrientation != .unknown, let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: self.windowOrientation) {
+                initialVideoOrientation = videoOrientation
             }
             self.previewLayer.connection?.videoOrientation = initialVideoOrientation
         }
@@ -238,12 +236,12 @@ extension ScanningViewController {
         previewLayer.frame = convertedFrame
     }
     
-    private func setupInstructionLabel(){
-        view.addSubview(instructionLabel)
+    private func setupInstructionLabel() {
+        view.addSubview(instructionsLabel)
         NSLayoutConstraint.activate([
-            instructionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 26),
-            instructionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            instructionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+            instructionsLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 26),
+            instructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            instructionsLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
     }
     
@@ -260,10 +258,6 @@ extension ScanningViewController {
         overlayView = .init()
         guard let overlayView else { return }
         cameraView.addSubview(overlayView, insetBy: .zero)
-        
-//        NSLayoutConstraint.activate([
-//            overlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//        ])
     }
     
     private func addImageOverlay() {
@@ -279,21 +273,14 @@ extension ScanningViewController {
         imageViewHeightConstraint?.isActive = true
         imageViewWidthConstraint?.isActive = true
         print("add image overlay \(imageView.frame)")
-
+        
     }
     
     private func updateImageOverlay() {
         guard let overlayView else { return }
-//        NSLayoutConstraint.deactivate(imageView.constraints)
-//        imageView.removeFromSuperview()
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        overlayView.addSubview(imageView)
-        print("update image overlay \(imageView.frame)")
         
         imageViewHeightConstraint?.isActive = false
         imageViewWidthConstraint?.isActive = false
-//        imageViewHeightConstraint = nil
-//        imageViewWidthConstraint = nil
         cameraView.layoutIfNeeded()
         imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
@@ -308,7 +295,7 @@ extension ScanningViewController {
         imageViewWidthConstraint?.isActive = true
         
         print("update image overlay \(imageView.frame)")
-
+        
     }
 }
 
