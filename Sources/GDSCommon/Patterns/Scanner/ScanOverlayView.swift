@@ -12,7 +12,7 @@ final class ScanOverlayView: UIView {
     var reticleSize: CGSize {
         let base = isLandscape ? bounds.height : bounds.width
         let size = 0.7 * base
-        return CGSize(width: size, height:  size)
+        return CGSize(width: size, height: size)
     }
 
     var viewfinderRect: CGRect {
