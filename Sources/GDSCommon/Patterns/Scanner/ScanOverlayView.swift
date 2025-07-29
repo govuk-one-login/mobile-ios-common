@@ -11,23 +11,17 @@ final class ScanOverlayView: UIView {
 
     var reticleSize: CGSize {
         let base = isLandscape ? bounds.height : bounds.width
-        let size = 0.7 * base
+        let size = base * 0.7
         return CGSize(width: size, height: size)
     }
 
     var viewfinderRect: CGRect {
-        if UIDevice.current.orientation.isLandscape {
-            CGRect(x: (bounds.width - reticleSize.width) / 2,
-                   y: ((bounds.height - reticleSize.height) / 2) + 30,
-                   width: reticleSize.width,
-                   height: reticleSize.height)
-        } else {
-            CGRect(x: (bounds.width - reticleSize.width) / 2,
-                   y: (bounds.height - reticleSize.height) / 2,
-                   width: reticleSize.width,
-                   height: reticleSize.height)
-        }
+        let landscapeAdjustment = UIDevice.current.orientation.isLandscape ? 30.0 : 0
         
+        return CGRect(x: (bounds.width - reticleSize.width) / 2,
+               y: ((bounds.height - reticleSize.height) / 2) + landscapeAdjustment,
+               width: reticleSize.width,
+               height: reticleSize.height)
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {

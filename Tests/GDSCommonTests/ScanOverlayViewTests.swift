@@ -28,7 +28,7 @@ final class ScanOverlayViewTests: XCTestCase {
 
 extension ScanOverlayViewTests {
     func testViewfinderSizes() {
-        XCTAssertEqual(sut.reticleInset, size / 10)
+        XCTAssertEqual(sut.reticleSize.width, size * 0.7)
         XCTAssertEqual(sut.viewfinderRect,
                        CGRect(x: 15, y: 65, width: 70, height: 70))
     }
@@ -39,9 +39,9 @@ extension ScanOverlayViewTests {
         }
         sut.orientationProvider = LandscapeOrientationProvider()
 
-        XCTAssertEqual(sut.reticleInset, size / 5)
+        XCTAssertEqual(sut.reticleSize.height, size * 1.4)
         XCTAssertEqual(sut.viewfinderRect,
-                       CGRect(x: 30, y: 80, width: 40, height: 40))
+                       CGRect(x: -20, y: 30, width: 140, height: 140))
     }
 
     func testWillMoveToView() {
