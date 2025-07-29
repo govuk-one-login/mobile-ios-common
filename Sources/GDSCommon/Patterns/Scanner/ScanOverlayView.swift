@@ -8,25 +8,26 @@ final class ScanOverlayView: UIView {
     }
     
     let overlayLayer = CAShapeLayer()
-    
-    var reticleInset: CGFloat {
+
+    var reticleSize: CGSize {
         let base = isLandscape ? bounds.height : bounds.width
-        return 0.1 * base
+        let size = 0.7 * base
+        return CGSize(width: size, height:  size)
     }
-    
-    private var reticleWidth: CGFloat {
-        min(bounds.height, bounds.width) - (reticleInset * 3)
-    }
-    
-    private var reticleHeight: CGFloat {
-        min(bounds.height, bounds.width) - (reticleInset * 3)
-    }
-    
+
     var viewfinderRect: CGRect {
-        CGRect(x: (bounds.width - reticleWidth) / 2,
-               y: (bounds.height - reticleHeight) / 2,
-               width: reticleWidth,
-               height: reticleHeight)
+        if UIDevice.current.orientation.isLandscape {
+            CGRect(x: (bounds.width - reticleSize.width) / 2,
+                   y: ((bounds.height - reticleSize.height) / 2) + 30,
+                   width: reticleSize.width,
+                   height: reticleSize.height)
+        } else {
+            CGRect(x: (bounds.width - reticleSize.width) / 2,
+                   y: (bounds.height - reticleSize.height) / 2,
+                   width: reticleSize.width,
+                   height: reticleSize.height)
+        }
+        
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {

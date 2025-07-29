@@ -48,6 +48,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     private var overlayView: ScanOverlayView?
     private var imageViewHeightConstraint: NSLayoutConstraint?
     private var imageViewWidthConstraint: NSLayoutConstraint?
+    private var imageViewXAnchorConstraint: NSLayoutConstraint?
+    private var imageViewYAnchorConstraint: NSLayoutConstraint?
     
     let processingQueue = DispatchQueue(label: "barcodeScannerQueue",
                                         qos: .userInitiated,
@@ -282,10 +284,14 @@ extension ScanningViewController {
         imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8)
         imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8)
         
-        imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
+        imageViewXAnchorConstraint = imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor)
+        imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor)
+        
+        imageViewXAnchorConstraint?.isActive = true
+        imageViewYAnchorConstraint?.isActive = true
         imageViewHeightConstraint?.isActive = true
         imageViewWidthConstraint?.isActive = true
+        cameraView.layoutIfNeeded()
     }
     
     private func updateImageOverlay() {
@@ -293,17 +299,26 @@ extension ScanningViewController {
         
         imageViewHeightConstraint?.isActive = false
         imageViewWidthConstraint?.isActive = false
-        cameraView.layoutIfNeeded()
-        imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
+        imageViewXAnchorConstraint?.isActive = false
+        imageViewYAnchorConstraint?.isActive = false
+        
+        imageViewXAnchorConstraint = imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor)
+        imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor)
+        
         if UIDevice.current.orientation == .portrait {
-            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 1.6)
-            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 1.6)
+            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.45)
+            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.45)
+            imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor)
         } else {
-            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8)
-            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8)
+            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.4)
+            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.4)
+            imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor, constant: 30)
         }
+        
+        imageViewXAnchorConstraint?.isActive = true
+        imageViewYAnchorConstraint?.isActive = true
         imageViewHeightConstraint?.isActive = true
         imageViewWidthConstraint?.isActive = true
+        cameraView.layoutIfNeeded()
     }
 }
