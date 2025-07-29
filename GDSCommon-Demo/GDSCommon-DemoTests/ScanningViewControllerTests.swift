@@ -75,13 +75,7 @@ extension ScanningViewControllerTests {
         _ = sut.navigationItem.rightBarButtonItem?.target?.perform(sut.navigationItem.rightBarButtonItem?.action)
         XCTAssertTrue(didDismiss)
     }
-    
-    @MainActor
-    func test_nibName() {
-        XCTAssertNotNil(sut.nibName)
-        XCTAssertEqual(sut.nibName, "Scanner")
-    }
-    
+        
     @MainActor
     func testStopScanning() {
         XCTAssertTrue(sut.captureSession.isRunning)

@@ -14,36 +14,44 @@ import Vision
 ///
 ///  The `instructionsLabel` and `cameraView` are within `view`. The view controller adds the `childView`
 
-public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSession>: BaseViewController,
-                                                                                     VoiceOverFocus,
-                                                                                     AVCaptureVideoDataOutputSampleBufferDelegate {
+public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSession>:
+    BaseViewController,
+    VoiceOverFocus,
+    AVCaptureVideoDataOutputSampleBufferDelegate {
+    
     private let captureDevice: any CaptureDevice.Type
     let captureSession: CaptureSession
     private let previewLayer: AVCaptureVideoPreviewLayer
     private(set) var barcodeRequest: VNImageBasedRequest!
     
-    private let imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
+    private var imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
     
     public var initialVoiceOverView: UIView {
         instructionsLabel
     }
     
-    @IBOutlet private var cameraView: UIView!
+    private let cameraView = UIView()
     
-    /// Instructions label: `UILabel`
-    @IBOutlet private var instructionsLabel: UILabel! {
-        didSet {
-            instructionsLabel.accessibilityIdentifier = "instructionsLabel"
-            instructionsLabel.text = viewModel.instructionText
-            instructionsLabel.font = .init(style: .body, weight: .bold)
-            instructionsLabel.textColor = .white
-        }
-    }
+    private lazy var instructionsLabel: UILabel = {
+        let result = UILabel()
+        result .translatesAutoresizingMaskIntoConstraints = false
+        result.accessibilityIdentifier = "instructionsLabel"
+        result.text = viewModel.instructionText
+        result.numberOfLines = 0
+        result.textAlignment = .center
+        result.font = .init(style: .body, weight: .bold)
+        result.textColor = .white
+        return result
+    }()
     
     private var isScanning: Bool = true
     public var viewModel: QRScanningViewModel
     
     private var overlayView: ScanOverlayView?
+    private var imageViewHeightConstraint: NSLayoutConstraint?
+    private var imageViewWidthConstraint: NSLayoutConstraint?
+    private var imageViewXAnchorConstraint: NSLayoutConstraint?
+    private var imageViewYAnchorConstraint: NSLayoutConstraint?
     
     let processingQueue = DispatchQueue(label: "barcodeScannerQueue",
                                         qos: .userInitiated,
@@ -61,7 +69,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         self.captureDevice = captureDevice
         self.captureSession = captureSession
         self.previewLayer = captureSession.layer
-        super.init(viewModel: viewModel as? BaseViewModel, nibName: "Scanner", bundle: .module)
+        super.init(viewModel: viewModel as? BaseViewModel, nibName: nil, bundle: .module)
         self.barcodeRequest = requestType.init(completionHandler: detectedBarcode(_:_:))
     }
     
@@ -71,20 +79,78 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .systemBackground
         title = viewModel.title
+        view.addSubview(cameraView)
+        cameraView.bindToSuperviewSafeArea(insetBy: .zero)
+        setupInstructionLabel()
+        Task { @MainActor in
+            var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
+            if self.windowOrientation != .unknown, let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: self.windowOrientation) {
+                initialVideoOrientation = videoOrientation
+            }
+            self.previewLayer.connection?.videoOrientation = initialVideoOrientation
+        }
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         makeScannerCaptureView()
         updateRegionOfInterest()
+        updatePreviewLayerFrame()
         addImageOverlay()
-        previewLayer.frame = cameraView.layer.bounds
+        updateImageOverlay()
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startAnimation()
+    }
+    
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        setPreviewSize()
+    }
+    
+    func setPreviewSize() {
+        let deviceOrientation = UIDevice.current.orientation
+        guard let newVideoOrientation = AVCaptureVideoOrientation(deviceOrientation: deviceOrientation)
+        else {
+            return
+        }
+        
+        let existingOrientaton = previewLayer.connection?.videoOrientation
+        
+        previewLayer.connection?.videoOrientation = newVideoOrientation
+        cameraView.layer.needsDisplayOnBoundsChange = true
+        
+        let bounds = view.bounds
+        
+        var newFrame: CGRect
+        
+        switch (existingOrientaton?.isLandscape, newVideoOrientation.isLandscape) {
+        case (true, false), (false, true):
+            newFrame = CGRect(
+                x: 0,
+                y: 0,
+                width: bounds.maxY - bounds.minY,
+                height: bounds.maxX - bounds.minX
+            )
+        default:
+            newFrame = CGRect(
+                x: 0,
+                y: 0,
+                width: bounds.maxX - bounds.minX,
+                height: bounds.maxY - bounds.minY
+            )
+        }
+        updateImageOverlay()
+        
+        previewLayer.frame = newFrame
+    }
+    
+    var windowOrientation: UIInterfaceOrientation {
+        return view.window?.windowScene?.interfaceOrientation ?? .unknown
     }
     
     private func updateRegionOfInterest() {
@@ -188,32 +254,67 @@ extension ScanningViewController {
         captureSession.addOutput(videoDataOutput)
     }
     
+    private func updatePreviewLayerFrame() {
+        let safeAreaFrame = view.safeAreaLayoutGuide.layoutFrame
+        let convertedFrame = cameraView.convert(safeAreaFrame, from: view)
+        previewLayer.frame = convertedFrame
+    }
+    
+    private func setupInstructionLabel() {
+        view.addSubview(instructionsLabel)
+        NSLayoutConstraint.activate([
+            instructionsLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 26),
+            instructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            instructionsLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+        ])
+    }
+    
     private func makeScannerCaptureView() {
         captureSession.beginConfiguration()
         setupVideoDisplay()
         setupMetadataCapture()
         captureSession.commitConfiguration()
-        startScanning()
         previewLayer.videoGravity = .resizeAspectFill
+        cameraView.clipsToBounds = true
         cameraView.layer.addSublayer(previewLayer)
+        startScanning()
         
         overlayView = .init()
         guard let overlayView else { return }
         cameraView.addSubview(overlayView, insetBy: .zero)
-        
-        NSLayoutConstraint.activate([
-            overlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
     }
     
     private func addImageOverlay() {
         guard let overlayView else { return }
         imageView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(imageView)
+        updateImageOverlay()
+    }
+    
+    private func updateImageOverlay() {
+        guard let overlayView else { return }
         
-        imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
-        imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8).isActive = true
+        imageViewHeightConstraint?.isActive = false
+        imageViewWidthConstraint?.isActive = false
+        imageViewXAnchorConstraint?.isActive = false
+        imageViewYAnchorConstraint?.isActive = false
+        
+        imageViewXAnchorConstraint = imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor)
+        imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor)
+        
+        let sizeAdjustment = UIDevice.current.orientation.isLandscape ? 0.51 : 0.6
+        let landscapeOffset = UIDevice.current.orientation.isLandscape ? 30.0 : 0
+        let min = min(view.bounds.height, view.bounds.width)
+        let size = min * sizeAdjustment
+        
+        imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: size)
+        imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: size)
+        imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor, constant: landscapeOffset)
+        
+        imageViewXAnchorConstraint?.isActive = true
+        imageViewYAnchorConstraint?.isActive = true
+        imageViewHeightConstraint?.isActive = true
+        imageViewWidthConstraint?.isActive = true
+        cameraView.layoutIfNeeded()
     }
 }
