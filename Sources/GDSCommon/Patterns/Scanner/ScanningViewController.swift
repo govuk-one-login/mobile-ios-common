@@ -97,7 +97,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         updateRegionOfInterest()
         updatePreviewLayerFrame()
         addImageOverlay()
-        updateImageOverlay(sameOrientiation: true)
+        updateImageOverlay()
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -134,7 +134,6 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
                 width: bounds.maxY - bounds.minY,
                 height: bounds.maxX - bounds.minX
             )
-            updateImageOverlay()
         default:
             newFrame = CGRect(
                 x: 0,
@@ -142,8 +141,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
                 width: bounds.maxX - bounds.minX,
                 height: bounds.maxY - bounds.minY
             )
-            updateImageOverlay(sameOrientiation: true)
         }
+        updateImageOverlay()
         
         previewLayer.frame = newFrame
     }
@@ -290,7 +289,7 @@ extension ScanningViewController {
         updateImageOverlay()
     }
     
-    private func updateImageOverlay(sameOrientiation: Bool = false) {
+    private func updateImageOverlay() {
         guard let overlayView else { return }
         
         imageViewHeightConstraint?.isActive = false
@@ -301,23 +300,14 @@ extension ScanningViewController {
         imageViewXAnchorConstraint = imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor)
         imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor)
         
+        let sizeAdjustment = UIDevice.current.orientation.isLandscape ? 0.51 : 0.6
         let landscapeOffset = UIDevice.current.orientation.isLandscape ? 30.0 : 0
+        let min = min(view.bounds.height, view.bounds.width)
+        let size = min * sizeAdjustment
         
-        if sameOrientiation {
-            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8)
-            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8)
-            imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor, constant: landscapeOffset)
-        } else {
-            if UIDevice.current.orientation == .portrait {
-                imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.4)
-                imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.4)
-                imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor, constant: 0)
-            } else {
-                imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.35)
-                imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.35)
-                imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor, constant: landscapeOffset)
-            }
-        }
+        imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: size)
+        imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: size)
+        imageViewYAnchorConstraint = imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor, constant: landscapeOffset)
         
         imageViewXAnchorConstraint?.isActive = true
         imageViewYAnchorConstraint?.isActive = true
