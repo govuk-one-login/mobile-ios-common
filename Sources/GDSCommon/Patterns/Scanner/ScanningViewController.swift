@@ -264,7 +264,6 @@ extension ScanningViewController {
         guard let overlayView else { return }
         imageView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(imageView)
-        print("add image overlay \(imageView.frame)")
         imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8)
         imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8)
         
@@ -272,8 +271,6 @@ extension ScanningViewController {
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
         imageViewHeightConstraint?.isActive = true
         imageViewWidthConstraint?.isActive = true
-        print("add image overlay \(imageView.frame)")
-        
     }
     
     private func updateImageOverlay() {
@@ -293,8 +290,5 @@ extension ScanningViewController {
         }
         imageViewHeightConstraint?.isActive = true
         imageViewWidthConstraint?.isActive = true
-        
-        print("update image overlay \(imageView.frame)")
-        
     }
 }
