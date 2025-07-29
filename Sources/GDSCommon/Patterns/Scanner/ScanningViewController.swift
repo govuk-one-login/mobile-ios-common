@@ -80,7 +80,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         view.addSubview(cameraView)
         cameraView.bindToSuperviewSafeArea(insetBy: .zero)
         setupInstructionLabel()
-        DispatchQueue.main.async {
+        Task { @MainActor in
             var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
             if self.windowOrientation != .unknown, let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: self.windowOrientation) {
                 initialVideoOrientation = videoOrientation
