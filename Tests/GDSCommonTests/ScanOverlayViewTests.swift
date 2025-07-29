@@ -15,8 +15,8 @@ final class ScanOverlayViewTests: XCTestCase {
         super.setUp()
         
         sut = .init(frame: .init(x: 0, y: 0,
-                                 width: size, height: size))
-        
+                                 width: size, height: size * 2))
+
     }
     
     override func tearDown() {
@@ -30,9 +30,20 @@ extension ScanOverlayViewTests {
     func testViewfinderSizes() {
         XCTAssertEqual(sut.reticleInset, size / 10)
         XCTAssertEqual(sut.viewfinderRect,
-                       CGRect(x: 15, y: 15, width: 70, height: 70))
+                       CGRect(x: 15, y: 65, width: 70, height: 70))
     }
-    
+
+    func testViewfinderSizesLandscape() {
+        struct LandscapeOrientationProvider: OrientationProvider {
+            let orientation: UIDeviceOrientation = .landscapeLeft
+        }
+        sut.orientationProvider = LandscapeOrientationProvider()
+
+        XCTAssertEqual(sut.reticleInset, size / 5)
+        XCTAssertEqual(sut.viewfinderRect,
+                       CGRect(x: 30, y: 80, width: 40, height: 40))
+    }
+
     func testWillMoveToView() {
         parentView.addSubview(sut)
         

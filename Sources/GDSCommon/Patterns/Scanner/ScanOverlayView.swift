@@ -1,8 +1,10 @@
 import UIKit
 
 final class ScanOverlayView: UIView {
+    var orientationProvider: OrientationProvider = UIDevice.current
+
     private var isLandscape: Bool {
-        UIDevice.current.orientation.isLandscape
+        orientationProvider.orientation.isLandscape
     }
     
     let overlayLayer = CAShapeLayer()
