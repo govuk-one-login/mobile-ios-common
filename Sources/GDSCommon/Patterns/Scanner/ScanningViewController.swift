@@ -14,9 +14,11 @@ import Vision
 ///
 ///  The `instructionsLabel` and `cameraView` are within `view`. The view controller adds the `childView`
 
-public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSession>: BaseViewController,
-                                                                                     VoiceOverFocus,
-                                                                                     AVCaptureVideoDataOutputSampleBufferDelegate {
+public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSession>:
+    BaseViewController,
+    VoiceOverFocus,
+    AVCaptureVideoDataOutputSampleBufferDelegate {
+    
     private let captureDevice: any CaptureDevice.Type
     let captureSession: CaptureSession
     private let previewLayer: AVCaptureVideoPreviewLayer
