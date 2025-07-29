@@ -25,3 +25,14 @@ extension AVCaptureVideoOrientation {
         }
     }
 }
+
+extension AVCaptureVideoOrientation {
+    public var isLandscape: Bool {
+        switch self {
+        case .landscapeRight, .landscapeLeft:
+            true
+        default:
+            false
+        }
+    }
+}

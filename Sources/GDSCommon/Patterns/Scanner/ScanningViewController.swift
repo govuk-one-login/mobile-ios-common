@@ -110,18 +110,33 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
             return
         }
         
+        let existingOrientaton = previewLayer.connection?.videoOrientation
+        
         previewLayer.connection?.videoOrientation = newVideoOrientation
         cameraView.layer.needsDisplayOnBoundsChange = true
         
         let bounds = view.bounds
-        let frame = CGRect(
-            x: 0,
-            y: 0,
-            width: bounds.maxY - bounds.minY,
-            height: bounds.maxX - bounds.minX
-        )
         
-        previewLayer.frame = frame
+        var newFrame: CGRect
+        
+        switch (existingOrientaton?.isLandscape, newVideoOrientation.isLandscape) {
+        case (true, false), (false, true):
+            newFrame = CGRect(
+                x: 0,
+                y: 0,
+                width: bounds.maxY - bounds.minY,
+                height: bounds.maxX - bounds.minX
+            )
+        default:
+            newFrame = CGRect(
+                x: 0,
+                y: 0,
+                width: bounds.maxX - bounds.minX,
+                height: bounds.maxY - bounds.minY
+            )
+        }
+
+        previewLayer.frame = newFrame
         updateImageOverlay()
     }
     
@@ -282,11 +297,11 @@ extension ScanningViewController {
         imageView.centerXAnchor.constraint(equalTo: overlayView.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: overlayView.centerYAnchor).isActive = true
         if UIDevice.current.orientation == .portrait {
-            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 2)
-            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 2)
+            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 1.6)
+            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 1.6)
         } else {
-            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height)
-            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width)
+            imageViewHeightConstraint = imageView.heightAnchor.constraint(equalToConstant: overlayView.viewfinderRect.height * 0.8)
+            imageViewWidthConstraint = imageView.widthAnchor.constraint(equalToConstant: overlayView.viewfinderRect.width * 0.8)
         }
         imageViewHeightConstraint?.isActive = true
         imageViewWidthConstraint?.isActive = true
