@@ -7,6 +7,19 @@ public final class ListView: UIView {
         self.viewModel = viewModel
         super.init(frame: frame)
         setUp()
+        NotificationCenter
+            .default
+            .addObserver(forName: UIContentSizeCategory.didChangeNotification, object: nil, queue: nil) { [weak self] _ in
+                self?.listRows.forEach { $0.removeFromSuperview() }
+                self?.listStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+                self?.listRows.forEach { self?.listStackView.addArrangedSubview($0) }
+                self?.listStackView.layoutIfNeeded()
+                self?.listStackView.setNeedsLayout()
+            }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(UIContentSizeCategory.didChangeNotification)
     }
     
     @available(*, unavailable, renamed: "init(viewModel:)")
@@ -62,7 +75,7 @@ public final class ListView: UIView {
         return result
     }()
     
-    private lazy var listRows: [UIStackView] = {
+    private var listRows: [UIStackView] {
         viewModel.listItemStrings
             .enumerated()
             .map { index, string in
@@ -114,18 +127,19 @@ public final class ListView: UIView {
                 listRowStack.accessibilityIdentifier = "numbered-list-row-stack-view-\(indexIncremented)"
                 return listRowStack
             }
-    }()
+    }
     
-    private lazy var maxNumberWidth: CGFloat = {
+    private var maxNumberWidth: CGFloat {
         viewModel.listItemStrings
             .indices
             .map { index in
                 let number = UILabel()
                 number.text = "\(index + 1)."
                 number.font = .body
+                number.adjustsFontForContentSizeCategory = true
                 return number
             }
             .map(\UILabel.intrinsicContentSize.width)
             .max() ?? 0
-    }()
+    }
 }
