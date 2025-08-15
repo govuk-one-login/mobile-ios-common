@@ -58,6 +58,13 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
                                         attributes: [],
                                         autoreleaseFrequency: .workItem)
     
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        stopScanning()
+    }
+    
     /// Initialiser for the `Scanning` view controller.
     /// Requires a single parameter.
     /// - Parameter viewModel: `QRScanningViewModel`
