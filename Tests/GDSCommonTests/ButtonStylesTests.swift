@@ -19,15 +19,17 @@ extension ButtonStylesTests {
     func test_primaryButton() throws {
         let sut = try Primary().inspect(isPressed: false)
         
-        XCTAssertFalse(try sut.anyView().styleConfigurationLabel(0).fixedSize().horizontal)
-        XCTAssertTrue(try sut.anyView().styleConfigurationLabel(0).fixedSize().vertical)
+        print(try sut.styleConfigurationLabel().fixedSize())
         
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).multilineTextAlignment(), .center)
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).foregroundColor(), .white.opacity(1))
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).flexFrame().maxWidth, .infinity)
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).flexFrame().minHeight, 44)
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).font(), Font.body.weight(.semibold))
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).cornerRadius(), 16)
+        XCTAssertFalse(try sut.fixedSize().horizontal)
+        XCTAssertTrue(try sut.fixedSize().vertical)
+        
+        XCTAssertEqual(try sut.styleConfigurationLabel(0).multilineTextAlignment(), .center)
+        XCTAssertEqual(try sut.styleConfigurationLabel(0).foregroundColor(), .white.opacity(1))
+        XCTAssertEqual(try sut.flexFrame().maxWidth, .infinity)
+        XCTAssertEqual(try sut.flexFrame().minHeight, 44)
+        XCTAssertEqual(try sut.styleConfigurationLabel(0).font(), Font.body.weight(.semibold))
+        XCTAssertEqual(try sut.cornerRadius(), 16)
     }
     
     @MainActor
@@ -42,13 +44,13 @@ extension ButtonStylesTests {
     func test_secondaryButton() throws {
         let sut = try Secondary().inspect(isPressed: false)
         
-        XCTAssertFalse(try sut.anyView().styleConfigurationLabel(0).fixedSize().horizontal)
-        XCTAssertTrue(try sut.anyView().styleConfigurationLabel(0).fixedSize().vertical)
+        XCTAssertFalse(try sut.fixedSize().horizontal)
+        XCTAssertTrue(try sut.fixedSize().vertical)
         
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).multilineTextAlignment(), .center)
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).foregroundColor(), Color(.accent).opacity(1))
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).flexFrame().maxWidth, .infinity)
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).flexFrame().minHeight, 44)
+        XCTAssertEqual(try sut.styleConfigurationLabel(0).multilineTextAlignment(), .center)
+        XCTAssertEqual(try sut.styleConfigurationLabel(0).foregroundColor(), Color(.accent).opacity(1))
+        XCTAssertEqual(try sut.flexFrame().maxWidth, .infinity)
+        XCTAssertEqual(try sut.flexFrame().minHeight, 44)
     }
     
     @MainActor
@@ -63,12 +65,12 @@ extension ButtonStylesTests {
     func test_supportButton() throws {
         let sut = try Support().inspect(isPressed: false)
         
-        XCTAssertFalse(try sut.anyView().styleConfigurationLabel(0).fixedSize().horizontal)
-        XCTAssertTrue(try sut.anyView().styleConfigurationLabel(0).fixedSize().vertical)
+        XCTAssertFalse(try sut.fixedSize().horizontal)
+        XCTAssertTrue(try sut.fixedSize().vertical)
         
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).multilineTextAlignment(), .leading)
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).foregroundColor(), Color(.accent).opacity(1))
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).flexFrame().alignment, .leading)
-        XCTAssertEqual(try sut.anyView().styleConfigurationLabel(0).flexFrame().minHeight, 24)
+        XCTAssertEqual(try sut.styleConfigurationLabel(0).multilineTextAlignment(), .leading)
+        XCTAssertEqual(try sut.styleConfigurationLabel(0).foregroundColor(), Color(.accent).opacity(1))
+        XCTAssertEqual(try sut.flexFrame().alignment, .leading)
+        XCTAssertEqual(try sut.flexFrame().minHeight, 24)
     }
 }
