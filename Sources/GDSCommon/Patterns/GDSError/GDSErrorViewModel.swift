@@ -7,6 +7,11 @@ public protocol GDSErrorViewModelV3 {
     var bodyContent: [ScreenBodyItem] { get }
     var buttonViewModels: [ButtonViewModel] { get }
     var image: ErrorScreenImage { get }
+    var buttonTextAlignment: NSTextAlignment { get }
+}
+
+extension GDSErrorViewModelV3 {
+    public var buttonTextAlignment: NSTextAlignment { .center }
 }
 
 /// Deprecated alias to allow initialisation of ``GDSErrorViewController`` combining the below two protocols
