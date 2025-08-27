@@ -25,7 +25,6 @@ final class GDSErrorScreenTests: XCTestCase {
     private func createSUT(
         image: ErrorScreenImage = .error,
         buttonsToAdd: Int = 3,
-        textAlignment: NSTextAlignment = .center,
     ) -> GDSErrorScreen {
         let primaryButtonViewModel = MockButtonViewModel(
             title: "Primary Action",
@@ -138,6 +137,7 @@ extension GDSErrorScreenTests {
         XCTAssertEqual(try sut.secondaryButton.titleLabel?.textAlignment, .center)
         XCTAssertEqual(try sut.tertiaryButton.title(for: .normal), "Tertiary Action")
         XCTAssertEqual(try sut.tertiaryButton.accessibilityHint, "Button hint")
+        XCTAssertEqual(try sut.tertiaryButton.titleLabel?.textAlignment, .center)
     }
 
     func test_primaryButtonNoIcon() throws {
