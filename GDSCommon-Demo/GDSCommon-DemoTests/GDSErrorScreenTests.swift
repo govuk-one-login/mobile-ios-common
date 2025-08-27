@@ -88,7 +88,6 @@ final class GDSErrorScreenTests: XCTestCase {
                     action: {}
                 )
             ],
-            textAlignment: textAlignment,
             appearAction: {
                 self.viewDidAppear = true
             },
@@ -133,16 +132,12 @@ extension GDSErrorScreenTests {
         // Buttons
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary Action")
         XCTAssertEqual(try sut.primaryButton.accessibilityHint, "Button hint")
+        XCTAssertEqual(try sut.primaryButton.titleLabel?.textAlignment, .center)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary Action")
         XCTAssertEqual(try sut.secondaryButton.accessibilityHint, "Button hint")
         XCTAssertEqual(try sut.secondaryButton.titleLabel?.textAlignment, .center)
         XCTAssertEqual(try sut.tertiaryButton.title(for: .normal), "Tertiary Action")
         XCTAssertEqual(try sut.tertiaryButton.accessibilityHint, "Button hint")
-    }
-
-    func test_secondaryButtonTextLeftAlignment() throws {
-        sut = createSUT(textAlignment: .left)
-        XCTAssert(try sut.secondaryButton.titleLabel?.textAlignment == .left)
     }
 
     func test_primaryButtonNoIcon() throws {

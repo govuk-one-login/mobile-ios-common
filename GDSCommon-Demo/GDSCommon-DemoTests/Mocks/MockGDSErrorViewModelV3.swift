@@ -13,20 +13,17 @@ struct MockErrorViewModelV3: GDSErrorViewModelV3, BaseViewModel {
     
     var bodyContent: [any GDSCommon.ScreenBodyItem]
     var buttonViewModels: [any ButtonViewModel]
-    let buttonTextAlignment: NSTextAlignment
 
     public init(
         buttonViewModels: [any ButtonViewModel],
         image: ErrorScreenImage,
         bodyContent: [ScreenBodyItem] = [],
-        textAlignment: NSTextAlignment = .center,
         appearAction: @escaping () -> Void,
         dismissAction: @escaping () -> Void
     ) {
         self.buttonViewModels = buttonViewModels
         self.image = image
         self.bodyContent = bodyContent
-        self.buttonTextAlignment = textAlignment
         self.appearAction = appearAction
         self.dismissAction = dismissAction
     }
