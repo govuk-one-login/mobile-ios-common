@@ -24,7 +24,7 @@ final class GDSErrorScreenTests: XCTestCase {
     @MainActor
     private func createSUT(
         image: ErrorScreenImage = .error,
-        buttonsToAdd: Int = 3,
+        buttonsToAdd: Int = 3
     ) -> GDSErrorScreen {
         let primaryButtonViewModel = MockButtonViewModel(
             title: "Primary Action",
