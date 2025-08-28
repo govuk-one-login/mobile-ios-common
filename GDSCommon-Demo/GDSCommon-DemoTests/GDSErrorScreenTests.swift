@@ -131,13 +131,15 @@ extension GDSErrorScreenTests {
         // Buttons
         XCTAssertEqual(try sut.primaryButton.title(for: .normal), "Primary Action")
         XCTAssertEqual(try sut.primaryButton.accessibilityHint, "Button hint")
+        XCTAssertEqual(try sut.primaryButton.titleLabel?.textAlignment, .center)
         XCTAssertEqual(try sut.secondaryButton.title(for: .normal), "Secondary Action")
         XCTAssertEqual(try sut.secondaryButton.accessibilityHint, "Button hint")
+        XCTAssertEqual(try sut.secondaryButton.titleLabel?.textAlignment, .center)
         XCTAssertEqual(try sut.tertiaryButton.title(for: .normal), "Tertiary Action")
         XCTAssertEqual(try sut.tertiaryButton.accessibilityHint, "Button hint")
+        XCTAssertEqual(try sut.tertiaryButton.titleLabel?.textAlignment, .center)
     }
-    
-    
+
     func test_primaryButtonNoIcon() throws {
         XCTAssertNil(try sut.primaryButton.icon)
     }

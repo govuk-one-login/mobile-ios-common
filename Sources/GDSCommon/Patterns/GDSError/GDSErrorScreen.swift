@@ -190,6 +190,7 @@ public class GDSErrorScreen: BaseViewController, TitledViewControllerV2 {
         let result = isPrimaryButton ? RoundedButton() : SecondaryButton()
         
         result.setTitle(buttonViewModel.title.value, for: .normal)
+        result.titleLabel?.textAlignment = .center
         result.accessibilityHint = buttonViewModel.accessibilityHint?.value
         if let icon = buttonViewModel.icon {
             result.symbolPosition = icon.symbolPosition

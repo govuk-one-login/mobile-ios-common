@@ -13,7 +13,7 @@ struct MockErrorViewModelV3: GDSErrorViewModelV3, BaseViewModel {
     
     var bodyContent: [any GDSCommon.ScreenBodyItem]
     var buttonViewModels: [any ButtonViewModel]
-    
+
     public init(
         buttonViewModels: [any ButtonViewModel],
         image: ErrorScreenImage,
