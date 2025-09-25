@@ -55,5 +55,7 @@ extension ScanOverlayViewTests {
     func testLayoutSubviews() {
         sut.layoutSubviews()
         XCTAssertEqual(sut.overlayLayer.frame, sut.frame)
+        XCTAssertEqual(sut.overlayLayer.fillColor, UIColor.scannerBackground.cgColor)
+        XCTAssertEqual(sut.overlayLayer.opacity, 0.7)
     }
 }

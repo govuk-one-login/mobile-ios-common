@@ -34,7 +34,8 @@ final class ScanOverlayView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         overlayLayer.frame = frame
-        
+        overlayLayer.fillColor = UIColor.scannerBackground.cgColor
+        overlayLayer.opacity = 0.7  
         let path = UIBezierPath()
         let overlayPath = UIBezierPath(rect: bounds)
         let windowPath = UIBezierPath(roundedRect: viewfinderRect,
