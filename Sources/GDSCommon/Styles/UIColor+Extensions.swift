@@ -43,7 +43,8 @@ extension UIColor {
     /// Internal method are used as `DialogBackground` and `DialogText` are not part of the GDS Design System and will be replaced and updated in the main repository in future
     internal static let dialogBackground = UIColor(.dialogBackground)
     internal static let dialogText = UIColor(.dialogText)
-   
+    internal static let scannerBackground = UIColor(.scannerBackground)
+
     /// Conforms to `CaseIterable` to allow a single test to iterate over all colours
     /// Enum for GDS Design System colours with raw type of `String` to allow type safe access to the asset catalog
     public enum GDSColours: String, CaseIterable {
@@ -73,5 +74,6 @@ extension UIColor {
         // TODO: DCMAW-6572 Review colours based on investigation from Design
         case dialogBackground = "DialogBackground"
         case dialogText = "DialogText"
+        case scannerBackground = "ScannerBackground"
     }
 }
