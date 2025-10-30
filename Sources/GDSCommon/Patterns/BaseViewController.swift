@@ -9,7 +9,11 @@ import UIKit
 open class BaseViewController: UIViewController {
     private let viewModel: BaseViewModel?
     
-    public init(viewModel: BaseViewModel?, nibName: String?, bundle: Bundle?) {
+    public init(
+        viewModel: BaseViewModel?,
+        nibName: String? = nil,
+        bundle: Bundle? = nil
+    ) {
         self.viewModel = viewModel
         super.init(nibName: nibName, bundle: bundle)
     }
