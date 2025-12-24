@@ -13,9 +13,11 @@ import Foundation
 /// stringLiteral: "This text is bold. This text is not.",
 /// attributes: [("This text is bold", [.font: UIFont.bodyBold])])
 /// ```
-struct GDSAttributedString {
+struct GDSAttributedString: Sendable {
     let localisedString: String
-    let attributes: Attributes
+    
+    private let sendableAttributes: SendableAttributes
+    var attributes: Attributes { sendableAttributes.attributes }
     
     var attributedString: NSAttributedString {
         let mutableAttributeString = NSMutableAttributedString(string: localisedString)
@@ -26,5 +28,10 @@ struct GDSAttributedString {
         }
         
         return mutableAttributeString
+    }
+    
+    init(localisedString: String, attributes: Attributes) {
+        self.localisedString = localisedString
+        self.sendableAttributes = SendableAttributes(attributes: attributes)
     }
 }

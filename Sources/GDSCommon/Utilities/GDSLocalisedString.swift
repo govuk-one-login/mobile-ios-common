@@ -2,7 +2,11 @@ import Foundation
 
 public typealias Attributes = [(String, [NSAttributedString.Key: Any])]
 
-public struct GDSLocalisedString {
+struct SendableAttributes: @unchecked Sendable {
+    let attributes: Attributes
+}
+
+public struct GDSLocalisedString: Sendable {
     public let stringKey: String
     public let variableKeys: [String]
     let bundle: Bundle
@@ -21,7 +25,9 @@ public struct GDSLocalisedString {
                                    attributes: attributes).attributedString
     }
     
-    private let attributes: Attributes?
+    private let sendableAttributes: SendableAttributes?
+    
+    private var attributes: Attributes? { sendableAttributes?.attributes }
     
     public init(stringKey: String,
                 _ variableKeys: String...,
@@ -30,7 +36,7 @@ public struct GDSLocalisedString {
         self.stringKey = stringKey
         self.variableKeys = variableKeys
         self.bundle = bundle
-        self.attributes = attributes
+        self.sendableAttributes = SendableAttributes(attributes: attributes)
     }
     
     public init(stringKey: String,
@@ -40,7 +46,7 @@ public struct GDSLocalisedString {
         self.stringKey = stringKey
         self.variableKeys = variableKeys
         self.bundle = bundle
-        self.attributes = attributes
+        self.sendableAttributes = SendableAttributes(attributes: attributes)
     }
     
     public init(stringKey: String,
@@ -49,7 +55,7 @@ public struct GDSLocalisedString {
         self.stringKey = stringKey
         self.variableKeys = variableKeys
         self.bundle = bundle
-        self.attributes = nil
+        self.sendableAttributes = nil
     }
     
     public init(stringKey: String,
@@ -58,7 +64,7 @@ public struct GDSLocalisedString {
         self.stringKey = stringKey
         self.variableKeys = variableKeys
         self.bundle = bundle
-        self.attributes = nil
+        self.sendableAttributes = nil
     }
 }
 
@@ -67,7 +73,7 @@ extension GDSLocalisedString: ExpressibleByStringLiteral {
         stringKey = value
         variableKeys = []
         bundle = .main
-        self.attributes = nil
+        self.sendableAttributes = nil
     }
     
     public init(stringLiteral value: StringLiteralType,
@@ -75,7 +81,7 @@ extension GDSLocalisedString: ExpressibleByStringLiteral {
         stringKey = value
         variableKeys = []
         bundle = .main
-        self.attributes = attributes
+        self.sendableAttributes = SendableAttributes(attributes: attributes)
     }
 }
 
