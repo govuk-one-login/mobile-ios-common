@@ -3,7 +3,8 @@ import GDSCommon
 
 final class MockCaptureSession: CaptureSession {
     private(set) var output: AVCaptureOutput?
-    
+    private(set) var removedOutput: AVCaptureOutput?
+
     var layer: AVCaptureVideoPreviewLayer {
         AVCaptureVideoPreviewLayer()
     }
@@ -40,5 +41,13 @@ final class MockCaptureSession: CaptureSession {
     
     func addOutput(_ output: AVCaptureOutput) {
         self.output = output
+    }
+
+    // Helper method for testing cleanup
+    func removeOutput(_ output: AVCaptureOutput) {
+        if self.output === output {
+            removedOutput = output
+            self.output = nil
+        }
     }
 }
