@@ -2,6 +2,11 @@ import AVFoundation
 import UIKit
 import Vision
 
+private enum PulseAnimation {
+    static let scaleDelta: CGFloat = 0.05 // Pulse ±5% from center
+    static let duration: TimeInterval = 1.0
+}
+
 /// View Controller for the `Scanner` storyboard XIB
 /// It is initialised with a `viewModel` of type: `QRScanningViewModel`
 /// and a `scanningController` of type: `ScanningController`
@@ -208,17 +213,29 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     }
     
     func startAnimation() {
-        UIView.animate(withDuration: 1.0) {
-            self.imageView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        } completion: { _ in
-            UIView.animate(withDuration: 1.0) {
-                self.imageView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-            } completion: { _ in
-                self.startAnimation()
-            }
-        }
+        // Start at minimum scale (1.0 - delta)
+        imageView.transform = CGAffineTransform(
+            scaleX: 1.0 - PulseAnimation.scaleDelta,
+            y: 1.0 - PulseAnimation.scaleDelta
+        )
+
+        // Animate to maximum scale (1.0 + delta), then autoreverse back
+        UIView.animate(withDuration: PulseAnimation.duration,
+                       delay: 0,
+                       options: [.repeat, .autoreverse, .curveEaseInOut],
+                       animations: {
+            self.imageView.transform = CGAffineTransform(
+                scaleX: 1.0 + PulseAnimation.scaleDelta,
+                y: 1.0 + PulseAnimation.scaleDelta
+            )
+        })
     }
-    
+
+    private func stopAnimation() {
+        imageView.layer.removeAllAnimations()
+        imageView.transform = .identity
+    }
+
     /// Function to process the detected scanned barcode.
     /// Called as soon as a QR Code is detected
     /// Pulls out the first scanned ID
