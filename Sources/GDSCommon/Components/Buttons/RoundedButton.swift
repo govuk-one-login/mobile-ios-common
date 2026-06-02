@@ -26,6 +26,12 @@ public final class RoundedButton: SecondaryButton {
         titleLabel?.isHidden = isTitleHidden
     }
     
+    public override var isHighlighted: Bool {
+        didSet {
+            self.backgroundColor = self.isHighlighted ? .gdsHighlightedGreen : .gdsGreen
+        }
+    }
+    
     public override init() {
         super.init()
         gdsInit()
