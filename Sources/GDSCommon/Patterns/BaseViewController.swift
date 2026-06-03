@@ -32,7 +32,7 @@ open class BaseViewController: UIViewController {
         
         if viewModel?.rightBarButtonTitle != nil {
             self.navigationItem.rightBarButtonItem = .init(title: viewModel?.rightBarButtonTitle?.value,
-                                                           style: .done,
+                                                           style: .plain,
                                                            target: self,
                                                            action: #selector(dismissScreen))
             self.navigationItem.rightBarButtonItem?.accessibilityIdentifier = "right-bar-button"
