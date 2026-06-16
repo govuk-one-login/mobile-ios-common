@@ -53,13 +53,13 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     }()
     
     private let isScanningQueue = DispatchQueue(label: "isScanningQueue")
-    private var _isScanning: Bool = true
+    private var internalIsScanning: Bool = true
     private var isScanning: Bool {
         get {
-            isScanningQueue.sync { _isScanning }
+            isScanningQueue.sync { internalIsScanning }
         }
         set {
-            isScanningQueue.sync { self._isScanning = newValue }
+            isScanningQueue.sync { self.internalIsScanning = newValue }
         }
     }
 
@@ -129,7 +129,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         captureDevice: any CaptureDevice.Type = AVCaptureDevice.self,
         captureSession: CaptureSession = AVCaptureSession(),
         requestType: VNImageBasedRequest.Type = VNDetectBarcodesRequest.self,
-        errorHandler: @escaping (Error?) -> Void = { _ in }
+        errorHandler: @escaping (Error?) -> Void = { _ in /* empty default implementation to avoid breaking change */}
     ) {
         self.viewModel = viewModel
         self.captureDevice = captureDevice
