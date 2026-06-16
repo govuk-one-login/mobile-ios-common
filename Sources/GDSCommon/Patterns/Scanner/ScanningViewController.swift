@@ -24,12 +24,14 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     VoiceOverFocus,
     AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    public let previewLayer: AVCaptureVideoPreviewLayer
-    public var videoDataOutput: AVCaptureVideoDataOutput?
+    let previewLayer: AVCaptureVideoPreviewLayer
+    private(set) var videoDataOutput: AVCaptureVideoDataOutput?
 
     private let captureDevice: any CaptureDevice.Type
     let captureSession: CaptureSession
+    private let requestType: VNImageBasedRequest.Type
     private(set) var barcodeRequest: VNImageBasedRequest?
+    private let errorHandler: (Error?) -> Void
     private var imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
     
     public var initialVoiceOverView: UIView {
@@ -74,6 +76,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
                                         attributes: [],
                                         autoreleaseFrequency: .workItem)
     
+    private var didCleanup = false
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -86,20 +89,21 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     }
 
     private func cleanup() {
-        stopScanning()
-        stopAnimation() // stop the pulsing animation
+        guard !didCleanup else { return }
+        didCleanup = true
 
-        // Remove delegate from video data output
-        if let output = videoDataOutput {
-            output.setSampleBufferDelegate(nil, queue: nil)
-            videoDataOutput = nil
+        stopScanning()
+        stopAnimation()
+
+        // Nil delegate on the processing queue to prevent race with in-flight captureOutput calls
+        processingQueue.sync {
+            self.videoDataOutput?.setSampleBufferDelegate(nil, queue: nil)
         }
+        videoDataOutput = nil
 
         // Cancel and nil out Vision request
-        if let request = barcodeRequest {
-            request.cancel()
-            barcodeRequest = nil
-        }
+        barcodeRequest?.cancel()
+        barcodeRequest = nil
 
         // Remove preview layer from superlayer (idempotent)
         if previewLayer.superlayer != nil {
@@ -110,17 +114,29 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         previewLayer.session = nil
     }
 
+    private func prepareForScanning() {
+        didCleanup = false
+        barcodeRequest = requestType.init { [weak self] request, error in
+            self?.detectedBarcode(request, error)
+        }
+    }
+
     /// Initialiser for the `Scanning` view controller.
     /// Requires a single parameter.
     /// - Parameter viewModel: `QRScanningViewModel`
-    public init(viewModel: QRScanningViewModel,
-                captureDevice: any CaptureDevice.Type = AVCaptureDevice.self,
-                captureSession: CaptureSession = AVCaptureSession(),
-                requestType: VNImageBasedRequest.Type = VNDetectBarcodesRequest.self) {
+    public init(
+        viewModel: QRScanningViewModel,
+        captureDevice: any CaptureDevice.Type = AVCaptureDevice.self,
+        captureSession: CaptureSession = AVCaptureSession(),
+        requestType: VNImageBasedRequest.Type = VNDetectBarcodesRequest.self,
+        errorHandler: @escaping (Error?) -> Void = { _ in }
+    ) {
         self.viewModel = viewModel
         self.captureDevice = captureDevice
         self.captureSession = captureSession
         self.previewLayer = captureSession.layer
+        self.requestType = requestType
+        self.errorHandler = errorHandler
         super.init(viewModel: viewModel as? BaseViewModel, nibName: nil, bundle: .module)
         self.barcodeRequest = requestType.init { [weak self] request, error in
             self?.detectedBarcode(request, error)
@@ -138,7 +154,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         view.addSubview(cameraView)
         cameraView.bindToSuperviewSafeArea(insetBy: .zero)
         setupInstructionLabel()
-        Task { @MainActor in
+        Task { @MainActor [weak self] in
+            guard let self else { return }
             var initialVideoOrientation: AVCaptureVideoOrientation = .portrait
             if self.windowOrientation != .unknown, let videoOrientation = AVCaptureVideoOrientation(interfaceOrientation: self.windowOrientation) {
                 initialVideoOrientation = videoOrientation
@@ -149,6 +166,9 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if didCleanup {
+            prepareForScanning()
+        }
         makeScannerCaptureView()
         updateRegionOfInterest()
         updatePreviewLayerFrame()
@@ -213,22 +233,23 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     }
     
     func startAnimation() {
-        // Start at minimum scale (1.0 - delta)
         imageView.transform = CGAffineTransform(
             scaleX: 1.0 - PulseAnimation.scaleDelta,
             y: 1.0 - PulseAnimation.scaleDelta
         )
 
-        // Animate to maximum scale (1.0 + delta), then autoreverse back
-        UIView.animate(withDuration: PulseAnimation.duration,
-                       delay: 0,
-                       options: [.repeat, .autoreverse, .curveEaseInOut],
-                       animations: {
-            self.imageView.transform = CGAffineTransform(
-                scaleX: 1.0 + PulseAnimation.scaleDelta,
-                y: 1.0 + PulseAnimation.scaleDelta
-            )
-        })
+        UIView.animate(
+            withDuration: PulseAnimation.duration,
+            delay: 0,
+            options: [.repeat, .autoreverse, .curveEaseInOut],
+            animations: { [weak self] in
+                guard let self else { return }
+                self.imageView.transform = CGAffineTransform(
+                    scaleX: 1.0 + PulseAnimation.scaleDelta,
+                    y: 1.0 + PulseAnimation.scaleDelta
+                )
+            }
+        )
     }
 
     private func stopAnimation() {
@@ -247,8 +268,8 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
             .compactMap { $0 as? VNBarcodeObservation }
             .compactMap { $0.payloadStringValue }
         guard let qrCode = qrCodes.first else { return }
-        Task {
-            await didScan(string: qrCode)
+        Task { [weak self] in
+            await self?.didScan(string: qrCode)
         }
     }
     
@@ -274,8 +295,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         do {
             try handler.perform([barcodeRequest])
         } catch {
-            // Log error but don't crash - scanning can continue
-            print("Error performing Vision request: \(error.localizedDescription)")
+            errorHandler(error)
         }
     }
 }
@@ -284,8 +304,8 @@ extension ScanningViewController {
     // Initiate the scanning process
     func startScanning() {
         if !captureSession.isRunning {
-            DispatchQueue.global(qos: .userInitiated).async {
-                self.captureSession.startRunning()
+            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+                self?.captureSession.startRunning()
             }
         }
     }
@@ -302,11 +322,12 @@ extension ScanningViewController {
     private func setupVideoDisplay() {
         guard let videoCaptureDevice = captureDevice.for(mediaType: .video),
               let videoInput = try? videoCaptureDevice.input as? CaptureSession.Input else {
-            print("Error: Device does not have a video capture device")
+            errorHandler(nil)
             return
         }
         guard captureSession.canAddInput(videoInput) else {
             assertionFailure("Can't add video input for detecting barcodes")
+            errorHandler(nil)
             return
         }
         captureSession.addInput(videoInput)
@@ -323,7 +344,6 @@ extension ScanningViewController {
 
         captureSession.addOutput(output)
 
-        // Store reference for cleanup to fix retain cycle
         videoDataOutput = output
     }
     
