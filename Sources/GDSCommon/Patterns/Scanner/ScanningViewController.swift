@@ -25,7 +25,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     AVCaptureVideoDataOutputSampleBufferDelegate {
     
     let previewLayer: AVCaptureVideoPreviewLayer
-    private(set) var videoDataOutput: AVCaptureVideoDataOutput?
+    var videoDataOutput: AVCaptureVideoDataOutput?
 
     let captureDevice: any CaptureDevice.Type
     let captureSession: CaptureSession
