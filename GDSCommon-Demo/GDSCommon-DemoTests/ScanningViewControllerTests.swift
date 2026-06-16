@@ -78,7 +78,7 @@ extension ScanningViewControllerTests {
         
     @MainActor
     func testStopScanning() {
-        XCTAssertTrue(sut.captureSession.isRunning)
+        waitForTruth(self.sut.captureSession.isRunning, timeout: 2)
         sut.stopScanning()
         XCTAssertFalse(sut.captureSession.isRunning)
         sut.startScanning()

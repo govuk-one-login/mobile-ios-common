@@ -304,8 +304,9 @@ extension ScanningViewController {
     // Initiate the scanning process
     func startScanning() {
         if !captureSession.isRunning {
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                self?.captureSession.startRunning()
+            let session = captureSession
+            DispatchQueue.global(qos: .userInitiated).async {
+                session.startRunning()
             }
         }
     }
