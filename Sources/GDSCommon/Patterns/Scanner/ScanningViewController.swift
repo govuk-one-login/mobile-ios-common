@@ -27,20 +27,20 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     let previewLayer: AVCaptureVideoPreviewLayer
     private(set) var videoDataOutput: AVCaptureVideoDataOutput?
 
-    private let captureDevice: any CaptureDevice.Type
+    let captureDevice: any CaptureDevice.Type
     let captureSession: CaptureSession
     private let requestType: VNImageBasedRequest.Type
     private(set) var barcodeRequest: VNImageBasedRequest?
-    private let errorHandler: (Error?) -> Void
+    let errorHandler: (Error?) -> Void
     private var imageView: UIImageView = .init(image: .init(named: "qrscan", in: .module, compatibleWith: nil))
     
     public var initialVoiceOverView: UIView {
         instructionsLabel
     }
     
-    private let cameraView = UIView()
+    let cameraView = UIView()
     
-    private lazy var instructionsLabel: UILabel = {
+    lazy var instructionsLabel: UILabel = {
         let result = UILabel()
         result .translatesAutoresizingMaskIntoConstraints = false
         result.accessibilityIdentifier = "instructionsLabel"
@@ -319,50 +319,7 @@ extension ScanningViewController {
 }
 
 extension ScanningViewController {
-    private func setupVideoDisplay() {
-        guard let videoCaptureDevice = captureDevice.for(mediaType: .video),
-              let videoInput = try? videoCaptureDevice.input as? CaptureSession.Input else {
-            errorHandler(nil)
-            return
-        }
-        guard captureSession.canAddInput(videoInput) else {
-            assertionFailure("Can't add video input for detecting barcodes")
-            errorHandler(nil)
-            return
-        }
-        captureSession.addInput(videoInput)
-    }
-    
-    private func setupMetadataCapture() {
-        let output = AVCaptureVideoDataOutput()
-        guard captureSession.canAddOutput(output) else {
-            assertionFailure("Can't add video output for detecting barcodes")
-            return
-        }
-        output.alwaysDiscardsLateVideoFrames = true
-        output.setSampleBufferDelegate(self, queue: processingQueue)
-
-        captureSession.addOutput(output)
-
-        videoDataOutput = output
-    }
-    
-    private func updatePreviewLayerFrame() {
-        let safeAreaFrame = view.safeAreaLayoutGuide.layoutFrame
-        let convertedFrame = cameraView.convert(safeAreaFrame, from: view)
-        previewLayer.frame = convertedFrame
-    }
-    
-    private func setupInstructionLabel() {
-        view.addSubview(instructionsLabel)
-        NSLayoutConstraint.activate([
-            instructionsLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 26),
-            instructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            instructionsLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
-        ])
-    }
-    
-    private func makeScannerCaptureView() {
+    func makeScannerCaptureView() {
         captureSession.beginConfiguration()
         setupVideoDisplay()
         setupMetadataCapture()
@@ -376,15 +333,15 @@ extension ScanningViewController {
         guard let overlayView else { return }
         cameraView.addSubview(overlayView, insetBy: .zero)
     }
-    
-    private func addImageOverlay() {
+
+    func addImageOverlay() {
         guard let overlayView else { return }
         imageView.translatesAutoresizingMaskIntoConstraints = false
         overlayView.addSubview(imageView)
         updateImageOverlay()
     }
-    
-    private func updateImageOverlay() {
+
+    func updateImageOverlay() {
         guard let overlayView else { return }
         
         imageViewHeightConstraint?.isActive = false
