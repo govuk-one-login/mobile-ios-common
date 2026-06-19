@@ -76,19 +76,20 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
                                         attributes: [],
                                         autoreleaseFrequency: .workItem)
     
+    private var didSetupCapture = false
     private var didCleanup = false
     
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        cleanup()
+        stopScanning()
+        stopAnimation()
     }
 
     deinit {
         cleanup()
     }
 
-    private func cleanup() {
+    func cleanup() {
         guard !didCleanup else { return }
         didCleanup = true
 
@@ -112,13 +113,6 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
 
         // Break the preview layer's reference to the session
         previewLayer.session = nil
-    }
-
-    private func prepareForScanning() {
-        didCleanup = false
-        barcodeRequest = requestType.init { [weak self] request, error in
-            self?.detectedBarcode(request, error)
-        }
     }
 
     /// Initialiser for the `Scanning` view controller.
@@ -152,7 +146,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         self.view.backgroundColor = .systemBackground
         title = viewModel.title
         view.addSubview(cameraView)
-        cameraView.bindToSuperviewSafeArea(insetBy: .zero)
+        cameraView.bindToSuperviewEdges()
         setupInstructionLabel()
         Task { @MainActor [weak self] in
             guard let self else { return }
@@ -166,9 +160,11 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if didCleanup {
-            prepareForScanning()
+        if didSetupCapture {
+            startScanning()
+            return
         }
+        didSetupCapture = true
         makeScannerCaptureView()
         updateRegionOfInterest()
         updatePreviewLayerFrame()
@@ -332,7 +328,14 @@ extension ScanningViewController {
         
         overlayView = .init()
         guard let overlayView else { return }
-        cameraView.addSubview(overlayView, insetBy: .zero)
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+        cameraView.addSubview(overlayView)
+        NSLayoutConstraint.activate([
+            overlayView.topAnchor.constraint(equalTo: cameraView.topAnchor),
+            overlayView.leadingAnchor.constraint(equalTo: cameraView.leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: cameraView.trailingAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: cameraView.bottomAnchor)
+        ])
     }
 
     func addImageOverlay() {

@@ -132,10 +132,9 @@ extension ScanningViewControllerTests {
         XCTAssertNotNil(output.sampleBufferDelegate)
         XCTAssertTrue(output.sampleBufferDelegate === sut)
 
-        sut.beginAppearanceTransition(false, animated: false)
-        sut.endAppearanceTransition()
+        sut.cleanup()
 
-        waitForTruth(output.sampleBufferDelegate == nil, timeout: 2.0)
+        XCTAssertNil(output.sampleBufferDelegate)
     }
 
     @MainActor
@@ -144,59 +143,49 @@ extension ScanningViewControllerTests {
         XCTAssertNotNil(barcodeRequest)
         XCTAssertFalse(barcodeRequest.wasCancelled)
 
-        sut.beginAppearanceTransition(false, animated: false)
-        sut.endAppearanceTransition()
+        sut.cleanup()
 
-        waitForTruth(barcodeRequest.wasCancelled || self.sut.barcodeRequest == nil, timeout: 2.0)
+        XCTAssertTrue(barcodeRequest.wasCancelled)
     }
 
     @MainActor
     func test_previewLayerRemovedOnDismissal() {
-        // Preview layer should be added after setUp (which calls beginAppearanceTransition)
-        // Verify it exists initially
-        XCTAssertNotNil(sut.testPreviewLayer.superlayer, "Preview layer should be added to view hierarchy")
+        let layer = sut.testPreviewLayer
+        XCTAssertNotNil(layer.superlayer, "Preview layer should be added to view hierarchy")
 
-        // Now dismiss and verify cleanup
-        sut.beginAppearanceTransition(false, animated: false)
-        sut.endAppearanceTransition()
+        sut.cleanup()
 
-        // Verify preview layer is removed
-        waitForTruth(self.sut.testPreviewLayer.superlayer == nil, timeout: 2.0)
+        XCTAssertNil(layer.superlayer)
     }
 
     @MainActor
     func test_captureSessionStopsOnDismissal() {
-        XCTAssertTrue(sut.captureSession.isRunning)
+        waitForTruth(self.captureSession.isRunning, timeout: 2.0)
 
         sut.beginAppearanceTransition(false, animated: false)
         sut.endAppearanceTransition()
 
-        waitForTruth(!self.sut.captureSession.isRunning, timeout: 2.0)
+        waitForTruth(!self.captureSession.isRunning, timeout: 2.0)
     }
 
     @MainActor
     func test_multipleAppearDisappearCycles() throws {
-        // First cycle
+        // First cycle - disappear pauses scanning
         sut.beginAppearanceTransition(false, animated: false)
         sut.endAppearanceTransition()
 
-        let output1 = try XCTUnwrap(captureSession.output as? AVCaptureVideoDataOutput)
-        waitForTruth(output1.sampleBufferDelegate == nil, timeout: 2.0)
         waitForTruth(!self.sut.captureSession.isRunning, timeout: 2.0)
 
-        // Second cycle - reappear
+        // Second cycle - reappear resumes
         sut.beginAppearanceTransition(true, animated: false)
         sut.endAppearanceTransition()
 
-        // Should be able to set up again
         waitForTruth(self.sut.captureSession.isRunning, timeout: 2.0)
 
         // Second cycle - disappear again
         sut.beginAppearanceTransition(false, animated: false)
         sut.endAppearanceTransition()
 
-        let output2 = try XCTUnwrap(captureSession.output as? AVCaptureVideoDataOutput)
-        waitForTruth(output2.sampleBufferDelegate == nil, timeout: 2.0)
         waitForTruth(!self.sut.captureSession.isRunning, timeout: 2.0)
     }
 
@@ -238,10 +227,6 @@ extension ScanningViewControllerTests {
             localSUT.endAppearanceTransition()
 
             weakSUT = localSUT
-
-            // Trigger cleanup
-            localSUT.beginAppearanceTransition(false, animated: false)
-            localSUT.endAppearanceTransition()
         }
 
         // Wait a bit for deallocation

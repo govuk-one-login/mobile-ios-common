@@ -32,9 +32,7 @@ extension ScanningViewController {
     }
 
     func updatePreviewLayerFrame() {
-        let safeAreaFrame = view.safeAreaLayoutGuide.layoutFrame
-        let convertedFrame = cameraView.convert(safeAreaFrame, from: view)
-        previewLayer.frame = convertedFrame
+        previewLayer.frame = cameraView.bounds
     }
 
     func setupInstructionLabel() {
