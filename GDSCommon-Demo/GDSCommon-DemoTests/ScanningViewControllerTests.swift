@@ -59,7 +59,18 @@ extension ScanningViewControllerTests {
         try XCTAssertEqual(sut.instructionsLabel.textColor, .white)
         try XCTAssertEqual(sut.instructionsLabel.font, .init(style: .body, weight: .bold))
     }
-    
+
+    @MainActor
+    func test_navigationTitle() throws {
+        sut.beginAppearanceTransition(true, animated: false)
+        let appearance = try XCTUnwrap(sut.navigationItem.standardAppearance)
+        XCTAssertEqual(appearance.titleTextAttributes[.foregroundColor] as? UIColor, UIColor.white)
+        XCTAssertEqual(appearance.largeTitleTextAttributes[.foregroundColor] as? UIColor, UIColor.white)
+        XCTAssertEqual(sut.navigationItem.compactAppearance, appearance)
+        XCTAssertEqual(sut.navigationItem.scrollEdgeAppearance, appearance)
+        XCTAssertEqual(sut.navigationItem.compactScrollEdgeAppearance, appearance)
+    }
+
     @MainActor
     func test_didDismiss() {
         XCTAssertEqual(sut.navigationItem.hidesBackButton, false)
