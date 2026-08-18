@@ -1,11 +1,11 @@
-// swift-tools-version: 5.6
+// swift-tools-version: 5.7
 
 import PackageDescription
 
 let package = Package(
     name: "GDSCommon",
     defaultLocalization: "en",
-    platforms: [.iOS(.v13)],
+    platforms: [.iOS(.v16)],
     products: [
         .library(name: "GDSCommon", targets: ["GDSCommon"])
     ],
