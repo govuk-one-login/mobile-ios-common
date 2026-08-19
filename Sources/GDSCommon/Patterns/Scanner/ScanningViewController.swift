@@ -160,7 +160,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
     }
 
     /// Keeps the scanner title legible over the darkened camera preview without
-    /// mutating the shared navigation bar or obscuring the preview with chrome.
+    /// mutating the shared navigation bar or applying a blur effect such as systemChromeMaterial.
     private func configureNavigationAppearance() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
