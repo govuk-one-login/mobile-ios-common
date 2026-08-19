@@ -145,6 +145,7 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         title = viewModel.title
+        configureNavigationAppearance()
         view.addSubview(cameraView)
         cameraView.bindToSuperviewEdges()
         setupInstructionLabel()
@@ -157,7 +158,23 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
             self.previewLayer.connection?.videoOrientation = initialVideoOrientation
         }
     }
-    
+
+    /// Keeps the scanner title legible over the darkened camera preview without
+    /// mutating the shared navigation bar or applying a blur effect such as systemChromeMaterial.
+    private func configureNavigationAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+
+        navigationItem.standardAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        if #available(iOS 15.0, *) {
+            navigationItem.compactScrollEdgeAppearance = appearance
+        }
+    }
+
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if didSetupCapture {
