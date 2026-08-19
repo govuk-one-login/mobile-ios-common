@@ -170,7 +170,9 @@ public final class ScanningViewController<CaptureSession: GDSCommon.CaptureSessi
         navigationItem.standardAppearance = appearance
         navigationItem.compactAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
-        navigationItem.compactScrollEdgeAppearance = appearance
+        if #available(iOS 15.0, *) {
+            navigationItem.compactScrollEdgeAppearance = appearance
+        }
     }
 
     public override func viewWillAppear(_ animated: Bool) {
